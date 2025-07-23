@@ -1,0 +1,2 @@
+# BogdaWeb
+Static Web
