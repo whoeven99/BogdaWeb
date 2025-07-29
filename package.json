@@ -6,7 +6,7 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "cross-env PORT=9000 HOST=0.0.0.0 next start",
-    "lint": "next lint"
+    "lint": "next lint"   
   },
   "dependencies": {
     "@ant-design/icons": "^6.0.0",
