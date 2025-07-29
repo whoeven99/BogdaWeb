@@ -15,12 +15,56 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
-    --foreground: #ededed;
+    --foreground: #fff;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--foreground);
+  color: var(--background);
+  font-family: -apple-system, "system-ui", Helvetica Neue, Tahoma, PingFang SC,
+    Microsoft Yahei, Arial, Hiragino Sans GB, sans-serif, Apple Color Emoji,
+    Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+}
+
+h1 {
+  display: block;
+  font-size: 2em;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+  unicode-bidi: isolate;
+}
+
+img {
+  vertical-align: middle;
+  border-style: none;
+}
+
+a {
+  cursor: pointer;
+  -webkit-user-drag: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.ant-carousel .slick-prev,
+.ant-carousel .slick-next,
+.ant-carousel .slick-prev:hover,
+.ant-carousel .slick-next:hover {
+  color: #000;
+}
+
+.ant-carousel .slick-prev {
+  /* margin-left: 48px; */
+  opacity: 1;
+}
+
+.ant-carousel .slick-next {
+  /* margin-right: 48px; */
+  opacity: 1;
 }

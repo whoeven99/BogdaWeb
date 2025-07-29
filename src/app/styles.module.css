@@ -1,0 +1,918 @@
+.ciwiHeader {
+  padding: 0 120px;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  gap: 48px;
+  width: 100%;
+}
+
+.ciwiHeaderLogo {
+  font-size: 18px;
+  height: 18px;
+  line-height: 18px;
+  color: #000;
+  font-weight: 700;
+}
+
+.drawerMenu {
+  display: flex;
+  flex-direction: column;
+}
+
+.menuItem {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f5f5f5;
+  cursor: pointer;
+}
+
+.ciwiMainContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 128px 0px;
+  padding-bottom: 100px;
+  gap: 96px;
+  background: linear-gradient(
+    180deg,
+    #fff,
+    #fff4fa 40%,
+    #fbd9fd 55%,
+    #e2d5ff 70%,
+    #fff 90%
+  );
+}
+
+.ciwiMainText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.ciwiMainButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.ciwiMainTitle {
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 68px;
+  text-align: center;
+  font-family: -apple-system, "system-ui", Helvetica Neue, Tahoma, PingFang SC,
+    Microsoft Yahei, Arial, Hiragino Sans GB, sans-serif, Apple Color Emoji,
+    Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  animation: fadeInDown--HIU85 1s ease-out 0.3s backwards;
+  margin: 0;
+}
+
+.ciwiMainSubtitle {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 26px;
+  text-align: center;
+  max-width: 760px;
+  font-family: -apple-system, "system-ui", Helvetica Neue, Tahoma, PingFang SC,
+    Microsoft Yahei, Arial, Hiragino Sans GB, sans-serif, Apple Color Emoji,
+    Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  color: #545c66;
+  animation: fadeInDown--HIU85 1s ease-out 0.3s backwards;
+}
+
+.ciwiMainAddtoShopify {
+  border: none;
+  padding: 16px 24px;
+  height: 56px;
+  animation: fadeInDown--HIU85 1s ease-out 0.6s backwards;
+}
+
+.ciwiIntroduce {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 1200px;
+  animation: fadeInDown--HIU85 1s ease-out 0.9s backwards;
+}
+
+.ciwiIntroduceImg {
+  height: auto;
+  width: 996px;
+  border-radius: 16px;
+  box-shadow: 0 12px 80px 0 rgba(104, 65, 234, 0.3),
+    0 2px 6px 0 rgba(104, 65, 234, 0.15);
+  transition: opacity 0.8s;
+  z-index: 1;
+}
+
+.ciwiIntroduceVideo {
+  position: absolute;
+  box-shadow: none;
+  height: auto;
+  width: 996px;
+  border-radius: 16px;
+  box-shadow: 0 12px 80px 0 rgba(104, 65, 234, 0.3),
+    0 2px 6px 0 rgba(104, 65, 234, 0.15);
+  transition: opacity 0.8s;
+  z-index: 2;
+}
+
+.ciwiDownLoad {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 48px;
+  padding: 50px 0;
+}
+
+.ciwiDownLoadItem {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-tap-highlight-color: transparent;
+  gap: 16px;
+  height: 64px;
+}
+
+.ciwiDownLoadItemIcon {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  aspect-ratio: 1;
+  background-color: var(--common-white);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+}
+
+.ciwiDownLoadItemIconImg {
+  transition: all 0.3s;
+  width: 40px;
+  height: 40px;
+}
+
+.ciwiDownLoadItemInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 4px;
+  height: 100%;
+}
+
+.ciwiDownLoadItemInfoStars {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 28px;
+  height: auto;
+  color: #20262e;
+}
+
+.ciwiDownLoadItemInfoText {
+  font-size: 16px;
+  line-height: 24px;
+  color: #545c66;
+}
+
+.ciwiProduct {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 48px;
+  padding-top: 100px;
+  width: 100%;
+}
+
+.ciwiProductBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 24px;
+  position: relative;
+  width: 100%;
+}
+
+.ciwiProductBarItemContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 48px;
+}
+
+.ciwiProductBarItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-tap-highlight-color: transparent;
+  gap: 8px;
+  color: #545c66;
+}
+
+.ciwiProductBarItemIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  font-size: 36px;
+}
+
+.ciwiProductBarItemLabel {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.ciwiProductBarItemActive {
+  color: #6841ea;
+}
+
+.ciwiProductDemoVideoContainer {
+  max-width: 940px;
+  margin: 0 auto;
+  padding-top: 24px;
+  padding-bottom: 100px;
+}
+
+.ciwiProductDemoVideoCarousel {
+  width: 100%;
+}
+
+.ciwiProductReview {
+  align-self: center;
+  padding-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.ciwiProductReviewInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 32px;
+}
+
+.ciwiProductReviews {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.ciwiProductAllStars {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.ciwiProductAllStarsText {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.ciwiProductAllUsers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.ciwiCountBold {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  font-size: 32px;
+  line-height: 44px;
+  font-weight: 700;
+  font-feature-settings: "case";
+}
+
+.ciwiSecondaryText {
+  font-size: 16px;
+  line-height: 24px;
+  color: #545c66;
+  text-align: center;
+}
+
+.ciwiProductIntroduction {
+  padding: 100px 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.ciwiProductIntroductionGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  width: 1200px;
+}
+
+.ciwiProductIntroductionCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #f9fafb;
+  border-radius: 24px;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.ciwiProductIntroductionCardLast {
+  grid-column: 1 / -1;
+}
+
+.ciwiProductIntroductionCardTitle {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 44px;
+  margin-top: 32px;
+  text-align: center;
+}
+
+.ciwiProductIntroductionCardDesc {
+  margin-top: 8px;
+  padding: 0 32px;
+  font-size: 18px;
+  line-height: 28px;
+  text-align: center;
+  color: #545c66;
+}
+
+.placeholderImg {
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 75%);
+  border-radius: 12px;
+}
+
+.ciwiProductReviewCards {
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin: 24px 0;
+  grid-template-rows: masonry; /* Masonry 瀑布流布局 */
+}
+
+.ciwiProductReviewCard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-radius: 8px;
+  background-color: var(--theme-fill-tsp-components-tertiary, #f5f5f5);
+  padding: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.ciwiProductReviewCardHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ciwiProductReviewCardName {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.ciwiProductReviewCardContent {
+  color: #444;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.ciwiFAQ {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 48px;
+  width: 100%;
+  padding: 100px 0;
+}
+
+.ciwiGetNowCard {
+  padding: 100px 0;
+  margin: 100px auto;
+  max-width: 1200px;
+  background-color: #add8e6;
+  border-radius: 24px;
+  height: auto;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-image: url(https://assets.monica.im/home-web/_next/static/media/unleashBg.9bfec631.png);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.ciwiSecondaryTitle {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  text-align: center;
+  margin: 0px;
+}
+
+.ciwiFooter {
+  width: 100%;
+  background: #fff;
+  padding: 48px 80px 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.ciwiFooterContainer {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+  gap: 20px;
+  max-width: 1440px;
+}
+
+.ciwiFooterLeftLogo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ciwiFooterLeftText {
+  font-size: 24px;
+  height: 18px;
+  line-height: 18px;
+  color: #262626;
+  font-weight: 500;
+}
+
+.ciwiFooterRight {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.ciwiFooterRightItem {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  align-items: center;
+}
+
+.ciwiFooterLink {
+  color: #262626;
+  font-size: 16px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.ciwiFooterLink:hover {
+  color: #6841ea;
+}
+
+@media (max-width: 1280px) {
+  .ciwiIntroduce {
+    width: calc(100% - 80px);
+    margin: 0 40px;
+  }
+
+  .ciwiIntroduceImg,
+  .ciwiIntroduceVideo {
+    width: 83%;
+    border-radius: 12px;
+  }
+}
+
+/* 平板端适配 */
+@media (max-width: 1024px) {
+  .ciwiHeader {
+    gap: 18px;
+    padding: 0 20px;
+  }
+
+  .ciwiMainContainer {
+    padding: 80px 20px;
+    padding-top: 128px;
+
+    padding-bottom: 60px;
+    gap: 60px;
+  }
+
+  .ciwiMainTitle {
+    font-size: 42px;
+    line-height: 52px;
+  }
+
+  .ciwiMainSubtitle {
+    font-size: 16px;
+    line-height: 24px;
+    max-width: 600px;
+  }
+
+  .ciwiIntroduce {
+    width: calc(100% - 40px);
+    margin: 0 20px;
+  }
+
+  .ciwiIntroduceImg,
+  .ciwiIntroduceVideo {
+    width: 100%;
+    border-radius: 12px;
+  }
+
+  .ciwiProductReviewCards {
+    max-width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin: 20px;
+  }
+
+  .ciwiProductBarItemContainer {
+    gap: 32px;
+  }
+
+  .ciwiProductBarItemLabel {
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  .ciwiSecondaryTitle {
+    font-size: 36px;
+    line-height: 44px;
+  }
+
+  .ciwiGetNowCard {
+    margin: 60px 20px;
+    padding: 60px 20px;
+  }
+
+  .ciwiFooter {
+    padding: 58px;
+  }
+}
+
+/* 手机端适配 */
+@media (max-width: 768px) {
+  .ciwiMainContainer {
+    gap: 40px;
+  }
+
+  .ciwiMainTitle {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .ciwiMainSubtitle {
+    font-size: 14px;
+    line-height: 20px;
+    max-width: 100%;
+  }
+
+  .ciwiMainAddtoShopify {
+    padding: 14px 20px;
+    height: 48px;
+    font-size: 14px;
+  }
+
+  .ciwiIntroduce {
+    width: calc(100% - 32px);
+    margin: 0 16px;
+  }
+
+  .ciwiIntroduceImg,
+  .ciwiIntroduceVideo {
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  .ciwiProductIntroductionGrid {
+    grid-template-columns: 1fr;
+    width: calc(100% - 32px);
+  }
+
+  .ciwiProductIntroduction {
+    padding: 50px 0;
+    gap: 30px;
+  }
+
+  .ciwiDownLoad {
+    gap: 32px;
+    padding: 30px 0;
+  }
+
+  .ciwiDownLoadItem {
+    height: 56px;
+    gap: 12px;
+  }
+
+  .ciwiDownLoadItemInfoStars {
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  .ciwiDownLoadItemInfoText {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .ciwiProduct {
+    gap: 32px;
+    padding-top: 60px;
+  }
+
+  .ciwiProductBarItemContainer {
+    display: flex;
+    flex-wrap: wrap; /* 空间不够才换行 */
+    justify-content: center; /* 居中显示 */
+    gap: 24px; /* 项目间距，可根据实际调整 */
+  }
+
+  .ciwiProductBarItem {
+    flex-direction: row;
+    gap: 12px;
+  }
+
+  .ciwiProductBarItemIcon {
+    width: 28px;
+    height: 28px;
+    font-size: 28px;
+  }
+
+  .ciwiDownLoadItemIconImg {
+    width: 32px;
+    height: 32px;
+  }
+
+  .ciwiProductBarItemLabel {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .ciwiProductDemoVideoContainer {
+    max-width: 100%;
+    margin: 0 16px;
+    padding-top: 16px;
+    padding-bottom: 60px;
+  }
+
+  .ciwiProductReview {
+    padding-top: 60px;
+  }
+
+  .ciwiProductReviewInfo {
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+
+  .ciwiCountBold {
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  .ciwiSecondaryText {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .ciwiProductIntroduction {
+    padding: 60px 16px;
+    gap: 32px;
+  }
+
+  .ciwiProductIntroductionCard {
+    border-radius: 16px;
+  }
+
+  .ciwiProductReviewCards {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin: 16px;
+  }
+
+  .ciwiProductReviewCard {
+    padding: 12px;
+    gap: 8px;
+  }
+
+  .ciwiProductReviewCardName {
+    font-size: 14px;
+  }
+
+  .ciwiProductReviewCardContent {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .ciwiFAQ {
+    gap: 32px;
+    padding: 60px 16px;
+  }
+
+  .ciwiGetNowCard {
+    margin: 40px 16px;
+    padding: 40px 16px;
+    border-radius: 16px;
+  }
+
+  .ciwiSecondaryTitle {
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  .ciwiFooterLeft {
+    gap: 16px;
+    max-width: 100%;
+    align-items: center;
+  }
+
+  .ciwiFooterLeftText {
+    font-size: 20px;
+    line-height: 16px;
+  }
+
+  .ciwiFooterRight {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .ciwiFooterRightItem {
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+  }
+
+  .ciwiFooterLink {
+    font-size: 14px;
+  }
+
+  .ciwiFooter {
+    padding: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* 小屏手机适配 */
+@media (max-width: 480px) {
+  .ciwiMainContainer {
+    gap: 30px;
+  }
+
+  .ciwiMainTitle {
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  .ciwiMainSubtitle {
+    font-size: 13px;
+    line-height: 18px;
+  }
+
+  .ciwiMainAddtoShopify {
+    padding: 12px 16px;
+    height: 44px;
+    font-size: 13px;
+  }
+
+  .ciwiIntroduce {
+    width: calc(100% - 24px);
+    margin: 0 12px;
+  }
+
+  .ciwiDownLoadItem {
+    height: 48px;
+    gap: 8px;
+  }
+
+  .ciwiDownLoadItemInfoStars {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .ciwiDownLoadItemInfoText {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .ciwiProductBarItemIcon {
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+  }
+
+  .ciwiDownLoadItemIconImg {
+    width: 26px;
+    height: 26px;
+  }
+
+  .ciwiProductBarItemLabel {
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .ciwiCountBold {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  .ciwiProductIntroductionGrid {
+    gap: 24px;
+  }
+
+  .ciwiProductIntroductionCard {
+    border-radius: 12px;
+  }
+
+  .ciwiProductIntroductionCardTitle {
+    font-size: 20px;
+    margin-top: 30px;
+    line-height: 30px;
+  }
+
+  .ciwiProductIntroductionCardDesc {
+    margin-top: 0;
+    padding: 0 16px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .ciwiSecondaryText {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .ciwiSecondaryTitle {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  .ciwiGetNowCard {
+    margin: 30px 12px;
+    padding: 30px 12px;
+  }
+}
+
+@keyframes fadeInDown--HIU85 {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
