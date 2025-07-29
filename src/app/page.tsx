@@ -376,7 +376,7 @@ const Index = () => {
           {ciwiProductReviewinfo.map((item, index) => (
             <div className={styles.ciwiProductReviewCard} key={index}>
               <div className={styles.ciwiProductReviewCardHeader}>
-                <Avatar>{item.name}</Avatar>
+                <Avatar style={{ color: "black" }}>{item.name}</Avatar>
                 <span className={styles.ciwiProductReviewCardName}>
                   {item.name}
                 </span>
