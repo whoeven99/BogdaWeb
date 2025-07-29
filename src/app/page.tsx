@@ -8,7 +8,7 @@ import {
 import { Avatar, Button, Carousel, Collapse, CollapseProps, Rate } from "antd";
 import { useState } from "react";
 import styles from "./styles.module.css";
-
+import Link from "next/link";
 const ciwiDownLoadItems = [
   {
     title: "Ciwi-Translator",
@@ -168,14 +168,17 @@ const Index = () => {
               including metafields and Liquid.
             </span>
           </div>
-          <Button
-            type="primary"
-            size="large"
-            // icon={<ChromeOutlined />}
-            className={styles.ciwiMainAddtoShopify}
-          >
-            Free to try
-          </Button>
+          <Link href="https://apps.shopify.com/translator-by-ciwi">
+            <Button
+              type="primary"
+              size="large"
+              // icon={<ChromeOutlined />}
+              className={styles.ciwiMainAddtoShopify}
+            >
+              Free to try
+            </Button>
+          </Link>
+          
         </div>
         <div className={styles.ciwiIntroduce}>
           <Image
