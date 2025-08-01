@@ -10,6 +10,8 @@ import "./globals.css";
 import styles from "./styles.module.css";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+// import './blog/assets/css/style.css'; // 加载 Casper 样式
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -96,13 +98,16 @@ export default function RootLayout({
                         Pricing
                       </Button>
                       <Link href="/help-center">
-                      <Button type="text" iconPosition={"end"}>
-                        Help center
-                      </Button>
+                        <Button type="text" iconPosition={"end"}>
+                          Help center
+                        </Button>
                       </Link>
-                      <Button type="text" iconPosition={"end"}>
-                        Blog
-                      </Button>
+                      <Link href="/blog">
+                        <Button type="text" iconPosition={"end"}>
+                          Blog
+                        </Button>
+                      </Link>
+                      
                     </Flex>
                   )}
                 </Space>
