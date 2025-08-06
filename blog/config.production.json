@@ -11,8 +11,17 @@
     }
   },
   "mail": {
-    "transport": "Direct"
-  },
+    "transport": "SMTP",
+    "from": "admin@yourdomain.com",
+    "options": {
+        "host": "smtp.elasticemail.com",
+        "port": 2525,
+        "auth": {
+        "user": "smtp.elasticemail.com",
+        "pass": "D4ADDA9C9FED7B980E3867D6D5719D49DA1D"
+        }
+    }
+    },
   "logging": {
     "transports": [
       "file",
