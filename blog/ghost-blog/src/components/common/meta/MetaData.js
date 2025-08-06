@@ -14,7 +14,7 @@ import AuthorMeta from "./AuthorMeta";
  *
  */
 const MetaData = ({ 
-    data = {},          // 这里设置默认值
+    data = {}, 
     settings, 
     title, 
     description, 
@@ -23,7 +23,9 @@ const MetaData = ({
 }) => {
     const canonical = url.resolve(config.siteUrl, location.pathname);
     const { ghostPost, ghostTag, ghostAuthor, ghostPage } = data;
-    settings = settings.allGhostSettings.edges[0].node;
+
+    // 安全读取 settings 节点，防止 edges 为空报错
+    const siteSettings = settings?.allGhostSettings?.edges?.[0]?.node;
 
     if (ghostPost) {
         return <ArticleMeta data={ghostPost} canonical={canonical} />;
@@ -34,24 +36,25 @@ const MetaData = ({
     } else if (ghostPage) {
         return <WebsiteMeta data={ghostPage} canonical={canonical} type="WebSite" />;
     } else {
-        title = title || config.siteTitleMeta || settings.title;
-        description = description || config.siteDescriptionMeta || settings.description;
-        image = image || settings.cover_image || null;
-
-        image = image ? url.resolve(config.siteUrl, image) : null;
+        // 如果 siteSettings 不存在，使用默认值避免报错
+        const siteTitle = title || config.siteTitleMeta || siteSettings?.title || '';
+        const siteDescription = description || config.siteDescriptionMeta || siteSettings?.description || '';
+        let siteImage = image || siteSettings?.cover_image || null;
+        siteImage = siteImage ? url.resolve(config.siteUrl, siteImage) : null;
 
         return (
             <WebsiteMeta
                 data={{}}
                 canonical={canonical}
-                title={title}
-                description={description}
-                image={image}
+                title={siteTitle}
+                description={siteDescription}
+                image={siteImage}
                 type="WebSite"
             />
         );
     }
 };
+
 
 
 MetaData.propTypes = {
