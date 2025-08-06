@@ -10,7 +10,7 @@
     "url": "git+https://github.com/tryghost/gatsby-starter-ghost.git"
   },
   "engines": {
-    "node": ">= 12.13.0"
+    "node": ">=20"
   },
   "bugs": {
     "url": "https://github.com/tryghost/gatsby-starter-ghost/issues"
@@ -22,7 +22,7 @@
   "main": "n/a",
   "scripts": {
     "serve": "gatsby build && NODE_ENV=production gatsby serve",
-    "build": "gatsby build && mv public out",
+    "build": "cross-env GATSBY_CPU_COUNT=2 gatsby build && mv public out",
     "dev": "gatsby develop",
     "lint": "eslint . --ext .js --cache",
     "develop": "gatsby develop",
