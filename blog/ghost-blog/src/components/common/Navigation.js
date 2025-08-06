@@ -12,7 +12,7 @@ import { Link } from "gatsby";
  * to a `site-nav-item` class.
  *
  */
-const Navigation = ({ data, navClass }) => (
+const Navigation = ({ data, navClass = "site-nav-item" }) => (
     <>
         {data.map((navItem, i) => {
             if (navItem.url.match(/^\s?http(s?)/gi)) {
@@ -37,10 +37,6 @@ const Navigation = ({ data, navClass }) => (
         })}
     </>
 );
-
-Navigation.defaultProps = {
-    navClass: `site-nav-item`,
-};
 
 Navigation.propTypes = {
     data: PropTypes.arrayOf(
