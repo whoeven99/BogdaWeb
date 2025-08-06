@@ -1,5 +1,5 @@
 {
-  "url": "https://blog-fqve.onrender.com",
+  "url": "https://ghost-blog-2m1k.onrender.com",
   "server": {
     "port": 2368,
     "host": "0.0.0.0"
@@ -12,5 +12,15 @@
   },
   "mail": {
     "transport": "Direct"
+  },
+  "logging": {
+    "transports": [
+      "file",
+      "stdout"
+    ]
+  },
+  "process": "production",
+  "paths": {
+    "contentPath": "/var/lib/ghost/content"
   }
 }
