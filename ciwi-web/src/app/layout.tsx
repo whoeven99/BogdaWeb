@@ -102,7 +102,7 @@ export default function RootLayout({
                           Help center
                         </Button>
                       </Link>
-                      <Link href="https://ghost-blog-2m1k.onrender.com">
+                      <Link href="https://blog.ciwi.ai/">
                         <Button type="text" iconPosition={"end"}>
                           Blog
                         </Button>
