@@ -12,16 +12,16 @@
   },
   "mail": {
     "transport": "SMTP",
+    "from": "blog@msg.ciwi.ai",
     "options": {
       "host": "smtp.qcloudmail.com",
       "port": 465,
-      "secureConnection": false,
+      "secure": true,
       "auth": {
         "user": "blog@msg.ciwi.ai",
         "pass": "ZinnBuy123456"
       }
-    },
-    "from": "blog@msg.ciwi.ai"
+    }
   },
   "logging": {
     "transports": [
