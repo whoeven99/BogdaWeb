@@ -12,14 +12,14 @@
   },
   "mail": {
     "transport": "SMTP",
-    "from": "blog@msg.ciwi.ai",
+    "from": "${process.env.MAIL_USER}",
     "options": {
-      "host": "smtp.qcloudmail.com",
+      "host": "${process.env.MAIL_HOST}",
       "port": 465,
       "secure": true,
       "auth": {
-        "user": "blog@msg.ciwi.ai",
-        "pass": "ZinnBuy123456"
+        "user": "${process.env.MAIL_USER}",
+        "pass": "${process.env.MAIL_PASS}"
       }
     }
   },
