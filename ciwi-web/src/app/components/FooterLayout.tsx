@@ -3,6 +3,7 @@
 import { Footer } from "antd/es/layout/layout";
 import styles from "../css/styles.module.css"; 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 // 定义 section 的类型，label 为可选属性
 interface Item {
   name:string,
@@ -114,9 +115,9 @@ const footerColumns: FooterColumn[] = [
   }
 ];
 const socialContacts = [
-  {type:"小红书",src:""},
-  {type:"微信公众号",src:""},
-  {type:"shpify partner",src:""}
+  {type:"小红书",src:"https://www.xiaohongshu.com/explore"},
+  {type:"微信公众号",src:"https://mp.weixin.qq.com/"},
+  {type:"shpify partner",src:"https://www.shopify.com/jp/partners"}
 ]
 export const FooterLayout = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -133,7 +134,7 @@ export const FooterLayout = () => {
         {/* 左侧 Logo */}
         <div className={styles.ciwiFooterLeft}>
           <a href="https://ciwi.ai" className={styles.ciwiFooterLeftLogo}>
-            <img
+            <Image
               src="/logo-150.png"
               alt="Ciwi"
               width={isMobile ? 20 : 48}
@@ -196,7 +197,7 @@ export const FooterLayout = () => {
             <div className={styles.ciwi_socialContacts}>
               {socialContacts.map(item=>{
                 return (
-                  <a href={item.src}>
+                  <a href={item.src} key={item.type}>
                     <span>{item.type}</span>
                   </a>
                 )
