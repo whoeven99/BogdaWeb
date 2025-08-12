@@ -1,7 +1,7 @@
 "use client";
 
 import { ConfigProvider, Drawer, Flex, Layout, Menu, Space, Dropdown, Button } from "antd";
-import { Footer, Header } from "antd/es/layout/layout";
+import { Header } from "antd/es/layout/layout";
 import { CloseOutlined, MenuOutlined, DownOutlined } from "@ant-design/icons";
 import styles from "../css/styles.module.css";
 import { useState, useEffect } from "react";
