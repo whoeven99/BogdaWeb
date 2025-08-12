@@ -7,7 +7,7 @@ import styles from "../css/styles.module.css";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { FooterLayout } from "./FooterLayout";  
-
+import Image from 'next/image'
 const menuItems = [
   {
     key: "product",
@@ -135,7 +135,7 @@ export default function ClientLayout({
           <Flex justify="space-between" align="center">
             <Space size={48}>
             <Link href="https://ciwi.ai">
-                <img src="/logo-150.png" alt="ciwi.ai" style={{width:"48px",height:"48px"}}/>
+                <Image src="/logo-150.png" alt="ciwi.ai" width={48}  height={48}/>
             </Link>
               {!isMobile && (
                 <Flex align="center" gap={16}>  

@@ -293,7 +293,7 @@ const Index = () => {
                 onClick={() => setActiveIndex(index)}
               >
                 {/* <div className={styles.ciwiProductBarItemIcon}>{item.icon}</div> */}
-                <img className={styles.ciwiProductBarItemIcon} src={item.icon} alt="ciwiProductBarItemIcon" />
+                <Image className={styles.ciwiProductBarItemIcon} src={item.icon} alt="ciwiProductBarItemIcon" width={32} height={32}/>
                 <div className={styles.ciwiProductBarItemLabel}>
                   {item.label}
                 </div>
