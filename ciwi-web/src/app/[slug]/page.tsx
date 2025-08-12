@@ -9,18 +9,22 @@ export function generateStaticParams(): { slug: string }[] {
   }));
 }
 
-// 让 TypeScript 接受 Next.js 的 PageProps 约束
-export default function Page({
+// 定义 params 的具体类型
+type PageParams = { slug: string };
+
+// 显式满足 PageProps 的 params 约束
+export default async function Page({
   params,
 }: {
-  params: Awaited<ReturnType<typeof generateStaticParams>[number]>; // 基于 generateStaticParams 的返回类型
+  params: Promise<PageParams>; // 使用具体类型替代 any
 }) {
-  // 确保 params 是同步对象
-  const data = footerItemsMap[params.slug as keyof typeof footerItemsMap];
+  // 解包 params
+  const resolvedParams = await params;
+  const data = footerItemsMap[resolvedParams.slug as keyof typeof footerItemsMap];
   console.log("Data:", data);
 
   if (!data) {
-    console.log("Data not found for slug:", params.slug);
+    console.log("Data not found for slug:", resolvedParams.slug);
     notFound();
   }
 
