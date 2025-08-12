@@ -1,17 +1,14 @@
 import { footerItemsMap } from "@/data/footerItems";
 import styles from '../css/singlePage.module.css'
-
 export function generateStaticParams() {
   return Object.keys(footerItemsMap).map((slug) => ({
     slug,
   }));
 }
 
-interface PageProps {
+export default function Page({ params }: {
   params: { slug: string };
-}
-
-export default function Page({ params }: PageProps) {
+}) {
   const data = footerItemsMap[params.slug as keyof typeof footerItemsMap];
     console.log(data);
     
