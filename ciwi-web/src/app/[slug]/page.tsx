@@ -1,20 +1,24 @@
 import { footerItemsMap } from "@/data/footerItems";
 import styles from '../css/singlePage.module.css'
+import { notFound } from "next/navigation"; // 导入 notFound
 export function generateStaticParams() {
   return Object.keys(footerItemsMap).map((slug) => ({
     slug,
   }));
 }
+interface PageProps {
+  params: {
+    slug: string;
+  };
+}
 
-export default function Page({ params }: {
-  params: { slug: string };
-}) {
+export default function Page({ params }: PageProps) {
   const data = footerItemsMap[params.slug as keyof typeof footerItemsMap];
     console.log(data);
     
   if (!data) {  
     // 404 页面
-    // notFound();
+    notFound();
     console.log('....');
   }
 
