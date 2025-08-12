@@ -135,7 +135,12 @@ export default function ClientLayout({
           <Flex justify="space-between" align="center">
             <Space size={48}>
             <Link href="https://ciwi.ai">
-                <Image src="/logo-150.png" alt="ciwi.ai" width={48}  height={48}/>
+                <Image 
+                  src="/logo-150.png" 
+                  alt="ciwi.ai" 
+                  width={48}  
+                  height={48}
+                />
             </Link>
               {!isMobile && (
                 <Flex align="center" gap={16}>  
