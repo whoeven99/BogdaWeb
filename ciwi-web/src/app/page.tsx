@@ -1,10 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import {
-  DropboxOutlined,
-  TranslationOutlined,
-} from "@ant-design/icons";
 import { Avatar, Button, Carousel, Collapse, CollapseProps, Rate ,Flex} from "antd";
 import { useState } from "react";
 import styles from "./css/styles.module.css";
@@ -254,15 +250,13 @@ const Index = () => {
         <a href="https://www.shopify.com/nz/become-a-partner  ">
           <div className={styles.ciwiDownLoadItem}>
             <div className={styles.ciwiDownLoadItemIcon}>
-              {/* <Image
+              <Image
                 className={styles.ciwiDownLoadItemIconImg}
                 src="/shopify-developer.png"
                 alt="built for shopify"
                 width={40}
                 height={40}
-              /> */}
-              <img className={styles.ciwiDownLoadItemIconImg} src="/shopify-developer.png"
-                alt="built for shopify" />
+              />
             </div>
             <div className={styles.ciwiDownLoadItemInfo}>
               {/* <Image
@@ -271,10 +265,11 @@ const Index = () => {
                 width={200}
                 height={22}
               /> */}
-              <img 
+              <Image 
                 src="/badge-built-for-shopify-light 1.png"
                 alt="built for shopify"
-                style={{width:"190px",height:"48px"}}
+                width={190}
+                height={48}
               />
               <div className={styles.ciwiDownLoadItemInfoText}>
                 Shopify Partner
