@@ -11,10 +11,6 @@ const nextConfig: NextConfig = {
         source: "/help-center/:path*",
         destination: "/help-center/index.html",
       },
-      {
-        source: '/blog',
-        destination: '/blog/index.html', // 静态博客主页
-      },
     ];
   },
 };
