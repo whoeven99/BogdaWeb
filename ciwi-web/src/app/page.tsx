@@ -5,37 +5,49 @@ import {
   DropboxOutlined,
   TranslationOutlined,
 } from "@ant-design/icons";
-import { Avatar, Button, Carousel, Collapse, CollapseProps, Rate } from "antd";
+import { Avatar, Button, Carousel, Collapse, CollapseProps, Rate ,Flex} from "antd";
 import { useState } from "react";
-import styles from "./styles.module.css";
+import styles from "./css/styles.module.css";
 import Link from "next/link";
 const ciwiDownLoadItems = [
   {
     title: "Ciwi-Translator",
     icon: "/shopify.png",
     link: "https://apps.shopify.com/translator-by-ciwi",
-    stars: 5,
+    stars: 4.9,
   },
 ];
 
 const ciwiProducts = [
   {
     label: "AI Translation",
-    icon: <TranslationOutlined />,
+    icon: '/translate.svg',
     description:
-      "Get 100% expert-level translation quality with AI at just 20% of the cost.",
+      "One-click full translation of your Shopify store to increase conversion rates in different countries.",
+  },
+  {
+    label: "AI image translation",
+    icon: '/ai-generate-landscape-image-spark.svg',
+    description:
+      "Automatically detect text in images and replace it with the local language to enhance brand trust.",
   },
   {
     label: "AI Product Description",
-    icon: <DropboxOutlined />,
+    icon: '/ai-generate-2.svg',
     description:
-      "Get SEO-friendly, benefit-focused product descriptions in seconds.",
+      "Write hundreds of high-conversion product descriptions within seconds, supporting over 100 product description templates.",
   },
   {
-    label: "AI Blog Writer",
-    icon: <DropboxOutlined />,
+    label: "AI product Blog writer",
+    icon: '/create.svg',
     description:
-      "Automatically generate readable blog posts based on product information.",
+      "Schedule the creation and publishing of promotional blogs related to your products.",
+  },
+  {
+    label: "AI product FAQ",
+    icon: '/subscriptions-created-outlined.svg',
+    description:
+      "Generate more SEO traffic and AI search traffic by automatically creating FAQs.",
   },
 ];
 
@@ -145,6 +157,8 @@ const ciwiFAQItems: CollapseProps["items"] = [
   },
 ];
 
+const link = 'translator';
+
 const Index = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -168,16 +182,29 @@ const Index = () => {
               including metafields and Liquid.
             </span>
           </div>
-          <Link href="https://apps.shopify.com/translator-by-ciwi">
-            <Button
-              type="primary"
-              size="large"
-              // icon={<ChromeOutlined />}
-              className={styles.ciwiMainAddtoShopify}
-            >
-              Free to try
-            </Button>
-          </Link>
+          <Flex gap="middle" className={styles.freeTrybtns}>
+            <Link href="https://apps.shopify.com/translator-by-ciwi">
+              <Button
+                type="primary"
+                size="large"
+                // icon={<ChromeOutlined />}
+                className={styles.ciwiMainAddtoShopify}
+              >
+                Free to try
+              </Button>
+            </Link>
+            <Link href={link}>
+              <Button
+                type="primary"
+                size="large"
+                // icon={<ChromeOutlined />}
+                className={styles.learnMore}
+              >
+                Learn More
+              </Button>
+            </Link>
+          </Flex>
+          
           
         </div>
         <div className={styles.ciwiIntroduce}>
@@ -224,6 +251,37 @@ const Index = () => {
             </div>
           </a>
         ))}
+        <a href="https://www.shopify.com/nz/become-a-partner  ">
+          <div className={styles.ciwiDownLoadItem}>
+            <div className={styles.ciwiDownLoadItemIcon}>
+              {/* <Image
+                className={styles.ciwiDownLoadItemIconImg}
+                src="/shopify-developer.png"
+                alt="built for shopify"
+                width={40}
+                height={40}
+              /> */}
+              <img className={styles.ciwiDownLoadItemIconImg} src="/shopify-developer.png"
+                alt="built for shopify" />
+            </div>
+            <div className={styles.ciwiDownLoadItemInfo}>
+              {/* <Image
+                src="/badge-built-for-shopify-light 1.png"
+                alt="built for shopify"
+                width={200}
+                height={22}
+              /> */}
+              <img 
+                src="/badge-built-for-shopify-light 1.png"
+                alt="built for shopify"
+                style={{width:"190px",height:"48px"}}
+              />
+              <div className={styles.ciwiDownLoadItemInfoText}>
+                Shopify Partner
+              </div>
+            </div>
+          </div>
+        </a>
       </div>
       <div className={styles.ciwiProduct}>
         <div className={styles.ciwiProductTitle}>
@@ -239,7 +297,8 @@ const Index = () => {
                 key={index}
                 onClick={() => setActiveIndex(index)}
               >
-                <div className={styles.ciwiProductBarItemIcon}>{item.icon}</div>
+                {/* <div className={styles.ciwiProductBarItemIcon}>{item.icon}</div> */}
+                <img className={styles.ciwiProductBarItemIcon} src={item.icon} alt="ciwiProductBarItemIcon" />
                 <div className={styles.ciwiProductBarItemLabel}>
                   {item.label}
                 </div>
@@ -402,6 +461,7 @@ const Index = () => {
           style={{
             maxWidth: "1200px",
             width: "80%",
+            fontSize:"16px",
           }}
         />
       </div>
