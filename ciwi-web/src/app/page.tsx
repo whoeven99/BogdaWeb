@@ -375,54 +375,86 @@ const Index = () => {
         <div className={styles.ciwiProductIntroductionGrid}>
           <div className={styles.ciwiProductIntroductionCard}>
             <h2 className={styles.ciwiProductIntroductionCardTitle}>
-              Based on the GPT-4 large language model
+              Powered by GPT, Qwen, and more
             </h2>
             <div className={styles.ciwiProductIntroductionCardDesc}>
-              With just one click, you can use AI to translate content that
-              matches your brand tone.
+              Leverage top AI models without the setup
             </div>
-            <div className={styles.placeholderImg}></div>
+            <div className={styles.placeholderImg}>
+              <Image 
+                src="/feature/feature-1.png" 
+                alt="Powered by GPT, Qwen, and more"
+                width={1176}
+                height={760}
+                style={{ objectFit: 'contain' }}
+              ></Image>
+            </div>
           </div>
           <div className={styles.ciwiProductIntroductionCard}>
             <h2 className={styles.ciwiProductIntroductionCardTitle}>
-              Supports over 100 international currencies
+              Your prompts, your way
             </h2>
             <div className={styles.ciwiProductIntroductionCardDesc}>
-              Automatically switches language and currency based on visitor IP
-              to boost conversion rates.
+              Fine-tune AI output with flexible customization.
             </div>
-            <div className={styles.placeholderImg}></div>
+            <div className={styles.placeholderImg}>
+              <Image 
+                src="/feature/feature-2.png" 
+                alt="Powered by GPT, Qwen, and more"
+                width={1176}
+                height={760}
+              ></Image>
+            </div>
           </div>
           <div className={styles.ciwiProductIntroductionCard}>
             <h2 className={styles.ciwiProductIntroductionCardTitle}>
-              Automatically updates translations
+              Seamless with Shopify
             </h2>
             <div className={styles.ciwiProductIntroductionCardDesc}>
-              daily for new content—no manual action needed.
+              Works natively, no extra configuration.
             </div>
-            <div className={styles.placeholderImg}></div>
+            <div className={styles.placeholderImg}>
+              <Image 
+                src="/feature/feature-3.png" 
+                alt="Powered by GPT, Qwen, and more"
+               width={1176}
+                height={760}
+              ></Image>
+            </div>
           </div>
           <div className={styles.ciwiProductIntroductionCard}>
             <h2 className={styles.ciwiProductIntroductionCardTitle}>
-              Fully compatible with Shopify’s data structure
+              Cut AI costs by up to 50%
             </h2>
             <div className={styles.ciwiProductIntroductionCardDesc}>
-              supports translation of HTML, Metafields, and other special
-              formats.
+              Smarter performance, lower spend.
             </div>
-            <div className={styles.placeholderImg}></div>
+            <div className={styles.placeholderImg}>
+              <Image 
+                src="/feature/feature-4.png" 
+                alt="Powered by GPT, Qwen, and more"
+                width={1176}
+                height={760}
+              ></Image>
+            </div>
           </div>
           <div
             className={`${styles.ciwiProductIntroductionCard} ${styles.ciwiProductIntroductionCardLast}`}
           >
             <h2 className={styles.ciwiProductIntroductionCardTitle}>
-              Custom Prompts
+              Automate workflows with AI
             </h2>
             <div className={styles.ciwiProductIntroductionCardDesc}>
-              Adjust prompts to ensure translations better match your store’s
-              style.
+              Save time, scale operations effortlessly.
             </div>
-            <div className={styles.placeholderImg}></div>
+            <div className={styles.placeholderImg}>
+              <Image 
+                src="/feature/feature-5.png" 
+                alt="Powered by GPT, Qwen, and more"
+                width={1176}
+                height={760}
+              ></Image>
+            </div>
           </div>
         </div>{" "}
       </div>
