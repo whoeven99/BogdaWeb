@@ -20,6 +20,18 @@
   display: flex;
   flex-direction: column;
 }
+.dropdownItem {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 22px;
+  color: #262626;
+}
+.centerDropdown {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 22px;
+  color: #20262e;
+}
 
 .menuItem {
   font-size: 16px;
@@ -442,6 +454,16 @@
   color: #20262e;
 }
 
+.avatarBox {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: cover;
+  object-position: center;
+}
+
 .ciwiProductReviewCardName {
   font-weight: 600;
   font-size: 16px;
@@ -450,7 +472,8 @@
 .ciwiProductReviewCardContent {
   color: #444;
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 22px;
+  font-weight: 400;
 }
 
 .ciwiFAQ {
@@ -483,7 +506,7 @@
 
 .ciwiSecondaryTitle {
   font-size: 48px;
-  font-weight: 700;
+  font-weight: 800;
   line-height: 56px;
   text-align: center;
   margin: 0px;
