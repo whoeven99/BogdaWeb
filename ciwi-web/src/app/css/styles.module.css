@@ -392,7 +392,8 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 20px;
+  /* justify-content: space-between; */
   background-color: #f9fafb;
   border-radius: 24px;
   border: 1px solid rgba(0, 0, 0, 0.03);
@@ -421,10 +422,16 @@
 }
 
 .placeholderImg {
+  /* width: 100%; */
+  /* height: 120px; */
+  /* background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 75%); */
+  /* border-radius: 12px; */
   width: 100%;
-  height: 120px;
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 75%);
-  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: cover;
+  object-position: center;
 }
 
 .ciwiProductReviewCards {
