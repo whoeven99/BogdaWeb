@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Avatar, Button, Carousel, Collapse, CollapseProps, Rate ,Flex} from "antd";
+import { Button, Carousel, Collapse, CollapseProps, Rate ,Flex} from "antd";
 import { useState } from "react";
 import styles from "./css/styles.module.css";
 import Link from "next/link";
