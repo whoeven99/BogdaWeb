@@ -94,7 +94,7 @@ const footerColumns: FooterColumn[] = [
     sections: [
       {
         items: [
-          { name: "Help Center", src: "http://ciwi.ai/help-center/ShopifyApp/About%20ciwi.ai-translator%20Shopify%20App" },
+          { name: "Help Center", src: "http://ciwi.ai/help-center/ShopifyApp/about-ciwi-ai-translator-shopify-app" },
           { name: "Pricing", src: "/pricing" },
           { name: "Ciwi Blog", src: "https://blog.ciwi.ai/" },
           { name: "Contact Us", src: "/contact-us" },

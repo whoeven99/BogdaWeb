@@ -65,7 +65,7 @@ const menuItems = [
     children: [
       {
         key: "help-center",
-        label: <Link href="http://ciwi.ai/help-center/ShopifyApp/About%20ciwi.ai-translator%20Shopify%20App"className={styles.dropdownItem}>Help Center</Link>,
+        label: <Link href="http://ciwi.ai/help-center/ShopifyApp/about-ciwi-ai-translator-shopify-app"className={styles.dropdownItem}>Help Center</Link>,
       },
       {
         key: "blog",
@@ -74,7 +74,6 @@ const menuItems = [
     ],
   },
 ];
-
 const dropdownMenus = {
   product: {
     items: menuItems.find((item) => item.key === "product")?.children || [],
