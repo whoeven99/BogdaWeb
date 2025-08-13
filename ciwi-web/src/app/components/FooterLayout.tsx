@@ -4,6 +4,7 @@ import { Footer } from "antd/es/layout/layout";
 import styles from "../css/styles.module.css"; 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from 'next/link'
 // 定义 section 的类型，label 为可选属性
 interface Item {
   name:string,
@@ -93,7 +94,7 @@ const footerColumns: FooterColumn[] = [
     sections: [
       {
         items: [
-          { name: "Help Center", src: "https://ciwi.ai/help-center" },
+          { name: "Help Center", src: "http://ciwi.ai/help-center/ShopifyApp/About%20ciwi.ai-translator%20Shopify%20App" },
           { name: "Pricing", src: "/pricing" },
           { name: "Ciwi Blog", src: "https://blog.ciwi.ai/" },
           { name: "Contact Us", src: "/contact-us" },
@@ -117,7 +118,7 @@ const footerColumns: FooterColumn[] = [
 const socialContacts = [
   {type:"小红书",src:"https://www.xiaohongshu.com/explore"},
   {type:"微信公众号",src:"https://mp.weixin.qq.com/"},
-  {type:"shpify partner",src:"https://www.shopify.com/jp/partners"}
+  {type:"Shopify App Store",src:"https://apps.shopify.com/"}
 ]
 export const FooterLayout = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -158,12 +159,12 @@ export const FooterLayout = () => {
                       <ul className={styles.ciwiFooterList}>
                         {section.items.map((item) => (
                           <li key={item.src}>
-                            <a 
+                            <Link
                               href={item.src} 
                               className={styles.ciwiFooterLink} 
-                              target="_blank">
+                              target="_self">
                               {item.name}
-                            </a>
+                            </Link>
                           </li>
                         ))}
                       </ul>
@@ -172,14 +173,14 @@ export const FooterLayout = () => {
                     <ul key={i} className={styles.ciwiFooterList}>
                       {section.items.map((item) => (
                         <li key={item.src}>
-                          <a 
+                          <Link 
                             href={item.src} 
                             className={styles.ciwiFooterLink} 
-                            target="_blank"
+                            target="_self"
                             rel="noopener noreferrer"
                           >  
                             {item.name}
-                          </a>
+                          </Link>
                         </li>
                       ))}
                     </ul>

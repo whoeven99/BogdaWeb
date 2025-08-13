@@ -1,6 +1,6 @@
 "use client";
 
-import { ConfigProvider, Drawer, Flex, Layout, Menu, Space, Dropdown, Button } from "antd";
+import { ConfigProvider, Drawer, Flex, Layout, Menu, Space, Dropdown, Button,FloatButton } from "antd";
 import { Header } from "antd/es/layout/layout";
 import { CloseOutlined, MenuOutlined, DownOutlined } from "@ant-design/icons";
 import styles from "../css/styles.module.css";
@@ -16,13 +16,13 @@ const menuItems = [
       {
         key: "ciwi-ai-translator",
         label: (
-          <Link href="/product/ciwi-ai-translator">Ciwi-AI Translator</Link>
+          <Link href="/product/ciwi-ai-translator" className={styles.dropdownItem}>Ciwi-AI Translator</Link>
         ),
       },
       {
         key: "ciwi-ai-product-content",
         label: (
-          <Link href="/product/ciwi-ai-product-content">
+          <Link href="/product/ciwi-ai-product-content" className={styles.dropdownItem}>
             Ciwi-AI Product Content
           </Link>
         ),
@@ -35,29 +35,29 @@ const menuItems = [
     children: [
       {
         key: "shopify-1-dollar",
-        label: <Link href="/shopify-plan/1-dollar">$1 开通 Shopify</Link>,
+        label: <Link href="/shopify-plan/1-dollar" className={styles.dropdownItem}>$1 开通 Shopify</Link>,
       },
       {
         key: "why-shopify",
         label: (
-          <Link href="/shopify-plan/why-shopify">为什么使用 Shopify</Link>
+          <Link href="/shopify-plan/why-shopify"className={styles.dropdownItem}>为什么使用 Shopify</Link>
         ),
       },
       {
         key: "build-shopify",
-        label: <Link href="/shopify-plan/build">Shopify 建站</Link>,
+        label: <Link href="/shopify-plan/build"className={styles.dropdownItem}>Shopify 建站</Link>,
       },
       {
         key: "migrate-shopify",
         label: (
-          <Link href="/shopify-plan/migrate">如何迁移到 Shopify</Link>
+          <Link href="/shopify-plan/migrate"className={styles.dropdownItem}>如何迁移到 Shopify</Link>
         ),
       },
     ],
   },
   {
     key: "pricing",
-    label: <Link href="/pricing">Pricing</Link>,
+    label: <Link href="/pricing"className={styles.dropdownItem}>Pricing</Link>,
   },
   {
     key: "resource",
@@ -65,11 +65,11 @@ const menuItems = [
     children: [
       {
         key: "help-center",
-        label: <Link href="/help-center">Help Center</Link>,
+        label: <Link href="http://ciwi.ai/help-center/ShopifyApp/About%20ciwi.ai-translator%20Shopify%20App"className={styles.dropdownItem}>Help Center</Link>,
       },
       {
         key: "blog",
-        label: <Link href="https://blog.ciwi.ai/">Blog</Link>,
+        label: <Link href="https://blog.ciwi.ai/"className={styles.dropdownItem}>Blog</Link>,
       },
     ],
   },
@@ -148,9 +148,8 @@ export default function ClientLayout({
                     menu={dropdownMenus.product}
                     placement="bottom"
                     trigger={["hover"]}
-                    overlayClassName={styles.centerDropdown}
                   >
-                    <Button type="text" icon={<DownOutlined />} iconPosition="end">
+                    <Button type="text" className={styles.centerDropdown} icon={<DownOutlined />} iconPosition="end">
                       Product
                     </Button>
                   </Dropdown>
@@ -158,24 +157,22 @@ export default function ClientLayout({
                     menu={dropdownMenus.shopifyPlan}
                     placement="bottom"
                     trigger={["hover"]}
-                    overlayClassName={styles.centerDropdown}
                   >
-                    <Button type="text" icon={<DownOutlined />} iconPosition="end">
+                    <Button type="text" className={styles.centerDropdown} icon={<DownOutlined />} iconPosition="end">
                       Shopify Plan
                     </Button>
                   </Dropdown>
                   <Button type="text">
-                    <Link href="/pricing">Pricing</Link>
+                    <Link href="/pricing" className={styles.centerDropdown}>Pricing</Link>
                   </Button>
                 <Dropdown
                     menu={dropdownMenus.resource}
                     placement="bottom"
                     trigger={["hover"]}
-                    overlayClassName={styles.centerDropdown}
                     >
-                    <Button type="text" icon={<DownOutlined />} iconPosition="end">
+                    <Button type="text" className={styles.centerDropdown} icon={<DownOutlined />} iconPosition="end">
                         Resource
-                    </Button>
+                    </Button> 
                 </Dropdown>
 
                 </Flex>
@@ -208,6 +205,7 @@ export default function ClientLayout({
         </Header>
         {children}
         <FooterLayout/>
+        <FloatButton.BackTop />
       </Layout>
     </ConfigProvider>
   );
