@@ -384,9 +384,10 @@ const Index = () => {
               <Image 
                 src="/feature/feature-1.png" 
                 alt="Powered by GPT, Qwen, and more"
-                width={1176}
-                height={760}
-                style={{ objectFit: 'contain' }}
+                width={600}
+                height={400}
+                style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
+                sizes="(max-width: 768px) 100vw, 1176px"
               ></Image>
             </div>
           </div>
@@ -401,8 +402,10 @@ const Index = () => {
               <Image 
                 src="/feature/feature-2.png" 
                 alt="Powered by GPT, Qwen, and more"
-                width={1176}
-                height={760}
+                width={600}
+                height={400}
+                style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
+                sizes="(max-width: 768px) 100vw, 1176px"
               ></Image>
             </div>
           </div>
@@ -417,8 +420,10 @@ const Index = () => {
               <Image 
                 src="/feature/feature-3.png" 
                 alt="Powered by GPT, Qwen, and more"
-               width={1176}
-                height={760}
+               width={600}
+                height={400}
+                style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
+                sizes="(max-width: 768px) 100vw, 1176px"
               ></Image>
             </div>
           </div>
@@ -433,8 +438,10 @@ const Index = () => {
               <Image 
                 src="/feature/feature-4.png" 
                 alt="Powered by GPT, Qwen, and more"
-                width={1176}
-                height={760}
+                width={600}
+                height={400}
+                style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
+                sizes="(max-width: 768px) 100vw, 1176px"
               ></Image>
             </div>
           </div>
