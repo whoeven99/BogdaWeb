@@ -1,77 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop Details</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f4f4f4;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Data</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f4f4f4;
+    }
+  </style>
 </head>
 <body>
-    <h1>Shop Details</h1>
-    <div id="shop-name">Loading shop name...</div>
-    <div id="shop-data">Loading shop data...</div>
+  <h1>Shop Data for <span id="shopName"></span></h1>
+  <div id="tablesContainer"></div>
+  <script>
+    // Support shopName from either query string (shop.html?shopName=xxx) or URL path (/shop/xxx)
+    function getShopNameFromUrl() {
+      const qs = new URLSearchParams(window.location.search).get('shopName');
+      if (qs) return qs;
+      const parts = window.location.pathname.split('/').filter(Boolean);
+      // if path is like /shop/{shopName} last segment is shopName
+      if (parts.length > 0) return parts[parts.length - 1];
+      return '';
+    }
 
-    <script>
-        async function fetchShopData() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const shopName = urlParams.get('shopName');
+    const shopName = getShopNameFromUrl();
+    document.getElementById('shopName').textContent = shopName || 'unknown';
 
-            document.getElementById('shop-name').textContent = `Shop Name: ${shopName}`;
-
-            try {
-                const response = await fetch('/data');
-                const data = await response.json();
-
-                const shopData = data[shopName];
-                const container = document.getElementById('shop-data');
-                container.innerHTML = '';
-
-                if (shopData) {
-                    const table = document.createElement('table');
-
-                    for (const key in shopData) {
-                        const row = document.createElement('tr');
-
-                        const keyCell = document.createElement('td');
-                        keyCell.textContent = key;
-                        row.appendChild(keyCell);
-
-                        const valueCell = document.createElement('td');
-                        valueCell.textContent = shopData[key];
-                        row.appendChild(valueCell);
-
-                        table.appendChild(row);
-                    }
-
-                    container.appendChild(table);
-                } else {
-                    container.textContent = 'No data available for this shop.';
-                }
-            } catch (error) {
-                console.error('Error fetching shop data:', error);
-                document.getElementById('shop-data').textContent = 'Failed to load shop data.';
+    if (!shopName) {
+      document.getElementById('tablesContainer').innerHTML = '<p>Shop name not provided.</p>';
+    } else {
+      fetch(`/api/shop/${encodeURIComponent(shopName)}`)
+        .then(response => response.json())
+        .then(data => {
+          const container = document.getElementById('tablesContainer');
+          container.innerHTML = '';
+          for (const [tableName, rows] of Object.entries(data)) {
+            let tableHtml = `<h2>${tableName}</h2>`;
+            if (Array.isArray(rows) && rows.length > 0) {
+              const headers = Object.keys(rows[0]).map(key => `<th>${key}</th>`).join('');
+              const rowsHtml = rows.map(row => {
+                const rowHtml = Object.values(row).map(value => `<td>${value}</td>`).join('');
+                return `<tr>${rowHtml}</tr>`;
+              }).join('');
+              tableHtml += `
+                <table>
+                  <thead>
+                    <tr>${headers}</tr>
+                  </thead>
+                  <tbody>
+                    ${rowsHtml}
+                  </tbody>
+                </table>
+              `;
+            } else {
+              tableHtml += '<p>No data available</p>';
             }
-        }
-
-        fetchShopData();
-    </script>
+            container.innerHTML += tableHtml;
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching shop data:', error);
+          document.getElementById('tablesContainer').innerHTML = '<p>Failed to load data</p>';
+        });
+    }
+  </script>
 </body>
 </html>
