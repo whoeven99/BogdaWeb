@@ -53,7 +53,6 @@ app.get('/shop/:shopName', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'shop.html'));
 });
 
-
 app.listen(port, () => {
   console.log(`Web service is running at http://localhost:${port}`);
 });

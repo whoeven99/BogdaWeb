@@ -1,83 +1,240 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shop Data</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>店铺数据 - Monitor</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
+    :root{
+      --bg:#f6f8fb;
+      --card:#ffffff;
+      --muted:#6b7280;
+      --accent:#2563eb;
+      --accent-600:#1d4ed8;
+      --danger:#ef4444;
+      --radius:10px;
+      --maxWidth:1100px;
     }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 20px;
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:var(--bg);
+      color:#0f172a;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
-    th, td {
-      border: 1px solid #ddd;
-      padding: 8px;
-      text-align: left;
+    .wrap{
+      max-width:var(--maxWidth);
+      margin:28px auto;
+      padding:20px;
     }
-    th {
-      background-color: #f4f4f4;
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:18px;
+    }
+    .title{
+      display:flex;flex-direction:column;gap:6px;
+    }
+    h1{margin:0;font-size:20px}
+    .subtitle{color:var(--muted);font-size:13px}
+
+    .controls{
+      display:flex;gap:8px;align-items:center;
+    }
+    .btn{
+      background:var(--accent);color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer;font-weight:600;
+    }
+    .btn.secondary{background:#fff;color:var(--accent);border:1px solid rgba(37,99,235,0.12)}
+    .btn:disabled{opacity:.6;cursor:not-allowed}
+
+    .card{
+      background:var(--card);border-radius:var(--radius);box-shadow:0 8px 24px rgba(15,23,42,0.06);padding:18px;margin-top:12px;
+    }
+
+    .meta{display:flex;gap:10px;align-items:center;color:var(--muted);font-size:13px}
+
+    .shop-title{font-weight:700;font-size:16px}
+
+    .loader{width:36px;height:36px;border-radius:50%;border:4px solid rgba(0,0,0,0.08);border-left-color:var(--accent);animation:spin 1s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    .tables{margin-top:14px;display:flex;flex-direction:column;gap:20px}
+    .table-wrap{overflow:auto;border-radius:8px;border:1px solid #e6eefc}
+    table{width:100%;border-collapse:collapse;min-width:600px}
+    thead th{position:sticky;top:0;background:#0b1220;color:#fff;padding:10px 12px;text-align:left;font-size:13px}
+    tbody td{padding:10px 12px;border-top:1px solid #f1f5f9;color:#0f172a;font-size:13px}
+    tbody tr:nth-child(even){background:rgba(14,165,233,0.03)}
+
+    .no-data{color:var(--muted);padding:14px}
+
+    .actions{display:flex;gap:8px;align-items:center}
+
+    .small{font-size:12px;padding:6px 8px;border-radius:6px}
+
+    @media (max-width:720px){
+      :root{--maxWidth:92%}
+      thead th, tbody td{padding:8px}
     }
   </style>
 </head>
 <body>
-  <h1>Shop Data for <span id="shopName"></span></h1>
-  <div id="tablesContainer"></div>
+  <div class="wrap">
+    <header>
+      <div class="title">
+        <h1>店铺数据监控 <span class="shop-title" id="shopName">-</span></h1>
+        <div class="subtitle">数据来源: /api/shop/{shopName} -> 后端代理到 springbackendprod.azurewebsites.net/getTable</div>
+      </div>
+
+      <div class="controls">
+        <a href="/" class="btn secondary small">返回主页</a>
+        <div id="loading" style="display:none" title="loading"><div class="loader"></div></div>
+        <div class="actions">
+          <button id="refreshBtn" class="btn small">刷新</button>
+          <button id="downloadBtn" class="btn small" title="下载当前表为 CSV">下载 CSV</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="card">
+      <div id="statusArea" class="meta">状态: <span id="statusText" style="margin-left:8px;color:var(--muted)">准备就绪</span></div>
+
+      <div id="tablesContainer" class="tables"></div>
+    </div>
+  </div>
+
   <script>
-    // Support shopName from either query string (shop.html?shopName=xxx) or URL path (/shop/xxx)
-    function getShopNameFromUrl() {
+    function escapeHtml(v){
+      if (v === null || v === undefined) return '';
+      return String(v)
+        .replaceAll('&','&amp;')
+        .replaceAll('<','&lt;')
+        .replaceAll('>','&gt;')
+        .replaceAll('"','&quot;')
+        .replaceAll("'","&#39;");
+    }
+
+    function getShopNameFromUrl(){
       const qs = new URLSearchParams(window.location.search).get('shopName');
       if (qs) return qs;
       const parts = window.location.pathname.split('/').filter(Boolean);
-      // if path is like /shop/{shopName} last segment is shopName
-      if (parts.length > 0) return parts[parts.length - 1];
+      if (parts.length>0) return parts[parts.length-1];
       return '';
     }
 
     const shopName = getShopNameFromUrl();
     document.getElementById('shopName').textContent = shopName || 'unknown';
 
-    if (!shopName) {
-      document.getElementById('tablesContainer').innerHTML = '<p>Shop name not provided.</p>';
-    } else {
-      fetch(`/api/shop/${encodeURIComponent(shopName)}`)
-        .then(response => response.json())
-        .then(data => {
-          const container = document.getElementById('tablesContainer');
-          container.innerHTML = '';
-          for (const [tableName, rows] of Object.entries(data)) {
-            let tableHtml = `<h2>${tableName}</h2>`;
-            if (Array.isArray(rows) && rows.length > 0) {
-              const headers = Object.keys(rows[0]).map(key => `<th>${key}</th>`).join('');
-              const rowsHtml = rows.map(row => {
-                const rowHtml = Object.values(row).map(value => `<td>${value}</td>`).join('');
-                return `<tr>${rowHtml}</tr>`;
-              }).join('');
-              tableHtml += `
-                <table>
-                  <thead>
-                    <tr>${headers}</tr>
-                  </thead>
-                  <tbody>
-                    ${rowsHtml}
-                  </tbody>
-                </table>
-              `;
-            } else {
-              tableHtml += '<p>No data available</p>';
-            }
-            container.innerHTML += tableHtml;
-          }
-        })
-        .catch(error => {
-          console.error('Error fetching shop data:', error);
-          document.getElementById('tablesContainer').innerHTML = '<p>Failed to load data</p>';
+    const loadingEl = document.getElementById('loading');
+    const statusText = document.getElementById('statusText');
+    const container = document.getElementById('tablesContainer');
+    const refreshBtn = document.getElementById('refreshBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+
+    function setLoading(v){ loadingEl.style.display = v ? 'inline-block' : 'none'; statusText.textContent = v ? '加载中...' : '已就绪'; }
+
+    function buildTable(tableName, rows){
+      const wrap = document.createElement('div');
+      wrap.className = 'table-card';
+      const header = document.createElement('div');
+      header.innerHTML = `<h3 style="margin:0 0 8px 0">${escapeHtml(tableName)}</h3>`;
+      wrap.appendChild(header);
+
+      if (!Array.isArray(rows) || rows.length === 0){
+        const p = document.createElement('div');
+        p.className = 'no-data';
+        p.textContent = '无数据';
+        wrap.appendChild(p);
+        return wrap;
+      }
+
+      // columns from first row keys
+      const cols = Object.keys(rows[0]);
+      const tableWrap = document.createElement('div');
+      tableWrap.className = 'table-wrap';
+      const table = document.createElement('table');
+      const thead = document.createElement('thead');
+      const trHead = document.createElement('tr');
+      cols.forEach(c => { const th = document.createElement('th'); th.textContent = c; trHead.appendChild(th); });
+      thead.appendChild(trHead);
+      table.appendChild(thead);
+
+      const tbody = document.createElement('tbody');
+      rows.forEach(r => {
+        const tr = document.createElement('tr');
+        cols.forEach(c => {
+          const td = document.createElement('td');
+          td.innerHTML = escapeHtml(r[c]);
+          tr.appendChild(td);
         });
+        tbody.appendChild(tr);
+      });
+      table.appendChild(tbody);
+      tableWrap.appendChild(table);
+      wrap.appendChild(tableWrap);
+      return wrap;
     }
+
+    async function fetchAndRender(){
+      if (!shopName){ container.innerHTML = '<p class="no-data">未提供 shopName</p>'; return; }
+      setLoading(true);
+      container.innerHTML = '';
+      try{
+        const resp = await fetch(`/api/shop/${encodeURIComponent(shopName)}`);
+        if (!resp.ok) throw new Error('HTTP ' + resp.status);
+        const data = await resp.json();
+        if (!data || Object.keys(data).length === 0){ container.innerHTML = '<p class="no-data">无数据</p>'; setLoading(false); return; }
+
+        // render each table
+        for (const [tableName, rows] of Object.entries(data)){
+          const el = buildTable(tableName, rows);
+          container.appendChild(el);
+        }
+
+        // prepare CSV download for first table
+        window.__currentData = data;
+        statusText.textContent = `已加载 ${Object.keys(data).length} 个表`;
+      }catch(err){
+        console.error(err);
+        container.innerHTML = `<div class="no-data">加载失败: ${escapeHtml(err.message)}</div>`;
+        statusText.textContent = '加载失败';
+      }finally{ setLoading(false); }
+    }
+
+    function toCSV(rows){
+      if (!Array.isArray(rows) || rows.length === 0) return '';
+      const cols = Object.keys(rows[0]);
+      const escape = v => '"' + String(v === undefined || v === null ? '' : v).replace(/"/g,'""') + '"';
+      const lines = [cols.map(escape).join(',')];
+      rows.forEach(r => { lines.push(cols.map(c => escape(r[c])).join(',')); });
+      return lines.join('\n');
+    }
+
+    downloadBtn.addEventListener('click', ()=>{
+      const data = window.__currentData;
+      if (!data) return alert('没有可下载的数据');
+      const firstTableName = Object.keys(data)[0];
+      const rows = data[firstTableName];
+      const csv = toCSV(rows);
+      if (!csv) return alert('无数据');
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${firstTableName || 'data'}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    });
+
+    refreshBtn.addEventListener('click', fetchAndRender);
+
+    // initial load
+    fetchAndRender();
   </script>
 </body>
 </html>
