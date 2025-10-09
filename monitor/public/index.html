@@ -1,84 +1,167 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bogda 数据监控查询</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f4f4f4;
-        }
-        .input-container {
-            margin-bottom: 20px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bogda 数据监控查询</title>
+  <style>
+    :root{--bg:#f5f7fb;--card:#fff;--muted:#6b7280;--accent:#2563eb;--radius:10px;}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;background:var(--bg);color:#0f172a}
+    .container{max-width:1100px;margin:28px auto;padding:20px}
+    .header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    h1{margin:0;font-size:20px}
+    .card{background:var(--card);border-radius:var(--radius);padding:16px;box-shadow:0 8px 20px rgba(15,23,42,0.06)}
+    .search{display:flex;gap:8px;align-items:center}
+    .input{padding:10px 12px;border-radius:8px;border:1px solid #e6eefc;min-width:260px}
+    .btn{background:var(--accent);color:#fff;border:none;padding:10px 12px;border-radius:8px;cursor:pointer}
+    .btn.secondary{background:#fff;color:var(--accent);border:1px solid rgba(37,99,235,0.12)}
+    .meta{color:var(--muted);font-size:13px;margin-top:8px}
+    .content{margin-top:18px;display:flex;gap:18px}
+    .left{flex:1}
+    .right{width:360px}
+    .tables{display:flex;flex-direction:column;gap:14px}
+    .table-wrap{overflow:auto;border-radius:8px;border:1px solid #e6eefc;background:#fff}
+    table{width:100%;border-collapse:collapse;min-width:600px}
+    thead th{background:#0b1220;color:#fff;padding:10px;font-size:13px;text-align:left;position:sticky;top:0}
+    tbody td{padding:10px;border-top:1px solid #f1f5f9;font-size:13px}
+    .no-data{padding:18px;color:var(--muted)}
+    .loader{width:28px;height:28px;border-radius:50%;border:4px solid rgba(0,0,0,0.08);border-left-color:var(--accent);animation:spin 1s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    pre{white-space:pre-wrap;word-break:break-word;margin:0}
+    .kv{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed #eef3fb}
+    @media (max-width:900px){.content{flex-direction:column}.right{width:100%}}
+  </style>
 </head>
 <body>
-    <h1>Bogda 数据监控查询</h1>
-    <div class="input-container">
-        <label for="shop-name">请输入商店名称:</label>
-        <input type="text" id="shop-name" placeholder="商店名称">
-        <button onclick="redirectToShopPage()">查询</button>
+  <div class="container">
+    <div class="header">
+      <div>
+        <h1>Bogda 数据监控查询</h1>
+        <div class="meta">请输入商店名称并跳转详情页，或查看下方实时内层数据</div>
+      </div>
+      <div class="search">
+        <input id="shop-name" class="input" placeholder="请输入商店名称" />
+        <button id="gotoBtn" class="btn">查询</button>
+      </div>
     </div>
-    <div id="data-container">Loading data...</div>
 
-    <script>
-        function redirectToShopPage() {
-            const shopName = document.getElementById('shop-name').value;
-            if (shopName) {
-                window.location.href = `/shop/${shopName}`;
-            } else {
-                alert('请输入商店名称！');
-            }
+    <div style="height:12px"></div>
+
+    <div class="card">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div id="loading" style="display:none" class="loader" title="加载中"></div>
+          <div id="status" class="meta">状态：<span id="statusText">准备就绪</span></div>
+        </div>
+        <div style="display:flex;gap:8px">
+          <button id="refresh" class="btn secondary">刷新数据</button>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="left">
+          <div id="tablesContainer" class="tables">
+            <div class="no-data">正在加载...</div>
+          </div>
+        </div>
+        <div class="right">
+          <div style="margin-bottom:12px;font-weight:700">快速查看 JSON</div>
+          <div class="card" style="padding:12px;">
+            <pre id="rawJson">-</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const gotoBtn = document.getElementById('gotoBtn');
+    const refreshBtn = document.getElementById('refresh');
+    const loadingEl = document.getElementById('loading');
+    const statusText = document.getElementById('statusText');
+    const tablesContainer = document.getElementById('tablesContainer');
+    const rawJson = document.getElementById('rawJson');
+
+    gotoBtn.addEventListener('click', ()=>{
+      const v = document.getElementById('shop-name').value.trim();
+      if (!v) return alert('请输入商店名称');
+      window.location.href = `/shop/${encodeURIComponent(v)}`;
+    });
+
+    function setLoading(v){ loadingEl.style.display = v ? 'inline-block' : 'none'; statusText.textContent = v ? '加载中...' : '已就绪'; }
+
+    function escapeHtml(s){ if (s===null||s===undefined) return ''; return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;'); }
+
+    function renderData(data){
+      tablesContainer.innerHTML = '';
+      rawJson.textContent = JSON.stringify(data, null, 2);
+
+      const entries = Object.entries(data || {});
+      if (entries.length === 0){ tablesContainer.innerHTML = '<div class="no-data">无数据</div>'; return; }
+
+      entries.forEach(([key, val]) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'card';
+        wrapper.style.padding = '10px';
+
+        const title = document.createElement('div');
+        title.style.fontWeight = '700';
+        title.style.marginBottom = '8px';
+        title.textContent = key;
+        wrapper.appendChild(title);
+
+        if (Array.isArray(val)){
+          if (val.length === 0){
+            const p = document.createElement('div'); p.className='no-data'; p.textContent='空数组'; wrapper.appendChild(p);
+          } else if (typeof val[0] === 'object'){
+            const tableWrap = document.createElement('div'); tableWrap.className='table-wrap';
+            const table = document.createElement('table');
+            const thead = document.createElement('thead'); const tr = document.createElement('tr');
+            const cols = Object.keys(val[0]); cols.forEach(c=>{ const th = document.createElement('th'); th.textContent=c; tr.appendChild(th); });
+            thead.appendChild(tr); table.appendChild(thead);
+            const tbody = document.createElement('tbody');
+            val.forEach(row=>{ const trr=document.createElement('tr'); cols.forEach(col=>{ const td=document.createElement('td'); td.innerHTML = escapeHtml(row[col]); trr.appendChild(td); }); tbody.appendChild(trr); });
+            table.appendChild(tbody); tableWrap.appendChild(table); wrapper.appendChild(tableWrap);
+          } else {
+            const p = document.createElement('pre'); p.textContent = JSON.stringify(val, null, 2); wrapper.appendChild(p);
+          }
+        } else if (typeof val === 'object'){
+          // show key-values
+          const keys = Object.keys(val);
+          keys.forEach(k=>{
+            const kv = document.createElement('div'); kv.className='kv';
+            const a = document.createElement('div'); a.textContent = k;
+            const b = document.createElement('div'); b.textContent = String(val[k]);
+            kv.appendChild(a); kv.appendChild(b); wrapper.appendChild(kv);
+          });
+        } else {
+          const p = document.createElement('div'); p.textContent = String(val); wrapper.appendChild(p);
         }
 
-        async function fetchData() {
-            try {
-                const response = await fetch('/data');
-                const data = await response.json();
+        tablesContainer.appendChild(wrapper);
+      });
+    }
 
-                const container = document.getElementById('data-container');
-                container.innerHTML = '';
+    async function fetchData(){
+      setLoading(true);
+      statusText.textContent = '加载中...';
+      try{
+        const res = await fetch('/data');
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const data = await res.json();
+        renderData(data);
+        statusText.textContent = '加载完成';
+      }catch(e){
+        console.error(e);
+        tablesContainer.innerHTML = '<div class="no-data">加载失败，请稍后重试</div>';
+        rawJson.textContent = String(e.message || e);
+        statusText.textContent = '加载失败';
+      }finally{ setLoading(false); }
+    }
 
-                // Display data in a table
-                const table = document.createElement('table');
-
-                for (const key in data) {
-                    const row = document.createElement('tr');
-
-                    const keyCell = document.createElement('td');
-                    keyCell.textContent = key;
-                    row.appendChild(keyCell);
-
-                    const valueCell = document.createElement('td');
-                    valueCell.textContent = JSON.stringify(data[key], null, 2);
-                    row.appendChild(valueCell);
-
-                    table.appendChild(row);
-                }
-
-                container.appendChild(table);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-                document.getElementById('data-container').textContent = 'Failed to load data.';
-            }
-        }
-
-        fetchData();
-    </script>
+    refreshBtn.addEventListener('click', fetchData);
+    fetchData();
+  </script>
 </body>
 </html>
