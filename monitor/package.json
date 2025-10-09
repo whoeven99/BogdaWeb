@@ -1,0 +1,23 @@
+{
+  "name": "monitor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc && copyfiles -u 1 public/**/* dist/public",
+    "test": "node dist/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "copyfiles": "^2.4.1"
+  },
+  "dependencies": {
+    "@types/axios": "^0.9.36",
+    "@types/helmet": "^0.0.48",
+    "axios": "^1.12.2",
+    "helmet": "^8.1.0"
+  }
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bogda 数据监控查询</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .input-container {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bogda 数据监控查询</h1>
+    <div class="input-container">
+        <label for="shop-name">请输入商店名称:</label>
+        <input type="text" id="shop-name" placeholder="商店名称">
+        <button onclick="redirectToShopPage()">查询</button>
+    </div>
+    <div id="data-container">Loading data...</div>
+
+    <script>
+        function redirectToShopPage() {
+            const shopName = document.getElementById('shop-name').value;
+            if (shopName) {
+                window.location.href = `/shop/${shopName}`;
+            } else {
+                alert('请输入商店名称！');
+            }
+        }
+
+        async function fetchData() {
+            try {
+                const response = await fetch('/data');
+                const data = await response.json();
+
+                const container = document.getElementById('data-container');
+                container.innerHTML = '';
+
+                // Display data in a table
+                const table = document.createElement('table');
+
+                for (const key in data) {
+                    const row = document.createElement('tr');
+
+                    const keyCell = document.createElement('td');
+                    keyCell.textContent = key;
+                    row.appendChild(keyCell);
+
+                    const valueCell = document.createElement('td');
+                    valueCell.textContent = JSON.stringify(data[key], null, 2);
+                    row.appendChild(valueCell);
+
+                    table.appendChild(row);
+                }
+
+                container.appendChild(table);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                document.getElementById('data-container').textContent = 'Failed to load data.';
+            }
+        }
+
+        fetchData();
+    </script>
+</body>
+</html>
