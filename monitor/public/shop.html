@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <h1>Shop Details</h1>
+    <div id="shop-name">Loading shop name...</div>
+    <div id="shop-data">Loading shop data...</div>
+
+    <script>
+        async function fetchShopData() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const shopName = urlParams.get('shopName');
+
+            document.getElementById('shop-name').textContent = `Shop Name: ${shopName}`;
+
+            try {
+                const response = await fetch('/data');
+                const data = await response.json();
+
+                const shopData = data[shopName];
+                const container = document.getElementById('shop-data');
+                container.innerHTML = '';
+
+                if (shopData) {
+                    const table = document.createElement('table');
+
+                    for (const key in shopData) {
+                        const row = document.createElement('tr');
+
+                        const keyCell = document.createElement('td');
+                        keyCell.textContent = key;
+                        row.appendChild(keyCell);
+
+                        const valueCell = document.createElement('td');
+                        valueCell.textContent = shopData[key];
+                        row.appendChild(valueCell);
+
+                        table.appendChild(row);
+                    }
+
+                    container.appendChild(table);
+                } else {
+                    container.textContent = 'No data available for this shop.';
+                }
+            } catch (error) {
+                console.error('Error fetching shop data:', error);
+                document.getElementById('shop-data').textContent = 'Failed to load shop data.';
+            }
+        }
+
+        fetchShopData();
+    </script>
+</body>
+</html>
