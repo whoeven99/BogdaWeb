@@ -75,6 +75,42 @@
 
     .small{font-size:12px;padding:6px 8px;border-radius:6px}
 
+    .progress-bar-wrap {
+      margin-bottom: 10px;
+    }
+
+    .progress-bar-title {
+      font-weight: bold;
+      margin-bottom: 4px;
+      color: var(--accent-600);
+    }
+
+    .progress-bar {
+      height: 20px;
+      background: #e5e7eb;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-bar-inner {
+      height: 100%;
+      background: var(--accent);
+      transition: width 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .progress-bar-text {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
     @media (max-width:720px){
       :root{--maxWidth:92%}
       thead th, tbody td{padding:8px}
@@ -98,6 +134,14 @@
         </div>
       </div>
     </header>
+
+    <div id="progressBarsContainer" class="card" style="margin-bottom: 20px; position: relative;">
+      <h3 style="margin: 0 0 10px 0;">翻译进度条</h3>
+      <button id="toggleAutoRefreshBtn" class="btn small" style="position: absolute; top: 10px; right: 10px;">开启自动刷新</button>
+      <span id="refreshCountdown" style="position: absolute; top: 10px; right: 150px; font-size: 12px; color: var(--muted); display: none;">下次刷新: 10秒</span>
+      <div id="progressBars"></div>
+      <div id="nextRefresh" style="display: none;"></div>
+    </div>
 
     <div class="card">
       <div id="statusArea" class="meta">状态: <span id="statusText" style="margin-left:8px;color:var(--muted)">准备就绪</span></div>
@@ -235,6 +279,101 @@
 
     // initial load
     fetchAndRender();
+
+    async function fetchAndRenderProgressBars() {
+      if (!shopName) return;
+      const progressContainer = document.getElementById('progressBars');
+      progressContainer.innerHTML = '';
+      try {
+        const resp = await fetch(`https://springbackendprod.azurewebsites.net/getProgressByShopName?shopName=${encodeURIComponent(shopName)}`);
+        if (!resp.ok) throw new Error('HTTP ' + resp.status);
+        const progressData = await resp.json();
+
+        if (!Array.isArray(progressData) || progressData.length === 0) {
+          progressContainer.innerHTML = '<p class="no-data">无进度数据</p>';
+          return;
+        }
+
+        progressData.forEach(item => {
+          const progressBarWrap = document.createElement('div');
+          progressBarWrap.className = 'progress-bar-wrap';
+
+          const title = document.createElement('div');
+          title.textContent = `翻译语言: ${item.target} - 翻译状态: ${item.translateStatus}`;
+          title.className = 'progress-bar-title';
+          progressBarWrap.appendChild(title);
+
+          const progressBar = document.createElement('div');
+          progressBar.className = 'progress-bar';
+
+          const progress = document.createElement('div');
+          progress.className = 'progress-bar-inner';
+          const percentage = ((item.progressData.TotalQuantity - item.progressData.RemainingQuantity) / item.progressData.TotalQuantity * 100).toFixed(3);
+          progress.style.width = `${percentage}%`;
+          progress.textContent = `${percentage}%`;
+          progressBar.appendChild(progress);
+
+          progressBarWrap.appendChild(progressBar);
+
+          const progressText = document.createElement('div');
+          progressText.textContent = `${item.resourceType}: ${item.value}`;
+          progressText.className = 'progress-bar-text';
+
+          progressBarWrap.appendChild(progressText);
+          progressContainer.appendChild(progressBarWrap);
+        });
+      } catch (err) {
+        console.error('Error fetching progress bars:', err);
+        progressContainer.innerHTML = `<p class="no-data">加载进度失败: ${escapeHtml(err.message)}</p>`;
+      }
+    }
+
+    // Initial fetch of progress bars
+    fetchAndRenderProgressBars();
+
+    let autoRefreshInterval = null;
+    let countdownInterval = null;
+    let countdownTime = 10;
+
+    function updateCountdownDisplay() {
+      const countdownElement = document.getElementById('refreshCountdown');
+      countdownElement.textContent = `下次刷新: ${countdownTime}秒`;
+    }
+
+    function toggleAutoRefresh() {
+      const button = document.getElementById('toggleAutoRefreshBtn');
+      const countdownElement = document.getElementById('refreshCountdown');
+
+      if (autoRefreshInterval) {
+        clearInterval(autoRefreshInterval);
+        clearInterval(countdownInterval);
+        autoRefreshInterval = null;
+        countdownInterval = null;
+        countdownElement.style.display = 'none';
+        button.textContent = '开启自动刷新';
+      } else {
+        countdownTime = 10;
+        updateCountdownDisplay();
+        countdownElement.style.display = 'inline';
+
+        countdownInterval = setInterval(() => {
+          countdownTime -= 1;
+          if (countdownTime <= 0) {
+            countdownTime = 10;
+          }
+          updateCountdownDisplay();
+        }, 1000);
+
+        autoRefreshInterval = setInterval(() => {
+          fetchAndRenderProgressBars();
+          countdownTime = 10; // Reset countdown after each refresh
+        }, 10000);
+
+        button.textContent = '关闭自动刷新';
+      }
+    }
+
+    document.getElementById('toggleAutoRefreshBtn').addEventListener('click', toggleAutoRefresh);
   </script>
 </body>
 </html>
