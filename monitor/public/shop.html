@@ -320,6 +320,23 @@
           progressText.className = 'progress-bar-text';
 
           progressBarWrap.appendChild(progressText);
+
+          // Check for writing progress
+          if (item.translateStatus === 'translation_process_saving_shopify' && item.writingData) {
+            const writingProgressBar = document.createElement('div');
+            writingProgressBar.className = 'progress-bar';
+            writingProgressBar.style.marginTop = '10px';
+
+            const writingProgress = document.createElement('div');
+            writingProgress.className = 'progress-bar-inner';
+            const writingPercentage = (item.writingData.write_done / item.writingData.write_total * 100).toFixed(3);
+            writingProgress.style.width = `${writingPercentage}%`;
+            writingProgress.textContent = `写入进度: ${writingPercentage}%`;
+            writingProgressBar.appendChild(writingProgress);
+
+            progressBarWrap.appendChild(writingProgressBar);
+          }
+
           progressContainer.appendChild(progressBarWrap);
         });
       } catch (err) {
