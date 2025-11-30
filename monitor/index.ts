@@ -6,6 +6,9 @@ import helmet from 'helmet';
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Parse JSON bodies for PUT/DELETE
+app.use(express.json());
+
 // Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -39,9 +42,65 @@ app.get('/api/shop/:shopName', async (req, res) => {
     }
 });
 
+// New API endpoint that returns config key/value pairs from external service
+app.get('/api/config', async (req, res) => {
+    try {
+        const response = await axios.get('https://springbackendprod.azurewebsites.net/bogdaconfig');
+        // Expecting a JSON object with string keys and string values
+        res.json(response.data);
+    } catch (error) {
+        console.error('Error fetching config from external API:', error);
+        res.status(502).json({ error: 'Failed to fetch config from external API' });
+    }
+});
+
+// New API endpoint to add/update a key/value (proxy to external PUT)
+app.put('/api/config', async (req, res) => {
+    const { key, value } = req.body || {};
+    if (typeof key !== 'string' || typeof value !== 'string') {
+        return res.status(400).json({ error: 'Missing key or value (must be strings)' });
+    }
+    try {
+        // External API expects query params: /bogdaconfig?key=...&value=...
+        const response = await axios.put('https://springbackendprod.azurewebsites.net/bogdaconfig', null, {
+            params: { key, value }
+        });
+        // Expect the external service to return the latest full config object
+        res.json(response.data);
+    } catch (error) {
+        console.error('Error putting config to external API:', error);
+        res.status(502).json({ error: 'Failed to update config at external API' });
+    }
+});
+
+// New API endpoint to delete a key (proxy to external DELETE)
+app.delete('/api/config', async (req, res) => {
+    // Accept key either in JSON body or query param
+    const key = (req.body && req.body.key) || req.query.key;
+    if (typeof key !== 'string') {
+        return res.status(400).json({ error: 'Missing key (must be string)' });
+    }
+    try {
+        // External API expects query param: /bogdaconfig?key=...
+        const response = await axios.delete('https://springbackendprod.azurewebsites.net/bogdaconfig', {
+            params: { key }
+        });
+        res.json(response.data);
+    } catch (error) {
+        console.error('Error deleting config at external API:', error);
+        res.status(502).json({ error: 'Failed to delete config at external API' });
+    }
+});
+
 // Serve the UI
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+// Serve config page
+app.get('/config', (req, res) => {
+  // Serve the static config.html page; the front-end will fetch data from /api/config
+  res.sendFile(path.join(__dirname, 'public', 'config.html'));
 });
 
 // Serve shop-specific page
