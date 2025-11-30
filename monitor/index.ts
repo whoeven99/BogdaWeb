@@ -42,10 +42,22 @@ app.get('/api/shop/:shopName', async (req, res) => {
     }
 });
 
+// helper to pick external base url by env
+function getConfigBaseUrl(env?: string) {
+  if (env === 'test') {
+    return 'https://springbackendservice-e3hgbjgqafb9cpdh.canadacentral-01.azurewebsites.net';
+  }
+  // default to production
+  return 'https://springbackendprod.azurewebsites.net';
+}
+
 // New API endpoint that returns config key/value pairs from external service
 app.get('/api/config', async (req, res) => {
     try {
-        const response = await axios.get('https://springbackendprod.azurewebsites.net/bogdaconfig');
+        const env = String(req.query.env || 'prod');
+        const base = getConfigBaseUrl(env);
+        console.log(`[config GET] env=${env} base=${base} url=${base}/bogdaconfig`);
+        const response = await axios.get(`${base}/bogdaconfig`);
         // Expecting a JSON object with string keys and string values
         res.json(response.data);
     } catch (error) {
@@ -61,8 +73,11 @@ app.put('/api/config', async (req, res) => {
         return res.status(400).json({ error: 'Missing key or value (must be strings)' });
     }
     try {
+        const env = String(req.query.env || 'prod');
+        const base = getConfigBaseUrl(env);
+        console.log(`[config PUT] env=${env} base=${base} params=key=${key}&value=${value}`);
         // External API expects query params: /bogdaconfig?key=...&value=...
-        const response = await axios.put('https://springbackendprod.azurewebsites.net/bogdaconfig', null, {
+        const response = await axios.put(`${base}/bogdaconfig`, null, {
             params: { key, value }
         });
         // Expect the external service to return the latest full config object
@@ -81,8 +96,11 @@ app.delete('/api/config', async (req, res) => {
         return res.status(400).json({ error: 'Missing key (must be string)' });
     }
     try {
+        const env = String(req.query.env || 'prod');
+        const base = getConfigBaseUrl(env);
+        console.log(`[config DELETE] env=${env} base=${base} params=key=${key}`);
         // External API expects query param: /bogdaconfig?key=...
-        const response = await axios.delete('https://springbackendprod.azurewebsites.net/bogdaconfig', {
+        const response = await axios.delete(`${base}/bogdaconfig`, {
             params: { key }
         });
         res.json(response.data);

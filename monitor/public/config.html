@@ -13,6 +13,10 @@
     h1{margin:0;font-size:20px}
     p.lead{margin:6px 0 0;color:var(--muted);font-size:13px}
     .card{background:var(--card);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
+    /* tabs */
+    .env-tabs{display:flex;gap:8px;margin-bottom:12px}
+    .env-tab{padding:8px 12px;border-radius:8px;background:#f1f5f9;border:1px solid #e6eefc;cursor:pointer}
+    .env-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
     .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
     input[type=text]{padding:10px 12px;border-radius:10px;border:1px solid #e6eefc;min-width:180px}
     button.btn{background:var(--accent);color:#fff;border:none;padding:9px 12px;border-radius:10px;cursor:pointer;font-weight:600}
@@ -46,11 +50,17 @@
 
     <div class="card">
       <div class="toolbar">
-        <div style="display:flex;gap:8px;align-items:center">
-          <label for="searchInput" class="sr-only">搜索</label>
-          <input id="searchInput" type="text" placeholder="搜索 key 或 value" />
-          <button id="addBtn" class="btn" title="添加配置">＋ 添加</button>
-          <div class="small op-status" id="opStatus">未操作</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="env-tabs" role="tablist" aria-label="环境切换">
+            <div id="tab-test" class="env-tab">测试环境</div>
+            <div id="tab-prod" class="env-tab active">生产环境</div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center">
+            <label for="searchInput" class="sr-only">搜索</label>
+            <input id="searchInput" type="text" placeholder="搜索 key 或 value" />
+            <button id="addBtn" class="btn" title="添加配置">＋ 添加</button>
+            <div class="small op-status" id="opStatus">未操作</div>
+          </div>
         </div>
         <div class="small">可通过表格右侧按钮快速编辑或删除</div>
       </div>
@@ -105,6 +115,11 @@
     const modalSave = document.getElementById('modalSave');
     const modalValidate = document.getElementById('modalValidate');
     const modalError = document.getElementById('modalError');
+    const tabTest = document.getElementById('tab-test');
+    const tabProd = document.getElementById('tab-prod');
+
+    // current environment: 'prod' or 'test'
+    let currentEnv = 'prod';
 
     let currentData = {};
     let sortAsc = true;
@@ -148,14 +163,69 @@
       if(statusEl) statusEl.textContent = `已加载 ${rows.length} / ${keys.length} 项配置`;
     }
 
-    async function loadConfig(){ setOp(''); if(statusEl) statusEl.textContent='正在加载配置…'; try{ const res = await fetch('/api/config'); if (!res.ok) throw new Error('网络错误: '+res.status); const data = await res.json(); renderConfig(data, searchInput.value); }catch(err){ console.error(err); if(statusEl) statusEl.textContent = '加载配置失败: ' + (err && err.message ? err.message : err); tbody.innerHTML = '<tr><td colspan="3" class="empty">加载失败</td></tr>'; } }
+    async function loadConfig(){
+      setOp('');
+      if(statusEl) statusEl.textContent='正在加载配置…';
+      try{
+        const res = await fetch(`/api/config?env=${encodeURIComponent(currentEnv)}`);
+        if (!res.ok) throw new Error('网络错误: '+res.status);
+        const data = await res.json();
+        renderConfig(data, searchInput.value);
+      }catch(err){
+        console.error(err);
+        if(statusEl) statusEl.textContent = '加载配置失败: ' + (err && err.message ? err.message : err);
+        tbody.innerHTML = '<tr><td colspan="3" class="empty">加载失败</td></tr>';
+      }
+    }
 
-    async function performPut(k,v){ setOp('处理中...'); try{ const res = await fetch('/api/config', { method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify({key:k,value:v}) }); if (!res.ok) throw new Error('网络错误: ' + res.status); const data = await res.json(); renderConfig(data, searchInput.value); setOp('已保存'); }catch(err){ console.error(err); setOp('保存失败: ' + (err && err.message ? err.message : err)); }finally{ setTimeout(()=>setOp(''),2000); } }
+    async function performPut(k,v){
+      setOp('处理中...');
+      try{
+        const res = await fetch(`/api/config?env=${encodeURIComponent(currentEnv)}`, { method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify({key:k,value:v}) });
+        if (!res.ok) throw new Error('网络错误: ' + res.status);
+        const data = await res.json();
+        renderConfig(data, searchInput.value);
+        setOp('已保存');
+      }catch(err){
+        console.error(err);
+        setOp('保存失败: ' + (err && err.message ? err.message : err));
+      }finally{ setTimeout(()=>setOp(''),2000); }
+    }
 
-    async function performDelete(k){ setOp('处理中...'); try{ const res = await fetch('/api/config', { method:'DELETE', headers:{'Content-Type':'application/json'}, body:JSON.stringify({key:k}) }); if (!res.ok) throw new Error('网络错误: ' + res.status); const data = await res.json(); renderConfig(data, searchInput.value); setOp('已删除'); }catch(err){ console.error(err); setOp('删除失败: ' + (err && err.message ? err.message : err)); }finally{ setTimeout(()=>setOp(''),2000); } }
+    async function performDelete(k){
+      setOp('处理中...');
+      try{
+        const res = await fetch(`/api/config?env=${encodeURIComponent(currentEnv)}`, { method:'DELETE', headers:{'Content-Type':'application/json'}, body:JSON.stringify({key:k}) });
+        if (!res.ok) throw new Error('网络错误: ' + res.status);
+        const data = await res.json();
+        renderConfig(data, searchInput.value);
+        setOp('已删除');
+      }catch(err){
+        console.error(err);
+        setOp('删除失败: ' + (err && err.message ? err.message : err));
+      }finally{ setTimeout(()=>setOp(''),2000); }
+    }
 
     // add button opens modal for adding
-    addBtn.addEventListener('click', ()=>{ editingKey = null; modalTitle.textContent = '添加配置'; modalKeyInput.value=''; modalKeyInput.readOnly = false; modalKeyInput.style.background = '#fff'; modalValueEl.value=''; modalError.textContent=''; editModal.style.display='flex'; modalKeyInput.focus(); });
+    addBtn.addEventListener('click', ()=>{ editingKey = null; modalTitle.textContent = `添加配置（${currentEnv === 'test' ? '测试' : '生产'}）`; modalKeyInput.value=''; modalKeyInput.readOnly = false; modalKeyInput.style.background = '#fff'; modalValueEl.value=''; modalError.textContent=''; editModal.style.display='flex'; modalKeyInput.focus(); });
+
+    // tabs switching
+    function setEnv(env){
+      currentEnv = env;
+      tabTest.classList.toggle('active', env === 'test');
+      tabProd.classList.toggle('active', env === 'prod');
+      // 清空表格并显示加载占位，等待后端返回
+      tbody.innerHTML = '<tr><td colspan="3" class="empty">加载中...</td></tr>';
+      if (statusEl) statusEl.textContent = '正在加载配置…';
+      setOp('');
+      // update modal title if open
+      if(editModal.style.display === 'flex'){
+        modalTitle.textContent = editingKey ? `编辑配置（${env === 'test' ? '测试' : '生产'}）` : `添加配置（${env === 'test' ? '测试' : '生产'}）`;
+      }
+      loadConfig();
+    }
+    tabTest.addEventListener('click', ()=> setEnv('test'));
+    tabProd.addEventListener('click', ()=> setEnv('prod'));
 
     // modal handlers
     modalCancel.addEventListener('click', ()=>{ editingKey = null; editModal.style.display = 'none'; });
@@ -207,7 +277,7 @@
     thKey.addEventListener('click', ()=>{ sortAsc = !sortAsc; thKey.textContent = `Key ${sortAsc ? '▲' : '▼'}`; renderConfig(currentData, searchInput.value); });
 
     // initial
-    loadConfig();
+    setEnv(currentEnv);
   </script>
 </body>
 </html>
