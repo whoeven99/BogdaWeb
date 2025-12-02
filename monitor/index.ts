@@ -110,6 +110,20 @@ app.delete('/api/config', async (req, res) => {
     }
 });
 
+// New API endpoint to fetch monitorv2 data
+app.get('/api/monitorv2', async (req, res) => {
+  try {
+    const env = String(req.query.env || 'prod');
+    const base = getConfigBaseUrl(env);
+    console.log(`[monitorv2 GET] env=${env} base=${base} url=${base}/monitorv2`);
+    const response = await axios.get(`${base}/monitorv2`);
+    res.json(response.data);
+  } catch (error) {
+    console.error('Error fetching monitorv2 from external API:', error);
+    res.status(502).json({ error: 'Failed to fetch monitorv2 from external API' });
+  }
+});
+
 // Serve the UI
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
@@ -128,6 +142,11 @@ app.get('/shop/:shopName', (req, res) => {
 
   // Serve the static shop.html page; the front-end will fetch data from /api/shop/:shopName
   res.sendFile(path.join(__dirname, 'public', 'shop.html'));
+});
+
+// Serve monitorv2 page
+app.get('/monitorv2', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'monitorv2.html'));
 });
 
 app.listen(port, () => {
