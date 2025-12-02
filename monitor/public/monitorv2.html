@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MonitorV2 - Bogda</title>
+  <style>
+    :root{--bg:#f5f7fb;--card:#fff;--muted:#6b7280;--accent:#2563eb;--radius:10px}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;background:var(--bg);color:#0f172a}
+    .container{max-width:1100px;margin:28px auto;padding:20px}
+    .header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    h1{margin:0;font-size:20px}
+    .card{background:var(--card);border-radius:var(--radius);padding:16px;box-shadow:0 8px 20px rgba(15,23,42,0.06)}
+    .controls{display:flex;gap:8px;align-items:center}
+    .select{padding:8px 10px;border-radius:8px;border:1px solid #e6eefc}
+    .btn{background:var(--accent);color:#fff;border:none;padding:8px 10px;border-radius:8px;cursor:pointer}
+    .btn.secondary{background:#fff;color:var(--accent);border:1px solid rgba(37,99,235,0.12)}
+    .table-wrap{overflow:auto;margin-top:12px;border-radius:8px;border:1px solid #e6eefc;background:#fff}
+    table{width:100%;border-collapse:collapse;min-width:900px}
+    thead th{background:#0b1220;color:#fff;padding:10px;font-size:13px;text-align:left;position:sticky;top:0}
+    tbody td{padding:10px;border-top:1px solid #f1f5f9;font-size:13px}
+    .no-data{padding:18px;color:var(--muted)}
+    .loader{width:22px;height:22px;border-radius:50%;border:3px solid rgba(0,0,0,0.08);border-left-color:var(--accent);animation:spin 1s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    pre{white-space:pre-wrap;word-break:break-word;margin:0}
+    @media (max-width:900px){.controls{flex-direction:column;align-items:flex-start}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div>
+        <h1>MonitorV2</h1>
+        <div style="color:var(--muted);font-size:13px">显示 monitorv2 接口返回的任务列表</div>
+      </div>
+      <div class="controls">
+        <label for="env" style="color:var(--muted);font-size:13px;margin-right:6px">环境</label>
+        <select id="env" class="select" aria-label="环境选择">
+          <option value="prod">prod</option>
+          <option value="test">test</option>
+        </select>
+        <button id="refresh" class="btn secondary">刷新</button>
+        <button id="back" class="btn">返回</button>
+      </div>
+    </div>
+
+    <div style="height:12px"></div>
+
+    <div class="card">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <div style="display:flex;gap:12px;align-items:center">
+          <div id="loading" class="loader" style="display:none"></div>
+          <div id="status" style="color:var(--muted)">状态：<span id="statusText">准备就绪</span></div>
+        </div>
+        <div style="color:var(--muted);font-size:13px">API: /api/monitorv2 (通过服务代理请求)</div>
+      </div>
+
+      <div id="tableArea" class="table-wrap">
+        <div class="no-data">等待加载...</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const envSelect = document.getElementById('env');
+    const refreshBtn = document.getElementById('refresh');
+    const backBtn = document.getElementById('back');
+    const loadingEl = document.getElementById('loading');
+    const statusText = document.getElementById('statusText');
+    const tableArea = document.getElementById('tableArea');
+
+    backBtn.addEventListener('click', ()=>{ window.location.href='/' });
+    refreshBtn.addEventListener('click', fetchAndRender);
+    envSelect.addEventListener('change', ()=>{ clearAndFetch(); });
+
+    function setLoading(v){ loadingEl.style.display = v ? 'inline-block' : 'none'; statusText.textContent = v ? '加载中...' : '已就绪'; }
+
+    function clearAndFetch(){ tableArea.innerHTML = '<div class="no-data">加载中...</div>'; fetchAndRender(); }
+
+    function escapeHtml(s){ if (s===null||s===undefined) return ''; return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;'); }
+
+    function buildTable(data){
+      const entries = Object.entries(data || {});
+      if (entries.length === 0) { tableArea.innerHTML = '<div class="no-data">无数据</div>'; return; }
+
+      // 常规列顺序
+      const primaryCols = ['totalCount','translatedCount','savedCount','usedToken','translatedChars'];
+
+      // 收集所有字段，排除 shopName/source/target 和原始时间字段（这些会被用于计算）
+      const skipKeys = new Set(['shopName','source','target','initStartTime','initEndTime','translatedEndTime','translateEndTime','savingShopifyEndTime']);
+      const allCols = new Set();
+      entries.forEach(([,v])=>{ if (v && typeof v === 'object') Object.keys(v).forEach(c=>{ if (!skipKeys.has(c) && !primaryCols.includes(c)) allCols.add(c); }); });
+
+      // 最终列顺序： taskId, 指定的 primary 列, 计算列, 然后其他剩余字段
+      const cols = ['taskId', ...primaryCols, 'initTime','transTime','saveTime', ...Array.from(allCols)];
+
+      // 列显示名称映射（中文）
+      const headerMap = {
+        taskId: '任务id',
+        totalCount: '总翻译数',
+        translatedCount: '已翻译数',
+        savedCount: '写入数量',
+        usedToken: '花费积分',
+        translatedChars: '翻译长度',
+        initTime: 'initTime(分钟)',
+        transTime: 'transTime(分钟)',
+        saveTime: 'saveTime(分钟)'
+      };
+
+      const table = document.createElement('table');
+      const thead = document.createElement('thead');
+      const tr = document.createElement('tr');
+      cols.forEach(c=>{
+        const th = document.createElement('th');
+        th.textContent = headerMap[c] || c;
+        // 将任务id列宽度调小
+        if (c === 'taskId') th.style.width = '180px';
+        tr.appendChild(th);
+      });
+      thead.appendChild(tr); table.appendChild(thead);
+
+      const tbody = document.createElement('tbody');
+      entries.sort((a,b)=> Number(a[0]) - Number(b[0]));
+      entries.forEach(([k,v])=>{
+        const trr = document.createElement('tr');
+        // taskId 显示为两行：第一行为 key - source -> target（缺项按规则省略），第二行为完整的 shopName（不去掉后缀）
+        const shop = v && v.shopName ? String(v.shopName) : '';
+        const source = v && v.source ? String(v.source) : '';
+        const target = v && (v.target || v.target === 0) ? String(v.target) : '';
+        // 构建安全的 HTML（对内容转义后再插入 <br>）
+        const esc = (s) => escapeHtml(s === null || s === undefined ? '' : String(s));
+        let firstLine = esc(k);
+        if (source) {
+          firstLine += ' - ' + esc(source);
+          if (target) firstLine += ' -> ' + esc(target);
+        } else if (target) {
+          firstLine += ' -> ' + esc(target);
+        }
+        let html = firstLine;
+        if (shop) html += `<br>${esc(shop)}`;
+        const tdId = document.createElement('td'); tdId.innerHTML = html; trr.appendChild(tdId);
+
+        // 先渲染 primaryCols
+        primaryCols.forEach(col=>{
+          const td = document.createElement('td');
+          const val = v && v[col] !== undefined ? v[col] : '';
+          td.innerHTML = escapeHtml(String(val));
+          trr.appendChild(td);
+        });
+
+        // 计算时间字段（以分钟为单位，保留两位小数）
+        const toNum = (x)=>{ const n = Number(x); return Number.isFinite(n) ? n : NaN; };
+        const initStart = toNum(v && v.initStartTime);
+        const initEnd = toNum(v && v.initEndTime);
+        const transEnd = toNum(v && (v.translatedEndTime || v.translateEndTime));
+        const saveEnd = toNum(v && v.savingShopifyEndTime);
+
+        const mkMin = (a,b)=>{
+          if (!Number.isFinite(a) || !Number.isFinite(b)) return '';
+          const mins = (b - a) / 60000;
+          return Number.isFinite(mins) ? String(Number(Math.round(mins * 100) / 100)) : '';
+        };
+
+        const initTime = mkMin(initStart, initEnd);
+        const transTime = mkMin(initEnd, transEnd);
+        const saveTime = mkMin(transEnd, saveEnd);
+
+        [initTime, transTime, saveTime].forEach(val=>{
+          const td = document.createElement('td'); td.textContent = val; trr.appendChild(td);
+        });
+
+        // 最后渲染其他剩余字段
+        cols.slice(1 + primaryCols.length + 3).forEach(col=>{
+          const td = document.createElement('td');
+          const val = v && v[col] !== undefined ? v[col] : '';
+          td.innerHTML = escapeHtml(String(val));
+          trr.appendChild(td);
+        });
+
+        tbody.appendChild(trr);
+      });
+
+      table.appendChild(tbody);
+      tableArea.innerHTML = '';
+      tableArea.appendChild(table);
+    }
+
+    async function fetchAndRender(){
+      setLoading(true);
+      statusText.textContent = '加载中...';
+      tableArea.innerHTML = '<div class="no-data">加载中...</div>';
+      try{
+        const env = envSelect.value || 'prod';
+        const res = await fetch(`/api/monitorv2?env=${encodeURIComponent(env)}`);
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const data = await res.json();
+        buildTable(data);
+        statusText.textContent = '加载完成';
+      }catch(e){
+        console.error(e);
+        tableArea.innerHTML = '<div class="no-data">加载失败，请稍后重试</div>';
+        statusText.textContent = '加载失败';
+      }finally{ setLoading(false); }
+    }
+
+    fetchAndRender();
+  </script>
+</body>
+</html>

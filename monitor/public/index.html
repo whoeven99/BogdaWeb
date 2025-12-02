@@ -56,6 +56,7 @@
         </div>
         <div style="display:flex;gap:8px">
           <button id="refresh" class="btn secondary">刷新数据</button>
+          <button id="monitorV2Btn" class="btn secondary">MonitorV2</button>
           <button id="configBtn" class="btn secondary">配置</button>
         </div>
       </div>
@@ -94,6 +95,8 @@
     configBtn.addEventListener('click', ()=>{
       window.location.href = '/config';
     });
+    const monitorV2Btn = document.getElementById('monitorV2Btn');
+    monitorV2Btn.addEventListener('click', ()=>{ window.location.href = '/monitorv2'; });
 
     function setLoading(v){ loadingEl.style.display = v ? 'inline-block' : 'none'; statusText.textContent = v ? '加载中...' : '已就绪'; }
 
