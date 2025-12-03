@@ -5,26 +5,62 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>MonitorV2 - Bogda</title>
   <style>
-    :root{--bg:#f5f7fb;--card:#fff;--muted:#6b7280;--accent:#2563eb;--radius:10px}
+    :root{
+      --bg: #0f172a10;
+      --card: #ffffff;
+      --muted: #6b7280;
+      --accent: #2563eb;
+      --accent-2: #7c3aed;
+      --success: #10b981;
+      --danger: #ef4444;
+      --radius: 12px;
+      --table-font: 13px;
+    }
     *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;background:var(--bg);color:#0f172a}
-    .container{max-width:1100px;margin:28px auto;padding:20px}
-    .header{display:flex;align-items:center;justify-content:space-between;gap:12px}
-    h1{margin:0;font-size:20px}
-    .card{background:var(--card);border-radius:var(--radius);padding:16px;box-shadow:0 8px 20px rgba(15,23,42,0.06)}
-    .controls{display:flex;gap:8px;align-items:center}
-    .select{padding:8px 10px;border-radius:8px;border:1px solid #e6eefc}
-    .btn{background:var(--accent);color:#fff;border:none;padding:8px 10px;border-radius:8px;cursor:pointer}
-    .btn.secondary{background:#fff;color:var(--accent);border:1px solid rgba(37,99,235,0.12)}
-    .table-wrap{overflow:auto;margin-top:12px;border-radius:8px;border:1px solid #e6eefc;background:#fff}
-    table{width:100%;border-collapse:collapse;min-width:900px}
-    thead th{background:#0b1220;color:#fff;padding:10px;font-size:13px;text-align:left;position:sticky;top:0}
-    tbody td{padding:10px;border-top:1px solid #f1f5f9;font-size:13px}
+    body{margin:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;background:linear-gradient(180deg,#f7fbff, #f1f5f9);color:#0f172a}
+    .container{max-width:1200px;margin:28px auto;padding:24px}
+    .header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:12px}
+    h1{margin:0;font-size:20px;font-weight:700;color:#0b1220}
+    .subtitle{color:var(--muted);font-size:13px}
+    .card{background:var(--card);border-radius:var(--radius);padding:14px;box-shadow:0 6px 18px rgba(15,23,42,0.06);border:1px solid rgba(15,23,42,0.04)}
+    .card .group-header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px}
+    .card .group-left{display:flex;align-items:center;gap:8px}
+    .toggle-btn{background:transparent;border:1px solid rgba(15,23,42,0.06);padding:6px 8px;border-radius:8px;cursor:pointer;font-size:13px;color:var(--muted);display:inline-flex;align-items:center;gap:6px}
+    .toggle-btn:hover{background:rgba(37,99,235,0.04);color:var(--accent)}
+    .toggle-btn svg{width:14px;height:14px;transform:rotate(0deg);transition:transform .18s}
+    .toggle-btn.collapsed svg{transform:rotate(-90deg)}
+    .status-badge{display:inline-block;padding:4px 9px;border-radius:999px;color:#fff;font-size:12px;font-weight:600}
+    .controls{display:flex;gap:10px;align-items:center}
+    .select{padding:8px 10px;border-radius:8px;border:1px solid #e6eefc;background:#fff}
+    .btn{background:var(--accent);color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer;box-shadow:0 6px 12px rgba(37,99,235,0.08)}
+    .btn.secondary{background:#fff;color:var(--accent);border:1px solid rgba(37,99,235,0.12);box-shadow:none}
+    .table-wrap{overflow:auto;margin-top:10px;border-radius:10px;border:1px solid rgba(15,23,42,0.04);background:linear-gradient(180deg, #ffffff, #fbfdff)}
+    table{width:100%;border-collapse:collapse;min-width:780px;font-size:var(--table-font)}
+    thead th{background:linear-gradient(180deg,#0b1220,#0b1220);color:#fff;padding:10px 12px;font-size:12px;text-align:left;position:sticky;top:0;z-index:2}
+    tbody td{padding:8px 10px;border-top:1px solid #f1f5f9;font-size:13px;vertical-align:middle}
+    tbody tr:nth-child(even){background:rgba(15,23,42,0.02)}
+    tbody tr:hover{background:rgba(37,99,235,0.04)}
     .no-data{padding:18px;color:var(--muted)}
-    .loader{width:22px;height:22px;border-radius:50%;border:3px solid rgba(0,0,0,0.08);border-left-color:var(--accent);animation:spin 1s linear infinite}
+    .loader{width:24px;height:24px;border-radius:50%;border:3px solid rgba(0,0,0,0.08);border-left-color:var(--accent);animation:spin 1s linear infinite}
     @keyframes spin{to{transform:rotate(360deg)}}
     pre{white-space:pre-wrap;word-break:break-word;margin:0}
-    @media (max-width:900px){.controls{flex-direction:column;align-items:flex-start}}
+    .group-content{transition:height .18s ease,opacity .18s ease}
+    .taskid-cell{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;color:#0b1220;font-weight:600}
+    .small-muted{color:var(--muted);font-size:12px}
+    .badge-icon{display:inline-block;width:18px;height:18px;text-align:center;line-height:18px;border-radius:50%}
+    /* send_email 图标样式 */
+    .email-icon{width:18px;height:18px;display:inline-block;vertical-align:middle}
+    .email-icon svg{width:18px;height:18px;display:block}
+    .email-icon.sent svg{filter:drop-shadow(0 1px 0 rgba(0,0,0,0.02))}
+    .email-icon.unsent{opacity:0.8}
+    /* status chart */
+    .status-chart{display:flex;gap:10px;align-items:flex-end;padding:10px 6px;margin-bottom:8px}
+    .status-col{display:flex;flex-direction:column;align-items:center;width:48px}
+    .status-col .bar{width:100%;height:8px;border-radius:6px;margin-bottom:6px;transition:width .18s}
+    .status-col .label{font-size:11px;color:var(--muted);text-align:center}
+    .status-col .count{font-size:12px;margin-top:4px;font-weight:600}
+    /* 表格上方状态图标已移除 */
+    @media (max-width:900px){.controls{flex-direction:column;align-items:flex-start}.container{padding:12px}}
   </style>
 </head>
 <body>
@@ -32,10 +68,10 @@
     <div class="header">
       <div>
         <h1>MonitorV2</h1>
-        <div style="color:var(--muted);font-size:13px">显示 monitorv2 接口返回的任务列表</div>
+        <div class="subtitle">显示 monitorv2 接口返回的任务列表</div>
       </div>
       <div class="controls">
-        <label for="env" style="color:var(--muted);font-size:13px;margin-right:6px">环境</label>
+        <label for="env" class="small-muted" style="margin-right:6px">环境</label>
         <select id="env" class="select" aria-label="环境选择">
           <option value="prod">prod</option>
           <option value="test">test</option>
@@ -53,7 +89,7 @@
           <div id="loading" class="loader" style="display:none"></div>
           <div id="status" style="color:var(--muted)">状态：<span id="statusText">准备就绪</span></div>
         </div>
-        <div style="color:var(--muted);font-size:13px">API: /api/monitorv2 (通过服务代理请求)</div>
+        <div class="small-muted">API: /api/monitorv2 (通过服务代理请求)</div>
       </div>
 
       <div id="tableArea" class="table-wrap">
@@ -87,15 +123,19 @@
       // 常规列顺序
       const primaryCols = ['totalCount','translatedCount','savedCount','usedToken','translatedChars'];
 
-      // 收集所有字段，排除 shopName/source/target 和原始时间字段（这些会被用于计算）
-      const skipKeys = new Set(['shopName','source','target','initStartTime','initEndTime','translatedEndTime','translateEndTime','savingShopifyEndTime']);
+      // 收集所有字段，排除 shopName/source/target 和 原始时间字段（这些会被用于计算）
+      // shopName 不作为单独列展示，但会在任务id中显示（去掉 .myshopify.com 后缀）
+      const skipKeys = new Set(['shopName','source','target','initStartTime','initEndTime','translatedEndTime','translateEndTime','savingShopifyEndTime','task_type']);
       const allCols = new Set();
       entries.forEach(([,v])=>{ if (v && typeof v === 'object') Object.keys(v).forEach(c=>{ if (!skipKeys.has(c) && !primaryCols.includes(c)) allCols.add(c); }); });
 
-      // 最终列顺序： taskId, 指定的 primary 列, 计算列, 然后其他剩余字段
-      const cols = ['taskId', ...primaryCols, 'initTime','transTime','saveTime', ...Array.from(allCols)];
+      // 我们会把 status 和 send_email 放在计算列之后显示
+      const otherCols = Array.from(allCols).filter(c=> c !== 'status' && c !== 'send_email');
 
-      // 列显示名称映射（中文）
+      // 列顺序模板
+      const baseCols = ['taskId', ...primaryCols, 'initTime','transTime','saveTime', 'status', 'send_email', ...otherCols];
+
+      // 列显示名称映射（中文），括号内单位已移除
       const headerMap = {
         taskId: '任务id',
         totalCount: '总翻译数',
@@ -103,87 +143,169 @@
         savedCount: '写入数量',
         usedToken: '花费积分',
         translatedChars: '翻译长度',
-        initTime: 'initTime(分钟)',
-        transTime: 'transTime(分钟)',
-        saveTime: 'saveTime(分钟)'
+        initTime: 'initTime',
+        transTime: 'transTime',
+        saveTime: 'saveTime',
+        status: '状态',
+        send_email: '已发送邮件'
       };
 
-      const table = document.createElement('table');
-      const thead = document.createElement('thead');
-      const tr = document.createElement('tr');
-      cols.forEach(c=>{
-        const th = document.createElement('th');
-        th.textContent = headerMap[c] || c;
-        // 将任务id列宽度调小
-        if (c === 'taskId') th.style.width = '180px';
-        tr.appendChild(th);
-      });
-      thead.appendChild(tr); table.appendChild(thead);
-
-      const tbody = document.createElement('tbody');
-      entries.sort((a,b)=> Number(a[0]) - Number(b[0]));
+      // 按 task_type 分组
+      const groups = new Map();
       entries.forEach(([k,v])=>{
-        const trr = document.createElement('tr');
-        // taskId 显示为两行：第一行为 key - source -> target（缺项按规则省略），第二行为完整的 shopName（不去掉后缀）
-        const shop = v && v.shopName ? String(v.shopName) : '';
-        const source = v && v.source ? String(v.source) : '';
-        const target = v && (v.target || v.target === 0) ? String(v.target) : '';
-        // 构建安全的 HTML（对内容转义后再插入 <br>）
-        const esc = (s) => escapeHtml(s === null || s === undefined ? '' : String(s));
-        let firstLine = esc(k);
-        if (source) {
-          firstLine += ' - ' + esc(source);
-          if (target) firstLine += ' -> ' + esc(target);
-        } else if (target) {
-          firstLine += ' -> ' + esc(target);
-        }
-        let html = firstLine;
-        if (shop) html += `<br>${esc(shop)}`;
-        const tdId = document.createElement('td'); tdId.innerHTML = html; trr.appendChild(tdId);
-
-        // 先渲染 primaryCols
-        primaryCols.forEach(col=>{
-          const td = document.createElement('td');
-          const val = v && v[col] !== undefined ? v[col] : '';
-          td.innerHTML = escapeHtml(String(val));
-          trr.appendChild(td);
-        });
-
-        // 计算时间字段（以分钟为单位，保留两位小数）
-        const toNum = (x)=>{ const n = Number(x); return Number.isFinite(n) ? n : NaN; };
-        const initStart = toNum(v && v.initStartTime);
-        const initEnd = toNum(v && v.initEndTime);
-        const transEnd = toNum(v && (v.translatedEndTime || v.translateEndTime));
-        const saveEnd = toNum(v && v.savingShopifyEndTime);
-
-        const mkMin = (a,b)=>{
-          if (!Number.isFinite(a) || !Number.isFinite(b)) return '';
-          const mins = (b - a) / 60000;
-          return Number.isFinite(mins) ? String(Number(Math.round(mins * 100) / 100)) : '';
-        };
-
-        const initTime = mkMin(initStart, initEnd);
-        const transTime = mkMin(initEnd, transEnd);
-        const saveTime = mkMin(transEnd, saveEnd);
-
-        [initTime, transTime, saveTime].forEach(val=>{
-          const td = document.createElement('td'); td.textContent = val; trr.appendChild(td);
-        });
-
-        // 最后渲染其他剩余字段
-        cols.slice(1 + primaryCols.length + 3).forEach(col=>{
-          const td = document.createElement('td');
-          const val = v && v[col] !== undefined ? v[col] : '';
-          td.innerHTML = escapeHtml(String(val));
-          trr.appendChild(td);
-        });
-
-        tbody.appendChild(trr);
+        const t = (v && v.task_type) ? String(v.task_type) : 'unknown';
+        if (!groups.has(t)) groups.set(t, []);
+        groups.get(t).push([k,v]);
       });
 
-      table.appendChild(tbody);
+      // 清空区域，按分组渲染多个表格
       tableArea.innerHTML = '';
-      tableArea.appendChild(table);
+      const groupKeys = Array.from(groups.keys()).sort();
+
+      groupKeys.forEach(groupKey => {
+        const groupEntries = groups.get(groupKey);
+        // 创建卡片
+        const wrapper = document.createElement('div'); wrapper.className = 'card'; wrapper.style.padding = '10px';
+
+        const header = document.createElement('div'); header.className = 'group-header';
+        // 左侧放置组名与折叠按钮，使按钮显示在 manual/auto 文案旁边
+        const left = document.createElement('div'); left.className = 'group-left';
+        const title = document.createElement('div'); title.style.fontWeight = '700'; title.style.marginBottom = '0';
+        // 去掉 groupKey 中类似于 (123) 或 （123）这类括号和数字，并且不显示分组数量
+        const cleanedKey = String(groupKey).replace(/\s*[ (（]\d+[)）]\s*/g, '').trim();
+        title.textContent = cleanedKey || String(groupKey);
+        const toggleBtn = document.createElement('button'); toggleBtn.className='toggle-btn'; toggleBtn.textContent='折叠';
+        left.appendChild(title); left.appendChild(toggleBtn);
+        header.appendChild(left);
+        wrapper.appendChild(header);
+
+        const table = document.createElement('table');
+        const thead = document.createElement('thead'); const tr = document.createElement('tr');
+        baseCols.forEach(c=>{ const th = document.createElement('th'); th.textContent = headerMap[c] || c; if (c === 'taskId') th.style.width='160px'; tr.appendChild(th); });
+        thead.appendChild(tr); table.appendChild(thead);
+
+        const tbody = document.createElement('tbody');
+        groupEntries.sort((a,b)=> Number(a[0]) - Number(b[0]));
+        groupEntries.forEach(([k,v])=>{
+          const trr = document.createElement('tr');
+          // 构建 taskId 两行显示：key - source -> target，以及去掉 .myshopify.com 后缀的 shopName（若存在）
+          const shop = v && v.shopName ? String(v.shopName) : '';
+          const shopShort = shop ? shop.replace(/\.myshopify\.com$/i, '') : '';
+          const source = v && v.source ? String(v.source) : '';
+          const target = v && (v.target || v.target === 0) ? String(v.target) : '';
+          const esc = (s) => escapeHtml(s === null || s === undefined ? '' : String(s));
+          let firstLine = esc(k);
+          if (source) {
+            firstLine += ' - ' + esc(source);
+            if (target) firstLine += ' -> ' + esc(target);
+          } else if (target) {
+            firstLine += ' -> ' + esc(target);
+          }
+          let html = firstLine;
+          if (shopShort) html += `<br>${esc(shopShort)}`;
+          const tdId = document.createElement('td'); tdId.innerHTML = html; trr.appendChild(tdId);
+
+          // primary cols
+          primaryCols.forEach(col=>{ const td=document.createElement('td'); const val = v && v[col] !== undefined ? v[col] : ''; td.innerHTML = escapeHtml(String(val)); trr.appendChild(td); });
+
+          // 计算时间列，显示为 几分几秒
+          const toNum = (x)=>{ const n = Number(x); return Number.isFinite(n) ? n : NaN; };
+          const initStart = toNum(v && v.initStartTime);
+          const initEnd = toNum(v && v.initEndTime);
+          const transEnd = toNum(v && (v.translatedEndTime || v.translateEndTime));
+          const saveEnd = toNum(v && v.savingShopifyEndTime);
+          const mkMinSec = (a,b)=>{
+            if (!Number.isFinite(a) || !Number.isFinite(b)) return '';
+            const diff = b - a;
+            if (!Number.isFinite(diff) || diff < 0) return '';
+            const totalSec = Math.round(diff / 1000);
+            const m = Math.floor(totalSec / 60);
+            const s = totalSec % 60;
+            return `${m}分${s}秒`;
+          };
+          const initTime = mkMinSec(initStart, initEnd);
+          const transTime = mkMinSec(initEnd, transEnd);
+          const saveTime = mkMinSec(transEnd, saveEnd);
+          [initTime, transTime, saveTime].forEach(val=>{ const td=document.createElement('td'); td.textContent = val || ''; trr.appendChild(td); });
+
+          // status 映射为中文并渲染为带背景色的 badge
+          const statusMap = {
+            '0': '读取中',
+            '1': '翻译中',
+            '2': '写入中',
+            '3': '待发送邮件',
+            '4': '任务完成',
+            '5': '手动中断',
+            '6': 'token limit中断'
+          };
+          const statusColor = {
+            '0': '#6b7280', // muted
+            '1': '#2563eb', // blue
+            '2': '#f59e0b', // amber
+            '3': '#7c3aed', // purple
+            '4': '#10b981', // green
+            '5': '#ef4444', // red
+            '6': '#f97316'  // orange
+          };
+          const rawStatus = v && v.status !== undefined ? String(v.status) : '';
+          const statusLabel = rawStatus === '' ? '' : (statusMap[rawStatus] || rawStatus);
+          const tdStatus = document.createElement('td');
+          if (statusLabel) {
+            const color = statusColor[rawStatus] || '#6b7280';
+            tdStatus.innerHTML = `<span class="status-badge" title="${escapeHtml(statusLabel)}" style="background:${color}">${escapeHtml(statusLabel)}</span>`;
+          } else {
+            tdStatus.textContent = '';
+          }
+          trr.appendChild(tdStatus);
+
+          // send_email: 使用绿色方块勾 / 红色方块叉 图标
+          const tdEmail = document.createElement('td');
+          const sendVal = v && (v.send_email !== undefined ? v.send_email : v.sendEmail !== undefined ? v.sendEmail : undefined);
+          if (sendVal === 1 || sendVal === '1') {
+            // 绿色方块带白色勾
+            tdEmail.innerHTML = `
+              <span class="email-icon sent" title="已发送邮件" aria-label="已发送">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <rect x="3" y="3" width="18" height="18" rx="4" fill="#10b981" />
+                  <path d="M7.5 12.5l3 3 6-6" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>`;
+          } else if (sendVal === 0 || sendVal === '0') {
+            // 红色方块带白色叉
+            tdEmail.innerHTML = `
+              <span class="email-icon unsent" title="未发送邮件" aria-label="未发送">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <rect x="3" y="3" width="18" height="18" rx="4" fill="#000000" />
+                  <path d="M8 8l8 8M16 8l-8 8" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>`;
+          } else if (sendVal === undefined) {
+            tdEmail.textContent = '';
+          } else {
+            tdEmail.textContent = String(sendVal);
+          }
+          trr.appendChild(tdEmail);
+
+          // 其余字段
+          otherCols.forEach(col=>{ const td=document.createElement('td'); const val = v && v[col] !== undefined ? v[col] : ''; td.innerHTML = escapeHtml(String(val)); trr.appendChild(td); });
+
+          tbody.appendChild(trr);
+        });
+
+        table.appendChild(tbody);
+        // 把 table 放在可折叠的内容容器中，默认展开
+        const contentWrap = document.createElement('div'); contentWrap.className='group-content'; contentWrap.appendChild(table);
+        wrapper.appendChild(contentWrap);
+        tableArea.appendChild(wrapper);
+
+        // 绑定折叠按钮事件
+        toggleBtn.addEventListener('click', ()=>{
+          const isHidden = contentWrap.style.display === 'none';
+          contentWrap.style.display = isHidden ? '' : 'none';
+          toggleBtn.textContent = isHidden ? '折叠' : '展开';
+          toggleBtn.classList.toggle('collapsed', !isHidden);
+        });
+      });
     }
 
     async function fetchAndRender(){
@@ -193,7 +315,13 @@
       try{
         const env = envSelect.value || 'prod';
         const res = await fetch(`/api/monitorv2?env=${encodeURIComponent(env)}`);
-        if (!res.ok) throw new Error('HTTP ' + res.status);
+        if (!res.ok) {
+          const text = await res.text().catch(()=>res.statusText || String(res.status));
+          tableArea.innerHTML = `<div class="no-data">请求失败：${escapeHtml(String(res.status))} ${escapeHtml(String(text))}</div>`;
+          statusText.textContent = '加载失败';
+          setLoading(false);
+          return;
+        }
         const data = await res.json();
         buildTable(data);
         statusText.textContent = '加载完成';
