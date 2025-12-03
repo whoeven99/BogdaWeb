@@ -77,6 +77,10 @@
           <option value="test">test</option>
         </select>
         <button id="refresh" class="btn secondary">刷新</button>
+        <!-- 新增自动刷新开关，放在刷新按钮旁边 -->
+        <label class="small-muted" style="display:flex;align-items:center;gap:6px;margin-left:6px">
+          <input type="checkbox" id="autoRefresh" aria-label="自动刷新" style="width:16px;height:16px;" /> 自动刷新
+        </label>
         <button id="back" class="btn">返回</button>
       </div>
     </div>
@@ -105,14 +109,40 @@
     const loadingEl = document.getElementById('loading');
     const statusText = document.getElementById('statusText');
     const tableArea = document.getElementById('tableArea');
+    const autoCheckbox = document.getElementById('autoRefresh');
+
+    // 自动刷新控制（默认开启，3 秒间隔）
+    let autoTimer = null;
+    const AUTO_INTERVAL_MS = 3000; // 3 秒间隔
+    let isFetching = false; // 防止并发请求
+    let lastDataJson = null; // 保存上次返回的数据快照，用于检测是否有变化
 
     backBtn.addEventListener('click', ()=>{ window.location.href='/' });
     refreshBtn.addEventListener('click', fetchAndRender);
     envSelect.addEventListener('change', ()=>{ clearAndFetch(); });
 
+    // 默认开启自动刷新
+    autoCheckbox.checked = true;
+    autoCheckbox.addEventListener('change', ()=>{
+      if (autoCheckbox.checked) startAutoRefresh(); else stopAutoRefresh();
+    });
+
     function setLoading(v){ loadingEl.style.display = v ? 'inline-block' : 'none'; statusText.textContent = v ? '加载中...' : '已就绪'; }
 
     function clearAndFetch(){ tableArea.innerHTML = '<div class="no-data">加载中...</div>'; fetchAndRender(); }
+
+    function startAutoRefresh(){
+      // 立即触发一次请求，然后开始定时
+      if (!isFetching) fetchAndRender();
+      if (autoTimer) clearInterval(autoTimer);
+      autoTimer = setInterval(()=>{ if (!isFetching) fetchAndRender(); }, AUTO_INTERVAL_MS);
+      statusText.textContent = '自动刷新已开启';
+    }
+
+    function stopAutoRefresh(){
+      if (autoTimer){ clearInterval(autoTimer); autoTimer = null; }
+      statusText.textContent = '自动刷新已关闭';
+    }
 
     function escapeHtml(s){ if (s===null||s===undefined) return ''; return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;'); }
 
@@ -308,10 +338,11 @@
       });
     }
 
+    // 从后端获取数据并在数据发生变化时才显示 loading 并重新渲染
     async function fetchAndRender(){
-      setLoading(true);
-      statusText.textContent = '加载中...';
-      tableArea.innerHTML = '<div class="no-data">加载中...</div>';
+      if (isFetching) return; // 避免并发
+      isFetching = true;
+      statusText.textContent = '检查更新...';
       try{
         const env = envSelect.value || 'prod';
         const res = await fetch(`/api/monitorv2?env=${encodeURIComponent(env)}`);
@@ -319,20 +350,39 @@
           const text = await res.text().catch(()=>res.statusText || String(res.status));
           tableArea.innerHTML = `<div class="no-data">请求失败：${escapeHtml(String(res.status))} ${escapeHtml(String(text))}</div>`;
           statusText.textContent = '加载失败';
-          setLoading(false);
           return;
         }
         const data = await res.json();
+        const newJson = JSON.stringify(data);
+        // 如果与上次数据相同，则不做任何渲染动作，仅更新状态
+        if (lastDataJson !== null && lastDataJson === newJson){
+          statusText.textContent = '无变化';
+          return;
+        }
+        // 新数据：显示加载动画并渲染
+        lastDataJson = newJson;
+        setLoading(true);
+        statusText.textContent = '加载中...';
+        tableArea.innerHTML = '<div class="no-data">加载中...</div>';
         buildTable(data);
         statusText.textContent = '加载完成';
       }catch(e){
         console.error(e);
         tableArea.innerHTML = '<div class="no-data">加载失败，请稍后重试</div>';
         statusText.textContent = '加载失败';
-      }finally{ setLoading(false); }
+      }finally{ setLoading(false); isFetching = false; }
     }
 
-    fetchAndRender();
+    // 页面初始加载：若自动刷新已选中则启动自动刷新，否则做一次手动加载
+    if (autoCheckbox.checked) startAutoRefresh(); else fetchAndRender();
+
+    // 如果页面恢复可见时开启自动刷新，需要重新启动定时器（若勾选）
+    document.addEventListener('visibilitychange', ()=>{
+      if (document.visibilityState === 'visible' && autoCheckbox.checked && !autoTimer){ startAutoRefresh(); }
+    });
+
+    // 离开页面时清理定时器
+    window.addEventListener('beforeunload', ()=>{ if (autoTimer) clearInterval(autoTimer); });
   </script>
 </body>
 </html>
