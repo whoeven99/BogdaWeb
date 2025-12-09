@@ -466,8 +466,8 @@
         const shopName = shopNameInput.value.trim();
         const addChars = parseInt(addCharsInput.value, 10);
 
-        if (!shopName || isNaN(addChars) || addChars <= 0) {
-          alert('请输入有效的商店名和添加额度');
+        if (!shopName || isNaN(addChars)) {
+          alert('请输入有效的商店名和额度');
           return;
         }
 
