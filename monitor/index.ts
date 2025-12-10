@@ -144,11 +144,6 @@ app.get('/shop/:shopName', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'shop.html'));
 });
 
-// Serve monitorv2 page
-app.get('/monitorv2', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'monitorv2.html'));
-});
-
 app.listen(port, () => {
   console.log(`Web service is running at http://localhost:${port}`);
 });
