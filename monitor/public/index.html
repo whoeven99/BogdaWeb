@@ -84,7 +84,9 @@
             <button id="back" class="btn">返回</button>
             <!-- 在刷新按钮旁边添加“增加额度”按钮 -->
             <button id="addQuota" class="btn">增加额度</button>
-            <button id="configBtn" class="btn secondary">配置</button>
+            <button id="configBtn" class="btn">配置</button>
+            <!-- 将查看商店按钮移动到这里 -->
+            <button id="viewShopBtn" class="btn" style="background-color: #2563eb; color: #fff;">查看商店</button>
         </div>
     </div>
 
@@ -462,8 +464,6 @@
         });
 
         confirmAddQuota.addEventListener('click', async () => {
-            const shopNameInput = document.getElementById('shopNameInput');
-            const addCharsInput = document.getElementById('addCharsInput');
             const shopName = shopNameInput.value.trim();
             const addChars = parseInt(addCharsInput.value, 10);
 
@@ -484,21 +484,26 @@
                 }
 
                 const result = await response.json();
-                const resultMessage = `
-            <div style="font-family: Inter, sans-serif; font-size: 14px; color: #374151;">
-              <p><strong>额度添加成功！</strong></p>
-              <p>原额度：<span style="color: #2563eb;">${result.oldChars}</span></p>
-              <p>新增额度：<span style="color: #10b981;">${result.addChars}</span></p>
-              <p>新额度：<span style="color: #7c3aed;">${result.newChars}</span></p>
-            </div>
-          `;
-                const resultDiv = document.createElement('div');
-                resultDiv.innerHTML = resultMessage;
-                modal.innerHTML = '';
-                modal.appendChild(resultDiv);
-                setTimeout(() => {
-                    modal.style.display = 'none';
-                }, 3000);
+
+                if (result && result.oldChars !== undefined && result.addChars !== undefined && result.newChars !== undefined) {
+                    const resultMessage = `
+                        <div style="font-family: Inter, sans-serif; font-size: 14px; color: #374151;">
+                            <p><strong>额度添加成功！</strong></p>
+                            <p>原额度：<span style="color: #2563eb;">${result.oldChars}</span></p>
+                            <p>新增额度：<span style="color: #10b981;">${result.addChars}</span></p>
+                            <p>新额度：<span style="color: #7c3aed;">${result.newChars}</span></p>
+                        </div>
+                    `;
+                    const resultDiv = document.createElement('div');
+                    resultDiv.innerHTML = resultMessage;
+                    modal.innerHTML = '';
+                    modal.appendChild(resultDiv);
+                    setTimeout(() => {
+                        modal.style.display = 'none';
+                    }, 3000);
+                } else {
+                    throw new Error('返回数据格式不正确');
+                }
             } catch (error) {
                 console.error(error);
                 alert('添加额度失败，请稍后重试');
@@ -510,6 +515,48 @@
     const configBtn = document.getElementById('configBtn');
     configBtn.addEventListener('click', () => {
         window.location.href = '/config';
+    });
+
+    // 美化查看商店弹窗
+    document.getElementById('viewShopBtn').addEventListener('click', () => {
+        const modal = document.createElement('div');
+        modal.id = 'viewShopModal';
+        modal.style.display = 'block';
+        modal.style.position = 'fixed';
+        modal.style.top = '50%';
+        modal.style.left = '50%';
+        modal.style.transform = 'translate(-50%, -50%)';
+        modal.style.background = '#fff';
+        modal.style.padding = '20px';
+        modal.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+        modal.style.borderRadius = '8px';
+        modal.style.zIndex = '1000';
+
+        modal.innerHTML = `
+            <h3 style="margin-bottom: 16px; font-size: 18px; color: #0f172a;">查看商店</h3>
+            <label style="display: block; margin-bottom: 12px; font-size: 14px; color: #374151;">
+                商店名：<input type="text" id="shopNameInput" style="width: 100%; padding: 8px; margin-top: 4px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px;" />
+            </label>
+            <div style="display: flex; justify-content: flex-end; gap: 8px;">
+                <button id="confirmViewShop" class="btn" style="background-color: #2563eb; color: #fff; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 6px rgba(37, 99, 235, 0.1);">确认</button>
+                <button id="cancelViewShop" class="btn secondary" style="background-color: #f3f4f6; color: #374151; border: 1px solid #d1d5db; padding: 8px 16px; border-radius: 8px; cursor: pointer;">取消</button>
+            </div>
+        `;
+
+        document.body.appendChild(modal);
+
+        document.getElementById('cancelViewShop').addEventListener('click', () => {
+            modal.remove();
+        });
+
+        document.getElementById('confirmViewShop').addEventListener('click', () => {
+            const shopName = document.getElementById('shopNameInput').value.trim();
+            if (shopName) {
+                window.location.href = `/shop/${encodeURIComponent(shopName)}`;
+            } else {
+                alert('请输入商店名字');
+            }
+        });
     });
 </script>
 </body>
