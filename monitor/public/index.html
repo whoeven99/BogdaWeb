@@ -175,7 +175,7 @@
 
         // 收集所有字段，排除 shopName/source/target 和 原始时间字段（这些会被用于计算）
         // shopName 不作为单独列展示，但会在任务id中显示（去掉 .myshopify.com 后缀）
-        const skipKeys = new Set(['shopName','source','target','initStartTime','initEndTime','translatedEndTime','translateEndTime','savingShopifyEndTime','task_type']);
+        const skipKeys = new Set(['shopName','source','target','initStartTime','initEndTime','translatedEndTime','translateEndTime','savingShopifyEndTime','task_type','lastUpdatedTime','lastUpdated']);
         const allCols = new Set();
         entries.forEach(([,v])=>{ if (v && typeof v === 'object') Object.keys(v).forEach(c=>{ if (!skipKeys.has(c) && !primaryCols.includes(c)) allCols.add(c); }); });
 
@@ -183,7 +183,7 @@
         const otherCols = Array.from(allCols).filter(c=> c !== 'status' && c !== 'send_email');
 
         // 列顺序模板
-        const baseCols = ['taskId', ...primaryCols, 'initTime','transTime','saveTime', 'status', 'send_email', ...otherCols];
+        const baseCols = ['taskId', ...primaryCols, 'initTime','transTime','saveTime', 'lastUpdatedTime', 'status', 'send_email', ...otherCols];
 
         // 列显示名称映射（中文），括号内单位已移除
         const headerMap = {
@@ -197,8 +197,10 @@
             transTime: 'transTime',
             saveTime: 'saveTime',
             status: '状态',
-            send_email: '已发送邮件'
+            send_email: '邮件'
         };
+        // 新增更新时间列中文映射
+        headerMap.lastUpdatedTime = '上次更新';
 
         // 按 task_type 分组
         const groups = new Map();
@@ -277,6 +279,41 @@
                 const transTime = mkMinSec(initEnd, transEnd);
                 const saveTime = mkMinSec(transEnd, saveEnd);
                 [initTime, transTime, saveTime].forEach(val=>{ const td=document.createElement('td'); td.textContent = val || ''; trr.appendChild(td); });
+
+                // lastUpdatedTime 显示为 当前时间 - 更新时间 的差值，格式为 x分y秒
+                // 使用 fmtTimeWithAge 返回文本和年龄（秒），用于判断是否超过阈值
+                const fmtTimeWithAge = (t) => {
+                    if (t === null || t === undefined || t === '') return { text: '', ageSec: NaN };
+                    let n = Number(t);
+                    if (!Number.isFinite(n)) {
+                        const parsed = Date.parse(String(t));
+                        if (Number.isFinite(parsed)) n = parsed; else return { text: escapeHtml(String(t)), ageSec: NaN };
+                    }
+                    if (n < 1e12) n = n * 1000;
+                    const diff = Date.now() - n;
+                    if (!Number.isFinite(diff) || diff < 0) return { text: '', ageSec: NaN };
+                    const totalSec = Math.round(diff / 1000);
+                    const m = Math.floor(totalSec / 60);
+                    const s = totalSec % 60;
+                    return { text: `${m}分${s}秒`, ageSec: totalSec };
+                };
+                // 仅使用 lastUpdatedTime 字段作为更新时间，避免同时展示 lastUpdated 导致重复列
+                const lastUpdated = v && v.lastUpdatedTime !== undefined ? v.lastUpdatedTime : undefined;
+                const tdLast = document.createElement('td');
+                if (lastUpdated !== undefined) {
+                    const { text, ageSec } = fmtTimeWithAge(lastUpdated);
+                    tdLast.textContent = text || '';
+                    // 超过 10 分钟（600 秒）标红，否则标绿色
+                    if (Number.isFinite(ageSec)) {
+                        if (ageSec > 10 * 60) {
+                            tdLast.style.color = '#ef4444'; // danger red
+                            tdLast.style.fontWeight = '700';
+                        } else {
+                            tdLast.style.color = '#10b981'; // success green
+                        }
+                    }
+                }
+                trr.appendChild(tdLast);
 
                 // status 映射为中文并渲染为带背景色的 badge
                 const statusMap = {
