@@ -87,6 +87,10 @@
             <button id="configBtn" class="btn">配置</button>
             <!-- 将查看商店按钮移动到这里 -->
             <button id="viewShopBtn" class="btn" style="background-color: #2563eb; color: #fff;">查看商店</button>
+            <!-- 添加“是否显示已完成任务”按钮 -->
+            <label class="small-muted" style="display:flex;align-items:center;gap:6px;margin-left:6px">
+                <input type="checkbox" id="includeFinish" aria-label="是否显示已完成任务" style="width:16px;height:16px;" /> 是否显示已完成任务
+            </label>
         </div>
     </div>
 
@@ -130,6 +134,7 @@
     const statusText = document.getElementById('statusText');
     const tableArea = document.getElementById('tableArea');
     const autoCheckbox = document.getElementById('autoRefresh');
+    const includeFinishCheckbox = document.getElementById('includeFinish');
 
     // 自动刷新控制（默认开启，3 秒间隔）
     let autoTimer = null;
@@ -142,12 +147,37 @@
     envSelect.addEventListener('change', ()=>{ clearAndFetch(); });
 
     // 默认开启自动刷新
-    autoCheckbox.checked = true;
+    autoCheckbox.checked = false;
     autoCheckbox.addEventListener('change', ()=>{
         if (autoCheckbox.checked) startAutoRefresh(); else stopAutoRefresh();
     });
 
-    function setLoading(v){ loadingEl.style.display = v ? 'inline-block' : 'none'; statusText.textContent = v ? '加载中...' : '已就绪'; }
+    includeFinishCheckbox.addEventListener('change', () => {
+        fetchAndRender();
+    });
+
+    function setLoading(v){ loadingEl.style.display = v ? 'inline-block' : 'none'; setStatusText(v ? '加载中...' : '已就绪', v); }
+
+    function setStatusText(text, isLoading = false) {
+        statusText.textContent = text;
+        if (isLoading) {
+            statusText.style.color = '#2563eb'; // Blue for loading
+            statusText.style.animation = 'pulse 1s infinite';
+        } else {
+            statusText.style.color = '#0f172a'; // Default color
+            statusText.style.animation = 'none';
+        }
+    }
+
+    // Add CSS animation for pulse effect
+    const style = document.createElement('style');
+    style.textContent = `
+    @keyframes pulse {
+        0% { opacity: 1; }
+        50% { opacity: 0.5; }
+        100% { opacity: 1; }
+    }`;
+    document.head.appendChild(style);
 
     function clearAndFetch(){ tableArea.innerHTML = '<div class="no-data">加载中...</div>'; fetchAndRender(); }
 
@@ -395,14 +425,20 @@
         });
     }
 
+    function buildQueryParams() {
+        const env = envSelect.value || 'prod';
+        const includeFinish = includeFinishCheckbox.checked ? 'true' : 'false';
+        return `env=${encodeURIComponent(env)}&includeFinish=${includeFinish}`;
+    }
+
     // 从后端获取数据并在数据发生变化时才显示 loading 并重新渲染
     async function fetchAndRender(){
         if (isFetching) return; // 避免并发
         isFetching = true;
         statusText.textContent = '检查更新...';
         try{
-            const env = envSelect.value || 'prod';
-            const res = await fetch(`/api/monitorv2?env=${encodeURIComponent(env)}`);
+            const queryParams = buildQueryParams();
+            const res = await fetch(`/api/monitorv2?${queryParams}`);
             if (!res.ok) {
                 const text = await res.text().catch(()=>res.statusText || String(res.status));
                 tableArea.innerHTML = `<div class="no-data">请求失败：${escapeHtml(String(res.status))} ${escapeHtml(String(text))}</div>`;

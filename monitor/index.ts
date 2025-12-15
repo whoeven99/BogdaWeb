@@ -114,9 +114,12 @@ app.delete('/api/config', async (req, res) => {
 app.get('/api/monitorv2', async (req, res) => {
   try {
     const env = String(req.query.env || 'prod');
+    const includeFinish = req.query.includeFinish === 'true';
     const base = getConfigBaseUrl(env);
-    console.log(`[monitorv2 GET] env=${env} base=${base} url=${base}/monitorv2`);
-    const response = await axios.get(`${base}/monitorv2`);
+    console.log(`[monitorv2 GET] env=${env} includeFinish=${includeFinish} base=${base} url=${base}/monitorv2`);
+    const response = await axios.get(`${base}/monitorv2`, {
+      params: { includeFinish }
+    });
     res.json(response.data);
   } catch (error) {
     console.error('Error fetching monitorv2 from external API:', error);
