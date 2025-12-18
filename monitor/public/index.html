@@ -205,7 +205,7 @@
 
         // 收集所有字段，排除 shopName/source/target 和 原始时间字段（这些会被用于计算）
         // shopName 不作为单独列展示，但会在任务id中显示（去掉 .myshopify.com 后缀）
-        const skipKeys = new Set(['shopName','source','target','initStartTime','initEndTime','translatedEndTime','translateEndTime','savingShopifyEndTime','task_type','lastUpdatedTime','lastUpdated']);
+        const skipKeys = new Set(['shopName','source','target','initStartTime','initEndTime','translatedEndTime','translateEndTime','savingShopifyEndTime','task_type','lastUpdatedTime','lastUpdated', 'afterEndCursor']);
         const allCols = new Set();
         entries.forEach(([,v])=>{ if (v && typeof v === 'object') Object.keys(v).forEach(c=>{ if (!skipKeys.has(c) && !primaryCols.includes(c)) allCols.add(c); }); });
 
