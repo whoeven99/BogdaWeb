@@ -1,39 +1,76 @@
-import { footerItemsMap } from "@/data/footerItems";
-import styles from "../css/singlePage.module.css";
-import { notFound } from "next/navigation";
+import Link from "next/link";
+import {notFound} from "next/navigation";
+import type {Metadata} from "next";
 
-// 显式定义 generateStaticParams 的返回类型
-export function generateStaticParams(): { slug: string }[] {
-  return Object.keys(footerItemsMap).map((slug) => ({
-    slug,
-  }));
+import {PageContainer} from "@/components/ui/PageContainer";
+import {SectionHeading} from "@/components/ui/SectionHeading";
+import {legacyRouteMap, type LegacyRouteSlug} from "@/content/legacy-routes";
+import {buildPageMetadata} from "@/lib/seo/metadata";
+
+type LegacyPageProps = {
+  params: Promise<{slug: string}>;
+};
+
+export function generateStaticParams() {
+  return Object.keys(legacyRouteMap).map((slug) => ({slug}));
 }
 
-// 定义 params 的具体类型
-type PageParams = { slug: string };
-
-// 显式满足 PageProps 的 params 约束
-export default async function Page({
-  params,
-}: {
-  params: Promise<PageParams>; // 使用具体类型替代 any
-}) {
-  // 解包 params
-  const resolvedParams = await params;
-  const data = footerItemsMap[resolvedParams.slug as keyof typeof footerItemsMap];
-  console.log("Data:", data);
+export async function generateMetadata({params}: LegacyPageProps) {
+  const {slug} = await params;
+  const data = legacyRouteMap[slug as LegacyRouteSlug];
 
   if (!data) {
-    console.log("Data not found for slug:", resolvedParams.slug);
+    return buildPageMetadata({
+      title: "Page not found",
+      description: "The requested page could not be found.",
+      path: "/",
+    });
+  }
+
+  const metadata: Metadata = {
+    ...buildPageMetadata({
+      title: data.title,
+      description: data.description,
+      path: data.destination,
+    }),
+    robots: {
+      index: false,
+      follow: true,
+    },
+  };
+
+  return metadata;
+}
+
+export default async function LegacyRoutePage({params}: LegacyPageProps) {
+  const {slug} = await params;
+  const data = legacyRouteMap[slug as LegacyRouteSlug];
+
+  if (!data) {
     notFound();
   }
 
   return (
-    <main className={styles.singlePageContainer}>
-      <div className={styles.card_header}>
-        <span className={styles.singlePageTitle}>{data.title}</span>
-        <div className={styles.desc}>{data.content}</div>
-      </div>
+    <main>
+      <PageContainer>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.location.replace(${JSON.stringify(data.destination)});`,
+          }}
+        />
+        <section className="page-section page-hero">
+          <div className="surface-card page-copy">
+            <SectionHeading eyebrow="Legacy route" title={data.title} description={data.description} as="h1" />
+            <p>
+              这类旧根级页面已经纳入新的目录化结构。当前兼容页会自动把访问者带到新版地址，并把 canonical 收敛到新页面。
+            </p>
+            <p className="quote">Redirecting to <code>{data.destination}</code>...</p>
+            <Link href={data.destination} className="button button--primary">
+              Open new page
+            </Link>
+          </div>
+        </section>
+      </PageContainer>
     </main>
   );
 }
