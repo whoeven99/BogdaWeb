@@ -47,15 +47,15 @@ Ciwi 官网不是纯宣传站，也不是产品后台镜像。
 ### Primary
 
 Brand Primary  
-`#6841EA`  
-主品牌色。用于主 CTA、重点标签、关键交互反馈。
+`#008060`  
+主品牌色。用于主 CTA、重点标签、关键交互反馈，整体气质更贴近 Shopify 生态中的产品型前台。
 
 Brand Primary Hover  
-`#5633CF`  
+`#00664F`  
 主按钮 hover、选中态增强。
 
 Brand Primary Soft  
-`#F3EEFF`  
+`#E8F5EE`  
 品牌浅底、标签底色、局部高亮背景。
 
 ### Neutrals
@@ -106,7 +106,7 @@ Info
 
 Shopify Green  
 `#95BF47`  
-仅用于 Shopify 生态关联场景、小面积辅助，不作为全站主色。
+用于 Shopify 生态关联场景、小面积辅助高亮和认证感表达，不作为默认主 CTA 色。
 
 Demo Highlight  
 `#0F172A`  
@@ -225,7 +225,7 @@ Hero Media
 
 - 背景：`Brand Primary`
 - 文字：白色
-- 用途：主 CTA、关键转化操作
+- 用途：主 CTA、关键转化操作，优先承担 Shopify 语境下的核心行动入口
 
 示例：
 
@@ -244,7 +244,7 @@ Hero Media
 
 - 背景：`Brand Primary Soft`
 - 文字：`Brand Primary`
-- 用途：标签式行动、模块内小 CTA
+- 用途：标签式行动、模块内小 CTA、浅色信息强调
 
 ### Dark Button
 
@@ -757,7 +757,7 @@ Demo Center 是官网差异化能力，不是完整产品后台。
 - clean SaaS layout
 - Shopify ecosystem tone
 - neutral background
-- purple primary accent
+- green primary accent
 - structured marketing page
 - product-led content blocks
 - lightweight dashboard polish
@@ -773,9 +773,9 @@ Demo Center 是官网差异化能力，不是完整产品后台。
 
 ### Color Quick Reference
 
-- Primary CTA：`#6841EA`
-- Primary Hover：`#5633CF`
-- Primary Soft：`#F3EEFF`
+- Primary CTA：`#008060`
+- Primary Hover：`#00664F`
+- Primary Soft：`#E8F5EE`
 - Main Text：`#111827`
 - Secondary Text：`#6B7280`
 - Border：`#E5E7EB`
