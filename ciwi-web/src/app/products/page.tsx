@@ -8,7 +8,7 @@ import {buildPageMetadata} from "@/lib/seo/metadata";
 
 export const metadata = buildPageMetadata({
   title: "Products",
-  description: "Ciwi 产品矩阵，围绕翻译、本地化、内容效率和 AOV 等 Shopify 增长问题组织。",
+  description: "Ciwi 产品矩阵，帮助 Shopify 商家按多语言转化、内容效率和 AOV 目标快速找到合适产品。",
   path: "/products",
 });
 
@@ -19,8 +19,8 @@ export default function ProductsPage() {
         <section className="page-section page-hero">
           <SectionHeading
             eyebrow="Products"
-            title="围绕商家的真实增长问题组织产品，而不是只列一组功能"
-            description="每个产品都对应一类更具体的业务问题，例如多语言转化、内容效率或 AOV 提升。"
+            title="直接按目标选产品"
+            description="想提升多语言转化、加快内容生产，或把客单价做上去，都可以从这里直接进入对应产品。"
             as="h1"
           />
         </section>
@@ -32,8 +32,8 @@ export default function ProductsPage() {
         />
         <ProductMatrixSection />
         <FinalCtaSection
-          title="先看产品，再进入 Demo、对比页和帮助文档"
-          description="如果你已经知道自己更关心哪类问题，可以继续进入对应产品页，查看演示、文档和选型内容。"
+          title="先确定目标，再继续看 Demo、对比页和帮助文档"
+          description="如果你已经知道当前最想解决的问题，可以继续进入对应产品页，把安装、选型和文档一起看清楚。"
         />
       </PageContainer>
     </main>

@@ -125,7 +125,7 @@ export default async function SolutionDetailPage({params}: SolutionDetailPagePro
         <MediaPlaceholderSection
           eyebrow="Solution media"
           title="方案页素材预留"
-          description="方案页建议同时准备场景图和解释型短视频，让问题与结果都能被快速看懂。"
+          description="方案页建议同时准备场景图和短视频，让用户更快看到问题如何被解决。"
           items={mediaBriefs}
         />
 

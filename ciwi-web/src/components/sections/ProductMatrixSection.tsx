@@ -7,8 +7,8 @@ export function ProductMatrixSection() {
     <section className="page-section">
       <SectionHeading
         eyebrow="Products"
-        title="围绕 Shopify 增长问题组织产品，而不是只堆功能"
-        description="从翻译、本地化到内容效率和 AOV，每个产品都对应一类更具体的问题。"
+        title="按商家的增长目标来选产品"
+        description="无论你更关心多语言转化、内容效率还是 AOV，这里都能直接找到对应入口。"
       />
       <div className="card-grid">
         {products.map((product) => (

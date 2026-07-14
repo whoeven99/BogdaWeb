@@ -121,7 +121,7 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
         <MediaPlaceholderSection
           eyebrow="Product media"
           title="产品主视觉预留"
-          description="这里建议补真实产品图，而不是继续依赖文字解释产品界面。"
+          description="这里建议补真实产品图，让用户更快看到界面和使用场景。"
           items={heroMediaBriefs}
         />
 
@@ -147,7 +147,7 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
           <SectionHeading
             eyebrow="Demo focus"
             title="先看关键演示点"
-            description="聚焦最能说明产品价值的几个环节。"
+            description="先看最容易影响判断的几个关键结果。"
           />
           <div className="card-grid">
             {product.demoHighlights.map((item, index) => (
@@ -183,8 +183,8 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
         <section className="page-section anchor-offset" id="audience-fit">
           <SectionHeading
             eyebrow="Audience fit"
-            title="适合谁，以及为什么"
-            description="把对象、收益和落地路径放在一起看。"
+            title="适合谁"
+            description="把适用对象和核心收益放在一起看，会更容易判断是否匹配。"
           />
           <div className="detail-grid">
             <div className="surface-card">
@@ -215,7 +215,7 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
           <SectionHeading
             eyebrow="Features"
             title="核心能力"
-            description="围绕商家真正会用到的部分展开。"
+            description="围绕商家最常用、最直接影响结果的部分展开。"
           />
           <div className="card-grid">
             {product.features.map((feature) => (

@@ -130,7 +130,7 @@ export default async function CompareDetailPage({params}: CompareDetailPageProps
           <SectionHeading
             eyebrow="Highlights"
             title="简明结论"
-            description="把方向差异说清楚，而不是只看功能表。"
+            description="先看最影响选型判断的差异。"
           />
           <div className="card-grid">
             {data.highlights.map((highlight) => (

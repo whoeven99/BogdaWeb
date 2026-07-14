@@ -12,14 +12,14 @@ const demoFaq = [
     answer: "不会。官网优先提供无登录、低摩擦、可理解的轻演示，而不是复制完整产品后台。",
   },
   {
-    question: "为什么要做 Demo Center？",
-    answer: "因为 Demo 比静态宣传更容易让 Shopify 商家快速理解能力边界和业务价值。",
+    question: "先看 Demo 能带来什么？",
+    answer: "你可以先用最短时间看到翻译前后差异、术语控制效果和套餐表达变化，再判断这套产品是否值得继续深入。",
   },
 ];
 
 export const metadata = buildPageMetadata({
   title: "Demo Center",
-  description: "Ciwi Demo Center，帮助 Shopify 商家快速看懂关键产品能力。",
+  description: "Ciwi Demo Center，用前后对比、术语控制和套餐场景帮助 Shopify 商家更快判断产品价值。",
   path: "/demo",
 });
 
@@ -55,7 +55,7 @@ export default function DemoPage() {
         <MediaPlaceholderSection
           eyebrow="Demo media"
           title="Demo Center 主素材预留"
-          description="Demo Center 最适合放总览视频，让访问者在几十秒内先理解能力边界。"
+          description="Demo Center 最适合放总览视频，让访问者在几十秒内先看到效果变化。"
           items={demoPageMediaBriefs}
         />
         <FaqSection items={demoFaq} />

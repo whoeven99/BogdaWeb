@@ -10,7 +10,7 @@ import {buildBreadcrumbSchema, buildWebPageSchema} from "@/lib/seo/schema";
 
 export const metadata = buildPageMetadata({
   title: "Solutions",
-  description: "Ciwi 解决方案页，围绕跨境转化、多语言运营和 AOV 提升等 Shopify 增长场景展开。",
+  description: "Ciwi 解决方案页，帮助 Shopify 商家按跨境转化、多语言运营和 AOV 目标找到更合适的路径。",
   path: "/solutions",
 });
 
@@ -24,7 +24,7 @@ export default function SolutionsPage() {
     buildWebPageSchema({
       url: pageUrl,
       name: "Solutions",
-      description: "Ciwi 解决方案页，围绕跨境转化、多语言运营和 AOV 提升等 Shopify 增长场景展开。",
+      description: "Ciwi 解决方案页，帮助 Shopify 商家按跨境转化、多语言运营和 AOV 目标找到更合适的路径。",
       keywords: ["Shopify solutions", "conversion", "localization", "AOV"],
       type: "CollectionPage",
     }),
@@ -43,8 +43,8 @@ export default function SolutionsPage() {
         <section className="page-section page-hero">
           <SectionHeading
             eyebrow="Solutions"
-            title="从业务问题出发，帮助商家更快判断哪条路径适合自己"
-            description="这些页面不是重复介绍产品，而是把转化、多语言扩张和 AOV 提升这些问题拆开讲清楚。"
+            title="按问题找路径，按结果选方案"
+            description="无论你更关心跨市场转化、多语言运营还是客单价提升，都可以先从对应场景进入。"
             as="h1"
           />
           <div className="resource-grid">
@@ -66,8 +66,8 @@ export default function SolutionsPage() {
           items={solutionsIndexMediaBriefs}
         />
         <FinalCtaSection
-          title="从场景页进入产品、对比页和资源内容"
-          description="如果你已经明确自己的问题属于哪一类，可以继续看对应产品、对比页和帮助文档。"
+          title="从场景页继续进入产品、对比页和资源内容"
+          description="如果你已经判断清楚当前重点，可以继续看对应产品、对比页和帮助文档。"
         />
       </PageContainer>
     </main>

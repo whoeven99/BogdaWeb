@@ -9,7 +9,7 @@ import {buildPageMetadata} from "@/lib/seo/metadata";
 
 export const metadata = buildPageMetadata({
   title: "Help Center",
-  description: "Ciwi Help Center，围绕安装、翻译、本地化和术语控制等常见问题提供文档支持。",
+  description: "Ciwi Help Center，帮助商家更快完成安装、翻译配置、本地化设置和术语控制。",
   path: "/help-center",
 });
 
@@ -36,7 +36,7 @@ export default function HelpCenterPage() {
             <article className="surface-card">
               <h3>适合谁看</h3>
               <p className="quote">
-                适合刚开始了解 Ciwi 的商家，也适合已经在使用产品、需要查找具体功能和最佳实践的运营团队。
+                适合准备开始配置的商家，也适合已经在使用产品、想更快解决具体问题的运营团队。
               </p>
             </article>
           </div>
@@ -45,7 +45,7 @@ export default function HelpCenterPage() {
         <MediaPlaceholderSection
           eyebrow="Help media"
           title="帮助中心首页视觉预留"
-          description="帮助中心更适合用带标注的产品截图或支持中心风格图，强化“可执行”而不是“营销感”。"
+          description="帮助中心更适合用带标注的产品截图或支持中心风格图，让操作入口更直观。"
           items={helpCenterIndexMediaBriefs}
         />
 
@@ -102,7 +102,7 @@ export default function HelpCenterPage() {
         </section>
         <FinalCtaSection
           title="先解决最常见的问题，再进入产品和演示"
-          description="如果你已经了解基础能力，可以继续进入产品页、对比页或 Demo，看 Ciwi 是否适合你的业务场景。"
+          description="如果你已经把安装和配置思路理顺了，可以继续进入产品页、对比页或 Demo。"
           primaryLabel="Read Getting Started"
           primaryHref="/help-center/ShopifyApp/about-ciwi-ai-translator-shopify-app/"
           secondaryLabel="View Demo"

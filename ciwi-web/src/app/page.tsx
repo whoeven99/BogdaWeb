@@ -15,7 +15,7 @@ import {buildPageMetadata} from "@/lib/seo/metadata";
 
 export const metadata = buildPageMetadata({
   title: "Shopify AI Growth Platform",
-  description: "Ciwi 面向 Shopify 商家提供翻译、本地化、内容效率和转化增长能力。",
+  description: "Ciwi 帮 Shopify 商家提升多语言转化、降低内容维护成本，并用更清晰的页面表达带动增长。",
   path: "/",
 });
 
@@ -26,8 +26,8 @@ export default function HomePage() {
     <main>
       <PageContainer>
         <HeroSection
-          title="为 Shopify 商家打造的增长工具，不只讲功能，更直接回应转化问题"
-          description="Ciwi 围绕翻译、本地化、内容效率和 AOV 提升，帮助 Shopify 品牌把商品表达、页面体验和增长能力真正接到一起。"
+          title="让 Shopify 商家更快上线多语言，也更容易把访问变成下单"
+          description="Ciwi 围绕翻译、本地化、内容效率和 AOV 提升，帮助品牌把商品表达讲清楚，把页面体验做顺，把增长动作真正落到前台。"
           proofItems={heroProofItems}
         />
         <MediaPlaceholderSection
@@ -40,8 +40,8 @@ export default function HomePage() {
         <OutcomeSection />
         <DemoShowcaseSection
           eyebrow="Demo preview"
-          title="先让用户看懂能力，再决定是否深入了解产品"
-          description="这里先展示两个最能代表 Translator 价值的场景：一是商品文案本地化，二是 glossary 对品牌术语的一致性控制。"
+          title="先看结果，再判断这套能力是否适合你的店铺"
+          description="这里先展示两个最能直接影响转化体验的场景：商品文案本地化，以及 glossary 对品牌术语一致性的控制。"
           items={translatorProduct.demoScenarios.slice(0, 2)}
         />
         <MediaPlaceholderSection
@@ -54,8 +54,8 @@ export default function HomePage() {
         <ResourcesSection />
         <FaqSection items={homeFaq} />
         <FinalCtaSection
-          title="让每一次访问都更接近判断和行动"
-          description="从搜索到产品页、从文章到帮助文档，用户应该在同一套表达里理解 Ciwi。"
+          title="把多语言、内容和转化动作接成一条更顺的增长链路"
+          description="从搜索进入、看到产品、理解方案到决定安装，前台每一步都应该更容易让用户做判断。"
         />
       </PageContainer>
     </main>

@@ -44,19 +44,19 @@ export const testimonials = [
 export const featuredResources = [
   {
     title: "CIWI Translator 插件介绍",
-    description: "快速了解产品适用对象、核心能力和商家最常问的几个问题。",
+    description: "适合先判断这款产品能不能帮你更快上线多语言并稳住转化体验。",
     href: "/blog/ciwi-translator-cha-jian-jie-shao",
     meta: ["Blog", "2025-07-31"],
   },
   {
     title: "How to setup and use glossary?",
-    description: "如果你关心品牌术语一致性，这是理解翻译质量控制最重要的一篇文档。",
+    description: "如果你担心品牌词翻乱、页面表达不一致，这篇文档最值得先看。",
     href: "/help-center/ShopifyApp/how-to-setup-and-use-glossary/",
     meta: ["Help Center", "Glossary"],
   },
   {
     title: "Compare Ciwi vs Transcy",
-    description: "从 Shopify 适配深度、术语控制和长期运营成本三个角度看差异。",
+    description: "适合正在选型的商家，快速看清长期维护成本和本地化控制差异。",
     href: "/compare/ciwi-vs-transcy",
     meta: ["Compare", "SEO"],
   },
@@ -65,14 +65,14 @@ export const featuredResources = [
 export const homeFaq = [
   {
     question: "Ciwi 是什么？",
-    answer: "Ciwi 是面向 Shopify 商家的增长产品体系，重点解决翻译、本地化、内容效率和转化提升这几类实际问题。",
+    answer: "Ciwi 帮 Shopify 商家处理多语言、本地化、内容生产和客单价提升这些直接影响增长结果的问题。",
   },
   {
-    question: "为什么不把官网做成纯介绍页？",
-    answer: "因为 Shopify 商家更关心能力是否能快速理解、是否适合自己的业务场景，而不是只看抽象卖点。",
+    question: "Ciwi 最适合哪类商家？",
+    answer: "最适合正在做多语言增长、想降低内容维护成本，或希望把商品页转化和客单价继续往上拉的 Shopify 品牌。",
   },
   {
     question: "Ciwi 只做翻译吗？",
-    answer: "不只做翻译。翻译是入口，真正要解决的是多语言增长、内容同步、FAQ 理解和前台转化这些连在一起的问题。",
+    answer: "不是。翻译只是入口，Ciwi 更关注商品表达是否更好理解、更新是否能持续同步，以及页面是否更容易带来下单和加购。",
   },
 ];

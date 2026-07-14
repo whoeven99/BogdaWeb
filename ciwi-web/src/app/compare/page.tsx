@@ -10,7 +10,7 @@ import {buildBreadcrumbSchema, buildWebPageSchema} from "@/lib/seo/schema";
 
 export const metadata = buildPageMetadata({
   title: "Compare",
-  description: "Ciwi Compare 页面入口，帮助 Shopify 商家比较不同翻译和本地化路径。",
+  description: "Ciwi Compare 页面入口，帮助 Shopify 商家更快比较不同翻译和本地化方案的适配度与长期成本。",
   path: "/compare",
 });
 
@@ -24,7 +24,7 @@ export default function ComparePage() {
     buildWebPageSchema({
       url: pageUrl,
       name: "Compare",
-      description: "Ciwi Compare 页面入口，帮助 Shopify 商家比较不同翻译和本地化路径。",
+      description: "Ciwi Compare 页面入口，帮助 Shopify 商家更快比较不同翻译和本地化方案的适配度与长期成本。",
       keywords: ["Shopify compare", "translator comparison", "Ciwi"],
       type: "CollectionPage",
     }),
@@ -43,8 +43,8 @@ export default function ComparePage() {
         <section className="page-section page-hero">
           <SectionHeading
             eyebrow="Compare"
-            title="帮助商家比较不同路径，而不只是对照一张功能表"
-            description="这些页面更适合回答“哪种方案更适合我的业务阶段”，而不是只罗列功能差异。"
+            title="快速看清哪种方案更适合你的店铺阶段"
+            description="从适配深度、维护成本和增长目标三个角度，判断哪条路线更适合当前业务。"
             as="h1"
           />
           <div className="resource-grid">
@@ -62,7 +62,7 @@ export default function ComparePage() {
         <MediaPlaceholderSection
           eyebrow="Compare media"
           title="对比总览视觉预留"
-          description="对比列表页适合用一张总览型对照图，先把页面定位讲清楚。"
+          description="对比列表页适合用一张总览型对照图，让差异一眼看明白。"
           items={compareIndexMediaBriefs}
         />
         <FinalCtaSection

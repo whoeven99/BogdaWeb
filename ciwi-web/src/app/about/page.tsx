@@ -27,12 +27,12 @@ export default function AboutPage() {
         <MediaPlaceholderSection
           eyebrow="About media"
           title="品牌与团队素材预留"
-          description="About 页建议补团队工作状态或方法论相关素材，而不是继续只靠介绍性文字。"
+          description="About 页建议补团队工作状态或真实产品场景素材，让用户更快建立信任感。"
           items={aboutPageMediaBriefs}
         />
         <FinalCtaSection
-          title="了解我们，也了解我们的做法"
-          description="如果你认同这套产品思路，下一步就去看产品、文章和帮助文档。"
+          title="了解 Ciwi，也直接去看产品和结果"
+          description="如果这套方向和你的店铺目标一致，下一步就去看产品、文章和帮助文档。"
         />
       </PageContainer>
     </main>
