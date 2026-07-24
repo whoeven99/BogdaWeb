@@ -1,3 +1,4 @@
+import {NewsletterSubscriptionCard} from "@/components/sections/NewsletterSubscriptionCard";
 import {ArticleCard} from "@/components/cards/ArticleCard";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {homePageCopy} from "@/content/home-page-copy";
@@ -19,6 +20,9 @@ export function ResourcesSection() {
             meta={[...item.meta]}
           />
         ))}
+      </div>
+      <div className="space-top-xl">
+        <NewsletterSubscriptionCard copy={copy.subscription} />
       </div>
     </section>
   );

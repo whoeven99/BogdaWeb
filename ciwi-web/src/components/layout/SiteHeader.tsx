@@ -15,8 +15,8 @@ export function SiteHeader() {
               <Image src="/logo-150.png" alt="Ciwi" width={44} height={44} priority />
             </span>
             <span className="site-brand__wordmark" aria-hidden="true">
-              <span className="site-brand__name">Ciwi</span>
-              <span className="site-brand__tagline">Shopify AI</span>
+              <span className="site-brand__name">Ciwi.ai</span>
+              <span className="site-brand__tagline">AI PRODUCTS FOR SHOPIFY</span>
             </span>
           </Link>
           <div className="site-nav">

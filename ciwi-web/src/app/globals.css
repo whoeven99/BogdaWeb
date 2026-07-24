@@ -703,6 +703,90 @@ select {
   border: 1px solid rgba(0, 128, 96, 0.12);
 }
 
+.subscription-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+  gap: var(--space-6);
+  padding: var(--space-7);
+  border: 1px solid rgba(0, 128, 96, 0.14);
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(240, 253, 248, 0.96), rgba(255, 255, 255, 0.98));
+  box-shadow: 0 24px 50px rgba(15, 23, 42, 0.06);
+}
+
+.subscription-card__content h3 {
+  margin: var(--space-3) 0 0;
+  font-size: clamp(1.5rem, 2vw, 1.9rem);
+  letter-spacing: -0.03em;
+}
+
+.subscription-card__highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: var(--space-5);
+}
+
+.subscription-form {
+  display: grid;
+  align-content: center;
+  gap: var(--space-4);
+}
+
+.subscription-form__field {
+  display: grid;
+  gap: 10px;
+}
+
+.subscription-form__label {
+  color: var(--color-ink-700);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.subscription-form__field input {
+  width: 100%;
+  min-height: 52px;
+  padding: 0 16px;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--color-ink-900);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.subscription-form__field input:focus {
+  border-color: rgba(0, 128, 96, 0.4);
+  box-shadow: 0 0 0 4px rgba(0, 128, 96, 0.1);
+}
+
+.subscription-form__field input[aria-invalid="true"] {
+  border-color: rgba(220, 38, 38, 0.4);
+  box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.08);
+}
+
+.subscription-form__submit {
+  justify-content: center;
+}
+
+.subscription-form__message {
+  margin: 0;
+  color: var(--color-ink-600);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.subscription-form__message--success {
+  color: var(--color-primary);
+}
+
+.subscription-form__message--error {
+  color: #b91c1c;
+}
+
 .site-footer {
   padding: var(--space-10) 0 var(--space-8);
   border-top: 1px solid rgba(229, 231, 235, 0.9);
@@ -1212,13 +1296,18 @@ select {
     padding: var(--space-8) 0;
   }
 
+  .subscription-card {
+    grid-template-columns: 1fr;
+  }
+
   .hero-panel,
   .callout,
   .surface-card,
   .info-card,
   .feature-card,
   .testimonial-card,
-  .resource-card {
+  .resource-card,
+  .subscription-card {
     padding: var(--space-5);
   }
 

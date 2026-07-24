@@ -1,21 +1,18 @@
 export const homePageCopy = {
   outcomeItems: [
     {
-      title: "提升跨市场转化",
+      title: "高转化：让全球顾客更容易下单",
       description: "把商品表达、术语一致性和本地化细节做对，让国际流量更容易理解商品并完成下单。",
     },
     {
-      title: "降低多语言维护成本",
+      title: "信任感：减少全球化的隔阂，让本地人更信任你的品牌",
       description: "从一次性翻译，走向可持续同步，减少新品、活动和页面更新时的重复劳动。",
     },
     {
-      title: "提高内容生产效率",
+      title: "高效率：让专业的 AI Agent 产出专业优质的工作结果",
       description: "围绕商品页、FAQ、帮助文档和 SEO 页面建立更稳定的内容生产链路。",
     },
-    {
-      title: "提高客单价",
-      description: "用更清晰的 bundle 和加购表达，让用户更容易接受高价值购买方案。",
-    },
+    
   ],
   testimonials: [
     {
@@ -69,12 +66,12 @@ export const homePageCopy = {
     },
   ],
   hero: {
-    eyebrow: "Shopify AI Growth",
-    title: "让 Shopify 商家更快上线多语言，也更容易把访问变成下单",
+    eyebrow: "BUILT FOR GLOBAL SHOPIFY GROWTH",
+    title: "让你的品牌，被更多世界顾客看见",
     description:
-      "Ciwi 围绕翻译、本地化、内容效率和 AOV 提升，帮助品牌把商品表达讲清楚，把页面体验做顺，把增长动作真正落到前台。",
-    proofItems: ["Shopify merchants first", "Built for multilingual growth", "From translation to conversion"],
-    primaryCtaLabel: "Install on Shopify",
+      "Ciwi 为 Shopify 商家打造 AI 驱动的产品，帮助品牌跨越语言与市场障碍，更轻松地触达、连接并服务全球消费者。",
+    proofItems: ["专为 Shopify 打造", "专业团队支持", "面向全球增长"],
+    primaryCtaLabel: "探索 Ciwi 产品",
     primaryCtaHref: "https://apps.shopify.com/translator-by-ciwi",
     secondaryCtaLabel: "View Demo",
     secondaryCtaHref: "/demo",
@@ -92,46 +89,58 @@ export const homePageCopy = {
   },
   productMatrix: {
     eyebrow: "Products",
-    title: "按商家的增长目标来选产品",
-    description: "无论你更关心多语言转化、内容效率还是 AOV，这里都能直接找到对应入口。",
+    title: "从经营问题出发，为实际增长服务",
+    description: "每一款 Ciwi 产品，都围绕 Shopify 商家的真实经营场景设计，帮助品牌提高效率、扩大市场并获得更多订单。",
+    productItems: [
+      {
+        title: "Shopify AI Translator",
+        description: "把商品表达讲清楚，把页面体验做顺，把增长动作真正落到前台。",
+      },
+      {
+        title: "Shopify AI Content Editor",
+        description: "围绕商品页、FAQ、帮助文档和 SEO 页面建立更稳定的内容生产链路。",
+      },
+    ],
   },
   outcomes: {
     eyebrow: "Outcomes",
-    title: "围绕商家真正关心的结果组织产品和内容",
-    description: "从转化、内容效率到多语言运营，Ciwi 希望先回答业务问题，再介绍产品能力。",
-  },
-  demo: {
-    eyebrow: "Demo preview",
-    title: "先看结果，再判断这套能力是否适合你的店铺",
-    description: "这里先展示两个最能直接影响转化体验的场景：商品文案本地化，以及 glossary 对品牌术语一致性的控制。",
-  },
-  demoMedia: {
-    eyebrow: "Demo media",
-    title: "首页演示素材预留",
-    description: "首页更适合放一段短视频，快速展示真实效果，而不是完整教学。",
+    title: "围绕真实经营结果设计",
+    description: "从全球市场拓展到内容效率和订单价值，Ciwi 希望解决商家每天真正面对的问题。",
   },
   socialProof: {
     eyebrow: "Proof",
-    title: "让真实商家反馈替代空泛卖点",
-    description: "可信度来自实际商家场景、使用体验和可验证的结果，而不是堆砌技术名词。",
+    title: "听听我们的客户怎么说",
+    description: "我们始终以客户的诉求为中心，提供专业优质的工作结果。",
   },
   resources: {
     eyebrow: "Resources",
-    title: "用博客、帮助文档和对比页，持续回答商家的真实问题",
-    description: "用户不一定会直接进入产品页。资源内容应该帮助他们先理解问题，再自然进入产品和演示。",
+    title: "不只提供工具，也分享方法",
+    description: "我们团队来自 Amazon、Tiktok 和 Temu 等全球平台，基于团队丰富的经验，我们通过产品指南、运营经验和选型对比，帮助 Shopify 商家理解问题、做出判断，并更有效地使用 Ciwi 产品。",
+    subscription: {
+      eyebrow: "Newsletter",
+      title: "订阅 Ciwi 邮件更新",
+      description: "优先获取产品更新、Shopify 全球化方法和最新资源内容。",
+      placeholder: "输入你的邮箱地址",
+      buttonLabel: "立即订阅",
+      helperText: "我们只发送和产品、增长方法、重要发布相关的内容。",
+      successMessage: "订阅成功，后续这里接入真实邮件服务后会直接向你发送更新。",
+      errorMessage: "请输入有效的邮箱地址。",
+      highlights: ["产品更新", "运营方法", "选型对比"],
+    },
   },
   faq: {
     eyebrow: "FAQ",
-    title: "先回答关键问题，再推动用户进入下一步",
-    description: "把最常见的问题先说清楚。",
+    title: "关于 Ciwi，你可能还想了解这些",
+    description: "我们整理了商家最常见的问题，帮助你更快了解产品、服务与使用方式。",
   },
   finalCta: {
-    eyebrow: "Next step",
-    title: "把多语言、内容和转化动作接成一条更顺的增长链路",
-    description: "从搜索进入、看到产品、理解方案到决定安装，前台每一步都应该更容易让用户做判断。",
-    primaryLabel: "Install on Shopify",
-    primaryHref: "https://apps.shopify.com/translator-by-ciwi",
-    secondaryLabel: "Talk to us",
+    eyebrow: "NEXT STEP",
+    title: "从今天开始，建立你的全球化能力",
+    description:
+      "探索 Ciwi 为 Shopify 商家打造的产品与支持，从多语言经营、内容生产到订单增长，选择适合你的下一步。",
+    primaryLabel: "探索 Ciwi 产品",
+    primaryHref: "/products",
+    secondaryLabel: "与我们聊聊",
     secondaryHref: "/contact",
   },
 } as const;
