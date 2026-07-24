@@ -6,6 +6,7 @@ import {MediaPlaceholderSection} from "@/components/sections/MediaPlaceholderSec
 import {ArticleCard} from "@/components/cards/ArticleCard";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
+import {detailPagesCopy} from "@/content/detail-pages-copy";
 import {compareMap, compares} from "@/content/compare";
 import {blogPosts} from "@/content/blog";
 import {getCompareMediaBriefs} from "@/content/media-briefs";
@@ -27,9 +28,9 @@ export async function generateMetadata({params}: CompareDetailPageProps) {
 
   if (!data) {
     return buildPageMetadata({
-      title: "Compare not found",
-      description: "The requested compare page could not be found.",
-      path: "/compare",
+      title: detailPagesCopy.compare.notFound.title,
+      description: detailPagesCopy.compare.notFound.description,
+      path: detailPagesCopy.compare.notFound.path,
     });
   }
 
@@ -43,6 +44,7 @@ export async function generateMetadata({params}: CompareDetailPageProps) {
 export default async function CompareDetailPage({params}: CompareDetailPageProps) {
   const {slug} = await params;
   const data = compareMap[slug];
+  const copy = detailPagesCopy.compare;
 
   if (!data) {
     notFound();
@@ -77,14 +79,14 @@ export default async function CompareDetailPage({params}: CompareDetailPageProps
           />
         ))}
         <section className="page-section page-hero">
-          <SectionHeading eyebrow="Compare" title={data.title} description={data.description} as="h1" />
+          <SectionHeading eyebrow={copy.hero.eyebrow} title={data.title} description={data.description} as="h1" />
           <div className="detail-grid">
             <article className="surface-card">
-              <h3>Summary</h3>
+              <h3>{copy.hero.panels.summaryTitle}</h3>
               <p className="quote">{data.summary}</p>
             </article>
             <article className="surface-card">
-              <h3>Best fit for</h3>
+              <h3>{copy.hero.panels.bestFitTitle}</h3>
               <ul className="check-list">
                 {data.bestFor.map((item) => (
                   <li key={item}>{item}</li>
@@ -95,17 +97,17 @@ export default async function CompareDetailPage({params}: CompareDetailPageProps
         </section>
 
         <MediaPlaceholderSection
-          eyebrow="Compare media"
-          title="对比页视觉预留"
-          description="对比页适合补一张并排对照图，让用户在读维度之前先感受到两条路径的差异。"
+          eyebrow={copy.media.eyebrow}
+          title={copy.media.title}
+          description={copy.media.description}
           items={mediaBriefs}
         />
 
         <section className="page-section">
           <SectionHeading
-            eyebrow="Dimensions"
-            title="关键差异"
-            description="先看真正影响选型判断的几个维度。"
+            eyebrow={copy.sections.dimensions.eyebrow}
+            title={copy.sections.dimensions.title}
+            description={copy.sections.dimensions.description}
           />
           <div className="faq-list">
             {data.dimensions.map((dimension) => (
@@ -113,11 +115,11 @@ export default async function CompareDetailPage({params}: CompareDetailPageProps
                 <h3>{dimension.label}</h3>
                 <div className="detail-grid">
                   <div>
-                    <div className="section-heading__eyebrow">Ciwi</div>
+                    <div className="section-heading__eyebrow">{copy.sections.dimensions.ciwiLabel}</div>
                     <p className="quote">{dimension.ciwi}</p>
                   </div>
                   <div>
-                    <div className="section-heading__eyebrow">Alternative</div>
+                    <div className="section-heading__eyebrow">{copy.sections.dimensions.alternativeLabel}</div>
                     <p className="quote">{dimension.alternative}</p>
                   </div>
                 </div>
@@ -128,9 +130,9 @@ export default async function CompareDetailPage({params}: CompareDetailPageProps
 
         <section className="page-section">
           <SectionHeading
-            eyebrow="Highlights"
-            title="简明结论"
-            description="先看最影响选型判断的差异。"
+            eyebrow={copy.sections.highlights.eyebrow}
+            title={copy.sections.highlights.title}
+            description={copy.sections.highlights.description}
           />
           <div className="card-grid">
             {data.highlights.map((highlight) => (
@@ -143,9 +145,9 @@ export default async function CompareDetailPage({params}: CompareDetailPageProps
 
         <section className="page-section">
           <SectionHeading
-            eyebrow="Continue reading"
-            title="继续查看"
-            description="从这里继续看产品页、文章和帮助文档。"
+            eyebrow={copy.sections.continue.eyebrow}
+            title={copy.sections.continue.title}
+            description={copy.sections.continue.description}
           />
           <div className="resource-grid">
             {siblingCompares.map((item) => (
@@ -154,7 +156,7 @@ export default async function CompareDetailPage({params}: CompareDetailPageProps
                 title={item.title}
                 description={item.description}
                 href={`/compare/${item.slug}`}
-                meta={["Compare", "Alternative"]}
+                meta={[...copy.sections.continue.siblingMeta]}
               />
             ))}
             <ArticleCard
@@ -170,22 +172,22 @@ export default async function CompareDetailPage({params}: CompareDetailPageProps
               meta={helpCenterDocs[0].meta}
             />
             <ArticleCard
-              title="AI Translator"
-              description="回到产品页，直接看适用场景、Demo 和关键能力。"
-              href="/products/translator"
-              meta={["Product", "Translator"]}
+              title={copy.sections.continue.translatorCard.title}
+              description={copy.sections.continue.translatorCard.description}
+              href={copy.sections.continue.translatorCard.href}
+              meta={[...copy.sections.continue.translatorCard.meta]}
             />
           </div>
         </section>
 
         <FaqSection items={data.faq} />
         <FinalCtaSection
-          title="从比较，进入判断"
-          description="如果你已经看清方向差异，下一步就该进入产品页或帮助文档确认细节。"
-          primaryLabel="Open translator product"
-          primaryHref="/products/translator"
-          secondaryLabel="Browse compare pages"
-          secondaryHref="/compare"
+          title={copy.finalCta.title}
+          description={copy.finalCta.description}
+          primaryLabel={copy.finalCta.primaryLabel}
+          primaryHref={copy.finalCta.primaryHref}
+          secondaryLabel={copy.finalCta.secondaryLabel}
+          secondaryHref={copy.finalCta.secondaryHref}
         />
       </PageContainer>
     </main>

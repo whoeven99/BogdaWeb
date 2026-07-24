@@ -10,9 +10,14 @@ export function SiteHeader() {
     <header className="site-header">
       <PageContainer>
         <div className="site-header__inner">
-          <Link href="/" className="site-brand">
-            <Image src="/logo-150.png" alt="Ciwi" width={40} height={40} />
-            <span>Ciwi</span>
+          <Link href="/" className="site-brand site-brand--header" aria-label="Ciwi">
+            <span className="site-brand__mark">
+              <Image src="/logo-150.png" alt="Ciwi" width={44} height={44} priority />
+            </span>
+            <span className="site-brand__wordmark" aria-hidden="true">
+              <span className="site-brand__name">Ciwi</span>
+              <span className="site-brand__tagline">Shopify AI</span>
+            </span>
           </Link>
           <div className="site-nav">
             <nav className="site-nav__links" aria-label="Primary">

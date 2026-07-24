@@ -5,55 +5,66 @@ import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {featuredHelpCenterDocs, helpCenterDocs} from "@/content/help-center";
 import {helpCenterIndexMediaBriefs} from "@/content/media-briefs";
+import {pagesCopy} from "@/content/pages-copy";
 import {buildPageMetadata} from "@/lib/seo/metadata";
 
 export const metadata = buildPageMetadata({
-  title: "Help Center",
-  description: "Ciwi Help Center，帮助商家更快完成安装、翻译配置、本地化设置和术语控制。",
-  path: "/help-center",
+  title: pagesCopy.helpCenter.metadata.title,
+  description: pagesCopy.helpCenter.metadata.description,
+  path: pagesCopy.helpCenter.metadata.path,
 });
 
 export default function HelpCenterPage() {
-  const allDocs = [...helpCenterDocs].sort((left, right) => left.title.localeCompare(right.title));
+  const copy = pagesCopy.helpCenter;
+  const featuredDocHrefs = new Set(featuredHelpCenterDocs.map((doc) => doc.href));
+  const allDocs = helpCenterDocs
+    .filter((doc) => !featuredDocHrefs.has(doc.href))
+    .sort((left, right) => left.title.localeCompare(right.title));
+  const startPrefix = copy.hero.startTemplate.split("{{count}}")[0];
+  const startSuffix = copy.hero.startTemplate.split("{{count}}")[1] ?? "";
+  const featuredPrefix = copy.all.statsFeaturedTemplate.split("{{count}}")[0];
+  const featuredSuffix = copy.all.statsFeaturedTemplate.split("{{count}}")[1] ?? "";
+  const allPrefix = copy.all.statsAllTemplate.split("{{count}}")[0];
+  const allSuffix = copy.all.statsAllTemplate.split("{{count}}")[1] ?? "";
 
   return (
     <main>
       <PageContainer>
         <section className="page-section page-hero">
           <SectionHeading
-            eyebrow="Help Center"
-            title="安装、配置和日常使用，都从这里开始"
-            description="覆盖翻译流程、glossary、模型选择、多币种和日常使用问题。"
+            eyebrow={copy.hero.eyebrow}
+            title={copy.hero.title}
+            description={copy.hero.description}
             as="h1"
           />
           <div className="detail-grid">
             <article className="surface-card">
-              <h3>从这里开始</h3>
+              <h3>{copy.hero.startTitle}</h3>
               <p className="quote">
-                目前已整理出 <strong>{helpCenterDocs.length}</strong> 篇帮助文档，优先覆盖安装配置、翻译流程、术语控制和多市场运营等高频问题。
+                {startPrefix}
+                <strong>{helpCenterDocs.length}</strong>
+                {startSuffix}
               </p>
             </article>
             <article className="surface-card">
-              <h3>适合谁看</h3>
-              <p className="quote">
-                适合准备开始配置的商家，也适合已经在使用产品、想更快解决具体问题的运营团队。
-              </p>
+              <h3>{copy.hero.audienceTitle}</h3>
+              <p className="quote">{copy.hero.audienceText}</p>
             </article>
           </div>
         </section>
 
         <MediaPlaceholderSection
-          eyebrow="Help media"
-          title="帮助中心首页视觉预留"
-          description="帮助中心更适合用带标注的产品截图或支持中心风格图，让操作入口更直观。"
+          eyebrow={copy.media.eyebrow}
+          title={copy.media.title}
+          description={copy.media.description}
           items={helpCenterIndexMediaBriefs}
         />
 
         <section className="page-section">
           <SectionHeading
-            eyebrow="Featured docs"
-            title="先看这些"
-            description="如果你刚开始评估或准备配置，这一组最值得先读。"
+            eyebrow={copy.featured.eyebrow}
+            title={copy.featured.title}
+            description={copy.featured.description}
           />
           <div className="resource-grid">
             {featuredHelpCenterDocs.map((item) => (
@@ -70,21 +81,25 @@ export default function HelpCenterPage() {
 
         <section className="page-section">
           <SectionHeading
-            eyebrow="All docs"
-            title="全部文档"
-            description="如果问题不在精选文档里，就从完整索引继续找。"
+            eyebrow={copy.all.eyebrow}
+            title={copy.all.title}
+            description={copy.all.description}
           />
           <div className="detail-grid">
             <article className="surface-card">
-              <h3>Featured docs</h3>
+              <h3>{copy.all.statsFeaturedTitle}</h3>
               <p className="quote">
-                精选了 <strong>{featuredHelpCenterDocs.length}</strong> 篇文档，优先覆盖产品定位、翻译流程、glossary、模型和多币种等高频问题。
+                {featuredPrefix}
+                <strong>{featuredHelpCenterDocs.length}</strong>
+                {featuredSuffix}
               </p>
             </article>
             <article className="surface-card">
-              <h3>All docs</h3>
+              <h3>{copy.all.statsAllTitle}</h3>
               <p className="quote">
-                站内已纳入 <strong>{helpCenterDocs.length}</strong> 篇帮助文档，方便你按主题继续深入了解具体配置和使用细节。
+                {allPrefix}
+                <strong>{helpCenterDocs.length}</strong>
+                {allSuffix}
               </p>
             </article>
           </div>
@@ -101,12 +116,12 @@ export default function HelpCenterPage() {
           </div>
         </section>
         <FinalCtaSection
-          title="先解决最常见的问题，再进入产品和演示"
-          description="如果你已经把安装和配置思路理顺了，可以继续进入产品页、对比页或 Demo。"
-          primaryLabel="Read Getting Started"
-          primaryHref="/help-center/ShopifyApp/about-ciwi-ai-translator-shopify-app/"
-          secondaryLabel="View Demo"
-          secondaryHref="/demo"
+          title={copy.finalCta.title}
+          description={copy.finalCta.description}
+          primaryLabel={copy.finalCta.primaryLabel}
+          primaryHref={copy.finalCta.primaryHref}
+          secondaryLabel={copy.finalCta.secondaryLabel}
+          secondaryHref={copy.finalCta.secondaryHref}
         />
       </PageContainer>
     </main>

@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import {Button} from "@/components/ui/Button";
 import {SectionHeading} from "@/components/ui/SectionHeading";
+import {homePageCopy} from "@/content/home-page-copy";
 
 type HeroSectionProps = {
   title: string;
@@ -10,12 +11,14 @@ type HeroSectionProps = {
 };
 
 export function HeroSection({title, description, proofItems}: HeroSectionProps) {
+  const copy = homePageCopy.hero;
+
   return (
     <section className="page-section page-hero">
       <div className="hero-grid">
         <div>
           <SectionHeading
-            eyebrow="Shopify AI Growth"
+            eyebrow={copy.eyebrow}
             title={title}
             description={description}
             as="h1"
@@ -28,30 +31,71 @@ export function HeroSection({title, description, proofItems}: HeroSectionProps) 
             ))}
           </div>
           <div className="inline-list space-top-lg">
-            <Button href="https://apps.shopify.com/translator-by-ciwi">Install on Shopify</Button>
-            <Button href="/demo" variant="secondary">
-              View Demo
+            <Button href={copy.primaryCtaHref}>{copy.primaryCtaLabel}</Button>
+            <Button href={copy.secondaryCtaHref} variant="secondary">
+              {copy.secondaryCtaLabel}
             </Button>
           </div>
         </div>
-        <div className="hero-panel">
-          <div className="hero-panel__badge">Product preview</div>
-          <h2>覆盖商品、主题、FAQ 与品牌术语，而不只是翻译几段文本</h2>
-          <p className="quote light-copy">
-            对 Shopify 商家来说，真正影响增长的不是单次翻译结果，而是多语言内容能否长期保持自然、统一并持续同步。
-          </p>
-          <div className="hero-panel__demo">
-            <div className="demo-row">
-              <strong>Original</strong>
-              <p>Bundle two scalp-care products and save 15% with auto-applied discount.</p>
+        <div className="hero-brand-visual">
+          <div className="hero-brand-visual__top">
+            <div className="hero-brand-visual__brand">
+              <Image
+                src="/logo-150.png"
+                alt={copy.visualAlt.brandLogo}
+                width={44}
+                height={44}
+                className="hero-brand-visual__logo"
+              />
+              <div className="hero-brand-visual__brand-text">
+                <div className="hero-brand-visual__name">{copy.brandName}</div>
+                <div className="hero-brand-visual__tagline">{copy.brandTagline}</div>
+              </div>
             </div>
-            <div className="demo-row">
-              <strong>Localized</strong>
-              <p>购买两件头皮护理产品，系统将自动套用 15% 套餐折扣，并保留品牌语气与优惠表达。</p>
+            <Image src="/20250813-132858.png" alt={copy.visualAlt.builtForShopify} width={118} height={30} />
+          </div>
+          <div className="hero-brand-visual__device">
+            <div className="hero-brand-visual__device-bar">
+              <span className="hero-brand-visual__dot" />
+              <span className="hero-brand-visual__dot" />
+              <span className="hero-brand-visual__dot" />
+              <span className="hero-brand-visual__device-title">{copy.visualWindowTitle}</span>
+            </div>
+            <Image
+              src="/help-center/assets/images/image-39-1024x484-199851b9146b9d40442c609beacc3615.png"
+              alt={copy.visualAlt.mainImage}
+              width={1024}
+              height={484}
+              className="hero-brand-visual__device-image"
+              priority
+            />
+            <div className="hero-brand-visual__chips">
+              {copy.visualChips.map((chip) => (
+                <span key={chip} className="hero-brand-chip">
+                  {chip}
+                </span>
+              ))}
             </div>
           </div>
-          <div className="space-top-lg">
-            <Image src="/shopify-developer.png" alt="Shopify developer" width={220} height={48} />
+          <div className="hero-brand-visual__rail">
+            <div className="hero-brand-visual__thumb">
+              <Image
+                src="/help-center/assets/images/image-30-1024x483-bca184999f086a339ace9b093b68bed9.png"
+                alt={copy.visualAlt.secondaryTop}
+                width={1024}
+                height={483}
+                className="hero-brand-visual__thumb-image"
+              />
+            </div>
+            <div className="hero-brand-visual__thumb">
+              <Image
+                src="/help-center/assets/images/image-41-1024x508-44cad0129e424014aed54ee5a962b9c4.png"
+                alt={copy.visualAlt.secondaryBottom}
+                width={1024}
+                height={508}
+                className="hero-brand-visual__thumb-image"
+              />
+            </div>
           </div>
         </div>
       </div>

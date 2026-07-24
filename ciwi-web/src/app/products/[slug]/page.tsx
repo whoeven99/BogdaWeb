@@ -10,6 +10,7 @@ import {FaqSection} from "@/components/sections/FaqSection";
 import {FinalCtaSection} from "@/components/sections/FinalCtaSection";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
+import {detailPagesCopy} from "@/content/detail-pages-copy";
 import {getProductDemoMediaBriefs, getProductHeroMediaBriefs} from "@/content/media-briefs";
 import {productMap, products} from "@/content/products";
 import {buildPageMetadata} from "@/lib/seo/metadata";
@@ -28,9 +29,9 @@ export async function generateMetadata({params}: ProductDetailPageProps) {
 
   if (!product) {
     return buildPageMetadata({
-      title: "Product not found",
-      description: "The requested product page could not be found.",
-      path: "/products",
+      title: detailPagesCopy.products.notFound.title,
+      description: detailPagesCopy.products.notFound.description,
+      path: detailPagesCopy.products.notFound.path,
     });
   }
 
@@ -44,20 +45,13 @@ export async function generateMetadata({params}: ProductDetailPageProps) {
 export default async function ProductDetailPage({params}: ProductDetailPageProps) {
   const {slug} = await params;
   const product = productMap[slug];
+  const copy = detailPagesCopy.products;
 
   if (!product) {
     notFound();
   }
 
-  const anchorItems = [
-    {label: "Use cases", href: "#use-cases"},
-    {label: "Demo", href: "#demo"},
-    {label: "Audience fit", href: "#audience-fit"},
-    {label: "Features", href: "#features"},
-    {label: "Workflow", href: "#workflow"},
-    {label: "Resources", href: "#resources"},
-    {label: "FAQ", href: "#faq"},
-  ];
+  const anchorItems = copy.anchors.map((item) => ({...item}));
   const heroMediaBriefs = getProductHeroMediaBriefs(product);
   const demoMediaBriefs = getProductDemoMediaBriefs(product);
 
@@ -68,7 +62,7 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
           <div className="detail-grid">
             <div>
               <SectionHeading
-                eyebrow="Product"
+                eyebrow={copy.hero.eyebrow}
                 title={product.heroTitle}
                 description={product.heroDescription}
                 as="h1"
@@ -82,14 +76,14 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
               </div>
               <div className="inline-list space-top-xl">
                 <Button href={product.ctaHref}>{product.ctaLabel}</Button>
-                <Button href="/demo" variant="secondary">
-                  View demo
+                <Button href={copy.hero.viewDemoHref} variant="secondary">
+                  {copy.hero.viewDemoLabel}
                 </Button>
               </div>
             </div>
             <div className="surface-card section-stack">
               <div>
-                <h3>适用商家</h3>
+                <h3>{copy.hero.panels.targetUsersTitle}</h3>
                 <ul className="check-list">
                   {product.targetUsers.map((item) => (
                     <li key={item}>{item}</li>
@@ -97,7 +91,7 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
                 </ul>
               </div>
               <div>
-                <h3>核心收益</h3>
+                <h3>{copy.hero.panels.benefitsTitle}</h3>
                 <ul className="check-list">
                   {product.benefits.map((item) => (
                     <li key={item}>{item}</li>
@@ -105,7 +99,7 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
                 </ul>
               </div>
               <div>
-                <h3>演示重点</h3>
+                <h3>{copy.hero.panels.demoHighlightsTitle}</h3>
                 <div className="tag-list">
                   {product.demoHighlights.map((item) => (
                     <span key={item} className="pill">
@@ -119,19 +113,19 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
         </section>
 
         <MediaPlaceholderSection
-          eyebrow="Product media"
-          title="产品主视觉预留"
-          description="这里建议补真实产品图，让用户更快看到界面和使用场景。"
+          eyebrow={copy.media.hero.eyebrow}
+          title={copy.media.hero.title}
+          description={copy.media.hero.description}
           items={heroMediaBriefs}
         />
 
         <ProductAnchorNav items={anchorItems} />
 
-        <section className="page-section anchor-offset" id="use-cases">
+        <section className="page-section anchor-offset" id={copy.sections.useCases.id}>
           <SectionHeading
-            eyebrow="Use cases"
-            title="典型场景"
-            description="先看产品最适合解决什么问题。"
+            eyebrow={copy.sections.useCases.eyebrow}
+            title={copy.sections.useCases.title}
+            description={copy.sections.useCases.description}
           />
           <div className="card-grid">
             {product.useCases.map((useCase) => (
@@ -143,11 +137,11 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
           </div>
         </section>
 
-        <section className="page-section anchor-offset" id="demo-focus">
+        <section className="page-section anchor-offset" id={copy.sections.demoFocus.id}>
           <SectionHeading
-            eyebrow="Demo focus"
-            title="先看关键演示点"
-            description="先看最容易影响判断的几个关键结果。"
+            eyebrow={copy.sections.demoFocus.eyebrow}
+            title={copy.sections.demoFocus.title}
+            description={copy.sections.demoFocus.description}
           />
           <div className="card-grid">
             {product.demoHighlights.map((item, index) => (
@@ -160,35 +154,35 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
         </section>
 
         <InteractiveDemoExplorer
-          eyebrow="Interactive demo"
-          title="交互演示"
-          description="通过场景切换快速看懂前后差异、术语控制和 Shopify 适配方式。"
+          eyebrow={copy.sections.interactiveDemo.eyebrow}
+          title={copy.sections.interactiveDemo.title}
+          description={copy.sections.interactiveDemo.description}
           items={product.demoScenarios}
         />
 
         <DemoShowcaseSection
-          eyebrow="Live preview"
-          title="快速预览"
-          description="先快速扫一遍，再进入交互演示。"
+          eyebrow={copy.sections.livePreview.eyebrow}
+          title={copy.sections.livePreview.title}
+          description={copy.sections.livePreview.description}
           items={product.demoScenarios.slice(0, 2)}
         />
 
         <MediaPlaceholderSection
-          eyebrow="Demo media"
-          title="产品演示素材预留"
-          description="产品页更适合放一段真实录屏或核心结果图，帮助用户快速判断是否值得继续看。"
+          eyebrow={copy.media.demo.eyebrow}
+          title={copy.media.demo.title}
+          description={copy.media.demo.description}
           items={demoMediaBriefs}
         />
 
-        <section className="page-section anchor-offset" id="audience-fit">
+        <section className="page-section anchor-offset" id={copy.sections.audienceFit.id}>
           <SectionHeading
-            eyebrow="Audience fit"
-            title="适合谁"
-            description="把适用对象和核心收益放在一起看，会更容易判断是否匹配。"
+            eyebrow={copy.sections.audienceFit.eyebrow}
+            title={copy.sections.audienceFit.title}
+            description={copy.sections.audienceFit.description}
           />
           <div className="detail-grid">
             <div className="surface-card">
-              <h3>适用商家</h3>
+              <h3>{copy.sections.audienceFit.targetUsersTitle}</h3>
               <ul>
                 {product.targetUsers.map((item) => (
                   <li key={item}>{item}</li>
@@ -196,7 +190,7 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
               </ul>
             </div>
             <div className="surface-card">
-              <h3>核心收益</h3>
+              <h3>{copy.sections.audienceFit.benefitsTitle}</h3>
               <ul>
                 {product.benefits.map((item) => (
                   <li key={item}>{item}</li>
@@ -206,16 +200,16 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
           </div>
         </section>
 
-        <section className="page-section anchor-offset" id="features">
+        <section className="page-section anchor-offset" id={copy.sections.features.id}>
           {product.slug === "translator" ? <div id="models" className="anchor-offset" /> : null}
           {product.slug === "translator" ? <div id="engines" className="anchor-offset" /> : null}
           {product.slug === "translator" ? <div id="glossary" className="anchor-offset" /> : null}
           {product.slug === "translator" ? <div id="languages" className="anchor-offset" /> : null}
           {product.slug === "translator" ? <div id="localization" className="anchor-offset" /> : null}
           <SectionHeading
-            eyebrow="Features"
-            title="核心能力"
-            description="围绕商家最常用、最直接影响结果的部分展开。"
+            eyebrow={copy.sections.features.eyebrow}
+            title={copy.sections.features.title}
+            description={copy.sections.features.description}
           />
           <div className="card-grid">
             {product.features.map((feature) => (
@@ -227,11 +221,11 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
           </div>
         </section>
 
-        <section className="page-section anchor-offset" id="workflow">
+        <section className="page-section anchor-offset" id={copy.sections.workflow.id}>
           <SectionHeading
-            eyebrow="Workflow"
-            title="使用路径"
-            description="按实际操作顺序理解产品。"
+            eyebrow={copy.sections.workflow.eyebrow}
+            title={copy.sections.workflow.title}
+            description={copy.sections.workflow.description}
           />
           <div className="card-grid">
             {product.workflow.map((step, index) => (
@@ -243,11 +237,11 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
           </div>
         </section>
 
-        <section className="page-section anchor-offset" id="resources">
+        <section className="page-section anchor-offset" id={copy.sections.resources.id}>
           <SectionHeading
-            eyebrow="Related resources"
-            title="相关资源"
-            description="从这里继续看文档、文章和对比内容。"
+            eyebrow={copy.sections.resources.eyebrow}
+            title={copy.sections.resources.title}
+            description={copy.sections.resources.description}
           />
           <div className="resource-grid">
             {product.relatedResources.map((resource) => (
@@ -269,8 +263,8 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
           description={product.shortDescription}
           primaryLabel={product.ctaLabel}
           primaryHref={product.ctaHref}
-          secondaryLabel="Browse resources"
-          secondaryHref="/resources"
+          secondaryLabel={copy.finalCta.secondaryLabel}
+          secondaryHref={copy.finalCta.secondaryHref}
         />
       </PageContainer>
     </main>

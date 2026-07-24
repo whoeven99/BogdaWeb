@@ -1,15 +1,14 @@
 import {ProductCard} from "@/components/cards/ProductCard";
 import {SectionHeading} from "@/components/ui/SectionHeading";
+import {homePageCopy} from "@/content/home-page-copy";
 import {products} from "@/content/products";
 
 export function ProductMatrixSection() {
+  const copy = homePageCopy.productMatrix;
+
   return (
     <section className="page-section">
-      <SectionHeading
-        eyebrow="Products"
-        title="按商家的增长目标来选产品"
-        description="无论你更关心多语言转化、内容效率还是 AOV，这里都能直接找到对应入口。"
-      />
+      <SectionHeading eyebrow={copy.eyebrow} title={copy.title} description={copy.description} />
       <div className="card-grid">
         {products.map((product) => (
           <ProductCard

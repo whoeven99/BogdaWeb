@@ -4,17 +4,19 @@ import {MediaPlaceholderSection} from "@/components/sections/MediaPlaceholderSec
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {compareIndexMediaBriefs} from "@/content/media-briefs";
+import {pagesCopy} from "@/content/pages-copy";
 import {compares} from "@/content/compare";
 import {buildPageMetadata, siteUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildWebPageSchema} from "@/lib/seo/schema";
 
 export const metadata = buildPageMetadata({
-  title: "Compare",
-  description: "Ciwi Compare 页面入口，帮助 Shopify 商家更快比较不同翻译和本地化方案的适配度与长期成本。",
-  path: "/compare",
+  title: pagesCopy.compare.metadata.title,
+  description: pagesCopy.compare.metadata.description,
+  path: pagesCopy.compare.metadata.path,
 });
 
 export default function ComparePage() {
+  const copy = pagesCopy.compare;
   const pageUrl = new URL("/compare", siteUrl).toString();
   const structuredData = [
     buildBreadcrumbSchema([
@@ -23,9 +25,9 @@ export default function ComparePage() {
     ]),
     buildWebPageSchema({
       url: pageUrl,
-      name: "Compare",
-      description: "Ciwi Compare 页面入口，帮助 Shopify 商家更快比较不同翻译和本地化方案的适配度与长期成本。",
-      keywords: ["Shopify compare", "translator comparison", "Ciwi"],
+      name: copy.structuredData.name,
+      description: copy.structuredData.description,
+      keywords: [...copy.structuredData.keywords],
       type: "CollectionPage",
     }),
   ];
@@ -42,9 +44,9 @@ export default function ComparePage() {
         ))}
         <section className="page-section page-hero">
           <SectionHeading
-            eyebrow="Compare"
-            title="快速看清哪种方案更适合你的店铺阶段"
-            description="从适配深度、维护成本和增长目标三个角度，判断哪条路线更适合当前业务。"
+            eyebrow={copy.hero.eyebrow}
+            title={copy.hero.title}
+            description={copy.hero.description}
             as="h1"
           />
           <div className="resource-grid">
@@ -54,20 +56,20 @@ export default function ComparePage() {
                 title={item.title}
                 description={item.description}
                 href={`/compare/${item.slug}`}
-                meta={["Compare", "SEO"]}
+                meta={[...copy.hero.cardMeta]}
               />
             ))}
           </div>
         </section>
         <MediaPlaceholderSection
-          eyebrow="Compare media"
-          title="对比总览视觉预留"
-          description="对比列表页适合用一张总览型对照图，让差异一眼看明白。"
+          eyebrow={copy.media.eyebrow}
+          title={copy.media.title}
+          description={copy.media.description}
           items={compareIndexMediaBriefs}
         />
         <FinalCtaSection
-          title="从 Compare 继续进入产品页、演示和帮助文档"
-          description="如果你已经看到了方向差异，可以继续进入产品页、Demo 或帮助文档确认细节。"
+          title={copy.finalCta.title}
+          description={copy.finalCta.description}
         />
       </PageContainer>
     </main>

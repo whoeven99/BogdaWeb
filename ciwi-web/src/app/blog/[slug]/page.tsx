@@ -8,6 +8,7 @@ import {ContentToc} from "@/components/ui/ContentToc";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {blogPostMap, blogPosts} from "@/content/blog";
+import {detailPagesCopy} from "@/content/detail-pages-copy";
 import {helpCenterDocs} from "@/content/help-center";
 import {getBlogMediaBriefs} from "@/content/media-briefs";
 import {addSectionAnchors, extractSectionsFromHtml} from "@/lib/content/sections";
@@ -29,9 +30,9 @@ export async function generateMetadata({params}: BlogDetailPageProps) {
 
   if (!post) {
     return buildPageMetadata({
-      title: "Blog post not found",
-      description: "The requested article could not be found.",
-      path: "/blog",
+      title: detailPagesCopy.blog.notFound.title,
+      description: detailPagesCopy.blog.notFound.description,
+      path: detailPagesCopy.blog.notFound.path,
     });
   }
 
@@ -45,6 +46,7 @@ export async function generateMetadata({params}: BlogDetailPageProps) {
 export default async function BlogDetailPage({params}: BlogDetailPageProps) {
   const {slug} = await params;
   const post = blogPostMap[slug];
+  const copy = detailPagesCopy.blog;
 
   if (!post) {
     notFound();
@@ -91,19 +93,19 @@ export default async function BlogDetailPage({params}: BlogDetailPageProps) {
                 <span>{post.readingTime}</span>
                 <span>{post.tags.join(" · ")}</span>
               </div>
-              <SectionHeading eyebrow="Blog" title={post.title} description={post.description} as="h1" />
+              <SectionHeading eyebrow={copy.hero.eyebrow} title={post.title} description={post.description} as="h1" />
               <div className="inline-list space-top-lg">
-                <Link href="/blog" className="button button--secondary">
-                  Back to blog
+                <Link href={copy.hero.backToBlogHref} className="button button--secondary">
+                  {copy.hero.backToBlogLabel}
                 </Link>
                 <Link href={post.sourceHref} className="button button--ghost">
-                  View original source
+                  {copy.hero.viewSourceLabel}
                 </Link>
               </div>
               <MediaPlaceholderSection
-                eyebrow="Article media"
-                title="文章题图预留"
-                description="博客详情页建议在正文前补一张主题图，帮助文章看起来更完整。"
+                eyebrow={copy.media.eyebrow}
+                title={copy.media.title}
+                description={copy.media.description}
                 items={mediaBriefs}
                 compact
               />
@@ -111,17 +113,15 @@ export default async function BlogDetailPage({params}: BlogDetailPageProps) {
             </article>
 
             <aside className="blog-aside">
-              <ContentToc items={sections} title="Article sections" />
+              <ContentToc items={sections} title={copy.aside.tocTitle} />
               <div className="surface-card section-stack space-top-lg">
                 <div>
-                  <h3>Keep reading</h3>
-                  <p className="quote">
-                    如果这篇文章和你的业务相关，下一步通常不是继续看抽象观点，而是回到产品、帮助文档和具体配置里确认细节。
-                  </p>
+                  <h3>{copy.aside.keepReadingTitle}</h3>
+                  <p className="quote">{copy.aside.keepReadingText}</p>
                 </div>
                 <div>
-                  <h3>Recommended next step</h3>
-                  <p className="quote">先看相关帮助文档，再回到产品页确认 glossary、多语言和 Shopify 适配方式。</p>
+                  <h3>{copy.aside.nextStepTitle}</h3>
+                  <p className="quote">{copy.aside.nextStepText}</p>
                 </div>
               </div>
               <div className="section-stack space-top-lg">
@@ -131,7 +131,7 @@ export default async function BlogDetailPage({params}: BlogDetailPageProps) {
                     title={item.title}
                     description={item.description}
                     href={item.href}
-                    meta={["Blog", item.publishedAt]}
+                    meta={[copy.aside.relatedPostMetaLabel, item.publishedAt]}
                   />
                 ))}
                 {relatedDocs.map((doc) => (
@@ -148,12 +148,12 @@ export default async function BlogDetailPage({params}: BlogDetailPageProps) {
           </div>
         </section>
         <FinalCtaSection
-          title="从内容理解问题，再回到产品和配置"
-          description="如果你已经知道自己要解决什么问题，下一步就该进入产品页或帮助文档看具体做法。"
-          primaryLabel="Open translator product"
-          primaryHref="/products/translator"
-          secondaryLabel="Open help center"
-          secondaryHref="/help-center"
+          title={copy.finalCta.title}
+          description={copy.finalCta.description}
+          primaryLabel={copy.finalCta.primaryLabel}
+          primaryHref={copy.finalCta.primaryHref}
+          secondaryLabel={copy.finalCta.secondaryLabel}
+          secondaryHref={copy.finalCta.secondaryHref}
         />
       </PageContainer>
     </main>

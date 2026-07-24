@@ -1,23 +1,22 @@
 import {ArticleCard} from "@/components/cards/ArticleCard";
 import {SectionHeading} from "@/components/ui/SectionHeading";
-import {featuredResources} from "@/content/home";
+import {homePageCopy} from "@/content/home-page-copy";
 
 export function ResourcesSection() {
+  const copy = homePageCopy.resources;
+  const items = homePageCopy.featuredResources;
+
   return (
     <section className="page-section">
-      <SectionHeading
-        eyebrow="Resources"
-        title="用博客、帮助文档和对比页，持续回答商家的真实问题"
-        description="用户不一定会直接进入产品页。资源内容应该帮助他们先理解问题，再自然进入产品和演示。"
-      />
+      <SectionHeading eyebrow={copy.eyebrow} title={copy.title} description={copy.description} />
       <div className="resource-grid">
-        {featuredResources.map((item) => (
+        {items.map((item) => (
           <ArticleCard
             key={item.title}
             title={item.title}
             description={item.description}
             href={item.href}
-            meta={item.meta}
+            meta={[...item.meta]}
           />
         ))}
       </div>

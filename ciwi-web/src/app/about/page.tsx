@@ -3,6 +3,7 @@ import {MediaPlaceholderSection} from "@/components/sections/MediaPlaceholderSec
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {aboutPageMediaBriefs} from "@/content/media-briefs";
+import {pagesCopy} from "@/content/pages-copy";
 import {sitePages} from "@/content/site-pages";
 import {buildPageMetadata} from "@/lib/seo/metadata";
 
@@ -15,24 +16,26 @@ export const metadata = buildPageMetadata({
 });
 
 export default function AboutPage() {
+  const copy = pagesCopy.about;
+
   return (
     <main>
       <PageContainer>
         <section className="page-section page-hero page-copy">
-          <SectionHeading eyebrow="Company" title={page.title} description={page.description} as="h1" />
+          <SectionHeading eyebrow={copy.hero.eyebrow} title={page.title} description={page.description} as="h1" />
           {page.paragraphs.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}
         </section>
         <MediaPlaceholderSection
-          eyebrow="About media"
-          title="品牌与团队素材预留"
-          description="About 页建议补团队工作状态或真实产品场景素材，让用户更快建立信任感。"
+          eyebrow={copy.media.eyebrow}
+          title={copy.media.title}
+          description={copy.media.description}
           items={aboutPageMediaBriefs}
         />
         <FinalCtaSection
-          title="了解 Ciwi，也直接去看产品和结果"
-          description="如果这套方向和你的店铺目标一致，下一步就去看产品、文章和帮助文档。"
+          title={copy.finalCta.title}
+          description={copy.finalCta.description}
         />
       </PageContainer>
     </main>

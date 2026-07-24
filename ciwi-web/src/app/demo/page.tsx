@@ -4,64 +4,52 @@ import {MediaPlaceholderSection} from "@/components/sections/MediaPlaceholderSec
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {demoPageMediaBriefs} from "@/content/media-briefs";
+import {pagesCopy} from "@/content/pages-copy";
 import {buildPageMetadata} from "@/lib/seo/metadata";
 
-const demoFaq = [
-  {
-    question: "官网 Demo 会变成完整后台吗？",
-    answer: "不会。官网优先提供无登录、低摩擦、可理解的轻演示，而不是复制完整产品后台。",
-  },
-  {
-    question: "先看 Demo 能带来什么？",
-    answer: "你可以先用最短时间看到翻译前后差异、术语控制效果和套餐表达变化，再判断这套产品是否值得继续深入。",
-  },
-];
-
 export const metadata = buildPageMetadata({
-  title: "Demo Center",
-  description: "Ciwi Demo Center，用前后对比、术语控制和套餐场景帮助 Shopify 商家更快判断产品价值。",
-  path: "/demo",
+  title: pagesCopy.demo.metadata.title,
+  description: pagesCopy.demo.metadata.description,
+  path: pagesCopy.demo.metadata.path,
 });
 
 export default function DemoPage() {
+  const copy = pagesCopy.demo;
+
   return (
     <main>
       <PageContainer>
         <section className="page-section page-hero">
           <SectionHeading
-            eyebrow="Demo"
-            title="用最短路径看懂产品能力"
-            description="这里聚焦最关键的前后对比、术语控制和 bundle 场景。"
+            eyebrow={copy.hero.eyebrow}
+            title={copy.hero.title}
+            description={copy.hero.description}
             as="h1"
           />
           <div className="card-grid">
-            <article className="hero-panel">
-              <div className="hero-panel__badge">Translation demo</div>
-              <h3>Before / After localization</h3>
-              <p className="quote light-copy">
-                展示翻译前后文案差异、术语控制效果和 Shopify 场景适配方式。
-              </p>
-            </article>
-            <article className="surface-card">
-              <h3>Glossary intervention</h3>
-              <p className="quote">展示 glossary 如何影响品牌词、产品词和营销文案的输出。</p>
-            </article>
-            <article className="surface-card">
-              <h3>Bundle growth story</h3>
-              <p className="quote">展示套餐折扣前后，购物车表达与客单价机会的变化。</p>
-            </article>
+            {copy.hero.cards.map((card) => {
+              const accent = "accent" in card && card.accent;
+
+              return (
+                <article key={card.title} className={accent ? "hero-panel" : "surface-card"}>
+                  {"eyebrow" in card ? <div className="hero-panel__badge">{card.eyebrow}</div> : null}
+                  <h3>{card.title}</h3>
+                  <p className={accent ? "quote light-copy" : "quote"}>{card.description}</p>
+                </article>
+              );
+            })}
           </div>
         </section>
         <MediaPlaceholderSection
-          eyebrow="Demo media"
-          title="Demo Center 主素材预留"
-          description="Demo Center 最适合放总览视频，让访问者在几十秒内先看到效果变化。"
+          eyebrow={copy.media.eyebrow}
+          title={copy.media.title}
+          description={copy.media.description}
           items={demoPageMediaBriefs}
         />
-        <FaqSection items={demoFaq} />
+        <FaqSection items={copy.faq.map((item) => ({...item}))} />
         <FinalCtaSection
-          title="先看演示，再决定是否深入"
-          description="如果你已经看到适合自己的场景，下一步就进入产品页或联系团队。"
+          title={copy.finalCta.title}
+          description={copy.finalCta.description}
         />
       </PageContainer>
     </main>

@@ -394,31 +394,6 @@ export const helpCenterDocs: HelpCenterDoc[] = [
     ],
   },
   {
-    slug: "faqs-about-translation",
-    title: "FAQs About Translation",
-    href: `${basePath}/faqs-about-translation/`,
-    sourceHref: `${basePath}/faqs-about-translation/`,
-    description: "回答翻译覆盖、手动修改是否会被覆盖，以及新增商品如何继续翻译等常见问题。",
-    meta: ["Help Center", "Translation FAQ"],
-    readingTime: "3 min read",
-    contentHtml: `
-      <p>这篇文档集中回答商家在正式开始翻译后最常遇到的几个问题，包括旧内容是否会被覆盖、原文改动后会发生什么，以及新商品如何继续进入翻译流程。</p>
-      <h2>Will previous translations be overwritten</h2>
-      <p>不会自动覆盖其他应用已经生成的翻译内容。但如果原文发生变化，下次重新执行该语言翻译时，系统会根据最新原文重新生成结果，旧翻译和手动编辑内容都可能被更新。</p>
-      <h2>What happens after the source text changes</h2>
-      <p>修改原文后，翻译不会立刻自动变化。下一次你重新翻译该语言时，系统会识别原文变化，并按最新内容生成新的译文。</p>
-      <h2>Will manual edits be preserved</h2>
-      <p>如果原文没有变化，手动修改的译文会保留。如果原文变了，下次重译时系统会以最新原文为准重新生成翻译。</p>
-      <h2>How to translate newly added products</h2>
-      <p>新增商品或新增内容后，只需要再次执行翻译流程，系统会识别新增或发生变化的部分，再把这些内容纳入翻译任务。</p>
-    `,
-    relatedResources: [
-      {title: "How to translate your Shopify store?", description: "先看标准翻译流程，再结合这些常见问题理解实际操作边界。", href: `${basePath}/how-to-translate/`, meta: ["Help Center", "Translation Workflow"]},
-      {title: "How to setup and use glossary?", description: "如果你担心术语一致性或手动编辑稳定性，glossary 是更稳的控制层。", href: `${basePath}/how-to-setup-and-use-glossary/`, meta: ["Help Center", "Glossary"]},
-      {title: "AI Translator", description: "回到产品页，直接看结构化翻译、术语控制和持续同步能力。", href: "/products/translator", meta: ["Product", "Translator"]},
-    ],
-  },
-  {
     slug: "how-to-set-regarding-geolocation",
     title: "How to set regarding geolocation",
     href: `${basePath}/how-to-set-regarding-geolocation/`,

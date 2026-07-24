@@ -4,17 +4,19 @@ import {MediaPlaceholderSection} from "@/components/sections/MediaPlaceholderSec
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {solutionsIndexMediaBriefs} from "@/content/media-briefs";
+import {pagesCopy} from "@/content/pages-copy";
 import {solutions} from "@/content/solutions";
 import {buildPageMetadata, siteUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildWebPageSchema} from "@/lib/seo/schema";
 
 export const metadata = buildPageMetadata({
-  title: "Solutions",
-  description: "Ciwi 解决方案页，帮助 Shopify 商家按跨境转化、多语言运营和 AOV 目标找到更合适的路径。",
-  path: "/solutions",
+  title: pagesCopy.solutions.metadata.title,
+  description: pagesCopy.solutions.metadata.description,
+  path: pagesCopy.solutions.metadata.path,
 });
 
 export default function SolutionsPage() {
+  const copy = pagesCopy.solutions;
   const pageUrl = new URL("/solutions", siteUrl).toString();
   const structuredData = [
     buildBreadcrumbSchema([
@@ -23,9 +25,9 @@ export default function SolutionsPage() {
     ]),
     buildWebPageSchema({
       url: pageUrl,
-      name: "Solutions",
-      description: "Ciwi 解决方案页，帮助 Shopify 商家按跨境转化、多语言运营和 AOV 目标找到更合适的路径。",
-      keywords: ["Shopify solutions", "conversion", "localization", "AOV"],
+      name: copy.structuredData.name,
+      description: copy.structuredData.description,
+      keywords: [...copy.structuredData.keywords],
       type: "CollectionPage",
     }),
   ];
@@ -42,9 +44,9 @@ export default function SolutionsPage() {
         ))}
         <section className="page-section page-hero">
           <SectionHeading
-            eyebrow="Solutions"
-            title="按问题找路径，按结果选方案"
-            description="无论你更关心跨市场转化、多语言运营还是客单价提升，都可以先从对应场景进入。"
+            eyebrow={copy.hero.eyebrow}
+            title={copy.hero.title}
+            description={copy.hero.description}
             as="h1"
           />
           <div className="resource-grid">
@@ -54,20 +56,20 @@ export default function SolutionsPage() {
                 title={solution.name}
                 description={solution.description}
                 href={`/solutions/${solution.slug}`}
-                meta={["Solution", "Shopify"]}
+                meta={[...copy.hero.cardMeta]}
               />
             ))}
           </div>
         </section>
         <MediaPlaceholderSection
-          eyebrow="Solutions media"
-          title="场景总览视觉预留"
-          description="方案列表页更适合用按问题分类的场景图，帮助用户快速判断入口。"
+          eyebrow={copy.media.eyebrow}
+          title={copy.media.title}
+          description={copy.media.description}
           items={solutionsIndexMediaBriefs}
         />
         <FinalCtaSection
-          title="从场景页继续进入产品、对比页和资源内容"
-          description="如果你已经判断清楚当前重点，可以继续看对应产品、对比页和帮助文档。"
+          title={copy.finalCta.title}
+          description={copy.finalCta.description}
         />
       </PageContainer>
     </main>

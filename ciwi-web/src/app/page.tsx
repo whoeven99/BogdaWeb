@@ -8,8 +8,8 @@ import {ProductMatrixSection} from "@/components/sections/ProductMatrixSection";
 import {ResourcesSection} from "@/components/sections/ResourcesSection";
 import {SocialProofSection} from "@/components/sections/SocialProofSection";
 import {PageContainer} from "@/components/ui/PageContainer";
-import {heroProofItems, homeFaq} from "@/content/home";
-import {homeDemoMediaBriefs, homeHeroMediaBriefs} from "@/content/media-briefs";
+import {homePageCopy} from "@/content/home-page-copy";
+import {homeDemoMediaBriefs} from "@/content/media-briefs";
 import {productMap} from "@/content/products";
 import {buildPageMetadata} from "@/lib/seo/metadata";
 
@@ -21,41 +21,36 @@ export const metadata = buildPageMetadata({
 
 export default function HomePage() {
   const translatorProduct = productMap.translator;
+  const copy = homePageCopy;
 
   return (
     <main>
       <PageContainer>
         <HeroSection
-          title="让 Shopify 商家更快上线多语言，也更容易把访问变成下单"
-          description="Ciwi 围绕翻译、本地化、内容效率和 AOV 提升，帮助品牌把商品表达讲清楚，把页面体验做顺，把增长动作真正落到前台。"
-          proofItems={heroProofItems}
-        />
-        <MediaPlaceholderSection
-          eyebrow="Hero media"
-          title="首屏素材预留"
-          description="这里建议放品牌主视觉或核心产品截图，让用户在首屏先看到产品形态。"
-          items={homeHeroMediaBriefs}
+          title={copy.hero.title}
+          description={copy.hero.description}
+          proofItems={[...copy.hero.proofItems]}
         />
         <ProductMatrixSection />
         <OutcomeSection />
         <DemoShowcaseSection
-          eyebrow="Demo preview"
-          title="先看结果，再判断这套能力是否适合你的店铺"
-          description="这里先展示两个最能直接影响转化体验的场景：商品文案本地化，以及 glossary 对品牌术语一致性的控制。"
+          eyebrow={copy.demo.eyebrow}
+          title={copy.demo.title}
+          description={copy.demo.description}
           items={translatorProduct.demoScenarios.slice(0, 2)}
         />
         <MediaPlaceholderSection
-          eyebrow="Demo media"
-          title="首页演示素材预留"
-          description="首页更适合放一段短视频，快速展示真实效果，而不是完整教学。"
+          eyebrow={copy.demoMedia.eyebrow}
+          title={copy.demoMedia.title}
+          description={copy.demoMedia.description}
           items={homeDemoMediaBriefs}
         />
         <SocialProofSection />
         <ResourcesSection />
-        <FaqSection items={homeFaq} />
+        <FaqSection items={copy.homeFaq.map((item) => ({...item}))} />
         <FinalCtaSection
-          title="把多语言、内容和转化动作接成一条更顺的增长链路"
-          description="从搜索进入、看到产品、理解方案到决定安装，前台每一步都应该更容易让用户做判断。"
+          title={copy.finalCta.title}
+          description={copy.finalCta.description}
         />
       </PageContainer>
     </main>

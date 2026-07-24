@@ -1,5 +1,6 @@
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
+import {pagesCopy} from "@/content/pages-copy";
 import {sitePages} from "@/content/site-pages";
 import {buildPageMetadata} from "@/lib/seo/metadata";
 
@@ -16,7 +17,7 @@ export default function TermsPage() {
     <main>
       <PageContainer>
         <section className="page-section page-hero page-copy">
-          <SectionHeading eyebrow="Legal" title={page.title} description={page.description} as="h1" />
+          <SectionHeading eyebrow={pagesCopy.legal.eyebrow} title={page.title} description={page.description} as="h1" />
           {page.paragraphs.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}

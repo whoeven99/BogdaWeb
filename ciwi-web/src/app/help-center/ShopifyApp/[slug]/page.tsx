@@ -8,6 +8,7 @@ import {ContentToc} from "@/components/ui/ContentToc";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {blogPosts} from "@/content/blog";
+import {detailPagesCopy} from "@/content/detail-pages-copy";
 import {helpCenterDocMap, helpCenterDocs} from "@/content/help-center";
 import {getHelpDocMediaBriefs} from "@/content/media-briefs";
 import {addSectionAnchors, extractFaqEntriesFromHtml, extractSectionsFromHtml} from "@/lib/content/sections";
@@ -33,9 +34,9 @@ export async function generateMetadata({params}: HelpCenterDetailPageProps) {
 
   if (!doc) {
     return buildPageMetadata({
-      title: "Help article not found",
-      description: "The requested help article could not be found.",
-      path: "/help-center",
+      title: detailPagesCopy.helpCenterDoc.notFound.title,
+      description: detailPagesCopy.helpCenterDoc.notFound.description,
+      path: detailPagesCopy.helpCenterDoc.notFound.path,
     });
   }
 
@@ -49,6 +50,7 @@ export async function generateMetadata({params}: HelpCenterDetailPageProps) {
 export default async function HelpCenterDetailPage({params}: HelpCenterDetailPageProps) {
   const {slug} = await params;
   const doc = helpCenterDocMap[slug];
+  const copy = detailPagesCopy.helpCenterDoc;
 
   if (!doc) {
     notFound();
@@ -70,10 +72,10 @@ export default async function HelpCenterDetailPage({params}: HelpCenterDetailPag
       meta: ["Blog", blogPosts[0].publishedAt],
     },
     {
-      title: "AI Translator",
-      description: "回到产品页，直接看适用场景、Demo 和关键能力。",
-      href: "/products/translator",
-      meta: ["Product", "Translator"],
+      title: copy.relatedFallback.translatorTitle,
+      description: copy.relatedFallback.translatorDescription,
+      href: copy.relatedFallback.translatorHref,
+      meta: [...copy.relatedFallback.translatorMeta],
     },
   ];
   const structuredData = [
@@ -111,19 +113,19 @@ export default async function HelpCenterDetailPage({params}: HelpCenterDetailPag
                 ))}
                 <span>{doc.readingTime}</span>
               </div>
-              <SectionHeading eyebrow="Help Center" title={doc.title} description={doc.description} as="h1" />
+              <SectionHeading eyebrow={copy.hero.eyebrow} title={doc.title} description={doc.description} as="h1" />
               <div className="inline-list space-top-lg">
-                <Link href="/help-center" className="button button--secondary">
-                  Back to help center
+                <Link href={copy.hero.backHref} className="button button--secondary">
+                  {copy.hero.backLabel}
                 </Link>
-                <Link href="/products/translator" className="button button--ghost">
-                  Open translator product
+                <Link href={copy.hero.primaryCtaHref} className="button button--ghost">
+                  {copy.hero.primaryCtaLabel}
                 </Link>
               </div>
               <MediaPlaceholderSection
-                eyebrow="Doc media"
-                title="文档截图与视频预留"
-                description="帮助文档更适合直接补截图或短视频，让用户不用只靠文字理解操作路径。"
+                eyebrow={copy.media.eyebrow}
+                title={copy.media.title}
+                description={copy.media.description}
                 items={mediaBriefs}
                 compact
               />
@@ -131,17 +133,15 @@ export default async function HelpCenterDetailPage({params}: HelpCenterDetailPag
             </article>
 
             <aside className="blog-aside">
-              <ContentToc items={sections} title="Doc sections" />
+              <ContentToc items={sections} title={copy.aside.tocTitle} />
               <div className="surface-card section-stack space-top-lg">
                 <div>
-                  <h3>Quick guidance</h3>
-                  <p className="quote">
-                    帮助文档最适合解决具体问题。读完这页后，如果你还在比较方案，再回到产品页和 Demo 会更有效。
-                  </p>
+                  <h3>{copy.aside.quickTitle}</h3>
+                  <p className="quote">{copy.aside.quickText}</p>
                 </div>
                 <div>
-                  <h3>Recommended next step</h3>
-                  <p className="quote">先确认这项设置，再回到产品页看完整场景和相关资源。</p>
+                  <h3>{copy.aside.nextStepTitle}</h3>
+                  <p className="quote">{copy.aside.nextStepText}</p>
                 </div>
               </div>
 
@@ -169,12 +169,12 @@ export default async function HelpCenterDetailPage({params}: HelpCenterDetailPag
           </div>
         </section>
         <FinalCtaSection
-          title="先解决具体问题，再回到产品全貌"
-          description="如果这篇文档已经回答了你的问题，下一步通常是进入产品页、Demo 或更多帮助文档继续确认。"
-          primaryLabel="Open translator product"
-          primaryHref="/products/translator"
-          secondaryLabel="Browse help docs"
-          secondaryHref="/help-center"
+          title={copy.finalCta.title}
+          description={copy.finalCta.description}
+          primaryLabel={copy.finalCta.primaryLabel}
+          primaryHref={copy.finalCta.primaryHref}
+          secondaryLabel={copy.finalCta.secondaryLabel}
+          secondaryHref={copy.finalCta.secondaryHref}
         />
       </PageContainer>
     </main>

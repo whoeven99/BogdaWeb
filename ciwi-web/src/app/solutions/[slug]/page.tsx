@@ -8,6 +8,7 @@ import {ProductAnchorNav} from "@/components/sections/ProductAnchorNav";
 import {Button} from "@/components/ui/Button";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
+import {detailPagesCopy} from "@/content/detail-pages-copy";
 import {getSolutionMediaBriefs} from "@/content/media-briefs";
 import {solutionMap, solutions} from "@/content/solutions";
 import {buildPageMetadata, siteUrl} from "@/lib/seo/metadata";
@@ -27,9 +28,9 @@ export async function generateMetadata({params}: SolutionDetailPageProps) {
 
   if (!solution) {
     return buildPageMetadata({
-      title: "Solution not found",
-      description: "The requested solution page could not be found.",
-      path: "/solutions",
+      title: detailPagesCopy.solutions.notFound.title,
+      description: detailPagesCopy.solutions.notFound.description,
+      path: detailPagesCopy.solutions.notFound.path,
     });
   }
 
@@ -43,19 +44,14 @@ export async function generateMetadata({params}: SolutionDetailPageProps) {
 export default async function SolutionDetailPage({params}: SolutionDetailPageProps) {
   const {slug} = await params;
   const solution = solutionMap[slug];
+  const copy = detailPagesCopy.solutions;
 
   if (!solution) {
     notFound();
   }
 
   const pageUrl = new URL(`/solutions/${solution.slug}`, siteUrl).toString();
-  const anchorItems = [
-    {label: "Challenges", href: "#challenges"},
-    {label: "Approach", href: "#approach"},
-    {label: "Products", href: "#products"},
-    {label: "Resources", href: "#resources"},
-    {label: "FAQ", href: "#faq"},
-  ];
+  const anchorItems = copy.anchors.map((item) => ({...item}));
   const structuredData = [
     buildBreadcrumbSchema([
       {name: "Home", item: siteUrl},
@@ -86,7 +82,7 @@ export default async function SolutionDetailPage({params}: SolutionDetailPagePro
           <div className="detail-grid">
             <div>
               <SectionHeading
-                eyebrow="Solutions"
+                eyebrow={copy.hero.eyebrow}
                 title={solution.heroTitle}
                 description={solution.heroDescription}
                 as="h1"
@@ -100,18 +96,18 @@ export default async function SolutionDetailPage({params}: SolutionDetailPagePro
               </div>
               <div className="inline-list space-top-xl">
                 <Button href={solution.ctaHref}>{solution.ctaLabel}</Button>
-                <Button href="/contact" variant="secondary">
-                  Talk to us
+                <Button href={copy.hero.secondaryHref} variant="secondary">
+                  {copy.hero.secondaryLabel}
                 </Button>
               </div>
             </div>
             <div className="surface-card section-stack">
               <div>
-                <h3>Overview</h3>
+                <h3>{copy.hero.panels.overviewTitle}</h3>
                 <p className="quote">{solution.description}</p>
               </div>
               <div>
-                <h3>Common signals</h3>
+                <h3>{copy.hero.panels.signalsTitle}</h3>
                 <ul className="check-list">
                   {solution.targetSignals.map((item) => (
                     <li key={item}>{item}</li>
@@ -123,19 +119,19 @@ export default async function SolutionDetailPage({params}: SolutionDetailPagePro
         </section>
 
         <MediaPlaceholderSection
-          eyebrow="Solution media"
-          title="方案页素材预留"
-          description="方案页建议同时准备场景图和短视频，让用户更快看到问题如何被解决。"
+          eyebrow={copy.media.eyebrow}
+          title={copy.media.title}
+          description={copy.media.description}
           items={mediaBriefs}
         />
 
         <ProductAnchorNav items={anchorItems} />
 
-        <section className="page-section anchor-offset" id="challenges">
+        <section className="page-section anchor-offset" id={copy.sections.challenges.id}>
           <SectionHeading
-            eyebrow="Challenges"
-            title="常见问题"
-            description="先看摩擦点，再看解决方式。"
+            eyebrow={copy.sections.challenges.eyebrow}
+            title={copy.sections.challenges.title}
+            description={copy.sections.challenges.description}
           />
           <div className="card-grid">
             {solution.challenges.map((item) => (
@@ -146,11 +142,11 @@ export default async function SolutionDetailPage({params}: SolutionDetailPagePro
           </div>
         </section>
 
-        <section className="page-section anchor-offset" id="approach">
+        <section className="page-section anchor-offset" id={copy.sections.approach.id}>
           <SectionHeading
-            eyebrow="Approach"
-            title="解决方式"
-            description="把路径拆成几个容易执行的步骤。"
+            eyebrow={copy.sections.approach.eyebrow}
+            title={copy.sections.approach.title}
+            description={copy.sections.approach.description}
           />
           <div className="card-grid">
             {solution.approach.map((item, index) => (
@@ -165,11 +161,11 @@ export default async function SolutionDetailPage({params}: SolutionDetailPagePro
           </div>
         </section>
 
-        <section className="page-section anchor-offset" id="products">
+        <section className="page-section anchor-offset" id={copy.sections.products.id}>
           <SectionHeading
-            eyebrow="Recommended products"
-            title="相关产品"
-            description="从场景进入对应产品能力。"
+            eyebrow={copy.sections.products.eyebrow}
+            title={copy.sections.products.title}
+            description={copy.sections.products.description}
           />
           <div className="resource-grid">
             {solution.recommendedProducts.map((item) => (
@@ -184,11 +180,11 @@ export default async function SolutionDetailPage({params}: SolutionDetailPagePro
           </div>
         </section>
 
-        <section className="page-section anchor-offset" id="resources">
+        <section className="page-section anchor-offset" id={copy.sections.resources.id}>
           <SectionHeading
-            eyebrow="Related resources"
-            title="相关资源"
-            description="继续看文档、文章和对比内容。"
+            eyebrow={copy.sections.resources.eyebrow}
+            title={copy.sections.resources.title}
+            description={copy.sections.resources.description}
           />
           <div className="resource-grid">
             {solution.relatedResources.map((item) => (
@@ -210,8 +206,8 @@ export default async function SolutionDetailPage({params}: SolutionDetailPagePro
           description={solution.description}
           primaryLabel={solution.ctaLabel}
           primaryHref={solution.ctaHref}
-          secondaryLabel="Browse solutions"
-          secondaryHref="/solutions"
+          secondaryLabel={copy.finalCta.secondaryLabel}
+          secondaryHref={copy.finalCta.secondaryHref}
         />
       </PageContainer>
     </main>
