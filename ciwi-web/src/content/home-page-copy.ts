@@ -72,7 +72,7 @@ export const homePageCopy = {
       "Ciwi 为 Shopify 商家打造 AI 驱动的产品，帮助品牌跨越语言与市场障碍，更轻松地触达、连接并服务全球消费者。",
     proofItems: ["专为 Shopify 打造", "专业团队支持", "面向全球增长"],
     primaryCtaLabel: "探索 Ciwi 产品",
-    primaryCtaHref: "https://apps.shopify.com/translator-by-ciwi",
+    primaryCtaHref: "https://apps.shopify.com/partners/bogdatech",
     secondaryCtaLabel: "View Demo",
     secondaryCtaHref: "/demo",
     brandName: "Ciwi",

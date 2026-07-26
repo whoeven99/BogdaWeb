@@ -1,10 +1,8 @@
 import {FinalCtaSection} from "@/components/sections/FinalCtaSection";
-import {MediaPlaceholderSection} from "@/components/sections/MediaPlaceholderSection";
 import {ProductMatrixSection} from "@/components/sections/ProductMatrixSection";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {pagesCopy} from "@/content/pages-copy";
-import {productsIndexMediaBriefs} from "@/content/media-briefs";
 import {buildPageMetadata} from "@/lib/seo/metadata";
 
 export const metadata = buildPageMetadata({
@@ -19,24 +17,23 @@ export default function ProductsPage() {
   return (
     <main>
       <PageContainer>
-        <section className="page-section page-hero">
-          <SectionHeading
-            eyebrow={copy.hero.eyebrow}
-            title={copy.hero.title}
-            description={copy.hero.description}
-            as="h1"
-          />
+        <section className="page-hero page-hero--compact">
+          <SectionHeading title={copy.hero.title} description={copy.hero.description} as="h1" />
         </section>
-        <MediaPlaceholderSection
-          eyebrow={copy.media.eyebrow}
-          title={copy.media.title}
-          description={copy.media.description}
-          items={productsIndexMediaBriefs}
+        <ProductMatrixSection
+          eyebrow={copy.matrix.eyebrow}
+          title={copy.matrix.title}
+          description={copy.matrix.description}
+          className="page-section page-section--products-first"
         />
-        <ProductMatrixSection />
         <FinalCtaSection
+          eyebrow={copy.finalCta.eyebrow}
           title={copy.finalCta.title}
           description={copy.finalCta.description}
+          primaryLabel={copy.finalCta.primaryLabel}
+          primaryHref={copy.finalCta.primaryHref}
+          secondaryLabel={copy.finalCta.secondaryLabel}
+          secondaryHref={copy.finalCta.secondaryHref}
         />
       </PageContainer>
     </main>

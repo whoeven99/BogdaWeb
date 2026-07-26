@@ -24,6 +24,35 @@ export const detailPagesCopy = {
       {label: "Resources", href: "#resources"},
       {label: "FAQ", href: "#faq"},
     ],
+    translator: {
+      anchors: [
+        {label: "Use cases", href: "#use-cases"},
+        {label: "Functions", href: "#function-overview"},
+        {label: "Compare", href: "#compare"},
+        {label: "Resources", href: "#resources"},
+        {label: "FAQ", href: "#faq"},
+      ],
+      hero: {
+        reviewsTitle: "商家评价",
+        compareTitle: "常见对比",
+        browseCompareLabel: "Browse compare pages",
+        browseCompareHref: "/compare",
+      },
+      sections: {
+        featureSpotlights: {
+          id: "function-overview",
+          eyebrow: "Function overview",
+          title: "关键功能介绍、快速预览",
+          description: "先快速扫一遍关键能力，再决定要不要继续深入看帮助文档、对比页面或完整演示。",
+        },
+        comparisons: {
+          id: "compare",
+          eyebrow: "Compare",
+          title: "和其他产品怎么区分",
+          description: "如果你已经在比较路线，直接进入对应对比页会更快。",
+        },
+      },
+    },
     media: {
       hero: {
         eyebrow: "Product media",

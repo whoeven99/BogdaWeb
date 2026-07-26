@@ -6,6 +6,9 @@ export type ProductItem = {
   heroDescription: string;
   icon: string;
   metrics: string[];
+  rating?: number;
+  reviewCount?: number;
+  reviewSnippets?: string[];
   targetUsers: string[];
   benefits: string[];
   features: {title: string; description: string}[];
@@ -26,6 +29,18 @@ export type ProductItem = {
       note?: string;
     }[];
   }[];
+  featureModules?: {
+    title: string;
+    description: string;
+    highlights: string[];
+    primaryLabel: string;
+    primaryText: string;
+    secondaryLabel: string;
+    secondaryText: string;
+    note: string;
+    previewLabels?: string[];
+  }[];
+  compareLinks?: {title: string; description: string; href: string; meta: string[]}[];
   relatedResources: {title: string; href: string; meta: string[]}[];
   faq: {question: string; answer: string}[];
   ctaLabel: string;
@@ -42,6 +57,12 @@ export const products: ProductItem[] = [
       "Ciwi AI Translator 覆盖商品、主题、导航、FAQ、图片和 metafields 等关键内容层，让多语言上线更快、术语控制更稳、后续更新更省力。",
     icon: "/translate.svg",
     metrics: ["100+ languages", "Shopify-aware workflow", "Glossary and model control"],
+    rating: 4.7,
+    reviewCount: 22,
+    reviewSnippets: [
+      "Absolutely love this app! The support team is incredibly responsive — they help almost immediately.",
+      "这个插件确实好用！而且客服响应特别快，有什么需求都会在第一时间解决。",
+    ],
     targetUsers: ["正在拓展海外市场的 Shopify 品牌", "需要长期维护多语言内容的运营团队", "重视品牌术语一致性和本地化质量的商家"],
     benefits: ["更快上线多语言版本", "减少术语漂移和品牌表达不一致", "让后续内容更新也能持续同步"],
     features: [
@@ -139,6 +160,61 @@ export const products: ProductItem[] = [
         ],
       },
     ],
+    featureModules: [
+      {
+        title: "快速预览翻译结果",
+        description: "先看真实前后结果和页面语气，再决定是否继续深入看交互演示或配置流程。",
+        highlights: ["商品描述前后对照", "FAQ 与说明块一起本地化", "保留优惠和场景表达"],
+        primaryLabel: "Original content",
+        primaryText: "Bundle two scalp-care products and save 15% with auto-applied discount.",
+        secondaryLabel: "Localized result",
+        secondaryText: "购买两件头皮护理产品，系统将自动套用 15% 套餐折扣，并保留品牌语气与优惠表达。",
+        note: "先看结果是否顺眼、是否贴近品牌语气，会比先看功能列表更容易判断产品值不值得继续研究。",
+        previewLabels: ["Bundle offer", "Beauty PDP", "FAQ snippet"],
+      },
+      {
+        title: "用 glossary 锁定品牌术语",
+        description: "把品牌词、系列名和关键成分词锁住，减少不同页面出现不同翻法的情况。",
+        highlights: ["品牌词不被误译", "促销表达更稳定", "高价值术语统一维护"],
+        primaryLabel: "Without glossary",
+        primaryText: "Hydrating repair serum suitable for dry and color-treated hair.",
+        secondaryLabel: "With glossary",
+        secondaryText: "保湿修护精华，适用于干燥及染后发质，并保持品牌术语“修护精华”的统一翻译。",
+        note: "真正影响长期本地化质量的，往往不是第一次翻译，而是后续更新时术语还能不能保持一致。",
+        previewLabels: ["Repair serum", "Brand term lock", "Promo copy"],
+      },
+      {
+        title: "覆盖主题与结构化内容",
+        description: "不只翻商品正文，也把主题区块、metafields、导航、FAQ 和图片文案一起纳入同一套流程。",
+        highlights: ["主题区块与 metafields 一起覆盖", "FAQ / Navigation / Image text 同步更新", "降低结构化内容遗漏率"],
+        primaryLabel: "Store content",
+        primaryText: "Theme blocks, metafields, navigation, FAQ and image text need to stay in sync.",
+        secondaryLabel: "Ciwi approach",
+        secondaryText: "通过结构化翻译覆盖主题区块、metafields、导航、FAQ 和图片文案，减少更新不同步。",
+        note: "如果这些结构化内容没有一起进入流程，多语言站点通常会在第二轮更新时开始出现断层。",
+        previewLabels: ["Theme blocks", "Metafields", "Image captions"],
+      },
+    ],
+    compareLinks: [
+      {
+        title: "Ciwi vs Shopify Translate & Adapt",
+        description: "比较 Shopify 原生多语言能力和更完整本地化工作流的差异。",
+        href: "/compare/ciwi-vs-shopify-translate-adapt",
+        meta: ["Compare", "Native vs workflow"],
+      },
+      {
+        title: "Ciwi vs Transcy",
+        description: "从 Shopify 适配深度、术语控制和长期维护成本三个维度看差异。",
+        href: "/compare/ciwi-vs-transcy",
+        meta: ["Compare", "Localization control"],
+      },
+      {
+        title: "Ciwi vs Weglot",
+        description: "适合比较快速覆盖型方案和更强调内容治理路径的不同。",
+        href: "/compare/ciwi-vs-weglot",
+        meta: ["Compare", "Launch vs governance"],
+      },
+    ],
     relatedResources: [
       {title: "About ciwi.ai-translator Shopify App", href: "/help-center/ShopifyApp/about-ciwi-ai-translator-shopify-app/", meta: ["Help Center", "Overview"]},
       {title: "How to setup and use glossary?", href: "/help-center/ShopifyApp/how-to-setup-and-use-glossary/", meta: ["Help Center", "Glossary"]},
@@ -150,7 +226,7 @@ export const products: ProductItem[] = [
       {question: "适合什么阶段的 Shopify 商家？", answer: "既适合刚开始进入多语言市场的商家，也适合已经在长期维护多市场运营、希望降低后续同步成本的品牌。"},
     ],
     ctaLabel: "Install on Shopify",
-    ctaHref: "https://apps.shopify.com/translator-by-ciwi",
+    ctaHref: "https://apps.shopify.com/partners/bogdatech",
   },
   {
     slug: "bundle-discount",
@@ -160,6 +236,12 @@ export const products: ProductItem[] = [
     heroDescription: "Bundle Discount 帮助商家把套餐逻辑、节省金额和购买理由表达得更清楚，让加购更自然、更容易被接受。",
     icon: "/subscriptions-created-outlined.svg",
     metrics: ["Bundle-first UX", "Upsell-friendly framing", "Clear savings communication"],
+    rating: 4.9,
+    reviewCount: 8,
+    reviewSnippets: [
+      "套餐逻辑更好理解了，购物车里的加购引导也自然很多。",
+      "页面促销信息不再乱，用户能更快看懂“为什么值得买更多”。",
+    ],
     targetUsers: ["希望提升客单价的 Shopify 商家", "经常做套餐销售和促销活动的品牌", "需要把加购逻辑讲清楚的运营团队"],
     benefits: ["提高 AOV", "让套餐购买理由更直观", "减少页面促销表达混乱"],
     features: [
@@ -212,6 +294,12 @@ export const products: ProductItem[] = [
     heroDescription: "Content AI 帮助商家更快生成商品标题、卖点、FAQ 和 SEO 页面草稿，让内容生产更稳定，也更容易复用。",
     icon: "/ai-generate-2.svg",
     metrics: ["SEO-ready drafts", "FAQ generation", "Works with localization"],
+    rating: 4.8,
+    reviewCount: 6,
+    reviewSnippets: [
+      "标题、卖点和 FAQ 的初稿质量很稳定，节省了大量编辑时间。",
+      "把 SEO 结构先搭出来，再做人工润色，效率提升非常明显。",
+    ],
     targetUsers: ["商品量较多的品牌", "需要批量生成 SEO 内容的团队", "希望提升内容效率的运营人员"],
     benefits: ["提高内容生产效率", "扩大 SEO 覆盖", "减少重复内容劳动"],
     features: [

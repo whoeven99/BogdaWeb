@@ -31,7 +31,7 @@ export function SiteHeader() {
               <Button href="/demo" variant="secondary">
                 View Demo
               </Button>
-              <Button href="https://apps.shopify.com/translator-by-ciwi">Install on Shopify</Button>
+              <Button href="https://apps.shopify.com/partners/bogdatech">Install on Shopify</Button>
             </div>
           </div>
         </div>

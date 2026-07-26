@@ -5,6 +5,7 @@ import {uiCopy} from "@/content/ui-copy";
 type FinalCtaSectionProps = {
   title: string;
   description: string;
+  eyebrow?: string;
   primaryLabel?: string;
   primaryHref?: string;
   secondaryLabel?: string;
@@ -14,6 +15,7 @@ type FinalCtaSectionProps = {
 export function FinalCtaSection({
   title,
   description,
+  eyebrow = uiCopy.sections.nextStepEyebrow,
   primaryLabel = uiCopy.cta.installLabel,
   primaryHref = uiCopy.cta.installHref,
   secondaryLabel = uiCopy.cta.talkLabel,
@@ -22,7 +24,7 @@ export function FinalCtaSection({
   return (
     <section className="page-section">
       <div className="callout">
-        <SectionHeading eyebrow={uiCopy.sections.nextStepEyebrow} title={title} description={description} />
+        <SectionHeading eyebrow={eyebrow} title={title} description={description} />
         <div className="inline-list">
           <Button href={primaryHref}>{primaryLabel}</Button>
           <Button href={secondaryHref} variant="secondary">

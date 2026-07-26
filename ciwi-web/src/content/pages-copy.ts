@@ -1,23 +1,27 @@
 export const pagesCopy = {
   products: {
     metadata: {
-      title: "Products",
-      description: "Ciwi 产品矩阵，帮助 Shopify 商家按多语言转化、内容效率和 AOV 目标快速找到合适产品。",
+      title: "Ciwi Products",
+      description: "Ciwi 产品矩阵：按多语言本地化、内容效率与 SEO、AOV 提升等目标，快速找到对应产品入口并进入详情页。",
       path: "/products",
     },
     hero: {
-      eyebrow: "Products",
-      title: "直接按目标选产品",
-      description: "想提升多语言转化、加快内容生产，或把客单价做上去，都可以从这里直接进入对应产品。",
+      title: "Ciwi 产品矩阵",
+      description: "三条产品线分别解决多语言本地化与转化、AOV 提升、内容生产与 SEO。选择你的目标，进入对应产品页看场景、Demo 与资源入口。",
     },
-    media: {
-      eyebrow: "Products media",
-      title: "产品总览视觉预留",
-      description: "产品列表页适合用产品矩阵图，而不是单一产品图。",
+    matrix: {
+      eyebrow: "Products",
+      title: "按目标进入对应产品",
+      description: "每个产品页都包含适用人群、关键收益、核心功能、Demo 场景与相关资源，方便快速判断是否匹配。",
     },
     finalCta: {
-      title: "先确定目标，再继续看 Demo、对比页和帮助文档",
-      description: "如果你已经知道当前最想解决的问题，可以继续进入对应产品页，把安装、选型和文档一起看清楚。",
+      eyebrow: "Your request",
+      title: "我们也支持根据您的需求开发自定义 Shopify App",
+      description: "如果你希望根据自身站点的模式做一款更贴合业务的 Shopify App，把目标、约束和现有流程发给我们，我们会给出建议与可行方案。",
+      primaryLabel: "提出需求",
+      primaryHref: "/contact",
+      secondaryLabel: "View Demo",
+      secondaryHref: "/demo",
     },
   },
   solutions: {
@@ -271,7 +275,7 @@ export const pagesCopy = {
       cardTitle: "Start a conversation",
       cardDescription: "如果你正在评估 Shopify 多语言、本地化或 AOV 提升，可以直接从这里联系。",
       installLabel: "Install on Shopify",
-      installHref: "https://apps.shopify.com/translator-by-ciwi",
+      installHref: "https://apps.shopify.com/partners/bogdatech",
       supportEmailLabel: "support@ciwi.ai",
       supportEmailHref: "mailto:support@ciwi.ai",
     },
