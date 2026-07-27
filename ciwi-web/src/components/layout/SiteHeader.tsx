@@ -19,20 +19,15 @@ export function SiteHeader() {
               <span className="site-brand__tagline">AI PRODUCTS FOR SHOPIFY</span>
             </span>
           </Link>
-          <div className="site-nav">
-            <nav className="site-nav__links" aria-label="Primary">
-              {primaryNavigation.map((item) => (
-                <Link key={item.href} href={item.href} className="site-nav__link">
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
-            <div className="header-cta">
-              <Button href="/demo" variant="secondary">
-                View Demo
-              </Button>
-              <Button href="https://apps.shopify.com/partners/bogdatech">Install on Shopify</Button>
-            </div>
+          <nav className="site-nav__links" aria-label="Primary">
+            {primaryNavigation.map((item) => (
+              <Link key={item.href} href={item.href} className="site-nav__link">
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+          <div className="header-cta">
+            <Button href="https://apps.shopify.com/partners/bogdatech">Install on Shopify</Button>
           </div>
         </div>
       </PageContainer>

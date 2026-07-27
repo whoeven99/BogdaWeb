@@ -1,23 +1,26 @@
 import {ArticleCard} from "@/components/cards/ArticleCard";
-import {FinalCtaSection} from "@/components/sections/FinalCtaSection";
-import {MediaPlaceholderSection} from "@/components/sections/MediaPlaceholderSection";
+import {NewsletterSubscriptionCard} from "@/components/sections/NewsletterSubscriptionCard";
+import {Button} from "@/components/ui/Button";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
-import {resourcesPageMediaBriefs} from "@/content/media-briefs";
-import {pagesCopy} from "@/content/pages-copy";
+import {resourcesPageCopy} from "@/content/resources-page-copy";
 import {blogResources, compareResources, helpCenterResources} from "@/content/resources";
 import {buildPageMetadata} from "@/lib/seo/metadata";
 
 export const metadata = buildPageMetadata({
-  title: pagesCopy.resources.metadata.title,
-  description: pagesCopy.resources.metadata.description,
-  path: pagesCopy.resources.metadata.path,
+  title: resourcesPageCopy.metadata.title,
+  description: resourcesPageCopy.metadata.description,
+  path: resourcesPageCopy.metadata.path,
 });
 
 export default function ResourcesPage() {
-  const copy = pagesCopy.resources;
+  const copy = resourcesPageCopy;
+  const featuredHelpCenterResources = helpCenterResources.slice(0, 3);
+  const featuredBlogResources = blogResources.slice(0, 3);
+  const featuredCompareResources = compareResources.slice(0, 3);
+
   return (
-    <main>
+    <main className="resources-page">
       <PageContainer>
         <section className="page-section page-hero">
           <SectionHeading
@@ -26,40 +29,6 @@ export default function ResourcesPage() {
             description={copy.hero.description}
             as="h1"
           />
-          <div className="card-grid">
-            {copy.hero.cards.map((item) => (
-              <article key={item.title} className="surface-card">
-                <h3>{item.title}</h3>
-                <p className="quote">{item.description}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <MediaPlaceholderSection
-          eyebrow={copy.media.eyebrow}
-          title={copy.media.title}
-          description={copy.media.description}
-          items={resourcesPageMediaBriefs}
-        />
-
-        <section className="page-section">
-          <SectionHeading
-            eyebrow={copy.sections.blog.eyebrow}
-            title={copy.sections.blog.title}
-            description={copy.sections.blog.description}
-          />
-          <div className="resource-grid">
-            {blogResources.map((item) => (
-              <ArticleCard
-                key={`${item.title}-${item.href}`}
-                title={item.title}
-                description={item.description}
-                href={item.href}
-                meta={item.meta}
-              />
-            ))}
-          </div>
         </section>
 
         <section className="page-section">
@@ -69,7 +38,7 @@ export default function ResourcesPage() {
             description={copy.sections.helpCenter.description}
           />
           <div className="resource-grid">
-            {helpCenterResources.map((item) => (
+            {featuredHelpCenterResources.map((item) => (
               <ArticleCard
                 key={`${item.title}-${item.href}`}
                 title={item.title}
@@ -78,6 +47,35 @@ export default function ResourcesPage() {
                 meta={item.meta}
               />
             ))}
+          </div>
+          <div className="resources-section__cta">
+            <Button href={copy.sections.helpCenter.ctaHref} variant="secondary">
+              {copy.sections.helpCenter.ctaLabel}
+            </Button>
+          </div>
+        </section>
+
+        <section className="page-section">
+          <SectionHeading
+            eyebrow={copy.sections.blog.eyebrow}
+            title={copy.sections.blog.title}
+            description={copy.sections.blog.description}
+          />
+          <div className="resource-grid">
+            {featuredBlogResources.map((item) => (
+              <ArticleCard
+                key={`${item.title}-${item.href}`}
+                title={item.title}
+                description={item.description}
+                href={item.href}
+                meta={item.meta}
+              />
+            ))}
+          </div>
+          <div className="resources-section__cta">
+            <Button href={copy.sections.blog.ctaHref} variant="secondary">
+              {copy.sections.blog.ctaLabel}
+            </Button>
           </div>
         </section>
 
@@ -88,7 +86,7 @@ export default function ResourcesPage() {
             description={copy.sections.compare.description}
           />
           <div className="resource-grid">
-            {compareResources.map((item) => (
+            {featuredCompareResources.map((item) => (
               <ArticleCard
                 key={`${item.title}-${item.href}`}
                 title={item.title}
@@ -98,16 +96,16 @@ export default function ResourcesPage() {
               />
             ))}
           </div>
+          <div className="resources-section__cta">
+            <Button href={copy.sections.compare.ctaHref} variant="secondary">
+              {copy.sections.compare.ctaLabel}
+            </Button>
+          </div>
         </section>
 
-        <FinalCtaSection
-          title={copy.finalCta.title}
-          description={copy.finalCta.description}
-          primaryLabel={copy.finalCta.primaryLabel}
-          primaryHref={copy.finalCta.primaryHref}
-          secondaryLabel={copy.finalCta.secondaryLabel}
-          secondaryHref={copy.finalCta.secondaryHref}
-        />
+        <section className="page-section">
+          <NewsletterSubscriptionCard copy={copy.subscription} />
+        </section>
       </PageContainer>
     </main>
   );

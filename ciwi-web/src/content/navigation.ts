@@ -5,10 +5,7 @@ export type NavItem = {
 
 export const primaryNavigation: NavItem[] = [
   {label: "Products", href: "/products"},
-  {label: "Solutions", href: "/solutions"},
-  {label: "Demo", href: "/demo"},
   {label: "Resources", href: "/resources"},
-  {label: "Pricing", href: "/pricing"},
   {label: "About", href: "/about"},
 ];
 
@@ -26,7 +23,6 @@ export const footerNavigation = {
   company: [
     {label: "About", href: "/about"},
     {label: "Contact", href: "/contact"},
-    {label: "Pricing", href: "/pricing"},
   ],
   legal: [
     {label: "Privacy Policy", href: "/privacy-policy"},

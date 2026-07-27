@@ -438,7 +438,7 @@ export const helpCenterDocs: HelpCenterDoc[] = [
     relatedResources: [
       {title: "Where to buy credits", description: "如果你已经确认余额不足，可以继续看购买流程。", href: `${basePath}/where-to-buy-credits/`, meta: ["Help Center", "Credits"]},
       {title: "What is the credit refund policy?", description: "如果你想确认未使用额度如何处理，可以继续看退款规则。", href: `${basePath}/what-is-the-credit-refund-policy/`, meta: ["Help Center", "Credits"]},
-      {title: "Pricing", description: "回到价格页，继续看不同产品线的购买方式。", href: "/pricing", meta: ["Page", "Pricing"]},
+      {title: "AI Translator", description: "回到产品页，继续看多语言翻译、术语控制和结构化内容覆盖。", href: "/products/translator", meta: ["Product", "Translator"]},
     ],
   },
   {

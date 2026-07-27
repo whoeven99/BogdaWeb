@@ -2,17 +2,17 @@ export const pagesCopy = {
   products: {
     metadata: {
       title: "Ciwi Products",
-      description: "Ciwi 产品矩阵：按多语言本地化、内容效率与 SEO、AOV 提升等目标，快速找到对应产品入口并进入详情页。",
+      description: "Ciwi AI电商工具：结合丰富的 amazon、tiktok、temu 等大厂电商经验，围绕 shopify 商家痛点，以转化率、流量获取和客单价提升为导向的 AI Agent。",
       path: "/products",
     },
     hero: {
-      title: "Ciwi 产品矩阵",
-      description: "三条产品线分别解决多语言本地化与转化、AOV 提升、内容生产与 SEO。选择你的目标，进入对应产品页看场景、Demo 与资源入口。",
+      title: "Ciwi AI电商工具：",
+      description: "结合丰富的 amazon、tiktok、temu 等大厂电商经验，围绕 shopify 商家痛点，以转化率、流量获取和客单价提升为导向的 AI Agent。",
     },
     matrix: {
       eyebrow: "Products",
-      title: "按目标进入对应产品",
-      description: "每个产品页都包含适用人群、关键收益、核心功能、Demo 场景与相关资源，方便快速判断是否匹配。",
+      title: "Shopify 产品列表",
+      description: "基于 AI 打造了本地化多语言、产品描述生成、图片翻译、商业洞察、bundle营销工具等一系列开箱可用，简单上手的 Shopify app",
     },
     finalCta: {
       eyebrow: "Your request",
@@ -163,12 +163,12 @@ export const pagesCopy = {
     },
     hero: {
       eyebrow: "Resources",
-      title: "把博客、帮助文档和对比页放进同一个资源入口",
-      description: "用户不一定会直接进入产品页。资源内容应该先帮助他们理解问题，再自然回到产品和演示。",
+      title: "Ciwi 电商知识库",
+      description: "基于全球市场的第一手数据和专家分析，提供关于电商的解决方案和发展资讯",
       cards: [
-        {title: "Blog", description: "适合用来讲产品理解、市场观察和商家真正会搜索的问题。"},
-        {title: "Help Center", description: "适合承接安装、配置、术语控制和日常使用中的具体问题。"},
-        {title: "Compare", description: "适合承接高意图选型流量，帮助商家判断哪条路径更适合自己。"},
+        {title: "Blog", description: "分享Shopify 的知识和电商经营经验"},
+        {title: "Help Center", description: "基于 Ciwi 产品系列进行解答和提供操作指引"},
+        {title: "Compare", description: "帮助商家选择和对比，寻找更适合的 AI工具"},
       ],
     },
     media: {
