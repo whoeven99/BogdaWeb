@@ -964,6 +964,31 @@ select {
   padding-left: 20px;
 }
 
+.legal-page {
+  max-width: 860px;
+}
+
+.legal-page__content {
+  padding-top: var(--space-3);
+}
+
+.legal-page__content > :first-child {
+  margin-top: 0;
+}
+
+.legal-page__content p:first-child {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 14px;
+  border: 1px solid rgba(229, 231, 235, 0.9);
+  border-radius: 999px;
+  background: rgba(248, 250, 252, 0.95);
+  color: var(--color-ink-600);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
 .blog-layout {
   align-items: start;
   grid-template-columns: minmax(0, 2fr) minmax(320px, 1fr);

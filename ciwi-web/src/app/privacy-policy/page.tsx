@@ -16,11 +16,9 @@ export default function PrivacyPolicyPage() {
   return (
     <main>
       <PageContainer>
-        <section className="page-section page-hero page-copy">
+        <section className="page-section page-hero page-copy article-prose legal-page">
           <SectionHeading eyebrow={pagesCopy.legal.eyebrow} title={page.title} description={page.description} as="h1" />
-          {page.paragraphs.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
-          ))}
+          <div className="legal-page__content" dangerouslySetInnerHTML={{__html: page.contentHtml}} />
         </section>
       </PageContainer>
     </main>
