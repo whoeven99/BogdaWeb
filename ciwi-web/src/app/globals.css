@@ -977,18 +977,19 @@ select {
   display: grid;
   grid-template-columns: 300px minmax(0, 1fr);
   gap: var(--space-8);
-  align-items: start;
+  align-items: stretch;
 }
 
 .docs-sidebar {
-  position: sticky;
-  top: 96px;
+  min-width: 0;
 }
 
 .docs-sidebar__panel {
   display: grid;
   gap: var(--space-6);
   padding: var(--space-6);
+  height: 100%;
+  box-shadow: none;
 }
 
 .docs-sidebar__intro h2,
@@ -1012,14 +1013,15 @@ select {
   padding: 12px 14px;
   border-radius: 16px;
   color: var(--color-ink-700);
-  background: rgba(248, 250, 252, 0.95);
-  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  border: 1px solid rgba(229, 231, 235, 0.9);
+  background: rgba(248, 250, 252, 0.9);
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 .docs-nav-link:hover {
   color: var(--color-primary);
+  border-color: rgba(0, 128, 96, 0.18);
   background: rgba(232, 245, 238, 0.88);
-  transform: translateY(-1px);
 }
 
 .docs-nav-link--active {
@@ -1054,8 +1056,41 @@ select {
   border-top: 1px solid rgba(229, 231, 235, 0.9);
 }
 
+.docs-directory-pagination {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+}
+
+.docs-directory-pagination__link,
+.docs-directory-pagination__placeholder {
+  min-height: 36px;
+}
+
+.docs-directory-pagination__link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-primary);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.docs-directory-pagination__link:last-child {
+  justify-self: end;
+}
+
+.docs-directory-pagination__status {
+  color: var(--color-ink-500);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
 .docs-article {
   padding: var(--space-8);
+  box-shadow: none;
 }
 
 .docs-article__header h1 {
@@ -1087,13 +1122,13 @@ select {
   border-radius: 20px;
   background: rgba(248, 250, 252, 0.95);
   color: var(--color-ink-700);
-  transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+  box-shadow: none;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
 .docs-pagination__card:hover {
   border-color: rgba(0, 128, 96, 0.2);
   background: rgba(232, 245, 238, 0.88);
-  transform: translateY(-1px);
 }
 
 .docs-pagination__card--next {
@@ -1101,6 +1136,203 @@ select {
 }
 
 .docs-pagination__label {
+  color: var(--color-ink-500);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.blog-page--medium {
+  padding: var(--space-9) 0 var(--space-10);
+}
+
+.blog-feed {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.blog-feed__header {
+  padding-bottom: var(--space-7);
+  border-bottom: 1px solid rgba(229, 231, 235, 0.9);
+}
+
+.blog-feed__header h1 {
+  margin: var(--space-3) 0 0;
+  color: var(--color-ink-900);
+  font-size: clamp(36px, 5vw, 54px);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.blog-feed__header p {
+  margin: var(--space-4) 0 0;
+  color: var(--color-ink-700);
+  font-size: 18px;
+  line-height: 1.75;
+}
+
+.blog-feed__list {
+  display: grid;
+}
+
+.blog-summary-card {
+  padding: var(--space-7) 0;
+  border-bottom: 1px solid rgba(229, 231, 235, 0.9);
+}
+
+.blog-summary-card h2 {
+  margin: 0;
+  font-size: clamp(28px, 3vw, 36px);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+.blog-summary-card h2 a {
+  color: var(--color-ink-900);
+}
+
+.blog-summary-card p {
+  margin: var(--space-4) 0 0;
+  color: var(--color-ink-700);
+  font-size: 17px;
+  line-height: 1.85;
+}
+
+.blog-summary-card__link {
+  display: inline-flex;
+  align-items: center;
+  margin-top: var(--space-5);
+  color: var(--color-primary);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.blog-feed__pagination {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--space-4);
+  padding-top: var(--space-7);
+}
+
+.blog-feed__page-list {
+  display: inline-flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.blog-feed__page-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid rgba(229, 231, 235, 0.9);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--color-ink-700);
+  font-size: 14px;
+  font-weight: 700;
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.blog-feed__page-button:hover:not(:disabled) {
+  border-color: rgba(0, 128, 96, 0.18);
+  background: rgba(232, 245, 238, 0.88);
+  color: var(--color-primary);
+}
+
+.blog-feed__page-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.blog-feed__page-button--active {
+  border-color: rgba(0, 128, 96, 0.2);
+  background: rgba(232, 245, 238, 0.92);
+  color: var(--color-primary);
+}
+
+.blog-article-page {
+  padding: var(--space-9) 0 var(--space-10);
+}
+
+.blog-article-shell {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.blog-article-single {
+  padding-bottom: var(--space-4);
+}
+
+.blog-article-single__topbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid rgba(229, 231, 235, 0.9);
+}
+
+.blog-article-single__backlink,
+.blog-article-single__source {
+  color: var(--color-ink-600);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.blog-article-single__source {
+  color: var(--color-primary);
+}
+
+.blog-article-single__header {
+  padding-top: var(--space-6);
+}
+
+.blog-article-single__header h1 {
+  margin: var(--space-3) 0 0;
+  color: var(--color-ink-900);
+  font-size: clamp(38px, 5vw, 58px);
+  line-height: 1.04;
+  letter-spacing: -0.05em;
+}
+
+.blog-article-single__header p {
+  margin: var(--space-4) 0 0;
+  color: var(--color-ink-700);
+  font-size: 20px;
+  line-height: 1.75;
+}
+
+.blog-article-single__prose {
+  margin-top: var(--space-8);
+}
+
+.blog-article-single__pagination {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin-top: var(--space-9);
+  padding-top: var(--space-6);
+  border-top: 1px solid rgba(229, 231, 235, 0.9);
+}
+
+.blog-article-single__pagination-link {
+  display: grid;
+  gap: 8px;
+  padding: var(--space-5) 0;
+  color: var(--color-ink-700);
+}
+
+.blog-article-single__pagination-link--next {
+  text-align: right;
+}
+
+.blog-article-single__pagination-label {
   color: var(--color-ink-500);
   font-size: 12px;
   font-weight: 700;
@@ -1513,9 +1745,7 @@ select {
   .split-grid,
   .detail-grid,
   .blog-layout,
-  .demo-grid,
-  .docs-layout,
-  .docs-pagination {
+  .demo-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1546,18 +1776,6 @@ select {
 
   .toc-card {
     position: static;
-  }
-
-  .docs-sidebar {
-    position: static;
-  }
-
-  .docs-page {
-    padding: var(--space-7) 0 var(--space-9);
-  }
-
-  .docs-article {
-    padding: var(--space-6);
   }
 
   .tab-list {
@@ -1621,6 +1839,36 @@ select {
     padding: var(--space-8) 0;
   }
 
+  .blog-page--medium {
+    padding: var(--space-7) 0 var(--space-8);
+  }
+
+  .blog-article-page {
+    padding: var(--space-7) 0 var(--space-8);
+  }
+
+  .blog-feed__pagination {
+    grid-template-columns: 1fr;
+  }
+
+  .blog-feed__page-list {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .blog-article-single__pagination {
+    grid-template-columns: 1fr;
+  }
+
+  .blog-article-single__topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .blog-article-single__pagination-link--next {
+    text-align: left;
+  }
+
   .subscription-card {
     grid-template-columns: 1fr;
   }
@@ -1649,5 +1897,29 @@ select {
 
   .button {
     width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .docs-layout,
+  .docs-pagination {
+    grid-template-columns: 1fr;
+  }
+
+  .docs-page {
+    padding: var(--space-7) 0 var(--space-9);
+  }
+
+  .docs-article {
+    padding: var(--space-6);
+  }
+
+  .docs-directory-pagination {
+    grid-template-columns: 1fr;
+    justify-items: start;
+  }
+
+  .docs-directory-pagination__link:last-child {
+    justify-self: start;
   }
 }

@@ -14,12 +14,20 @@ export function HelpCenterDocsLayout({
   docs,
   eyebrow = "Help Center",
 }: HelpCenterDocsLayoutProps) {
+  const docsPerPage = 8;
   const contentHtml = addSectionAnchors(currentDoc.contentHtml);
   const sections = extractSectionsFromHtml(currentDoc.contentHtml);
   const currentIndex = docs.findIndex((doc) => doc.slug === currentDoc.slug);
   const previousDoc = currentIndex > 0 ? docs[currentIndex - 1] : null;
   const nextDoc = currentIndex >= 0 && currentIndex < docs.length - 1 ? docs[currentIndex + 1] : null;
   const defaultDocSlug = docs[0]?.slug ?? currentDoc.slug;
+  const resolvedIndex = currentIndex >= 0 ? currentIndex : 0;
+  const directoryPageCount = Math.ceil(docs.length / docsPerPage);
+  const directoryPageIndex = Math.floor(resolvedIndex / docsPerPage);
+  const directoryPageStart = directoryPageIndex * docsPerPage;
+  const directoryDocs = docs.slice(directoryPageStart, directoryPageStart + docsPerPage);
+  const previousDirectoryDoc = directoryPageIndex > 0 ? docs[(directoryPageIndex - 1) * docsPerPage] : null;
+  const nextDirectoryDoc = directoryPageIndex < directoryPageCount - 1 ? docs[(directoryPageIndex + 1) * docsPerPage] : null;
 
   function getDocHref(doc: HelpCenterDoc) {
     return doc.slug === defaultDocSlug ? "/help-center" : doc.href;
@@ -37,8 +45,9 @@ export function HelpCenterDocsLayout({
             </div>
 
             <nav className="docs-nav-list" aria-label="Help center directory">
-              {docs.map((doc, index) => {
+              {directoryDocs.map((doc, index) => {
                 const isActive = doc.slug === currentDoc.slug;
+                const displayIndex = directoryPageStart + index;
 
                 return (
                   <Link
@@ -47,12 +56,34 @@ export function HelpCenterDocsLayout({
                     className={`docs-nav-link${isActive ? " docs-nav-link--active" : ""}`}
                     aria-current={isActive ? "page" : undefined}
                   >
-                    <span className="docs-nav-link__index">{String(index + 1).padStart(2, "0")}</span>
+                    <span className="docs-nav-link__index">{String(displayIndex + 1).padStart(2, "0")}</span>
                     <span className="docs-nav-link__title">{doc.title}</span>
                   </Link>
                 );
               })}
             </nav>
+
+            {directoryPageCount > 1 ? (
+              <div className="docs-directory-pagination" aria-label="Help center directory pagination">
+                {previousDirectoryDoc ? (
+                  <Link href={getDocHref(previousDirectoryDoc)} className="docs-directory-pagination__link">
+                    上一组
+                  </Link>
+                ) : (
+                  <span className="docs-directory-pagination__placeholder" />
+                )}
+                <span className="docs-directory-pagination__status">
+                  第 {directoryPageIndex + 1} / {directoryPageCount} 页
+                </span>
+                {nextDirectoryDoc ? (
+                  <Link href={getDocHref(nextDirectoryDoc)} className="docs-directory-pagination__link">
+                    下一组
+                  </Link>
+                ) : (
+                  <span className="docs-directory-pagination__placeholder" />
+                )}
+              </div>
+            ) : null}
 
             {sections.length ? (
               <div className="docs-sidebar__sections">
