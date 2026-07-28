@@ -285,7 +285,7 @@ export const pagesCopy = {
   },
   about: {
     hero: {
-      eyebrow: "Company",
+      eyebrow: "关于我们",
     },
     media: {
       eyebrow: "About media",

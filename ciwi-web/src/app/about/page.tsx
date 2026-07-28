@@ -1,8 +1,4 @@
-import {FinalCtaSection} from "@/components/sections/FinalCtaSection";
-import {MediaPlaceholderSection} from "@/components/sections/MediaPlaceholderSection";
 import {PageContainer} from "@/components/ui/PageContainer";
-import {SectionHeading} from "@/components/ui/SectionHeading";
-import {aboutPageMediaBriefs} from "@/content/media-briefs";
 import {pagesCopy} from "@/content/pages-copy";
 import {sitePages} from "@/content/site-pages";
 import {buildPageMetadata} from "@/lib/seo/metadata";
@@ -19,24 +15,21 @@ export default function AboutPage() {
   const copy = pagesCopy.about;
 
   return (
-    <main>
+    <main className="blog-article-page">
       <PageContainer>
-        <section className="page-section page-hero page-copy">
-          <SectionHeading eyebrow={copy.hero.eyebrow} title={page.title} description={page.description} as="h1" />
-          {page.paragraphs.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
-          ))}
+        <section className="blog-article-shell">
+          <article className="blog-article-single">
+            <header className="blog-article-single__header">
+              <span className="section-heading__eyebrow">{copy.hero.eyebrow}</span>
+              <h1>{page.title}</h1>
+              <p>{page.description}</p>
+            </header>
+
+            <div className="article-prose blog-article-single__prose">
+              <div dangerouslySetInnerHTML={{__html: page.contentHtml}} />
+            </div>
+          </article>
         </section>
-        <MediaPlaceholderSection
-          eyebrow={copy.media.eyebrow}
-          title={copy.media.title}
-          description={copy.media.description}
-          items={aboutPageMediaBriefs}
-        />
-        <FinalCtaSection
-          title={copy.finalCta.title}
-          description={copy.finalCta.description}
-        />
       </PageContainer>
     </main>
   );
