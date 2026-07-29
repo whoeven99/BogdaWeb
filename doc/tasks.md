@@ -42,14 +42,14 @@
 - `done` 落地新版首页骨架
 - `done` 落地 `/products/translator` 页面骨架
 - `done` 落地 `/blog` 与 `/help-center` 入口页
-- `done` 建立 Blog 详情页模板并将 Ghost 已发布文章接入站内路由
+- `done` 建立 Blog 详情页模板并切换到仓库内 MDX 内容源
 - `done` 建立 Compare 详情页模板并接入结构化内容
 - `done` 为首页与 Translator 页面接入轻量 Demo 展示模块
 
 ### P1
 
  - `doing` 处理旧路由到新路由的跳转策略
-- `todo` 清理或隔离历史 `public/blog` 遗留方案
+- `done` 清理历史 `public/blog` 遗留方案
 - `done` 整理首页与资源页所需的初始内容数据
 - `doing` 确定统一 SEO 方案：metadata、结构化数据、内链策略
 - `done` 为 Blog 文章页补目录、section anchor、相关文章入口和基础结构化数据
@@ -57,6 +57,7 @@
 - `done` 已继续迁入更多高价值 Help Center 文档，并补更细的资源回流
 - `done` 已将 Help Center 入口拆成 featured docs / all docs 两层
 - `todo` 为 Help Center 增加 topic grouping / filter，避免入口页继续膨胀
+- `done` 清理旧帮助中心静态站点，仅保留当前页面仍在使用的截图素材
 - `done` 为 Translator Demo 补样例输入切换式交互演示
 - `done` 为 Solutions 建立内容层、详情页模板与基础 schema
 - `done` 为 Compare / Solutions 页面补 breadcrumb、FAQ 和页面 schema 基础层
@@ -67,7 +68,7 @@
 
 - `todo` 评估是否需要内容模型文档
 - `done` 评估是否需要设计 token / 组件规范文档
-- `todo` 评估 Ghost 内容同步与缓存策略
+- `done` 清理 `public/blog` 与其他历史静态博客残留
 - `todo` 评估何时引入 Turso 承接结构化资源索引和 redirect 配置
 
 ## 当前阶段：已落地进度快照
@@ -76,7 +77,7 @@
 - `done` 已去除旧的 Ant Design 官网壳层
 - `done` 首页、Products、Translator、Blog、Help Center、Resources、Compare 已有可构建页面
 - `done` Solutions 已从入口骨架升级为内容驱动的列表页和详情页模板
-- `done` Blog 已通过静态内容方式接回 3 篇 Ghost 已发布文章
+- `done` Blog 已切换到 Git-based MDX 内容体系
 - `done` Compare 已有正式模板骨架
 - `done` Compare 已新增原生 Shopify 方案与更多竞品对比页，并自动进入资源聚合层
 - `done` Compare 列表页与详情页已补基础 schema 和跨页面回流
@@ -94,7 +95,7 @@
 
 1. 继续扩大 Help Center 高价值文档迁移范围，并增加 topic grouping / filter。
 2. 继续扩 Compare 页面数量，并把 Solution 页与更多产品、资源形成更细的回流。
-3. 评估 Ghost 内容同步、缓存和 canonical 收敛策略。
+3. 继续完善内容脚手架与发布流程，并逐步把帮助中心截图素材迁出历史目录。
 
 ## 完成标准
 
