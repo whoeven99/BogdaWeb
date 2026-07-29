@@ -1,39 +1,117 @@
-import { footerItemsMap } from "@/data/footerItems";
-import styles from "../css/singlePage.module.css";
-import { notFound } from "next/navigation";
+import {notFound} from "next/navigation";
+import type {Metadata} from "next";
 
-// 显式定义 generateStaticParams 的返回类型
-export function generateStaticParams(): { slug: string }[] {
-  return Object.keys(footerItemsMap).map((slug) => ({
-    slug,
-  }));
+import {LocalizedLink} from "@/components/ui/LocalizedLink";
+import {PageContainer} from "@/components/ui/PageContainer";
+import {SectionHeading} from "@/components/ui/SectionHeading";
+import {legacyRouteMap, type LegacyRouteSlug} from "@/content/legacy-routes";
+import {localizeHref} from "@/lib/i18n";
+import {getRequestLocale} from "@/lib/i18n-server";
+import {buildPageMetadata} from "@/lib/seo/metadata";
+
+type LegacyPageProps = {
+  params: Promise<{slug: string}>;
+};
+
+function getLegacyCopy(locale: "en" | "zh-cn") {
+  return locale === "zh-cn"
+    ? {
+        notFound: {
+          title: "页面不存在",
+          description: "你访问的页面不存在。",
+          path: "/",
+        },
+        hero: {
+          eyebrow: "旧路由",
+          notice: "这个旧的根级页面已经并入新的目录化结构，当前兼容页会自动带你跳转到新的地址。",
+          redirectingPrefix: "正在跳转到 ",
+          openNewPageLabel: "打开新页面",
+        },
+      }
+    : {
+        notFound: {
+          title: "Page not found",
+          description: "The requested page could not be found.",
+          path: "/",
+        },
+        hero: {
+          eyebrow: "Legacy route",
+          notice: "This older root-level page has been folded into the new structured route tree. The compatibility page will redirect visitors automatically.",
+          redirectingPrefix: "Redirecting to ",
+          openNewPageLabel: "Open new page",
+        },
+      };
 }
 
-// 定义 params 的具体类型
-type PageParams = { slug: string };
+export function generateStaticParams() {
+  return Object.keys(legacyRouteMap).map((slug) => ({slug}));
+}
 
-// 显式满足 PageProps 的 params 约束
-export default async function Page({
-  params,
-}: {
-  params: Promise<PageParams>; // 使用具体类型替代 any
-}) {
-  // 解包 params
-  const resolvedParams = await params;
-  const data = footerItemsMap[resolvedParams.slug as keyof typeof footerItemsMap];
-  console.log("Data:", data);
+export async function generateMetadata({params}: LegacyPageProps) {
+  const locale = await getRequestLocale();
+  const {slug} = await params;
+  const data = legacyRouteMap[slug as LegacyRouteSlug];
+  const copy = getLegacyCopy(locale);
 
   if (!data) {
-    console.log("Data not found for slug:", resolvedParams.slug);
+    return buildPageMetadata({
+      title: copy.notFound.title,
+      description: copy.notFound.description,
+      path: copy.notFound.path,
+      locale,
+    });
+  }
+
+  const metadata: Metadata = {
+    ...buildPageMetadata({
+      title: data.title,
+      description: data.description,
+      path: data.destination,
+      locale,
+    }),
+    robots: {
+      index: false,
+      follow: true,
+    },
+  };
+
+  return metadata;
+}
+
+export default async function LegacyRoutePage({params}: LegacyPageProps) {
+  const locale = await getRequestLocale();
+  const {slug} = await params;
+  const data = legacyRouteMap[slug as LegacyRouteSlug];
+  const copy = getLegacyCopy(locale).hero;
+
+  if (!data) {
     notFound();
   }
 
+  const localizedDestination = localizeHref(locale, data.destination);
+
   return (
-    <main className={styles.singlePageContainer}>
-      <div className={styles.card_header}>
-        <span className={styles.singlePageTitle}>{data.title}</span>
-        <div className={styles.desc}>{data.content}</div>
-      </div>
+    <main>
+      <PageContainer>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.location.replace(${JSON.stringify(localizedDestination)});`,
+          }}
+        />
+        <section className="page-section page-hero">
+          <div className="surface-card page-copy">
+            <SectionHeading eyebrow={copy.eyebrow} title={data.title} description={data.description} as="h1" />
+            <p>{copy.notice}</p>
+            <p className="quote">
+              {copy.redirectingPrefix}
+              <code>{localizedDestination}</code>...
+            </p>
+            <LocalizedLink href={data.destination} className="button button--primary">
+              {copy.openNewPageLabel}
+            </LocalizedLink>
+          </div>
+        </section>
+      </PageContainer>
     </main>
   );
 }

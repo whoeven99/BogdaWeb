@@ -1,0 +1,54 @@
+---
+entryId: help-center-how-to-use-your-own-key-for-translation
+locale: zh-cn
+slug: how-to-use-your-own-key-for-translation
+title: Private API Translation Model User Manual
+description: 说明如何准备 Google Cloud key，并在 Ciwi 中启用自定义 API key 翻译。
+publishedAt: '2025-07-31'
+status: published
+category: shopify-app
+order: 9
+meta:
+  - Help Center
+  - API Key
+readingTime: 5 min read
+sourceHref: /help-center/ShopifyApp/how-to-use-your-own-key-for-translation/
+sourceLocale: en
+translationStatus: reviewed
+relatedResources:
+  - title: How to translate your Shopify store?
+    description: 配置好 key 之后，继续按标准流程启动翻译任务。
+    href: /help-center/ShopifyApp/how-to-translate/
+    meta:
+      - Help Center
+      - Translation Workflow
+  - title: How to setup and use glossary?
+    description: 自定义模型并不能替代术语控制，glossary 仍然是质量关键。
+    href: /help-center/ShopifyApp/how-to-setup-and-use-glossary/
+    meta:
+      - Help Center
+      - Glossary
+  - title: AI Translator
+    description: 回到产品页查看模型控制、多语言和 Shopify 结构适配能力。
+    href: /products/translator
+    meta:
+      - Product
+      - Translator
+---
+<p>如果你希望用自己的 API key 管理模型调用和额度，这篇文档会分两步说明：先在 Google Cloud 准备 key，再把它配置到 Ciwi 的翻译设置里。</p>
+      <h2>Get your own Google key</h2>
+      <p>先在 Google Cloud 创建项目并启用对应 API，再到 Credentials 页面生成 API key。生成后建议补充权限限制，只开放需要的接口和来源范围。</p>
+      <ul>
+        <li>创建 Google Cloud 账号并设置计费信息</li>
+        <li>新建项目并启用 Cloud Translation 或对应模型 API</li>
+        <li>生成 API key，并根据安全要求限制接口和来源</li>
+      </ul>
+      <h2>Configure the key inside Ciwi</h2>
+      <p>回到 Ciwi 的 Translation Settings 页面，在 AI Models 模块点击 Custom API key，把自己的 key 和 quota limit 填进去，再保存。</p>
+      <ul>
+        <li>在 Dashboard 或 Translation Settings 中进入 API key 配置页</li>
+        <li>录入 key 与额度上限，避免误超第三方 API 预算</li>
+        <li>保存后，在翻译任务里选择对应模型并开始执行</li>
+      </ul>
+      <h2>Operational notes</h2>
+      <p>使用个人 key 时，更需要明确预算控制、模型选择和术语质量策略。配置不再使用后，也应及时删除旧 key，避免遗留安全风险。</p>

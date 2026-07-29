@@ -1,6 +1,14 @@
-import ClientLayout from './components/ClientLayout';
-import { Geist, Geist_Mono } from 'next/font/google';
-import "./css/globals.css";
+import {Geist, Geist_Mono} from "next/font/google";
+import type {ReactNode} from "react";
+
+import {LocaleProvider} from "@/components/providers/LocaleProvider";
+import {SiteFooter} from "@/components/layout/SiteFooter";
+import {SiteHeader} from "@/components/layout/SiteHeader";
+import {getRequestLocale} from "@/lib/i18n-server";
+import {getHtmlLang} from "@/lib/i18n";
+
+import "./globals.css";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -13,19 +21,29 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   icons: {
-    icon: '/favicon-32.png',
+    icon: "/favicon-32.png",
   },
 };
 
-export default function RootLayout({
+export const dynamic = "force-dynamic";
+
+export default async function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
+  const locale = await getRequestLocale();
+
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <ClientLayout>{children}</ClientLayout>
+    <html lang={getHtmlLang(locale)}>
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <LocaleProvider locale={locale}>
+          <div className="site-shell">
+            <SiteHeader />
+            {children}
+            <SiteFooter />
+          </div>
+        </LocaleProvider>
       </body>
     </html>
   );
