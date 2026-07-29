@@ -1,14 +1,13 @@
+"use client";
+
+import {useLocale} from "@/components/providers/LocaleProvider";
 import {LocalizedLink} from "@/components/ui/LocalizedLink";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {getNavigation} from "@/content/navigation";
 import {getUiCopy} from "@/content/ui-copy";
-import type {Locale} from "@/lib/i18n";
 
-type SiteFooterProps = {
-  locale: Locale;
-};
-
-export function SiteFooter({locale}: SiteFooterProps) {
+export function SiteFooter() {
+  const locale = useLocale();
   const navigation = getNavigation(locale);
   const uiCopy = getUiCopy(locale);
   const footerGroups = [

@@ -1,12 +1,12 @@
 import {notFound} from "next/navigation";
 
+import {MdxContent} from "@/components/content/MdxContent";
 import {LocalizedLink} from "@/components/ui/LocalizedLink";
 import {PageContainer} from "@/components/ui/PageContainer";
-import {getBlogPostMap, getBlogPosts} from "@/content/blog";
+import {getAllBlogPosts, getBlogPostMap, getBlogPosts} from "@/content/blog";
 import {getUiCopy} from "@/content/ui-copy";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {localizeHref} from "@/lib/i18n";
-import {addSectionAnchors} from "@/lib/content/sections";
 import {buildPageMetadata} from "@/lib/seo/metadata";
 import {siteUrl} from "@/lib/seo/metadata";
 import {buildBlogPostingSchema, buildBreadcrumbSchema} from "@/lib/seo/schema";
@@ -27,7 +27,6 @@ function getBlogDetailCopy(locale: "en" | "zh-cn") {
           eyebrow: "博客",
           backToBlogLabel: "返回博客",
           backToBlogHref: "/blog",
-          viewSourceLabel: "查看原始来源",
         },
       }
     : {
@@ -40,13 +39,12 @@ function getBlogDetailCopy(locale: "en" | "zh-cn") {
           eyebrow: "Blog",
           backToBlogLabel: "Back to blog",
           backToBlogHref: "/blog",
-          viewSourceLabel: "View original source",
         },
       };
 }
 
 export function generateStaticParams() {
-  return getBlogPosts("en").map((post) => ({slug: post.slug}));
+  return [...new Set(getAllBlogPosts().map((post) => post.slug))].map((slug) => ({slug}));
 }
 
 export async function generateMetadata({params}: BlogDetailPageProps) {
@@ -84,7 +82,6 @@ export default async function BlogDetailPage({params}: BlogDetailPageProps) {
     notFound();
   }
 
-  const contentHtml = addSectionAnchors(post.contentHtml);
   const pageUrl = new URL(localizeHref(locale, post.href), siteUrl).toString();
   const currentIndex = posts.findIndex((item) => item.slug === post.slug);
   const previousPost = currentIndex > 0 ? posts[currentIndex - 1] : null;
@@ -121,9 +118,6 @@ export default async function BlogDetailPage({params}: BlogDetailPageProps) {
               <LocalizedLink href={copy.hero.backToBlogHref} className="blog-article-single__backlink">
                 {copy.hero.backToBlogLabel}
               </LocalizedLink>
-              <a href={post.sourceHref} className="blog-article-single__source">
-                {copy.hero.viewSourceLabel}
-              </a>
             </div>
 
             <div className="article-meta">
@@ -140,7 +134,7 @@ export default async function BlogDetailPage({params}: BlogDetailPageProps) {
               <p>{post.description}</p>
             </header>
 
-            <div className="article-prose blog-article-single__prose" dangerouslySetInnerHTML={{__html: contentHtml}} />
+            <MdxContent source={post.content} className="article-prose blog-article-single__prose" />
 
             <nav className="blog-article-single__pagination" aria-label={uiCopy.blog.paginationLabel}>
               {previousPost ? (

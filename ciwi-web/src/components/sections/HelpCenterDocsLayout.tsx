@@ -1,3 +1,4 @@
+import {MdxContent} from "@/components/content/MdxContent";
 import {LocalizedLink} from "@/components/ui/LocalizedLink";
 import type {HelpCenterDoc} from "@/content/help-center";
 import {getUiCopy} from "@/content/ui-copy";
@@ -19,7 +20,6 @@ export function HelpCenterDocsLayout({
 }: HelpCenterDocsLayoutProps) {
   const uiCopy = getUiCopy(locale);
   const docsPerPage = 8;
-  const contentHtml = addSectionAnchors(currentDoc.contentHtml);
   const sections = extractSectionsFromHtml(currentDoc.contentHtml);
   const currentIndex = docs.findIndex((doc) => doc.slug === currentDoc.slug);
   const previousDoc = currentIndex > 0 ? docs[currentIndex - 1] : null;
@@ -120,7 +120,7 @@ export function HelpCenterDocsLayout({
             <p className="quote">{currentDoc.description}</p>
           </header>
 
-          <div className="article-prose docs-article__prose" dangerouslySetInnerHTML={{__html: contentHtml}} />
+          <MdxContent source={addSectionAnchors(currentDoc.contentHtml)} className="article-prose docs-article__prose" />
 
           <nav className="docs-pagination" aria-label={uiCopy.docs.articlePaginationAriaLabel}>
             {previousDoc ? (

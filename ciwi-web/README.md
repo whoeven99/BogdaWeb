@@ -1,39 +1,138 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ciwi Web
 
-## Getting Started
+Ciwi 官方站点，基于 Next.js 15、TypeScript 和文件化内容系统构建。
 
-First, run the development server:
+当前内容架构：
+
+- 前台站点：`ciwi-web`
+- 内容来源：`content/**/*.mdx`
+- 权限与发布：GitHub PR + Render 自动构建
+- i18n 路由：英文 `/`，中文 `/zh-cn/`
+
+## 本地开发
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+默认开发地址：`http://localhost:3000`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 内容目录
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```text
+content/
+  blog/
+    en/
+    zh-cn/
+  help-center/
+    en/
+      shopify-app/
+    zh-cn/
+      shopify-app/
+```
 
-## Learn More
+内容规则：
 
-To learn more about Next.js, take a look at the following resources:
+- 每篇内容必须有 `entryId`
+- 每个语言版本使用独立 `.mdx` 文件
+- 中文不自动回退到英文正文
+- 仅 `status: published` 的内容会进入页面生成
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 常用命令
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run content:validate
+npm run build
+```
 
-## Deploy on Vercel
+`build` 已经内置内容校验，frontmatter 或内容结构不合法会直接失败。
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+当前校验会覆盖：
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- 必填 frontmatter 字段
+- `locale` 与目录是否匹配
+- `status` 是否合法
+- 内容正文是否为空
+- 同 collection + locale 下是否重复 `slug`
+- 同 `entryId` 下是否重复语言版本
+- MDX 中引用的本地图片是否存在
 
-# BogdaWeb
-Static Web
+对于单语先发这类情况，校验会给出 warning，但不会阻断构建。
+
+## 翻译草稿脚手架
+
+先创建源语言文章，再生成另一语言草稿：
+
+```bash
+npm run content:translate -- --type=blog --from=en --to=zh-cn --slug=ciwi-translator-cha-jian-jie-shao
+```
+
+Help Center 示例：
+
+```bash
+npm run content:translate -- --type=help-center --from=en --to=zh-cn --slug=how-to-translate --category=shopify-app
+```
+
+说明：
+
+- 该命令只会生成目标语言草稿文件
+- 草稿会自动写入 `status: draft`
+- 生成后需要人工校对标题、描述、正文和 slug，再改为 `published`
+
+## 当前可用的 MDX 组件
+
+- `ContentImage`
+- `VideoEmbed`
+- `Callout`
+- `CtaCard`
+- `FaqAccordion`
+- `ComparisonTable`
+- `FeatureGrid`
+
+这些组件已经同时支持 `blog` 和 `help center`。
+
+## Docker
+
+本项目已支持 Docker 部署，使用 Next.js standalone 输出。
+
+本地构建镜像：
+
+```bash
+docker build -t ciwi-web .
+```
+
+本地运行：
+
+```bash
+docker run --rm -p 9000:9000 ciwi-web
+```
+
+## Render 部署建议
+
+将 `ciwi-web` 作为 Render 的 Docker Web Service：
+
+- Root Directory: `ciwi-web`
+- Runtime: `Docker`
+- Port: `9000`
+
+推荐环境变量：
+
+```text
+NODE_ENV=production
+PORT=9000
+HOSTNAME=0.0.0.0
+```
+
+## 发布流程
+
+1. 在 `content/` 下新增或修改 MDX 内容
+2. 本地运行 `npm run content:validate`
+3. 提交 PR 并完成 review
+4. 合并后由 Render 自动构建并发布
+
+## 后续计划
+
+- 增加 MDX 富媒体组件
+- 增加内容校验的重复 slug / alternate 完整性检查
+- 增加更完整的内容发布 SOP

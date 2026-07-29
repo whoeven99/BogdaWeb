@@ -1,17 +1,17 @@
+"use client";
+
 import Image from "next/image";
 
+import {useLocale} from "@/components/providers/LocaleProvider";
 import {Button} from "@/components/ui/Button";
+import {LocaleSwitcher} from "@/components/ui/LocaleSwitcher";
 import {LocalizedLink} from "@/components/ui/LocalizedLink";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {getNavigation} from "@/content/navigation";
 import {getUiCopy} from "@/content/ui-copy";
-import type {Locale} from "@/lib/i18n";
 
-type SiteHeaderProps = {
-  locale: Locale;
-};
-
-export function SiteHeader({locale}: SiteHeaderProps) {
+export function SiteHeader() {
+  const locale = useLocale();
   const navigation = getNavigation(locale);
   const uiCopy = getUiCopy(locale);
 
@@ -36,6 +36,7 @@ export function SiteHeader({locale}: SiteHeaderProps) {
             ))}
           </nav>
           <div className="header-cta">
+            <LocaleSwitcher />
             <Button href={uiCopy.cta.installHref}>{uiCopy.cta.installLabel}</Button>
           </div>
         </div>

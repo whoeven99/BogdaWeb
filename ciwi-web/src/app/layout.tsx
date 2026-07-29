@@ -39,9 +39,9 @@ export default async function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <LocaleProvider locale={locale}>
           <div className="site-shell">
-            <SiteHeader locale={locale} />
+            <SiteHeader />
             {children}
-            <SiteFooter locale={locale} />
+            <SiteFooter />
           </div>
         </LocaleProvider>
       </body>
