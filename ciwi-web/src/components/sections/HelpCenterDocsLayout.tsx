@@ -1,19 +1,23 @@
-import Link from "next/link";
-
+import {LocalizedLink} from "@/components/ui/LocalizedLink";
 import type {HelpCenterDoc} from "@/content/help-center";
+import {getUiCopy} from "@/content/ui-copy";
+import type {Locale} from "@/lib/i18n";
 import {addSectionAnchors, extractSectionsFromHtml} from "@/lib/content/sections";
 
 type HelpCenterDocsLayoutProps = {
   currentDoc: HelpCenterDoc;
   docs: HelpCenterDoc[];
+  locale?: Locale;
   eyebrow?: string;
 };
 
 export function HelpCenterDocsLayout({
   currentDoc,
   docs,
+  locale = "en",
   eyebrow = "Help Center",
 }: HelpCenterDocsLayoutProps) {
+  const uiCopy = getUiCopy(locale);
   const docsPerPage = 8;
   const contentHtml = addSectionAnchors(currentDoc.contentHtml);
   const sections = extractSectionsFromHtml(currentDoc.contentHtml);
@@ -40,17 +44,17 @@ export function HelpCenterDocsLayout({
           <div className="surface-card docs-sidebar__panel">
             <div className="docs-sidebar__intro">
               <span className="section-heading__eyebrow">{eyebrow}</span>
-              <h2>目录</h2>
-              <p className="quote">按文档顺序浏览安装、配置和日常使用说明。</p>
+              <h2>{uiCopy.docs.directoryTitle}</h2>
+              <p className="quote">{uiCopy.docs.directoryDescription}</p>
             </div>
 
-            <nav className="docs-nav-list" aria-label="Help center directory">
+            <nav className="docs-nav-list" aria-label={uiCopy.docs.directoryAriaLabel}>
               {directoryDocs.map((doc, index) => {
                 const isActive = doc.slug === currentDoc.slug;
                 const displayIndex = directoryPageStart + index;
 
                 return (
-                  <Link
+                  <LocalizedLink
                     key={doc.slug}
                     href={getDocHref(doc)}
                     className={`docs-nav-link${isActive ? " docs-nav-link--active" : ""}`}
@@ -58,27 +62,29 @@ export function HelpCenterDocsLayout({
                   >
                     <span className="docs-nav-link__index">{String(displayIndex + 1).padStart(2, "0")}</span>
                     <span className="docs-nav-link__title">{doc.title}</span>
-                  </Link>
+                  </LocalizedLink>
                 );
               })}
             </nav>
 
             {directoryPageCount > 1 ? (
-              <div className="docs-directory-pagination" aria-label="Help center directory pagination">
+              <div className="docs-directory-pagination" aria-label={uiCopy.docs.directoryPaginationAriaLabel}>
                 {previousDirectoryDoc ? (
-                  <Link href={getDocHref(previousDirectoryDoc)} className="docs-directory-pagination__link">
-                    上一组
-                  </Link>
+                  <LocalizedLink href={getDocHref(previousDirectoryDoc)} className="docs-directory-pagination__link">
+                    {uiCopy.docs.previousGroupLabel}
+                  </LocalizedLink>
                 ) : (
                   <span className="docs-directory-pagination__placeholder" />
                 )}
                 <span className="docs-directory-pagination__status">
-                  第 {directoryPageIndex + 1} / {directoryPageCount} 页
+                  {uiCopy.docs.pageStatusTemplate
+                    .replace("{{current}}", String(directoryPageIndex + 1))
+                    .replace("{{total}}", String(directoryPageCount))}
                 </span>
                 {nextDirectoryDoc ? (
-                  <Link href={getDocHref(nextDirectoryDoc)} className="docs-directory-pagination__link">
-                    下一组
-                  </Link>
+                  <LocalizedLink href={getDocHref(nextDirectoryDoc)} className="docs-directory-pagination__link">
+                    {uiCopy.docs.nextGroupLabel}
+                  </LocalizedLink>
                 ) : (
                   <span className="docs-directory-pagination__placeholder" />
                 )}
@@ -87,12 +93,12 @@ export function HelpCenterDocsLayout({
 
             {sections.length ? (
               <div className="docs-sidebar__sections">
-                <h3>本页内容</h3>
+                <h3>{uiCopy.docs.onThisPageTitle}</h3>
                 <div className="toc-list">
                   {sections.map((section) => (
-                    <Link key={section.id} href={`#${section.id}`} className="toc-link">
+                    <LocalizedLink key={section.id} href={`#${section.id}`} className="toc-link">
                       {section.title}
-                    </Link>
+                    </LocalizedLink>
                   ))}
                 </div>
               </div>
@@ -116,19 +122,19 @@ export function HelpCenterDocsLayout({
 
           <div className="article-prose docs-article__prose" dangerouslySetInnerHTML={{__html: contentHtml}} />
 
-          <nav className="docs-pagination" aria-label="Help center pagination">
+          <nav className="docs-pagination" aria-label={uiCopy.docs.articlePaginationAriaLabel}>
             {previousDoc ? (
-              <Link href={getDocHref(previousDoc)} className="docs-pagination__card">
-                <span className="docs-pagination__label">上一页</span>
+              <LocalizedLink href={getDocHref(previousDoc)} className="docs-pagination__card">
+                <span className="docs-pagination__label">{uiCopy.docs.previousLabel}</span>
                 <strong>{previousDoc.title}</strong>
-              </Link>
+              </LocalizedLink>
             ) : <div />}
 
             {nextDoc ? (
-              <Link href={getDocHref(nextDoc)} className="docs-pagination__card docs-pagination__card--next">
-                <span className="docs-pagination__label">下一页</span>
+              <LocalizedLink href={getDocHref(nextDoc)} className="docs-pagination__card docs-pagination__card--next">
+                <span className="docs-pagination__label">{uiCopy.docs.nextLabel}</span>
                 <strong>{nextDoc.title}</strong>
-              </Link>
+              </LocalizedLink>
             ) : <div />}
           </nav>
         </article>

@@ -4,24 +4,90 @@ import {MediaPlaceholderSection} from "@/components/sections/MediaPlaceholderSec
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {compareIndexMediaBriefs} from "@/content/media-briefs";
-import {pagesCopy} from "@/content/pages-copy";
-import {compares} from "@/content/compare";
+import {getCompares} from "@/content/compare";
+import {getRequestLocale} from "@/lib/i18n-server";
+import {localizeHref} from "@/lib/i18n";
 import {buildPageMetadata, siteUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildWebPageSchema} from "@/lib/seo/schema";
 
-export const metadata = buildPageMetadata({
-  title: pagesCopy.compare.metadata.title,
-  description: pagesCopy.compare.metadata.description,
-  path: pagesCopy.compare.metadata.path,
-});
+export async function generateMetadata() {
+  const locale = await getRequestLocale();
 
-export default function ComparePage() {
-  const copy = pagesCopy.compare;
-  const pageUrl = new URL("/compare", siteUrl).toString();
+  return buildPageMetadata({
+    title: locale === "zh-cn" ? "产品对比" : "Compare",
+    description:
+      locale === "zh-cn"
+        ? "帮助 Shopify 商家更快比较不同翻译和本地化方案的适配度与长期成本。"
+        : "Compare translation and localization paths faster by workflow fit, maintenance cost, and Shopify compatibility.",
+    path: "/compare",
+    locale,
+  });
+}
+
+export default async function ComparePage() {
+  const locale = await getRequestLocale();
+  const compares = getCompares(locale);
+  const copy =
+    locale === "zh-cn"
+      ? {
+          structuredData: {
+            name: "产品对比",
+            description: "帮助 Shopify 商家更快比较不同翻译和本地化方案的适配度与长期成本。",
+            keywords: ["Shopify 对比", "翻译工具对比", "Ciwi"],
+          },
+          hero: {
+            eyebrow: "对比",
+            title: "快速看清哪种方案更适合你的店铺阶段",
+            description: "从适配深度、维护成本和增长目标三个角度，判断哪条路线更适合当前业务。",
+            cardMeta: ["对比", "选型"],
+          },
+          media: {
+            eyebrow: "对比素材",
+            title: "对比页视觉预留",
+            description: "对比页适合补一张总览型对照图，让差异一眼看明白。",
+          },
+          finalCta: {
+            title: "从比较，进入判断",
+            description: "如果你已经看清方向差异，下一步就该进入产品页或帮助文档确认细节。",
+            eyebrow: "下一步",
+            primaryLabel: "查看 AI Translator",
+            primaryHref: "/products/translator",
+            secondaryLabel: "浏览帮助中心",
+            secondaryHref: "/help-center",
+          },
+        }
+      : {
+          structuredData: {
+            name: "Compare",
+            description: "Compare localization paths for Shopify by workflow depth, long-term cost, and practical fit.",
+            keywords: ["Shopify compare", "translation comparison", "Ciwi"],
+          },
+          hero: {
+            eyebrow: "Compare",
+            title: "See which path fits your store stage faster",
+            description: "Compare options through workflow depth, maintenance cost, and growth goals.",
+            cardMeta: ["Compare", "Selection"],
+          },
+          media: {
+            eyebrow: "Compare media",
+            title: "Comparison media placeholder",
+            description: "A side-by-side visual works well here to clarify the difference before merchants read the details.",
+          },
+          finalCta: {
+            title: "Move from comparison to decision",
+            description: "Once the direction is clearer, the next step is usually the product page or the help docs.",
+            eyebrow: "Next step",
+            primaryLabel: "Open AI Translator",
+            primaryHref: "/products/translator",
+            secondaryLabel: "Browse help center",
+            secondaryHref: "/help-center",
+          },
+        };
+  const pageUrl = new URL(localizeHref(locale, "/compare"), siteUrl).toString();
   const structuredData = [
     buildBreadcrumbSchema([
       {name: "Home", item: siteUrl},
-      {name: "Compare", item: pageUrl},
+      {name: copy.structuredData.name, item: pageUrl},
     ]),
     buildWebPageSchema({
       url: pageUrl,
@@ -66,10 +132,16 @@ export default function ComparePage() {
           title={copy.media.title}
           description={copy.media.description}
           items={compareIndexMediaBriefs}
+          locale={locale}
         />
         <FinalCtaSection
+          eyebrow={copy.finalCta.eyebrow}
           title={copy.finalCta.title}
           description={copy.finalCta.description}
+          primaryLabel={copy.finalCta.primaryLabel}
+          primaryHref={copy.finalCta.primaryHref}
+          secondaryLabel={copy.finalCta.secondaryLabel}
+          secondaryHref={copy.finalCta.secondaryHref}
         />
       </PageContainer>
     </main>

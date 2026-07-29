@@ -1,3 +1,5 @@
+import type {Locale} from "@/lib/i18n";
+
 export type HelpCenterDoc = {
   slug: string;
   title: string;
@@ -12,7 +14,486 @@ export type HelpCenterDoc = {
 
 const basePath = "/help-center/ShopifyApp";
 
-export const helpCenterDocs: HelpCenterDoc[] = [
+const helpCenterDocsEn: HelpCenterDoc[] = [
+  {
+    slug: "about-ciwi-ai-translator-shopify-app",
+    title: "About the Ciwi AI Translator Shopify app",
+    href: `${basePath}/about-ciwi-ai-translator-shopify-app/`,
+    sourceHref: `${basePath}/about-ciwi-ai-translator-shopify-app/`,
+    description: "A quick overview of what Ciwi Translator is, what it covers, and which merchants it fits best.",
+    meta: ["Help Center", "Overview"],
+    readingTime: "3 min read",
+    contentHtml: `
+      <p>Ciwi AI Translator is a localization product built for Shopify merchants. Its focus is not limited to translating page text. It helps merchants keep products, themes, FAQs, metafields, and localization messaging aligned together.</p>
+      <h2>Who it is for</h2>
+      <ul>
+        <li>Shopify merchants expanding into multilingual markets</li>
+        <li>Teams that need glossary and brand terminology control</li>
+        <li>Operators trying to reduce manual translation and later sync cost</li>
+      </ul>
+      <h2>Core capabilities</h2>
+      <ul>
+        <li>Multilingual translation with ongoing synchronization</li>
+        <li>Glossary, model strategy, and brand language control</li>
+        <li>Coverage across themes, navigation, images, and structured content</li>
+      </ul>
+      <h2>Why this belongs in the help center</h2>
+      <p>This article works well as a support resource outside the product page, especially for merchants who want to understand positioning and scope before installing.</p>
+    `,
+    relatedResources: [
+      {title: "AI Translator", description: "Return to the product page for capabilities, use cases, and demo context.", href: "/products/translator", meta: ["Product", "Translator"]},
+      {title: "How to set up and use glossary?", description: "Glossary is one of the most important layers for stable translation quality.", href: `${basePath}/how-to-setup-and-use-glossary/`, meta: ["Help Center", "Glossary"]},
+      {title: "Introducing the CIWI Translator app", description: "Get a blog-style product introduction and pricing overview.", href: "/blog/ciwi-translator-cha-jian-jie-shao", meta: ["Blog", "Product"]},
+    ],
+  },
+  {
+    slug: "can-i-auto-switch-language-or-currency-based-on-website-visitors-geolocation",
+    title: "Can I auto switch language or currency based on website visitors' geolocation?",
+    href: `${basePath}/can-i-auto-switch-language-or-currency-based-on-website-visitors-geolocation/`,
+    sourceHref: `${basePath}/can-i-auto-switch-language-or-currency-based-on-website-visitors-geolocation/`,
+    description: "Understand how geolocation-based language and currency switching works and when it helps conversion.",
+    meta: ["Help Center", "Geolocation"],
+    readingTime: "2 min read",
+    contentHtml: `
+      <p>Yes. Ciwi can auto switch currency based on visitor IP and can also work with browser language or location rules to show a more suitable storefront language.</p>
+      <h2>Useful scenarios</h2>
+      <ul>
+        <li>You run ads in multiple countries and want the first screen to feel more native immediately</li>
+        <li>You want to reduce the friction of manual language and currency switching</li>
+      </ul>
+      <h2>How to enable it</h2>
+      <ol>
+        <li>Open the app section for Currency or Localization settings</li>
+        <li>Turn on the relevant geolocation option</li>
+        <li>Check whether the switching rules match your market strategy</li>
+      </ol>
+      <h2>Important note</h2>
+      <p>Auto switching should support conversion rather than replace user choice. Keep a visible language or currency switcher available so visitors can still change manually.</p>
+    `,
+    relatedResources: [
+      {title: "How to set up multi-currency pricing on your Shopify store?", description: "Currency switching and geolocation setup usually need to be reviewed together.", href: `${basePath}/how-to-set-up-multi-currency-pricing-on-your-shopify-store/`, meta: ["Help Center", "Currency"]},
+      {title: "Expand Global Reach", description: "See how geolocation and multilingual expansion fit together as a growth workflow.", href: "/solutions/multilingual-growth", meta: ["Solution", "Multilingual"]},
+      {title: "Can I place the switcher in the header or footer of the website?", description: "Continue into switcher placement and visibility strategy.", href: `${basePath}/can-i-placing-the-switcher-in-the-header-or-footer-of-the-website/`, meta: ["Help Center", "Switcher"]},
+    ],
+  },
+  {
+    slug: "can-i-placing-the-switcher-in-the-header-or-footer-of-the-website",
+    title: "Can I place the switcher in the header or footer of the website?",
+    href: `${basePath}/can-i-placing-the-switcher-in-the-header-or-footer-of-the-website/`,
+    sourceHref: `${basePath}/can-i-placing-the-switcher-in-the-header-or-footer-of-the-website/`,
+    description: "Learn where to place the language switcher in the storefront and how that affects clarity for shoppers.",
+    meta: ["Help Center", "Switcher"],
+    readingTime: "2 min read",
+    contentHtml: `
+      <p>Yes. Ciwi supports placing the language switcher in the storefront header or footer, with some baseline control over style and position.</p>
+      <h2>Recommended approach</h2>
+      <ul>
+        <li>If language switching is an important navigation action, place it in the header</li>
+        <li>If it is a supporting action, the footer can work well</li>
+      </ul>
+      <h2>Why placement matters</h2>
+      <p>The switcher is not decorative. It directly affects whether shoppers can quickly tell what language version they are viewing. Clear placement improves trust and orientation.</p>
+      <h2>Implementation advice</h2>
+      <p>Test both desktop and mobile layouts before launch so the switcher does not conflict with main navigation, cart, or account entry points.</p>
+    `,
+    relatedResources: [
+      {title: "How to enable the language & currency exchange switcher", description: "Continue into the actual enablement flow and configuration checks.", href: `${basePath}/how-to-enable-the-language-currency-exchange-switcher/`, meta: ["Help Center", "Switcher"]},
+      {title: "Can I auto switch language or currency based on website visitors' geolocation?", description: "Placement strategy and auto switching are usually planned together.", href: `${basePath}/can-i-auto-switch-language-or-currency-based-on-website-visitors-geolocation/`, meta: ["Help Center", "Geolocation"]},
+      {title: "AI Translator", description: "Return to the product page for the broader localization workflow.", href: "/products/translator", meta: ["Product", "Translator"]},
+    ],
+  },
+  {
+    slug: "how-to-setup-and-use-glossary",
+    title: "How to set up and use glossary?",
+    href: `${basePath}/how-to-setup-and-use-glossary/`,
+    sourceHref: `${basePath}/how-to-setup-and-use-glossary/`,
+    description: "Glossary is one of the most important control points for translation quality and brand consistency.",
+    meta: ["Help Center", "Glossary"],
+    readingTime: "4 min read",
+    contentHtml: `
+      <p>Glossary is one of the most important control layers in Ciwi's multilingual workflow. It helps you lock brand terms, product terms, and other high-value expressions so they do not drift across pages or languages.</p>
+      <h2>When glossary is necessary</h2>
+      <ul>
+        <li>Brand names, product lines, or series names should not be translated freely</li>
+        <li>The same term must stay consistent across multiple pages</li>
+        <li>You want different models to still produce stable terminology</li>
+      </ul>
+      <h2>Suggested setup flow</h2>
+      <ol>
+        <li>List brand terms, core selling points, and forbidden translations first</li>
+        <li>Add those entries into glossary</li>
+        <li>Test on product pages and FAQs first to confirm the effect</li>
+        <li>Expand gradually into more page types afterward</li>
+      </ol>
+      <h2>Best practice</h2>
+      <p>Do not treat glossary as a full dictionary. The most important part is the set of high-value, high-frequency terms that shape brand consistency most strongly.</p>
+    `,
+    relatedResources: [
+      {title: "Introducing the CIWI Translator app", description: "Use the product intro to understand where glossary fits in the overall product workflow.", href: "/blog/ciwi-translator-cha-jian-jie-shao", meta: ["Blog", "Product"]},
+      {title: "Ciwi vs Transcy", description: "See why glossary control becomes a differentiator during tool evaluation.", href: "/compare/ciwi-vs-transcy", meta: ["Compare", "Selection"]},
+      {title: "Increase Conversion", description: "Understand how terminology consistency affects trust and conversion.", href: "/solutions/increase-conversion", meta: ["Solution", "Conversion"]},
+    ],
+  },
+  {
+    slug: "does-translate-language-ai-adapt-support-multiple-languages",
+    title: "Does Translate Language AI Adapt support multiple languages?",
+    href: `${basePath}/does-translate-language-ai-adapt-support-multiple-languages/`,
+    sourceHref: `${basePath}/does-translate-language-ai-adapt-support-multiple-languages/`,
+    description: "Answer the common evaluation question about language coverage and what merchants should focus on beyond the count.",
+    meta: ["Help Center", "Languages"],
+    readingTime: "2 min read",
+    contentHtml: `
+      <p>Yes. Ciwi supports multilingual storefront workflows and can work with browser language, market settings, and localization rules to help merchants serve different markets more naturally.</p>
+      <h2>What this means in practice</h2>
+      <ul>
+        <li>You are not limited to basic native language publishing expectations alone</li>
+        <li>You can expand language coverage step by step by market priority</li>
+        <li>You can connect language expansion with glossary and content generation workflows</li>
+      </ul>
+      <h2>What merchants should really care about</h2>
+      <p>Language count matters less than terminology consistency, structured content coverage, and whether later updates stay synchronized over time.</p>
+    `,
+    relatedResources: [
+      {title: "Expand Global Reach", description: "Understand multilingual expansion as a broader operating workflow.", href: "/solutions/multilingual-growth", meta: ["Solution", "Multilingual"]},
+      {title: "How to translate your Shopify store?", description: "Continue into the full translation workflow from setup to publish.", href: `${basePath}/how-to-translate/`, meta: ["Help Center", "Translation Workflow"]},
+      {title: "Ciwi vs Shopify Translate & Adapt", description: "Compare Ciwi with the native path in language coverage and workflow depth.", href: "/compare/ciwi-vs-shopify-translate-adapt", meta: ["Compare", "Selection"]},
+    ],
+  },
+  {
+    slug: "faqs-about-translation",
+    title: "FAQs About Translation",
+    href: `${basePath}/faqs-about-translation/`,
+    sourceHref: `${basePath}/faqs-about-translation/`,
+    description: "A bridge article collecting common translation questions merchants usually ask before committing to a workflow.",
+    meta: ["Help Center", "FAQ"],
+    readingTime: "4 min read",
+    contentHtml: `
+      <h2>Will content translated by other apps be overwritten?</h2>
+      <p>That depends on how the current store organizes its translation sources. Before rollout, it is safer to test on a smaller content set and confirm how existing translation data is managed.</p>
+      <h2>Can I review translations before publishing?</h2>
+      <p>Yes. In real operations, AI translation is best treated as a high-efficiency draft, while important pages still keep a human review step before publishing.</p>
+      <h2>Why does ecommerce translation need special handling?</h2>
+      <p>Because a Shopify store contains more than ordinary copy. Product structure, metafields, FAQs, theme blocks, image text, and localization wording all need to stay aligned. If they do not, the shopper experience breaks.</p>
+      <h2>What should merchants care about most?</h2>
+      <ul>
+        <li>Whether translation quality stays steady</li>
+        <li>Whether terminology and brand language can be controlled</li>
+        <li>Whether later updates can stay synchronized</li>
+        <li>Whether the workflow truly fits Shopify instead of only translating flat text</li>
+      </ul>
+    `,
+    relatedResources: [
+      {title: "AI Translator", description: "Return to the product page for structured content coverage and localization capabilities.", href: "/products/translator", meta: ["Product", "Translator"]},
+      {title: "How to set up and use glossary?", description: "Continue into glossary if terminology consistency is your main concern.", href: `${basePath}/how-to-setup-and-use-glossary/`, meta: ["Help Center", "Glossary"]},
+      {title: "Ciwi vs Transcy", description: "Extend common questions into a deeper product evaluation view.", href: "/compare/ciwi-vs-transcy", meta: ["Compare", "Selection"]},
+    ],
+  },
+  {
+    slug: "how-to-translate",
+    title: "How to translate your Shopify store?",
+    href: `${basePath}/how-to-translate/`,
+    sourceHref: `${basePath}/how-to-translate/`,
+    description: "Walk through the standard store translation flow from language setup to editing, publishing, and preview.",
+    meta: ["Help Center", "Translation Workflow"],
+    readingTime: "5 min read",
+    contentHtml: `
+      <p>This guide explains the baseline Ciwi translation workflow: add your target language, start the translation task, then edit, publish, and preview the result.</p>
+      <h2>Step 1: Add languages and start translation</h2>
+      <p>Open the Language page and add your target language first. Since Shopify itself has practical language management limits, it is usually better to start with the markets you truly need rather than adding every language at once.</p>
+      <ul>
+        <li>Use Add Language to create the target market language</li>
+        <li>After adding it, click Translate to open the translation setup page</li>
+        <li>Select the language, launch the task, and monitor progress in Dashboard</li>
+      </ul>
+      <h2>Step 2: Edit translations before publish</h2>
+      <p>After the task finishes, go to Manage and review content language by language. The machine output usually appears on the right side, and you can refine important copy before publishing.</p>
+      <ul>
+        <li>Switch tabs by language to review the output</li>
+        <li>Use Edit to refine important items in detail</li>
+        <li>Save your changes and return to the language list for publishing</li>
+      </ul>
+      <h2>Step 3: Publish and preview</h2>
+      <p>After editing, return to the language page and click Publish so the new version becomes visible on the storefront. Then use Preview to confirm how the live market experience actually looks.</p>
+      <p>It is best to check product pages, FAQs, and major marketing blocks first to make sure terminology, offers, and structured content all read correctly.</p>
+    `,
+    relatedResources: [
+      {title: "How to set up and use glossary?", description: "Once the translation flow works, glossary is usually the next step for terminology stability.", href: `${basePath}/how-to-setup-and-use-glossary/`, meta: ["Help Center", "Glossary"]},
+      {title: "Private API Translation Model User Manual", description: "If you want to use your own model key, continue into the custom key setup guide.", href: `${basePath}/how-to-use-your-own-key-for-translation/`, meta: ["Help Center", "API Key"]},
+      {title: "AI Translator", description: "Return to the product page for use cases, demos, and capability overview.", href: "/products/translator", meta: ["Product", "Translator"]},
+    ],
+  },
+  {
+    slug: "how-to-enable-the-language-currency-exchange-switcher",
+    title: "How to enable the language & currency exchange switcher",
+    href: `${basePath}/how-to-enable-the-language-currency-exchange-switcher/`,
+    sourceHref: `${basePath}/how-to-enable-the-language-currency-exchange-switcher/`,
+    description: "Enable Ciwi's language and currency switcher in the Shopify theme and verify whether configuration is complete.",
+    meta: ["Help Center", "Switcher"],
+    readingTime: "3 min read",
+    contentHtml: `
+      <p>Enabling the Ciwi switcher usually takes two parts: add it correctly in the theme editor first, then return to the app and confirm the configuration status is complete.</p>
+      <h2>Configuration process</h2>
+      <p>Start from the Currency page and check whether the current market still shows as incomplete. If so, use the provided entry to jump to the correct Theme Editor section.</p>
+      <ol>
+        <li>Open the theme editor and locate Footer or the target section</li>
+        <li>Confirm the Apps area already includes Ciwi_Switcher</li>
+        <li>Save the theme, return to the app, and refresh the configuration status</li>
+      </ol>
+      <h2>When a market is still uncompleted</h2>
+      <p>If some markets still fail, those markets often need separate setup. Switch to the correct market and add the switcher there manually.</p>
+      <p>Avoid adding the same switcher twice, otherwise the storefront can show duplicated or conflicting behavior.</p>
+      <h2>Style configuration</h2>
+      <p>After activation, continue adjusting color, position, and font size inside the theme editor. Prioritize visibility and clarity before detailed visual customization.</p>
+    `,
+    relatedResources: [
+      {title: "Can I place the switcher in the header or footer of the website?", description: "Continue into the best placement strategy for storefront navigation.", href: `${basePath}/can-i-placing-the-switcher-in-the-header-or-footer-of-the-website/`, meta: ["Help Center", "Switcher"]},
+      {title: "How to set up multi-currency pricing on your Shopify store?", description: "After the switcher is enabled, currency display logic usually needs a second review.", href: `${basePath}/how-to-set-up-multi-currency-pricing-on-your-shopify-store/`, meta: ["Help Center", "Currency"]},
+      {title: "Expand Global Reach", description: "Understand how the storefront switcher supports cross-market user experience.", href: "/solutions/multilingual-growth", meta: ["Solution", "Multilingual"]},
+    ],
+  },
+  {
+    slug: "how-to-use-your-own-key-for-translation",
+    title: "Private API Translation Model User Manual",
+    href: `${basePath}/how-to-use-your-own-key-for-translation/`,
+    sourceHref: `${basePath}/how-to-use-your-own-key-for-translation/`,
+    description: "Prepare a Google Cloud key and enable custom API-key-based translation inside Ciwi.",
+    meta: ["Help Center", "API Key"],
+    readingTime: "5 min read",
+    contentHtml: `
+      <p>If you want to manage model usage and quota through your own API key, this guide explains two steps: prepare the key in Google Cloud first, then configure it inside Ciwi.</p>
+      <h2>Get your own Google key</h2>
+      <p>Create a Google Cloud project, enable the required API, and then generate an API key from the Credentials page. After the key is created, restrict the scope and allowed interfaces for better security.</p>
+      <ul>
+        <li>Create a Google Cloud account and set billing information</li>
+        <li>Create a project and enable Cloud Translation or the relevant model API</li>
+        <li>Generate an API key and restrict it by interface and source where possible</li>
+      </ul>
+      <h2>Configure the key inside Ciwi</h2>
+      <p>Return to Ciwi Translation Settings, open the AI Models section, and add your Custom API key together with a quota limit before saving.</p>
+      <ul>
+        <li>Open the API key configuration area from Dashboard or Translation Settings</li>
+        <li>Enter the key and usage limit to avoid overspending external API budget</li>
+        <li>Save the configuration, then choose the model in the translation task</li>
+      </ul>
+      <h2>Operational notes</h2>
+      <p>When using a personal key, budget control, model choice, and glossary quality rules become even more important. Remove old keys promptly when they are no longer needed.</p>
+    `,
+    relatedResources: [
+      {title: "How to translate your Shopify store?", description: "Once the key is ready, continue into the standard translation workflow.", href: `${basePath}/how-to-translate/`, meta: ["Help Center", "Translation Workflow"]},
+      {title: "How to set up and use glossary?", description: "Custom models do not replace terminology control. Glossary still matters for quality.", href: `${basePath}/how-to-setup-and-use-glossary/`, meta: ["Help Center", "Glossary"]},
+      {title: "AI Translator", description: "Return to the product page for model control and Shopify localization context.", href: "/products/translator", meta: ["Product", "Translator"]},
+    ],
+  },
+  {
+    slug: "how-to-set-up-multi-currency-pricing-on-your-shopify-store",
+    title: "How to set up multi-currency pricing on your Shopify store?",
+    href: `${basePath}/how-to-set-up-multi-currency-pricing-on-your-shopify-store/`,
+    sourceHref: `${basePath}/how-to-set-up-multi-currency-pricing-on-your-shopify-store/`,
+    description: "Set up multi-currency display, exchange rate rules, rounding logic, and geolocation-related preview flow.",
+    meta: ["Help Center", "Currency"],
+    readingTime: "4 min read",
+    contentHtml: `
+      <p>This guide covers the full multi-currency setup flow: adjust display format first, add currencies, edit exchange rate and rounding rules, then preview the storefront before deciding whether to enable geolocation.</p>
+      <h2>Set up currency formatting first</h2>
+      <p>Copy the recommended formatting template from the app, then update HTML with currency and HTML without currency in Shopify General settings. This ensures the storefront price structure is correct first.</p>
+      <h2>Add and edit currencies</h2>
+      <p>After adding the currencies you need, continue into Edit to adjust exchange rate mode and price rounding. Auto rate works better for faster launch, while manual rate is better if your pricing strategy is more specific.</p>
+      <ul>
+        <li>Use Add Currency to add the target currency</li>
+        <li>Use Edit to choose automatic or manual exchange rate</li>
+        <li>Turn rounding on or off based on your pricing preference</li>
+      </ul>
+      <h2>Preview and geolocation</h2>
+      <p>Preview first and confirm the storefront currency switch and display logic look right. If you want currency to change automatically by visitor region, continue into geolocation setup afterward.</p>
+    `,
+    relatedResources: [
+      {title: "Can I auto switch language or currency based on website visitors' geolocation?", description: "After multi-currency setup, geolocation auto-switch is usually the next step.", href: `${basePath}/can-i-auto-switch-language-or-currency-based-on-website-visitors-geolocation/`, meta: ["Help Center", "Geolocation"]},
+      {title: "How to enable the language & currency exchange switcher", description: "Confirm the storefront switcher is connected correctly in the theme.", href: `${basePath}/how-to-enable-the-language-currency-exchange-switcher/`, meta: ["Help Center", "Switcher"]},
+      {title: "Expand Global Reach", description: "See how multi-currency setup supports cross-market experience more broadly.", href: "/solutions/multilingual-growth", meta: ["Solution", "Multilingual"]},
+    ],
+  },
+  {
+    slug: "is-it-possible-to-translate-multiple-languages-at-the-same-time",
+    title: "Is it possible to translate multiple languages at the same time?",
+    href: `${basePath}/is-it-possible-to-translate-multiple-languages-at-the-same-time/`,
+    sourceHref: `${basePath}/is-it-possible-to-translate-multiple-languages-at-the-same-time/`,
+    description: "Explain whether batch multilingual translation is supported and what rollout rhythm is more realistic for quality control.",
+    meta: ["Help Center", "Translation Workflow"],
+    readingTime: "2 min read",
+    contentHtml: `
+      <p>At the moment, Ciwi does not translate multiple language versions all at once in a single batch. A more stable approach is to roll out by priority market so quality, budget, and terminology stay easier to control.</p>
+      <h2>Why not launch every language at once</h2>
+      <p>For most Shopify merchants, translating every language in parallel is not the most efficient approach. Different markets often need different terminology, pricing language, and promotional tone, so quality control gets harder when everything moves together.</p>
+      <h2>Recommended rollout approach</h2>
+      <ul>
+        <li>Start with one or two priority markets</li>
+        <li>Confirm glossary, model choice, and storefront display are stable</li>
+        <li>Expand gradually into additional languages and markets</li>
+      </ul>
+      <h2>If you need larger batch execution</h2>
+      <p>If your business truly needs broader parallel localization, contact support with the number of languages, content scope, and time requirement so the workflow can be evaluated properly.</p>
+    `,
+    relatedResources: [
+      {title: "How to translate your Shopify store?", description: "Run the standard single-language workflow first before scaling the number of markets.", href: `${basePath}/how-to-translate/`, meta: ["Help Center", "Translation Workflow"]},
+      {title: "Does Translate Language AI Adapt support multiple languages?", description: "Continue into language coverage and the basic boundaries of multilingual expansion.", href: `${basePath}/does-translate-language-ai-adapt-support-multiple-languages/`, meta: ["Help Center", "Languages"]},
+      {title: "Expand Global Reach", description: "Understand how rollout rhythm should be designed when expanding into more markets.", href: "/solutions/multilingual-growth", meta: ["Solution", "Multilingual"]},
+    ],
+  },
+  {
+    slug: "what-are-the-differences-when-choosing-different-translation-models",
+    title: "What are the differences when choosing different translation models?",
+    href: `${basePath}/what-are-the-differences-when-choosing-different-translation-models/`,
+    sourceHref: `${basePath}/what-are-the-differences-when-choosing-different-translation-models/`,
+    description: "Compare translation models through quality, speed, language fit, and terminology control rather than accuracy alone.",
+    meta: ["Help Center", "Models"],
+    readingTime: "4 min read",
+    contentHtml: `
+      <p>The difference between translation models is not only who sounds more accurate. It also includes speed, cost, language-pair fit, terminology control, and how well the model understands complex product language.</p>
+      <h2>Quality and context understanding</h2>
+      <p>If your priority is richer context, brand tone, and marketing wording, you usually need a model with stronger contextual understanding. If the goal is broader coverage quickly, speed and cost may matter more.</p>
+      <h2>Language and market fit</h2>
+      <p>Different models do not perform equally well across all language pairs. Some work better for Chinese-English workflows, while others are steadier across European or broader multilingual coverage.</p>
+      <h2>How merchants should choose</h2>
+      <ul>
+        <li>Start from your main markets and language pairs</li>
+        <li>Then decide whether quality, speed, or budget matters most</li>
+        <li>Finally combine model choice with glossary and human review instead of expecting the model alone to solve everything</li>
+      </ul>
+    `,
+    relatedResources: [
+      {title: "Private API Translation Model User Manual", description: "If you need more flexible model selection and budget control, continue into custom key setup.", href: `${basePath}/how-to-use-your-own-key-for-translation/`, meta: ["Help Center", "API Key"]},
+      {title: "How to set up and use glossary?", description: "Model selection does not replace terminology control. Glossary still stabilizes quality.", href: `${basePath}/how-to-setup-and-use-glossary/`, meta: ["Help Center", "Glossary"]},
+      {title: "Ciwi vs Shopify Translate & Adapt", description: "Compare model capability against the broader workflow merchants usually still need.", href: "/compare/ciwi-vs-shopify-translate-adapt", meta: ["Compare", "Selection"]},
+    ],
+  },
+  {
+    slug: "what-are-the-differences-when-choosing-different-language-packs",
+    title: "What are the differences when choosing different language packs?",
+    href: `${basePath}/what-are-the-differences-when-choosing-different-language-packs/`,
+    sourceHref: `${basePath}/what-are-the-differences-when-choosing-different-language-packs/`,
+    description: "Explain how language packs affect industry vocabulary, translation style, and target-market tone.",
+    meta: ["Help Center", "Language Packs"],
+    readingTime: "3 min read",
+    contentHtml: `
+      <p>Language packs do not change the core meaning. Their role is to make the output feel more aligned with the vocabulary and expectations of your industry. Different merchants face different terminology, product language, and market norms.</p>
+      <h2>Industry-specific vocabulary</h2>
+      <p>Fashion, home, beauty, and outdoor categories all use their own common terminology. A suitable language pack helps the translation read more like the target industry instead of a literal rewrite.</p>
+      <h2>Why language packs matter in ecommerce</h2>
+      <p>Ecommerce translation should not only be accurate. It should sound like something the local market would naturally write. When industry wording feels wrong, trust and clarity both suffer.</p>
+      <h2>How to choose</h2>
+      <ul>
+        <li>Start with your main product category</li>
+        <li>Test on a few important product pages first</li>
+        <li>Use glossary alongside language packs if you need to lock critical terms further</li>
+      </ul>
+    `,
+    relatedResources: [
+      {title: "How to set up and use glossary?", description: "Language packs shape tone and industry context, while glossary locks critical terminology.", href: `${basePath}/how-to-setup-and-use-glossary/`, meta: ["Help Center", "Glossary"]},
+      {title: "What are the differences when choosing different translation models?", description: "Continue into the model layer if you want to separate model choice from language pack choice.", href: `${basePath}/what-are-the-differences-when-choosing-different-translation-models/`, meta: ["Help Center", "Models"]},
+      {title: "Increase Conversion", description: "Understand how industry tone and localization wording affect trust and conversion.", href: "/solutions/increase-conversion", meta: ["Solution", "Conversion"]},
+    ],
+  },
+  {
+    slug: "how-to-set-regarding-geolocation",
+    title: "How to set regarding geolocation",
+    href: `${basePath}/how-to-set-regarding-geolocation/`,
+    sourceHref: `${basePath}/how-to-set-regarding-geolocation/`,
+    description: "Set up automatic language and currency switching by visitor location and confirm which prerequisites matter first.",
+    meta: ["Help Center", "Geolocation"],
+    readingTime: "2 min read",
+    contentHtml: `
+      <p>If you want the storefront to switch language and currency automatically by visitor region, first confirm that language setup, currency setup, and the storefront switcher are already in place.</p>
+      <h2>Go to currency settings first</h2>
+      <p>Start from the Currency settings page and confirm the baseline pricing configuration is complete. Without that step, auto switching usually will not behave as expected.</p>
+      <h2>Configure the switcher</h2>
+      <p>Make sure the language and currency switcher is already visible in the theme. Auto switching should complement the switcher, not replace it.</p>
+      <h2>Enable geolocation</h2>
+      <p>After the first two steps are complete, turn on the geolocation option. The system will then try to show the matching language and currency first.</p>
+      <h2>Check your default fallback</h2>
+      <p>If some markets do not have dedicated configuration, the system falls back to the default setting. Test your main target markets before launch so the fallback still looks reasonable.</p>
+    `,
+    relatedResources: [
+      {title: "Can I auto switch language or currency based on website visitors' geolocation?", description: "Understand the scenario fit first, then return here for the setup details.", href: `${basePath}/can-i-auto-switch-language-or-currency-based-on-website-visitors-geolocation/`, meta: ["Help Center", "Geolocation"]},
+      {title: "How to enable the language & currency exchange switcher", description: "Make sure the storefront switcher is already wired correctly into the theme.", href: `${basePath}/how-to-enable-the-language-currency-exchange-switcher/`, meta: ["Help Center", "Switcher"]},
+      {title: "Expand Global Reach", description: "Continue into the broader effect of auto switching on multi-market experience.", href: "/solutions/multilingual-growth", meta: ["Solution", "Multilingual"]},
+    ],
+  },
+  {
+    slug: "how-can-i-check-my-credit-balance",
+    title: "How can I check my credit balance?",
+    href: `${basePath}/how-can-i-check-my-credit-balance/`,
+    sourceHref: `${basePath}/how-can-i-check-my-credit-balance/`,
+    description: "See where to check total credits, used quota, and what to do if the displayed balance looks off.",
+    meta: ["Help Center", "Credits"],
+    readingTime: "2 min read",
+    contentHtml: `
+      <p>If you need to confirm how many credits remain, the fastest path is to check the relevant page inside the app and review total credits, used credits, and remaining balance before starting the next task.</p>
+      <h2>Check credits from the pricing page</h2>
+      <p>Open the Pricing page to review total credits, used credits, and the remaining balance. This helps you quickly judge whether the next translation task still has enough quota.</p>
+      <h2>Review usage before purchasing</h2>
+      <p>Before translating again, compare the remaining balance against the amount of content you plan to process. This is usually steadier than discovering the shortage after a task has already started.</p>
+      <h2>Contact support when the data looks wrong</h2>
+      <p>If the displayed balance does not match actual usage or related purchase emails are missing, contact support so the record can be checked with you directly.</p>
+    `,
+    relatedResources: [
+      {title: "Where to buy credits", description: "If the balance is no longer enough, continue into the purchase flow.", href: `${basePath}/where-to-buy-credits/`, meta: ["Help Center", "Credits"]},
+      {title: "What is the credit refund policy?", description: "If you want to understand how unused credits are handled, continue into the refund policy.", href: `${basePath}/what-is-the-credit-refund-policy/`, meta: ["Help Center", "Credits"]},
+      {title: "AI Translator", description: "Return to the product page for the broader translation and localization workflow.", href: "/products/translator", meta: ["Product", "Translator"]},
+    ],
+  },
+  {
+    slug: "where-to-buy-credits",
+    title: "Where to buy credits",
+    href: `${basePath}/where-to-buy-credits/`,
+    sourceHref: `${basePath}/where-to-buy-credits/`,
+    description: "Understand where to purchase credits when balance is low and what happens before and after the purchase.",
+    meta: ["Help Center", "Credits"],
+    readingTime: "3 min read",
+    contentHtml: `
+      <p>When your existing credits are not enough to complete the next translation task, you can start the purchase flow directly inside the app without going through a separate external system.</p>
+      <h2>When to buy more credits</h2>
+      <p>If the system detects that the remaining balance cannot cover the target translation scope, it prompts you to purchase more before the task continues. Review the expected usage first, then choose the suitable package.</p>
+      <h2>Where the purchase flow starts</h2>
+      <p>You can start from Dashboard or the Language page. After selecting the model, if the remaining credits are insufficient, the system takes you to the purchase page and shows the expected word count and needed credits.</p>
+      <h2>What happens after payment</h2>
+      <p>After payment is complete, you can return to the original translation flow and continue without having to rebuild the entire task configuration.</p>
+      <h2>Why usage estimation matters</h2>
+      <p>Reviewing expected word count and credit usage before purchasing saves time and makes budget control easier than repeatedly topping up afterward.</p>
+    `,
+    relatedResources: [
+      {title: "How can I check my credit balance?", description: "Check the current balance first so it is easier to decide how many credits to add.", href: `${basePath}/how-can-i-check-my-credit-balance/`, meta: ["Help Center", "Credits"]},
+      {title: "What is the credit refund policy?", description: "If you want to know how unused balance is handled, continue into the refund rules.", href: `${basePath}/what-is-the-credit-refund-policy/`, meta: ["Help Center", "Credits"]},
+      {title: "How to translate your Shopify store?", description: "After purchasing, continue with the standard translation workflow.", href: `${basePath}/how-to-translate/`, meta: ["Help Center", "Translation Workflow"]},
+    ],
+  },
+  {
+    slug: "what-is-the-credit-refund-policy",
+    title: "What is the credit refund policy?",
+    href: `${basePath}/what-is-the-credit-refund-policy/`,
+    sourceHref: `${basePath}/what-is-the-credit-refund-policy/`,
+    description: "Clarify how unused credits, used credits, and abnormal deductions are handled.",
+    meta: ["Help Center", "Credits"],
+    readingTime: "3 min read",
+    contentHtml: `
+      <p>If you have purchased credits, the first thing to separate is which portion remains unused and which portion has already been consumed by translation or related services. Refund treatment usually depends on that distinction.</p>
+      <h2>Unused credits</h2>
+      <p>If credits have not yet been used, refund treatment can usually follow the unused proportion. In other words, the refund amount is calculated based on the remaining balance relative to the original purchase amount.</p>
+      <h2>Used credits</h2>
+      <p>Credits already consumed by translation or related services are generally not refundable because the service capacity has already been delivered.</p>
+      <h2>System errors or abnormal deductions</h2>
+      <p>If you believe the deduction was caused by a system problem or that the service was not delivered as expected, contact support for further review. Once confirmed, it can be handled according to the actual situation.</p>
+      <h2>Check before buying again</h2>
+      <p>Before purchasing more, review your current balance, used quota, and expected workload once more so repeat purchases are easier to avoid.</p>
+    `,
+    relatedResources: [
+      {title: "How can I check my credit balance?", description: "Check current balance and usage first before deciding whether another purchase is needed.", href: `${basePath}/how-can-i-check-my-credit-balance/`, meta: ["Help Center", "Credits"]},
+      {title: "Where to buy credits", description: "If you already know you need more balance, continue into the purchase flow.", href: `${basePath}/where-to-buy-credits/`, meta: ["Help Center", "Credits"]},
+      {title: "Contact Us", description: "Reach out directly if the issue is an abnormal charge or balance mismatch.", href: "/contact", meta: ["Page", "Contact"]},
+    ],
+  },
+];
+
+const helpCenterDocsZh: HelpCenterDoc[] = [
   {
     slug: "about-ciwi-ai-translator-shopify-app",
     title: "About ciwi.ai-translator Shopify App",
@@ -493,8 +974,6 @@ export const helpCenterDocs: HelpCenterDoc[] = [
   },
 ];
 
-export const helpCenterDocMap = Object.fromEntries(helpCenterDocs.map((doc) => [doc.slug, doc]));
-
 const featuredHelpCenterDocSlugs = [
   "about-ciwi-ai-translator-shopify-app",
   "how-to-setup-and-use-glossary",
@@ -504,6 +983,24 @@ const featuredHelpCenterDocSlugs = [
   "how-to-set-up-multi-currency-pricing-on-your-shopify-store",
 ] as const;
 
+export const helpCenterDocs = helpCenterDocsEn;
+export const helpCenterDocMap = Object.fromEntries(helpCenterDocs.map((doc) => [doc.slug, doc]));
+
+export function getHelpCenterDocs(locale: Locale) {
+  return locale === "zh-cn" ? helpCenterDocsZh : helpCenterDocsEn;
+}
+
+export function getHelpCenterDocMap(locale: Locale) {
+  return Object.fromEntries(getHelpCenterDocs(locale).map((doc) => [doc.slug, doc]));
+}
+
 export const featuredHelpCenterDocs = featuredHelpCenterDocSlugs
   .map((slug) => helpCenterDocMap[slug])
   .filter((doc): doc is (typeof helpCenterDocs)[number] => Boolean(doc));
+
+export function getFeaturedHelpCenterDocs(locale: Locale) {
+  const docMap = getHelpCenterDocMap(locale);
+  return featuredHelpCenterDocSlugs
+    .map((slug) => docMap[slug])
+    .filter((doc): doc is HelpCenterDoc => Boolean(doc));
+}

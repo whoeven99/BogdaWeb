@@ -1,16 +1,16 @@
 import {SectionHeading} from "@/components/ui/SectionHeading";
-import {homePageCopy} from "@/content/home-page-copy";
 
 type FaqSectionProps = {
+  eyebrow?: string;
+  title?: string;
+  description?: string;
   items: {question: string; answer: string}[];
 };
 
-export function FaqSection({items}: FaqSectionProps) {
-  const copy = homePageCopy.faq;
-
+export function FaqSection({eyebrow, title, description, items}: FaqSectionProps) {
   return (
     <section className="page-section">
-      <SectionHeading eyebrow={copy.eyebrow} title={copy.title} description={copy.description} />
+      {title ? <SectionHeading eyebrow={eyebrow} title={title} description={description} /> : null}
       <div className="faq-list">
         {items.map((item) => (
           <details key={item.question} className="surface-card faq-item">

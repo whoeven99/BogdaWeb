@@ -1,20 +1,44 @@
 import {Button} from "@/components/ui/Button";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
-import {pagesCopy} from "@/content/pages-copy";
-import {sitePages} from "@/content/site-pages";
+import {getSitePages} from "@/content/site-pages";
+import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata} from "@/lib/seo/metadata";
 
-const page = sitePages.contact;
+export async function generateMetadata() {
+  const locale = await getRequestLocale();
+  const page = getSitePages(locale).contact;
 
-export const metadata = buildPageMetadata({
-  title: page.title,
-  description: page.description,
-  path: "/contact",
-});
+  return buildPageMetadata({
+    title: page.title,
+    description: page.description,
+    path: "/contact",
+    locale,
+  });
+}
 
-export default function ContactPage() {
-  const copy = pagesCopy.contact.hero;
+export default async function ContactPage() {
+  const locale = await getRequestLocale();
+  const page = getSitePages(locale).contact;
+  const copy = locale === "zh-cn"
+    ? {
+        eyebrow: "联系",
+        cardTitle: "开始沟通",
+        cardDescription: "如果你正在评估 Shopify 多语言、本地化或客单价提升，可以直接从这里联系。",
+        installLabel: "前往 Shopify 安装",
+        installHref: "https://apps.shopify.com/partners/bogdatech",
+        supportEmailLabel: "support@ciwi.ai",
+        supportEmailHref: "mailto:support@ciwi.ai",
+      }
+    : {
+        eyebrow: "Contact",
+        cardTitle: "Start a conversation",
+        cardDescription: "If you are evaluating Shopify localization, multilingual growth, or AOV opportunities, you can reach out here directly.",
+        installLabel: "Install on Shopify",
+        installHref: "https://apps.shopify.com/partners/bogdatech",
+        supportEmailLabel: "support@ciwi.ai",
+        supportEmailHref: "mailto:support@ciwi.ai",
+      };
 
   return (
     <main>

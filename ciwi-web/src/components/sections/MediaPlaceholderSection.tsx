@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import type {MediaAssetBrief} from "@/content/media-briefs";
+import type {Locale} from "@/lib/i18n";
 
 type MediaPlaceholderSectionProps = {
   eyebrow?: string;
@@ -9,6 +10,7 @@ type MediaPlaceholderSectionProps = {
   description: string;
   items: MediaAssetBrief[];
   compact?: boolean;
+  locale?: Locale;
 };
 
 type ShowcasePreset = {
@@ -25,7 +27,11 @@ type ShowcasePreset = {
   }[];
 };
 
-function normalizeHeadingTitle(title: string) {
+function normalizeHeadingTitle(title: string, locale: Locale) {
+  if (locale !== "zh-cn") {
+    return title;
+  }
+
   return title
     .replaceAll("主素材预留", "主视觉展示")
     .replaceAll("素材预留", "素材展示")
@@ -34,7 +40,11 @@ function normalizeHeadingTitle(title: string) {
     .replaceAll("预留", "展示");
 }
 
-function normalizeHeadingDescription(description: string) {
+function normalizeHeadingDescription(description: string, locale: Locale) {
+  if (locale !== "zh-cn") {
+    return description;
+  }
+
   return description
     .replaceAll("建议补", "补充")
     .replaceAll("适合补", "补充")
@@ -48,7 +58,11 @@ function normalizeHeadingDescription(description: string) {
     .replaceAll("先建立内容气质，再进入文章列表", "先建立内容感知，再进入文章列表");
 }
 
-function normalizeItemDescription(description: string) {
+function normalizeItemDescription(description: string, locale: Locale) {
+  if (locale !== "zh-cn") {
+    return description;
+  }
+
   return description
     .replaceAll("准备一张", "展示一张")
     .replaceAll("准备一段", "展示一段")
@@ -65,15 +79,15 @@ function normalizeItemDescription(description: string) {
     .replaceAll("展示一段", "用一段");
 }
 
-function getShowcasePreset(item: MediaAssetBrief, index: number): ShowcasePreset {
+function getShowcasePreset(item: MediaAssetBrief, index: number, locale: Locale): ShowcasePreset {
   const text = `${item.title} ${item.placement} ${item.description}`.toLowerCase();
   const isVideo = item.format === "Video";
 
   if (/pricing|credit|quota|refund|buy credits/.test(text)) {
     return {
-      badge: isVideo ? "Pricing walkthrough" : "Credits overview",
-      summary: "用真实后台界面呈现 credits、配额和购买方式，让计费逻辑一眼可读。",
-      highlights: ["Credits usage", "Purchase tiers", "Pricing clarity"],
+      badge: isVideo ? (locale === "zh-cn" ? "价格讲解" : "Pricing walkthrough") : (locale === "zh-cn" ? "额度概览" : "Credits overview"),
+      summary: locale === "zh-cn" ? "用真实后台界面呈现 credits、配额和购买方式，让计费逻辑一眼可读。" : "Show real admin screens so credits, quota, and purchasing logic are easier to understand at a glance.",
+      highlights: locale === "zh-cn" ? ["Credits usage", "Purchase tiers", "Pricing clarity"] : ["Credits usage", "Purchase tiers", "Pricing clarity"],
       main: {
         src: "/help-center/assets/images/image-41-1024x508-44cad0129e424014aed54ee5a962b9c4.png",
         alt: "Credits and pricing view inside Shopify app",
@@ -93,8 +107,8 @@ function getShowcasePreset(item: MediaAssetBrief, index: number): ShowcasePreset
 
   if (/api key|model|google cloud|translation settings/.test(text)) {
     return {
-      badge: isVideo ? "Model setup flow" : "Model settings",
-      summary: "直接展示模型与 API key 配置界面，让关键设置路径更直观。",
+      badge: isVideo ? (locale === "zh-cn" ? "模型配置流程" : "Model setup flow") : (locale === "zh-cn" ? "模型设置" : "Model settings"),
+      summary: locale === "zh-cn" ? "直接展示模型与 API key 配置界面，让关键设置路径更直观。" : "Show the model and API key configuration screens directly so the setup path is easier to follow.",
       highlights: ["Custom API key", "Quota setup", "Model workflow"],
       main: {
         src: "/help-center/assets/images/image-24-1024x353-7ad870dd20ef8534b1e93b4e2e4231a4.png",
@@ -115,8 +129,8 @@ function getShowcasePreset(item: MediaAssetBrief, index: number): ShowcasePreset
 
   if (/switcher|theme|header|footer|geolocation|currency/.test(text)) {
     return {
-      badge: isVideo ? "Storefront walkthrough" : "Theme integration",
-      summary: "把 Theme Editor、前台切换器和语言货币体验直接呈现出来，更容易判断实际效果。",
+      badge: isVideo ? (locale === "zh-cn" ? "前台演示" : "Storefront walkthrough") : (locale === "zh-cn" ? "主题集成" : "Theme integration"),
+      summary: locale === "zh-cn" ? "把 Theme Editor、前台切换器和语言货币体验直接呈现出来，更容易判断实际效果。" : "Show the theme editor, storefront switcher, and language or currency experience directly so the real effect is easier to judge.",
       highlights: ["Theme embed", "Switcher placement", "Storefront localization"],
       main: {
         src: "/help-center/assets/images/image-39-1024x484-199851b9146b9d40442c609beacc3615.png",
@@ -137,8 +151,8 @@ function getShowcasePreset(item: MediaAssetBrief, index: number): ShowcasePreset
 
   if (/compare/.test(text)) {
     return {
-      badge: isVideo ? "Compare walkthrough" : "Comparison visual",
-      summary: "用并排的真实界面和能力标签呈现差异，让对比页先建立判断框架。",
+      badge: isVideo ? (locale === "zh-cn" ? "对比演示" : "Compare walkthrough") : (locale === "zh-cn" ? "对比视觉" : "Comparison visual"),
+      summary: locale === "zh-cn" ? "用并排的真实界面和能力标签呈现差异，让对比页先建立判断框架。" : "Use side-by-side interface views and capability labels to establish the comparison frame more quickly.",
       highlights: ["Workflow depth", "Theme coverage", "Merchant fit"],
       main: {
         src: "/help-center/assets/images/image-32-1024x484-ab043cc4334f544e47960898e24cbb0a.png",
@@ -159,8 +173,8 @@ function getShowcasePreset(item: MediaAssetBrief, index: number): ShowcasePreset
 
   if (/blog|seo|content|resources/.test(text)) {
     return {
-      badge: isVideo ? "Content walkthrough" : "Content visual",
-      summary: "用内容与增长相关视觉结合产品截图，让内容型页面更接近正式站点状态。",
+      badge: isVideo ? (locale === "zh-cn" ? "内容演示" : "Content walkthrough") : (locale === "zh-cn" ? "内容视觉" : "Content visual"),
+      summary: locale === "zh-cn" ? "用内容与增长相关视觉结合产品截图，让内容型页面更接近正式站点状态。" : "Combine growth-oriented visuals with product screenshots so content-heavy pages feel closer to a finished site state.",
       highlights: ["SEO content", "Resource map", "Growth narrative"],
       main: {
         src: "/feature/feature-5.png",
@@ -181,8 +195,8 @@ function getShowcasePreset(item: MediaAssetBrief, index: number): ShowcasePreset
 
   if (/about|brand|team/.test(text)) {
     return {
-      badge: isVideo ? "Brand story" : "Brand visual",
-      summary: "用现有品牌资产、Shopify 生态标识和产品界面组合出更可信的品牌展示。",
+      badge: isVideo ? (locale === "zh-cn" ? "品牌故事" : "Brand story") : (locale === "zh-cn" ? "品牌视觉" : "Brand visual"),
+      summary: locale === "zh-cn" ? "用现有品牌资产、Shopify 生态标识和产品界面组合出更可信的品牌展示。" : "Combine current brand assets, Shopify ecosystem trust signals, and product UI to create a more credible brand presentation.",
       highlights: ["Brand trust", "Shopify focus", "Product context"],
       main: {
         src: "/feature/feature-3.png",
@@ -203,8 +217,8 @@ function getShowcasePreset(item: MediaAssetBrief, index: number): ShowcasePreset
 
   if (/solution|scenario/.test(text)) {
     return {
-      badge: isVideo ? "Scenario walkthrough" : "Scenario visual",
-      summary: "把翻译、前台切换和增长场景组合到一个区块里，让方案页更像真实解决路径。",
+      badge: isVideo ? (locale === "zh-cn" ? "场景演示" : "Scenario walkthrough") : (locale === "zh-cn" ? "场景视觉" : "Scenario visual"),
+      summary: locale === "zh-cn" ? "把翻译、前台切换和增长场景组合到一个区块里，让方案页更像真实解决路径。" : "Bring translation, storefront switching, and growth scenarios into one block so the solution page feels more like a real path forward.",
       highlights: ["Localized flow", "Storefront touchpoints", "Outcome framing"],
       main: {
         src: "/help-center/assets/images/image-39-1024x484-199851b9146b9d40442c609beacc3615.png",
@@ -225,8 +239,8 @@ function getShowcasePreset(item: MediaAssetBrief, index: number): ShowcasePreset
 
   if (/bundle|aov|upsell|discount/.test(text)) {
     return {
-      badge: isVideo ? "Bundle walkthrough" : "Growth visual",
-      summary: "用增长类图形和真实后台界面结合，把 AOV 与套餐逻辑的收益感直接呈现出来。",
+      badge: isVideo ? (locale === "zh-cn" ? "套餐演示" : "Bundle walkthrough") : (locale === "zh-cn" ? "增长视觉" : "Growth visual"),
+      summary: locale === "zh-cn" ? "用增长类图形和真实后台界面结合，把 AOV 与套餐逻辑的收益感直接呈现出来。" : "Combine growth visuals with real product screens so bundle logic and AOV upside are easier to feel immediately.",
       highlights: ["Bundle logic", "AOV growth", "Offer clarity"],
       main: {
         src: "/feature/feature-4.png",
@@ -247,8 +261,8 @@ function getShowcasePreset(item: MediaAssetBrief, index: number): ShowcasePreset
 
   if (/demo/.test(text) || isVideo) {
     return {
-      badge: "Video preview",
-      summary: "用真实后台录屏截图做视频封面，让 Demo 区先具备完整画面感。",
+      badge: locale === "zh-cn" ? "视频预览" : "Video preview",
+      summary: locale === "zh-cn" ? "用真实后台录屏截图做视频封面，让 Demo 区先具备完整画面感。" : "Use real product captures as the video cover so the demo area feels visually complete right away.",
       highlights: ["Flow preview", "Before and after", "Live product view"],
       main: {
         src: "/help-center/assets/images/image-32-1024x484-ab043cc4334f544e47960898e24cbb0a.png",
@@ -269,8 +283,8 @@ function getShowcasePreset(item: MediaAssetBrief, index: number): ShowcasePreset
 
   const productPresetPool: ShowcasePreset[] = [
     {
-      badge: "Product visual",
-      summary: "用真实产品截图做主视觉，让用户先看到 Shopify 场景里的界面形态和关键操作路径。",
+      badge: locale === "zh-cn" ? "产品视觉" : "Product visual",
+      summary: locale === "zh-cn" ? "用真实产品截图做主视觉，让用户先看到 Shopify 场景里的界面形态和关键操作路径。" : "Use real product screenshots as the main visual so visitors can understand the interface and key actions inside a Shopify context first.",
       highlights: ["Product UI", "Localization workflow", "Shopify fit"],
       main: {
         src: "/help-center/assets/images/image-30-1024x483-bca184999f086a339ace9b093b68bed9.png",
@@ -288,8 +302,8 @@ function getShowcasePreset(item: MediaAssetBrief, index: number): ShowcasePreset
       ],
     },
     {
-      badge: "Feature visual",
-      summary: "把真实后台界面和品牌能力标签一起呈现，让产品列表或详情页更容易形成整体理解。",
+      badge: locale === "zh-cn" ? "功能视觉" : "Feature visual",
+      summary: locale === "zh-cn" ? "把真实后台界面和品牌能力标签一起呈现，让产品列表或详情页更容易形成整体理解。" : "Show real admin screens alongside capability labels so product list and detail pages are easier to understand as a whole.",
       highlights: ["Coverage depth", "Brand control", "Operational flow"],
       main: {
         src: "/help-center/assets/images/image-32-1024x484-ab043cc4334f544e47960898e24cbb0a.png",
@@ -317,6 +331,7 @@ export function MediaPlaceholderSection({
   description,
   items,
   compact = false,
+  locale = "en",
 }: MediaPlaceholderSectionProps) {
   if (!items.length) {
     return null;
@@ -326,12 +341,16 @@ export function MediaPlaceholderSection({
     <section className={`page-section ${compact ? "page-section--compact" : ""}`}>
       <SectionHeading
         eyebrow={eyebrow}
-        title={normalizeHeadingTitle(title)}
-        description={normalizeHeadingDescription(description)}
+        title={normalizeHeadingTitle(title, locale)}
+        description={normalizeHeadingDescription(description, locale)}
       />
       <div className={`media-showcase-grid ${compact ? "media-showcase-grid--compact" : ""}`}>
         {items.map((item, index) => {
-          const preset = getShowcasePreset(item, index);
+          const preset = getShowcasePreset(item, index, locale);
+          const placementLabel = locale === "zh-cn" ? "位置" : "Placement";
+          const placementValue = locale === "zh-cn" ? item.placement : item.title;
+          const itemDescription = locale === "zh-cn" ? normalizeItemDescription(item.description, locale) : preset.summary;
+          const watchLabel = locale === "zh-cn" ? "查看演示" : "Watch walkthrough";
 
           return (
             <article key={`${item.placement}-${item.title}`} className="media-showcase-card">
@@ -350,7 +369,7 @@ export function MediaPlaceholderSection({
                       className="media-showcase-card__image"
                     />
                     {item.format === "Video" ? (
-                      <span className="media-showcase-card__play">Watch walkthrough</span>
+                      <span className="media-showcase-card__play">{watchLabel}</span>
                     ) : null}
                   </div>
                   <div className="media-showcase-card__rail">
@@ -371,13 +390,13 @@ export function MediaPlaceholderSection({
               <div className="section-stack">
                 <div>
                   <div className="media-showcase-card__meta">
-                    <strong>Placement</strong>
-                    <p>{item.placement}</p>
+                    <strong>{placementLabel}</strong>
+                    <p>{placementValue}</p>
                   </div>
                 </div>
                 <div>
                   <h3>{item.title}</h3>
-                  <p className="quote">{normalizeItemDescription(item.description)}</p>
+                  <p className="quote">{itemDescription}</p>
                   <p className="quote media-showcase-card__summary">{preset.summary}</p>
                 </div>
                 <div className="media-showcase-card__chips">

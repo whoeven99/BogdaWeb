@@ -1,9 +1,11 @@
-import Link from "next/link";
 import {notFound} from "next/navigation";
 
+import {LocalizedLink} from "@/components/ui/LocalizedLink";
 import {PageContainer} from "@/components/ui/PageContainer";
-import {blogPostMap, blogPosts} from "@/content/blog";
-import {detailPagesCopy} from "@/content/detail-pages-copy";
+import {getBlogPostMap, getBlogPosts} from "@/content/blog";
+import {getUiCopy} from "@/content/ui-copy";
+import {getRequestLocale} from "@/lib/i18n-server";
+import {localizeHref} from "@/lib/i18n";
 import {addSectionAnchors} from "@/lib/content/sections";
 import {buildPageMetadata} from "@/lib/seo/metadata";
 import {siteUrl} from "@/lib/seo/metadata";
@@ -13,19 +15,52 @@ type BlogDetailPageProps = {
   params: Promise<{slug: string}>;
 };
 
+function getBlogDetailCopy(locale: "en" | "zh-cn") {
+  return locale === "zh-cn"
+    ? {
+        notFound: {
+          title: "未找到文章",
+          description: "你访问的文章不存在。",
+          path: "/blog",
+        },
+        hero: {
+          eyebrow: "博客",
+          backToBlogLabel: "返回博客",
+          backToBlogHref: "/blog",
+          viewSourceLabel: "查看原始来源",
+        },
+      }
+    : {
+        notFound: {
+          title: "Blog post not found",
+          description: "The requested article could not be found.",
+          path: "/blog",
+        },
+        hero: {
+          eyebrow: "Blog",
+          backToBlogLabel: "Back to blog",
+          backToBlogHref: "/blog",
+          viewSourceLabel: "View original source",
+        },
+      };
+}
+
 export function generateStaticParams() {
-  return blogPosts.map((post) => ({slug: post.slug}));
+  return getBlogPosts("en").map((post) => ({slug: post.slug}));
 }
 
 export async function generateMetadata({params}: BlogDetailPageProps) {
+  const locale = await getRequestLocale();
   const {slug} = await params;
-  const post = blogPostMap[slug];
+  const post = getBlogPostMap(locale)[slug];
+  const copy = getBlogDetailCopy(locale);
 
   if (!post) {
     return buildPageMetadata({
-      title: detailPagesCopy.blog.notFound.title,
-      description: detailPagesCopy.blog.notFound.description,
-      path: detailPagesCopy.blog.notFound.path,
+      title: copy.notFound.title,
+      description: copy.notFound.description,
+      path: copy.notFound.path,
+      locale,
     });
   }
 
@@ -33,27 +68,31 @@ export async function generateMetadata({params}: BlogDetailPageProps) {
     title: post.title,
     description: post.description,
     path: post.href,
+    locale,
   });
 }
 
 export default async function BlogDetailPage({params}: BlogDetailPageProps) {
+  const locale = await getRequestLocale();
   const {slug} = await params;
-  const post = blogPostMap[slug];
-  const copy = detailPagesCopy.blog;
+  const posts = getBlogPosts(locale);
+  const post = getBlogPostMap(locale)[slug];
+  const copy = getBlogDetailCopy(locale);
+  const uiCopy = getUiCopy(locale);
 
   if (!post) {
     notFound();
   }
 
   const contentHtml = addSectionAnchors(post.contentHtml);
-  const pageUrl = new URL(post.href, siteUrl).toString();
-  const currentIndex = blogPosts.findIndex((item) => item.slug === post.slug);
-  const previousPost = currentIndex > 0 ? blogPosts[currentIndex - 1] : null;
-  const nextPost = currentIndex >= 0 && currentIndex < blogPosts.length - 1 ? blogPosts[currentIndex + 1] : null;
+  const pageUrl = new URL(localizeHref(locale, post.href), siteUrl).toString();
+  const currentIndex = posts.findIndex((item) => item.slug === post.slug);
+  const previousPost = currentIndex > 0 ? posts[currentIndex - 1] : null;
+  const nextPost = currentIndex >= 0 && currentIndex < posts.length - 1 ? posts[currentIndex + 1] : null;
   const structuredData = [
     buildBreadcrumbSchema([
       {name: "Home", item: siteUrl},
-      {name: "Blog", item: new URL("/blog", siteUrl).toString()},
+      {name: locale === "zh-cn" ? "博客" : "Blog", item: new URL(localizeHref(locale, "/blog"), siteUrl).toString()},
       {name: post.title, item: pageUrl},
     ]),
     buildBlogPostingSchema({
@@ -79,12 +118,12 @@ export default async function BlogDetailPage({params}: BlogDetailPageProps) {
         <section className="blog-article-shell">
           <article className="blog-article-single">
             <div className="blog-article-single__topbar">
-              <Link href={copy.hero.backToBlogHref} className="blog-article-single__backlink">
+              <LocalizedLink href={copy.hero.backToBlogHref} className="blog-article-single__backlink">
                 {copy.hero.backToBlogLabel}
-              </Link>
-              <Link href={post.sourceHref} className="blog-article-single__source">
+              </LocalizedLink>
+              <a href={post.sourceHref} className="blog-article-single__source">
                 {copy.hero.viewSourceLabel}
-              </Link>
+              </a>
             </div>
 
             <div className="article-meta">
@@ -103,22 +142,22 @@ export default async function BlogDetailPage({params}: BlogDetailPageProps) {
 
             <div className="article-prose blog-article-single__prose" dangerouslySetInnerHTML={{__html: contentHtml}} />
 
-            <nav className="blog-article-single__pagination" aria-label="Blog article pagination">
+            <nav className="blog-article-single__pagination" aria-label={uiCopy.blog.paginationLabel}>
               {previousPost ? (
-                <Link href={previousPost.href} className="blog-article-single__pagination-link">
-                  <span className="blog-article-single__pagination-label">上一篇</span>
+                <LocalizedLink href={previousPost.href} className="blog-article-single__pagination-link">
+                  <span className="blog-article-single__pagination-label">{uiCopy.blog.previousLabel}</span>
                   <strong>{previousPost.title}</strong>
-                </Link>
+                </LocalizedLink>
               ) : <div />}
 
               {nextPost ? (
-                <Link
+                <LocalizedLink
                   href={nextPost.href}
                   className="blog-article-single__pagination-link blog-article-single__pagination-link--next"
                 >
-                  <span className="blog-article-single__pagination-label">下一篇</span>
+                  <span className="blog-article-single__pagination-label">{uiCopy.blog.nextLabel}</span>
                   <strong>{nextPost.title}</strong>
-                </Link>
+                </LocalizedLink>
               ) : <div />}
             </nav>
           </article>

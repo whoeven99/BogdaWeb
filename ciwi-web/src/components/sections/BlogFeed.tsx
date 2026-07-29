@@ -1,9 +1,11 @@
 "use client";
 
-import Link from "next/link";
 import {useMemo, useState} from "react";
 
+import {useLocale} from "@/components/providers/LocaleProvider";
+import {LocalizedLink} from "@/components/ui/LocalizedLink";
 import type {BlogPost} from "@/content/blog";
+import {getUiCopy} from "@/content/ui-copy";
 
 const POSTS_PER_PAGE = 2;
 
@@ -14,6 +16,8 @@ type BlogFeedProps = {
 };
 
 export function BlogFeed({posts, title, description}: BlogFeedProps) {
+  const locale = useLocale();
+  const uiCopy = getUiCopy(locale);
   const [page, setPage] = useState(1);
   const pageCount = Math.max(1, Math.ceil(posts.length / POSTS_PER_PAGE));
 
@@ -25,7 +29,7 @@ export function BlogFeed({posts, title, description}: BlogFeedProps) {
   return (
     <section className="blog-feed">
       <header className="blog-feed__header">
-        <span className="section-heading__eyebrow">Blog</span>
+        <span className="section-heading__eyebrow">{uiCopy.blog.eyebrow}</span>
         <h1>{title}</h1>
         <p>{description}</p>
       </header>
@@ -41,25 +45,25 @@ export function BlogFeed({posts, title, description}: BlogFeedProps) {
               ))}
             </div>
             <h2>
-              <Link href={post.href}>{post.title}</Link>
+              <LocalizedLink href={post.href}>{post.title}</LocalizedLink>
             </h2>
             <p>{post.description}</p>
-            <Link href={post.href} className="blog-summary-card__link">
-              Read article
-            </Link>
+            <LocalizedLink href={post.href} className="blog-summary-card__link">
+              {uiCopy.blog.readArticleLabel}
+            </LocalizedLink>
           </article>
         ))}
       </div>
 
       {pageCount > 1 ? (
-        <nav className="blog-feed__pagination" aria-label="Blog pagination">
+        <nav className="blog-feed__pagination" aria-label={uiCopy.blog.paginationLabel}>
           <button
             type="button"
             className="blog-feed__page-button"
             onClick={() => setPage((current) => Math.max(1, current - 1))}
             disabled={page === 1}
           >
-            Previous
+            {uiCopy.blog.previousLabel}
           </button>
 
           <div className="blog-feed__page-list">
@@ -87,7 +91,7 @@ export function BlogFeed({posts, title, description}: BlogFeedProps) {
             onClick={() => setPage((current) => Math.min(pageCount, current + 1))}
             disabled={page === pageCount}
           >
-            Next
+            {uiCopy.blog.nextLabel}
           </button>
         </nav>
       ) : null}

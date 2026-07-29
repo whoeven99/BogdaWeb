@@ -1,4 +1,6 @@
-import {homePageCopy} from "@/content/home-page-copy";
+import {getHomePageCopy} from "@/content/home-page-copy";
+
+const homePageCopy = getHomePageCopy("en");
 
 export const heroProofItems = homePageCopy.hero.proofItems;
 export const outcomeItems = homePageCopy.outcomeItems;

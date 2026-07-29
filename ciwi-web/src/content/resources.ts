@@ -1,6 +1,7 @@
-import {blogPosts} from "@/content/blog";
-import {compares} from "@/content/compare";
-import {featuredHelpCenterDocs, helpCenterDocs} from "@/content/help-center";
+import type {Locale} from "@/lib/i18n";
+import {getBlogPosts} from "@/content/blog";
+import {getCompares} from "@/content/compare";
+import {getFeaturedHelpCenterDocs, getHelpCenterDocs} from "@/content/help-center";
 
 export type ResourceItem = {
   title: string;
@@ -9,20 +10,28 @@ export type ResourceItem = {
   meta: string[];
 };
 
-export const blogResources: ResourceItem[] = blogPosts.map((post) => ({
-  title: post.title,
-  description: post.description,
-  href: post.href,
-  meta: ["Blog", post.publishedAt],
-}));
+export function getBlogResources(locale: Locale): ResourceItem[] {
+  return getBlogPosts(locale).map((post) => ({
+    title: post.title,
+    description: post.description,
+    href: post.href,
+    meta: [locale === "zh-cn" ? "博客" : "Blog", post.publishedAt],
+  }));
+}
 
-export const helpCenterResources: ResourceItem[] = helpCenterDocs;
+export function getHelpCenterResources(locale: Locale): ResourceItem[] {
+  return getHelpCenterDocs(locale);
+}
 
-export const featuredHelpCenterResources: ResourceItem[] = featuredHelpCenterDocs;
+export function getFeaturedHelpCenterResources(locale: Locale): ResourceItem[] {
+  return getFeaturedHelpCenterDocs(locale);
+}
 
-export const compareResources: ResourceItem[] = compares.map((item) => ({
-  title: item.title,
-  description: item.description,
-  href: `/compare/${item.slug}`,
-  meta: ["Compare", "Selection"],
-}));
+export function getCompareResources(locale: Locale): ResourceItem[] {
+  return getCompares(locale).map((item) => ({
+    title: item.title,
+    description: item.description,
+    href: `/compare/${item.slug}`,
+    meta: [locale === "zh-cn" ? "对比" : "Compare", locale === "zh-cn" ? "选型" : "Selection"],
+  }));
+}

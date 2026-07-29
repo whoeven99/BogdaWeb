@@ -1,9 +1,11 @@
+import type {Locale} from "@/lib/i18n";
+
 const supportEmail = "support@ciwi.ai";
 const effectiveDate = "July 27, 2026";
 const legalEntity = "BOGDA COMPANY LIMITED";
 const legalAddress = "1A-1L Tung Choi Street, Unit 08, 15/F, Mong Kok, Hong Kong";
 
-export const sitePages = {
+const sitePagesZh = {
   about: {
     title: "关于我们 Ciwi.ai",
     description:
@@ -217,3 +219,31 @@ export const sitePages = {
     `,
   },
 };
+
+const sitePagesEn = {
+  about: {
+    title: "About Ciwi.ai",
+    description: "Give every growing brand a fair chance to reach global markets.",
+    contentHtml: `
+      <p><strong>Who we are</strong> We are a team of senior product managers and senior engineers with decades of experience in ecommerce platforms, founded in 2025. Our vision is to help every smaller brand reach global markets. Our mission is to bring advanced technology to more growing merchants so they can compete internationally, build stronger businesses, and shape stronger brands. Our value is simple: do not fight time, and keep doing the long-term work that is right and valuable.</p>
+      <p><strong>What we want to do for growing brands</strong> We want to turn our ecommerce experience and platform perspective into practical tools that every brand operator can use out of the box. Those tools should help merchants think more clearly, manage their businesses better, and operate with more efficiency and usefulness. In practice, many brands do not fail because of the product itself. They get blocked by unfamiliar global rules, unclear platform mechanics, and the inability to use data tools well enough to make decisions. We want to help merchants avoid those traps, reduce the cost of learning unfamiliar systems, and keep their energy focused on building great products. The remaining operational work is what we want to keep improving through advanced AI agent capabilities, together with the brands we support.</p>
+      <p><strong>Why we can do this</strong> Our team includes specialists from leading ecommerce platforms such as Amazon, TikTok, and Temu, alongside technical experts from world-class technology companies including Microsoft and ByteDance. We combine platform-side experience with strong engineering and product thinking so that smaller merchants can access the same level of technical support and enablement that larger brands often take for granted.</p>
+    `,
+  },
+  contact: {
+    title: "Contact Us",
+    description: "If you have any questions, ideas, or partnership requests, you can contact the Ciwi team directly.",
+    paragraphs: [
+      "No pressure. We usually respond within 24 hours.",
+      "You can also start with the Shopify App Store, product pages, or help docs first, then reach out when you want a more specific conversation.",
+    ],
+  },
+  privacy: sitePagesZh.privacy,
+  terms: sitePagesZh.terms,
+};
+
+export const sitePages = sitePagesEn;
+
+export function getSitePages(locale: Locale) {
+  return locale === "zh-cn" ? sitePagesZh : sitePagesEn;
+}

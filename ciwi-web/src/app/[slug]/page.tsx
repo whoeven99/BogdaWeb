@@ -1,30 +1,64 @@
-import Link from "next/link";
 import {notFound} from "next/navigation";
 import type {Metadata} from "next";
 
+import {LocalizedLink} from "@/components/ui/LocalizedLink";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {legacyRouteMap, type LegacyRouteSlug} from "@/content/legacy-routes";
-import {pagesCopy} from "@/content/pages-copy";
+import {localizeHref} from "@/lib/i18n";
+import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata} from "@/lib/seo/metadata";
 
 type LegacyPageProps = {
   params: Promise<{slug: string}>;
 };
 
+function getLegacyCopy(locale: "en" | "zh-cn") {
+  return locale === "zh-cn"
+    ? {
+        notFound: {
+          title: "页面不存在",
+          description: "你访问的页面不存在。",
+          path: "/",
+        },
+        hero: {
+          eyebrow: "旧路由",
+          notice: "这个旧的根级页面已经并入新的目录化结构，当前兼容页会自动带你跳转到新的地址。",
+          redirectingPrefix: "正在跳转到 ",
+          openNewPageLabel: "打开新页面",
+        },
+      }
+    : {
+        notFound: {
+          title: "Page not found",
+          description: "The requested page could not be found.",
+          path: "/",
+        },
+        hero: {
+          eyebrow: "Legacy route",
+          notice: "This older root-level page has been folded into the new structured route tree. The compatibility page will redirect visitors automatically.",
+          redirectingPrefix: "Redirecting to ",
+          openNewPageLabel: "Open new page",
+        },
+      };
+}
+
 export function generateStaticParams() {
   return Object.keys(legacyRouteMap).map((slug) => ({slug}));
 }
 
 export async function generateMetadata({params}: LegacyPageProps) {
+  const locale = await getRequestLocale();
   const {slug} = await params;
   const data = legacyRouteMap[slug as LegacyRouteSlug];
+  const copy = getLegacyCopy(locale);
 
   if (!data) {
     return buildPageMetadata({
-      title: pagesCopy.legacy.notFound.title,
-      description: pagesCopy.legacy.notFound.description,
-      path: pagesCopy.legacy.notFound.path,
+      title: copy.notFound.title,
+      description: copy.notFound.description,
+      path: copy.notFound.path,
+      locale,
     });
   }
 
@@ -33,6 +67,7 @@ export async function generateMetadata({params}: LegacyPageProps) {
       title: data.title,
       description: data.description,
       path: data.destination,
+      locale,
     }),
     robots: {
       index: false,
@@ -44,20 +79,23 @@ export async function generateMetadata({params}: LegacyPageProps) {
 }
 
 export default async function LegacyRoutePage({params}: LegacyPageProps) {
+  const locale = await getRequestLocale();
   const {slug} = await params;
   const data = legacyRouteMap[slug as LegacyRouteSlug];
-  const copy = pagesCopy.legacy.hero;
+  const copy = getLegacyCopy(locale).hero;
 
   if (!data) {
     notFound();
   }
+
+  const localizedDestination = localizeHref(locale, data.destination);
 
   return (
     <main>
       <PageContainer>
         <script
           dangerouslySetInnerHTML={{
-            __html: `window.location.replace(${JSON.stringify(data.destination)});`,
+            __html: `window.location.replace(${JSON.stringify(localizedDestination)});`,
           }}
         />
         <section className="page-section page-hero">
@@ -66,11 +104,11 @@ export default async function LegacyRoutePage({params}: LegacyPageProps) {
             <p>{copy.notice}</p>
             <p className="quote">
               {copy.redirectingPrefix}
-              <code>{data.destination}</code>...
+              <code>{localizedDestination}</code>...
             </p>
-            <Link href={data.destination} className="button button--primary">
+            <LocalizedLink href={data.destination} className="button button--primary">
               {copy.openNewPageLabel}
-            </Link>
+            </LocalizedLink>
           </div>
         </section>
       </PageContainer>

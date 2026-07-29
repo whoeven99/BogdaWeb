@@ -3,18 +3,29 @@ import {NewsletterSubscriptionCard} from "@/components/sections/NewsletterSubscr
 import {Button} from "@/components/ui/Button";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
-import {resourcesPageCopy} from "@/content/resources-page-copy";
-import {blogResources, compareResources, helpCenterResources} from "@/content/resources";
+import {getResourcesPageCopy} from "@/content/resources-page-copy";
+import {getBlogResources, getCompareResources, getHelpCenterResources} from "@/content/resources";
+import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata} from "@/lib/seo/metadata";
 
-export const metadata = buildPageMetadata({
-  title: resourcesPageCopy.metadata.title,
-  description: resourcesPageCopy.metadata.description,
-  path: resourcesPageCopy.metadata.path,
-});
+export async function generateMetadata() {
+  const locale = await getRequestLocale();
+  const copy = getResourcesPageCopy(locale);
 
-export default function ResourcesPage() {
-  const copy = resourcesPageCopy;
+  return buildPageMetadata({
+    title: copy.metadata.title,
+    description: copy.metadata.description,
+    path: copy.metadata.path,
+    locale,
+  });
+}
+
+export default async function ResourcesPage() {
+  const locale = await getRequestLocale();
+  const copy = getResourcesPageCopy(locale);
+  const helpCenterResources = getHelpCenterResources(locale);
+  const blogResources = getBlogResources(locale);
+  const compareResources = getCompareResources(locale);
   const featuredHelpCenterResources = helpCenterResources.slice(0, 3);
   const featuredBlogResources = blogResources.slice(0, 3);
   const featuredCompareResources = compareResources.slice(0, 3);

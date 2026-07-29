@@ -1,26 +1,26 @@
 import {ProductCard} from "@/components/cards/ProductCard";
 import {SectionHeading} from "@/components/ui/SectionHeading";
-import {homePageCopy} from "@/content/home-page-copy";
-import {products} from "@/content/products";
+import {products as defaultProducts} from "@/content/products";
+import type {ProductItem} from "@/content/products";
 
 type ProductMatrixSectionProps = {
   eyebrow?: string;
   title?: string;
   description?: string;
   className?: string;
+  products?: ProductItem[];
 };
 
-export function ProductMatrixSection({eyebrow, title, description, className = "page-section"}: ProductMatrixSectionProps) {
-  const fallback = homePageCopy.productMatrix;
-  const copy = {
-    eyebrow: eyebrow ?? fallback.eyebrow,
-    title: title ?? fallback.title,
-    description: description ?? fallback.description,
-  };
-
+export function ProductMatrixSection({
+  eyebrow,
+  title = "",
+  description = "",
+  className = "page-section",
+  products = defaultProducts,
+}: ProductMatrixSectionProps) {
   return (
     <section className={className}>
-      <SectionHeading eyebrow={copy.eyebrow} title={copy.title} description={copy.description} />
+      <SectionHeading eyebrow={eyebrow} title={title} description={description} />
       <div className="card-grid">
         {products.map((product) => (
           <ProductCard

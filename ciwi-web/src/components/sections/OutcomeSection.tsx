@@ -1,13 +1,16 @@
 import {SectionHeading} from "@/components/ui/SectionHeading";
-import {homePageCopy} from "@/content/home-page-copy";
 
-export function OutcomeSection() {
-  const copy = homePageCopy.outcomes;
-  const items = homePageCopy.outcomeItems;
+type OutcomeSectionProps = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  items: {title: string; description: string}[];
+};
 
+export function OutcomeSection({eyebrow, title, description, items}: OutcomeSectionProps) {
   return (
     <section className="page-section">
-      <SectionHeading eyebrow={copy.eyebrow} title={copy.title} description={copy.description} />
+      <SectionHeading eyebrow={eyebrow} title={title} description={description} />
       <div className="card-grid">
         {items.map((item) => (
           <article key={item.title} className="surface-card">

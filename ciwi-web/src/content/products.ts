@@ -1,3 +1,5 @@
+import type {Locale} from "@/lib/i18n";
+
 export type ProductItem = {
   slug: string;
   name: string;
@@ -47,7 +49,334 @@ export type ProductItem = {
   ctaHref: string;
 };
 
-export const products: ProductItem[] = [
+const productsEn: ProductItem[] = [
+  {
+    slug: "translator",
+    name: "AI Translator",
+    shortDescription: "Launch multilingual storefront content faster, keep terminology steady, and stay in sync as the store changes.",
+    heroTitle: "Turn Shopify localization into a sustainable growth workflow",
+    heroDescription:
+      "Ciwi AI Translator covers products, themes, navigation, FAQs, images, and metafields so multilingual rollout gets faster and ongoing updates stay under better control.",
+    icon: "/translate.svg",
+    metrics: ["100+ languages", "Shopify-aware workflow", "Glossary and model control"],
+    rating: 4.7,
+    reviewCount: 22,
+    reviewSnippets: [
+      "Absolutely love this app! The support team is incredibly responsive — they help almost immediately.",
+      "This app really works, and support responds fast whenever we need something.",
+    ],
+    targetUsers: [
+      "Shopify brands expanding into new international markets",
+      "Operations teams maintaining multilingual content over time",
+      "Merchants who care about terminology consistency and localization quality",
+    ],
+    benefits: [
+      "Launch multilingual storefronts faster",
+      "Reduce terminology drift and brand inconsistency",
+      "Keep later content updates synchronized more easily",
+    ],
+    features: [
+      {title: "Translate beyond plain text", description: "Cover product copy, theme blocks, FAQs, navigation, image text, and metafields in one broader workflow."},
+      {title: "Control terminology and tone", description: "Use glossary and model settings to stabilize brand terms, ingredients, and promotional language."},
+      {title: "Stay synced as the store evolves", description: "When products, campaigns, and pages change, multilingual versions are easier to update in step."},
+    ],
+    workflow: [
+      "Connect the store and identify translatable content",
+      "Run translation by market, language, and glossary rules",
+      "Review the output and keep future updates in sync",
+    ],
+    useCases: [
+      {title: "Multilingual product pages", description: "For brands maintaining product titles, selling points, FAQs, and image messaging across markets."},
+      {title: "Brand localization", description: "For teams that need glossary control over terminology, ingredients, and brand tone."},
+      {title: "New market validation", description: "For merchants launching into more countries or languages and wanting a faster path to first release."},
+    ],
+    demoHighlights: ["Before / after translation", "Glossary term locking", "Theme and structured content coverage"],
+    demoScenarios: [
+      {
+        title: "Product description localization",
+        primaryLabel: "Original",
+        primaryText: "Bundle two scalp-care products and save 15% with auto-applied discount.",
+        secondaryLabel: "Localized",
+        secondaryText: "Buy two scalp-care products and automatically receive a 15% bundle discount while keeping the brand tone and promotional framing intact.",
+        note: "The goal is not only to translate text, but also to preserve the promotional logic and Shopify-specific context.",
+        variants: [
+          {
+            label: "Bundle offer",
+            primaryText: "Bundle two scalp-care products and save 15% with auto-applied discount.",
+            secondaryText: "Buy two scalp-care products and automatically receive a 15% bundle discount while keeping the brand tone and promotional framing intact.",
+          },
+          {
+            label: "Beauty PDP",
+            primaryText: "Hydrating scalp serum with niacinamide helps calm dryness after every wash.",
+            secondaryText: "A hydrating scalp serum with niacinamide helps calm dryness after each wash and reads more naturally for the target market.",
+            note: "Even within product copy, ingredient language and tone need to match how the target market actually reads.",
+          },
+          {
+            label: "FAQ snippet",
+            primaryText: "Use twice a week for better scalp balance and softer hair texture.",
+            secondaryText: "Use twice per week to support scalp balance and help hair feel softer and easier to manage.",
+            note: "Localization should cover FAQs and support blocks too, not only the main description.",
+          },
+        ],
+      },
+      {
+        title: "Glossary intervention",
+        primaryLabel: "Without glossary",
+        primaryText: "Hydrating repair serum suitable for dry and color-treated hair.",
+        secondaryLabel: "With glossary",
+        secondaryText: "Hydrating repair serum for dry and color-treated hair, with the brand-preferred term kept consistent across pages.",
+        note: "Glossary helps protect important terms from drifting as content expands across languages.",
+        variants: [
+          {
+            label: "Repair serum",
+            primaryText: "Hydrating repair serum suitable for dry and color-treated hair.",
+            secondaryText: "Hydrating repair serum for dry and color-treated hair, with the brand-preferred term kept consistent across pages.",
+          },
+          {
+            label: "Brand term lock",
+            primaryText: "The Cloud Reset ritual helps customers recover shine after heat styling.",
+            secondaryText: "The Cloud Reset ritual helps customers restore shine after heat styling, while keeping the series name untouched.",
+            note: "Series names and brand terms usually need to stay fixed rather than be freely rephrased.",
+          },
+          {
+            label: "Promo copy",
+            primaryText: "Limited drop: repair duo for damaged hair with salon-grade finish.",
+            secondaryText: "Limited release: a repair duo for damaged hair, while keeping the brand-approved salon-grade framing consistent.",
+            note: "Promotional copy also needs glossary control, otherwise tone drift appears quickly across pages.",
+          },
+        ],
+      },
+      {
+        title: "Theme and metafield coverage",
+        primaryLabel: "Store content",
+        primaryText: "Theme blocks, metafields, navigation, FAQ and image text need to stay in sync.",
+        secondaryLabel: "Ciwi approach",
+        secondaryText: "Use a structured translation flow that covers theme blocks, metafields, navigation, FAQs, and image text together.",
+        note: "This is the layer many generic text translation tools miss most easily.",
+        variants: [
+          {
+            label: "Theme blocks",
+            primaryText: "Theme blocks, metafields, navigation, FAQ and image text need to stay in sync.",
+            secondaryText: "Use a structured translation flow that covers theme blocks, metafields, navigation, FAQs, and image text together.",
+          },
+          {
+            label: "Metafields",
+            primaryText: "Ingredient highlights and usage tips stored in metafields should follow the same translation rules.",
+            secondaryText: "Ingredient highlights and usage tips stored in metafields follow the same glossary and translation rules as the main product copy.",
+            note: "These fields are often missing from traditional export/import flows, even though they affect the storefront directly.",
+          },
+          {
+            label: "Image captions",
+            primaryText: "Hero banners, promo badges and comparison tables should update together when a market changes.",
+            secondaryText: "When a market changes, hero banners, promo badges, and comparison tables should update together to keep the storefront coherent.",
+            note: "Real localization is not a single-page task. It is whole-site synchronization.",
+          },
+        ],
+      },
+    ],
+    featureModules: [
+      {
+        title: "Preview the translated result first",
+        description: "Start by checking real output and tone before going deeper into interaction demos or setup details.",
+        highlights: ["Before / after product copy", "FAQ and support blocks localized together", "Offers and context preserved"],
+        primaryLabel: "Original content",
+        primaryText: "Bundle two scalp-care products and save 15% with auto-applied discount.",
+        secondaryLabel: "Localized result",
+        secondaryText: "Buy two scalp-care products and automatically receive a 15% bundle discount while keeping the brand tone and promotional framing intact.",
+        note: "Looking at the result first makes it easier to decide whether the product is worth further evaluation.",
+        previewLabels: ["Bundle offer", "Beauty PDP", "FAQ snippet"],
+      },
+      {
+        title: "Lock brand terminology with glossary",
+        description: "Protect series names, brand terms, and critical ingredients so they do not drift across pages.",
+        highlights: ["Brand terms stay fixed", "Promotional language stays steadier", "High-value terminology is maintained centrally"],
+        primaryLabel: "Without glossary",
+        primaryText: "Hydrating repair serum suitable for dry and color-treated hair.",
+        secondaryLabel: "With glossary",
+        secondaryText: "Hydrating repair serum for dry and color-treated hair, with the brand-preferred term kept consistent across pages.",
+        note: "Long-term localization quality is usually determined less by the first translation and more by whether later updates stay consistent.",
+        previewLabels: ["Repair serum", "Brand term lock", "Promo copy"],
+      },
+      {
+        title: "Cover themes and structured content",
+        description: "Do more than translate product copy by bringing theme blocks, metafields, navigation, FAQs, and image text into the same workflow.",
+        highlights: ["Theme blocks and metafields included", "FAQ, navigation, and image text stay aligned", "Lower risk of missing structured content"],
+        primaryLabel: "Store content",
+        primaryText: "Theme blocks, metafields, navigation, FAQ and image text need to stay in sync.",
+        secondaryLabel: "Ciwi approach",
+        secondaryText: "Use a structured translation flow that covers theme blocks, metafields, navigation, FAQs, and image text together.",
+        note: "If structured content is not included, multilingual storefronts usually start to break on the second round of updates.",
+        previewLabels: ["Theme blocks", "Metafields", "Image captions"],
+      },
+    ],
+    compareLinks: [
+      {
+        title: "Ciwi vs Shopify Translate & Adapt",
+        description: "Compare Shopify native localization with a more complete multilingual workflow.",
+        href: "/compare/ciwi-vs-shopify-translate-adapt",
+        meta: ["Compare", "Native vs workflow"],
+      },
+      {
+        title: "Ciwi vs Transcy",
+        description: "Compare Shopify fit, terminology control, and long-term maintenance cost.",
+        href: "/compare/ciwi-vs-transcy",
+        meta: ["Compare", "Localization control"],
+      },
+      {
+        title: "Ciwi vs Weglot",
+        description: "See the difference between fast-coverage paths and deeper localization governance.",
+        href: "/compare/ciwi-vs-weglot",
+        meta: ["Compare", "Launch vs governance"],
+      },
+    ],
+    relatedResources: [
+      {title: "About the Ciwi AI Translator Shopify app", href: "/help-center/ShopifyApp/about-ciwi-ai-translator-shopify-app/", meta: ["Help Center", "Overview"]},
+      {title: "How to set up and use glossary?", href: "/help-center/ShopifyApp/how-to-setup-and-use-glossary/", meta: ["Help Center", "Glossary"]},
+      {title: "Ciwi vs Shopify Translate & Adapt", href: "/compare/ciwi-vs-shopify-translate-adapt", meta: ["Compare", "Selection"]},
+    ],
+    faq: [
+      {question: "What is the main difference between Ciwi and a generic translation tool?", answer: "Ciwi is better suited to Shopify-specific structured content, terminology control, and continuous sync, so multilingual operations stay more complete over time."},
+      {question: "Does it support glossary and terminology control?", answer: "Yes. You can use glossary and model rules to protect high-value terms and reduce drift across pages."},
+      {question: "What kind of Shopify merchants is it for?", answer: "It works both for merchants entering multilingual markets for the first time and for brands already running multi-market operations that need lower update cost."},
+    ],
+    ctaLabel: "Install on Shopify",
+    ctaHref: "https://apps.shopify.com/partners/bogdatech",
+  },
+  {
+    slug: "bundle-discount",
+    name: "Bundle Discount",
+    shortDescription: "Clarify bundle offers, upsells, and promotional framing so Shopify merchants can grow AOV more naturally.",
+    heroTitle: "Help shoppers understand bundle value and accept upsells more naturally",
+    heroDescription: "Bundle Discount helps merchants explain bundle logic, savings, and purchase reasons more clearly so higher-value carts feel easier to accept.",
+    icon: "/subscriptions-created-outlined.svg",
+    metrics: ["Bundle-first UX", "Upsell-friendly framing", "Clear savings communication"],
+    rating: 4.9,
+    reviewCount: 8,
+    reviewSnippets: [
+      "The bundle logic is much easier to understand, and upsell messaging in the cart feels far more natural.",
+      "Promotional information is finally clearer, and shoppers can see why buying more makes sense.",
+    ],
+    targetUsers: [
+      "Shopify merchants trying to increase average order value",
+      "Brands running frequent bundle or promotion campaigns",
+      "Teams that need to explain add-on logic more clearly",
+    ],
+    benefits: ["Increase AOV", "Make bundle reasoning easier to understand", "Reduce messy promotional messaging on the page"],
+    features: [
+      {title: "Present the bundle, not just the discount", description: "Put savings, fit, and value difference in a place shoppers can actually understand."},
+      {title: "Keep promotions readable", description: "Turn bundles, upsells, and offer language into one coherent purchase reason instead of a pile of disconnected modules."},
+      {title: "Support natural upsell paths", description: "Make upsells feel more like helpful suggestions in PDP and cart flows, not extra interruptions."},
+    ],
+    workflow: [
+      "Define which products belong together",
+      "Configure the bundle logic and how savings are presented",
+      "Review performance and keep refining the page narrative",
+    ],
+    useCases: [
+      {title: "Bundle upsell", description: "For merchants whose SKUs clearly fit together and need stronger combo purchase rates."},
+      {title: "Promotion periods", description: "For brands that need to show multiple discount levels clearly without cluttering the page."},
+      {title: "Cart guidance", description: "For storefronts that want shoppers to accept higher-value combinations more naturally."},
+    ],
+    demoHighlights: ["Before / after cart messaging", "Bundle value visibility", "More natural upsell path"],
+    demoScenarios: [
+      {
+        title: "Cart upsell framing",
+        primaryLabel: "Before bundle",
+        primaryText: "Single item in cart with no suggested add-on path.",
+        secondaryLabel: "After bundle",
+        secondaryText: "The cart directly shows a higher-value combination and the savings tied to it, making the upgrade easier to accept.",
+        note: "The goal is to make the value obvious, not merely show a discount rule.",
+      },
+      {
+        title: "Promotion clarity",
+        primaryLabel: "Fragmented messaging",
+        primaryText: "Coupon, upsell and quantity offer are shown in disconnected modules.",
+        secondaryLabel: "Unified offer",
+        secondaryText: "Bundle, upsell, and discount messages are pulled together into one clearer purchase reason.",
+        note: "The point of a bundle page is to reduce cognitive load.",
+      },
+    ],
+    relatedResources: [
+      {title: "Grow AOV", href: "/solutions/grow-aov", meta: ["Solution", "AOV"]},
+      {title: "Demo Center", href: "/demo", meta: ["Demo", "Bundle"]},
+      {title: "Resources", href: "/resources", meta: ["Resources", "Growth"]},
+    ],
+    faq: [
+      {question: "What kind of merchant is Bundle Discount best for?", answer: "It works best for Shopify merchants whose SKUs clearly belong together and who need to explain why a combined purchase is worth it."},
+      {question: "Why does AOV growth need its own product page?", answer: "Because many brands do not fail at discount rules. They fail at explaining bundle value and savings clearly to shoppers."},
+    ],
+    ctaLabel: "Talk to us",
+    ctaHref: "/contact",
+  },
+  {
+    slug: "content-ai",
+    name: "Content AI",
+    shortDescription: "Improve content production efficiency across PDPs, FAQs, and SEO pages for Shopify storefronts.",
+    heroTitle: "Turn scattered writing work into a reusable content growth workflow",
+    heroDescription: "Content AI helps merchants generate product titles, selling points, FAQs, and SEO drafts faster so content production becomes steadier and easier to reuse.",
+    icon: "/ai-generate-2.svg",
+    metrics: ["SEO-ready drafts", "FAQ generation", "Works with localization"],
+    rating: 4.8,
+    reviewCount: 6,
+    reviewSnippets: [
+      "Draft quality for titles, selling points, and FAQs is very steady and saves a lot of editing time.",
+      "Building the SEO structure first and then refining it manually has made our workflow much faster.",
+    ],
+    targetUsers: [
+      "Brands with a large number of products",
+      "Teams that need batch SEO content generation",
+      "Operators who want to improve content efficiency",
+    ],
+    benefits: ["Improve content production efficiency", "Expand SEO coverage", "Reduce repeated manual writing work"],
+    features: [
+      {title: "Generate product-ready drafts", description: "Create editable drafts for product titles, selling points, descriptions, and SEO fields."},
+      {title: "Scale FAQ production", description: "Generate FAQ drafts for products, categories, and common purchase questions."},
+      {title: "Reuse content across pages", description: "Let product pages, help docs, and SEO pages share the same core information instead of being written from scratch every time."},
+    ],
+    workflow: [
+      "Choose the content scenario and provide baseline inputs",
+      "Generate a structured draft",
+      "Review and publish the final version to the target page",
+    ],
+    useCases: [
+      {title: "Product titles and selling points", description: "For merchants with many SKUs who need structured copy drafts quickly."},
+      {title: "FAQ and SEO page production", description: "For teams expanding search coverage without keeping a large manual writing burden."},
+      {title: "Cross-page content reuse", description: "For teams connecting product pages, help docs, and blog content into one content chain."},
+    ],
+    demoHighlights: ["Title and description generation", "Batch FAQ drafts", "SEO page structure proposals"],
+    demoScenarios: [
+      {
+        title: "Product title generation",
+        primaryLabel: "Input",
+        primaryText: "Moisture repair serum, 50ml, for dry and damaged hair.",
+        secondaryLabel: "Generated output",
+        secondaryText: "Moisture Repair Serum for Dry Hair | Lightweight Daily Recovery, 50ml",
+        note: "The goal is not simple rewriting, but a structure that works better for product pages and SEO.",
+      },
+      {
+        title: "FAQ generation",
+        primaryLabel: "Merchant need",
+        primaryText: "Need scalable FAQ content for product and collection pages.",
+        secondaryLabel: "Generated output",
+        secondaryText: "Generate FAQ drafts at scale that are suitable for search and AI answer surfaces, then refine them manually where needed.",
+        note: "FAQ is an important bridge between organic search and help content.",
+      },
+    ],
+    relatedResources: [
+      {title: "Resources", href: "/resources", meta: ["Resources", "SEO"]},
+      {title: "Blog", href: "/blog", meta: ["Blog", "Content"]},
+      {title: "Increase Conversion", href: "/solutions/increase-conversion", meta: ["Solution", "Conversion"]},
+    ],
+    faq: [
+      {question: "Will Content AI replace human editing?", answer: "No. It is best used to improve first-draft speed and batch production, while final review and brand judgment still stay with the team."},
+      {question: "Does Content AI work well with translation workflows?", answer: "Yes. Generating structured content first and then localizing it is a stronger international content workflow overall."},
+    ],
+    ctaLabel: "Explore roadmap",
+    ctaHref: "/resources",
+  },
+];
+
+const productsZh: ProductItem[] = [
   {
     slug: "translator",
     name: "AI Translator",
@@ -225,7 +554,7 @@ export const products: ProductItem[] = [
       {question: "是否支持 glossary 和术语控制？", answer: "支持。你可以用 glossary 和模型策略约束高价值术语，减少品牌表达在不同页面里的漂移。"},
       {question: "适合什么阶段的 Shopify 商家？", answer: "既适合刚开始进入多语言市场的商家，也适合已经在长期维护多市场运营、希望降低后续同步成本的品牌。"},
     ],
-    ctaLabel: "Install on Shopify",
+    ctaLabel: "前往 Shopify 安装",
     ctaHref: "https://apps.shopify.com/partners/bogdatech",
   },
   {
@@ -283,7 +612,7 @@ export const products: ProductItem[] = [
       {question: "Bundle Discount 最适合什么类型商家？", answer: "最适合 SKU 之间有明显搭配关系、希望把组合购买和加购理由讲得更清楚的 Shopify 商家。"},
       {question: "为什么 AOV 提升也需要单独的产品页？", answer: "因为很多品牌的问题不是不会配折扣，而是不会把套餐价值和节省理由表达给用户。"},
     ],
-    ctaLabel: "Talk to us",
+    ctaLabel: "联系我们",
     ctaHref: "/contact",
   },
   {
@@ -341,9 +670,18 @@ export const products: ProductItem[] = [
       {question: "Content AI 会替代人工编辑吗？", answer: "不会。它更适合提高初稿和批量内容的生产效率，最终仍建议保留人工审阅和品牌把关。"},
       {question: "Content AI 和翻译能力适合一起用吗？", answer: "适合。先生成结构化内容，再进入翻译和本地化流程，本身就是更完整的国际化内容链路。"},
     ],
-    ctaLabel: "Explore roadmap",
+    ctaLabel: "查看路线图",
     ctaHref: "/resources",
   },
 ];
 
+export const products = productsEn;
 export const productMap = Object.fromEntries(products.map((product) => [product.slug, product]));
+
+export function getProducts(locale: Locale) {
+  return locale === "zh-cn" ? productsZh : productsEn;
+}
+
+export function getProductMap(locale: Locale) {
+  return Object.fromEntries(getProducts(locale).map((product) => [product.slug, product]));
+}

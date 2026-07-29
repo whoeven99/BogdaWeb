@@ -1,14 +1,17 @@
 import {TestimonialCard} from "@/components/cards/TestimonialCard";
 import {SectionHeading} from "@/components/ui/SectionHeading";
-import {homePageCopy} from "@/content/home-page-copy";
 
-export function SocialProofSection() {
-  const copy = homePageCopy.socialProof;
-  const items = homePageCopy.testimonials;
+type SocialProofSectionProps = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  items: {name: string; tag: string; quote: string}[];
+};
 
+export function SocialProofSection({eyebrow, title, description, items}: SocialProofSectionProps) {
   return (
     <section className="page-section">
-      <SectionHeading eyebrow={copy.eyebrow} title={copy.title} description={copy.description} />
+      <SectionHeading eyebrow={eyebrow} title={title} description={description} />
       <div className="card-grid">
         {items.map((item) => (
           <TestimonialCard key={item.name} name={item.name} tag={item.tag} quote={item.quote} />

@@ -1,22 +1,33 @@
 import {HelpCenterDocsLayout} from "@/components/sections/HelpCenterDocsLayout";
 import {PageContainer} from "@/components/ui/PageContainer";
-import {helpCenterDocs} from "@/content/help-center";
-import {pagesCopy} from "@/content/pages-copy";
+import {getHelpCenterDocs} from "@/content/help-center";
+import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata} from "@/lib/seo/metadata";
 
-export const metadata = buildPageMetadata({
-  title: pagesCopy.helpCenter.metadata.title,
-  description: pagesCopy.helpCenter.metadata.description,
-  path: pagesCopy.helpCenter.metadata.path,
-});
+export async function generateMetadata() {
+  const locale = await getRequestLocale();
 
-export default function HelpCenterPage() {
+  return buildPageMetadata({
+    title: locale === "zh-cn" ? "帮助中心" : "Help Center",
+    description:
+      locale === "zh-cn"
+        ? "快速查看安装、配置、翻译流程和术语控制相关文档。"
+        : "Browse installation, setup, translation workflow, and glossary documentation in one place.",
+    path: "/help-center",
+    locale,
+  });
+}
+
+export default async function HelpCenterPage() {
+  const locale = await getRequestLocale();
+  const helpCenterDocs = getHelpCenterDocs(locale);
   const currentDoc = helpCenterDocs[0];
+  const eyebrow = locale === "zh-cn" ? "帮助中心" : "Help Center";
 
   return (
     <main>
       <PageContainer>
-        <HelpCenterDocsLayout currentDoc={currentDoc} docs={helpCenterDocs} eyebrow={pagesCopy.helpCenter.hero.eyebrow} />
+        <HelpCenterDocsLayout currentDoc={currentDoc} docs={helpCenterDocs} eyebrow={eyebrow} locale={locale} />
       </PageContainer>
     </main>
   );

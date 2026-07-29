@@ -1,18 +1,24 @@
 import {PageContainer} from "@/components/ui/PageContainer";
-import {pagesCopy} from "@/content/pages-copy";
-import {sitePages} from "@/content/site-pages";
+import {getSitePages} from "@/content/site-pages";
+import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata} from "@/lib/seo/metadata";
 
-const page = sitePages.about;
+export async function generateMetadata() {
+  const locale = await getRequestLocale();
+  const page = getSitePages(locale).about;
 
-export const metadata = buildPageMetadata({
-  title: page.title,
-  description: page.description,
-  path: "/about",
-});
+  return buildPageMetadata({
+    title: page.title,
+    description: page.description,
+    path: "/about",
+    locale,
+  });
+}
 
-export default function AboutPage() {
-  const copy = pagesCopy.about;
+export default async function AboutPage() {
+  const locale = await getRequestLocale();
+  const page = getSitePages(locale).about;
+  const eyebrow = locale === "zh-cn" ? "关于我们" : "About";
 
   return (
     <main className="blog-article-page">
@@ -20,7 +26,7 @@ export default function AboutPage() {
         <section className="blog-article-shell">
           <article className="blog-article-single">
             <header className="blog-article-single__header">
-              <span className="section-heading__eyebrow">{copy.hero.eyebrow}</span>
+              <span className="section-heading__eyebrow">{eyebrow}</span>
               <h1>{page.title}</h1>
               <p>{page.description}</p>
             </header>

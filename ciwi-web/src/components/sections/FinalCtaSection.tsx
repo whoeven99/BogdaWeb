@@ -1,6 +1,5 @@
 import {Button} from "@/components/ui/Button";
 import {SectionHeading} from "@/components/ui/SectionHeading";
-import {uiCopy} from "@/content/ui-copy";
 
 type FinalCtaSectionProps = {
   title: string;
@@ -15,11 +14,11 @@ type FinalCtaSectionProps = {
 export function FinalCtaSection({
   title,
   description,
-  eyebrow = uiCopy.sections.nextStepEyebrow,
-  primaryLabel = uiCopy.cta.installLabel,
-  primaryHref = uiCopy.cta.installHref,
-  secondaryLabel = uiCopy.cta.talkLabel,
-  secondaryHref = uiCopy.cta.talkHref,
+  eyebrow = "Next step",
+  primaryLabel = "Install on Shopify",
+  primaryHref = "https://apps.shopify.com/partners/bogdatech",
+  secondaryLabel = "Talk to us",
+  secondaryHref = "/contact",
 }: FinalCtaSectionProps) {
   return (
     <section className="page-section">

@@ -1,16 +1,25 @@
 import Image from "next/image";
-import Link from "next/link";
 
-import {primaryNavigation} from "@/content/navigation";
 import {Button} from "@/components/ui/Button";
+import {LocalizedLink} from "@/components/ui/LocalizedLink";
 import {PageContainer} from "@/components/ui/PageContainer";
+import {getNavigation} from "@/content/navigation";
+import {getUiCopy} from "@/content/ui-copy";
+import type {Locale} from "@/lib/i18n";
 
-export function SiteHeader() {
+type SiteHeaderProps = {
+  locale: Locale;
+};
+
+export function SiteHeader({locale}: SiteHeaderProps) {
+  const navigation = getNavigation(locale);
+  const uiCopy = getUiCopy(locale);
+
   return (
     <header className="site-header">
       <PageContainer>
         <div className="site-header__inner">
-          <Link href="/" className="site-brand site-brand--header" aria-label="Ciwi">
+          <LocalizedLink href="/" className="site-brand site-brand--header" aria-label="Ciwi">
             <span className="site-brand__mark">
               <Image src="/logo-150.png" alt="Ciwi" width={44} height={44} priority />
             </span>
@@ -18,16 +27,16 @@ export function SiteHeader() {
               <span className="site-brand__name">Ciwi.ai</span>
               <span className="site-brand__tagline">AI PRODUCTS FOR SHOPIFY</span>
             </span>
-          </Link>
+          </LocalizedLink>
           <nav className="site-nav__links" aria-label="Primary">
-            {primaryNavigation.map((item) => (
-              <Link key={item.href} href={item.href} className="site-nav__link">
+            {navigation.primaryNavigation.map((item) => (
+              <LocalizedLink key={item.href} href={item.href} className="site-nav__link">
                 {item.label}
-              </Link>
+              </LocalizedLink>
             ))}
           </nav>
           <div className="header-cta">
-            <Button href="https://apps.shopify.com/partners/bogdatech">Install on Shopify</Button>
+            <Button href={uiCopy.cta.installHref}>{uiCopy.cta.installLabel}</Button>
           </div>
         </div>
       </PageContainer>

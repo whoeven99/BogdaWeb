@@ -1,9 +1,12 @@
+"use client";
+
 import Image from "next/image";
-import Link from "next/link";
 
 import type {CSSProperties} from "react";
 
-import {uiCopy} from "@/content/ui-copy";
+import {LocalizedLink} from "@/components/ui/LocalizedLink";
+import {useLocale} from "@/components/providers/LocaleProvider";
+import {getUiCopy} from "@/content/ui-copy";
 
 type ProductCardProps = {
   name: string;
@@ -30,6 +33,8 @@ export function ProductCard({
   reviewCount,
   reviewSnippets = [],
 }: ProductCardProps) {
+  const locale = useLocale();
+  const uiCopy = getUiCopy(locale);
   const hasRating = typeof rating === "number" && rating > 0;
   const hasReviews = reviewSnippets.length > 0;
   const starsStyle = hasRating ? ({"--rating": rating} as CSSProperties) : undefined;
@@ -71,9 +76,9 @@ export function ProductCard({
         </div>
       ) : null}
       <div className="space-top-lg">
-        <Link href={href} className="site-nav__link">
+        <LocalizedLink href={href} className="site-nav__link">
           {uiCopy.products.viewDetailsLabel}
-        </Link>
+        </LocalizedLink>
       </div>
     </article>
   );
