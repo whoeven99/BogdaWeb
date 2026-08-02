@@ -26,9 +26,11 @@ export function FinalCtaSection({
         <SectionHeading eyebrow={eyebrow} title={title} description={description} />
         <div className="inline-list">
           <Button href={primaryHref}>{primaryLabel}</Button>
-          <Button href={secondaryHref} variant="secondary">
-            {secondaryLabel}
-          </Button>
+          {secondaryLabel && secondaryHref ? (
+            <Button href={secondaryHref} variant="secondary">
+              {secondaryLabel}
+            </Button>
+          ) : null}
         </div>
       </div>
     </section>

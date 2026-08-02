@@ -69,8 +69,8 @@ export const detailPagesCopy = {
       useCases: {
         id: "use-cases",
         eyebrow: "Use cases",
-        title: "典型场景",
-        description: "先看产品最适合解决什么问题。",
+        title: "解决什么问题",
+        description: "我们围绕获客和转化率，打造高ROI 的产品方案",
       },
       demoFocus: {
         id: "demo-focus",

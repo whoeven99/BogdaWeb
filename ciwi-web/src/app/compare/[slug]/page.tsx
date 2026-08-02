@@ -1,14 +1,15 @@
 import {notFound} from "next/navigation";
 
+import type {CSSProperties} from "react";
+
 import {FaqSection} from "@/components/sections/FaqSection";
 import {FinalCtaSection} from "@/components/sections/FinalCtaSection";
-import {MediaPlaceholderSection} from "@/components/sections/MediaPlaceholderSection";
 import {ArticleCard} from "@/components/cards/ArticleCard";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
+import type {CompareItem, CompareMetric} from "@/content/compare";
 import {getCompareMap, getCompares, compares} from "@/content/compare";
 import {getBlogPosts} from "@/content/blog";
-import {getCompareMediaBriefs} from "@/content/media-briefs";
 import {getHelpCenterDocs} from "@/content/help-center";
 import {localizeHref} from "@/lib/i18n";
 import {getRequestLocale} from "@/lib/i18n-server";
@@ -18,6 +19,119 @@ import {buildBreadcrumbSchema, buildFaqSchema, buildWebPageSchema} from "@/lib/s
 type CompareDetailPageProps = {
   params: Promise<{slug: string}>;
 };
+
+const primaryProductName = "CIwi Translator";
+
+function clampScore(value: number) {
+  return Math.max(0, Math.min(10, value));
+}
+
+function getScoreTone(value: number) {
+  if (value <= 5) {
+    return "weak";
+  }
+
+  if (value <= 8) {
+    return "medium";
+  }
+
+  return "strong";
+}
+
+function getStrengthLabel(value: number, locale: "en" | "zh-cn") {
+  const tone = getScoreTone(value);
+
+  if (locale === "zh-cn") {
+    return tone === "weak" ? "弱" : tone === "medium" ? "中" : "强";
+  }
+
+  return tone === "weak" ? "Weak" : tone === "medium" ? "Medium" : "Strong";
+}
+
+function getScoreBarStyle(value: number, delay = 0) {
+  return {
+    "--score-width": `${clampScore(value) * 10}%`,
+    "--score-delay": `${delay}ms`,
+  } as CSSProperties;
+}
+
+function formatScore(value: number) {
+  const safeValue = clampScore(value);
+  const formatted = Number.isInteger(safeValue) ? safeValue.toString() : safeValue.toFixed(1);
+
+  return `${formatted}/10`;
+}
+
+function getAverageScore(items: CompareMetric[], key: "ciwi" | "alternative") {
+  return items.reduce((total, item) => total + item[key], 0) / items.length;
+}
+
+function getTotalScore(items: CompareMetric[], key: "ciwi" | "alternative") {
+  return items.reduce((total, item) => total + item[key], 0);
+}
+
+function getTotalStarRating(total: number, totalMax: number) {
+  if (totalMax <= 0) {
+    return 0;
+  }
+
+  return (total / totalMax) * 5;
+}
+
+function getVisualTotalStarRating(value: number) {
+  const safeValue = Math.max(0, Math.min(5, value));
+
+  return Math.round(safeValue * 2) / 2;
+}
+
+function formatTotalStarRating(value: number) {
+  const safeValue = Math.max(0, Math.min(5, value));
+  const formatted = Number.isInteger(safeValue) ? safeValue.toString() : safeValue.toFixed(1);
+
+  return formatted;
+}
+
+function getTotalStarStyle(value: number) {
+  return {"--total-rating": getVisualTotalStarRating(value)} as CSSProperties;
+}
+
+function getTopLabels(items: CompareMetric[], key: "ciwi" | "alternative", limit = 2) {
+  return items
+    .filter((item) => item[key] > item[key === "ciwi" ? "alternative" : "ciwi"])
+    .sort((a, b) => (b[key] - b[key === "ciwi" ? "alternative" : "ciwi"]) - (a[key] - a[key === "ciwi" ? "alternative" : "ciwi"]))
+    .slice(0, limit)
+    .map((item) => item.label);
+}
+
+function buildOverallAssessment(data: CompareItem, locale: "en" | "zh-cn") {
+  const allScores = [...data.summaryMetrics, ...data.scoreMatrix];
+  const ciwiWins = allScores.filter((item) => item.ciwi > item.alternative).length;
+  const alternativeWins = allScores.filter((item) => item.alternative > item.ciwi).length;
+  const ciwiFocus = getTopLabels(allScores, "ciwi").join(locale === "zh-cn" ? "、" : ", ");
+  const alternativeFocus = getTopLabels(allScores, "alternative").join(locale === "zh-cn" ? "、" : ", ");
+
+  if (locale === "zh-cn") {
+    if (ciwiWins === alternativeWins) {
+      return `综合评价：按 ${allScores.length} 个 10 分制评分点看，两条路径各有侧重。${primaryProductName} 在 ${ciwiFocus || "长期治理"} 上更突出，${data.alternativeName} 在 ${alternativeFocus || "快速上线"} 上更有吸引力。`;
+    }
+
+    if (ciwiWins > alternativeWins) {
+      return `综合评价：按 ${allScores.length} 个 10 分制评分点看，${primaryProductName} 整体更强，优势主要集中在 ${ciwiFocus || "长期治理"}；${data.alternativeName} 在 ${alternativeFocus || "价格和上线速度"} 上更适合作为轻量起点。`;
+    }
+
+    return `综合评价：按 ${allScores.length} 个 10 分制评分点看，${data.alternativeName} 更偏向轻量和快速上线，${primaryProductName} 则在 ${ciwiFocus || "长期治理"} 上给出更完整的能力深度。`;
+  }
+
+  if (ciwiWins === alternativeWins) {
+    return `Overall: across ${allScores.length} ten-point signals, both paths emphasize different strengths. ${primaryProductName} is stronger on ${ciwiFocus || "long-term governance"}, while ${data.alternativeName} stands out more on ${alternativeFocus || "faster launch"}.`;
+  }
+
+  if (ciwiWins > alternativeWins) {
+    return `Overall: across ${allScores.length} ten-point signals, ${primaryProductName} is stronger overall, with clearer advantages in ${ciwiFocus || "long-term governance"}; ${data.alternativeName} is still more attractive for ${alternativeFocus || "price and launch speed"}.`;
+  }
+
+  return `Overall: across ${allScores.length} ten-point signals, ${data.alternativeName} leans more toward a lighter and faster start, while ${primaryProductName} goes deeper on ${ciwiFocus || "long-term governance"}.`;
+}
 
 function getCompareDetailCopy(locale: "en" | "zh-cn") {
   return locale === "zh-cn"
@@ -30,32 +144,29 @@ function getCompareDetailCopy(locale: "en" | "zh-cn") {
         hero: {
           eyebrow: "对比",
           panels: {
-            summaryTitle: "总结",
+            summaryTitle: "摘要",
             bestFitTitle: "更适合谁",
+            totalScoreTitle: "总分对比",
           },
-        },
-        media: {
-          eyebrow: "对比素材",
-          title: "对比页视觉预留",
-          description: "对比页适合补一张并排对照图，让用户在读维度之前先感受到两条路径的差异。",
         },
         sections: {
-          dimensions: {
-            eyebrow: "关键维度",
-            title: "关键差异",
-            description: "先看真正影响选型判断的几个维度。",
-            ciwiLabel: "Ciwi",
-            alternativeLabel: "对比方案",
+          scoreTable: {
+            eyebrow: "功能对比",
+            title: "翻译功能和本地化能力对比",
+            description:
+              "大家对于翻译功能的预期有较大差异，shopify 电商独立站的翻译目的其实是为了更好地本地化和增加 SEO 强化的效果，而且正因为地道的翻译会带来整体品牌的体验提升和转化率提升，但大部分时候大家把翻译当做一个工具，忽略了润色和本地化的语言结构优化。因此，我们选择这些维度来重新测评翻译 APP 的效果。",
+            featureLabel: "功能点",
+            overallLabel: "综合结论",
           },
-          highlights: {
-            eyebrow: "结论",
-            title: "简明结论",
-            description: "先看最影响选型判断的差异。",
+          faq: {
+            eyebrow: "FAQ",
+            title: "常见问题",
+            description: "把商家最常见的判断问题收在一起，方便快速确认选型方向。",
           },
           continue: {
-            eyebrow: "继续查看",
-            title: "继续查看",
-            description: "从这里继续看产品页、文章和帮助文档。",
+            eyebrow: "其他测评",
+            title: "测评&翻译经验分享",
+            description: "继续看其他产品测评、翻译经验和帮助文档，把选型判断和后续落地一起看清楚。",
             siblingMeta: ["对比", "替代方案"],
             translatorCard: {
               title: "AI Translator",
@@ -66,12 +177,10 @@ function getCompareDetailCopy(locale: "en" | "zh-cn") {
           },
         },
         finalCta: {
-          title: "从比较，进入判断",
-          description: "如果你已经看清方向差异，下一步就该进入产品页或帮助文档确认细节。",
-          primaryLabel: "查看 AI Translator",
-          primaryHref: "/products/translator",
-          secondaryLabel: "浏览对比页",
-          secondaryHref: "/compare",
+          title: "限时领取 5 天免费试用",
+          description: "如果你已经看清方向差异，现在更适合直接安装 CIwi Translator，用 5 天试用把真实商品、主题和 FAQ 跑一遍。",
+          primaryLabel: "安装 CIwi Translator",
+          primaryHref: "https://apps.shopify.com/partners/bogdatech",
         },
         breadcrumbLabel: "对比",
         keywordLabel: "Shopify 对比",
@@ -85,27 +194,23 @@ function getCompareDetailCopy(locale: "en" | "zh-cn") {
         hero: {
           eyebrow: "Compare",
           panels: {
-            summaryTitle: "Summary",
+            summaryTitle: "Overview",
             bestFitTitle: "Best fit for",
+            totalScoreTitle: "Total score",
           },
-        },
-        media: {
-          eyebrow: "Compare media",
-          title: "Comparison media placeholder",
-          description: "A side-by-side visual works well here so visitors can feel the difference before reading the detailed dimensions.",
         },
         sections: {
-          dimensions: {
-            eyebrow: "Dimensions",
-            title: "Key differences",
-            description: "Start with the differences that matter most for product evaluation.",
-            ciwiLabel: "Ciwi",
-            alternativeLabel: "Alternative",
+          scoreTable: {
+            eyebrow: "Score table",
+            title: "Key differences and quick conclusions",
+            description: "Read the feature rows vertically and compare both products horizontally on a ten-point scale. Scores 0-5 are weak, 6-8 are medium, and 9-10 are strong.",
+            featureLabel: "Capability",
+            overallLabel: "Overall",
           },
-          highlights: {
-            eyebrow: "Highlights",
-            title: "Quick conclusions",
-            description: "Start with the differences that affect selection most directly.",
+          faq: {
+            eyebrow: "FAQ",
+            title: "Frequently asked questions",
+            description: "Collect the questions merchants ask most often so the comparison can turn into a clearer decision more quickly.",
           },
           continue: {
             eyebrow: "Continue reading",
@@ -121,12 +226,10 @@ function getCompareDetailCopy(locale: "en" | "zh-cn") {
           },
         },
         finalCta: {
-          title: "Move from comparison to decision",
-          description: "Once the direction difference is clear, the next step is usually the product page or help docs.",
-          primaryLabel: "Open AI Translator",
-          primaryHref: "/products/translator",
-          secondaryLabel: "Browse compare pages",
-          secondaryHref: "/compare",
+          title: "Claim a 5-day free trial",
+          description: "If the direction is already clear, the best next step is to install CIwi Translator and run a real five-day trial on products, themes, and FAQs.",
+          primaryLabel: "Install CIwi Translator",
+          primaryHref: "https://apps.shopify.com/partners/bogdatech",
         },
         breadcrumbLabel: "Compare",
         keywordLabel: "Shopify compare",
@@ -175,6 +278,15 @@ export default async function CompareDetailPage({params}: CompareDetailPageProps
 
   const pageUrl = new URL(localizeHref(locale, `/compare/${data.slug}`), siteUrl).toString();
   const siblingCompares = compares.filter((item) => item.slug !== data.slug).slice(0, 2);
+  const allScores = [...data.summaryMetrics, ...data.scoreMatrix];
+  const overallReview = buildOverallAssessment(data, locale);
+  const ciwiTotal = getTotalScore(allScores, "ciwi");
+  const alternativeTotal = getTotalScore(allScores, "alternative");
+  const totalMax = allScores.length * 10;
+  const ciwiTotalStars = getTotalStarRating(ciwiTotal, totalMax);
+  const alternativeTotalStars = getTotalStarRating(alternativeTotal, totalMax);
+  const ciwiAverage = getAverageScore(data.scoreMatrix, "ciwi");
+  const alternativeAverage = getAverageScore(data.scoreMatrix, "alternative");
   const structuredData = [
     buildBreadcrumbSchema([
       {name: "Home", item: siteUrl},
@@ -189,10 +301,8 @@ export default async function CompareDetailPage({params}: CompareDetailPageProps
     }),
     buildFaqSchema(data.faq),
   ];
-  const mediaBriefs = getCompareMediaBriefs(data);
-
   return (
-    <main>
+    <main className="compare-detail-page">
       <PageContainer>
         {structuredData.map((schema, index) => (
           <script
@@ -201,73 +311,152 @@ export default async function CompareDetailPage({params}: CompareDetailPageProps
             dangerouslySetInnerHTML={{__html: JSON.stringify(schema)}}
           />
         ))}
-        <section className="page-section page-hero">
+        <section className="page-section page-hero compare-page-hero">
           <SectionHeading eyebrow={copy.hero.eyebrow} title={data.title} description={data.description} as="h1" />
-          <div className="detail-grid">
-            <article className="surface-card">
-              <h3>{copy.hero.panels.summaryTitle}</h3>
+          <div className="compare-page-overview" aria-label={locale === "zh-cn" ? "对比页概览" : "Compare page overview"}>
+            <div className="compare-page-overview__item">
+              <span className="compare-page-overview__label">{locale === "zh-cn" ? "对比产品" : "Products"}</span>
+              <strong className="compare-page-overview__value">{primaryProductName} vs {data.alternativeName}</strong>
+            </div>
+            <div className="compare-page-overview__item">
+              <span className="compare-page-overview__label">{locale === "zh-cn" ? "评分维度" : "Score dimensions"}</span>
+              <strong className="compare-page-overview__value">
+                {locale === "zh-cn"
+                  ? `${data.scoreMatrix.length} 项功能 + ${data.summaryMetrics.length} 项摘要`
+                  : `${data.scoreMatrix.length} feature signals + ${data.summaryMetrics.length} summary signals`}
+              </strong>
+            </div>
+            <div className="compare-page-overview__item">
+              <span className="compare-page-overview__label">{locale === "zh-cn" ? "评测方式" : "Method"}</span>
+              <strong className="compare-page-overview__value">{locale === "zh-cn" ? "10 分制 / 弱中强" : "10-point / weak-medium-strong"}</strong>
+            </div>
+          </div>
+          <div className="detail-grid detail-grid--single compare-detail-stack">
+            <article className="compare-hero-panel compare-summary-card">
+              <h2 className="compare-hero-panel__title">{copy.hero.panels.summaryTitle}</h2>
+              <p className="compare-summary-card__lead">{overallReview}</p>
               <p className="quote">{data.summary}</p>
+              <div className="compare-total-card">
+                <div className="compare-total-card__title">{copy.hero.panels.totalScoreTitle}</div>
+                <div className="compare-total-card__summary">
+                  {[
+                    {name: primaryProductName, value: ciwiTotalStars, accentClass: "compare-total-stat--ciwi"},
+                    {name: data.alternativeName, value: alternativeTotalStars, accentClass: "compare-total-stat--alternative"},
+                  ].map((item) => (
+                    <div key={`summary-${item.name}`} className={`compare-total-stat ${item.accentClass}`}>
+                      <span className="compare-total-stat__label">{item.name}</span>
+                      <strong className="compare-total-stat__value">
+                        {formatTotalStarRating(item.value)}
+                      </strong>
+                      <span className="compare-total-stat__stars" style={getTotalStarStyle(item.value)} aria-hidden="true">
+                        <span className="compare-total-stat__stars-base">★★★★★</span>
+                        <span className="compare-total-stat__stars-fill">★★★★★</span>
+                      </span>
+                    </div>
+                  ))}
+                </div>
+                <div className="compare-metric__rows">
+                  {[
+                    {name: primaryProductName, value: ciwiTotalStars, accentClass: "compare-metric__fill--ciwi"},
+                    {name: data.alternativeName, value: alternativeTotalStars, accentClass: "compare-metric__fill--alternative"},
+                  ].map((item, index) => (
+                    <div key={`total-${item.name}`} className="compare-metric__row compare-metric__row--total">
+                      <span className="compare-metric__name">{item.name}</span>
+                      <div className="compare-metric__track compare-metric__track--total" aria-hidden="true">
+                        <span
+                          className={`compare-metric__fill ${item.accentClass}`}
+                          style={getScoreBarStyle((item.value / 5) * 10, index * 100)}
+                        />
+                      </div>
+                      <span className="compare-metric__value compare-metric__value--total">
+                        {formatTotalStarRating(item.value)}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="compare-metric-list">
+                {data.summaryMetrics.map((metric, metricIndex) => (
+                  <div key={metric.label} className="compare-metric">
+                    <div className="compare-metric__header">
+                      <strong>{metric.label}</strong>
+                    </div>
+                    <div className="compare-metric__rows">
+                      {[
+                        {name: primaryProductName, value: metric.ciwi, accentClass: "compare-metric__fill--ciwi"},
+                        {name: data.alternativeName, value: metric.alternative, accentClass: "compare-metric__fill--alternative"},
+                      ].map((item, itemIndex) => (
+                        <div key={`${metric.label}-${item.name}`} className="compare-metric__row">
+                          <span className="compare-metric__name">{item.name}</span>
+                          <div className="compare-metric__track" aria-hidden="true">
+                            <span
+                              className={`compare-metric__fill ${item.accentClass}`}
+                              style={getScoreBarStyle(item.value, metricIndex * 120 + itemIndex * 80)}
+                            />
+                          </div>
+                          <span className="compare-metric__value">
+                            {formatScore(item.value)} {getStrengthLabel(item.value, locale)}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </article>
-            <article className="surface-card">
-              <h3>{copy.hero.panels.bestFitTitle}</h3>
-              <ul className="check-list">
-                {data.bestFor.map((item) => (
-                  <li key={item}>{item}</li>
+            <article className="compare-hero-panel compare-bestfit-card">
+              <h2 className="compare-hero-panel__title">{copy.hero.panels.bestFitTitle}</h2>
+              <ul className="compare-bestfit-list">
+                {data.bestFor.map((item, index) => (
+                  <li key={item} className="compare-bestfit-item">
+                    <span className="compare-bestfit-item__index">{String(index + 1).padStart(2, "0")}</span>
+                    <span className="compare-bestfit-item__text">{item}</span>
+                  </li>
                 ))}
               </ul>
             </article>
           </div>
         </section>
-
-        <MediaPlaceholderSection
-          eyebrow={copy.media.eyebrow}
-          title={copy.media.title}
-          description={copy.media.description}
-          items={mediaBriefs}
-          locale={locale}
-        />
-
-        <section className="page-section">
-          <SectionHeading
-            eyebrow={copy.sections.dimensions.eyebrow}
-            title={copy.sections.dimensions.title}
-            description={copy.sections.dimensions.description}
-          />
-          <div className="faq-list">
-            {data.dimensions.map((dimension) => (
-              <article key={dimension.label} className="surface-card section-stack">
-                <h3>{dimension.label}</h3>
-                <div className="detail-grid">
-                  <div>
-                    <div className="section-heading__eyebrow">{copy.sections.dimensions.ciwiLabel}</div>
-                    <p className="quote">{dimension.ciwi}</p>
-                  </div>
-                  <div>
-                    <div className="section-heading__eyebrow">{copy.sections.dimensions.alternativeLabel}</div>
-                    <p className="quote">{dimension.alternative}</p>
-                  </div>
-                </div>
-              </article>
-            ))}
+        <section className="page-section compare-page-section compare-page-section--matrix">
+          <div className="compare-score-intro">
+            <div className="compare-score-intro__header">
+              <div className="section-heading__eyebrow">{copy.sections.scoreTable.eyebrow}</div>
+              <h2>{copy.sections.scoreTable.title}</h2>
+            </div>
+            <p className="compare-score-intro__description">{copy.sections.scoreTable.description}</p>
+          </div>
+          <div className="surface-card compare-table-card">
+            <div className="compare-table-wrapper">
+              <table className="compare-table">
+                <thead>
+                  <tr>
+                    <th scope="col">{copy.sections.scoreTable.featureLabel}</th>
+                    <th scope="col">{primaryProductName}</th>
+                    <th scope="col">{data.alternativeName}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.scoreMatrix.map((row) => (
+                    <tr key={row.label}>
+                      <th scope="row">{row.label}</th>
+                      <td>{renderScoreCell(row.ciwi, locale)}</td>
+                      <td>{renderScoreCell(row.alternative, locale)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th scope="row">{copy.sections.scoreTable.overallLabel}</th>
+                    <td>{renderScoreCell(ciwiAverage, locale)}</td>
+                    <td>{renderScoreCell(alternativeAverage, locale)}</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
           </div>
         </section>
 
-        <section className="page-section">
-          <SectionHeading
-            eyebrow={copy.sections.highlights.eyebrow}
-            title={copy.sections.highlights.title}
-            description={copy.sections.highlights.description}
-          />
-          <div className="card-grid">
-            {data.highlights.map((highlight) => (
-              <article key={highlight} className="surface-card">
-                <p className="quote">{highlight}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="page-section">
+        <section className="page-section compare-page-section compare-page-section--resources">
           <SectionHeading
             eyebrow={copy.sections.continue.eyebrow}
             title={copy.sections.continue.title}
@@ -304,16 +493,30 @@ export default async function CompareDetailPage({params}: CompareDetailPageProps
           </div>
         </section>
 
-        <FaqSection items={data.faq} />
+        <FaqSection
+          eyebrow={copy.sections.faq.eyebrow}
+          title={copy.sections.faq.title}
+          description={copy.sections.faq.description}
+          items={data.faq}
+        />
         <FinalCtaSection
           title={copy.finalCta.title}
           description={copy.finalCta.description}
           primaryLabel={copy.finalCta.primaryLabel}
           primaryHref={copy.finalCta.primaryHref}
-          secondaryLabel={copy.finalCta.secondaryLabel}
-          secondaryHref={copy.finalCta.secondaryHref}
         />
       </PageContainer>
     </main>
+  );
+}
+
+function renderScoreCell(value: number, locale: "en" | "zh-cn") {
+  const tone = getScoreTone(value);
+
+  return (
+    <div className="compare-score-cell">
+      <span className={`compare-score-badge compare-score-badge--${tone}`}>{getStrengthLabel(value, locale)}</span>
+      <span className="compare-score-cell__value">{formatScore(value)}</span>
+    </div>
   );
 }

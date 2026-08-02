@@ -4,7 +4,6 @@ import {InteractiveDemoExplorer} from "@/components/sections/InteractiveDemoExpl
 import {MediaPlaceholderSection} from "@/components/sections/MediaPlaceholderSection";
 import {ProductAnchorNav} from "@/components/sections/ProductAnchorNav";
 import {ProductFeatureSpotlightsSection} from "@/components/sections/ProductFeatureSpotlightsSection";
-import {LocalizedLink} from "@/components/ui/LocalizedLink";
 import {Button} from "@/components/ui/Button";
 import {notFound} from "next/navigation";
 
@@ -14,18 +13,12 @@ import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getProductDemoMediaBriefs, getProductHeroMediaBriefs} from "@/content/media-briefs";
 import {getProductMap, products} from "@/content/products";
-import {getUiCopy} from "@/content/ui-copy";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata} from "@/lib/seo/metadata";
-import type {CSSProperties} from "react";
 
 type ProductDetailPageProps = {
   params: Promise<{slug: string}>;
 };
-
-function formatRatingValue(value: number) {
-  return value.toFixed(1);
-}
 
 function getProductDetailCopy(locale: "en" | "zh-cn") {
   if (locale === "zh-cn") {
@@ -62,12 +55,6 @@ function getProductDetailCopy(locale: "en" | "zh-cn") {
           {label: "相关资源", href: "#resources"},
           {label: "FAQ", href: "#faq"},
         ],
-        hero: {
-          reviewsTitle: "商家评价",
-          compareTitle: "常见对比",
-          browseCompareLabel: "查看全部对比页",
-          browseCompareHref: "/compare",
-        },
         sections: {
           featureSpotlights: {
             id: "function-overview",
@@ -78,8 +65,8 @@ function getProductDetailCopy(locale: "en" | "zh-cn") {
           comparisons: {
             id: "compare",
             eyebrow: "对比",
-            title: "和其他产品怎么区分",
-            description: "如果你已经在比较路线，直接进入对应对比页会更快。",
+            title: "为什么选择 Ciwi",
+            description: "我们的产品理念：始终和商家利益保持一致，为结果负责。",
           },
         },
       },
@@ -96,7 +83,7 @@ function getProductDetailCopy(locale: "en" | "zh-cn") {
         },
       },
       sections: {
-        useCases: {id: "use-cases", eyebrow: "典型场景", title: "典型场景", description: "先看产品最适合解决什么问题。"},
+        useCases: {id: "use-cases", eyebrow: "典型场景", title: "我们解决什么问题", description: "我们围绕获客和转化率，打造高ROI 的产品方案"},
         demoFocus: {id: "demo-focus", eyebrow: "演示重点", title: "先看关键演示点", description: "先看最容易影响判断的几个关键结果。"},
         interactiveDemo: {eyebrow: "交互演示", title: "交互演示", description: "通过场景切换快速看懂前后差异、术语控制和 Shopify 适配方式。"},
         livePreview: {eyebrow: "快速预览", title: "快速预览", description: "先快速扫一遍，再进入交互演示。"},
@@ -152,12 +139,6 @@ function getProductDetailCopy(locale: "en" | "zh-cn") {
         {label: "Resources", href: "#resources"},
         {label: "FAQ", href: "#faq"},
       ],
-      hero: {
-        reviewsTitle: "Merchant reviews",
-        compareTitle: "Common comparisons",
-        browseCompareLabel: "Browse compare pages",
-        browseCompareHref: "/compare",
-      },
       sections: {
         featureSpotlights: {
           id: "function-overview",
@@ -241,7 +222,6 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
   const {slug} = await params;
   const product = getProductMap(locale)[slug];
   const copy = getProductDetailCopy(locale);
-  const uiCopy = getUiCopy(locale);
 
   if (!product) {
     notFound();
@@ -252,14 +232,12 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
   const anchorItems = (isTranslator ? translatorCopy?.anchors : copy.anchors)?.map((item) => ({...item})) ?? [];
   const heroMediaBriefs = isTranslator ? [] : getProductHeroMediaBriefs(product);
   const demoMediaBriefs = isTranslator ? [] : getProductDemoMediaBriefs(product);
-  const hasRating = typeof product.rating === "number" && product.rating > 0;
-  const starsStyle = hasRating ? ({"--rating": product.rating} as CSSProperties) : undefined;
 
   return (
     <main>
       <PageContainer>
         <section className="page-section page-hero">
-          <div className="detail-grid">
+          <div className={isTranslator ? "detail-grid detail-grid--single" : "detail-grid"}>
             <div>
               <SectionHeading
                 eyebrow={copy.hero.eyebrow}
@@ -281,51 +259,7 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
                 </Button>
               </div>
             </div>
-            {isTranslator && translatorCopy ? (
-              <div className="surface-card section-stack">
-                <div>
-                  <h3>{translatorCopy.hero.reviewsTitle}</h3>
-                  {hasRating ? (
-                    <div className="product-rating">
-                      <span className="product-rating__stars" style={starsStyle} aria-hidden="true">
-                        ★★★★★
-                      </span>
-                      <span className="product-rating__value">{formatRatingValue(product.rating!)}</span>
-                      {product.reviewCount ? (
-                        <span>
-                          {product.reviewCount} {uiCopy.products.reviewsLabel}
-                        </span>
-                      ) : null}
-                    </div>
-                  ) : null}
-                  <div className="product-card__reviews">
-                    {product.reviewSnippets?.slice(0, 2).map((snippet) => (
-                      <p key={snippet} className="product-card__review">
-                        “{snippet}”
-                      </p>
-                    ))}
-                  </div>
-                </div>
-                {product.compareLinks?.length ? (
-                  <div>
-                    <h3>{translatorCopy.hero.compareTitle}</h3>
-                    <div className="product-detail-links">
-                      {product.compareLinks.map((item) => (
-                        <LocalizedLink key={item.href} href={item.href} className="product-detail-link">
-                          <strong>{item.title}</strong>
-                          <span>{item.description}</span>
-                        </LocalizedLink>
-                      ))}
-                    </div>
-                    <div className="space-top-lg">
-                      <LocalizedLink href={translatorCopy.hero.browseCompareHref} className="site-nav__link">
-                        {translatorCopy.hero.browseCompareLabel}
-                      </LocalizedLink>
-                    </div>
-                  </div>
-                ) : null}
-              </div>
-            ) : (
+            {!isTranslator ? (
               <div className="surface-card section-stack">
                 <div>
                   <h3>{copy.hero.panels.targetUsersTitle}</h3>
@@ -354,7 +288,7 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
                   </div>
                 </div>
               </div>
-            )}
+            ) : null}
           </div>
         </section>
 

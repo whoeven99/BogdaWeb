@@ -7,6 +7,7 @@
     "build": "npm run content:validate && next build",
     "start": "cross-env PORT=9000 HOST=0.0.0.0 next start",
     "lint": "next lint",
+    "content:new": "node ./scripts/create-content-document.mjs",
     "content:validate": "node ./scripts/validate-content.mjs",
     "content:translate": "node ./scripts/create-translation-draft.mjs"
   },

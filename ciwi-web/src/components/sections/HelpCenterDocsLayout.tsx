@@ -20,6 +20,7 @@ export function HelpCenterDocsLayout({
 }: HelpCenterDocsLayoutProps) {
   const uiCopy = getUiCopy(locale);
   const docsPerPage = 8;
+  const currentTopic = currentDoc.meta[1] ?? currentDoc.category;
   const sections = extractSectionsFromHtml(currentDoc.contentHtml);
   const currentIndex = docs.findIndex((doc) => doc.slug === currentDoc.slug);
   const previousDoc = currentIndex > 0 ? docs[currentIndex - 1] : null;
@@ -32,6 +33,21 @@ export function HelpCenterDocsLayout({
   const directoryDocs = docs.slice(directoryPageStart, directoryPageStart + docsPerPage);
   const previousDirectoryDoc = directoryPageIndex > 0 ? docs[(directoryPageIndex - 1) * docsPerPage] : null;
   const nextDirectoryDoc = directoryPageIndex < directoryPageCount - 1 ? docs[(directoryPageIndex + 1) * docsPerPage] : null;
+  const topicDocs = docs.filter((doc) => (doc.meta[1] ?? doc.category) === currentTopic);
+  const topicMap = new Map<string, HelpCenterDoc>();
+
+  docs.forEach((doc) => {
+    const topic = doc.meta[1] ?? doc.category;
+
+    if (!topicMap.has(topic)) {
+      topicMap.set(topic, doc);
+    }
+  });
+
+  const topicEntries = Array.from(topicMap.entries()).map(([topic, doc]) => ({
+    topic,
+    doc,
+  }));
 
   function getDocHref(doc: HelpCenterDoc) {
     return doc.slug === defaultDocSlug ? "/help-center" : doc.href;
@@ -47,6 +63,52 @@ export function HelpCenterDocsLayout({
               <h2>{uiCopy.docs.directoryTitle}</h2>
               <p className="quote">{uiCopy.docs.directoryDescription}</p>
             </div>
+
+            <div className="docs-sidebar__topics">
+              <h3>{uiCopy.docs.topicDirectoryTitle}</h3>
+              <div className="docs-sidebar__topic-chips">
+                <LocalizedLink href="/help-center" className="tab-chip">
+                  {uiCopy.docs.allTopicsLabel}
+                </LocalizedLink>
+                {topicEntries.map(({topic, doc}) => {
+                  const isActive = topic === currentTopic;
+
+                  return (
+                    <LocalizedLink
+                      key={topic}
+                      href={getDocHref(doc)}
+                      className={`tab-chip${isActive ? " tab-chip--active" : ""}`}
+                      aria-current={isActive ? "true" : undefined}
+                    >
+                      {topic}
+                    </LocalizedLink>
+                  );
+                })}
+              </div>
+            </div>
+
+            {topicDocs.length > 1 ? (
+              <div className="docs-sidebar__topic-list">
+                <h3>{uiCopy.docs.relatedTopicTitle}</h3>
+                <nav className="docs-topic-list" aria-label={uiCopy.docs.relatedTopicTitle}>
+                  {topicDocs.map((doc) => {
+                    const isActive = doc.slug === currentDoc.slug;
+
+                    return (
+                      <LocalizedLink
+                        key={doc.slug}
+                        href={getDocHref(doc)}
+                        className={`docs-topic-link${isActive ? " docs-topic-link--active" : ""}`}
+                        aria-current={isActive ? "page" : undefined}
+                      >
+                        <span>{doc.title}</span>
+                        <small>{doc.readingTime}</small>
+                      </LocalizedLink>
+                    );
+                  })}
+                </nav>
+              </div>
+            ) : null}
 
             <nav className="docs-nav-list" aria-label={uiCopy.docs.directoryAriaLabel}>
               {directoryDocs.map((doc, index) => {
