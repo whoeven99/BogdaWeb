@@ -42,6 +42,7 @@ content/
 ## 常用命令
 
 ```bash
+npm run content:new -- --type=blog --locale=en --slug=shopify-localization-checklist
 npm run content:validate
 npm run build
 ```
@@ -59,6 +60,27 @@ npm run build
 - MDX 中引用的本地图片是否存在
 
 对于单语先发这类情况，校验会给出 warning，但不会阻断构建。
+
+## 新建内容脚手架
+
+Blog 示例：
+
+```bash
+npm run content:new -- --type=blog --locale=en --slug=shopify-localization-checklist --title="Shopify localization checklist" --tags=Shopify,Localization
+```
+
+Help Center 示例：
+
+```bash
+npm run content:new -- --type=help-center --locale=en --category=shopify-app --slug=how-to-manage-market-priority --topic="Translation Workflow"
+```
+
+说明：
+
+- 默认生成 `status: draft`
+- 自动补 `entryId`、日期、基础 frontmatter 和正文占位
+- Help Center 会自动计算同分类下的下一个 `order`
+- 如需自定义 `entryId`，可追加 `--entry-id=...`
 
 ## 翻译草稿脚手架
 

@@ -31,7 +31,7 @@
 ## 当前结论
 
 - `ciwi-web` 应作为唯一前台品牌站点。
-- `blog` 暂时保留 Ghost 作为内容后台，但逐步转向统一前台渲染。
+- Blog 与 Help Center 已收敛到 `ciwi-web` 的 `MDX + frontmatter` 内容体系。
 - 官网不仅是宣传页，还应承担轻量演示与 SEO 承接能力。
 
 ## 当前实施进度
@@ -41,7 +41,7 @@
 - 统一前台 layout、导航、页脚和基础样式 token
 - 目录化路由骨架：`products`、`blog`、`help-center`、`resources`、`compare`、`demo`
 - 首页、Translator 产品页、Blog、Help Center、Compare 的第一版模板
-- Ghost 已发布文章接入到站内 Blog 详情页
+- Blog 与 Help Center 已切换到 Git-based 内容源
 - Compare 正式模板落地
 - 首页与 Translator 页面接入轻量 Demo 展示模块
 

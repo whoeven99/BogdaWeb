@@ -17,17 +17,17 @@
 - `ciwi-web`
   - 当前是 Next.js 官网壳子。
   - 首页可用，但大量二级页面仍是占位或未真正落地。
-  - `public/` 中混有旧博客和旧帮助中心静态产物。
-- `blog`
-  - 当前是独立 Ghost 实例。
-  - 适合继续承担内容编辑后台，但前台体验与官网割裂。
+  - `public/` 中仅保留部分帮助中心截图素材供现有页面复用。
+- 当前内容系统
+  - Blog 与 Help Center 已迁移到 `ciwi-web` 的 `MDX + frontmatter` 体系。
+  - 旧 `public/blog` 已移除，旧帮助中心静态站点也已清理，仅保留图片素材。
 
 ## 3. 目标架构
 
 推荐架构：
 
 - `ciwi-web` 作为唯一前台品牌站点。
-- Ghost 暂时保留，作为博客内容后台。
+- 内容统一由仓库内 `MDX + frontmatter` 管理。
 - 博客、帮助中心、产品页、对比页、案例页最终都收敛到统一前台风格。
 - 演示能力统一在官网内部实现，避免再分裂出独立站点。
 
@@ -165,7 +165,7 @@
 阶段性建议：
 
 - 第一阶段：统一官网前台结构和内容模型。
-- 第二阶段：打通 Ghost 内容，逐步把博客前台收回到官网。
+- 第二阶段：完善 Git-based 内容生产、校验、i18n 与富媒体能力。
 - 第三阶段：接入 Demo Center 和更完整的 SEO 页面体系。
 
 ## 7. 一期范围
@@ -277,7 +277,7 @@
 - 已建立基础 metadata 工具层，并统一各页面 metadata 输出。
 - 已完成首页、Products、Translator、Resources、Blog、Help Center、Compare 的第一版前台骨架。
 - 已将 Solutions 从入口骨架推进为内容驱动的列表页和详情页模板，并落地 3 个场景页。
-- 已将 Ghost 中已发布的 3 篇文章接回到 Next 的站内文章页模板。
+- 已将 Blog 与 Help Center 切换到仓库内 MDX 内容源，并由 Next 统一前台渲染。
 - 已为 Blog 详情页补充目录、section anchor、相关文章入口和基础 JSON-LD。
 - 已将 Compare 页从简单说明页升级为正式模板，包含摘要、适配对象、对比维度、FAQ 和回流模块。
 - 已为 Compare 列表页和详情页补充 breadcrumb、FAQ 和页面 schema 基础层。
@@ -294,7 +294,7 @@
 ### 9.1 当前仍未完成的关键点
 
 - Help Center 详情页已开始迁移，但当前只覆盖首批高价值文档，尚未形成完整前台文档体系。
-- Blog 详情页虽然已经站内化，但仍是构建期静态内容映射，尚未接入真正的 headless 内容获取层。
+- Blog 与 Help Center 已采用 Git-based 内容体系，当前重点转向内容脚手架、发布流程与历史静态残留清理。
 - Demo 已具备样例输入切换式交互，但仍不包含真实任务处理或后端联动。
 - Blog / Help Center / Compare / Solutions 的基础结构化数据已接入，但 canonical 策略、相关推荐质量和内容同步链路仍需要继续补完。
 - Help Center 当前虽然已覆盖更多高价值文档，但随着文档继续增加，仍需要进入 topic grouping / filter 层，避免入口页再次变重。

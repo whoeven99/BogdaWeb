@@ -89,12 +89,12 @@ function getShowcasePreset(item: MediaAssetBrief, index: number, locale: Locale)
       summary: locale === "zh-cn" ? "用真实后台界面呈现 credits、配额和购买方式，让计费逻辑一眼可读。" : "Show real admin screens so credits, quota, and purchasing logic are easier to understand at a glance.",
       highlights: locale === "zh-cn" ? ["Credits usage", "Purchase tiers", "Pricing clarity"] : ["Credits usage", "Purchase tiers", "Pricing clarity"],
       main: {
-        src: "/help-center/assets/images/image-41-1024x508-44cad0129e424014aed54ee5a962b9c4.png",
+        src: "/media/help-center/image-41-1024x508-44cad0129e424014aed54ee5a962b9c4.png",
         alt: "Credits and pricing view inside Shopify app",
       },
       secondary: [
         {
-          src: "/help-center/assets/images/image-24-1024x353-7ad870dd20ef8534b1e93b4e2e4231a4.png",
+          src: "/media/help-center/image-24-1024x353-7ad870dd20ef8534b1e93b4e2e4231a4.png",
           alt: "Translation settings and API key configuration",
         },
         {
@@ -111,12 +111,12 @@ function getShowcasePreset(item: MediaAssetBrief, index: number, locale: Locale)
       summary: locale === "zh-cn" ? "直接展示模型与 API key 配置界面，让关键设置路径更直观。" : "Show the model and API key configuration screens directly so the setup path is easier to follow.",
       highlights: ["Custom API key", "Quota setup", "Model workflow"],
       main: {
-        src: "/help-center/assets/images/image-24-1024x353-7ad870dd20ef8534b1e93b4e2e4231a4.png",
+        src: "/media/help-center/image-24-1024x353-7ad870dd20ef8534b1e93b4e2e4231a4.png",
         alt: "Translation settings with API key configuration",
       },
       secondary: [
         {
-          src: "/help-center/assets/images/image-32-1024x484-ab043cc4334f544e47960898e24cbb0a.png",
+          src: "/media/help-center/image-32-1024x484-ab043cc4334f544e47960898e24cbb0a.png",
           alt: "Translation management view",
         },
         {
@@ -133,12 +133,12 @@ function getShowcasePreset(item: MediaAssetBrief, index: number, locale: Locale)
       summary: locale === "zh-cn" ? "把 Theme Editor、前台切换器和语言货币体验直接呈现出来，更容易判断实际效果。" : "Show the theme editor, storefront switcher, and language or currency experience directly so the real effect is easier to judge.",
       highlights: ["Theme embed", "Switcher placement", "Storefront localization"],
       main: {
-        src: "/help-center/assets/images/image-39-1024x484-199851b9146b9d40442c609beacc3615.png",
+        src: "/media/help-center/image-39-1024x484-199851b9146b9d40442c609beacc3615.png",
         alt: "Theme embed and storefront localization preview",
       },
       secondary: [
         {
-          src: "/help-center/assets/images/image-25-1024x485-a299e79a71a705ed48147730cdb1b513.png",
+          src: "/media/help-center/image-25-1024x485-a299e79a71a705ed48147730cdb1b513.png",
           alt: "Language list in Shopify admin",
         },
         {
@@ -155,12 +155,12 @@ function getShowcasePreset(item: MediaAssetBrief, index: number, locale: Locale)
       summary: locale === "zh-cn" ? "用并排的真实界面和能力标签呈现差异，让对比页先建立判断框架。" : "Use side-by-side interface views and capability labels to establish the comparison frame more quickly.",
       highlights: ["Workflow depth", "Theme coverage", "Merchant fit"],
       main: {
-        src: "/help-center/assets/images/image-32-1024x484-ab043cc4334f544e47960898e24cbb0a.png",
+        src: "/media/help-center/image-32-1024x484-ab043cc4334f544e47960898e24cbb0a.png",
         alt: "Translation management overview",
       },
       secondary: [
         {
-          src: "/help-center/assets/images/image-39-1024x484-199851b9146b9d40442c609beacc3615.png",
+          src: "/media/help-center/image-39-1024x484-199851b9146b9d40442c609beacc3615.png",
           alt: "Storefront switcher screenshot",
         },
         {
@@ -186,7 +186,7 @@ function getShowcasePreset(item: MediaAssetBrief, index: number, locale: Locale)
           alt: "AI content generation icon",
         },
         {
-          src: "/help-center/assets/images/image-32-1024x484-ab043cc4334f544e47960898e24cbb0a.png",
+          src: "/media/help-center/image-32-1024x484-ab043cc4334f544e47960898e24cbb0a.png",
           alt: "Translation management screenshot",
         },
       ],
@@ -221,12 +221,12 @@ function getShowcasePreset(item: MediaAssetBrief, index: number, locale: Locale)
       summary: locale === "zh-cn" ? "把翻译、前台切换和增长场景组合到一个区块里，让方案页更像真实解决路径。" : "Bring translation, storefront switching, and growth scenarios into one block so the solution page feels more like a real path forward.",
       highlights: ["Localized flow", "Storefront touchpoints", "Outcome framing"],
       main: {
-        src: "/help-center/assets/images/image-39-1024x484-199851b9146b9d40442c609beacc3615.png",
+        src: "/media/help-center/image-39-1024x484-199851b9146b9d40442c609beacc3615.png",
         alt: "Storefront localization screenshot",
       },
       secondary: [
         {
-          src: "/help-center/assets/images/image-30-1024x483-bca184999f086a339ace9b093b68bed9.png",
+          src: "/media/help-center/image-30-1024x483-bca184999f086a339ace9b093b68bed9.png",
           alt: "Language management screenshot",
         },
         {
@@ -248,7 +248,7 @@ function getShowcasePreset(item: MediaAssetBrief, index: number, locale: Locale)
       },
       secondary: [
         {
-          src: "/help-center/assets/images/image-41-1024x508-44cad0129e424014aed54ee5a962b9c4.png",
+          src: "/media/help-center/image-41-1024x508-44cad0129e424014aed54ee5a962b9c4.png",
           alt: "Credits pricing page",
         },
         {
@@ -265,16 +265,16 @@ function getShowcasePreset(item: MediaAssetBrief, index: number, locale: Locale)
       summary: locale === "zh-cn" ? "用真实后台录屏截图做视频封面，让 Demo 区先具备完整画面感。" : "Use real product captures as the video cover so the demo area feels visually complete right away.",
       highlights: ["Flow preview", "Before and after", "Live product view"],
       main: {
-        src: "/help-center/assets/images/image-32-1024x484-ab043cc4334f544e47960898e24cbb0a.png",
+        src: "/media/help-center/image-32-1024x484-ab043cc4334f544e47960898e24cbb0a.png",
         alt: "Translation management overview",
       },
       secondary: [
         {
-          src: "/help-center/assets/images/image-30-1024x483-bca184999f086a339ace9b093b68bed9.png",
+          src: "/media/help-center/image-30-1024x483-bca184999f086a339ace9b093b68bed9.png",
           alt: "Language settings overview",
         },
         {
-          src: "/help-center/assets/images/image-39-1024x484-199851b9146b9d40442c609beacc3615.png",
+          src: "/media/help-center/image-39-1024x484-199851b9146b9d40442c609beacc3615.png",
           alt: "Theme embed screenshot",
         },
       ],
@@ -287,16 +287,16 @@ function getShowcasePreset(item: MediaAssetBrief, index: number, locale: Locale)
       summary: locale === "zh-cn" ? "用真实产品截图做主视觉，让用户先看到 Shopify 场景里的界面形态和关键操作路径。" : "Use real product screenshots as the main visual so visitors can understand the interface and key actions inside a Shopify context first.",
       highlights: ["Product UI", "Localization workflow", "Shopify fit"],
       main: {
-        src: "/help-center/assets/images/image-30-1024x483-bca184999f086a339ace9b093b68bed9.png",
+        src: "/media/help-center/image-30-1024x483-bca184999f086a339ace9b093b68bed9.png",
         alt: "Language management inside Shopify admin",
       },
       secondary: [
         {
-          src: "/help-center/assets/images/image-39-1024x484-199851b9146b9d40442c609beacc3615.png",
+          src: "/media/help-center/image-39-1024x484-199851b9146b9d40442c609beacc3615.png",
           alt: "Theme embed screenshot",
         },
         {
-          src: "/help-center/assets/images/image-41-1024x508-44cad0129e424014aed54ee5a962b9c4.png",
+          src: "/media/help-center/image-41-1024x508-44cad0129e424014aed54ee5a962b9c4.png",
           alt: "Credits page screenshot",
         },
       ],
@@ -306,7 +306,7 @@ function getShowcasePreset(item: MediaAssetBrief, index: number, locale: Locale)
       summary: locale === "zh-cn" ? "把真实后台界面和品牌能力标签一起呈现，让产品列表或详情页更容易形成整体理解。" : "Show real admin screens alongside capability labels so product list and detail pages are easier to understand as a whole.",
       highlights: ["Coverage depth", "Brand control", "Operational flow"],
       main: {
-        src: "/help-center/assets/images/image-32-1024x484-ab043cc4334f544e47960898e24cbb0a.png",
+        src: "/media/help-center/image-32-1024x484-ab043cc4334f544e47960898e24cbb0a.png",
         alt: "Manage translation page",
       },
       secondary: [
@@ -315,7 +315,7 @@ function getShowcasePreset(item: MediaAssetBrief, index: number, locale: Locale)
           alt: "Voice and keywords graphic",
         },
         {
-          src: "/help-center/assets/images/image-31-1024x484-74174fec40a40dd40a54103fab72f597.png",
+          src: "/media/help-center/image-31-1024x484-74174fec40a40dd40a54103fab72f597.png",
           alt: "Selected languages screenshot",
         },
       ],

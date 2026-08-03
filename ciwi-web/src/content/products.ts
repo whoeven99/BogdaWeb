@@ -381,11 +381,11 @@ const productsZh: ProductItem[] = [
     slug: "translator",
     name: "AI Translator",
     shortDescription: "帮助 Shopify 商家更快上线多语言、稳定术语表达并持续同步更新。",
-    heroTitle: "把 Shopify 多语言做成可持续维护的增长能力",
+    heroTitle: "Ciwi 翻译，让国际化SEO变成新的获客来源和转化工具",
     heroDescription:
-      "Ciwi AI Translator 覆盖商品、主题、导航、FAQ、图片和 metafields 等关键内容层，让多语言上线更快、术语控制更稳、后续更新更省力。",
+      "Ciwi AI Translator 基于 ChatGPT 等先进 AI模型，进行更符合本地市场的翻译工作并保持品牌一致。同时，Ciwi 通过大数据模型优化翻译内容的 SEO 效果，为获客和转化率带来 13.5% 的显著提升",
     icon: "/translate.svg",
-    metrics: ["100+ languages", "Shopify-aware workflow", "Glossary and model control"],
+    metrics: ["适配全球一百多个市场", "保持品牌风格和调性", "强化 翻译后的SEO 效果"],
     rating: 4.7,
     reviewCount: 22,
     reviewSnippets: [

@@ -1,6 +1,6 @@
-import {HelpCenterDocsLayout} from "@/components/sections/HelpCenterDocsLayout";
+import {HelpCenterLanding} from "@/components/sections/HelpCenterLanding";
 import {PageContainer} from "@/components/ui/PageContainer";
-import {getHelpCenterDocs} from "@/content/help-center";
+import {getFeaturedHelpCenterDocs, getHelpCenterDocs} from "@/content/help-center";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata} from "@/lib/seo/metadata";
 
@@ -21,13 +21,13 @@ export async function generateMetadata() {
 export default async function HelpCenterPage() {
   const locale = await getRequestLocale();
   const helpCenterDocs = getHelpCenterDocs(locale);
-  const currentDoc = helpCenterDocs[0];
+  const featuredDocs = getFeaturedHelpCenterDocs(locale);
   const eyebrow = locale === "zh-cn" ? "帮助中心" : "Help Center";
 
   return (
     <main>
       <PageContainer>
-        <HelpCenterDocsLayout currentDoc={currentDoc} docs={helpCenterDocs} eyebrow={eyebrow} locale={locale} />
+        <HelpCenterLanding docs={helpCenterDocs} featuredDocs={featuredDocs} eyebrow={eyebrow} locale={locale} />
       </PageContainer>
     </main>
   );

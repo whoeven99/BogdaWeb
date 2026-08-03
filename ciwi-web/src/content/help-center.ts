@@ -26,7 +26,6 @@ const helpCenterFrontmatterSchema = z.object({
   order: z.number().int().nonnegative(),
   meta: z.array(z.string()).default([]),
   readingTime: z.string().min(1),
-  sourceHref: z.string().min(1),
   sourceLocale: z.union([z.literal("en"), z.literal("zh-cn")]).optional(),
   translationStatus: z.enum(["manual", "ai-draft", "reviewed"]).optional(),
   relatedResources: z.array(relatedResourceSchema).default([]),

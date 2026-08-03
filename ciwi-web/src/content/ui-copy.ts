@@ -23,6 +23,21 @@ type UiCopy = {
     paginationLabel: string;
   };
   docs: {
+    landingTitle: string;
+    landingDescription: string;
+    featuredTitle: string;
+    featuredDescription: string;
+    allDocsTitle: string;
+    allDocsDescription: string;
+    searchPlaceholder: string;
+    allTopicsLabel: string;
+    browseTopicLabel: string;
+    topicDirectoryTitle: string;
+    relatedTopicTitle: string;
+    openArticleLabel: string;
+    articleCountLabel: string;
+    noResultsTitle: string;
+    noResultsDescription: string;
     directoryTitle: string;
     directoryDescription: string;
     directoryAriaLabel: string;
@@ -67,6 +82,21 @@ const uiCopyByLocale = {
       paginationLabel: "Blog pagination",
     },
     docs: {
+      landingTitle: "Find answers without digging through every article",
+      landingDescription: "Start with featured setup guides, then narrow by topic when you need billing, glossary, switcher, or translation workflow docs.",
+      featuredTitle: "Featured docs",
+      featuredDescription: "The fastest path for first-time setup, glossary control, and publishing your first localized storefront.",
+      allDocsTitle: "Browse every help article",
+      allDocsDescription: "Filter by topic or search by keyword to jump into the exact guide you need.",
+      searchPlaceholder: "Search help center",
+      allTopicsLabel: "All topics",
+      browseTopicLabel: "Browse by topic",
+      topicDirectoryTitle: "Topics",
+      relatedTopicTitle: "More in this topic",
+      openArticleLabel: "Open article",
+      articleCountLabel: "articles",
+      noResultsTitle: "No matching articles yet",
+      noResultsDescription: "Try another topic or a shorter keyword. The full help center list is still available below when you clear the filter.",
       directoryTitle: "Directory",
       directoryDescription: "Browse installation, setup, and day-to-day usage docs in order.",
       directoryAriaLabel: "Help center directory",
@@ -109,6 +139,21 @@ const uiCopyByLocale = {
       paginationLabel: "博客分页",
     },
     docs: {
+      landingTitle: "更快找到你真正需要的帮助文档",
+      landingDescription: "先从精选入门文档开始，再按主题筛选账单、Glossary、切换器或翻译流程相关说明。",
+      featuredTitle: "精选文档",
+      featuredDescription: "适合首次安装、术语控制和首次发布多语言店铺时快速查看。",
+      allDocsTitle: "浏览全部帮助文档",
+      allDocsDescription: "可以按主题筛选，也可以直接按关键词搜索到目标文档。",
+      searchPlaceholder: "搜索帮助中心",
+      allTopicsLabel: "全部主题",
+      browseTopicLabel: "按主题浏览",
+      topicDirectoryTitle: "主题",
+      relatedTopicTitle: "同主题文档",
+      openArticleLabel: "查看文档",
+      articleCountLabel: "篇文档",
+      noResultsTitle: "暂时没有匹配的文档",
+      noResultsDescription: "可以换一个主题或更短的关键词试试。清空筛选后仍可查看完整帮助中心列表。",
       directoryTitle: "目录",
       directoryDescription: "按顺序浏览安装、配置和日常使用说明。",
       directoryAriaLabel: "帮助中心目录",
