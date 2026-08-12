@@ -926,6 +926,223 @@ select {
   line-height: 1.8;
 }
 
+.compare-insight-stack {
+  display: grid;
+  gap: 16px;
+}
+
+.compare-insight-card {
+  display: grid;
+  gap: 16px;
+  padding: 18px 20px;
+  border: 1px solid rgba(229, 231, 235, 0.9);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 2px 8px rgba(17, 24, 39, 0.04);
+}
+
+.compare-insight-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.compare-insight-card__label {
+  color: var(--color-ink-500);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.compare-insight-table {
+  display: grid;
+  gap: 0;
+  border: 1px solid rgba(229, 231, 235, 0.9);
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(248, 250, 252, 0.72);
+}
+
+.compare-insight-table__row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.compare-insight-table__row + .compare-insight-table__row {
+  border-top: 1px solid rgba(229, 231, 235, 0.9);
+}
+
+.compare-insight-table__cell {
+  padding: 18px 20px;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.compare-insight-table__cell + .compare-insight-table__cell {
+  border-left: 1px solid rgba(229, 231, 235, 0.9);
+}
+
+.compare-insight-table__cell--head {
+  background: rgba(241, 245, 249, 0.88);
+  color: var(--color-ink-900);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+}
+
+.compare-insight-table__text {
+  margin: 0;
+  color: var(--color-ink-800);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.compare-insight-card__summary {
+  display: grid;
+  gap: 8px;
+  padding: 16px 18px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(232, 245, 238, 0.64), rgba(255, 255, 255, 0.98));
+  border: 1px solid rgba(0, 128, 96, 0.12);
+}
+
+.compare-insight-card__summary-label {
+  color: var(--color-primary);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.compare-insight-card__summary-text {
+  margin: 0;
+  color: var(--color-ink-900);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.compare-facts-table {
+  display: grid;
+  gap: 0;
+  border: 1px solid rgba(229, 231, 235, 0.9);
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(248, 250, 252, 0.72);
+}
+
+.compare-facts-table__row {
+  display: grid;
+  grid-template-columns: minmax(92px, 120px) repeat(2, minmax(0, 1fr));
+}
+
+.compare-facts-table__row + .compare-facts-table__row {
+  border-top: 1px solid rgba(229, 231, 235, 0.9);
+}
+
+.compare-facts-table__cell {
+  padding: 16px 18px;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.compare-facts-table__cell + .compare-facts-table__cell {
+  border-left: 1px solid rgba(229, 231, 235, 0.9);
+}
+
+.compare-facts-table__cell--head {
+  background: rgba(241, 245, 249, 0.88);
+  color: var(--color-ink-900);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+}
+
+.compare-facts-table__cell--label {
+  color: var(--color-ink-700);
+  font-size: 13px;
+  font-weight: 700;
+  background: rgba(248, 250, 252, 0.92);
+}
+
+.compare-facts-table__text {
+  margin: 0;
+  color: var(--color-ink-800);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.compare-pricing-table {
+  display: grid;
+  gap: 0;
+  border: 1px solid rgba(229, 231, 235, 0.9);
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(248, 250, 252, 0.72);
+}
+
+.compare-pricing-table__row {
+  display: grid;
+  grid-template-columns: minmax(96px, 120px) repeat(2, minmax(0, 1fr));
+}
+
+.compare-pricing-table__row + .compare-pricing-table__row {
+  border-top: 1px solid rgba(229, 231, 235, 0.9);
+}
+
+.compare-pricing-table__cell {
+  padding: 16px 18px;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.compare-pricing-table__cell + .compare-pricing-table__cell {
+  border-left: 1px solid rgba(229, 231, 235, 0.9);
+}
+
+.compare-pricing-table__cell--head {
+  background: rgba(241, 245, 249, 0.88);
+  color: var(--color-ink-900);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+}
+
+.compare-pricing-table__cell--tier {
+  color: var(--color-ink-700);
+  font-size: 13px;
+  font-weight: 700;
+  background: rgba(248, 250, 252, 0.92);
+}
+
+.compare-pricing-plan {
+  display: grid;
+  gap: 4px;
+}
+
+.compare-pricing-plan__name {
+  color: var(--color-ink-900);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.compare-pricing-plan__price {
+  color: var(--color-primary);
+  font-size: 18px;
+  line-height: 1.4;
+  font-weight: 800;
+}
+
+.compare-pricing-plan__note {
+  color: var(--color-ink-600);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.compare-pricing-plan__empty {
+  color: var(--color-ink-500);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
 .compare-bestfit-list {
   display: grid;
   gap: 16px;
@@ -961,9 +1178,22 @@ select {
   letter-spacing: 0.06em;
 }
 
+.compare-bestfit-item__body {
+  display: grid;
+  gap: 8px;
+}
+
+.compare-bestfit-item__label {
+  color: var(--color-ink-700);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .compare-bestfit-item__text {
   color: var(--color-ink-900);
-  font-size: 18px;
+  font-size: 17px;
   line-height: 1.7;
   font-weight: 600;
 }
@@ -1346,6 +1576,18 @@ select {
 .faq-item p {
   margin: var(--space-3) 0 0;
   color: var(--color-ink-700);
+  line-height: 1.75;
+}
+
+.faq-evidence-list {
+  display: grid;
+  gap: 8px;
+  margin: var(--space-4) 0 0;
+  padding-left: 20px;
+  color: var(--color-ink-700);
+}
+
+.faq-evidence-list li {
   line-height: 1.75;
 }
 
@@ -3086,7 +3328,41 @@ select {
     grid-template-columns: 1fr;
   }
 
+  .compare-insight-table__row {
+    grid-template-columns: 1fr;
+  }
+
+  .compare-insight-table__cell + .compare-insight-table__cell {
+    border-left: 0;
+    border-top: 1px solid rgba(229, 231, 235, 0.9);
+  }
+
+  .compare-pricing-table__row {
+    grid-template-columns: 1fr;
+  }
+
+  .compare-facts-table__row {
+    grid-template-columns: 1fr;
+  }
+
+  .compare-pricing-table__cell + .compare-pricing-table__cell {
+    border-left: 0;
+    border-top: 1px solid rgba(229, 231, 235, 0.9);
+  }
+
+  .compare-facts-table__cell + .compare-facts-table__cell {
+    border-left: 0;
+    border-top: 1px solid rgba(229, 231, 235, 0.9);
+  }
+
+
+
+
   .compare-total-card__summary {
+    grid-template-columns: 1fr;
+  }
+
+  .compare-overview-insights {
     grid-template-columns: 1fr;
   }
 
