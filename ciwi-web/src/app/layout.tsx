@@ -1,4 +1,3 @@
-import {Geist, Geist_Mono} from "next/font/google";
 import type {ReactNode} from "react";
 import Script from "next/script";
 
@@ -11,16 +10,6 @@ import {getHtmlLang} from "@/lib/i18n";
 import "./globals.css";
 
 const GOOGLE_ANALYTICS_ID = "G-Y10P6WTLEX";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata = {
   icons: {
@@ -39,7 +28,7 @@ export default async function RootLayout({
 
   return (
     <html lang={getHtmlLang(locale)}>
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body>
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
           strategy="afterInteractive"
