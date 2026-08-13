@@ -165,6 +165,17 @@ function getPriceMetric(data: CompareItem) {
   });
 }
 
+function isOperationalScoreMetric(label: string) {
+  return /after-sales support|third-party app data compatibility|theme compatibility|seo performance|售后服务|第三方 app 数据兼容|主题兼容|seo 性能/i.test(label);
+}
+
+function getVisibleTotalScoreMetrics(data: CompareItem) {
+  const existingLabels = new Set(data.summaryMetrics.map((item) => item.label));
+  const operationalMetrics = data.scoreMatrix.filter((item) => isOperationalScoreMetric(item.label) && !existingLabels.has(item.label));
+
+  return [...data.summaryMetrics, ...operationalMetrics];
+}
+
 function buildAppPositioningComparison(data: CompareItem, locale: "en" | "zh-cn") {
   if (data.appComparison) {
     return data.appComparison;
@@ -395,7 +406,7 @@ function getCiwiAppFactRows(locale: "en" | "zh-cn"): CompareFactRow[] {
     return [
       {
         label: "定位",
-        ciwi: "Shopify 原生翻译与本地化工具，强调更快的 i18n 切换速度、对多语言 SEO 更友好的落地方式，以及更高的前台体验效率。",
+        ciwi: "Shopify 原生翻译与本地化工具，强调更快的 i18n 切换速度、对多语言 SEO 更友好的落地方式，以及更高的前台体验效率。在翻译速度表现上，目前是 shopify app store 最快的原生翻译工具。相比大部分使用前端页面翻译的工具，例如 EA translate，Ciwi 提供了和 Shopify translate & adapt 一致的原生翻译模式，不仅可以有效翻译到多个语言，还可以根据用户需求进行自定义翻译。在 SEO 表现上，对于页面的索引和抓取也有非常优秀的性能。除此之外，自动更新和语言翻译估算等功能，有效帮助客户快速了解自己的商店规模和需要的花费。在数据覆盖度上，目前 Ciwi 除了覆盖已有的文本内容，还针对自定义 liquid 和第三方 app 做了兼容处理，可以完美实现全面数据覆盖。在使用过程中，Ciwi 还提供了 AI 模型选择的能力，可以自由选择不同的优秀 AI 模型。此外，他们的售后服务非常明确，愿意为翻译质量负责，并积极配合客户解决问题，同时也有补偿积分和退款的明确政策。",
         alternative: "",
       },
       {
@@ -414,7 +425,7 @@ function getCiwiAppFactRows(locale: "en" | "zh-cn"): CompareFactRow[] {
   return [
     {
       label: "Positioning",
-      ciwi: "Native Shopify translation and localization built for faster storefront i18n switching, stronger multilingual SEO readiness, and a smoother on-site experience.",
+      ciwi: "Native Shopify translation and localization for merchants who want faster storefront i18n switching, a more SEO-friendly multilingual implementation, and higher on-site experience efficiency. In translation speed, it is currently the fastest native translation tool in the Shopify App Store. Compared with tools that rely on front-end page translation, such as EA Translate, Ciwi follows the same native translation approach as Shopify Translate & Adapt, so merchants can localize multiple languages effectively while still customizing translations to fit their needs. For SEO, it performs strongly for page indexing and crawling. Features such as auto-update and translation cost estimation also help merchants quickly understand their store size and expected spend. In terms of coverage, Ciwi goes beyond existing text content by supporting custom Liquid and third-party apps for more complete data coverage. Merchants can also choose from multiple strong AI models. The team is also explicit about after-sales support: they are willing to stand behind translation quality, actively help solve issues, and offer clear credit compensation and refund policies.",
       alternative: "",
     },
     {
@@ -594,11 +605,11 @@ function getPricingFactRows(
     },
     {
       label: locale === "zh-cn" ? "价格门槛" : "Entry price",
-      ciwi: locale === "zh-cn" ? "首个付费档是 Basic $7.99/月。" : "The first paid tier is Basic at $7.99/month.",
+      ciwi: locale === "zh-cn" ? "首个付费档是 Basic $7.99/月。提供 5 天的免费试用，试用期间可以获得150 万积分" : "The first paid tier is Basic at $7.99/month.",
       alternative:
         locale === "zh-cn"
-          ? "当前条目缺少完整套餐表时，建议以公开截图或 App Store 定价页为准。"
-          : "When a full pricing ladder is unavailable, rely on the published screenshot or App Store pricing page.",
+          ? "目前免费，App Store 定价页为准。"
+          : "Free now, rely on the App Store pricing page.",
     },
   ];
 }
@@ -1132,6 +1143,7 @@ export default async function CompareDetailPage({params}: CompareDetailPageProps
   const ciwiTotal = getTotalScore(allScores, "ciwi");
   const alternativeTotal = getTotalScore(allScores, "alternative");
   const totalMax = allScores.length * 10;
+  const visibleTotalScoreMetrics = getVisibleTotalScoreMetrics(data);
   const ciwiTotalStars = getTotalStarRating(ciwiTotal, totalMax);
   const alternativeTotalStars = getTotalStarRating(alternativeTotal, totalMax);
   const ciwiAverage = getAverageScore(data.scoreMatrix, "ciwi");
@@ -1351,7 +1363,7 @@ export default async function CompareDetailPage({params}: CompareDetailPageProps
                 </div>
               </div>
               <div className="compare-metric-list">
-                {data.summaryMetrics.map((metric, metricIndex) => (
+                {visibleTotalScoreMetrics.map((metric, metricIndex) => (
                   <div key={metric.label} className="compare-metric">
                     <div className="compare-metric__header">
                       <strong>{metric.label}</strong>

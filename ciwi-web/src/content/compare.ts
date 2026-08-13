@@ -33,6 +33,163 @@ export type CompareItem = {
   faq: {question: string; answer: string; evidence?: string[]}[];
 };
 
+type AdditionalMetricKey =
+  | "afterSalesSupport"
+  | "thirdPartyAppCompatibility"
+  | "themeCompatibility"
+  | "seoPerformance";
+
+type AdditionalMetricScores = Record<AdditionalMetricKey, Omit<CompareMetric, "label">>;
+
+const additionalMetricScoresBySlug: Record<string, AdditionalMetricScores> = {
+  "ciwi-vs-transcy": {
+    afterSalesSupport: {ciwi: 9, alternative: 5},
+    thirdPartyAppCompatibility: {ciwi: 9, alternative: 8},
+    themeCompatibility: {ciwi: 9, alternative: 7},
+    seoPerformance: {ciwi: 9, alternative: 5},
+  },
+  "ciwi-vs-langwill": {
+    afterSalesSupport: {ciwi: 9, alternative: 5},
+    thirdPartyAppCompatibility: {ciwi: 9, alternative: 7},
+    themeCompatibility: {ciwi: 9, alternative: 7},
+    seoPerformance: {ciwi: 9, alternative: 7},
+  },
+  "ciwi-vs-shopify-translate-adapt": {
+    afterSalesSupport: {ciwi: 9, alternative: 7},
+    thirdPartyAppCompatibility: {ciwi: 9, alternative: 3},
+    themeCompatibility: {ciwi: 9, alternative: 8},
+    seoPerformance: {ciwi: 9, alternative: 7},
+  },
+  "ciwi-vs-weglot": {
+    afterSalesSupport: {ciwi: 9, alternative: 6},
+    thirdPartyAppCompatibility: {ciwi: 9, alternative: 5},
+    themeCompatibility: {ciwi: 9, alternative: 7},
+    seoPerformance: {ciwi: 9, alternative: 8},
+  },
+  "ciwi-vs-langify": {
+    afterSalesSupport: {ciwi: 9, alternative: 5},
+    thirdPartyAppCompatibility: {ciwi: 9, alternative: 4},
+    themeCompatibility: {ciwi: 9, alternative: 4},
+    seoPerformance: {ciwi: 9, alternative: 6},
+  },
+  "ciwi-vs-transtore": {
+    afterSalesSupport: {ciwi: 9, alternative: 6},
+    thirdPartyAppCompatibility: {ciwi: 9, alternative: 8},
+    themeCompatibility: {ciwi: 9, alternative: 7},
+    seoPerformance: {ciwi: 9, alternative: 8},
+  },
+  "ciwi-vs-hextom-ai": {
+    afterSalesSupport: {ciwi: 9, alternative: 7},
+    thirdPartyAppCompatibility: {ciwi: 9, alternative: 9},
+    themeCompatibility: {ciwi: 9, alternative: 9},
+    seoPerformance: {ciwi: 9, alternative: 7},
+  },
+  "ciwi-vs-langshop": {
+    afterSalesSupport: {ciwi: 9, alternative: 8},
+    thirdPartyAppCompatibility: {ciwi: 9, alternative: 8},
+    themeCompatibility: {ciwi: 9, alternative: 7},
+    seoPerformance: {ciwi: 9, alternative: 8},
+  },
+  "ciwi-vs-gtranslate": {
+    afterSalesSupport: {ciwi: 9, alternative: 6},
+    thirdPartyAppCompatibility: {ciwi: 9, alternative: 7},
+    themeCompatibility: {ciwi: 9, alternative: 7},
+    seoPerformance: {ciwi: 9, alternative: 9},
+  },
+  "ciwi-vs-t-lab": {
+    afterSalesSupport: {ciwi: 9, alternative: 6},
+    thirdPartyAppCompatibility: {ciwi: 9, alternative: 5},
+    themeCompatibility: {ciwi: 9, alternative: 7},
+    seoPerformance: {ciwi: 9, alternative: 6},
+  },
+  "ciwi-vs-locales-ai": {
+    afterSalesSupport: {ciwi: 9, alternative: 7},
+    thirdPartyAppCompatibility: {ciwi: 9, alternative: 9},
+    themeCompatibility: {ciwi: 9, alternative: 8},
+    seoPerformance: {ciwi: 9, alternative: 7},
+  },
+  "ciwi-vs-ea-auto-language-translate": {
+    afterSalesSupport: {ciwi: 9, alternative: 3},
+    thirdPartyAppCompatibility: {ciwi: 9, alternative: 4},
+    themeCompatibility: {ciwi: 9, alternative: 6},
+    seoPerformance: {ciwi: 9, alternative: 3},
+  },
+  "ciwi-vs-orbe-geolocation": {
+    afterSalesSupport: {ciwi: 9, alternative: 6},
+    thirdPartyAppCompatibility: {ciwi: 9, alternative: 3},
+    themeCompatibility: {ciwi: 9, alternative: 7},
+    seoPerformance: {ciwi: 9, alternative: 3},
+  },
+  "ciwi-vs-ez-product-image-translate": {
+    afterSalesSupport: {ciwi: 9, alternative: 5},
+    thirdPartyAppCompatibility: {ciwi: 9, alternative: 2},
+    themeCompatibility: {ciwi: 9, alternative: 4},
+    seoPerformance: {ciwi: 9, alternative: 2},
+  },
+  "ciwi-vs-selecty": {
+    afterSalesSupport: {ciwi: 9, alternative: 6},
+    thirdPartyAppCompatibility: {ciwi: 9, alternative: 2},
+    themeCompatibility: {ciwi: 9, alternative: 7},
+    seoPerformance: {ciwi: 9, alternative: 2},
+  },
+  "ciwi-vs-reversia": {
+    afterSalesSupport: {ciwi: 9, alternative: 8},
+    thirdPartyAppCompatibility: {ciwi: 9, alternative: 8},
+    themeCompatibility: {ciwi: 9, alternative: 7},
+    seoPerformance: {ciwi: 9, alternative: 9},
+  },
+};
+
+function getAdditionalMetricLabel(key: AdditionalMetricKey, locale: Locale) {
+  if (locale === "zh-cn") {
+    switch (key) {
+      case "afterSalesSupport":
+        return "售后服务";
+      case "thirdPartyAppCompatibility":
+        return "第三方 app 数据兼容";
+      case "themeCompatibility":
+        return "主题兼容";
+      case "seoPerformance":
+        return "SEO 性能";
+      default:
+        return "";
+    }
+  }
+
+  switch (key) {
+    case "afterSalesSupport":
+      return "After-sales support";
+    case "thirdPartyAppCompatibility":
+      return "Third-party app data compatibility";
+    case "themeCompatibility":
+      return "Theme compatibility";
+    case "seoPerformance":
+      return "SEO performance";
+    default:
+      return "";
+  }
+}
+
+function getAdditionalMetrics(slug: string, locale: Locale): CompareMetric[] {
+  const metricScores = additionalMetricScoresBySlug[slug];
+
+  if (!metricScores) {
+    return [];
+  }
+
+  return (Object.keys(metricScores) as AdditionalMetricKey[]).map((key) => ({
+    label: getAdditionalMetricLabel(key, locale),
+    ...metricScores[key],
+  }));
+}
+
+function withAdditionalScoreMetrics(items: CompareItem[], locale: Locale): CompareItem[] {
+  return items.map((item) => ({
+    ...item,
+    scoreMatrix: [...item.scoreMatrix, ...getAdditionalMetrics(item.slug, locale)],
+  }));
+}
+
 const ciwiPricingPlansEn: ComparePricingPlan[] = [
   {name: "Free", price: "Free", note: "147+ languages; image support"},
   {name: "Basic", price: "$7.99/month", note: "1.5M credits; 200+ currencies"},
@@ -2049,11 +2206,14 @@ const comparesZh: CompareItem[] = [
   },
 ];
 
-export const compares = comparesEn;
+const comparesEnWithAdditionalMetrics = withAdditionalScoreMetrics(comparesEn, "en");
+const comparesZhWithAdditionalMetrics = withAdditionalScoreMetrics(comparesZh, "zh-cn");
+
+export const compares = comparesEnWithAdditionalMetrics;
 export const compareMap = Object.fromEntries(compares.map((item) => [item.slug, item]));
 
 export function getCompares(locale: Locale) {
-  return locale === "zh-cn" ? comparesZh : comparesEn;
+  return locale === "zh-cn" ? comparesZhWithAdditionalMetrics : comparesEnWithAdditionalMetrics;
 }
 
 export function getCompareMap(locale: Locale) {
