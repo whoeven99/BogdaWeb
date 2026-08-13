@@ -1,6 +1,6 @@
 import type {Locale} from "@/lib/i18n";
 import generatedCollections from "@/content/best-shopify-apps.generated.json";
-import importedCollections from "../../docs/best_shopify_app_collections.json";
+import importedCollections from "@/content/data/best_shopify_app_collections.json";
 
 export type BestShopifyAppCriterion = {
   title: string;
