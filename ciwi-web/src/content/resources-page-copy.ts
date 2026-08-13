@@ -34,6 +34,13 @@ const resourcesPageCopyByLocale = {
         ctaLabel: "Open compare pages",
         ctaHref: "/compare",
       },
+      bestShopifyApps: {
+        eyebrow: "Collections",
+        title: "Best Shopify Apps",
+        description: "Browse roundup-style collection pages grouped by category and year.",
+        ctaLabel: "Open collections",
+        ctaHref: "/best-shopify-apps",
+      },
     },
     subscription: {
       eyebrow: "Next step",
@@ -79,6 +86,13 @@ const resourcesPageCopyByLocale = {
         description: "围绕产品效果、定价和用户评价，帮助商家进行产品选择和对比。",
         ctaLabel: "查看产品测评",
         ctaHref: "/compare",
+      },
+      bestShopifyApps: {
+        eyebrow: "合集",
+        title: "Best Shopify Apps 合集",
+        description: "按类目和年份浏览榜单型合集页面，适合先从 shortlist 入口开始筛选。",
+        ctaLabel: "查看合集",
+        ctaHref: "/best-shopify-apps",
       },
     },
     subscription: {

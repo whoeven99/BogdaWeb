@@ -29,7 +29,7 @@ function getAboutPageCopy(locale: "en" | "zh-cn") {
         secondaryLabel: "查看资源",
         secondaryHref: "/resources",
         articleTitle: "我们是谁，以及为什么做 Ciwi",
-        articleDescription: "下面保留完整介绍，方便更系统地了解 Ciwi 的背景、方向和价值观。",
+        articleDescription: "Ciwi AI的背景、愿景和价值观。",
         finalCta: {
           eyebrow: "联系我们",
           title: "联系我们",

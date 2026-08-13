@@ -40,6 +40,7 @@ const navigationContent = {
       resources: [
         {label: "Blog", href: "/blog"},
         {label: "Help Center", href: "/help-center"},
+        {label: "Best Shopify Apps", href: "/best-shopify-apps"},
         {label: "Resources Hub", href: "/resources"},
       ],
       company: [
@@ -73,6 +74,7 @@ const navigationContent = {
       resources: [
         {label: "博客", href: "/blog"},
         {label: "帮助中心", href: "/help-center"},
+        {label: "Best Shopify Apps", href: "/best-shopify-apps"},
         {label: "资源中心", href: "/resources"},
       ],
       company: [

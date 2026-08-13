@@ -1,4 +1,5 @@
 import type {Locale} from "@/lib/i18n";
+import {getBestShopifyAppCollections} from "@/content/best-shopify-apps";
 import {getBlogPosts} from "@/content/blog";
 import {getCompares} from "@/content/compare";
 import {getFeaturedHelpCenterDocs, getHelpCenterDocs} from "@/content/help-center";
@@ -33,5 +34,14 @@ export function getCompareResources(locale: Locale): ResourceItem[] {
     description: item.description,
     href: `/compare/${item.slug}`,
     meta: [locale === "zh-cn" ? "对比" : "Compare", locale === "zh-cn" ? "选型" : "Selection"],
+  }));
+}
+
+export function getBestShopifyAppsResources(locale: Locale): ResourceItem[] {
+  return getBestShopifyAppCollections(locale).map((item) => ({
+    title: item.title,
+    description: item.description,
+    href: item.href,
+    meta: [locale === "zh-cn" ? "合集" : "Collection", item.categoryLabel, String(item.year)],
   }));
 }
