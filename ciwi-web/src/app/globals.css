@@ -1698,9 +1698,228 @@ select {
   margin-bottom: var(--space-6);
 }
 
+.guides-hub-page,
+.guide-detail-page,
 .best-apps-hub-page,
 .best-apps-page {
   padding: var(--space-7) 0 var(--space-9);
+}
+
+.guide-hero__topbar {
+  margin-bottom: var(--space-5);
+}
+
+.guide-backlink {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.guide-hero__layout,
+.guide-plan-grid {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.guide-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin: var(--space-6) 0;
+}
+
+.guide-meta-card {
+  display: grid;
+  gap: 6px;
+}
+
+.guide-meta-card span,
+.guide-hero__summary-label {
+  color: var(--color-primary);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.guide-meta-card strong {
+  color: var(--color-ink-900);
+  font-size: 18px;
+}
+
+.guide-hero__summary {
+  display: grid;
+  gap: var(--space-4);
+  align-self: start;
+}
+
+.guide-hero__summary span,
+.guide-step-label,
+.guide-chip {
+  color: var(--color-primary);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.guide-hero__summary strong {
+  color: var(--color-ink-900);
+  font-size: 18px;
+}
+
+.guide-hero__intro {
+  display: grid;
+  gap: 10px;
+}
+
+.guide-hero__summary p,
+.guide-benefit-card p,
+.guide-impact-card p,
+.guide-feature-card p,
+.guide-plan-step p,
+.guide-mistake-card p {
+  margin: 0;
+  color: var(--color-ink-700);
+  line-height: 1.75;
+}
+
+.guide-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.guide-toc ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.guide-toc a {
+  color: var(--color-ink-700);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.guide-toc a:hover {
+  color: var(--color-primary);
+}
+
+.guide-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: var(--space-4);
+}
+
+.guide-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--color-primary-soft);
+}
+
+.guide-list-card .check-list {
+  margin-top: 0;
+}
+
+.guide-plan-step {
+  min-height: 100%;
+}
+
+.guide-plan-step h3 {
+  margin-bottom: 8px;
+}
+
+.guide-plan-step .quote,
+.guide-mistake-card .quote,
+.guide-impact-card .quote {
+  margin-top: var(--space-4);
+}
+
+.guide-callout .section-heading,
+.guide-final-cta .section-heading {
+  max-width: 760px;
+}
+
+.guide-language-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.guide-language-card {
+  display: grid;
+  gap: 8px;
+  min-height: 100%;
+}
+
+.guide-language-card__priority {
+  display: inline-flex;
+  width: fit-content;
+  padding: 8px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.guide-steps {
+  list-style: none;
+  counter-reset: guide-step;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-4);
+}
+
+.guide-steps__item {
+  counter-increment: guide-step;
+  position: relative;
+  padding: var(--space-5) var(--space-5) var(--space-5) 60px;
+  border: 1px solid rgba(229, 231, 235, 0.9);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.92);
+  text-align: left;
+}
+
+.guide-steps__item::before {
+  content: counter(guide-step);
+  position: absolute;
+  left: 18px;
+  top: 20px;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.guide-steps__item h3 {
+  margin-bottom: 8px;
+}
+
+.guide-callout__actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: var(--space-6);
+}
+
+.guide-checklist {
+  padding: var(--space-4) var(--space-6);
 }
 
 .best-apps-hero {
@@ -3501,6 +3720,16 @@ select {
   .feature-spotlight--reverse .feature-spotlight__content {
     order: initial;
   }
+
+  .guide-hero__layout,
+  .guide-plan-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .guide-meta-grid,
+  .guide-language-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 767px) {
@@ -3661,6 +3890,8 @@ select {
     padding: var(--space-6);
   }
 
+  .guides-hub-page,
+  .guide-detail-page,
   .best-apps-hub-page,
   .best-apps-page {
     padding: var(--space-6) 0 var(--space-8);
@@ -3675,6 +3906,14 @@ select {
 
   .best-apps-toc {
     position: static;
+  }
+
+  .guide-hero__actions {
+    flex-direction: column;
+  }
+
+  .guide-callout__actions {
+    flex-direction: column;
   }
 }
 

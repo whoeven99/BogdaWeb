@@ -4,7 +4,13 @@ import {Button} from "@/components/ui/Button";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getResourcesPageCopy} from "@/content/resources-page-copy";
-import {getBestShopifyAppsResources, getBlogResources, getCompareResources, getHelpCenterResources} from "@/content/resources";
+import {
+  getBestShopifyAppsResources,
+  getBlogResources,
+  getCompareResources,
+  getHelpCenterResources,
+  getLocalizationGuideResources,
+} from "@/content/resources";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata} from "@/lib/seo/metadata";
 
@@ -23,10 +29,12 @@ export async function generateMetadata() {
 export default async function ResourcesPage() {
   const locale = await getRequestLocale();
   const copy = getResourcesPageCopy(locale);
+  const guideResources = getLocalizationGuideResources(locale);
   const helpCenterResources = getHelpCenterResources(locale);
   const blogResources = getBlogResources(locale);
   const compareResources = getCompareResources(locale);
   const bestShopifyAppsResources = getBestShopifyAppsResources(locale);
+  const featuredGuideResources = guideResources.slice(0, 3);
   const featuredHelpCenterResources = helpCenterResources.slice(0, 3);
   const featuredBlogResources = blogResources.slice(0, 3);
   const featuredCompareResources = compareResources.slice(0, 3);
@@ -42,6 +50,30 @@ export default async function ResourcesPage() {
             description={copy.hero.description}
             as="h1"
           />
+        </section>
+
+        <section className="page-section">
+          <SectionHeading
+            eyebrow={copy.sections.guides.eyebrow}
+            title={copy.sections.guides.title}
+            description={copy.sections.guides.description}
+          />
+          <div className="resource-grid">
+            {featuredGuideResources.map((item) => (
+              <ArticleCard
+                key={`${item.title}-${item.href}`}
+                title={item.title}
+                description={item.description}
+                href={item.href}
+                meta={item.meta}
+              />
+            ))}
+          </div>
+          <div className="resources-section__cta">
+            <Button href={copy.sections.guides.ctaHref} variant="secondary">
+              {copy.sections.guides.ctaLabel}
+            </Button>
+          </div>
         </section>
 
         <section className="page-section">

@@ -2,50 +2,65 @@
 entryId: help-center-how-to-enable-the-language-currency-exchange-switcher
 locale: zh-cn
 slug: how-to-enable-the-language-currency-exchange-switcher
-title: How to enable the language & currency exchange switcher
-description: 说明如何在 Shopify 主题里启用 Ciwi 的语言与币种切换器，并检查配置状态。
-publishedAt: '2025-07-31'
+title: "如何启用语言与币种切换器"
+description: "说明如何在应用里配置 Ciwi 切换器，并把它接入 Shopify 主题后完成前台验证。"
+publishedAt: '2026-08-19'
 status: published
 category: shopify-app
 order: 8
 meta:
-  - Help Center
-  - Switcher
-readingTime: 3 min read
+  - "Help Center"
+  - "Switcher"
+readingTime: "4 min read"
 sourceLocale: en
 translationStatus: reviewed
 relatedResources:
-  - title: Can I placing the switcher in the header or footer of the website?
-    description: 继续看 Switcher 具体应该放在 Header 还是 Footer。
-    href: >-
-      /help-center/ShopifyApp/can-i-placing-the-switcher-in-the-header-or-footer-of-the-website/
+  - title: "可以把切换器放在网站头部或底部吗？"
+    description: "先确认前台更合适的展示位置。"
+    href: /help-center/ShopifyApp/can-i-placing-the-switcher-in-the-header-or-footer-of-the-website/
     meta:
-      - Help Center
-      - Switcher
-  - title: How to set up multi-currency pricing on your Shopify store?
-    description: 切换器启用后，通常还需要一起检查币种显示与价格格式。
-    href: >-
-      /help-center/ShopifyApp/how-to-set-up-multi-currency-pricing-on-your-shopify-store/
+      - "Help Center"
+      - "Switcher"
+  - title: "如何设置 geolocation 自动切换"
+    description: "先把切换器接好，再开启自动切换。"
+    href: /help-center/ShopifyApp/how-to-set-regarding-geolocation/
     meta:
-      - Help Center
-      - Currency
-  - title: Expand Global Reach
-    description: 从场景页理解前台切换器在多市场体验中的作用。
-    href: /solutions/multilingual-growth
+      - "Help Center"
+      - "Geolocation"
+  - title: "如何在 Shopify 店铺中设置多币种？"
+    description: "配好多币种后，前台切换体验会更完整。"
+    href: /help-center/ShopifyApp/how-to-set-up-multi-currency-pricing-on-your-shopify-store/
     meta:
-      - Solution
-      - Multilingual
+      - "Help Center"
+      - "Currency"
 ---
-<p>Ciwi_Switcher 的启用流程分成两部分：先把它正确挂进主题编辑器，再回到应用页确认配置状态已经完成。</p>
-      <h2>Configuration process</h2>
-      <p>先进入 Currency 页面，根据状态提示判断配置是否已经完成。如果还是 Uncompleted，就点击入口进入 Theme Editor 的对应 section。</p>
-      <ol>
-        <li>进入主题编辑器并定位到 Footer 或目标区块</li>
-        <li>确认 Apps 区域里已经出现 Ciwi_Switcher</li>
-        <li>保存主题设置后，再回到应用页刷新确认状态</li>
-      </ol>
-      <h2>What to do when a market is still uncompleted</h2>
-      <p>如果某些 market 仍然失败，通常意味着不同市场需要分别配置。你需要切换到对应 market，再手动把 Switcher 添加进去。</p>
-      <p>同时不要重复添加同一个 Switcher，否则可能会造成显示异常或功能冲突。</p>
-      <h2>Style configuration</h2>
-      <p>启用成功后，可以继续在主题编辑器里调整颜色、位置和字号。建议优先保证可见性与清晰度，再考虑更细的视觉定制。</p>
+前台切换器的启用分成两部分：**应用内配置** 和 **主题内挂载**。
+
+## 第一步：先在应用里配置行为
+
+打开 **Switcher** 页面，先把行为设好，例如：
+
+- 是否开启语言选择器
+- 是否开启币种选择器
+- 是否开启 geolocation
+- 是否显示旗帜
+- 颜色、透明度和位置相关设置
+
+先保存这些设置，再去挂主题区块，会更容易验证前台行为是否符合预期。
+
+## 第二步：把切换器加到 Shopify 主题里
+
+打开 Shopify Theme Editor，把 Ciwi 的切换器 app block 加到你希望用户看到的位置，比如 Header、Footer 或其他明显区域。
+
+## 第三步：验证前台表现
+
+主题保存后，建议至少检查以下内容：
+
+1. 前台是否能看到切换器。
+2. 语言切换和币种切换是否都能正常工作。
+3. 桌面端与移动端布局是否都正常。
+4. 主要市场对应的主题布局里是否都能显示。
+
+## 提醒
+
+如果你使用多个 market 或按市场切换主题区域，不要只验证一个页面。某个市场可见，不代表所有市场都已经正确接入。

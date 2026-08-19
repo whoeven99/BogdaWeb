@@ -13,6 +13,7 @@ import {getBlogPosts} from "@/content/blog";
 import {getHelpCenterDocs} from "@/content/help-center";
 import {localizeHref} from "@/lib/i18n";
 import {getRequestLocale} from "@/lib/i18n-server";
+import {ciwiShopifyInstallUrl} from "@/lib/marketing-links";
 import {buildPageMetadata, siteUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildFaqSchema, buildWebPageSchema} from "@/lib/seo/schema";
 
@@ -1037,7 +1038,7 @@ function getCompareDetailCopy(locale: "en" | "zh-cn") {
           title: "限时领取 5 天免费试用",
           description: "如果你已经看清方向差异，现在更适合直接安装 Ciwi Translator，用 5 天试用把真实商品、主题和 FAQ 跑一遍。",
           primaryLabel: "安装 Ciwi Translator",
-          primaryHref: "https://apps.shopify.com/partners/bogdatech",
+          primaryHref: ciwiShopifyInstallUrl,
         },
         breadcrumbLabel: "对比",
         keywordLabel: "Shopify 对比",
@@ -1088,7 +1089,7 @@ function getCompareDetailCopy(locale: "en" | "zh-cn") {
           title: "Claim a 5-day free trial",
           description: "If the direction is already clear, the best next step is to install Ciwi Translator and run a real five-day trial on products, themes, and FAQs.",
           primaryLabel: "Install Ciwi Translator",
-          primaryHref: "https://apps.shopify.com/partners/bogdatech",
+          primaryHref: ciwiShopifyInstallUrl,
         },
         breadcrumbLabel: "Compare",
         keywordLabel: "Shopify compare",

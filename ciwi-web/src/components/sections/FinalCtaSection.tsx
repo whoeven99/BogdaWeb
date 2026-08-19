@@ -1,5 +1,6 @@
 import {Button} from "@/components/ui/Button";
 import {SectionHeading} from "@/components/ui/SectionHeading";
+import {ciwiShopifyInstallUrl} from "@/lib/marketing-links";
 
 type FinalCtaSectionProps = {
   title: string;
@@ -16,7 +17,7 @@ export function FinalCtaSection({
   description,
   eyebrow = "Next step",
   primaryLabel = "Install on Shopify",
-  primaryHref = "https://apps.shopify.com/partners/bogdatech",
+  primaryHref = ciwiShopifyInstallUrl,
   secondaryLabel = "Talk to us",
   secondaryHref = "/contact",
 }: FinalCtaSectionProps) {

@@ -1,5 +1,6 @@
 import type {Locale} from "@/lib/i18n";
 import {getLocalizedValue} from "@/lib/i18n-content";
+import {ciwiShopifyInstallUrl} from "@/lib/marketing-links";
 
 type UiCopy = {
   cta: {
@@ -63,7 +64,7 @@ const uiCopyByLocale = {
   en: {
     cta: {
       installLabel: "Install on Shopify",
-      installHref: "https://apps.shopify.com/partners/bogdatech",
+      installHref: ciwiShopifyInstallUrl,
       talkLabel: "Talk to us",
       talkHref: "/contact",
     },
@@ -120,7 +121,7 @@ const uiCopyByLocale = {
   "zh-cn": {
     cta: {
       installLabel: "前往 Shopify 安装",
-      installHref: "https://apps.shopify.com/partners/bogdatech",
+      installHref: ciwiShopifyInstallUrl,
       talkLabel: "联系我们",
       talkHref: "/contact",
     },

@@ -2,58 +2,62 @@
 entryId: help-center-how-to-use-your-own-key-for-translation
 locale: en
 slug: how-to-use-your-own-key-for-translation
-title: Private API Translation Model User Manual
-description: >-
-  Prepare a Google Cloud key and enable custom API-key-based translation inside
-  Ciwi.
-publishedAt: '2025-07-31'
+title: "How to configure a v4 translation task and estimate credits"
+description: "Set target languages, content modules, AI model, overwrite behavior, and credit estimate before you create v4 jobs."
+publishedAt: '2026-08-19'
 status: published
 category: shopify-app
 order: 9
 meta:
-  - Help Center
-  - API Key
-readingTime: 5 min read
+  - "Help Center"
+  - "Task Setup"
+readingTime: "5 min read"
 sourceLocale: en
 translationStatus: manual
 relatedResources:
-  - title: How to translate your Shopify store?
-    description: 'Once the key is ready, continue into the standard translation workflow.'
+  - title: "How to translate your Shopify store?"
+    description: "See how task setup fits into the full translation workflow."
     href: /help-center/ShopifyApp/how-to-translate/
     meta:
-      - Help Center
-      - Translation Workflow
-  - title: How to set up and use glossary?
-    description: >-
-      Custom models do not replace terminology control. Glossary still matters
-      for quality.
-    href: /help-center/ShopifyApp/how-to-setup-and-use-glossary/
+      - "Help Center"
+      - "Translation Workflow"
+  - title: "What are the differences when choosing different translation models?"
+    description: "Choose the model that fits your speed, cost, and quality goals."
+    href: /help-center/ShopifyApp/what-are-the-differences-when-choosing-different-translation-models/
     meta:
-      - Help Center
-      - Glossary
-  - title: AI Translator
-    description: >-
-      Return to the product page for model control and Shopify localization
-      context.
-    href: /products/translator
+      - "Help Center"
+      - "Models"
+  - title: "How can I check my credit balance?"
+    description: "Compare the estimate against your available credits."
+    href: /help-center/ShopifyApp/how-can-i-check-my-credit-balance/
     meta:
-      - Product
-      - Translator
+      - "Help Center"
+      - "Credits"
 ---
-<p>If you want to manage model usage and quota through your own API key, this guide explains two steps: prepare the key in Google Cloud first, then configure it inside Ciwi.</p>
-      <h2>Get your own Google key</h2>
-      <p>Create a Google Cloud project, enable the required API, and then generate an API key from the Credentials page. After the key is created, restrict the scope and allowed interfaces for better security.</p>
-      <ul>
-        <li>Create a Google Cloud account and set billing information</li>
-        <li>Create a project and enable Cloud Translation or the relevant model API</li>
-        <li>Generate an API key and restrict it by interface and source where possible</li>
-      </ul>
-      <h2>Configure the key inside Ciwi</h2>
-      <p>Return to Ciwi Translation Settings, open the AI Models section, and add your Custom API key together with a quota limit before saving.</p>
-      <ul>
-        <li>Open the API key configuration area from Dashboard or Translation Settings</li>
-        <li>Enter the key and usage limit to avoid overspending external API budget</li>
-        <li>Save the configuration, then choose the model in the translation task</li>
-      </ul>
-      <h2>Operational notes</h2>
-      <p>When using a personal key, budget control, model choice, and glossary quality rules become even more important. Remove old keys promptly when they are no longer needed.</p>
+The **Translate v4** page is where you define exactly what a new translation run should do.
+
+## What you choose before creating a job
+
+- **Target languages:** you can select one or multiple targets.
+- **Content modules:** products, collections, pages, navigation, theme text, metafields, and more.
+- **AI model:** choose the option that fits your quality and cost goals.
+- **Overwrite behavior:** useful when you want the new run to replace older translated content.
+- **Custom Liquid:** include pending custom or third-party storefront text when needed.
+
+## How job creation works
+
+If you select multiple target languages, Ciwi creates **one independent job per target language**. This is intentional. It makes progress tracking, failure handling, and retrying much clearer than one giant combined job.
+
+## How estimates work
+
+Ciwi shows an estimate before you confirm the run. The estimate depends on:
+
+- how many targets you selected
+- which modules you selected
+- the model you selected
+- whether translation memory can reduce new work
+- whether custom Liquid content is included
+
+## When credits are not enough
+
+If the estimated task is larger than your current balance, the app can block creation and guide you to buy more credits. After payment, you can continue the workflow without redefining the whole project from scratch.

@@ -29,6 +29,7 @@ const navigationContent = {
     primaryNavigation: [
       {label: "Products", href: "/products"},
       {label: "Resources", href: "/resources"},
+      {label: "Guides", href: "/guides"},
       {label: "About", href: "/about"},
     ],
     footerNavigation: {
@@ -40,6 +41,7 @@ const navigationContent = {
       resources: [
         {label: "Blog", href: "/blog"},
         {label: "Help Center", href: "/help-center"},
+        {label: "Localization Guides", href: "/guides"},
         {label: "Best Shopify Apps", href: "/best-shopify-apps"},
         {label: "Resources Hub", href: "/resources"},
       ],
@@ -63,6 +65,7 @@ const navigationContent = {
     primaryNavigation: [
       {label: "产品", href: "/products"},
       {label: "资源", href: "/resources"},
+      {label: "指南", href: "/guides"},
       {label: "关于我们", href: "/about"},
     ],
     footerNavigation: {
@@ -74,6 +77,7 @@ const navigationContent = {
       resources: [
         {label: "博客", href: "/blog"},
         {label: "帮助中心", href: "/help-center"},
+        {label: "本地化指南", href: "/guides"},
         {label: "Best Shopify Apps", href: "/best-shopify-apps"},
         {label: "资源中心", href: "/resources"},
       ],

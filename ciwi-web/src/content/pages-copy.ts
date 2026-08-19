@@ -1,3 +1,5 @@
+import {ciwiShopifyInstallUrl} from "@/lib/marketing-links";
+
 export const pagesCopy = {
   products: {
     metadata: {
@@ -275,7 +277,7 @@ export const pagesCopy = {
       cardTitle: "Start a conversation",
       cardDescription: "如果你正在评估 Shopify 多语言、本地化或 AOV 提升，可以直接从这里联系。",
       installLabel: "Install on Shopify",
-      installHref: "https://apps.shopify.com/partners/bogdatech",
+      installHref: ciwiShopifyInstallUrl,
       supportEmailLabel: "support@ciwi.ai",
       supportEmailHref: "mailto:support@ciwi.ai",
     },

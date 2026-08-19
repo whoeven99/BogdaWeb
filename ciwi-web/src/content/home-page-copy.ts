@@ -1,5 +1,6 @@
 import type {Locale} from "@/lib/i18n";
 import {getLocalizedValue} from "@/lib/i18n-content";
+import {ciwiShopifyInstallUrl} from "@/lib/marketing-links";
 
 const homePageCopyEn = {
     outcomeItems: [
@@ -74,7 +75,7 @@ const homePageCopyEn = {
         "Ciwi builds AI-powered products for Shopify merchants so brands can cross language and market barriers more easily, and serve global customers with more confidence.",
       proofItems: ["Built for Shopify", "Expert support", "Designed for global growth"],
       primaryCtaLabel: "Explore Ciwi products",
-      primaryCtaHref: "https://apps.shopify.com/partners/bogdatech",
+      primaryCtaHref: ciwiShopifyInstallUrl,
       secondaryCtaLabel: "View demo",
       secondaryCtaHref: "/demo",
       brandName: "Ciwi",
@@ -209,7 +210,7 @@ const homePageCopyZh: typeof homePageCopyEn = {
         "Ciwi 为 Shopify 商家打造 AI 驱动的产品，帮助品牌跨越语言与市场障碍，更轻松地触达、连接并服务全球消费者。",
       proofItems: ["专为 Shopify 打造", "专业团队支持", "面向全球增长"],
       primaryCtaLabel: "探索 Ciwi 产品",
-      primaryCtaHref: "https://apps.shopify.com/partners/bogdatech",
+      primaryCtaHref: ciwiShopifyInstallUrl,
       secondaryCtaLabel: "查看演示",
       secondaryCtaHref: "/demo",
       brandName: "Ciwi",

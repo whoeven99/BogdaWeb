@@ -13,6 +13,13 @@ const resourcesPageCopyByLocale = {
       description: "Use the resource hub to move between help docs, blog content, and comparison pages without losing context.",
     },
     sections: {
+      guides: {
+        eyebrow: "Guides",
+        title: "Localization Guides",
+        description: "Industry, brand, and B2B guide templates built to capture SEO demand and support international growth.",
+        ctaLabel: "Open guides",
+        ctaHref: "/guides",
+      },
       helpCenter: {
         eyebrow: "Help center",
         title: "Help Center",
@@ -66,6 +73,13 @@ const resourcesPageCopyByLocale = {
       description: "基于全球市场的第一手数据和专家分析，提供关于电商的解决方案和发展资讯",
     },
     sections: {
+      guides: {
+        eyebrow: "指南",
+        title: "Localization Guides",
+        description: "承载行业、品牌和 B2B 场景的翻译指南模板页，适合继续批量扩展 SEO 落地页。",
+        ctaLabel: "查看指南",
+        ctaHref: "/guides",
+      },
       helpCenter: {
         eyebrow: "帮助中心",
         title: "帮助中心",

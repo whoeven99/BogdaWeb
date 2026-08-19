@@ -1,4 +1,5 @@
 import type {Locale} from "@/lib/i18n";
+import {ciwiShopifyInstallUrl} from "@/lib/marketing-links";
 
 export type ProductItem = {
   slug: string;
@@ -240,7 +241,7 @@ const productsEn: ProductItem[] = [
       {question: "What kind of Shopify merchants is it for?", answer: "It works both for merchants entering multilingual markets for the first time and for brands already running multi-market operations that need lower update cost."},
     ],
     ctaLabel: "Install on Shopify",
-    ctaHref: "https://apps.shopify.com/partners/bogdatech",
+    ctaHref: ciwiShopifyInstallUrl,
   },
   {
     slug: "bundle-discount",
@@ -555,7 +556,7 @@ const productsZh: ProductItem[] = [
       {question: "适合什么阶段的 Shopify 商家？", answer: "既适合刚开始进入多语言市场的商家，也适合已经在长期维护多市场运营、希望降低后续同步成本的品牌。"},
     ],
     ctaLabel: "前往 Shopify 安装",
-    ctaHref: "https://apps.shopify.com/partners/bogdatech",
+    ctaHref: ciwiShopifyInstallUrl,
   },
   {
     slug: "bundle-discount",
