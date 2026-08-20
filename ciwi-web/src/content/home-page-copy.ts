@@ -1,5 +1,6 @@
 import type {Locale} from "@/lib/i18n";
 import {getLocalizedValue} from "@/lib/i18n-content";
+import {ciwiShopifyInstallUrl} from "@/lib/marketing-links";
 
 const homePageCopyEn = {
     outcomeItems: [
@@ -47,9 +48,9 @@ const homePageCopyEn = {
         meta: ["Help Center", "Glossary"],
       },
       {
-        title: "Compare Ciwi vs Transcy",
+        title: "Transcy Alternative",
         description: "A quick way to compare long-term maintenance cost and localization control when you are choosing a solution.",
-        href: "/compare/ciwi-vs-transcy",
+        href: "/compare/transcy-alternative",
         meta: ["Compare", "SEO"],
       },
     ],
@@ -74,7 +75,7 @@ const homePageCopyEn = {
         "Ciwi builds AI-powered products for Shopify merchants so brands can cross language and market barriers more easily, and serve global customers with more confidence.",
       proofItems: ["Built for Shopify", "Expert support", "Designed for global growth"],
       primaryCtaLabel: "Explore Ciwi products",
-      primaryCtaHref: "https://apps.shopify.com/partners/bogdatech",
+      primaryCtaHref: ciwiShopifyInstallUrl,
       secondaryCtaLabel: "View demo",
       secondaryCtaHref: "/demo",
       brandName: "Ciwi",
@@ -115,7 +116,7 @@ const homePageCopyEn = {
         placeholder: "Enter your email",
         buttonLabel: "Subscribe",
         helperText: "We only send product updates, practical growth ideas, and important releases.",
-        successMessage: "Subscription received. Once the real email service is connected, updates will be sent here.",
+        successMessage: "Subscription received. We'll keep you posted.",
         errorMessage: "Please enter a valid email address.",
         highlights: ["Product updates", "Growth methods", "Comparison guides"],
       },
@@ -182,9 +183,9 @@ const homePageCopyZh: typeof homePageCopyEn = {
         meta: ["帮助中心", "Glossary"],
       },
       {
-        title: "Compare Ciwi vs Transcy",
+        title: "Transcy Alternative",
         description: "适合正在选型的商家，快速看清长期维护成本和本地化控制差异。",
-        href: "/compare/ciwi-vs-transcy",
+        href: "/compare/transcy-alternative",
         meta: ["对比", "SEO"],
       },
     ],
@@ -209,7 +210,7 @@ const homePageCopyZh: typeof homePageCopyEn = {
         "Ciwi 为 Shopify 商家打造 AI 驱动的产品，帮助品牌跨越语言与市场障碍，更轻松地触达、连接并服务全球消费者。",
       proofItems: ["专为 Shopify 打造", "专业团队支持", "面向全球增长"],
       primaryCtaLabel: "探索 Ciwi 产品",
-      primaryCtaHref: "https://apps.shopify.com/partners/bogdatech",
+      primaryCtaHref: ciwiShopifyInstallUrl,
       secondaryCtaLabel: "查看演示",
       secondaryCtaHref: "/demo",
       brandName: "Ciwi",
@@ -250,7 +251,7 @@ const homePageCopyZh: typeof homePageCopyEn = {
         placeholder: "输入你的邮箱地址",
         buttonLabel: "立即订阅",
         helperText: "我们只发送和产品、增长方法、重要发布相关的内容。",
-        successMessage: "订阅成功，后续这里接入真实邮件服务后会直接向你发送更新。",
+        successMessage: "订阅成功，我们会把后续更新同步给你。",
         errorMessage: "请输入有效的邮箱地址。",
         highlights: ["产品更新", "运营方法", "选型对比"],
       },

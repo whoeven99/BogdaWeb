@@ -1,53 +1,57 @@
 ---
-entryId: >-
-  help-center-can-i-auto-switch-language-or-currency-based-on-website-visitors-geolocation
+entryId: help-center-can-i-auto-switch-language-or-currency-based-on-website-visitors-geolocation
 locale: zh-cn
 slug: can-i-auto-switch-language-or-currency-based-on-website-visitors-geolocation
-title: Can I auto switch language or currency based on website visitors' geolocation?
-description: 解释地理位置自动切换语言和币种的能力，适合用来承接多语言转化场景。
-publishedAt: '2025-07-31'
+title: "可以根据访客地理位置自动切换语言或币种吗？"
+description: "说明 geolocation 自动切换适合什么场景、依赖哪些前置配置，以及为什么它应该和可见的前台切换器一起使用。"
+publishedAt: '2026-08-19'
 status: published
 category: shopify-app
 order: 2
 meta:
-  - Help Center
-  - Geolocation
-readingTime: 2 min read
+  - "Help Center"
+  - "Geolocation"
+readingTime: "3 min read"
 sourceLocale: en
 translationStatus: reviewed
 relatedResources:
-  - title: How to set up multi-currency pricing on your Shopify store?
-    description: 币种切换和 geolocation 往往需要一起配置。
-    href: >-
-      /help-center/ShopifyApp/how-to-set-up-multi-currency-pricing-on-your-shopify-store/
+  - title: "如何启用语言与币种切换器"
+    description: "先把前台切换器接好，再开启自动切换。"
+    href: /help-center/ShopifyApp/how-to-enable-the-language-currency-exchange-switcher/
     meta:
-      - Help Center
-      - Currency
-  - title: Expand Global Reach
-    description: 从场景页理解地理位置切换和多语言扩张之间的关系。
-    href: /solutions/multilingual-growth
+      - "Help Center"
+      - "Switcher"
+  - title: "如何设置 geolocation 自动切换"
+    description: "查看更具体的 geolocation 设置步骤。"
+    href: /help-center/ShopifyApp/how-to-set-regarding-geolocation/
     meta:
-      - Solution
-      - Multilingual
-  - title: Can I placing the switcher in the header or footer of the website?
-    description: 继续看切换器的前台放置和可见性策略。
-    href: >-
-      /help-center/ShopifyApp/can-i-placing-the-switcher-in-the-header-or-footer-of-the-website/
+      - "Help Center"
+      - "Geolocation"
+  - title: "如何在 Shopify 店铺中设置多币种？"
+    description: "如果要自动切币种，先把币种层准备好。"
+    href: /help-center/ShopifyApp/how-to-set-up-multi-currency-pricing-on-your-shopify-store/
     meta:
-      - Help Center
-      - Switcher
+      - "Help Center"
+      - "Currency"
 ---
-<p>可以。Ciwi 支持根据访问者 IP 自动切换币种，并结合浏览器语言或地理位置设置切换店铺语言。</p>
-      <h2>适合的业务场景</h2>
-      <ul>
-        <li>面向多个国家投放广告，希望首屏就给用户更熟悉的语言和货币</li>
-        <li>希望减少用户自己手动切换语言和币种的摩擦</li>
-      </ul>
-      <h2>启用方式</h2>
-      <ol>
-        <li>进入应用的 Currency 或 Localization 配置区域</li>
-        <li>开启 geolocation 相关选项</li>
-        <li>检查语言与币种切换规则是否符合你的市场策略</li>
-      </ol>
-      <h2>注意事项</h2>
-      <p>自动切换应服务于转化，而不是替代用户选择。建议保留可见的语言或货币切换器，让用户可以随时手动切换。</p>
+可以。当前版本在切换器配置里支持 geolocation 相关能力，能让用户进入店铺时优先看到更匹配的语言或币种。
+
+## 什么情况下值得开
+
+- 你面向多个国家或地区投放流量。
+- 你已经明确了支持哪些语言和币种。
+- 你希望用户落地页更接近本地市场习惯，减少第一次切换成本。
+
+## 开启前要先确认什么
+
+- **Language** 页面里已经配置好目标语言。
+- 如果还要自动切币种，**Currency** 页面也已经准备好目标币种。
+- 前台切换器已经接入主题，因为自动切换不应该替代用户手动选择。
+
+## 推荐的使用方式
+
+把 geolocation 看成一个**默认建议**，而不是强制锁定。最好让用户始终能在前台看到语言/币种切换器，这样自动匹配不准确时也能自己调整。
+
+## 上线前要测什么
+
+重点测试主力市场、默认回退逻辑以及移动端表现。如果某个市场没有独立配置语言或币种，系统最终会回退到默认设置。

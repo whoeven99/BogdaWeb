@@ -2,52 +2,62 @@
 entryId: help-center-how-to-use-your-own-key-for-translation
 locale: zh-cn
 slug: how-to-use-your-own-key-for-translation
-title: Private API Translation Model User Manual
-description: 说明如何准备 Google Cloud key，并在 Ciwi 中启用自定义 API key 翻译。
-publishedAt: '2025-07-31'
+title: "如何配置 v4 翻译任务并预估 credits"
+description: "说明在 Translate v4 中如何选择目标语言、内容模块、AI 模型、覆盖策略，以及如何理解任务预估。"
+publishedAt: '2026-08-19'
 status: published
 category: shopify-app
 order: 9
 meta:
-  - Help Center
-  - API Key
-readingTime: 5 min read
+  - "Help Center"
+  - "Task Setup"
+readingTime: "5 min read"
 sourceLocale: en
 translationStatus: reviewed
 relatedResources:
-  - title: How to translate your Shopify store?
-    description: 配置好 key 之后，继续按标准流程启动翻译任务。
+  - title: "如何翻译你的 Shopify 店铺？"
+    description: "看看任务配置在整体工作流里处于哪一步。"
     href: /help-center/ShopifyApp/how-to-translate/
     meta:
-      - Help Center
-      - Translation Workflow
-  - title: How to setup and use glossary?
-    description: 自定义模型并不能替代术语控制，glossary 仍然是质量关键。
-    href: /help-center/ShopifyApp/how-to-setup-and-use-glossary/
+      - "Help Center"
+      - "Translation Workflow"
+  - title: "不同翻译模型有什么区别？"
+    description: "先理解模型差异，再做任务配置。"
+    href: /help-center/ShopifyApp/what-are-the-differences-when-choosing-different-translation-models/
     meta:
-      - Help Center
-      - Glossary
-  - title: AI Translator
-    description: 回到产品页查看模型控制、多语言和 Shopify 结构适配能力。
-    href: /products/translator
+      - "Help Center"
+      - "Models"
+  - title: "如何查看 credits 余额？"
+    description: "用预估结果对照当前可用额度。"
+    href: /help-center/ShopifyApp/how-can-i-check-my-credit-balance/
     meta:
-      - Product
-      - Translator
+      - "Help Center"
+      - "Credits"
 ---
-<p>如果你希望用自己的 API key 管理模型调用和额度，这篇文档会分两步说明：先在 Google Cloud 准备 key，再把它配置到 Ciwi 的翻译设置里。</p>
-      <h2>Get your own Google key</h2>
-      <p>先在 Google Cloud 创建项目并启用对应 API，再到 Credentials 页面生成 API key。生成后建议补充权限限制，只开放需要的接口和来源范围。</p>
-      <ul>
-        <li>创建 Google Cloud 账号并设置计费信息</li>
-        <li>新建项目并启用 Cloud Translation 或对应模型 API</li>
-        <li>生成 API key，并根据安全要求限制接口和来源</li>
-      </ul>
-      <h2>Configure the key inside Ciwi</h2>
-      <p>回到 Ciwi 的 Translation Settings 页面，在 AI Models 模块点击 Custom API key，把自己的 key 和 quota limit 填进去，再保存。</p>
-      <ul>
-        <li>在 Dashboard 或 Translation Settings 中进入 API key 配置页</li>
-        <li>录入 key 与额度上限，避免误超第三方 API 预算</li>
-        <li>保存后，在翻译任务里选择对应模型并开始执行</li>
-      </ul>
-      <h2>Operational notes</h2>
-      <p>使用个人 key 时，更需要明确预算控制、模型选择和术语质量策略。配置不再使用后，也应及时删除旧 key，避免遗留安全风险。</p>
+**Translate v4** 页面就是当前版本定义翻译任务的地方。
+
+## 创建任务前你要选什么
+
+- **目标语言：** 可以选一个，也可以一次选多个。
+- **内容模块：** 例如商品、分类、页面、导航、主题内容、metafield 等。
+- **AI 模型：** 根据速度、质量和预算取舍。
+- **是否覆盖已有翻译：** 适合需要用新一轮结果替换旧结果时使用。
+- **是否包含自定义 Liquid：** 需要把待处理的自定义或第三方前台文本一起翻时可开启。
+
+## 多语言任务是怎么创建的
+
+如果你一次勾选多个目标语言，Ciwi 会为**每个目标语言分别创建独立任务**，而不是合并成一个大任务。这样更容易看进度、定位问题，也更方便单独重试某个语言。
+
+## 预估是怎么来的
+
+预估会受以下因素影响：
+
+- 你选了多少目标语言
+- 你选了哪些内容模块
+- 你选了什么模型
+- 翻译记忆是否能命中，减少新翻译量
+- 是否包含自定义 Liquid 内容
+
+## 如果 credits 不够怎么办
+
+当预计任务大于当前余额时，系统会拦住创建动作，并引导你去补充购买 credits。完成支付后，可以继续回到原来的任务流程。

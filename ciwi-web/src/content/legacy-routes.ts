@@ -1,3 +1,5 @@
+import {compareLegacyRootRouteMap} from "@/content/compare-slugs";
+
 export const legacyRouteMap = {
   translator: {
     title: "Translator 页面已迁移",
@@ -49,6 +51,21 @@ export const legacyRouteMap = {
     destination: "/products/translator",
     description: "Glossary 相关说明已经并入 AI Translator 产品页。",
   },
+  "product-description-generation": {
+    title: "Product Description Generation 页面已整合",
+    destination: "/products/content-ai#features",
+    description: "该功能已经并入 Content AI 产品页的功能模块。",
+  },
+  "image-alt-text-generation": {
+    title: "Image Alt Text Generation 页面已整合",
+    destination: "/products/content-ai#features",
+    description: "该功能已经并入 Content AI 产品页的功能模块。",
+  },
+  deepl: {
+    title: "DeepL 能力已并入 Translator 页面",
+    destination: "/products/translator",
+    description: "翻译引擎与模型能力不再单独占用根级页面，而是统一并入产品页。",
+  },
   "ciwi-blog": {
     title: "Blog 入口已更新",
     destination: "/blog",
@@ -64,6 +81,7 @@ export const legacyRouteMap = {
     destination: "/about",
     description: "请使用新版 About 页面查看品牌说明。",
   },
+  ...compareLegacyRootRouteMap,
 };
 
 export type LegacyRouteSlug = keyof typeof legacyRouteMap;

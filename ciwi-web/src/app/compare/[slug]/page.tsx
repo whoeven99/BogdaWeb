@@ -1,4 +1,4 @@
-import {notFound} from "next/navigation";
+import {notFound, permanentRedirect} from "next/navigation";
 
 import type {CSSProperties} from "react";
 
@@ -8,11 +8,13 @@ import {ArticleCard} from "@/components/cards/ArticleCard";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import type {CompareItem, CompareMetric} from "@/content/compare";
+import {getCanonicalCompareSlug} from "@/content/compare-slugs";
 import {getCompareMap, getCompares, compares} from "@/content/compare";
 import {getBlogPosts} from "@/content/blog";
 import {getHelpCenterDocs} from "@/content/help-center";
 import {localizeHref} from "@/lib/i18n";
 import {getRequestLocale} from "@/lib/i18n-server";
+import {ciwiShopifyInstallUrl} from "@/lib/marketing-links";
 import {buildPageMetadata, siteUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildFaqSchema, buildWebPageSchema} from "@/lib/seo/schema";
 
@@ -1037,7 +1039,7 @@ function getCompareDetailCopy(locale: "en" | "zh-cn") {
           title: "限时领取 5 天免费试用",
           description: "如果你已经看清方向差异，现在更适合直接安装 Ciwi Translator，用 5 天试用把真实商品、主题和 FAQ 跑一遍。",
           primaryLabel: "安装 Ciwi Translator",
-          primaryHref: "https://apps.shopify.com/partners/bogdatech",
+          primaryHref: ciwiShopifyInstallUrl,
         },
         breadcrumbLabel: "对比",
         keywordLabel: "Shopify 对比",
@@ -1088,7 +1090,7 @@ function getCompareDetailCopy(locale: "en" | "zh-cn") {
           title: "Claim a 5-day free trial",
           description: "If the direction is already clear, the best next step is to install Ciwi Translator and run a real five-day trial on products, themes, and FAQs.",
           primaryLabel: "Install Ciwi Translator",
-          primaryHref: "https://apps.shopify.com/partners/bogdatech",
+          primaryHref: ciwiShopifyInstallUrl,
         },
         breadcrumbLabel: "Compare",
         keywordLabel: "Shopify compare",
@@ -1102,7 +1104,8 @@ export function generateStaticParams() {
 export async function generateMetadata({params}: CompareDetailPageProps) {
   const locale = await getRequestLocale();
   const {slug} = await params;
-  const data = getCompareMap(locale)[slug];
+  const canonicalSlug = getCanonicalCompareSlug(slug);
+  const data = getCompareMap(locale)[canonicalSlug];
   const copy = getCompareDetailCopy(locale);
 
   if (!data) {
@@ -1125,7 +1128,8 @@ export async function generateMetadata({params}: CompareDetailPageProps) {
 export default async function CompareDetailPage({params}: CompareDetailPageProps) {
   const locale = await getRequestLocale();
   const {slug} = await params;
-  const data = getCompareMap(locale)[slug];
+  const canonicalSlug = getCanonicalCompareSlug(slug);
+  const data = getCompareMap(locale)[canonicalSlug];
   const copy = getCompareDetailCopy(locale);
   const compares = getCompares(locale);
   const blogPosts = getBlogPosts(locale);
@@ -1133,6 +1137,10 @@ export default async function CompareDetailPage({params}: CompareDetailPageProps
 
   if (!data) {
     notFound();
+  }
+
+  if (canonicalSlug !== slug) {
+    permanentRedirect(localizeHref(locale, `/compare/${canonicalSlug}`));
   }
 
   const pageUrl = new URL(localizeHref(locale, `/compare/${data.slug}`), siteUrl).toString();

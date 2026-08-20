@@ -1,0 +1,200 @@
+{
+  "guideSeedTemplate": {
+    "slug": "industry-localization-guide-2026",
+    "title": "Industry Localization Guide 2026: Subtitle",
+    "description": "A short SEO description for the guide page.",
+    "industry": "Industry ecommerce",
+    "audience": "Industry brands",
+    "segment": "ecommerce",
+    "segmentLabel": "Industry Segment",
+    "guideLabel": "Localization Guide",
+    "mainValue": "A one-line summary of the main value users get from this guide.",
+    "overviewDrivers": [
+      {
+        "title": "Driver title",
+        "description": "Why this category needs localization."
+      },
+      {
+        "title": "Driver title",
+        "description": "What buying behavior makes localization important."
+      },
+      {
+        "title": "Driver title",
+        "description": "What content or SEO challenge makes this category different."
+      }
+    ],
+    "languages": [
+      {
+        "market": "Germany",
+        "language": "German",
+        "priority": "High",
+        "reason": "Why this language should be prioritized."
+      },
+      {
+        "market": "France",
+        "language": "French",
+        "priority": "High",
+        "reason": "Why this language should be prioritized."
+      },
+      {
+        "market": "Japan",
+        "language": "Japanese",
+        "priority": "Medium",
+        "reason": "Why this language should be prioritized."
+      }
+    ],
+    "expansionPlan": [
+      {
+        "stage": "Stage 1",
+        "market": "Germany",
+        "language": "German",
+        "reason": "Why this market should be first."
+      },
+      {
+        "stage": "Stage 2",
+        "market": "France",
+        "language": "French",
+        "reason": "Why this market should be next."
+      },
+      {
+        "stage": "Stage 3",
+        "market": "Japan",
+        "language": "Japanese",
+        "reason": "Why this market is later."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What should this industry translate first?",
+        "answer": "Answer the user's real rollout question in a direct way."
+      },
+      {
+        "question": "Why does localization matter in this category?",
+        "answer": "Answer with trust, conversion, SEO, or market-fit logic."
+      },
+      {
+        "question": "How should brands scale this category internationally?",
+        "answer": "Answer with a practical rollout recommendation."
+      }
+    ],
+    "keywords": [
+      "industry localization guide",
+      "industry translation guide",
+      "industry ecommerce translation",
+      "industry multilingual seo"
+    ]
+  },
+  "renderedGuideShape": {
+    "slug": "string",
+    "href": "string",
+    "year": 2026,
+    "title": "string",
+    "description": "string",
+    "industry": "string",
+    "audience": "string",
+    "segmentLabel": "string",
+    "guideLabel": "string",
+    "mainValue": "string",
+    "keywords": ["string"],
+    "overviewDrivers": [
+      {
+        "title": "string",
+        "description": "string"
+      }
+    ],
+    "benefits": [
+      {
+        "title": "string",
+        "description": "string",
+        "evidence": "string"
+      }
+    ],
+    "mistakes": [
+      {
+        "category": "string",
+        "wrongExample": "string",
+        "correct": "string",
+        "impact": "string",
+        "severity": "High | Medium | Lower"
+      }
+    ],
+    "impacts": [
+      {
+        "metric": "string",
+        "description": "string",
+        "source": "string"
+      }
+    ],
+    "languages": [
+      {
+        "market": "string",
+        "language": "string",
+        "priority": "string",
+        "reason": "string"
+      }
+    ],
+    "marketHabits": [
+      {
+        "market": "string",
+        "language": "string",
+        "habit": "string",
+        "localizationFocus": "string"
+      }
+    ],
+    "translationScope": [
+      {
+        "category": "Critical | Important | Optional",
+        "items": ["string"],
+        "priority": "High | Medium | Lower"
+      }
+    ],
+    "expansionPlan": [
+      {
+        "stage": "string",
+        "market": "string",
+        "language": "string",
+        "reason": "string"
+      }
+    ],
+    "bestPractices": [
+      {
+        "title": "string",
+        "description": "string"
+      }
+    ],
+    "styleRules": [
+      {
+        "title": "string",
+        "description": "string"
+      }
+    ],
+    "solutions": [
+      {
+        "name": "string",
+        "advantages": ["string"],
+        "limitations": ["string"]
+      }
+    ],
+    "features": ["string"],
+    "recommendations": [
+      {
+        "title": "string",
+        "description": "string"
+      }
+    ],
+    "terminology": [
+      {
+        "term": "string",
+        "meaning": "string",
+        "localized": "string"
+      }
+    ],
+    "checklist": ["string"],
+    "faq": [
+      {
+        "question": "string",
+        "answer": "string"
+      }
+    ]
+  }
+}

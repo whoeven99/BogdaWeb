@@ -1,4 +1,5 @@
 import type {Locale} from "@/lib/i18n";
+import {ciwiShopifyInstallUrl} from "@/lib/marketing-links";
 
 export type ProductItem = {
   slug: string;
@@ -211,28 +212,28 @@ const productsEn: ProductItem[] = [
     ],
     compareLinks: [
       {
-        title: "Ciwi vs Shopify Translate & Adapt",
+        title: "Shopify Translate & Adapt Alternative",
         description: "Compare Shopify native localization with a more complete multilingual workflow.",
-        href: "/compare/ciwi-vs-shopify-translate-adapt",
+        href: "/compare/shopify-translate-adapt-alternative",
         meta: ["Compare", "Native vs workflow"],
       },
       {
-        title: "Ciwi vs Transcy",
+        title: "Transcy Alternative",
         description: "Compare Shopify fit, terminology control, and long-term maintenance cost.",
-        href: "/compare/ciwi-vs-transcy",
+        href: "/compare/transcy-alternative",
         meta: ["Compare", "Localization control"],
       },
       {
-        title: "Ciwi vs Weglot",
+        title: "Weglot Alternative",
         description: "See the difference between fast-coverage paths and deeper localization governance.",
-        href: "/compare/ciwi-vs-weglot",
+        href: "/compare/weglot-alternative",
         meta: ["Compare", "Launch vs governance"],
       },
     ],
     relatedResources: [
       {title: "About the Ciwi AI Translator Shopify app", href: "/help-center/ShopifyApp/about-ciwi-ai-translator-shopify-app/", meta: ["Help Center", "Overview"]},
       {title: "How to set up and use glossary?", href: "/help-center/ShopifyApp/how-to-setup-and-use-glossary/", meta: ["Help Center", "Glossary"]},
-      {title: "Ciwi vs Shopify Translate & Adapt", href: "/compare/ciwi-vs-shopify-translate-adapt", meta: ["Compare", "Selection"]},
+      {title: "Shopify Translate & Adapt Alternative", href: "/compare/shopify-translate-adapt-alternative", meta: ["Compare", "Selection"]},
     ],
     faq: [
       {question: "What is the main difference between Ciwi and a generic translation tool?", answer: "Ciwi is better suited to Shopify-specific structured content, terminology control, and continuous sync, so multilingual operations stay more complete over time."},
@@ -240,7 +241,7 @@ const productsEn: ProductItem[] = [
       {question: "What kind of Shopify merchants is it for?", answer: "It works both for merchants entering multilingual markets for the first time and for brands already running multi-market operations that need lower update cost."},
     ],
     ctaLabel: "Install on Shopify",
-    ctaHref: "https://apps.shopify.com/partners/bogdatech",
+    ctaHref: ciwiShopifyInstallUrl,
   },
   {
     slug: "bundle-discount",
@@ -305,8 +306,8 @@ const productsEn: ProductItem[] = [
       {question: "What kind of merchant is Bundle Discount best for?", answer: "It works best for Shopify merchants whose SKUs clearly belong together and who need to explain why a combined purchase is worth it."},
       {question: "Why does AOV growth need its own product page?", answer: "Because many brands do not fail at discount rules. They fail at explaining bundle value and savings clearly to shoppers."},
     ],
-    ctaLabel: "Talk to us",
-    ctaHref: "/contact",
+    ctaLabel: "Join the waiting list",
+    ctaHref: "/waitlist",
   },
   {
     slug: "content-ai",
@@ -373,6 +374,126 @@ const productsEn: ProductItem[] = [
     ],
     ctaLabel: "Explore roadmap",
     ctaHref: "/resources",
+  },
+  {
+    slug: "spark-analytics-agent",
+    name: "Spark Shopify Analytics Agent",
+    shortDescription:
+      "Daily AI operating analysis for Shopify merchants by combining ad spend, store performance, fulfillment signals, and profit logic in one view.",
+    heroTitle: "Turn ad spend, store data, and profit signals into daily Shopify operating decisions",
+    heroDescription:
+      "Spark Shopify Analytics Agent combines ad channels, Shopify orders, fulfillment performance, pricing inputs, and cost signals to generate daily operating analysis with actionable recommendations for margin, ROI, pricing, and fulfillment.",
+    icon: "/ai-generate-landscape-image-spark.svg",
+    metrics: ["AI daily analysis", "ROI and margin insight", "Ad + store + fulfillment data"],
+    targetUsers: [
+      "Shopify merchants spending on paid acquisition and needing clearer profitability visibility",
+      "Operators who want one daily view across ads, store orders, fulfillment, and cost structure",
+      "Teams evaluating pricing, margin, fulfillment quality, and ROI together instead of in separate reports",
+    ],
+    benefits: [
+      "See overall operating health every day instead of only after the month closes",
+      "Spot pricing, cost, and fulfillment pressure earlier",
+      "Turn disconnected metrics into clearer operating actions",
+    ],
+    features: [
+      {
+        title: "Combine ad and store performance",
+        description: "Pull campaign spend, order performance, and store revenue into one daily operating view instead of switching across multiple dashboards.",
+      },
+      {
+        title: "Evaluate margin, pricing, and ROI together",
+        description: "Look beyond top-line revenue by bringing costs, pricing logic, and return on investment into the same decision layer.",
+      },
+      {
+        title: "Flag fulfillment and operating issues early",
+        description: "Catch delivery delays, fulfillment drag, and weak unit economics before they quietly erode profit quality.",
+      },
+    ],
+    workflow: [
+      "Connect ad, Shopify, and operating data sources",
+      "Review the daily AI briefing across profit, fulfillment, pricing, and ROI",
+      "Prioritize the recommended actions and track whether store performance improves",
+    ],
+    useCases: [
+      {
+        title: "Daily management briefing",
+        description: "For merchants who want a fast morning read on revenue quality, acquisition efficiency, and operating anomalies.",
+      },
+      {
+        title: "Pricing and cost review",
+        description: "For teams deciding whether product pricing, discounts, and landed costs still support healthy margin and ROI.",
+      },
+      {
+        title: "Fulfillment and profit coordination",
+        description: "For operators who need to connect delivery performance, refund pressure, and operational cost with overall store profitability.",
+      },
+    ],
+    demoHighlights: ["Daily AI summary", "Margin and ROI diagnosis", "Fulfillment impact alerts"],
+    demoScenarios: [
+      {
+        title: "Daily operating summary",
+        primaryLabel: "Input signals",
+        primaryText: "Yesterday's ad spend, order volume, revenue, refund trend, and fulfillment status arrived from separate systems.",
+        secondaryLabel: "Spark summary",
+        secondaryText:
+          "Spark consolidates the signals into one daily briefing that highlights ROI drift, margin pressure, and the actions most worth prioritizing today.",
+        note: "The goal is to reduce decision latency, not just show more charts.",
+      },
+      {
+        title: "Pricing and margin pressure",
+        primaryLabel: "Observed issue",
+        primaryText: "Revenue is growing, but discounts, ad costs, and fulfillment fees are compressing contribution margin.",
+        secondaryLabel: "Spark insight",
+        secondaryText:
+          "Spark identifies which products or campaigns are creating weak margin quality and suggests where pricing or spend allocation should be re-evaluated.",
+        note: "Top-line growth can hide weak unit economics if pricing and cost are not reviewed together.",
+      },
+      {
+        title: "Fulfillment drag on profitability",
+        primaryLabel: "Store signal",
+        primaryText: "Late shipments and rising fulfillment exceptions are starting to increase refund pressure and reduce repeat purchase confidence.",
+        secondaryLabel: "Spark action",
+        secondaryText:
+          "Spark connects fulfillment instability to profit and ROI outcomes so operators can treat logistics problems as operating issues, not isolated support noise.",
+        note: "Operational health affects profitability more directly than many merchants realize.",
+      },
+    ],
+    relatedResources: [
+      {
+        title: "Best Shopify Analytics Apps",
+        href: "/best-shopify-apps/best-shopify-analytics-apps",
+        meta: ["Best Apps", "Analytics"],
+      },
+      {
+        title: "How to localize currency pricing on Shopify",
+        href: "/guides/how-to-localize-currency-pricing-on-shopify",
+        meta: ["Guide", "Pricing"],
+      },
+      {
+        title: "Resources",
+        href: "/resources",
+        meta: ["Resources", "Operations"],
+      },
+    ],
+    faq: [
+      {
+        question: "What kind of Shopify merchant is Spark best for?",
+        answer:
+          "Spark is best for merchants already running paid traffic and regular store operations who need one daily decision layer across revenue, costs, fulfillment, and ROI.",
+      },
+      {
+        question: "Why combine fulfillment, pricing, and advertising in one analysis view?",
+        answer:
+          "Because store profitability is usually shaped by how acquisition cost, pricing, discounting, delivery performance, and refunds interact, not by a single metric in isolation.",
+      },
+      {
+        question: "Is Spark only for reporting?",
+        answer:
+          "No. The value is in turning daily data into operating diagnosis and recommended actions so merchants can adjust spend, pricing, and fulfillment decisions faster.",
+      },
+    ],
+    ctaLabel: "Talk to us",
+    ctaHref: "/waitlist",
   },
 ];
 
@@ -526,28 +647,28 @@ const productsZh: ProductItem[] = [
     ],
     compareLinks: [
       {
-        title: "Ciwi vs Shopify Translate & Adapt",
+        title: "Shopify Translate & Adapt Alternative",
         description: "比较 Shopify 原生多语言能力和更完整本地化工作流的差异。",
-        href: "/compare/ciwi-vs-shopify-translate-adapt",
+        href: "/compare/shopify-translate-adapt-alternative",
         meta: ["Compare", "Native vs workflow"],
       },
       {
-        title: "Ciwi vs Transcy",
+        title: "Transcy Alternative",
         description: "从 Shopify 适配深度、术语控制和长期维护成本三个维度看差异。",
-        href: "/compare/ciwi-vs-transcy",
+        href: "/compare/transcy-alternative",
         meta: ["Compare", "Localization control"],
       },
       {
-        title: "Ciwi vs Weglot",
+        title: "Weglot Alternative",
         description: "适合比较快速覆盖型方案和更强调内容治理路径的不同。",
-        href: "/compare/ciwi-vs-weglot",
+        href: "/compare/weglot-alternative",
         meta: ["Compare", "Launch vs governance"],
       },
     ],
     relatedResources: [
       {title: "About ciwi.ai-translator Shopify App", href: "/help-center/ShopifyApp/about-ciwi-ai-translator-shopify-app/", meta: ["Help Center", "Overview"]},
       {title: "How to setup and use glossary?", href: "/help-center/ShopifyApp/how-to-setup-and-use-glossary/", meta: ["Help Center", "Glossary"]},
-      {title: "Ciwi vs Shopify Translate & Adapt", href: "/compare/ciwi-vs-shopify-translate-adapt", meta: ["Compare", "Selection"]},
+      {title: "Shopify Translate & Adapt Alternative", href: "/compare/shopify-translate-adapt-alternative", meta: ["Compare", "Selection"]},
     ],
     faq: [
       {question: "Ciwi 和普通翻译工具的核心区别是什么？", answer: "Ciwi 更适合 Shopify 场景里的结构化内容翻译、术语控制和持续同步，能把多语言运营做得更完整。"},
@@ -555,7 +676,7 @@ const productsZh: ProductItem[] = [
       {question: "适合什么阶段的 Shopify 商家？", answer: "既适合刚开始进入多语言市场的商家，也适合已经在长期维护多市场运营、希望降低后续同步成本的品牌。"},
     ],
     ctaLabel: "前往 Shopify 安装",
-    ctaHref: "https://apps.shopify.com/partners/bogdatech",
+    ctaHref: ciwiShopifyInstallUrl,
   },
   {
     slug: "bundle-discount",
@@ -672,6 +793,115 @@ const productsZh: ProductItem[] = [
     ],
     ctaLabel: "查看路线图",
     ctaHref: "/resources",
+  },
+  {
+    slug: "spark-analytics-agent",
+    name: "Spark Shopify Analytics Agent",
+    shortDescription: "结合广告、商店、履约与利润数据，按天输出 AI 经营分析和改进建议。",
+    heroTitle: "把广告投放、商店经营和利润信号，变成每天可执行的 Shopify 决策",
+    heroDescription:
+      "Spark Shopify Analytics Agent 会整合广告平台、Shopify 订单、履约表现、定价信息与成本信号，按天生成经营诊断和改进洞察，帮助商家评估 ROI、利润、履约稳定性与整体收益质量。",
+    icon: "/ai-generate-landscape-image-spark.svg",
+    metrics: ["AI 每日经营分析", "ROI 与利润洞察", "广告 + 商店 + 履约联动"],
+    targetUsers: [
+      "已经在做广告投放、需要更清楚看到真实利润质量的 Shopify 商家",
+      "希望把广告、订单、履约和成本放到一个日常经营视角里统一判断的运营团队",
+      "需要同时评估定价、利润、履约和 ROI，而不是分别看零散报表的团队",
+    ],
+    benefits: ["每天看到真实经营健康度", "更早发现定价、成本和履约压力", "把分散指标转成更清晰的经营动作"],
+    features: [
+      {
+        title: "把广告与商店表现放到一起看",
+        description: "把投放花费、订单表现和商店收入收敛到一个每日经营视图里，而不是在多个后台之间来回切换。",
+      },
+      {
+        title: "把利润、定价和 ROI 一起判断",
+        description: "不只看表面营收，还把成本、定价逻辑和投资回报一起放进同一层经营决策里。",
+      },
+      {
+        title: "更早发现履约与经营异常",
+        description: "及时识别发货延迟、履约拖累和单位经济模型变差的问题，避免利润被慢慢侵蚀。",
+      },
+    ],
+    workflow: [
+      "连接广告、Shopify 和经营数据来源",
+      "每天查看 AI 生成的利润、履约、定价与 ROI 经营简报",
+      "按建议优先处理关键问题，并持续跟踪经营表现是否改善",
+    ],
+    useCases: [
+      {
+        title: "每日经营晨报",
+        description: "适合希望每天快速判断收入质量、投放效率和经营异常的商家。",
+      },
+      {
+        title: "定价与成本复盘",
+        description: "适合需要判断商品定价、折扣策略和落地成本是否仍然支撑健康利润和 ROI 的团队。",
+      },
+      {
+        title: "履约与利润联动分析",
+        description: "适合需要把发货表现、退款压力和运营成本与整体店铺收益联系起来判断的运营团队。",
+      },
+    ],
+    demoHighlights: ["AI 每日摘要", "利润与 ROI 诊断", "履约影响预警"],
+    demoScenarios: [
+      {
+        title: "Daily operating summary",
+        primaryLabel: "Input signals",
+        primaryText: "昨天的广告花费、订单量、收入、退款趋势和履约状态分散在不同系统里。",
+        secondaryLabel: "Spark summary",
+        secondaryText: "Spark 会把这些信号合并成一份每日经营简报，直接指出 ROI 下滑、利润承压和今天最值得优先处理的问题。",
+        note: "重点不是展示更多图表，而是缩短经营判断的反应时间。",
+      },
+      {
+        title: "Pricing and margin pressure",
+        primaryLabel: "Observed issue",
+        primaryText: "营收在增长，但折扣、广告成本和履约费用正在持续压缩利润空间。",
+        secondaryLabel: "Spark insight",
+        secondaryText: "Spark 会识别出哪些商品或投放活动正在拉低利润质量，并提示哪些定价或预算分配需要重新评估。",
+        note: "如果不把定价和成本一起看，表面的增长很容易掩盖真实的单位经济问题。",
+      },
+      {
+        title: "Fulfillment drag on profitability",
+        primaryLabel: "Store signal",
+        primaryText: "发货变慢和履约异常正在推高退款压力，也影响复购信心。",
+        secondaryLabel: "Spark action",
+        secondaryText: "Spark 会把履约不稳定与利润、ROI 的变化关联起来，让团队把物流问题当成经营问题来处理，而不是只当作客服噪音。",
+        note: "很多商家会低估履约健康度对利润质量的直接影响。",
+      },
+    ],
+    relatedResources: [
+      {
+        title: "Best Shopify Analytics Apps",
+        href: "/best-shopify-apps/best-shopify-analytics-apps",
+        meta: ["Best Apps", "Analytics"],
+      },
+      {
+        title: "How to localize currency pricing on Shopify",
+        href: "/guides/how-to-localize-currency-pricing-on-shopify",
+        meta: ["Guide", "Pricing"],
+      },
+      {
+        title: "Resources",
+        href: "/resources",
+        meta: ["Resources", "Operations"],
+      },
+    ],
+    faq: [
+      {
+        question: "Spark 最适合什么类型的 Shopify 商家？",
+        answer: "最适合已经在持续投放广告、并且需要每天把收入、成本、履约和 ROI 放到同一个经营视角里判断的商家。",
+      },
+      {
+        question: "为什么要把履约、定价和广告放到一张分析里？",
+        answer: "因为店铺利润通常不是由单一指标决定的，而是由获客成本、定价、折扣、发货表现和退款压力共同作用出来的。",
+      },
+      {
+        question: "Spark 只是一个报表工具吗？",
+        answer: "不是。它的重点是把每天的数据变成经营诊断和行动建议，帮助商家更快调整预算、定价和履约决策。",
+      },
+    ],
+    ctaLabel: "加入 waiting list",
+    ctaHref: "/contact",
   },
 ];
 

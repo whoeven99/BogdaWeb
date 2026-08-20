@@ -2,7 +2,9 @@ import type {Locale} from "@/lib/i18n";
 import {getBestShopifyAppCollections} from "@/content/best-shopify-apps";
 import {getBlogPosts} from "@/content/blog";
 import {getCompares} from "@/content/compare";
+import {getFunctionScenarioGuides} from "@/content/function-scenario-guides";
 import {getFeaturedHelpCenterDocs, getHelpCenterDocs} from "@/content/help-center";
+import {getLocalizationGuides} from "@/content/localization-guides";
 
 export type ResourceItem = {
   title: string;
@@ -43,5 +45,32 @@ export function getBestShopifyAppsResources(locale: Locale): ResourceItem[] {
     description: item.description,
     href: item.href,
     meta: [locale === "zh-cn" ? "合集" : "Collection", item.categoryLabel, String(item.year)],
+  }));
+}
+
+export function getLocalizationGuideCategoryResources(locale: Locale): ResourceItem[] {
+  return getLocalizationGuides(locale).map((item) => ({
+    title: item.title,
+    description: item.description,
+    href: item.href,
+    meta: [locale === "zh-cn" ? "指南" : "Guide", item.segmentLabel, String(item.year)],
+  }));
+}
+
+export function getFunctionScenarioGuideResources(locale: Locale): ResourceItem[] {
+  return getFunctionScenarioGuides(locale).map((item) => ({
+    title: item.title,
+    description: item.description,
+    href: item.href,
+    meta: [locale === "zh-cn" ? "指南" : "Guide", item.segmentLabel, String(item.year)],
+  }));
+}
+
+export function getLocalizationGuideResources(locale: Locale): ResourceItem[] {
+  return [...getLocalizationGuideCategoryResources(locale), ...getFunctionScenarioGuideResources(locale)].map((item) => ({
+    title: item.title,
+    description: item.description,
+    href: item.href,
+    meta: item.meta,
   }));
 }

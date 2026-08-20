@@ -2,51 +2,58 @@
 entryId: help-center-how-to-set-up-multi-currency-pricing-on-your-shopify-store
 locale: zh-cn
 slug: how-to-set-up-multi-currency-pricing-on-your-shopify-store
-title: How to set up multi-currency pricing on your Shopify store?
-description: 说明如何设置多币种价格显示、汇率、舍入规则和 geolocation 相关预览流程。
-publishedAt: '2025-07-31'
+title: "如何在 Shopify 店铺中设置多币种？"
+description: "说明如何准备币种、汇率、舍入规则和前台展示，再决定是否启用自动币种体验。"
+publishedAt: '2026-08-19'
 status: published
 category: shopify-app
 order: 10
 meta:
-  - Help Center
-  - Currency
-readingTime: 4 min read
+  - "Help Center"
+  - "Currency"
+readingTime: "4 min read"
 sourceLocale: en
 translationStatus: reviewed
 relatedResources:
-  - title: >-
-      Can I auto switch language or currency based on website visitors'
-      geolocation?
-    description: 多币种配置完成后，下一步通常就是 geolocation 自动切换。
-    href: >-
-      /help-center/ShopifyApp/can-i-auto-switch-language-or-currency-based-on-website-visitors-geolocation/
+  - title: "如何启用语言与币种切换器"
+    description: "币种层准备好后，再接前台切换器。"
+    href: /help-center/ShopifyApp/how-to-enable-the-language-currency-exchange-switcher/
     meta:
-      - Help Center
-      - Geolocation
-  - title: How to enable the language & currency exchange switcher
-    description: 确保前台切换器已经正确接入主题。
-    href: >-
-      /help-center/ShopifyApp/how-to-enable-the-language-currency-exchange-switcher/
+      - "Help Center"
+      - "Switcher"
+  - title: "如何设置 geolocation 自动切换"
+    description: "先把基础币种逻辑跑顺，再考虑自动切换。"
+    href: /help-center/ShopifyApp/how-to-set-regarding-geolocation/
     meta:
-      - Help Center
-      - Switcher
-  - title: Expand Global Reach
-    description: 从场景页理解多币种和跨市场体验之间的关系。
-    href: /solutions/multilingual-growth
+      - "Help Center"
+      - "Geolocation"
+  - title: "可以根据访客地理位置自动切换语言或币种吗？"
+    description: "了解什么时候值得做自动切币种。"
+    href: /help-center/ShopifyApp/can-i-auto-switch-language-or-currency-based-on-website-visitors-geolocation/
     meta:
-      - Solution
-      - Multilingual
+      - "Help Center"
+      - "Geolocation"
 ---
-<p>这篇文档说明多币种配置的完整流程：先设置价格格式，再添加币种、编辑汇率与舍入规则，最后在前台预览并决定是否启用 geolocation。</p>
-      <h2>Set up currency formatting first</h2>
-      <p>在应用里复制推荐的格式模板，再到 Shopify 的 General 配置中更新 HTML with currency 和 HTML without currency。这样做的目的是先确保价格显示结构正确。</p>
-      <h2>Add and edit currencies</h2>
-      <p>添加需要的币种后，可以继续进入编辑状态调整汇率模式和 price rounding。Auto rate 更适合快速上线，Manual rate 适合你有更细的定价策略时使用。</p>
-      <ul>
-        <li>通过 Add Currency 选择目标币种</li>
-        <li>在 Edit 中设置自动或手动汇率</li>
-        <li>根据品牌定价习惯决定是否启用舍入规则</li>
-      </ul>
-      <h2>Preview and geolocation</h2>
-      <p>配置完成后先做 Preview，确认前台货币切换和显示逻辑没有问题。若希望根据访问者地区自动展示币种，再继续启用 geolocation 设置。</p>
+使用 **Currency** 页面，可以先把本地化里的币种层准备好，再接前台切换体验。
+
+## 当前可以配置什么
+
+- 添加支持的币种
+- 编辑汇率
+- 设定价格舍入规则
+- 检查前台价格展示逻辑
+
+## 建议的配置顺序
+
+1. 先添加你真正需要支持的币种。
+2. 决定使用自动汇率还是手动汇率。
+3. 根据定价策略设定舍入规则。
+4. 在前台预览无误后，再考虑 geolocation 自动切币种。
+
+## 为什么预览很重要
+
+多币种不是只改一组数据。你需要确认商品页、列表页、购物车和移动端里价格显示都足够自然、可信。
+
+## 和切换器的关系
+
+多币种体验最好和前台切换器一起使用。这样用户既能看到系统的默认币种，也能自己手动切换。

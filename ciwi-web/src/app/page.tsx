@@ -71,7 +71,7 @@ export default async function HomePage() {
           title={copy.resources.title}
           description={copy.resources.description}
           items={copy.featuredResources.map((item) => ({...item, meta: [...item.meta]}))}
-          subscription={{...copy.resources.subscription, highlights: [...copy.resources.subscription.highlights]}}
+          subscription={{...copy.resources.subscription, highlights: [...copy.resources.subscription.highlights], source: "home_newsletter"}}
         />
         <FaqSection
           eyebrow={copy.faq.eyebrow}
