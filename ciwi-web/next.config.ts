@@ -1,10 +1,55 @@
 import type { NextConfig } from "next";
+import {compareSlugRedirectMap} from "./src/content/compare-slugs";
+
+const compareRedirects = Object.entries(compareSlugRedirectMap).flatMap(([legacyCompareSlug, canonicalSlug]) => [
+  {
+    source: `/compare/${legacyCompareSlug}`,
+    destination: `/compare/${canonicalSlug}`,
+    permanent: true,
+  },
+  {
+    source: `/${legacyCompareSlug}`,
+    destination: `/compare/${canonicalSlug}`,
+    permanent: true,
+  },
+  {
+    source: `/${legacyCompareSlug.replace(/^ciwi-/, "")}`,
+    destination: `/compare/${canonicalSlug}`,
+    permanent: true,
+  },
+]);
+
+const legacyMarketingRedirectTargets = {
+  "product-title-generation": "/products/content-ai#features",
+  "product-description-generation": "/products/content-ai#features",
+  "product-image-generation": "/products/content-ai#features",
+  "product-seo-information-generation": "/products/content-ai#features",
+  "collection-description-generation": "/products/content-ai#features",
+  "product-faq-generation": "/products/content-ai#features",
+  "image-alt-text-generation": "/products/content-ai#features",
+  deepl: "/products/translator",
+} as const;
+
+const legacyMarketingRedirects = Object.entries(legacyMarketingRedirectTargets).flatMap(([sourceSlug, destination]) => [
+  {
+    source: `/${sourceSlug}`,
+    destination,
+    permanent: true,
+  },
+  {
+    source: `/${sourceSlug}/`,
+    destination,
+    permanent: true,
+  },
+]);
 
 const nextConfig: NextConfig = {
   output: "standalone",
   trailingSlash: true,
   async redirects() {
     return [
+      ...compareRedirects,
+      ...legacyMarketingRedirects,
       {
         source: "/ghost/:path*",
         has: [{type: "host", value: "blog.ciwi.ai"}],
@@ -63,41 +108,6 @@ const nextConfig: NextConfig = {
         source: "/:path*",
         has: [{type: "host", value: "blog.ciwi.ai"}],
         destination: "https://ciwi.ai/blog/:path*",
-        permanent: true,
-      },
-      {
-        source: "/product-title-generation",
-        destination: "/products/content-ai#features",
-        permanent: true,
-      },
-      {
-        source: "/product-description-generation",
-        destination: "/products/content-ai#features",
-        permanent: true,
-      },
-      {
-        source: "/product-image-generation",
-        destination: "/products/content-ai#features",
-        permanent: true,
-      },
-      {
-        source: "/product-seo-information-generation",
-        destination: "/products/content-ai#features",
-        permanent: true,
-      },
-      {
-        source: "/collection-description-generation",
-        destination: "/products/content-ai#features",
-        permanent: true,
-      },
-      {
-        source: "/product-faq-generation",
-        destination: "/products/content-ai#features",
-        permanent: true,
-      },
-      {
-        source: "/image-alt-text-generation",
-        destination: "/products/content-ai#features",
         permanent: true,
       },
     ];

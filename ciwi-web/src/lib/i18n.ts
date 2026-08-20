@@ -32,6 +32,18 @@ export function isExternalHref(href: string): boolean {
   return /^(?:[a-z]+:)?\/\//i.test(href) || href.startsWith("mailto:") || href.startsWith("tel:");
 }
 
+function ensureTrailingSlash(href: string): string {
+  const match = href.match(/^([^?#]*)(.*)$/);
+  const pathname = match?.[1] ?? href;
+  const suffix = match?.[2] ?? "";
+
+  if (!pathname || pathname === "/" || pathname.endsWith("/")) {
+    return href;
+  }
+
+  return `${pathname}/${suffix}`;
+}
+
 export function localizeHref(locale: Locale, href: string): string {
   if (!href || isExternalHref(href) || href.startsWith("#")) {
     return href;
@@ -42,10 +54,10 @@ export function localizeHref(locale: Locale, href: string): string {
   }
 
   if (locale === defaultLocale || href.startsWith(`/${chineseLocale}`)) {
-    return href;
+    return ensureTrailingSlash(href);
   }
 
-  return href === "/" ? `/${chineseLocale}` : `/${chineseLocale}${href}`;
+  return ensureTrailingSlash(href === "/" ? `/${chineseLocale}` : `/${chineseLocale}${href}`);
 }
 
 export function buildAlternates(path: string) {
