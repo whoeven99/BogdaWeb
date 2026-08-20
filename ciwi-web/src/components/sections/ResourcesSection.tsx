@@ -13,6 +13,7 @@ type ResourcesSectionProps = {
     meta: string[];
   }[];
   subscription: {
+    source: string;
     eyebrow: string;
     title: string;
     description: string;
@@ -41,7 +42,7 @@ export function ResourcesSection({eyebrow, title, description, items, subscripti
         ))}
       </div>
       <div className="space-top-xl">
-        <NewsletterSubscriptionCard copy={subscription} />
+        <NewsletterSubscriptionCard source={subscription.source} copy={subscription} />
       </div>
     </section>
   );

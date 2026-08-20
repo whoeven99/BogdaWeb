@@ -2506,6 +2506,93 @@ select {
   color: #b91c1c;
 }
 
+.waitlist-hero {
+  align-items: start;
+}
+
+.lead-form-card {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.lead-form-card__header {
+  display: grid;
+  gap: 10px;
+}
+
+.lead-form-card__header h3 {
+  margin: 0;
+}
+
+.lead-form {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.lead-form__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.lead-form__field {
+  display: grid;
+  gap: 10px;
+}
+
+.lead-form__label {
+  color: var(--color-ink-700);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.lead-form__field input,
+.lead-form__field textarea {
+  width: 100%;
+  min-height: 52px;
+  padding: 14px 16px;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--color-ink-900);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  resize: vertical;
+}
+
+.lead-form__field input:focus,
+.lead-form__field textarea:focus {
+  border-color: rgba(0, 128, 96, 0.4);
+  box-shadow: 0 0 0 4px rgba(0, 128, 96, 0.1);
+}
+
+.lead-form__submit {
+  justify-content: center;
+}
+
+.lead-form__submit[disabled],
+.subscription-form__submit[disabled] {
+  opacity: 0.72;
+  cursor: wait;
+}
+
+.lead-form__message {
+  margin: 0;
+  color: var(--color-ink-600);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.lead-form__message--success {
+  color: var(--color-primary);
+}
+
+.lead-form__message--error {
+  color: #b91c1c;
+}
+
 .site-footer {
   padding: var(--space-10) 0 var(--space-8);
   border-top: 1px solid rgba(229, 231, 235, 0.9);
@@ -4079,6 +4166,12 @@ select {
   .button {
     width: 100%;
   }
+
+  .lead-form__grid {
+    grid-template-columns: 1fr;
+  }
+
+
 
   .compare-metric__row {
     grid-template-columns: 1fr;

@@ -234,7 +234,7 @@ export default async function ResourcesPage() {
         </section>
 
         <section className="page-section">
-          <NewsletterSubscriptionCard copy={copy.subscription} />
+          <NewsletterSubscriptionCard source="resources_newsletter" copy={copy.subscription} />
         </section>
       </PageContainer>
     </main>
