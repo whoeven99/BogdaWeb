@@ -1,9 +1,6 @@
-import {notFound} from "next/navigation";
+import {notFound, permanentRedirect} from "next/navigation";
 import type {Metadata} from "next";
 
-import {LocalizedLink} from "@/components/ui/LocalizedLink";
-import {PageContainer} from "@/components/ui/PageContainer";
-import {SectionHeading} from "@/components/ui/SectionHeading";
 import {legacyRouteMap, type LegacyRouteSlug} from "@/content/legacy-routes";
 import {localizeHref} from "@/lib/i18n";
 import {getRequestLocale} from "@/lib/i18n-server";
@@ -82,7 +79,6 @@ export default async function LegacyRoutePage({params}: LegacyPageProps) {
   const locale = await getRequestLocale();
   const {slug} = await params;
   const data = legacyRouteMap[slug as LegacyRouteSlug];
-  const copy = getLegacyCopy(locale).hero;
 
   if (!data) {
     notFound();
@@ -90,28 +86,5 @@ export default async function LegacyRoutePage({params}: LegacyPageProps) {
 
   const localizedDestination = localizeHref(locale, data.destination);
 
-  return (
-    <main>
-      <PageContainer>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.location.replace(${JSON.stringify(localizedDestination)});`,
-          }}
-        />
-        <section className="page-section page-hero">
-          <div className="surface-card page-copy">
-            <SectionHeading eyebrow={copy.eyebrow} title={data.title} description={data.description} as="h1" />
-            <p>{copy.notice}</p>
-            <p className="quote">
-              {copy.redirectingPrefix}
-              <code>{localizedDestination}</code>...
-            </p>
-            <LocalizedLink href={data.destination} className="button button--primary">
-              {copy.openNewPageLabel}
-            </LocalizedLink>
-          </div>
-        </section>
-      </PageContainer>
-    </main>
-  );
+  permanentRedirect(localizedDestination);
 }

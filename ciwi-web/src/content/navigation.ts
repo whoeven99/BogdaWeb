@@ -4,6 +4,7 @@ import {getLocalizedValue} from "@/lib/i18n-content";
 export type NavItem = {
   label: string;
   href: string;
+  children?: NavItem[];
 };
 
 type FooterNavigation = {
@@ -28,8 +29,19 @@ const navigationContent = {
   en: {
     primaryNavigation: [
       {label: "Products", href: "/products"},
-      {label: "Resources", href: "/resources"},
-      {label: "Guides", href: "/guides"},
+      {
+        label: "Resources",
+        href: "/resources",
+        children: [
+          {label: "Resources Hub", href: "/resources"},
+          {label: "Localization Guides", href: "/guides#localization-guides"},
+          {label: "Shopify How-to Guides", href: "/guides#function-scenario-guides"},
+          {label: "Help Center", href: "/help-center"},
+          {label: "Blog", href: "/blog"},
+          {label: "Compare Products", href: "/compare"},
+          {label: "Best Shopify Apps", href: "/best-shopify-apps"},
+        ],
+      },
       {label: "About", href: "/about"},
     ],
     footerNavigation: {
@@ -41,7 +53,8 @@ const navigationContent = {
       resources: [
         {label: "Blog", href: "/blog"},
         {label: "Help Center", href: "/help-center"},
-        {label: "Localization Guides", href: "/guides"},
+        {label: "Localization Guides", href: "/guides#localization-guides"},
+        {label: "Shopify How-to Guides", href: "/guides#function-scenario-guides"},
         {label: "Best Shopify Apps", href: "/best-shopify-apps"},
         {label: "Resources Hub", href: "/resources"},
       ],
@@ -64,8 +77,19 @@ const navigationContent = {
   "zh-cn": {
     primaryNavigation: [
       {label: "产品", href: "/products"},
-      {label: "资源", href: "/resources"},
-      {label: "指南", href: "/guides"},
+      {
+        label: "资源",
+        href: "/resources",
+        children: [
+          {label: "资源中心", href: "/resources"},
+          {label: "本地化指南", href: "/guides#localization-guides"},
+          {label: "Shopify 功能指南", href: "/guides#function-scenario-guides"},
+          {label: "帮助中心", href: "/help-center"},
+          {label: "博客", href: "/blog"},
+          {label: "产品测评", href: "/compare"},
+          {label: "Best Shopify Apps", href: "/best-shopify-apps"},
+        ],
+      },
       {label: "关于我们", href: "/about"},
     ],
     footerNavigation: {
@@ -77,7 +101,8 @@ const navigationContent = {
       resources: [
         {label: "博客", href: "/blog"},
         {label: "帮助中心", href: "/help-center"},
-        {label: "本地化指南", href: "/guides"},
+        {label: "本地化指南", href: "/guides#localization-guides"},
+        {label: "Shopify 功能指南", href: "/guides#function-scenario-guides"},
         {label: "Best Shopify Apps", href: "/best-shopify-apps"},
         {label: "资源中心", href: "/resources"},
       ],

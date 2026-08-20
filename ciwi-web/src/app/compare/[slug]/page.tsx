@@ -1,4 +1,4 @@
-import {notFound} from "next/navigation";
+import {notFound, permanentRedirect} from "next/navigation";
 
 import type {CSSProperties} from "react";
 
@@ -8,6 +8,7 @@ import {ArticleCard} from "@/components/cards/ArticleCard";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import type {CompareItem, CompareMetric} from "@/content/compare";
+import {getCanonicalCompareSlug} from "@/content/compare-slugs";
 import {getCompareMap, getCompares, compares} from "@/content/compare";
 import {getBlogPosts} from "@/content/blog";
 import {getHelpCenterDocs} from "@/content/help-center";
@@ -1103,7 +1104,8 @@ export function generateStaticParams() {
 export async function generateMetadata({params}: CompareDetailPageProps) {
   const locale = await getRequestLocale();
   const {slug} = await params;
-  const data = getCompareMap(locale)[slug];
+  const canonicalSlug = getCanonicalCompareSlug(slug);
+  const data = getCompareMap(locale)[canonicalSlug];
   const copy = getCompareDetailCopy(locale);
 
   if (!data) {
@@ -1126,7 +1128,8 @@ export async function generateMetadata({params}: CompareDetailPageProps) {
 export default async function CompareDetailPage({params}: CompareDetailPageProps) {
   const locale = await getRequestLocale();
   const {slug} = await params;
-  const data = getCompareMap(locale)[slug];
+  const canonicalSlug = getCanonicalCompareSlug(slug);
+  const data = getCompareMap(locale)[canonicalSlug];
   const copy = getCompareDetailCopy(locale);
   const compares = getCompares(locale);
   const blogPosts = getBlogPosts(locale);
@@ -1134,6 +1137,10 @@ export default async function CompareDetailPage({params}: CompareDetailPageProps
 
   if (!data) {
     notFound();
+  }
+
+  if (canonicalSlug !== slug) {
+    permanentRedirect(localizeHref(locale, `/compare/${canonicalSlug}`));
   }
 
   const pageUrl = new URL(localizeHref(locale, `/compare/${data.slug}`), siteUrl).toString();

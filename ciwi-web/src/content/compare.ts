@@ -42,97 +42,97 @@ type AdditionalMetricKey =
 type AdditionalMetricScores = Record<AdditionalMetricKey, Omit<CompareMetric, "label">>;
 
 const additionalMetricScoresBySlug: Record<string, AdditionalMetricScores> = {
-  "ciwi-vs-transcy": {
+  "transcy-alternative": {
     afterSalesSupport: {ciwi: 9, alternative: 5},
     thirdPartyAppCompatibility: {ciwi: 9, alternative: 8},
     themeCompatibility: {ciwi: 9, alternative: 7},
     seoPerformance: {ciwi: 9, alternative: 5},
   },
-  "ciwi-vs-langwill": {
+  "langwill-alternative": {
     afterSalesSupport: {ciwi: 9, alternative: 5},
     thirdPartyAppCompatibility: {ciwi: 9, alternative: 7},
     themeCompatibility: {ciwi: 9, alternative: 7},
     seoPerformance: {ciwi: 9, alternative: 7},
   },
-  "ciwi-vs-shopify-translate-adapt": {
+  "shopify-translate-adapt-alternative": {
     afterSalesSupport: {ciwi: 9, alternative: 7},
     thirdPartyAppCompatibility: {ciwi: 9, alternative: 3},
     themeCompatibility: {ciwi: 9, alternative: 8},
     seoPerformance: {ciwi: 9, alternative: 7},
   },
-  "ciwi-vs-weglot": {
+  "weglot-alternative": {
     afterSalesSupport: {ciwi: 9, alternative: 6},
     thirdPartyAppCompatibility: {ciwi: 9, alternative: 5},
     themeCompatibility: {ciwi: 9, alternative: 7},
     seoPerformance: {ciwi: 9, alternative: 8},
   },
-  "ciwi-vs-langify": {
+  "langify-alternative": {
     afterSalesSupport: {ciwi: 9, alternative: 5},
     thirdPartyAppCompatibility: {ciwi: 9, alternative: 4},
     themeCompatibility: {ciwi: 9, alternative: 4},
     seoPerformance: {ciwi: 9, alternative: 6},
   },
-  "ciwi-vs-transtore": {
+  "transtore-alternative": {
     afterSalesSupport: {ciwi: 9, alternative: 6},
     thirdPartyAppCompatibility: {ciwi: 9, alternative: 8},
     themeCompatibility: {ciwi: 9, alternative: 7},
     seoPerformance: {ciwi: 9, alternative: 8},
   },
-  "ciwi-vs-hextom-ai": {
+  "hextom-ai-alternative": {
     afterSalesSupport: {ciwi: 9, alternative: 7},
     thirdPartyAppCompatibility: {ciwi: 9, alternative: 9},
     themeCompatibility: {ciwi: 9, alternative: 9},
     seoPerformance: {ciwi: 9, alternative: 7},
   },
-  "ciwi-vs-langshop": {
+  "langshop-alternative": {
     afterSalesSupport: {ciwi: 9, alternative: 8},
     thirdPartyAppCompatibility: {ciwi: 9, alternative: 8},
     themeCompatibility: {ciwi: 9, alternative: 7},
     seoPerformance: {ciwi: 9, alternative: 8},
   },
-  "ciwi-vs-gtranslate": {
+  "gtranslate-alternative": {
     afterSalesSupport: {ciwi: 9, alternative: 6},
     thirdPartyAppCompatibility: {ciwi: 9, alternative: 7},
     themeCompatibility: {ciwi: 9, alternative: 7},
     seoPerformance: {ciwi: 9, alternative: 9},
   },
-  "ciwi-vs-t-lab": {
+  "t-lab-alternative": {
     afterSalesSupport: {ciwi: 9, alternative: 6},
     thirdPartyAppCompatibility: {ciwi: 9, alternative: 5},
     themeCompatibility: {ciwi: 9, alternative: 7},
     seoPerformance: {ciwi: 9, alternative: 6},
   },
-  "ciwi-vs-locales-ai": {
+  "locales-ai-alternative": {
     afterSalesSupport: {ciwi: 9, alternative: 7},
     thirdPartyAppCompatibility: {ciwi: 9, alternative: 9},
     themeCompatibility: {ciwi: 9, alternative: 8},
     seoPerformance: {ciwi: 9, alternative: 7},
   },
-  "ciwi-vs-ea-auto-language-translate": {
+  "ea-auto-language-translate-alternative": {
     afterSalesSupport: {ciwi: 9, alternative: 3},
     thirdPartyAppCompatibility: {ciwi: 9, alternative: 4},
     themeCompatibility: {ciwi: 9, alternative: 6},
     seoPerformance: {ciwi: 9, alternative: 3},
   },
-  "ciwi-vs-orbe-geolocation": {
+  "orbe-geolocation-alternative": {
     afterSalesSupport: {ciwi: 9, alternative: 6},
     thirdPartyAppCompatibility: {ciwi: 9, alternative: 3},
     themeCompatibility: {ciwi: 9, alternative: 7},
     seoPerformance: {ciwi: 9, alternative: 3},
   },
-  "ciwi-vs-ez-product-image-translate": {
+  "ez-product-image-translate-alternative": {
     afterSalesSupport: {ciwi: 9, alternative: 5},
     thirdPartyAppCompatibility: {ciwi: 9, alternative: 2},
     themeCompatibility: {ciwi: 9, alternative: 4},
     seoPerformance: {ciwi: 9, alternative: 2},
   },
-  "ciwi-vs-selecty": {
+  "selecty-alternative": {
     afterSalesSupport: {ciwi: 9, alternative: 6},
     thirdPartyAppCompatibility: {ciwi: 9, alternative: 2},
     themeCompatibility: {ciwi: 9, alternative: 7},
     seoPerformance: {ciwi: 9, alternative: 2},
   },
-  "ciwi-vs-reversia": {
+  "reversia-alternative": {
     afterSalesSupport: {ciwi: 9, alternative: 8},
     thirdPartyAppCompatibility: {ciwi: 9, alternative: 8},
     themeCompatibility: {ciwi: 9, alternative: 7},
@@ -206,8 +206,8 @@ const ciwiPricingPlansZh: ComparePricingPlan[] = [
 
 const comparesEn: CompareItem[] = [
   {
-    slug: "ciwi-vs-transcy",
-    title: "Ciwi vs Transcy",
+    slug: "transcy-alternative",
+    title: "Transcy Alternative",
     alternativeName: "Transcy",
     description: "Compare both paths across Shopify structure coverage, terminology control, and long-term maintenance cost.",
     summary: "If you care about more than turning source text into another language, and you want a workflow for products, themes, FAQs, and long-term consistency, Ciwi is more focused on structured governance and localization quality.",
@@ -286,8 +286,8 @@ const comparesEn: CompareItem[] = [
     ],
   },
   {
-    slug: "ciwi-vs-langwill",
-    title: "Ciwi vs Langwill",
+    slug: "langwill-alternative",
+    title: "Langwill Alternative",
     alternativeName: "Langwill",
     description: "Useful when comparing translation capability, content workflows, and how unified the website front end feels.",
     summary: "If you are not just comparing translation tools but comparing whole multilingual growth systems, Ciwi places more weight on front-end consistency, content routing, and long-term governance.",
@@ -365,8 +365,8 @@ const comparesEn: CompareItem[] = [
     ],
   },
   {
-    slug: "ciwi-vs-shopify-translate-adapt",
-    title: "Ciwi vs Shopify Translate & Adapt",
+    slug: "shopify-translate-adapt-alternative",
+    title: "Shopify Translate & Adapt Alternative",
     alternativeName: "Shopify Translate & Adapt",
     description: "Useful when comparing Shopify native localization with a more complete localization workflow.",
     summary: "If you have already moved beyond simply publishing multilingual pages and now care about glossary, structured content coverage, continuous sync, and brand consistency, Ciwi offers a deeper path.",
@@ -435,8 +435,8 @@ const comparesEn: CompareItem[] = [
     ],
   },
   {
-    slug: "ciwi-vs-weglot",
-    title: "Ciwi vs Weglot",
+    slug: "weglot-alternative",
+    title: "Weglot Alternative",
     alternativeName: "Weglot",
     description: "Useful when comparing a quick-coverage translation path with a Shopify-specific content governance path.",
     summary: "If your priority is fast multilingual coverage, a Weglot-like path is often easier to understand. If you care more about Shopify structure, brand terminology, and long-term governance, Ciwi stays more focused there.",
@@ -500,8 +500,8 @@ const comparesEn: CompareItem[] = [
     ],
   },
   {
-    slug: "ciwi-vs-langify",
-    title: "Ciwi vs Langify",
+    slug: "langify-alternative",
+    title: "Langify Alternative",
     alternativeName: "Langify",
     description: "Useful when comparing translation workflow, human control, and long-term synchronization strategy.",
     summary: "If you care more about human review, terminology consistency, and ongoing update governance, Ciwi is easier to combine with glossary, help docs, and resource routing. If the need is more basic translation organization, a Langify-like path is usually easier to understand.",
@@ -564,8 +564,8 @@ const comparesEn: CompareItem[] = [
     ],
   },
   {
-    slug: "ciwi-vs-transtore",
-    title: "Ciwi vs Transtore",
+    slug: "transtore-alternative",
+    title: "Transtore Alternative",
     alternativeName: "Transtore",
     description: "Useful when comparing pricing transparency, AI translation quality, and how safely existing manual translations are handled.",
     summary:
@@ -631,8 +631,8 @@ const comparesEn: CompareItem[] = [
     ],
   },
   {
-    slug: "ciwi-vs-hextom-ai",
-    title: "Ciwi vs Hextom AI",
+    slug: "hextom-ai-alternative",
+    title: "Hextom AI Alternative",
     alternativeName: "Hextom AI",
     description: "Useful when comparing credit transparency, rollback risk, translation quality, and support responsiveness.",
     summary:
@@ -710,8 +710,8 @@ const comparesEn: CompareItem[] = [
     ],
   },
   {
-    slug: "ciwi-vs-langshop",
-    title: "Ciwi vs LangShop",
+    slug: "langshop-alternative",
+    title: "LangShop Alternative",
     alternativeName: "LangShop",
     description: "Useful when comparing glossary cost, storefront switcher fit, day-to-day stability, and multilingual governance.",
     summary:
@@ -789,8 +789,8 @@ const comparesEn: CompareItem[] = [
     ],
   },
   {
-    slug: "ciwi-vs-gtranslate",
-    title: "Ciwi vs GTranslate",
+    slug: "gtranslate-alternative",
+    title: "GTranslate Alternative",
     alternativeName: "GTranslate",
     description: "Useful when comparing SEO safety, pricing pressure, uninstall risk, and storefront stability during multilingual growth.",
     summary:
@@ -868,8 +868,8 @@ const comparesEn: CompareItem[] = [
     ],
   },
   {
-    slug: "ciwi-vs-t-lab",
-    title: "Ciwi vs T Lab",
+    slug: "t-lab-alternative",
+    title: "T Lab Alternative",
     alternativeName: "T Lab",
     description: "Useful when comparing searchability, translation workflow, language coverage, and setup complexity.",
     summary:
@@ -947,8 +947,8 @@ const comparesEn: CompareItem[] = [
     ],
   },
   {
-    slug: "ciwi-vs-locales-ai",
-    title: "Ciwi vs Locales.ai",
+    slug: "locales-ai-alternative",
+    title: "Locales.ai Alternative",
     alternativeName: "Locales.ai",
     description: "Useful when comparing billing predictability, credit controls, support responsiveness, and multilingual operating cost.",
     summary:
@@ -1026,8 +1026,8 @@ const comparesEn: CompareItem[] = [
     ],
   },
   {
-    slug: "ciwi-vs-ea-auto-language-translate",
-    title: "Ciwi vs EA Auto Language Translate",
+    slug: "ea-auto-language-translate-alternative",
+    title: "EA Auto Language Translate Alternative",
     alternativeName: "EA Auto Language Translate",
     description: "Useful when comparing language scope, setup simplicity, and the difference between lightweight translation and a fuller localization workflow.",
     summary:
@@ -1091,8 +1091,8 @@ const comparesEn: CompareItem[] = [
     ],
   },
   {
-    slug: "ciwi-vs-orbe-geolocation",
-    title: "Ciwi vs Orbe Geolocation",
+    slug: "orbe-geolocation-alternative",
+    title: "Orbe Geolocation Alternative",
     alternativeName: "Orbe Geolocation",
     description: "Useful when comparing a translation workflow with a geolocation and market redirection tool.",
     summary:
@@ -1119,8 +1119,8 @@ const comparesEn: CompareItem[] = [
     faq: [],
   },
   {
-    slug: "ciwi-vs-ez-product-image-translate",
-    title: "Ciwi vs EZ Product Image Translate",
+    slug: "ez-product-image-translate-alternative",
+    title: "EZ Product Image Translate Alternative",
     alternativeName: "EZ Product Image Translate",
     description: "Useful when comparing a full translation workflow with an image-focused translation utility.",
     summary:
@@ -1147,8 +1147,8 @@ const comparesEn: CompareItem[] = [
     faq: [],
   },
   {
-    slug: "ciwi-vs-selecty",
-    title: "Ciwi vs Geolocation & Markets Selecty",
+    slug: "selecty-alternative",
+    title: "Geolocation & Markets Selecty Alternative",
     alternativeName: "Geolocation & Markets Selecty",
     description: "Useful when comparing translation and localization workflow with a geolocation selector and market-detection tool.",
     summary:
@@ -1212,8 +1212,8 @@ const comparesEn: CompareItem[] = [
     ],
   },
   {
-    slug: "ciwi-vs-reversia",
-    title: "Ciwi vs Reversia",
+    slug: "reversia-alternative",
+    title: "Reversia Alternative",
     alternativeName: "Reversia",
     description: "Useful when comparing high-end AI translation, automatic sync, multilingual SEO depth, and enterprise-style pricing.",
     summary:
@@ -1294,8 +1294,8 @@ const comparesEn: CompareItem[] = [
 
 const comparesZh: CompareItem[] = [
   {
-    slug: "ciwi-vs-transcy",
-    title: "Ciwi vs Transcy",
+    slug: "transcy-alternative",
+    title: "Transcy Alternative",
     alternativeName: "Transcy",
     description: "从 Shopify 适配深度、术语控制和长期维护成本三个维度比较两种路径。",
     summary: "如果你关心的不只是把文字翻出来，而是希望长期维护多语言商品、主题和 FAQ，Ciwi 会更偏向结构化治理和本地化质量。",
@@ -1348,8 +1348,8 @@ const comparesZh: CompareItem[] = [
     ],
   },
   {
-    slug: "ciwi-vs-langwill",
-    title: "Ciwi vs Langwill",
+    slug: "langwill-alternative",
+    title: "Langwill Alternative",
     alternativeName: "Langwill",
     description: "适合比较翻译能力、内容承接方式和官网前台统一度时使用。",
     summary: "如果你不只是在比较一个翻译工具，而是在比较整套多语言增长路径，Ciwi 会更强调前台统一、资源承接和长期内容治理。",
@@ -1402,8 +1402,8 @@ const comparesZh: CompareItem[] = [
     ],
   },
   {
-    slug: "ciwi-vs-shopify-translate-adapt",
-    title: "Ciwi vs Shopify Translate & Adapt",
+    slug: "shopify-translate-adapt-alternative",
+    title: "Shopify Translate & Adapt Alternative",
     alternativeName: "Shopify Translate & Adapt",
     description: "适合比较 Shopify 原生多语言能力和更完整本地化工作流时使用。",
     summary: "如果你已经不满足于“能发布多语言版本”这一层，而是开始关心 glossary、结构化内容覆盖、持续同步和品牌一致性，Ciwi 的路径会更完整。",
@@ -1446,8 +1446,8 @@ const comparesZh: CompareItem[] = [
     ],
   },
   {
-    slug: "ciwi-vs-weglot",
-    title: "Ciwi vs Weglot",
+    slug: "weglot-alternative",
+    title: "Weglot Alternative",
     alternativeName: "Weglot",
     description: "适合比较快速覆盖型翻译方案和更强调 Shopify 内容治理路径时使用。",
     summary: "如果你的重点是先快速覆盖多语言，Weglot 类路径通常更容易理解；如果你更关心 Shopify 结构化内容、品牌术语和长期治理，Ciwi 会更聚焦。",
@@ -1486,8 +1486,8 @@ const comparesZh: CompareItem[] = [
     ],
   },
   {
-    slug: "ciwi-vs-langify",
-    title: "Ciwi vs Langify",
+    slug: "langify-alternative",
+    title: "Langify Alternative",
     alternativeName: "Langify",
     description: "适合比较翻译工作流、人工可控性与持续同步策略时使用。",
     summary: "如果你更强调人工控制、术语一致性和后续更新治理，Ciwi 的路径更容易和 glossary、帮助文档与资源前台结合；如果只是基础翻译组织，Langify 类路径通常更容易理解。",
@@ -1526,8 +1526,8 @@ const comparesZh: CompareItem[] = [
     ],
   },
   {
-    slug: "ciwi-vs-transtore",
-    title: "Ciwi vs Transtore",
+    slug: "transtore-alternative",
+    title: "Transtore Alternative",
     alternativeName: "Transtore",
     description: "适合比较价格透明度、AI 翻译质量，以及对已有人工翻译的影响时使用。",
     summary:
@@ -1593,8 +1593,8 @@ const comparesZh: CompareItem[] = [
     ],
   },
   {
-    slug: "ciwi-vs-hextom-ai",
-    title: "Ciwi vs Hextom AI",
+    slug: "hextom-ai-alternative",
+    title: "Hextom AI Alternative",
     alternativeName: "Hextom AI",
     description: "适合比较 credits 透明度、回滚风险、翻译质量和客服响应时使用。",
     summary:
@@ -1672,8 +1672,8 @@ const comparesZh: CompareItem[] = [
     ],
   },
   {
-    slug: "ciwi-vs-langshop",
-    title: "Ciwi vs LangShop",
+    slug: "langshop-alternative",
+    title: "LangShop Alternative",
     alternativeName: "LangShop",
     description: "适合比较 glossary 成本、语言切换器体验、稳定性和多语言治理能力时使用。",
     summary:
@@ -1751,8 +1751,8 @@ const comparesZh: CompareItem[] = [
     ],
   },
   {
-    slug: "ciwi-vs-gtranslate",
-    title: "Ciwi vs GTranslate",
+    slug: "gtranslate-alternative",
+    title: "GTranslate Alternative",
     alternativeName: "GTranslate",
     description: "适合比较 SEO 安全性、价格压力、卸载残留风险和高流量阶段的稳定性时使用。",
     summary:
@@ -1830,8 +1830,8 @@ const comparesZh: CompareItem[] = [
     ],
   },
   {
-    slug: "ciwi-vs-t-lab",
-    title: "Ciwi vs T Lab",
+    slug: "t-lab-alternative",
+    title: "T Lab Alternative",
     alternativeName: "T Lab",
     description: "适合比较全局搜索能力、翻译工作流、语言扩展和安装复杂度时使用。",
     summary:
@@ -1909,8 +1909,8 @@ const comparesZh: CompareItem[] = [
     ],
   },
   {
-    slug: "ciwi-vs-locales-ai",
-    title: "Ciwi vs Locales.ai",
+    slug: "locales-ai-alternative",
+    title: "Locales.ai Alternative",
     alternativeName: "Locales.ai",
     description: "适合比较计费可预期性、credits 控制、客服响应和长期成本时使用。",
     summary:
@@ -1988,8 +1988,8 @@ const comparesZh: CompareItem[] = [
     ],
   },
   {
-    slug: "ciwi-vs-ea-auto-language-translate",
-    title: "Ciwi vs EA Auto Language Translate",
+    slug: "ea-auto-language-translate-alternative",
+    title: "EA Auto Language Translate Alternative",
     alternativeName: "EA Auto Language Translate",
     description: "适合比较语言数量、操作复杂度，以及轻量翻译工具和完整本地化工作流之间的差异。",
     summary:
@@ -2044,8 +2044,8 @@ const comparesZh: CompareItem[] = [
     ],
   },
   {
-    slug: "ciwi-vs-orbe-geolocation",
-    title: "Ciwi vs Orbe Geolocation",
+    slug: "orbe-geolocation-alternative",
+    title: "Orbe Geolocation Alternative",
     alternativeName: "Orbe Geolocation",
     description: "适合比较翻译本地化工作流和地理位置识别/市场重定向工具时使用。",
     summary:
@@ -2072,8 +2072,8 @@ const comparesZh: CompareItem[] = [
     faq: [],
   },
   {
-    slug: "ciwi-vs-ez-product-image-translate",
-    title: "Ciwi vs EZ Product Image Translate",
+    slug: "ez-product-image-translate-alternative",
+    title: "EZ Product Image Translate Alternative",
     alternativeName: "EZ Product Image Translate",
     description: "适合比较完整翻译工作流和图片翻译工具之间的功能边界。",
     summary:
@@ -2100,8 +2100,8 @@ const comparesZh: CompareItem[] = [
     faq: [],
   },
   {
-    slug: "ciwi-vs-selecty",
-    title: "Ciwi vs Geolocation & Markets Selecty",
+    slug: "selecty-alternative",
+    title: "Geolocation & Markets Selecty Alternative",
     alternativeName: "Geolocation & Markets Selecty",
     description: "适合比较翻译本地化工作流和国家识别/市场切换工具时使用。",
     summary:
@@ -2147,8 +2147,8 @@ const comparesZh: CompareItem[] = [
     ],
   },
   {
-    slug: "ciwi-vs-reversia",
-    title: "Ciwi vs Reversia",
+    slug: "reversia-alternative",
+    title: "Reversia Alternative",
     alternativeName: "Reversia",
     description: "适合比较高端 AI 翻译、自动同步、多语言 SEO 深度和高客单价方案时使用。",
     summary:

@@ -8,8 +8,9 @@ import {
   getBestShopifyAppsResources,
   getBlogResources,
   getCompareResources,
+  getFunctionScenarioGuideResources,
   getHelpCenterResources,
-  getLocalizationGuideResources,
+  getLocalizationGuideCategoryResources,
 } from "@/content/resources";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata} from "@/lib/seo/metadata";
@@ -29,16 +30,38 @@ export async function generateMetadata() {
 export default async function ResourcesPage() {
   const locale = await getRequestLocale();
   const copy = getResourcesPageCopy(locale);
-  const guideResources = getLocalizationGuideResources(locale);
+  const localizationGuideResources = getLocalizationGuideCategoryResources(locale);
+  const functionScenarioGuideResources = getFunctionScenarioGuideResources(locale);
   const helpCenterResources = getHelpCenterResources(locale);
   const blogResources = getBlogResources(locale);
   const compareResources = getCompareResources(locale);
   const bestShopifyAppsResources = getBestShopifyAppsResources(locale);
-  const featuredGuideResources = guideResources.slice(0, 3);
+  const featuredLocalizationGuideResources = localizationGuideResources.slice(0, 3);
+  const featuredFunctionScenarioGuideResources = functionScenarioGuideResources.slice(0, 3);
   const featuredHelpCenterResources = helpCenterResources.slice(0, 3);
   const featuredBlogResources = blogResources.slice(0, 3);
   const featuredCompareResources = compareResources.slice(0, 3);
   const featuredBestShopifyAppsResources = bestShopifyAppsResources.slice(0, 3);
+  const guideModuleResources = [
+    {
+      title: copy.sections.guides.categoryTitle,
+      description: copy.sections.guides.categoryDescription,
+      href: copy.sections.guides.categoryHref,
+      meta: [
+        copy.sections.guides.categoryEyebrow,
+        `${localizationGuideResources.length} ${copy.sections.guides.pagesLabel}`,
+      ],
+    },
+    {
+      title: copy.sections.guides.scenarioTitle,
+      description: copy.sections.guides.scenarioDescription,
+      href: copy.sections.guides.scenarioHref,
+      meta: [
+        copy.sections.guides.scenarioEyebrow,
+        `${functionScenarioGuideResources.length} ${copy.sections.guides.pagesLabel}`,
+      ],
+    },
+  ];
 
   return (
     <main className="resources-page">
@@ -58,16 +81,54 @@ export default async function ResourcesPage() {
             title={copy.sections.guides.title}
             description={copy.sections.guides.description}
           />
-          <div className="resource-grid">
-            {featuredGuideResources.map((item) => (
-              <ArticleCard
-                key={`${item.title}-${item.href}`}
-                title={item.title}
-                description={item.description}
-                href={item.href}
-                meta={item.meta}
-              />
-            ))}
+          <div className="resource-subsection">
+            <div className="resource-grid">
+              {guideModuleResources.map((item) => (
+                <ArticleCard
+                  key={`${item.title}-${item.href}`}
+                  title={item.title}
+                  description={item.description}
+                  href={item.href}
+                  meta={item.meta}
+                />
+              ))}
+            </div>
+          </div>
+          <div className="resource-subsection">
+            <SectionHeading
+              eyebrow={copy.sections.guides.categoryEyebrow}
+              title={copy.sections.guides.categoryTitle}
+              description={copy.sections.guides.categoryDescription}
+            />
+            <div className="resource-grid">
+              {featuredLocalizationGuideResources.map((item) => (
+                <ArticleCard
+                  key={`${item.title}-${item.href}`}
+                  title={item.title}
+                  description={item.description}
+                  href={item.href}
+                  meta={item.meta}
+                />
+              ))}
+            </div>
+          </div>
+          <div className="resource-subsection">
+            <SectionHeading
+              eyebrow={copy.sections.guides.scenarioEyebrow}
+              title={copy.sections.guides.scenarioTitle}
+              description={copy.sections.guides.scenarioDescription}
+            />
+            <div className="resource-grid">
+              {featuredFunctionScenarioGuideResources.map((item) => (
+                <ArticleCard
+                  key={`${item.title}-${item.href}`}
+                  title={item.title}
+                  description={item.description}
+                  href={item.href}
+                  meta={item.meta}
+                />
+              ))}
+            </div>
           </div>
           <div className="resources-section__cta">
             <Button href={copy.sections.guides.ctaHref} variant="secondary">

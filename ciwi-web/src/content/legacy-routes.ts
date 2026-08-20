@@ -1,3 +1,5 @@
+import {compareLegacyRootRouteMap} from "@/content/compare-slugs";
+
 export const legacyRouteMap = {
   translator: {
     title: "Translator 页面已迁移",
@@ -64,6 +66,7 @@ export const legacyRouteMap = {
     destination: "/about",
     description: "请使用新版 About 页面查看品牌说明。",
   },
+  ...compareLegacyRootRouteMap,
 };
 
 export type LegacyRouteSlug = keyof typeof legacyRouteMap;

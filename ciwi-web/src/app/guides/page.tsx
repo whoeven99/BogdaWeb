@@ -1,6 +1,7 @@
 import {ArticleCard} from "@/components/cards/ArticleCard";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
+import {getFunctionScenarioGuideTopics, getFunctionScenarioGuides} from "@/content/function-scenario-guides";
 import {getLocalizationGuides} from "@/content/localization-guides";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {localizeHref} from "@/lib/i18n";
@@ -23,31 +24,84 @@ export async function generateMetadata() {
 
 export default async function GuidesHubPage() {
   const locale = await getRequestLocale();
-  const guides = getLocalizationGuides(locale);
+  const localizationGuides = getLocalizationGuides(locale);
+  const functionScenarioGuides = getFunctionScenarioGuides(locale);
+  const localizationSegments = [...new Set(localizationGuides.map((guide) => guide.segmentLabel))];
+  const functionScenarioTopics = getFunctionScenarioGuideTopics();
   const copy =
     locale === "zh-cn"
       ? {
           structuredData: {
             name: "本地化指南",
             description: "面向行业、品牌与 B2B 场景的本地化与翻译指南集合页。",
-            keywords: ["本地化指南", "翻译指南", "SEO 页面模板", "全球化增长"],
+            keywords: ["本地化指南", "翻译指南", "SEO 页面模板", "全球化增长", "Shopify 功能场景"],
           },
           hero: {
             eyebrow: "Guides",
             title: "Localization & Translation Guides",
-            description: "这里集中承载行业化的 SEO guide 模板页，既能承接资源入口，也能继续批量扩展到更多细分类目。",
+            description: "这里集中承载行业 guide 和 Shopify 功能场景 guide，既能承接资源入口，也能继续批量扩展 SEO 页面。",
+          },
+          summaryCards: {
+            localization: "行业 / 品牌 / B2B",
+            scenarios: "Shopify 功能场景",
+            pagesLabel: "页面数",
+          },
+          quickJump: {
+            localization: "跳转到本地化指南",
+            scenarios: "跳转到功能场景指南",
+          },
+          sections: {
+            localization: {
+              eyebrow: "Localization Guides",
+              title: "行业、品牌与 B2B 本地化指南",
+              description: "适合承接行业类搜索需求，重点讲类目特点、市场习惯、常见错误和本地化策略。",
+              coverageLabel: "覆盖类目",
+              pagesLabel: "页面数",
+            },
+            scenarios: {
+              eyebrow: "Function Scenario Guides",
+              title: "Shopify 功能场景翻译指南",
+              description: "适合承接 how-to 搜索需求，重点讲某个 Shopify 功能点该翻哪些内容、怎么做、容易错在哪里。",
+              coverageLabel: "覆盖主题",
+              pagesLabel: "页面数",
+            },
           },
         }
       : {
           structuredData: {
             name: "Localization Guides",
-            description: "A reusable collection of localization and translation guide pages for industries, brand segments, and B2B categories.",
-            keywords: ["localization guide", "translation guide", "seo landing pages", "global ecommerce growth"],
+            description: "A reusable collection of localization and translation guide pages for industries, brand segments, B2B categories, and Shopify function scenarios.",
+            keywords: ["localization guide", "translation guide", "seo landing pages", "global ecommerce growth", "shopify how-to guides"],
           },
           hero: {
             eyebrow: "Guides",
             title: "Localization & Translation Guides",
-            description: "A scalable collection of industry-specific SEO pages for ecommerce, brand, and B2B localization demand.",
+            description: "A scalable collection of industry-specific SEO pages and Shopify function-scenario guides for multilingual growth.",
+          },
+          summaryCards: {
+            localization: "Industry / Brand / B2B",
+            scenarios: "Shopify Function Scenarios",
+            pagesLabel: "Pages",
+          },
+          quickJump: {
+            localization: "Jump to localization guides",
+            scenarios: "Jump to function scenario guides",
+          },
+          sections: {
+            localization: {
+              eyebrow: "Localization Guides",
+              title: "Industry, Brand, and B2B localization guides",
+              description: "Built for category-led search demand and broader localization education across markets, content types, and buying contexts.",
+              coverageLabel: "Coverage",
+              pagesLabel: "Pages",
+            },
+            scenarios: {
+              eyebrow: "Function Scenario Guides",
+              title: "Shopify function scenario guides",
+              description: "Built for how-to search intent around specific Shopify surfaces, translation tasks, and rollout workflows.",
+              coverageLabel: "Topics",
+              pagesLabel: "Pages",
+            },
           },
         };
 
@@ -84,8 +138,81 @@ export default async function GuidesHubPage() {
             description={copy.hero.description}
             as="h1"
           />
+          <div className="guide-meta-grid">
+            <div className="surface-card guide-meta-card">
+              <span>{copy.summaryCards.localization}</span>
+              <strong>
+                {localizationGuides.length} {copy.summaryCards.pagesLabel}
+              </strong>
+            </div>
+            <div className="surface-card guide-meta-card">
+              <span>{copy.summaryCards.scenarios}</span>
+              <strong>
+                {functionScenarioGuides.length} {copy.summaryCards.pagesLabel}
+              </strong>
+            </div>
+          </div>
+          <nav className="guide-hub-jumpnav" aria-label={locale === "zh-cn" ? "快速跳转" : "Quick jump"}>
+            <a href="#localization-guides" className="guide-chip">
+              {copy.quickJump.localization}
+            </a>
+            <a href="#function-scenario-guides" className="guide-chip">
+              {copy.quickJump.scenarios}
+            </a>
+          </nav>
+        </section>
+
+        <section id="localization-guides" className="page-section">
+          <SectionHeading
+            eyebrow={copy.sections.localization.eyebrow}
+            title={copy.sections.localization.title}
+            description={copy.sections.localization.description}
+          />
+          <div className="guide-hub-section__meta">
+            <div className="guide-chip-row">
+              <span className="guide-chip">
+                {copy.sections.localization.pagesLabel}: {localizationGuides.length}
+              </span>
+              {localizationSegments.map((segment) => (
+                <span key={segment} className="guide-chip">
+                  {segment}
+                </span>
+              ))}
+            </div>
+          </div>
           <div className="resource-grid">
-            {guides.map((guide) => (
+            {localizationGuides.map((guide) => (
+              <ArticleCard
+                key={guide.slug}
+                title={guide.title}
+                description={guide.description}
+                href={guide.href}
+                meta={[guide.segmentLabel, guide.guideLabel, String(guide.year)]}
+              />
+            ))}
+          </div>
+        </section>
+
+        <section id="function-scenario-guides" className="page-section">
+          <SectionHeading
+            eyebrow={copy.sections.scenarios.eyebrow}
+            title={copy.sections.scenarios.title}
+            description={copy.sections.scenarios.description}
+          />
+          <div className="guide-hub-section__meta">
+            <div className="guide-chip-row">
+              <span className="guide-chip">
+                {copy.sections.scenarios.pagesLabel}: {functionScenarioGuides.length}
+              </span>
+              {functionScenarioTopics.map((topic) => (
+                <span key={topic} className="guide-chip">
+                  {topic}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div className="resource-grid">
+            {functionScenarioGuides.map((guide) => (
               <ArticleCard
                 key={guide.slug}
                 title={guide.title}

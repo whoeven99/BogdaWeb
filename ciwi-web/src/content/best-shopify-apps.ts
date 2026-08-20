@@ -120,7 +120,7 @@ const collectionsEn: BestShopifyAppCollection[] = [
           "The workflow is usually less complete for broader localization governance",
           "Merchants often outgrow it once structured content and repeated updates become more complex",
         ],
-        href: "/compare/ciwi-vs-shopify-translate-adapt",
+        href: "/compare/shopify-translate-adapt-alternative",
       },
       {
         rank: 3,
@@ -139,7 +139,7 @@ const collectionsEn: BestShopifyAppCollection[] = [
           "Fast launch does not automatically mean easier long-term governance",
           "Merchants should review ongoing control and maintenance cost carefully",
         ],
-        href: "/compare/ciwi-vs-weglot",
+        href: "/compare/weglot-alternative",
       },
       {
         rank: 4,
@@ -158,7 +158,7 @@ const collectionsEn: BestShopifyAppCollection[] = [
           "Operational tradeoffs and long-term maintenance quality need closer review",
           "A broader bundle is not always the same as stronger structured localization governance",
         ],
-        href: "/compare/ciwi-vs-transcy",
+        href: "/compare/transcy-alternative",
       },
       {
         rank: 5,
@@ -177,7 +177,7 @@ const collectionsEn: BestShopifyAppCollection[] = [
           "Not the best fit if your store already depends on complex content structure",
           "May feel limiting once governance and sync requirements increase",
         ],
-        href: "/compare/ciwi-vs-langwill",
+        href: "/compare/langwill-alternative",
       },
       {
         rank: 6,
@@ -196,7 +196,7 @@ const collectionsEn: BestShopifyAppCollection[] = [
           "Manual control often means more operational effort over time",
           "Not the strongest option if your goal is reducing maintenance workload",
         ],
-        href: "/compare/ciwi-vs-langify",
+        href: "/compare/langify-alternative",
       },
     ],
     selectionGuide: [
@@ -320,7 +320,7 @@ const collectionsZh: BestShopifyAppCollection[] = [
           "对于更完整的本地化治理场景，工作流通常不够深",
           "当结构化内容和后续更新变复杂后，商家比较容易长出来更多需求",
         ],
-        href: "/compare/ciwi-vs-shopify-translate-adapt",
+        href: "/compare/shopify-translate-adapt-alternative",
       },
       {
         rank: 3,
@@ -339,7 +339,7 @@ const collectionsZh: BestShopifyAppCollection[] = [
           "上线快不等于后续治理就更省心",
           "长期控制力和维护成本仍然需要单独评估",
         ],
-        href: "/compare/ciwi-vs-weglot",
+        href: "/compare/weglot-alternative",
       },
       {
         rank: 4,
@@ -358,7 +358,7 @@ const collectionsZh: BestShopifyAppCollection[] = [
           "功能打包更全，不代表结构化本地化治理也更强",
           "长期运营层面的取舍仍然需要仔细看",
         ],
-        href: "/compare/ciwi-vs-transcy",
+        href: "/compare/transcy-alternative",
       },
       {
         rank: 5,
@@ -377,7 +377,7 @@ const collectionsZh: BestShopifyAppCollection[] = [
           "如果店铺内容结构已经比较复杂，适配度会下降",
           "当治理和同步要求提高之后，可能会觉得不够用",
         ],
-        href: "/compare/ciwi-vs-langwill",
+        href: "/compare/langwill-alternative",
       },
       {
         rank: 6,
@@ -396,7 +396,7 @@ const collectionsZh: BestShopifyAppCollection[] = [
           "手动控制通常意味着后续运营人力更多",
           "如果你的目标是降低维护成本，它未必是最优先的选择",
         ],
-        href: "/compare/ciwi-vs-langify",
+        href: "/compare/langify-alternative",
       },
     ],
     selectionGuide: [

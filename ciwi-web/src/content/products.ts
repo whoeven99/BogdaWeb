@@ -212,28 +212,28 @@ const productsEn: ProductItem[] = [
     ],
     compareLinks: [
       {
-        title: "Ciwi vs Shopify Translate & Adapt",
+        title: "Shopify Translate & Adapt Alternative",
         description: "Compare Shopify native localization with a more complete multilingual workflow.",
-        href: "/compare/ciwi-vs-shopify-translate-adapt",
+        href: "/compare/shopify-translate-adapt-alternative",
         meta: ["Compare", "Native vs workflow"],
       },
       {
-        title: "Ciwi vs Transcy",
+        title: "Transcy Alternative",
         description: "Compare Shopify fit, terminology control, and long-term maintenance cost.",
-        href: "/compare/ciwi-vs-transcy",
+        href: "/compare/transcy-alternative",
         meta: ["Compare", "Localization control"],
       },
       {
-        title: "Ciwi vs Weglot",
+        title: "Weglot Alternative",
         description: "See the difference between fast-coverage paths and deeper localization governance.",
-        href: "/compare/ciwi-vs-weglot",
+        href: "/compare/weglot-alternative",
         meta: ["Compare", "Launch vs governance"],
       },
     ],
     relatedResources: [
       {title: "About the Ciwi AI Translator Shopify app", href: "/help-center/ShopifyApp/about-ciwi-ai-translator-shopify-app/", meta: ["Help Center", "Overview"]},
       {title: "How to set up and use glossary?", href: "/help-center/ShopifyApp/how-to-setup-and-use-glossary/", meta: ["Help Center", "Glossary"]},
-      {title: "Ciwi vs Shopify Translate & Adapt", href: "/compare/ciwi-vs-shopify-translate-adapt", meta: ["Compare", "Selection"]},
+      {title: "Shopify Translate & Adapt Alternative", href: "/compare/shopify-translate-adapt-alternative", meta: ["Compare", "Selection"]},
     ],
     faq: [
       {question: "What is the main difference between Ciwi and a generic translation tool?", answer: "Ciwi is better suited to Shopify-specific structured content, terminology control, and continuous sync, so multilingual operations stay more complete over time."},
@@ -527,28 +527,28 @@ const productsZh: ProductItem[] = [
     ],
     compareLinks: [
       {
-        title: "Ciwi vs Shopify Translate & Adapt",
+        title: "Shopify Translate & Adapt Alternative",
         description: "比较 Shopify 原生多语言能力和更完整本地化工作流的差异。",
-        href: "/compare/ciwi-vs-shopify-translate-adapt",
+        href: "/compare/shopify-translate-adapt-alternative",
         meta: ["Compare", "Native vs workflow"],
       },
       {
-        title: "Ciwi vs Transcy",
+        title: "Transcy Alternative",
         description: "从 Shopify 适配深度、术语控制和长期维护成本三个维度看差异。",
-        href: "/compare/ciwi-vs-transcy",
+        href: "/compare/transcy-alternative",
         meta: ["Compare", "Localization control"],
       },
       {
-        title: "Ciwi vs Weglot",
+        title: "Weglot Alternative",
         description: "适合比较快速覆盖型方案和更强调内容治理路径的不同。",
-        href: "/compare/ciwi-vs-weglot",
+        href: "/compare/weglot-alternative",
         meta: ["Compare", "Launch vs governance"],
       },
     ],
     relatedResources: [
       {title: "About ciwi.ai-translator Shopify App", href: "/help-center/ShopifyApp/about-ciwi-ai-translator-shopify-app/", meta: ["Help Center", "Overview"]},
       {title: "How to setup and use glossary?", href: "/help-center/ShopifyApp/how-to-setup-and-use-glossary/", meta: ["Help Center", "Glossary"]},
-      {title: "Ciwi vs Shopify Translate & Adapt", href: "/compare/ciwi-vs-shopify-translate-adapt", meta: ["Compare", "Selection"]},
+      {title: "Shopify Translate & Adapt Alternative", href: "/compare/shopify-translate-adapt-alternative", meta: ["Compare", "Selection"]},
     ],
     faq: [
       {question: "Ciwi 和普通翻译工具的核心区别是什么？", answer: "Ciwi 更适合 Shopify 场景里的结构化内容翻译、术语控制和持续同步，能把多语言运营做得更完整。"},

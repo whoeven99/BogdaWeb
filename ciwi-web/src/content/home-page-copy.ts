@@ -48,9 +48,9 @@ const homePageCopyEn = {
         meta: ["Help Center", "Glossary"],
       },
       {
-        title: "Compare Ciwi vs Transcy",
+        title: "Transcy Alternative",
         description: "A quick way to compare long-term maintenance cost and localization control when you are choosing a solution.",
-        href: "/compare/ciwi-vs-transcy",
+        href: "/compare/transcy-alternative",
         meta: ["Compare", "SEO"],
       },
     ],
@@ -183,9 +183,9 @@ const homePageCopyZh: typeof homePageCopyEn = {
         meta: ["帮助中心", "Glossary"],
       },
       {
-        title: "Compare Ciwi vs Transcy",
+        title: "Transcy Alternative",
         description: "适合正在选型的商家，快速看清长期维护成本和本地化控制差异。",
-        href: "/compare/ciwi-vs-transcy",
+        href: "/compare/transcy-alternative",
         meta: ["对比", "SEO"],
       },
     ],
