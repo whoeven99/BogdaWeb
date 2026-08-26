@@ -13,8 +13,10 @@ import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getProductDemoMediaBriefs, getProductHeroMediaBriefs} from "@/content/media-briefs";
 import {getProductMap, products} from "@/content/products";
+import {localizeHref} from "@/lib/i18n";
 import {getRequestLocale} from "@/lib/i18n-server";
-import {buildPageMetadata} from "@/lib/seo/metadata";
+import {buildPageMetadata, siteUrl} from "@/lib/seo/metadata";
+import {buildBreadcrumbSchema, buildFaqSchema, buildWebPageSchema} from "@/lib/seo/schema";
 
 type ProductDetailPageProps = {
   params: Promise<{slug: string}>;
@@ -241,6 +243,21 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
     notFound();
   }
 
+  const pageUrl = new URL(localizeHref(locale, `/products/${product.slug}`), siteUrl).toString();
+  const structuredData = [
+    buildBreadcrumbSchema([
+      {name: "Home", item: siteUrl},
+      {name: locale === "zh-cn" ? "产品" : "Products", item: new URL(localizeHref(locale, "/products"), siteUrl).toString()},
+      {name: product.name, item: pageUrl},
+    ]),
+    buildWebPageSchema({
+      url: pageUrl,
+      name: product.name,
+      description: product.heroDescription,
+      keywords: [product.name, ...product.metrics],
+    }),
+    buildFaqSchema(product.faq),
+  ];
   const isTranslator = product.slug === "translator";
   const translatorCopy = isTranslator ? copy.translator : null;
   const anchorItems = (isTranslator ? translatorCopy?.anchors : copy.anchors)?.map((item) => ({...item})) ?? [];
@@ -250,6 +267,13 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
   return (
     <main>
       <PageContainer>
+        {structuredData.map((schema, index) => (
+          <script
+            key={`${product.slug}-schema-${index}`}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{__html: JSON.stringify(schema)}}
+          />
+        ))}
         <section className="page-section page-hero">
           <div className={isTranslator ? "detail-grid detail-grid--single" : "detail-grid"}>
             <div>

@@ -1,23 +1,4 @@
 import type { NextConfig } from "next";
-import {compareSlugRedirectMap} from "./src/content/compare-slugs";
-
-const compareRedirects = Object.entries(compareSlugRedirectMap).flatMap(([legacyCompareSlug, canonicalSlug]) => [
-  {
-    source: `/compare/${legacyCompareSlug}`,
-    destination: `/compare/${canonicalSlug}/`,
-    permanent: true,
-  },
-  {
-    source: `/${legacyCompareSlug}`,
-    destination: `/compare/${canonicalSlug}/`,
-    permanent: true,
-  },
-  {
-    source: `/${legacyCompareSlug.replace(/^ciwi-/, "")}`,
-    destination: `/compare/${canonicalSlug}/`,
-    permanent: true,
-  },
-]);
 
 const legacyMarketingRedirectTargets = {
   "product-title-generation": "/products/content-ai/#features",
@@ -48,7 +29,6 @@ const nextConfig: NextConfig = {
   trailingSlash: true,
   async redirects() {
     return [
-      ...compareRedirects,
       ...legacyMarketingRedirects,
       {
         source: "/ghost/:path*",

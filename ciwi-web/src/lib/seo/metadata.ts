@@ -12,6 +12,7 @@ type MetadataInput = {
 
 export const siteName = "Ciwi";
 export const siteUrl = "https://ciwi.ai";
+export const siteDefaultOgImage = new URL("/logo-150.png", siteUrl).toString();
 
 export function buildPageMetadata({title, description, path = "/", locale = "en", supportedLocales}: MetadataInput): Metadata {
   const fullTitle = `${title} | ${siteName}`;
@@ -42,11 +43,18 @@ export function buildPageMetadata({title, description, path = "/", locale = "en"
       url: canonical,
       siteName,
       type: "website",
+      images: [
+        {
+          url: siteDefaultOgImage,
+          alt: `${siteName} logo`,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: fullTitle,
       description,
+      images: [siteDefaultOgImage],
     },
   };
 }
