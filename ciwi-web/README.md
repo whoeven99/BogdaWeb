@@ -6,6 +6,7 @@ Ciwi 官方站点，基于 Next.js 15、TypeScript 和文件化内容系统构�
 
 - 前台站点：`ciwi-web`
 - 内容来源：`content/**/*.mdx`
+- Guide 数据：`src/content/data/*.json`
 - 权限与发布：GitHub PR + Render 自动构建
 - i18n 路由：英文 `/`，中文 `/zh-cn/`
 
@@ -58,6 +59,7 @@ npm run build
 - 同 collection + locale 下是否重复 `slug`
 - 同 `entryId` 下是否重复语言版本
 - MDX 中引用的本地图片是否存在
+- Guide JSON 的必填字段、`href/slug` 一致性、发布状态与翻译状态
 
 对于单语先发这类情况，校验会给出 warning，但不会阻断构建。
 
@@ -101,6 +103,28 @@ npm run content:translate -- --type=help-center --from=en --to=zh-cn --slug=how-
 - 该命令只会生成目标语言草稿文件
 - 草稿会自动写入 `status: draft`
 - 生成后需要人工校对标题、描述、正文和 slug，再改为 `published`
+
+## Guide 翻译草稿
+
+Guide 内容使用 JSON 数据文件维护，可先批量生成另一语言的草稿：
+
+```bash
+npm run guides:translate -- --type=localization --from=en --to=zh-cn
+npm run guides:translate -- --type=function-scenario --from=en --to=zh-cn
+```
+
+单篇生成示例：
+
+```bash
+npm run guides:translate -- --type=localization --from=en --to=zh-cn --slug=shopify-translation-guide-2026
+```
+
+说明：
+
+- 草稿会写入 `src/content/data/*.zh-cn.json`
+- 草稿默认是 `status: draft`、`translationStatus: ai-draft`
+- 只有把条目校对完成并改成 `status: published` 后，前台才会展示对应语言版本
+- 已发布 guide 不允许保留 `[TODO ...]` 标记，也不允许继续保留 `translationStatus: ai-draft`
 
 ## 当前可用的 MDX 组件
 

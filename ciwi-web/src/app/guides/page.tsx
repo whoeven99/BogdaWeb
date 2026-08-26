@@ -27,7 +27,7 @@ export default async function GuidesHubPage() {
   const localizationGuides = getLocalizationGuides(locale);
   const functionScenarioGuides = getFunctionScenarioGuides(locale);
   const localizationSegments = [...new Set(localizationGuides.map((guide) => guide.segmentLabel))];
-  const functionScenarioTopics = getFunctionScenarioGuideTopics();
+  const functionScenarioTopics = getFunctionScenarioGuideTopics(locale);
   const copy =
     locale === "zh-cn"
       ? {
@@ -66,6 +66,10 @@ export default async function GuidesHubPage() {
               pagesLabel: "页面数",
             },
           },
+          emptyState: {
+            title: "中文版指南正在准备中",
+            description: "当前这批 guides 还没有正式的中文正文版本。我们先保留英文文章页，避免把未翻译内容误当成中文文章展示。",
+          },
         }
       : {
           structuredData: {
@@ -102,6 +106,10 @@ export default async function GuidesHubPage() {
               coverageLabel: "Topics",
               pagesLabel: "Pages",
             },
+          },
+          emptyState: {
+            title: "Guide translations are not published yet",
+            description: "This guide collection currently ships only with English article bodies. We hide unavailable locale entries until each translated version is ready.",
           },
         };
 
@@ -181,15 +189,22 @@ export default async function GuidesHubPage() {
             </div>
           </div>
           <div className="resource-grid">
-            {localizationGuides.map((guide) => (
-              <ArticleCard
-                key={guide.slug}
-                title={guide.title}
-                description={guide.description}
-                href={guide.href}
-                meta={[guide.segmentLabel, guide.guideLabel, String(guide.year)]}
-              />
-            ))}
+            {localizationGuides.length > 0 ? (
+              localizationGuides.map((guide) => (
+                <ArticleCard
+                  key={guide.slug}
+                  title={guide.title}
+                  description={guide.description}
+                  href={guide.href}
+                  meta={[guide.segmentLabel, guide.guideLabel, String(guide.year)]}
+                />
+              ))
+            ) : (
+              <div className="surface-card">
+                <h3>{copy.emptyState.title}</h3>
+                <p className="quote">{copy.emptyState.description}</p>
+              </div>
+            )}
           </div>
         </section>
 
@@ -212,15 +227,22 @@ export default async function GuidesHubPage() {
             </div>
           </div>
           <div className="resource-grid">
-            {functionScenarioGuides.map((guide) => (
-              <ArticleCard
-                key={guide.slug}
-                title={guide.title}
-                description={guide.description}
-                href={guide.href}
-                meta={[guide.segmentLabel, guide.guideLabel, String(guide.year)]}
-              />
-            ))}
+            {functionScenarioGuides.length > 0 ? (
+              functionScenarioGuides.map((guide) => (
+                <ArticleCard
+                  key={guide.slug}
+                  title={guide.title}
+                  description={guide.description}
+                  href={guide.href}
+                  meta={[guide.segmentLabel, guide.guideLabel, String(guide.year)]}
+                />
+              ))
+            ) : (
+              <div className="surface-card">
+                <h3>{copy.emptyState.title}</h3>
+                <p className="quote">{copy.emptyState.description}</p>
+              </div>
+            )}
           </div>
         </section>
       </PageContainer>

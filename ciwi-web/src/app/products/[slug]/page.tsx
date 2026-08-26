@@ -50,12 +50,19 @@ function getProductDetailCopy(locale: "en" | "zh-cn") {
       translator: {
         anchors: [
           {label: "典型场景", href: "#use-cases"},
+          {label: "视频演示", href: "#video-demo"},
           {label: "功能总览", href: "#function-overview"},
           {label: "产品对比", href: "#compare"},
           {label: "相关资源", href: "#resources"},
           {label: "FAQ", href: "#faq"},
         ],
         sections: {
+          video: {
+            id: "video-demo",
+            eyebrow: "视频演示",
+            title: "先用视频快速看一遍产品体验",
+            description: "通过一段真实演示，先快速理解 Ciwi AI Translator 的界面、翻译流程和核心能力。",
+          },
           featureSpotlights: {
             id: "function-overview",
             eyebrow: "功能总览",
@@ -134,12 +141,19 @@ function getProductDetailCopy(locale: "en" | "zh-cn") {
     translator: {
       anchors: [
         {label: "Use cases", href: "#use-cases"},
+        {label: "Video", href: "#video-demo"},
         {label: "Functions", href: "#function-overview"},
         {label: "Compare", href: "#compare"},
         {label: "Resources", href: "#resources"},
         {label: "FAQ", href: "#faq"},
       ],
       sections: {
+        video: {
+          id: "video-demo",
+          eyebrow: "Video demo",
+          title: "See the product in action first",
+          description: "Use a short walkthrough to understand the Ciwi AI Translator interface, translation flow, and core capabilities faster.",
+        },
         featureSpotlights: {
           id: "function-overview",
           eyebrow: "Function overview",
@@ -322,6 +336,25 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
 
         {isTranslator && translatorCopy ? (
           <>
+            <section className="page-section anchor-offset" id={translatorCopy.sections.video.id}>
+              <SectionHeading
+                eyebrow={translatorCopy.sections.video.eyebrow}
+                title={translatorCopy.sections.video.title}
+                description={translatorCopy.sections.video.description}
+              />
+              <div className="surface-card section-stack">
+                <div className="mdx-video">
+                  <div className="mdx-video__frame">
+                    <iframe
+                      src="https://www.youtube-nocookie.com/embed/rAFB3AuXuH0"
+                      title="Ciwi AI Translator video demo"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                    />
+                  </div>
+                </div>
+              </div>
+            </section>
             <div id="models" className="anchor-offset" />
             <div id="engines" className="anchor-offset" />
             <div id="glossary" className="anchor-offset" />
