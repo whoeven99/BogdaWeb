@@ -1,5 +1,7 @@
 import type {Locale} from "@/lib/i18n";
 import importedGuides from "@/content/data/function_scenario_guides.json";
+import importedGuidesZh from "@/content/data/function_scenario_guides.zh-cn.json";
+import {createLocalizedGuideContent} from "@/content/guide-content";
 
 export type FunctionScenarioOverviewDriver = {
   title: string;
@@ -40,6 +42,9 @@ export type FunctionScenarioGuide = {
   slug: string;
   href: string;
   year: number;
+  status?: "draft" | "published";
+  sourceLocale?: Locale;
+  translationStatus?: "manual" | "ai-draft" | "reviewed";
   title: string;
   description: string;
   industry: string;
@@ -59,23 +64,27 @@ export type FunctionScenarioGuide = {
   faq: FunctionScenarioFaq[];
 };
 
-export const functionScenarioGuides = importedGuides as FunctionScenarioGuide[];
+const functionScenarioGuidesByLocale = {
+  en: importedGuides as FunctionScenarioGuide[],
+  "zh-cn": importedGuidesZh as FunctionScenarioGuide[],
+} as const;
 
-const functionScenarioGuideMap = Object.fromEntries(functionScenarioGuides.map((guide) => [guide.slug, guide])) as Record<
-  string,
-  FunctionScenarioGuide
->;
+const functionScenarioGuideContent = createLocalizedGuideContent(functionScenarioGuidesByLocale);
+
+export const functionScenarioGuides = functionScenarioGuideContent.getItems("en");
 
 export function getFunctionScenarioGuides(locale: Locale) {
-  void locale;
-  return functionScenarioGuides;
+  return functionScenarioGuideContent.getItems(locale);
 }
 
 export function getFunctionScenarioGuideMap(locale: Locale) {
-  void locale;
-  return functionScenarioGuideMap;
+  return functionScenarioGuideContent.getMap(locale);
 }
 
-export function getFunctionScenarioGuideTopics() {
-  return [...new Set(functionScenarioGuides.map((guide) => guide.topic))];
+export function getAvailableFunctionScenarioGuideLocales(slug: string) {
+  return functionScenarioGuideContent.getAvailableLocales(slug);
+}
+
+export function getFunctionScenarioGuideTopics(locale: Locale) {
+  return [...new Set(getFunctionScenarioGuides(locale).map((guide) => guide.topic))];
 }

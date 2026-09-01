@@ -1,12 +1,12 @@
-import {notFound} from "next/navigation";
+import {notFound, permanentRedirect} from "next/navigation";
 
 import {FaqSection} from "@/components/sections/FaqSection";
 import {Button} from "@/components/ui/Button";
 import {LocalizedLink} from "@/components/ui/LocalizedLink";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
-import {getFunctionScenarioGuideMap, getFunctionScenarioGuides} from "@/content/function-scenario-guides";
-import {getLocalizationGuideMap, getLocalizationGuides} from "@/content/localization-guides";
+import {getAvailableFunctionScenarioGuideLocales, getFunctionScenarioGuideMap, getFunctionScenarioGuides} from "@/content/function-scenario-guides";
+import {getAvailableLocalizationGuideLocales, getLocalizationGuideMap, getLocalizationGuides} from "@/content/localization-guides";
 import {getUiCopy} from "@/content/ui-copy";
 import {localizeHref} from "@/lib/i18n";
 import {getRequestLocale} from "@/lib/i18n-server";
@@ -1248,8 +1248,10 @@ export function generateStaticParams() {
 export async function generateMetadata({params}: GuideDetailPageProps) {
   const locale = await getRequestLocale();
   const {slug} = await params;
-  const localizationGuide = getLocalizationGuideMap(locale)[slug];
-  const functionScenarioGuide = getFunctionScenarioGuideMap(locale)[slug];
+  const availableLocales = [...new Set([...getAvailableLocalizationGuideLocales(slug), ...getAvailableFunctionScenarioGuideLocales(slug)])];
+  const primaryLocale = availableLocales[0] ?? "en";
+  const localizationGuide = getLocalizationGuideMap(primaryLocale)[slug];
+  const functionScenarioGuide = getFunctionScenarioGuideMap(primaryLocale)[slug];
   const localizationCopy = getLocalizationGuidePageCopy(locale);
   const guide = localizationGuide ?? functionScenarioGuide;
 
@@ -1259,6 +1261,7 @@ export async function generateMetadata({params}: GuideDetailPageProps) {
       description: localizationCopy.notFound.description,
       path: localizationCopy.notFound.path,
       locale,
+      supportedLocales: availableLocales.length > 0 ? availableLocales : ["en"],
     });
   }
 
@@ -1267,20 +1270,31 @@ export async function generateMetadata({params}: GuideDetailPageProps) {
     description: guide.description,
     path: guide.href,
     locale,
+    supportedLocales: availableLocales,
   });
 }
 
 export default async function GuideDetailPage({params}: GuideDetailPageProps) {
   const locale = await getRequestLocale();
   const {slug} = await params;
+  const availableLocales = [...new Set([...getAvailableLocalizationGuideLocales(slug), ...getAvailableFunctionScenarioGuideLocales(slug)])];
+  const fallbackLocale = availableLocales[0] ?? "en";
+  const localizationGuide = getLocalizationGuideMap(locale)[slug] ?? getLocalizationGuideMap(fallbackLocale)[slug];
+  const functionScenarioGuide = getFunctionScenarioGuideMap(locale)[slug] ?? getFunctionScenarioGuideMap(fallbackLocale)[slug];
+
+  if (!availableLocales.includes(locale)) {
+    const guide = localizationGuide ?? functionScenarioGuide;
+
+    if (guide) {
+      permanentRedirect(localizeHref(fallbackLocale, guide.href));
+    }
+  }
+
   const uiCopy = getUiCopy(locale);
-  const localizationGuide = getLocalizationGuideMap(locale)[slug];
 
   if (localizationGuide) {
     return renderLocalizationGuidePage(locale, localizationGuide, uiCopy);
   }
-
-  const functionScenarioGuide = getFunctionScenarioGuideMap(locale)[slug];
 
   if (functionScenarioGuide) {
     return renderFunctionScenarioGuidePage(locale, functionScenarioGuide, uiCopy);

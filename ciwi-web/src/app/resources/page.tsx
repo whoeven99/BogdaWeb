@@ -30,6 +30,16 @@ export async function generateMetadata() {
 export default async function ResourcesPage() {
   const locale = await getRequestLocale();
   const copy = getResourcesPageCopy(locale);
+  const unavailableGuideCopy =
+    locale === "zh-cn"
+      ? {
+          title: "中文版指南正在准备中",
+          description: "当前 guide 正文还没有正式中文版本，所以这里先不展示未翻译文章入口。",
+        }
+      : {
+          title: "Guide translations are not published yet",
+          description: "We only show guide entries in locales that already have a published article body.",
+        };
   const localizationGuideResources = getLocalizationGuideCategoryResources(locale);
   const functionScenarioGuideResources = getFunctionScenarioGuideResources(locale);
   const helpCenterResources = getHelpCenterResources(locale);
@@ -101,15 +111,22 @@ export default async function ResourcesPage() {
               description={copy.sections.guides.categoryDescription}
             />
             <div className="resource-grid">
-              {featuredLocalizationGuideResources.map((item) => (
-                <ArticleCard
-                  key={`${item.title}-${item.href}`}
-                  title={item.title}
-                  description={item.description}
-                  href={item.href}
-                  meta={item.meta}
-                />
-              ))}
+              {featuredLocalizationGuideResources.length > 0 ? (
+                featuredLocalizationGuideResources.map((item) => (
+                  <ArticleCard
+                    key={`${item.title}-${item.href}`}
+                    title={item.title}
+                    description={item.description}
+                    href={item.href}
+                    meta={item.meta}
+                  />
+                ))
+              ) : (
+                <div className="surface-card">
+                  <h3>{unavailableGuideCopy.title}</h3>
+                  <p className="quote">{unavailableGuideCopy.description}</p>
+                </div>
+              )}
             </div>
           </div>
           <div className="resource-subsection">
@@ -119,15 +136,22 @@ export default async function ResourcesPage() {
               description={copy.sections.guides.scenarioDescription}
             />
             <div className="resource-grid">
-              {featuredFunctionScenarioGuideResources.map((item) => (
-                <ArticleCard
-                  key={`${item.title}-${item.href}`}
-                  title={item.title}
-                  description={item.description}
-                  href={item.href}
-                  meta={item.meta}
-                />
-              ))}
+              {featuredFunctionScenarioGuideResources.length > 0 ? (
+                featuredFunctionScenarioGuideResources.map((item) => (
+                  <ArticleCard
+                    key={`${item.title}-${item.href}`}
+                    title={item.title}
+                    description={item.description}
+                    href={item.href}
+                    meta={item.meta}
+                  />
+                ))
+              ) : (
+                <div className="surface-card">
+                  <h3>{unavailableGuideCopy.title}</h3>
+                  <p className="quote">{unavailableGuideCopy.description}</p>
+                </div>
+              )}
             </div>
           </div>
           <div className="resources-section__cta">

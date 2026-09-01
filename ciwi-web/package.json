@@ -10,7 +10,8 @@
     "content:new": "node ./scripts/create-content-document.mjs",
     "best-apps:generate": "node ./scripts/generate-best-shopify-apps.mjs",
     "content:validate": "node ./scripts/validate-content.mjs",
-    "content:translate": "node ./scripts/create-translation-draft.mjs"
+    "content:translate": "node ./scripts/create-translation-draft.mjs",
+    "guides:translate": "node ./scripts/create-guide-translation-draft.mjs"
   },
   "dependencies": {
     "@ant-design/icons": "^6.0.0",

@@ -2,7 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 
 const DEFAULT_INPUT_DIR = "/Users/cedric/Downloads/方向3_功能场景";
-const OUTPUT_PATH = path.resolve("src/content/data/function_scenario_guides.json");
+const DEFAULT_LOCALE = "en";
 const SAMPLE_FILE_NAME = "Ciwi_W3_样板_03_功能_产品描述.json";
 const FILE_PREFIX = "Ciwi_W3_内容_03_";
 const FILE_SUFFIX = ".json";
@@ -32,6 +32,28 @@ const EXPECTED_KEYS = [
 
 function normalizeKeys(keys) {
   return [...keys].sort();
+}
+
+function readLocaleArg() {
+  const localeArg = process.argv.find((value) => value.startsWith("--locale="));
+
+  if (!localeArg) {
+    return DEFAULT_LOCALE;
+  }
+
+  const locale = localeArg.slice("--locale=".length);
+
+  if (!["en", "zh-cn"].includes(locale)) {
+    throw new Error(`Unsupported locale: ${locale}`);
+  }
+
+  return locale;
+}
+
+function getOutputPath(locale) {
+  return locale === "en"
+    ? path.resolve("src/content/data/function_scenario_guides.json")
+    : path.resolve(`src/content/data/function_scenario_guides.${locale}.json`);
 }
 
 function assertExpectedKeys(item, fileName, index) {
@@ -97,13 +119,15 @@ async function loadGuides(inputDir) {
 }
 
 async function main() {
-  const inputDir = process.argv[2] ?? DEFAULT_INPUT_DIR;
+  const locale = readLocaleArg();
+  const inputDir = process.argv.find((value) => !value.startsWith("--") && value !== process.argv[0] && value !== process.argv[1]) ?? DEFAULT_INPUT_DIR;
+  const outputPath = getOutputPath(locale);
   const guides = await loadGuides(inputDir);
 
-  await fs.mkdir(path.dirname(OUTPUT_PATH), {recursive: true});
-  await fs.writeFile(OUTPUT_PATH, `${JSON.stringify(guides, null, 2)}\n`, "utf8");
+  await fs.mkdir(path.dirname(outputPath), {recursive: true});
+  await fs.writeFile(outputPath, `${JSON.stringify(guides, null, 2)}\n`, "utf8");
 
-  console.log(`Imported ${guides.length} function scenario guides to ${OUTPUT_PATH}`);
+  console.log(`Imported ${guides.length} ${locale} function scenario guides to ${outputPath}`);
 }
 
 main().catch((error) => {

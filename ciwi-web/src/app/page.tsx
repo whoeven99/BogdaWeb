@@ -9,8 +9,10 @@ import {PageContainer} from "@/components/ui/PageContainer";
 import {getHomePageCopy} from "@/content/home-page-copy";
 import {getProducts} from "@/content/products";
 import {getUiCopy} from "@/content/ui-copy";
+import {localizeHref} from "@/lib/i18n";
 import {getRequestLocale} from "@/lib/i18n-server";
-import {buildPageMetadata} from "@/lib/seo/metadata";
+import {buildPageMetadata, siteUrl} from "@/lib/seo/metadata";
+import {buildBreadcrumbSchema, buildFaqSchema, buildWebPageSchema} from "@/lib/seo/schema";
 
 export async function generateMetadata() {
   const locale = await getRequestLocale();
@@ -29,10 +31,30 @@ export default async function HomePage() {
   const copy = getHomePageCopy(locale);
   const uiCopy = getUiCopy(locale);
   const products = getProducts(locale);
+  const pageUrl = new URL(localizeHref(locale, "/"), siteUrl).toString();
+  const structuredData = [
+    buildBreadcrumbSchema([
+      {name: "Home", item: pageUrl},
+    ]),
+    buildWebPageSchema({
+      url: pageUrl,
+      name: locale === "zh-cn" ? "Shopify AI 增长平台" : "Shopify AI Growth Platform",
+      description: copy.hero.description,
+      keywords: locale === "zh-cn" ? ["Shopify AI", "Shopify 多语言", "Ciwi"] : ["Shopify AI", "Shopify localization", "Ciwi"],
+    }),
+    buildFaqSchema(copy.homeFaq),
+  ];
 
   return (
     <main>
       <PageContainer>
+        {structuredData.map((schema, index) => (
+          <script
+            key={`home-schema-${index}`}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{__html: JSON.stringify(schema)}}
+          />
+        ))}
         <HeroSection
           eyebrow={copy.hero.eyebrow}
           title={copy.hero.title}

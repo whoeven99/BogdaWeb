@@ -1,7 +1,6 @@
 import type {BlogPost} from "@/content/blog";
 import type {CompareItem} from "@/content/compare";
 import type {HelpCenterDoc} from "@/content/help-center";
-import type {ProductItem} from "@/content/products";
 import type {SolutionItem} from "@/content/solutions";
 
 export type MediaAssetBrief = {
@@ -87,40 +86,6 @@ export const compareIndexMediaBriefs: MediaAssetBrief[] = [
     ],
   },
 ];
-
-export function getProductHeroMediaBriefs(product: ProductItem): MediaAssetBrief[] {
-  return [
-    {
-      title: `${product.name} hero visual`,
-      format: "Image",
-      aspectRatio: "16:10",
-      placement: `产品页 Hero: /products/${product.slug}`,
-      description: `用一张横向产品图展示 ${product.name} 最核心的使用界面或结果界面，让用户在读功能前先看到产品长什么样。`,
-      checklist: [
-        "优先展示真实产品界面，而不是抽象图标",
-        "画面中最好直接体现一个关键收益点",
-        "避免放太多小字，保证缩小后仍然清楚",
-      ],
-    },
-  ];
-}
-
-export function getProductDemoMediaBriefs(product: ProductItem): MediaAssetBrief[] {
-  return [
-    {
-      title: `${product.name} walkthrough video`,
-      format: "Video",
-      aspectRatio: "16:9",
-      placement: `产品页 Demo 区块: /products/${product.slug}`,
-      description: `录一段 30 到 60 秒的操作演示，围绕 ${product.demoHighlights.slice(0, 2).join("、")} 展示产品价值。`,
-      checklist: [
-        "视频尽量只讲一个完整任务，不要横跳太多功能",
-        "开头先给结果，再展示操作过程",
-        "如果是后台录屏，鼠标路径和点击节奏要干净",
-      ],
-    },
-  ];
-}
 
 export function getSolutionMediaBriefs(solution: SolutionItem): MediaAssetBrief[] {
   return [

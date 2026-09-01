@@ -1,7 +1,6 @@
 import {ArticleCard} from "@/components/cards/ArticleCard";
 import {DemoShowcaseSection} from "@/components/sections/DemoShowcaseSection";
 import {InteractiveDemoExplorer} from "@/components/sections/InteractiveDemoExplorer";
-import {MediaPlaceholderSection} from "@/components/sections/MediaPlaceholderSection";
 import {ProductAnchorNav} from "@/components/sections/ProductAnchorNav";
 import {ProductFeatureSpotlightsSection} from "@/components/sections/ProductFeatureSpotlightsSection";
 import {Button} from "@/components/ui/Button";
@@ -11,10 +10,11 @@ import {FaqSection} from "@/components/sections/FaqSection";
 import {FinalCtaSection} from "@/components/sections/FinalCtaSection";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
-import {getProductDemoMediaBriefs, getProductHeroMediaBriefs} from "@/content/media-briefs";
 import {getProductMap, products} from "@/content/products";
+import {localizeHref} from "@/lib/i18n";
 import {getRequestLocale} from "@/lib/i18n-server";
-import {buildPageMetadata} from "@/lib/seo/metadata";
+import {buildPageMetadata, siteUrl} from "@/lib/seo/metadata";
+import {buildBreadcrumbSchema, buildFaqSchema, buildWebPageSchema} from "@/lib/seo/schema";
 
 type ProductDetailPageProps = {
   params: Promise<{slug: string}>;
@@ -50,12 +50,19 @@ function getProductDetailCopy(locale: "en" | "zh-cn") {
       translator: {
         anchors: [
           {label: "典型场景", href: "#use-cases"},
+          {label: "视频演示", href: "#video-demo"},
           {label: "功能总览", href: "#function-overview"},
           {label: "产品对比", href: "#compare"},
           {label: "相关资源", href: "#resources"},
           {label: "FAQ", href: "#faq"},
         ],
         sections: {
+          video: {
+            id: "video-demo",
+            eyebrow: "视频演示",
+            title: "先用视频快速看一遍产品体验",
+            description: "通过一段真实演示，先快速理解 Ciwi AI Translator 的界面、翻译流程和核心能力。",
+          },
           featureSpotlights: {
             id: "function-overview",
             eyebrow: "功能总览",
@@ -68,18 +75,6 @@ function getProductDetailCopy(locale: "en" | "zh-cn") {
             title: "为什么选择 Ciwi",
             description: "我们的产品理念：始终和商家利益保持一致，为结果负责。",
           },
-        },
-      },
-      media: {
-        hero: {
-          eyebrow: "产品素材",
-          title: "产品主视觉预留",
-          description: "这里建议补真实产品图，让用户更快看到界面和使用场景。",
-        },
-        demo: {
-          eyebrow: "演示素材",
-          title: "产品演示素材预留",
-          description: "产品页更适合放一段真实录屏或核心结果图，帮助用户快速判断是否值得继续看。",
         },
       },
       sections: {
@@ -134,12 +129,19 @@ function getProductDetailCopy(locale: "en" | "zh-cn") {
     translator: {
       anchors: [
         {label: "Use cases", href: "#use-cases"},
+        {label: "Video", href: "#video-demo"},
         {label: "Functions", href: "#function-overview"},
         {label: "Compare", href: "#compare"},
         {label: "Resources", href: "#resources"},
         {label: "FAQ", href: "#faq"},
       ],
       sections: {
+        video: {
+          id: "video-demo",
+          eyebrow: "Video demo",
+          title: "See the product in action first",
+          description: "Use a short walkthrough to understand the Ciwi AI Translator interface, translation flow, and core capabilities faster.",
+        },
         featureSpotlights: {
           id: "function-overview",
           eyebrow: "Function overview",
@@ -152,18 +154,6 @@ function getProductDetailCopy(locale: "en" | "zh-cn") {
           title: "How it differs from other products",
           description: "If you are already comparing paths, jumping into the relevant compare pages will be faster.",
         },
-      },
-    },
-    media: {
-      hero: {
-        eyebrow: "Product media",
-        title: "Hero media placeholder",
-        description: "A real product visual works well here so visitors can understand the interface and usage context faster.",
-      },
-      demo: {
-        eyebrow: "Demo media",
-        title: "Product demo media placeholder",
-        description: "A real recording or outcome image works better here so visitors can judge value quickly.",
       },
     },
     sections: {
@@ -227,15 +217,35 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
     notFound();
   }
 
+  const pageUrl = new URL(localizeHref(locale, `/products/${product.slug}`), siteUrl).toString();
+  const structuredData = [
+    buildBreadcrumbSchema([
+      {name: "Home", item: siteUrl},
+      {name: locale === "zh-cn" ? "产品" : "Products", item: new URL(localizeHref(locale, "/products"), siteUrl).toString()},
+      {name: product.name, item: pageUrl},
+    ]),
+    buildWebPageSchema({
+      url: pageUrl,
+      name: product.name,
+      description: product.heroDescription,
+      keywords: [product.name, ...product.metrics],
+    }),
+    buildFaqSchema(product.faq),
+  ];
   const isTranslator = product.slug === "translator";
   const translatorCopy = isTranslator ? copy.translator : null;
   const anchorItems = (isTranslator ? translatorCopy?.anchors : copy.anchors)?.map((item) => ({...item})) ?? [];
-  const heroMediaBriefs = isTranslator ? [] : getProductHeroMediaBriefs(product);
-  const demoMediaBriefs = isTranslator ? [] : getProductDemoMediaBriefs(product);
 
   return (
     <main>
       <PageContainer>
+        {structuredData.map((schema, index) => (
+          <script
+            key={`${product.slug}-schema-${index}`}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{__html: JSON.stringify(schema)}}
+          />
+        ))}
         <section className="page-section page-hero">
           <div className={isTranslator ? "detail-grid detail-grid--single" : "detail-grid"}>
             <div>
@@ -292,16 +302,6 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
           </div>
         </section>
 
-        {!isTranslator ? (
-          <MediaPlaceholderSection
-            eyebrow={copy.media.hero.eyebrow}
-            title={copy.media.hero.title}
-            description={copy.media.hero.description}
-            items={heroMediaBriefs}
-            locale={locale}
-          />
-        ) : null}
-
         <ProductAnchorNav items={anchorItems} />
 
         <section className="page-section anchor-offset" id={copy.sections.useCases.id}>
@@ -322,6 +322,25 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
 
         {isTranslator && translatorCopy ? (
           <>
+            <section className="page-section anchor-offset" id={translatorCopy.sections.video.id}>
+              <SectionHeading
+                eyebrow={translatorCopy.sections.video.eyebrow}
+                title={translatorCopy.sections.video.title}
+                description={translatorCopy.sections.video.description}
+              />
+              <div className="surface-card section-stack">
+                <div className="mdx-video">
+                  <div className="mdx-video__frame">
+                    <iframe
+                      src="https://www.youtube-nocookie.com/embed/rAFB3AuXuH0"
+                      title="Ciwi AI Translator video demo"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                    />
+                  </div>
+                </div>
+              </div>
+            </section>
             <div id="models" className="anchor-offset" />
             <div id="engines" className="anchor-offset" />
             <div id="glossary" className="anchor-offset" />
@@ -383,14 +402,6 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
               title={copy.sections.livePreview.title}
               description={copy.sections.livePreview.description}
               items={product.demoScenarios.slice(0, 2)}
-            />
-
-            <MediaPlaceholderSection
-              eyebrow={copy.media.demo.eyebrow}
-              title={copy.media.demo.title}
-              description={copy.media.demo.description}
-              items={demoMediaBriefs}
-              locale={locale}
             />
 
             <section className="page-section anchor-offset" id={copy.sections.audienceFit.id}>

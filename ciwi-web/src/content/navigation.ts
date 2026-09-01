@@ -49,7 +49,7 @@ const navigationContent = {
         {label: "AI Translator", href: "/products/translator"},
         {label: "Bundle Discount", href: "/products/bundle-discount"},
         {label: "Content AI", href: "/products/content-ai"},
-        {label: "Spark Analytics Agent", href: "/products/spark-analytics-agent"},
+        {label: "Spark: AI Store Assistant", href: "/products/spark-analytics-agent"},
       ],
       resources: [
         {label: "Blog", href: "/blog"},
@@ -98,7 +98,7 @@ const navigationContent = {
         {label: "AI 翻译", href: "/products/translator"},
         {label: "套餐折扣", href: "/products/bundle-discount"},
         {label: "内容 AI", href: "/products/content-ai"},
-        {label: "Spark Analytics Agent", href: "/products/spark-analytics-agent"},
+        {label: "Spark AI 店铺助手", href: "/products/spark-analytics-agent"},
       ],
       resources: [
         {label: "博客", href: "/blog"},
