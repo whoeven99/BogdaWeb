@@ -1,7 +1,6 @@
 import {ArticleCard} from "@/components/cards/ArticleCard";
 import {DemoShowcaseSection} from "@/components/sections/DemoShowcaseSection";
 import {InteractiveDemoExplorer} from "@/components/sections/InteractiveDemoExplorer";
-import {MediaPlaceholderSection} from "@/components/sections/MediaPlaceholderSection";
 import {ProductAnchorNav} from "@/components/sections/ProductAnchorNav";
 import {ProductFeatureSpotlightsSection} from "@/components/sections/ProductFeatureSpotlightsSection";
 import {Button} from "@/components/ui/Button";
@@ -11,7 +10,6 @@ import {FaqSection} from "@/components/sections/FaqSection";
 import {FinalCtaSection} from "@/components/sections/FinalCtaSection";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
-import {getProductDemoMediaBriefs, getProductHeroMediaBriefs} from "@/content/media-briefs";
 import {getProductMap, products} from "@/content/products";
 import {localizeHref} from "@/lib/i18n";
 import {getRequestLocale} from "@/lib/i18n-server";
@@ -77,18 +75,6 @@ function getProductDetailCopy(locale: "en" | "zh-cn") {
             title: "为什么选择 Ciwi",
             description: "我们的产品理念：始终和商家利益保持一致，为结果负责。",
           },
-        },
-      },
-      media: {
-        hero: {
-          eyebrow: "产品素材",
-          title: "产品主视觉预留",
-          description: "这里建议补真实产品图，让用户更快看到界面和使用场景。",
-        },
-        demo: {
-          eyebrow: "演示素材",
-          title: "产品演示素材预留",
-          description: "产品页更适合放一段真实录屏或核心结果图，帮助用户快速判断是否值得继续看。",
         },
       },
       sections: {
@@ -170,18 +156,6 @@ function getProductDetailCopy(locale: "en" | "zh-cn") {
         },
       },
     },
-    media: {
-      hero: {
-        eyebrow: "Product media",
-        title: "Hero media placeholder",
-        description: "A real product visual works well here so visitors can understand the interface and usage context faster.",
-      },
-      demo: {
-        eyebrow: "Demo media",
-        title: "Product demo media placeholder",
-        description: "A real recording or outcome image works better here so visitors can judge value quickly.",
-      },
-    },
     sections: {
       useCases: {id: "use-cases", eyebrow: "Use cases", title: "Typical scenarios", description: "Start with the problems this product fits best."},
       demoFocus: {id: "demo-focus", eyebrow: "Demo focus", title: "Start with the key demo points", description: "Look at the outcome differences that influence evaluation first."},
@@ -261,8 +235,6 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
   const isTranslator = product.slug === "translator";
   const translatorCopy = isTranslator ? copy.translator : null;
   const anchorItems = (isTranslator ? translatorCopy?.anchors : copy.anchors)?.map((item) => ({...item})) ?? [];
-  const heroMediaBriefs = isTranslator ? [] : getProductHeroMediaBriefs(product);
-  const demoMediaBriefs = isTranslator ? [] : getProductDemoMediaBriefs(product);
 
   return (
     <main>
@@ -329,16 +301,6 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
             ) : null}
           </div>
         </section>
-
-        {!isTranslator ? (
-          <MediaPlaceholderSection
-            eyebrow={copy.media.hero.eyebrow}
-            title={copy.media.hero.title}
-            description={copy.media.hero.description}
-            items={heroMediaBriefs}
-            locale={locale}
-          />
-        ) : null}
 
         <ProductAnchorNav items={anchorItems} />
 
@@ -440,14 +402,6 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
               title={copy.sections.livePreview.title}
               description={copy.sections.livePreview.description}
               items={product.demoScenarios.slice(0, 2)}
-            />
-
-            <MediaPlaceholderSection
-              eyebrow={copy.media.demo.eyebrow}
-              title={copy.media.demo.title}
-              description={copy.media.demo.description}
-              items={demoMediaBriefs}
-              locale={locale}
             />
 
             <section className="page-section anchor-offset" id={copy.sections.audienceFit.id}>
