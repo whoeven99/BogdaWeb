@@ -133,7 +133,7 @@ function getShowcasePreset(item: MediaAssetBrief, index: number, locale: Locale)
       summary: locale === "zh-cn" ? "把 Theme Editor、前台切换器和语言货币体验直接呈现出来，更容易判断实际效果。" : "Show the theme editor, storefront switcher, and language or currency experience directly so the real effect is easier to judge.",
       highlights: ["Theme embed", "Switcher placement", "Storefront localization"],
       main: {
-        src: "/media/help-center/image-39-1024x484-199851b9146b9d40442c609beacc3615.png",
+        src: "https://img.bogdatech.com/ciwi-web/translator.webp",
         alt: "Theme embed and storefront localization preview",
       },
       secondary: [
