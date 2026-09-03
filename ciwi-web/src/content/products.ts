@@ -7,6 +7,7 @@ export type ProductItem = {
   shortDescription: string;
   heroTitle: string;
   heroDescription: string;
+  videoUrl?: string;
   icon: string;
   metrics: string[];
   rating?: number;
@@ -58,6 +59,7 @@ const productsEn: ProductItem[] = [
     heroTitle: "Turn Shopify localization into a sustainable growth workflow",
     heroDescription:
       "Ciwi AI Translator covers products, themes, navigation, FAQs, images, and metafields so multilingual rollout gets faster and ongoing updates stay under better control.",
+    videoUrl: "https://www.youtube.com/embed/rAFB3AuXuH0?si=6v-NjiENBOqvREy-",
     icon: "/translate.svg",
     metrics: ["100+ languages", "Shopify-aware workflow", "Glossary and model control"],
     rating: 4.7,
@@ -249,6 +251,7 @@ const productsEn: ProductItem[] = [
     shortDescription: "Clarify bundle offers, upsells, and promotional framing so Shopify merchants can grow AOV more naturally.",
     heroTitle: "Help shoppers understand bundle value and accept upsells more naturally",
     heroDescription: "Bundle Discount helps merchants explain bundle logic, savings, and purchase reasons more clearly so higher-value carts feel easier to accept.",
+    videoUrl: "https://www.youtube.com/embed/a6Bf7f1cu6s?si=vX2jUJI3I85ZSp7I",
     icon: "/subscriptions-created-outlined.svg",
     metrics: ["Bundle-first UX", "Upsell-friendly framing", "Clear savings communication"],
     rating: 4.9,
@@ -383,6 +386,7 @@ const productsEn: ProductItem[] = [
     heroTitle: "Bring your whole Shopify store into one AI assistant",
     heroDescription:
       "Spark is an AI store assistant built for Shopify merchants. It brings store data, health signals, marketing connections, tracking status, content workflows, and operations tasks into one workspace, so you can find what needs attention and take action faster.",
+    videoUrl: "https://www.youtube.com/embed/UO8Hz0fCMJw?si=eBaqLeLxbLjxjKzw",
     icon: "/ai-generate-landscape-image-spark.svg",
     metrics: ["AI store assistant", "Issue detection & guidance", "Data, content & tasks in one workspace"],
     targetUsers: [
@@ -504,6 +508,7 @@ const productsZh: ProductItem[] = [
     heroTitle: "Ciwi 翻译，让国际化SEO变成新的获客来源和转化工具",
     heroDescription:
       "Ciwi AI Translator 基于 ChatGPT 等先进 AI模型，进行更符合本地市场的翻译工作并保持品牌一致。同时，Ciwi 通过大数据模型优化翻译内容的 SEO 效果，为获客和转化率带来 13.5% 的显著提升",
+    videoUrl: "https://www.youtube.com/embed/rAFB3AuXuH0?si=6v-NjiENBOqvREy-",
     icon: "/translate.svg",
     metrics: ["适配全球一百多个市场", "保持品牌风格和调性", "强化 翻译后的SEO 效果"],
     rating: 4.7,
@@ -683,6 +688,7 @@ const productsZh: ProductItem[] = [
     shortDescription: "通过更清晰的套餐、加购和优惠表达，帮助 Shopify 商家提升 AOV。",
     heroTitle: "让用户更容易理解套餐价值，也更愿意接受加购",
     heroDescription: "Bundle Discount 帮助商家把套餐逻辑、节省金额和购买理由表达得更清楚，让加购更自然、更容易被接受。",
+    videoUrl: "https://www.youtube.com/embed/a6Bf7f1cu6s?si=vX2jUJI3I85ZSp7I",
     icon: "/subscriptions-created-outlined.svg",
     metrics: ["Bundle-first UX", "Upsell-friendly framing", "Clear savings communication"],
     rating: 4.9,
@@ -800,6 +806,7 @@ const productsZh: ProductItem[] = [
     heroTitle: "把整家 Shopify 店铺，装进一个 AI 助手",
     heroDescription:
       "Spark 是面向 Shopify 商家打造的 AI 店铺助手。它把店铺数据、健康信号、营销连接、追踪状态、内容工作流和运营任务汇聚到一个工作台，让你更快发现需要关注的问题并采取行动。",
+    videoUrl: "https://www.youtube.com/embed/UO8Hz0fCMJw?si=eBaqLeLxbLjxjKzw",
     icon: "/ai-generate-landscape-image-spark.svg",
     metrics: ["AI 店铺助手", "问题发现与 AI 指引", "数据、内容与任务一体化"],
     targetUsers: [

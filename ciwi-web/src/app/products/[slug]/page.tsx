@@ -57,12 +57,6 @@ function getProductDetailCopy(locale: "en" | "zh-cn") {
           {label: "FAQ", href: "#faq"},
         ],
         sections: {
-          video: {
-            id: "video-demo",
-            eyebrow: "视频演示",
-            title: "先用视频快速看一遍产品体验",
-            description: "通过一段真实演示，先快速理解 Ciwi AI Translator 的界面、翻译流程和核心能力。",
-          },
           featureSpotlights: {
             id: "function-overview",
             eyebrow: "功能总览",
@@ -79,6 +73,7 @@ function getProductDetailCopy(locale: "en" | "zh-cn") {
       },
       sections: {
         useCases: {id: "use-cases", eyebrow: "典型场景", title: "我们解决什么问题", description: "我们围绕获客和转化率，打造高ROI 的产品方案"},
+        video: {id: "video-demo", eyebrow: "视频演示", title: "先用视频快速看一遍产品体验", description: "通过一段真实演示，先快速理解产品界面、核心流程和关键能力。"},
         demoFocus: {id: "demo-focus", eyebrow: "演示重点", title: "先看关键演示点", description: "先看最容易影响判断的几个关键结果。"},
         interactiveDemo: {eyebrow: "交互演示", title: "交互演示", description: "通过场景切换快速看懂前后差异、术语控制和 Shopify 适配方式。"},
         livePreview: {eyebrow: "快速预览", title: "快速预览", description: "先快速扫一遍，再进入交互演示。"},
@@ -136,12 +131,6 @@ function getProductDetailCopy(locale: "en" | "zh-cn") {
         {label: "FAQ", href: "#faq"},
       ],
       sections: {
-        video: {
-          id: "video-demo",
-          eyebrow: "Video demo",
-          title: "See the product in action first",
-          description: "Use a short walkthrough to understand the Ciwi AI Translator interface, translation flow, and core capabilities faster.",
-        },
         featureSpotlights: {
           id: "function-overview",
           eyebrow: "Function overview",
@@ -158,6 +147,7 @@ function getProductDetailCopy(locale: "en" | "zh-cn") {
     },
     sections: {
       useCases: {id: "use-cases", eyebrow: "Use cases", title: "Typical scenarios", description: "Start with the problems this product fits best."},
+      video: {id: "video-demo", eyebrow: "Video demo", title: "See the product in action first", description: "Use a short walkthrough to understand the interface, core flow, and key capabilities faster."},
       demoFocus: {id: "demo-focus", eyebrow: "Demo focus", title: "Start with the key demo points", description: "Look at the outcome differences that influence evaluation first."},
       interactiveDemo: {eyebrow: "Interactive demo", title: "Interactive demo", description: "Switch between scenarios to understand before / after differences, glossary control, and Shopify fit."},
       livePreview: {eyebrow: "Quick preview", title: "Quick preview", description: "Scan quickly first, then go deeper into the interactive demo."},
@@ -234,7 +224,15 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
   ];
   const isTranslator = product.slug === "translator";
   const translatorCopy = isTranslator ? copy.translator : null;
-  const anchorItems = (isTranslator ? translatorCopy?.anchors : copy.anchors)?.map((item) => ({...item})) ?? [];
+  const hasVideo = Boolean(product.videoUrl);
+  let anchorItems = (isTranslator ? translatorCopy?.anchors : copy.anchors)?.map((item) => ({...item})) ?? [];
+  if (hasVideo && !isTranslator) {
+    anchorItems = [
+      anchorItems[0],
+      {label: copy.sections.video.eyebrow, href: `#${copy.sections.video.id}`},
+      ...anchorItems.slice(1),
+    ];
+  }
 
   return (
     <main>
@@ -320,27 +318,32 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
           </div>
         </section>
 
-        {isTranslator && translatorCopy ? (
-          <>
-            <section className="page-section anchor-offset" id={translatorCopy.sections.video.id}>
-              <SectionHeading
-                eyebrow={translatorCopy.sections.video.eyebrow}
-                title={translatorCopy.sections.video.title}
-                description={translatorCopy.sections.video.description}
-              />
-              <div className="surface-card section-stack">
-                <div className="mdx-video">
-                  <div className="mdx-video__frame">
-                    <iframe
-                      src="https://www.youtube-nocookie.com/embed/rAFB3AuXuH0"
-                      title="Ciwi AI Translator video demo"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                    />
-                  </div>
+        {hasVideo ? (
+          <section className="page-section anchor-offset" id={copy.sections.video.id}>
+            <SectionHeading
+              eyebrow={copy.sections.video.eyebrow}
+              title={copy.sections.video.title}
+              description={copy.sections.video.description}
+            />
+            <div className="surface-card section-stack">
+              <div className="mdx-video">
+                <div className="mdx-video__frame">
+                  <iframe
+                    src={product.videoUrl}
+                    title={`${product.name} video demo`}
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  />
                 </div>
               </div>
-            </section>
+            </div>
+          </section>
+        ) : null}
+
+        {isTranslator && translatorCopy ? (
+          <>
             <div id="models" className="anchor-offset" />
             <div id="engines" className="anchor-offset" />
             <div id="glossary" className="anchor-offset" />
