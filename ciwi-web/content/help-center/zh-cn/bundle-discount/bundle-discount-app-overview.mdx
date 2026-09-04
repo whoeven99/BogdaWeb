@@ -1,0 +1,55 @@
+---
+entryId: help-center-bundle-discount-app-overview
+locale: zh-cn
+slug: bundle-discount-app-overview
+title: "Bundle Discount 应用概览"
+description: "理解 Bundle Discount 如何把优惠组合成前台 campaign，涵盖数量折扣、BXGY、完整套餐和免费赠品奖励。"
+publishedAt: '2026-09-03'
+status: published
+category: bundle-discount
+order: 20
+meta:
+  - "Help Center"
+  - "Bundle Discount"
+readingTime: "3 min read"
+sourceLocale: en
+translationStatus: manual
+relatedResources:
+  - title: "如何创建套餐优惠"
+    description: "从模板到发布的完整创建流程。"
+    href: /help-center/ShopifyApp/how-to-create-a-bundle-offer/
+    meta:
+      - "Help Center"
+      - "Bundle Discount"
+  - title: "套餐优惠类型说明"
+    description: "理解每种优惠类型如何生效、折扣如何叠加。"
+    href: /help-center/ShopifyApp/bundle-offer-types-explained/
+    meta:
+      - "Help Center"
+      - "Bundle Discount"
+---
+Bundle Discount 是一款 Shopify 嵌入式应用，用于组合套餐优惠并在店铺前台进行商品推荐。商家在后台搭建优惠，买家在前台看到数量条、套餐预览、赠品进度和加购勾选等区块。
+
+## 核心概念
+
+一个优惠就是一个 **campaign**，它把若干个模块组合在一起。campaign 拥有自己的定向范围（商品、市场、客户、排期）、展示顺序和前台状态。你可以从数量折扣、BXGY 或完整套餐等模板开始，再往同一个 campaign 里加入更多模块。
+
+## 优惠类型
+
+- **数量折扣** —— 当买家达到数量门槛时降低商品价格。
+- **BXGY** —— 买一组商品，免费或以折扣价获得另一组商品。
+- **完整套餐** —— 触发商品加上选中的套餐商品，作为一个套餐总价出售。
+- **免费赠品** —— 满足订单级条件后，向买家赠送赠品商品。
+- **订阅** —— 在一次性购买之外提供一个周期购买选项。
+- **加购勾选** 和 **常驻加购** —— 引导买家、但自身不定义折扣的前台交互模块。
+
+## 主要页面
+
+- **Dashboard** —— 活跃优惠和店铺表现概览。
+- **All offers** —— 创建、编辑、启用和停用优惠的 campaign 列表。
+- **Create offer** —— 组合 campaign 的分步构建器。
+- **Analytics** —— 优惠表现和收入信号。
+
+## 优惠如何到达前台
+
+优惠会被编译成两份输出：一份由主题扩展消费的前台 payload，以及一份由 Shopify Functions 消费的紧凑 payload（用于购物车和配送折扣）。这样能保证前台展示和折扣计算保持同步。

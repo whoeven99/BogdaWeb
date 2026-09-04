@@ -1,0 +1,58 @@
+---
+entryId: help-center-how-to-create-a-bundle-offer
+locale: zh-cn
+slug: how-to-create-a-bundle-offer
+title: "如何创建套餐优惠"
+description: "一步步构建套餐 campaign：选择模板、组合商品、设置折扣规则，然后设置排期和定向并发布。"
+publishedAt: '2026-09-03'
+status: published
+category: bundle-discount
+order: 21
+meta:
+  - "Help Center"
+  - "Bundle Discount"
+readingTime: "4 min read"
+sourceLocale: en
+translationStatus: manual
+relatedResources:
+  - title: "Bundle Discount 应用概览"
+    description: "查看优惠类型以及 campaign 如何工作。"
+    href: /help-center/ShopifyApp/bundle-discount-app-overview/
+    meta:
+      - "Help Center"
+      - "Bundle Discount"
+  - title: "套餐优惠类型说明"
+    description: "配置规则前先理解折扣类别。"
+    href: /help-center/ShopifyApp/bundle-offer-types-explained/
+    meta:
+      - "Help Center"
+      - "Bundle Discount"
+---
+创建优惠只走一条构建流程：先选择 campaign 类型，再组合商品和规则，最后设置排期与定向并发布。
+
+## 1. 新建优惠
+
+在 **All offers** 中打开 **Create offer**。选择与你售卖方式匹配的优惠类型或起始模板：数量折扣、BXGY 或完整套餐。模板只决定你的起始模块，之后你还可以加入更多模块。
+
+## 2. 组合优惠
+
+添加触发商品和套餐商品池。对于完整套餐，选择买家可选的商品数量，并设置套餐定价方式：
+
+- `Full price`（原价）
+- `Percentage off`（按比例减免）
+- `Amount off`（按金额减免）
+- `Fixed price`（固定价格）
+
+对于数量折扣和 BXGY，设置买/送的数量以及折扣值。
+
+## 3. 设置折扣规则
+
+查看右侧的折扣预览。商品折扣模块之间会互相竞争，在重叠的购物车行上，为买家节省最多的折扣生效。免费赠品等订单奖励会单独叠加。
+
+## 4. 设置排期与定向
+
+选择优惠适用的商品、市场和客户，如果 campaign 有时间限制就设置排期。
+
+## 5. 发布
+
+保存并发布优惠。应用会把 campaign 编译成前台 payload 和 Shopify Function payload。到线上店铺确认优惠区块是否按预期渲染。

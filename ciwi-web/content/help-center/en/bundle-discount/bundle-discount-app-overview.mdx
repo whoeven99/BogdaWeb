@@ -1,0 +1,55 @@
+---
+entryId: help-center-bundle-discount-app-overview
+locale: en
+slug: bundle-discount-app-overview
+title: "Bundle Discount App Overview"
+description: "Understand how Bundle Discount turns offers into a storefront campaign with quantity breaks, BXGY, complete bundles, and free gift rewards."
+publishedAt: '2026-09-03'
+status: published
+category: bundle-discount
+order: 20
+meta:
+  - "Help Center"
+  - "Bundle Discount"
+readingTime: "3 min read"
+sourceLocale: en
+translationStatus: manual
+relatedResources:
+  - title: "How to create a bundle offer"
+    description: "Follow the builder workflow from template to publish."
+    href: /help-center/ShopifyApp/how-to-create-a-bundle-offer/
+    meta:
+      - "Help Center"
+      - "Bundle Discount"
+  - title: "Bundle offer types explained"
+    description: "Understand how each offer type behaves and how discounts combine."
+    href: /help-center/ShopifyApp/bundle-offer-types-explained/
+    meta:
+      - "Help Center"
+      - "Bundle Discount"
+---
+Bundle Discount is a Shopify embedded app for composing bundle offers and merchandising them on the storefront. Merchants build offers in the admin, and shoppers see them as storefront blocks such as quantity bars, bundle previews, gift progress, and upsell checkboxes.
+
+## Core concept
+
+An offer is a **campaign** that groups one or more modules together. A campaign owns its targeting scope (products, markets, customers, schedule), display order, and storefront state. You can start from a template such as quantity breaks, BXGY, or complete bundle, then add more modules into the same campaign.
+
+## Offer types
+
+- **Quantity breaks** — reduce the product price when the shopper reaches a quantity threshold.
+- **BXGY** — buy one set of products and get another set free or discounted.
+- **Complete bundle** — a trigger product plus selected bundle items sold as one bundle-total price.
+- **Free gift** — reward the shopper with a gift product after an order-level condition is met.
+- **Subscription** — present a recurring purchase option alongside the one-time option.
+- **Checkbox upsell** and **sticky add to cart** — storefront interaction modules that guide the shopper without defining their own discount.
+
+## Main pages
+
+- **Dashboard** — an overview of active offers and store performance.
+- **All offers** — the campaign list where you create, edit, enable, and disable offers.
+- **Create offer** — the step-by-step builder for composing a campaign.
+- **Analytics** — offer performance and revenue signals.
+
+## How it reaches the storefront
+
+Offers are compiled into two outputs: a storefront payload consumed by the theme extension, and a compact payload consumed by Shopify Functions for cart and delivery discounts. This keeps the storefront presentation and the discount calculation in sync.
