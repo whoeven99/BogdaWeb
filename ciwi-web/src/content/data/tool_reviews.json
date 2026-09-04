@@ -1,0 +1,308 @@
+[
+  {
+    "slug": "sell-the-trend",
+    "href": "/resources/product-research/reviews/sell-the-trend",
+    "year": 2026,
+    "status": "published",
+    "toolName": "Sell The Trend",
+    "title": "Sell The Trend Review: An All-in-One Dropshipping Research Suite",
+    "description": "A hands-on review of Sell The Trend covering trend scoring, margin checks, and whether it is worth the subscription for Shopify and dropshipping research.",
+    "category": "profit",
+    "categoryLabel": "Profit validation",
+    "verdict": "Sell The Trend is a solid all-in-one for dropshipping research if you want trend scoring and margin checks in one place, but you still need your own supplier quotes before scaling.",
+    "rating": 8.5,
+    "scoreBreakdown": [
+      {"label": "Feature coverage", "score": 9},
+      {"label": "Ease of use", "score": 8},
+      {"label": "Data accuracy", "score": 8},
+      {"label": "Pricing value", "score": 8},
+      {"label": "Support & updates", "score": 9}
+    ],
+    "pros": [
+      "Trend scoring plus margin estimates in one workflow",
+      "Ad and store discovery keeps research fast",
+      "Good for beginners who want a single dashboard"
+    ],
+    "cons": [
+      "Margin numbers still need your own supplier confirmation",
+      "Best value is locked behind the paid plan",
+      "Broad coverage means you still filter heavily"
+    ],
+    "pricing": "Paid, with a free trial.",
+    "bestFor": [
+      "Dropshippers who want trend and margin in one place",
+      "Beginners who prefer a single research dashboard",
+      "Stores testing many products quickly"
+    ],
+    "features": [
+      {"title": "Trend scoring", "description": "Ranks products by a trend signal so you can skip the clearly cold items."},
+      {"title": "Profit and margin checks", "description": "Estimates margin so you can filter out products that will not clear your minimum."},
+      {"title": "Ad and store discovery", "description": "Finds related ads and stores to speed up competitor scanning."}
+    ],
+    "alternatives": [
+      {"name": "Minea", "href": "/resources/product-research/reviews/minea"},
+      {"name": "Koala Inspector", "href": "/resources/product-research/reviews/koala-inspector"},
+      {"name": "Zik Analytics", "href": "/resources/product-research/reviews/zik-analytics"}
+    ],
+    "faq": [
+      {"question": "Is Sell The Trend worth it for beginners?", "answer": "Yes, if you want one dashboard instead of stitching free tools together. Its trend and margin signals lower the early learning curve."},
+      {"question": "Are its margin estimates accurate?", "answer": "They are useful directionally, but always confirm landed cost with a real supplier before committing ad or inventory budget."},
+      {"question": "Does Sell The Trend work for private label?", "answer": "It leans dropshipping. Private-label sellers usually still need marketplace demand and review mining tools alongside it."}
+    ]
+  },
+  {
+    "slug": "minea",
+    "href": "/resources/product-research/reviews/minea",
+    "year": 2026,
+    "status": "published",
+    "toolName": "Minea",
+    "title": "Minea Review: Ad Intelligence for Finding Winning Products",
+    "description": "A review of Minea's ad intelligence across Facebook, TikTok, and Pinterest, and how well it supports product discovery for Shopify stores.",
+    "category": "discovery",
+    "categoryLabel": "Demand discovery",
+    "verdict": "Minea is one of the stronger ad-intelligence tools for discovering products that are already being actively advertised, but ad data is a lagging signal and still needs a demand and margin check.",
+    "rating": 8.5,
+    "scoreBreakdown": [
+      {"label": "Feature coverage", "score": 9},
+      {"label": "Ease of use", "score": 9},
+      {"label": "Data accuracy", "score": 8},
+      {"label": "Pricing value", "score": 8},
+      {"label": "Support & updates", "score": 8}
+    ],
+    "pros": [
+      "Multi-platform ad intelligence in one place",
+      "AI filtering helps narrow large ad volumes",
+      "Clean interface is easy to pick up"
+    ],
+    "cons": [
+      "Ad data lags behind what is actually winning now",
+      "No supplier or margin data",
+      "Strong value requires the paid plan"
+    ],
+    "pricing": "Paid, with a free tier.",
+    "bestFor": [
+      "Discovery driven by live ad signals",
+      "Marketers who want to see what competitors are promoting",
+      "Teams filtering across Facebook, TikTok, and Pinterest"
+    ],
+    "features": [
+      {"title": "Ad intelligence", "description": "Surfaces ads running across major platforms so you can see what is being pushed."},
+      {"title": "AI filtering", "description": "Uses AI to group and filter large ad volumes into usable signals."},
+      {"title": "Multi-platform coverage", "description": "Covers Facebook, TikTok, and Pinterest instead of a single channel."}
+    ],
+    "alternatives": [
+      {"name": "Sell The Trend", "href": "/resources/product-research/reviews/sell-the-trend"},
+      {"name": "Koala Inspector", "href": "/resources/product-research/reviews/koala-inspector"},
+      {"name": "Helium 10", "href": "/resources/product-research/reviews/helium-10"}
+    ],
+    "faq": [
+      {"question": "Is Minea good for Shopify product research?", "answer": "Yes for ad-based discovery, but it does not show Shopify store structure or margin, so pair it with a store spy or margin model."},
+      {"question": "Is Minea's ad data real-time?", "answer": "It reflects recent ads, but by the time a product is heavily advertised it is usually already working, so treat it as a lagging signal."},
+      {"question": "Does Minea have a free plan?", "answer": "It offers a free tier, but the deeper filtering and larger data volumes require a paid plan."}
+    ]
+  },
+  {
+    "slug": "koala-inspector",
+    "href": "/resources/product-research/reviews/koala-inspector",
+    "year": 2026,
+    "status": "published",
+    "toolName": "Koala Inspector",
+    "title": "Koala Inspector Review: Spying on Live Shopify Stores",
+    "description": "A review of Koala Inspector for reverse-engineering Shopify stores, estimating best-sellers, and turning competitor teardowns into product ideas.",
+    "category": "competitor",
+    "categoryLabel": "Competitor teardown",
+    "verdict": "Koala Inspector is the most direct way to tear down a live Shopify store, but its revenue estimates are directional only and it is limited to the Shopify ecosystem.",
+    "rating": 7.5,
+    "scoreBreakdown": [
+      {"label": "Feature coverage", "score": 8},
+      {"label": "Ease of use", "score": 9},
+      {"label": "Data accuracy", "score": 7},
+      {"label": "Pricing value", "score": 7},
+      {"label": "Support & updates", "score": 8}
+    ],
+    "pros": [
+      "Directly shows products and themes on a Shopify store",
+      "Best-seller estimation makes competitor teardowns faster",
+      "Simple browser-extension workflow"
+    ],
+    "cons": [
+      "Revenue estimates are approximate",
+      "Shopify-only, so it misses Amazon and Etsy",
+      "Free tier is limited"
+    ],
+    "pricing": "Paid, with a limited free tier.",
+    "bestFor": [
+      "Spying on specific Shopify stores",
+      "Competitor teardowns before entering a niche",
+      "Quick best-seller checks"
+    ],
+    "features": [
+      {"title": "Store product listing", "description": "Shows the products and themes a Shopify store is running."},
+      {"title": "Best-seller estimation", "description": "Estimates which products are likely selling best so you can focus your analysis."},
+      {"title": "Direct store analysis", "description": "Works as an extension so you can inspect a store while browsing it."}
+    ],
+    "alternatives": [
+      {"name": "Minea", "href": "/resources/product-research/reviews/minea"},
+      {"name": "Zik Analytics", "href": "/resources/product-research/reviews/zik-analytics"},
+      {"name": "Sell The Trend", "href": "/resources/product-research/reviews/sell-the-trend"}
+    ],
+    "faq": [
+      {"question": "Is Koala Inspector accurate?", "answer": "It provides useful directional signals, but revenue and sales estimates are approximations. Treat them as relative ranking, not accounting."},
+      {"question": "Does Koala Inspector work on any Shopify store?", "answer": "It works on live Shopify storefronts, but stores can restrict some information, so coverage varies by store."},
+      {"question": "Is Koala Inspector worth it?", "answer": "If competitor teardowns are a regular part of your research, yes. If you only need broad discovery, an ad-intelligence tool may be a better fit."}
+    ]
+  },
+  {
+    "slug": "zik-analytics",
+    "href": "/resources/product-research/reviews/zik-analytics",
+    "year": 2026,
+    "status": "published",
+    "toolName": "Zik Analytics",
+    "title": "Zik Analytics Review: Competition Data for AliExpress and Etsy",
+    "description": "A review of Zik Analytics covering competition scoring, niche demand, and how it helps sellers validate products on AliExpress and Etsy.",
+    "category": "competitor",
+    "categoryLabel": "Competitor teardown",
+    "verdict": "Zik Analytics is strong for marketplace competition scoring on AliExpress and Etsy, but it is not Shopify-native and has a learning curve around its scoring model.",
+    "rating": 8,
+    "scoreBreakdown": [
+      {"label": "Feature coverage", "score": 8},
+      {"label": "Ease of use", "score": 7},
+      {"label": "Data accuracy", "score": 8},
+      {"label": "Pricing value", "score": 8},
+      {"label": "Support & updates", "score": 8}
+    ],
+    "pros": [
+      "Clear competition scoring for marketplaces",
+      "Covers both AliExpress and Etsy",
+      "Good niche demand signals"
+    ],
+    "cons": [
+      "Not built for Shopify store analysis",
+      "Scoring model has a learning curve",
+      "Less useful if you only sell on Shopify"
+    ],
+    "pricing": "Paid.",
+    "bestFor": [
+      "AliExpress and Etsy sellers",
+      "Niche demand validation",
+      "Marketplace competition scoring"
+    ],
+    "features": [
+      {"title": "Competition scoring", "description": "Scores products by competition level so you can avoid oversaturated niches."},
+      {"title": "Niche demand signals", "description": "Highlights niches with real demand instead of just showing a product list."},
+      {"title": "AliExpress and Etsy coverage", "description": "Covers two marketplaces that Shopify research tools often miss."}
+    ],
+    "alternatives": [
+      {"name": "EverBee", "href": "/resources/product-research/reviews/everbee"},
+      {"name": "Koala Inspector", "href": "/resources/product-research/reviews/koala-inspector"},
+      {"name": "Helium 10", "href": "/resources/product-research/reviews/helium-10"}
+    ],
+    "faq": [
+      {"question": "Is Zik Analytics good for Shopify?", "answer": "It is more useful for AliExpress and Etsy competition data. For Shopify store analysis, a tool like Koala Inspector fits better."},
+      {"question": "Is Zik Analytics accurate?", "answer": "Its competition and demand signals are generally useful directionally, but revenue-style estimates should not be treated as exact numbers."},
+      {"question": "Is Zik Analytics worth the cost?", "answer": "If you sell on AliExpress or Etsy, yes. Shopify-only merchants may find better value in a Shopify-native tool."}
+    ]
+  },
+  {
+    "slug": "helium-10",
+    "href": "/resources/product-research/reviews/helium-10",
+    "year": 2026,
+    "status": "published",
+    "toolName": "Helium 10",
+    "title": "Helium 10 Review: Deep Product Research for Amazon-Style Validation",
+    "description": "A review of Helium 10 covering keyword depth, profit calculation, and when its Amazon-focused data is worth using for broader product research.",
+    "category": "profit",
+    "categoryLabel": "Profit validation",
+    "verdict": "Helium 10 has the deepest keyword and profit data of the tools here, but it is Amazon-focused and can be overkill for a simple Shopify validation pass.",
+    "rating": 9,
+    "scoreBreakdown": [
+      {"label": "Feature coverage", "score": 9},
+      {"label": "Ease of use", "score": 8},
+      {"label": "Data accuracy", "score": 9},
+      {"label": "Pricing value", "score": 7},
+      {"label": "Support & updates", "score": 9}
+    ],
+    "pros": [
+      "Deep keyword and search data",
+      "Strong profit calculator",
+      "Large data set for validation"
+    ],
+    "cons": [
+      "Amazon-focused, not Shopify-native",
+      "Overkill for simple validation",
+      "Pricing is higher than lighter tools"
+    ],
+    "pricing": "Paid.",
+    "bestFor": [
+      "Amazon sellers validating demand",
+      "Keyword-depth research",
+      "Teams that want a full research suite"
+    ],
+    "features": [
+      {"title": "Keyword depth", "description": "Provides deep search and keyword data that lighter tools do not surface."},
+      {"title": "Profit calculator", "description": "Models profit with fees and costs so you can filter by margin."},
+      {"title": "Large data set", "description": "Covers a wide product and keyword universe for validation."}
+    ],
+    "alternatives": [
+      {"name": "Sell The Trend", "href": "/resources/product-research/reviews/sell-the-trend"},
+      {"name": "Zik Analytics", "href": "/resources/product-research/reviews/zik-analytics"},
+      {"name": "Minea", "href": "/resources/product-research/reviews/minea"}
+    ],
+    "faq": [
+      {"question": "Can I use Helium 10 for Shopify?", "answer": "Yes, but its data is Amazon-oriented, so it works best for demand and keyword validation rather than Shopify store or supplier signals."},
+      {"question": "Is Helium 10 worth the price?", "answer": "For Amazon sellers who need deep keyword and profit data, yes. For simple Shopify discovery, a lighter tool is usually cheaper."},
+      {"question": "Is Helium 10 beginner-friendly?", "answer": "It is powerful but has a learning curve. Beginners can get value from the profit calculator and keyword tools without using everything."}
+    ]
+  },
+  {
+    "slug": "everbee",
+    "href": "/resources/product-research/reviews/everbee",
+    "year": 2026,
+    "status": "published",
+    "toolName": "EverBee",
+    "title": "EverBee Review: Etsy Listing and Shop Analytics",
+    "description": "A review of EverBee for Etsy listing revenue estimates, shop analytics, and how it helps sellers find niches and products worth sourcing.",
+    "category": "sourcing",
+    "categoryLabel": "Sourcing & fulfillment",
+    "verdict": "EverBee is a useful Etsy-native analytics tool for listing and shop research, but its estimates are directional and it only covers Etsy.",
+    "rating": 8,
+    "scoreBreakdown": [
+      {"label": "Feature coverage", "score": 8},
+      {"label": "Ease of use", "score": 9},
+      {"label": "Data accuracy", "score": 7},
+      {"label": "Pricing value", "score": 8},
+      {"label": "Support & updates", "score": 8}
+    ],
+    "pros": [
+      "Etsy-native listing and shop analytics",
+      "Easy to understand revenue estimates",
+      "Free tier to start"
+    ],
+    "cons": [
+      "Estimates are directional only",
+      "Etsy-only coverage",
+      "Deeper features require paid plans"
+    ],
+    "pricing": "Free tier plus paid plans.",
+    "bestFor": [
+      "Etsy sellers researching listings",
+      "Finding niches and shops worth sourcing",
+      "Beginners who want a low-cost start"
+    ],
+    "features": [
+      {"title": "Listing revenue estimates", "description": "Estimates revenue per listing so you can spot what is actually selling."},
+      {"title": "Shop analytics", "description": "Shows shop-level signals like review velocity and product mix."},
+      {"title": "Etsy-native data", "description": "Built for Etsy signals instead of forcing Shopify or Amazon logic."}
+    ],
+    "alternatives": [
+      {"name": "Zik Analytics", "href": "/resources/product-research/reviews/zik-analytics"},
+      {"name": "Koala Inspector", "href": "/resources/product-research/reviews/koala-inspector"},
+      {"name": "Sell The Trend", "href": "/resources/product-research/reviews/sell-the-trend"}
+    ],
+    "faq": [
+      {"question": "Is EverBee accurate?", "answer": "Its listing and shop estimates are useful directionally, but Etsy does not expose exact revenue, so treat them as approximations."},
+      {"question": "Is EverBee free?", "answer": "It has a free tier, with paid plans for deeper analytics and higher usage."},
+      {"question": "Can EverBee help with Shopify product research?", "answer": "Indirectly. It is a strong signal source for Etsy niches and product ideas, but you still need margin and supplier validation for a Shopify store."}
+    ]
+  }
+]

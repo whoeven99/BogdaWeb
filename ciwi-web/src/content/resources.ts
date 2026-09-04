@@ -5,6 +5,7 @@ import {getCompares} from "@/content/compare";
 import {getFunctionScenarioGuides} from "@/content/function-scenario-guides";
 import {getFeaturedHelpCenterDocs, getHelpCenterDocs} from "@/content/help-center";
 import {getLocalizationGuides} from "@/content/localization-guides";
+import {getProductResearchWorkflowArticles} from "@/content/product-research";
 
 export type ResourceItem = {
   title: string;
@@ -72,5 +73,14 @@ export function getLocalizationGuideResources(locale: Locale): ResourceItem[] {
     description: item.description,
     href: item.href,
     meta: item.meta,
+  }));
+}
+
+export function getProductResearchResources(locale: Locale): ResourceItem[] {
+  return getProductResearchWorkflowArticles(locale).map((article) => ({
+    title: article.title,
+    description: article.description,
+    href: article.href,
+    meta: [locale === "zh-cn" ? "选品" : "Product Research", article.stageLabel, String(article.year)],
   }));
 }

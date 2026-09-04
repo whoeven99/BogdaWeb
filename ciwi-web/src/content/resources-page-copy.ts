@@ -60,6 +60,13 @@ const resourcesPageCopyByLocale = {
         ctaLabel: "Open collections",
         ctaHref: "/best-shopify-apps",
       },
+      productResearch: {
+        eyebrow: "Product Research",
+        title: "Shopify Product Research",
+        description: "A workflow-based topic covering discovery, competitor analysis, profit validation, and sourcing, plus independent tool reviews.",
+        ctaLabel: "Open product research",
+        ctaHref: "/resources/product-research",
+      },
     },
     subscription: {
       eyebrow: "Next step",
@@ -131,6 +138,13 @@ const resourcesPageCopyByLocale = {
         description: "按类目和年份浏览榜单型合集页面，适合先从 shortlist 入口开始筛选。",
         ctaLabel: "查看合集",
         ctaHref: "/best-shopify-apps",
+      },
+      productResearch: {
+        eyebrow: "选品专题",
+        title: "Shopify 选品专题",
+        description: "按需求发现、竞品拆解、利润测算和供货履约拆解的选品工作流，并附独立工具测评。",
+        ctaLabel: "查看选品专题",
+        ctaHref: "/resources/product-research",
       },
     },
     subscription: {
