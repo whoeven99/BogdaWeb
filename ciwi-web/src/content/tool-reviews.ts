@@ -27,6 +27,7 @@ export type ToolReview = {
   slug: string;
   href: string;
   year: number;
+  publishedAt: string;
   status?: "draft" | "published";
   sourceLocale?: Locale;
   translationStatus?: "manual" | "ai-draft" | "reviewed";

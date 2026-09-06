@@ -8,7 +8,7 @@ import {getAvailableToolReviewLocales, getToolReviewMap, getToolReviews} from "@
 import {localizeHref} from "@/lib/i18n";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata, siteUrl} from "@/lib/seo/metadata";
-import {buildBreadcrumbSchema, buildFaqSchema, buildWebPageSchema} from "@/lib/seo/schema";
+import {buildBreadcrumbSchema, buildFaqSchema, buildReviewSchema, buildWebPageSchema} from "@/lib/seo/schema";
 
 type ToolReviewDetailPageProps = {
   params: Promise<{slug: string}>;
@@ -128,7 +128,19 @@ function getPageCopy(locale: "en" | "zh-cn") {
       };
 }
 
-function buildStructuredData(locale: "en" | "zh-cn", review: {toolName: string; title: string; description: string; href: string; faq: {question: string; answer: string}[]}) {
+function buildStructuredData(
+  locale: "en" | "zh-cn",
+  review: {
+    toolName: string;
+    title: string;
+    description: string;
+    href: string;
+    rating: number;
+    verdict: string;
+    publishedAt: string;
+    faq: {question: string; answer: string}[];
+  }
+) {
   const pageUrl = new URL(localizeHref(locale, review.href), siteUrl).toString();
 
   return [
@@ -143,6 +155,14 @@ function buildStructuredData(locale: "en" | "zh-cn", review: {toolName: string; 
       name: review.title,
       description: review.description,
       type: "WebPage",
+    }),
+    buildReviewSchema({
+      url: pageUrl,
+      itemName: review.toolName,
+      reviewBody: review.verdict,
+      ratingValue: review.rating,
+      bestRating: 10,
+      datePublished: review.publishedAt,
     }),
     buildFaqSchema(review.faq),
   ];

@@ -82,19 +82,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
 
     for (const guide of getLocalizationGuides(locale)) {
-      addEntry(guide.href, locale);
+      addEntry(guide.href, locale, guide.publishedAt);
     }
 
     for (const guide of getFunctionScenarioGuides(locale)) {
-      addEntry(guide.href, locale);
+      addEntry(guide.href, locale, guide.publishedAt);
     }
 
     for (const article of getProductResearchWorkflowArticles(locale)) {
-      addEntry(article.href, locale);
+      addEntry(article.href, locale, article.publishedAt);
     }
 
     for (const review of getToolReviews(locale)) {
-      addEntry(review.href, locale);
+      addEntry(review.href, locale, review.publishedAt);
     }
   }
 

@@ -3,353 +3,355 @@
     "slug": "shopify-translation-guide-2026",
     "href": "/guides/shopify-translation-guide-2026",
     "year": 2026,
-    "title": "[TODO zh-cn] Shopify Translation Guide 2026: How Stores Go Global",
-    "description": "[TODO zh-cn] A reusable Shopify-focused localization playbook for merchants who want stronger SEO, cleaner multilingual UX, and faster international expansion.",
-    "industry": "Shopify stores",
-    "audience": "Shopify merchants preparing for global growth",
+    "publishedAt": "2026-08-26",
+    "title": "Shopify 翻译指南 2026：店铺如何走向全球",
+    "description": "一份可复用的 Shopify 本地化实战手册，面向希望获得更强 SEO、更清晰多语言 UX 和更快国际扩张的商家。",
+    "industry": "Shopify 店铺",
+    "audience": "准备全球增长的 Shopify 商家",
     "segmentLabel": "Shopify",
-    "guideLabel": "Translation Guide",
-    "mainValue": "Turn one Shopify storefront into a repeatable multilingual growth engine.",
+    "guideLabel": "翻译指南",
+    "mainValue": "把一个 Shopify 前台变成可复用的多语言增长引擎。",
     "keywords": [
-      "shopify translation guide",
-      "shopify localization",
-      "multilingual shopify seo",
-      "shopify global expansion"
+      "shopify 翻译指南",
+      "shopify 本地化",
+      "多语言 shopify seo",
+      "shopify 全球扩张"
     ],
     "overviewDrivers": [
       {
-        "title": "Cross-border growth pressure",
-        "description": "Many Shopify stores hit a ceiling in one market before they fully localize the next one."
+        "title": "跨境增长压力",
+        "description": "许多 Shopify 店铺在尚未完全本地化下一个市场前，就在单一市场碰到天花板。"
       },
       {
-        "title": "Storefront trust",
-        "description": "Shoppers expect navigation, product details, and SEO snippets to feel native in each market."
+        "title": "前台信任",
+        "description": "购物者期望导航、商品详情和 SEO 摘要在每个市场都像本地内容。"
       },
       {
-        "title": "Operational reuse",
-        "description": "A strong localization system lets merchants reuse one content workflow across products, themes, and SEO pages."
+        "title": "运营复用",
+        "description": "强大的本地化系统让商家在商品、主题和 SEO 页面间复用同一套内容工作流。"
       }
     ],
     "benefits": [
       {
-        "title": "Trust",
-        "description": "Localized shopify stores content helps buyers understand your offer without second-guessing terminology, units, or product intent.",
-        "evidence": "Shoppers stay longer when key buying details read like native-market content instead of translated copy."
+        "title": "信任",
+        "description": "本地化的 Shopify 店铺内容能帮助买家理解你的商品，而不必反复质疑术语、单位或产品意图。",
+        "evidence": "当关键购买信息读起来像本地市场内容而非翻译稿时，购物者停留更久。"
       },
       {
-        "title": "Conversion",
-        "description": "Clear, market-ready messaging reduces friction on high-intent pages such as product, category, pricing, and landing pages.",
-        "evidence": "The biggest lift usually comes from the pages closest to purchase, not from translating everything first."
+        "title": "转化",
+        "description": "清晰、面向市场的文案能减少商品、类目、定价和落地页等高意图页面上的摩擦。",
+        "evidence": "最大的提升通常来自离购买最近的页面，而不是一开始翻译所有内容。"
       },
       {
         "title": "SEO",
-        "description": "Localized metadata, collection pages, and search intent coverage help shopify stores brands compete in market-specific search results.",
-        "evidence": "Search engines index local-language queries more effectively when titles, descriptions, and page structure match the market."
+        "description": "本地化的元数据、合集页和搜索意图覆盖，能帮助 Shopify 店铺在特定市场的搜索结果里竞争。",
+        "evidence": "当标题、描述和页面结构匹配市场时，搜索引擎能更有效地索引本地语言查询。"
       },
       {
-        "title": "Customer Experience",
-        "description": "A storefront feels more credible when navigation, support entry points, and key reassurance copy all stay consistent after translation.",
-        "evidence": "Consistency across storefront, SEO, and support content prevents drop-off during evaluation and checkout."
+        "title": "客户体验",
+        "description": "当导航、支持入口和关键安心文案在翻译后保持一致时，前台会更可信。",
+        "evidence": "前台、SEO 和支持内容的一致性，能防止购物者在评估和结账过程中流失。"
       }
     ],
     "mistakes": [
       {
-        "category": "Literal translation",
-        "wrongExample": "Publishing shopify stores pages with direct machine translation, loose terminology, and untranslated SEO fields.",
-        "correct": "Localize high-intent storefront pages, metadata, navigation, and repeat terms with glossary rules before scaling wider.",
-        "impact": "Buyers see the page as low-trust or confusing during evaluation.",
-        "severity": "High"
+        "category": "直译",
+        "wrongExample": "用直接的机器翻译、松散的术语和未翻译的 SEO 字段发布 Shopify 页面。",
+        "correct": "先用术语表规则本地化高意图前台页面、元数据、导航和重复术语，再扩大范围。",
+        "impact": "买家在评估时觉得页面低信任或令人困惑。",
+        "severity": "高"
       },
       {
-        "category": "SEO left behind",
-        "wrongExample": "Only visible page copy is translated while title tags, meta descriptions, and URL strategy stay in the source language.",
-        "correct": "Treat SEO metadata and collection or solution pages as part of the first localization batch.",
-        "impact": "The page is harder to rank for local-language search demand.",
-        "severity": "High"
+        "category": "把 SEO 落下",
+        "wrongExample": "只翻译可见页面文案，而 title 标签、meta 描述和 URL 策略仍留在源语言。",
+        "correct": "把 SEO 元数据和合集或解决方案页当作第一批本地化的一部分。",
+        "impact": "页面更难对本地语言搜索需求排名。",
+        "severity": "高"
       },
       {
-        "category": "No terminology system",
-        "wrongExample": "Brand names, product terms, and conversion phrases change from page to page.",
-        "correct": "Lock brand terms, category nouns, and conversion CTA language with a shared glossary.",
-        "impact": "Inconsistent wording makes the buying journey feel fragmented.",
-        "severity": "Medium"
+        "category": "没有术语系统",
+        "wrongExample": "品牌名、产品术语和转化短语在不同页面之间变化。",
+        "correct": "用共享术语表锁定品牌词、类目名词和转化 CTA 语言。",
+        "impact": "措辞不一致让购买旅程显得支离破碎。",
+        "severity": "中"
       }
     ],
     "impacts": [
       {
-        "metric": "Lost conversions",
-        "description": "When shopify merchants preparing for global growth prospects cannot evaluate your offer quickly, they leave before reaching the next step.",
-        "source": "Observed across multilingual landing pages and product discovery journeys."
+        "metric": "转化流失",
+        "description": "当准备全球增长的 Shopify 商家无法快速评估你的商品时，他们会在进入下一步前离开。",
+        "source": "在多语言落地页和商品发现旅程中观察到。"
       },
       {
-        "metric": "Poor SEO visibility",
-        "description": "Search demand exists, but local-language metadata and intent coverage are not strong enough to capture it.",
-        "source": "Common issue on pages translated without market-specific SEO planning."
+        "metric": "SEO 可见度差",
+        "description": "搜索需求存在，但本地语言元数据和意图覆盖不够强，无法抓住它。",
+        "source": "在没有市场特定 SEO 规划的翻译页面上常见。"
       },
       {
-        "metric": "Customer confusion",
-        "description": "Mixed terminology across pages, support, and navigation creates hesitation at exactly the point buyers need reassurance.",
-        "source": "Frequent localization QA finding on expanding stores and websites."
+        "metric": "客户困惑",
+        "description": "页面、支持与导航之间术语混用，在买家最需要安心的时候制造犹豫。",
+        "source": "在扩张中的店铺和网站上常见的本地化 QA 发现。"
       },
       {
-        "metric": "Brand trust issues",
-        "description": "In shopify stores, small wording mistakes can make the entire experience feel less professional.",
-        "source": "Especially visible on premium, technical, or compliance-sensitive categories."
+        "metric": "品牌信任问题",
+        "description": "在 Shopify 店铺里，小小的措辞错误会让整个体验显得不够专业。",
+        "source": "在高端、技术或合规敏感类目上尤其明显。"
       }
     ],
     "languages": [
       {
-        "market": "Germany",
-        "language": "German",
-        "priority": "High",
-        "reason": "Strong Shopify buying power and clear local-language search demand."
+        "market": "德国",
+        "language": "德语",
+        "priority": "高",
+        "reason": "Shopify 购买力强，本地语言搜索需求清晰。"
       },
       {
-        "market": "France",
-        "language": "French",
-        "priority": "High",
-        "reason": "High trust expectation on product, checkout, and support copy."
+        "market": "法国",
+        "language": "法语",
+        "priority": "高",
+        "reason": "对商品、结账和支持文案有高信任预期。"
       },
       {
-        "market": "Spain",
-        "language": "Spanish",
-        "priority": "Medium",
-        "reason": "Good expansion market for EU growth with broad language coverage."
+        "market": "西班牙",
+        "language": "西班牙语",
+        "priority": "中",
+        "reason": "适合欧盟增长、语言覆盖广的扩张市场。"
       },
       {
-        "market": "Japan",
-        "language": "Japanese",
-        "priority": "Medium",
-        "reason": "High quality expectations make localization quality especially visible."
+        "market": "日本",
+        "language": "日语",
+        "priority": "中",
+        "reason": "高质量预期让本地化质量尤其显眼。"
       }
     ],
     "marketHabits": [
       {
-        "market": "Germany",
-        "language": "German",
-        "habit": "Buyers usually respond better to direct, specification-led copy with clear product facts, reassurance, and structured page hierarchy.",
-        "localizationFocus": "Keep terminology precise, make product details easy to compare, and avoid vague promotional phrasing. Strong Shopify buying power and clear local-language search demand."
+        "market": "德国",
+        "language": "德语",
+        "habit": "买家通常对直接、以规格为导向的文案反应更好，需要清晰的商品事实、安心感和结构化页面层级。",
+        "localizationFocus": "保持术语精确，让商品详情易于比较，避免含糊的促销措辞。Shopify 购买力强，本地语言搜索需求清晰。"
       },
       {
-        "market": "France",
-        "language": "French",
-        "habit": "Shoppers often expect a more polished brand tone, stronger premium cues, and copy that still feels editorial rather than mechanical.",
-        "localizationFocus": "Protect brand voice, keep collection or category naming elegant, and avoid flat literal translation. High trust expectation on product, checkout, and support copy."
+        "market": "法国",
+        "language": "法语",
+        "habit": "购物者通常期望更精致的品牌语气、更强的高端暗示，以及仍显编辑感而非机械的文案。",
+        "localizationFocus": "保护品牌声音，让合集或类目命名优雅，避免平淡的直译。对商品、结账和支持文案有高信任预期。"
       },
       {
-        "market": "Spain",
-        "language": "Spanish",
-        "habit": "A more approachable and readable tone often works well, especially when browsing starts on mobile and moves quickly across category pages.",
-        "localizationFocus": "Keep copy clear and natural, shorten overly dense sentences, and make category intent obvious at a glance. Good expansion market for EU growth with broad language coverage."
+        "market": "西班牙",
+        "language": "西班牙语",
+        "habit": "更亲切、易读的语气通常效果不错，尤其是浏览从移动端开始并快速跨类目移动时。",
+        "localizationFocus": "保持文案清晰自然，压缩过于密集的句子，让类目意图一目了然。适合欧盟增长、语言覆盖广的扩张市场。"
       },
       {
-        "market": "Japan",
-        "language": "Japanese",
-        "habit": "Users often expect more context, higher language quality, and a stronger sense of detail, trust, and formality before taking action.",
-        "localizationFocus": "Review nuance carefully, keep wording respectful and structured, and make support or reassurance copy easy to find. High quality expectations make localization quality especially visible."
+        "market": "日本",
+        "language": "日语",
+        "habit": "用户通常期望更多上下文、更高的语言质量，以及行动前更强的细节、信任和正式感。",
+        "localizationFocus": "仔细审校细节，保持措辞尊重且结构化，让支持或安心文案容易找到。高质量预期让本地化质量尤其显眼。"
       }
     ],
     "translationScope": [
       {
-        "category": "Critical",
+        "category": "核心",
         "items": [
-          "Homepage hero",
-          "Product pages",
-          "Collection or category pages",
-          "Cart and conversion CTAs"
+          "首页主视觉",
+          "商品页",
+          "合集或类目页",
+          "购物车和转化 CTA"
         ],
-        "priority": "High"
+        "priority": "高"
       },
       {
-        "category": "Important",
+        "category": "重要",
         "items": [
-          "SEO metadata",
-          "About and trust pages",
-          "Email capture copy",
-          "Paid landing pages"
+          "SEO 元数据",
+          "关于和信任页",
+          "邮件订阅文案",
+          "付费落地页"
         ],
-        "priority": "Medium"
+        "priority": "中"
       },
       {
-        "category": "Optional",
+        "category": "可选",
         "items": [
-          "Older blog articles",
-          "Archived campaigns",
-          "Low-traffic editorial pages"
+          "旧博客文章",
+          "归档活动",
+          "低流量编辑页"
         ],
-        "priority": "Lower"
+        "priority": "低"
       }
     ],
     "expansionPlan": [
       {
-        "stage": "Stage 1",
-        "market": "Germany",
-        "language": "German",
-        "reason": "Start with a high-intent EU market where localized SEO and trust copy matter quickly."
+        "stage": "第 1 阶段",
+        "market": "德国",
+        "language": "德语",
+        "reason": "从一个高意图欧盟市场开始，那里本地化 SEO 和信任文案很快重要起来。"
       },
       {
-        "stage": "Stage 2",
-        "market": "France",
-        "language": "French",
-        "reason": "Reuse the same Shopify workflow across collections, PDPs, and navigation."
+        "stage": "第 2 阶段",
+        "market": "法国",
+        "language": "法语",
+        "reason": "在合集、商品页和导航间复用同一套 Shopify 工作流。"
       },
       {
-        "stage": "Stage 3",
-        "market": "Japan",
-        "language": "Japanese",
-        "reason": "Expand after the glossary and QA process are stable enough for higher-context markets."
+        "stage": "第 3 阶段",
+        "market": "日本",
+        "language": "日语",
+        "reason": "在术语表和 QA 流程足够稳定后，再扩展到高上下文市场。"
       }
     ],
     "bestPractices": [
       {
-        "title": "Start with high-intent pages",
-        "description": "Begin with the pages that drive evaluation and purchase for shopify merchants preparing for global growth, then expand once the workflow is stable."
+        "title": "从高意图页面开始",
+        "description": "从驱动评估和购买的页面开始，等流程稳定后再扩展。"
       },
       {
-        "title": "Use a glossary before scaling",
-        "description": "Lock brand terms, recurring feature names, and category vocabulary before bulk translation begins."
+        "title": "扩展前先用术语表",
+        "description": "在批量翻译前锁定品牌词、重复功能名和类目词汇。"
       },
       {
-        "title": "Review by market context",
-        "description": "Check tone, units, formatting, and market expectations instead of only checking grammar."
+        "title": "按市场上下文审校",
+        "description": "检查语气、单位、格式和市场预期，而不只是语法。"
       },
       {
-        "title": "Pair localization with SEO QA",
-        "description": "Every launch market should ship with localized metadata, internal links, and page intent coverage."
+        "title": "本地化与 SEO QA 配对",
+        "description": "每个上线市场都应附带本地化元数据、内链和页面意图覆盖。"
       }
     ],
     "styleRules": [
       {
-        "title": "Lock terminology first",
-        "description": "Build a glossary for product terms, category labels, CTAs, and any repeated nouns before scaling translation."
+        "title": "先锁定术语",
+        "description": "在扩展翻译前，为商品术语、类目标签、CTA 和重复名词建立术语表。"
       },
       {
-        "title": "Keep one category voice",
-        "description": "Keep the brand voice consistent across homepage, category pages, product pages, and conversion copy so the translated store still feels like one brand."
+        "title": "保持单一类目声音",
+        "description": "让品牌声音在首页、类目页、商品页和转化文案间一致，翻译后的店铺仍像同一个品牌。"
       },
       {
-        "title": "Translate structure, not just sentences",
-        "description": "Preserve metadata, headings, tables, and page hierarchy so the translated page keeps the same SEO and reading logic."
+        "title": "翻译结构，而不只是句子",
+        "description": "保留元数据、标题、表格和页面层级，让翻译页保持相同的 SEO 和阅读逻辑。"
       },
       {
-        "title": "Review trust-sensitive copy manually",
-        "description": "Anything tied to reassurance, product accuracy, technical details, or premium positioning should pass a human QA step before publishing."
+        "title": "信任敏感文案人工审校",
+        "description": "任何涉及安心感、商品准确性、技术细节或高端定位的内容，发布前都要经过人工 QA。"
       }
     ],
     "solutions": [
       {
-        "name": "Manual Translation",
+        "name": "人工翻译",
         "advantages": [
-          "Highest brand control",
-          "Good for legal or regulated copy",
-          "Works well for flagship campaigns"
+          "品牌控制最高",
+          "适合法律或受监管文案",
+          "适合旗舰活动"
         ],
         "limitations": [
-          "Slow to scale",
-          "High cost per market",
-          "Hard to keep updated after catalog changes"
+          "扩展慢",
+          "每个市场成本高",
+          "目录变化后难保持更新"
         ]
       },
       {
-        "name": "Generic Machine Translation",
+        "name": "通用机器翻译",
         "advantages": [
-          "Fast first draft",
-          "Low upfront cost",
-          "Useful for low-priority pages"
+          "第一稿快",
+          "前期成本低",
+          "适合低优先级页面"
         ],
         "limitations": [
-          "Weak context handling",
-          "Inconsistent terminology",
-          "Often misses SEO and conversion nuance"
+          "上下文处理弱",
+          "术语不一致",
+          "常漏掉 SEO 和转化细节"
         ]
       },
       {
-        "name": "AI Ecommerce Translation",
+        "name": "AI 电商翻译",
         "advantages": [
-          "Faster than manual",
-          "Better context for storefront content",
-          "Fits ongoing catalog and SEO updates"
+          "比人工快",
+          "对前台内容上下文更好",
+          "适合持续的目录和 SEO 更新"
         ],
         "limitations": [
-          "Still needs QA",
-          "Requires glossary rules",
-          "Needs market review for compliance-sensitive content"
+          "仍需 QA",
+          "需要术语表规则",
+          "合规敏感内容需要市场审校"
         ]
       }
     ],
     "features": [
-      "Product Translation",
-      "Theme Translation",
-      "SEO Translation",
-      "Image Translation",
-      "HTML Preservation"
+      "商品翻译",
+      "主题翻译",
+      "SEO 翻译",
+      "图片翻译",
+      "HTML 保留"
     ],
     "recommendations": [
       {
-        "title": "Start with high-intent page groups",
-        "description": "For shopify stores, translate the pages closest to evaluation and purchase first, then expand once the workflow is stable."
+        "title": "从高意图页面组开始",
+        "description": "先翻译最接近评估和购买的页面，等流程稳定后再扩展。"
       },
       {
-        "title": "Pair glossary and reviewer QA",
-        "description": "Use glossary control for repeated terms and keep a review loop for pages where trust, compliance, or premium tone matters most."
+        "title": "术语表与审校 QA 配对",
+        "description": "对重复术语用术语表控制，并为信任、合规或高端语气最重要的页面保留审校循环。"
       },
       {
-        "title": "Use Ciwi for ongoing storefront localization",
-        "description": "Ciwi fits teams that need product translation, theme translation, SEO updates, and structured multilingual maintenance inside one workflow."
+        "title": "用 Ciwi 做持续的前台本地化",
+        "description": "Ciwi 适合需要在一个工作流里完成商品翻译、主题翻译、SEO 更新和结构化多语言维护的团队。"
       }
     ],
     "terminology": [
       {
-        "term": "Core category term",
-        "meaning": "The repeated phrase buyers use to understand the offer",
-        "localized": "Lock it in a glossary before translating at scale."
+        "term": "核心类目术语",
+        "meaning": "买家理解商品时反复使用的短语",
+        "localized": "在批量翻译前把它锁进术语表。"
       },
       {
-        "term": "Trust signal",
-        "meaning": "Wording that reduces hesitation and improves buyer confidence",
-        "localized": "Adapt it to the local market's buying style, not just grammar."
+        "term": "信任信号",
+        "meaning": "减少犹豫、提升买家信心的措辞",
+        "localized": "按本地市场购买风格调整，而不只是语法。"
       },
       {
-        "term": "Conversion CTA",
-        "meaning": "The phrase that moves users to the next step",
-        "localized": "Use local action language instead of a literal source CTA."
+        "term": "转化 CTA",
+        "meaning": "推动用户进入下一步的短语",
+        "localized": "用本地行动语言，而非直译源 CTA。"
       },
       {
-        "term": "SEO intent phrase",
-        "meaning": "The search-led wording buyers use when discovering products or solutions",
-        "localized": "Translate according to local search behavior and page intent."
+        "term": "SEO 意图短语",
+        "meaning": "买家发现商品或解决方案时使用的搜索导向措辞",
+        "localized": "按本地搜索行为和页面意图翻译。"
       }
     ],
     "checklist": [
-      "Start with the highest-intent shopify stores pages, not the whole site at once.",
-      "Build a glossary for repeated terms, category labels, and conversion wording before bulk translation.",
-      "Translate product pages, collection pages, and metadata before expanding into lower-priority content.",
-      "Review market-specific phrasing and claims instead of publishing direct machine output.",
-      "Localize titles, meta descriptions, and page structure together so SEO can actually benefit.",
-      "Create one review checklist for brand voice, trust copy, and terminology consistency."
+      "从最高意图的 Shopify 页面开始，而不是一次翻译全站。",
+      "在批量翻译前，为重复术语、类目标签和转化措辞建立术语表。",
+      "先翻译商品页、合集页和元数据，再扩展到低优先级内容。",
+      "审校市场特定措辞和声明，而不是发布原始机器输出。",
+      "把标题、meta 描述和页面结构一起本地化，SEO 才能真正受益。",
+      "为品牌声音、信任文案和术语一致性创建一份审校清单。"
     ],
     "faq": [
       {
-        "question": "What should a Shopify store translate first?",
-        "answer": "Start with product pages, collection pages, navigation, and SEO metadata because those assets shape both search visibility and conversion."
+        "question": "Shopify 店铺应该先翻译什么？",
+        "answer": "从商品页、合集页、导航和 SEO 元数据开始，因为这些资产同时影响搜索可见度和转化。"
       },
       {
-        "question": "Does localization matter if a store already has English traffic?",
-        "answer": "Yes. English can capture some demand, but local-language storefronts usually build more trust and win more market-specific search intent."
+        "question": "店铺已有英文流量，本地化还重要吗？",
+        "answer": "重要。英文能抓住部分需求，但本地语言前台通常建立更多信任，并赢得更多市场特定的搜索意图。"
       },
       {
-        "question": "How often should Shopify localization be updated?",
-        "answer": "Update it whenever products, themes, or campaign pages change so the translated storefront does not drift away from the live source content."
+        "question": "Shopify 本地化应该多久更新一次？",
+        "answer": "每当商品、主题或活动页变化时就更新，让翻译前台不偏离线上源内容。"
       }
     ],
-    "status": "draft",
+    "status": "published",
     "sourceLocale": "en",
-    "translationStatus": "ai-draft"
+    "translationStatus": "reviewed"
   },
   {
     "slug": "beauty-localization-guide-2026",
     "href": "/guides/beauty-localization-guide-2026",
     "year": 2026,
+    "publishedAt": "2026-08-26",
     "title": "[TODO zh-cn] Beauty Ecommerce Localization Guide 2026: How Beauty Brands Go Global",
     "description": "[TODO zh-cn] A practical SEO page template for beauty, skincare, and cosmetics brands expanding into multilingual ecommerce markets.",
     "industry": "Beauty ecommerce",
@@ -697,6 +699,7 @@
     "slug": "fashion-ecommerce-localization-guide-2026",
     "href": "/guides/fashion-ecommerce-localization-guide-2026",
     "year": 2026,
+    "publishedAt": "2026-08-26",
     "title": "[TODO zh-cn] Fashion Ecommerce Localization Guide 2026: How Clothing Brands Expand Globally",
     "description": "[TODO zh-cn] A reusable framework for fashion and apparel brands that need multilingual storefronts, better conversion, and market-ready SEO.",
     "industry": "Fashion ecommerce",
@@ -1044,6 +1047,7 @@
     "slug": "supplement-brand-localization-guide-2026",
     "href": "/guides/supplement-brand-localization-guide-2026",
     "year": 2026,
+    "publishedAt": "2026-08-26",
     "title": "[TODO zh-cn] Supplement Brand Localization Guide 2026: Translation, Compliance & Customer Trust",
     "description": "[TODO zh-cn] A category-specific guide for supplement and wellness brands that need clear product education, trust copy, and scalable localization workflows.",
     "industry": "Supplement ecommerce",
@@ -1391,6 +1395,7 @@
     "slug": "electronics-ecommerce-translation-guide-2026",
     "href": "/guides/electronics-ecommerce-translation-guide-2026",
     "year": 2026,
+    "publishedAt": "2026-08-26",
     "title": "[TODO zh-cn] Electronics Ecommerce Translation Guide 2026: Selling Technology Products Globally",
     "description": "[TODO zh-cn] A template page for electronics brands that need multilingual specs, SEO coverage, and cleaner product evaluation journeys.",
     "industry": "Electronics ecommerce",
@@ -1738,6 +1743,7 @@
     "slug": "home-decor-localization-guide-2026",
     "href": "/guides/home-decor-localization-guide-2026",
     "year": 2026,
+    "publishedAt": "2026-08-26",
     "title": "[TODO zh-cn] Home Decor Translation Guide 2026: Localizing Your Ecommerce Store Globally",
     "description": "[TODO zh-cn] A practical localization template for home decor and home goods stores expanding through multilingual search and product discovery.",
     "industry": "Home decor ecommerce",
@@ -2085,6 +2091,7 @@
     "slug": "sportswear-translation-guide-2026",
     "href": "/guides/sportswear-translation-guide-2026",
     "year": 2026,
+    "publishedAt": "2026-08-26",
     "title": "[TODO zh-cn] Sportswear Translation Guide 2026: How Active Brands Expand Globally",
     "description": "[TODO zh-cn] A conversion-focused localization framework for sportswear and active brands that need clean fit, fabric, and performance messaging across markets.",
     "industry": "Sportswear ecommerce",
@@ -2432,6 +2439,7 @@
     "slug": "dtc-brand-localization-guide-2026",
     "href": "/guides/dtc-brand-localization-guide-2026",
     "year": 2026,
+    "publishedAt": "2026-08-26",
     "title": "[TODO zh-cn] DTC Brand Localization Guide 2026: Building a Global Ecommerce Business",
     "description": "[TODO zh-cn] A reusable landing page template for DTC brands planning international expansion through localized storefronts, SEO pages, and conversion copy.",
     "industry": "DTC ecommerce",
@@ -2779,6 +2787,7 @@
     "slug": "startup-localization-guide-2026",
     "href": "/guides/startup-localization-guide-2026",
     "year": 2026,
+    "publishedAt": "2026-08-26",
     "title": "[TODO zh-cn] Startup Localization Guide 2026: Enter Global Markets Faster",
     "description": "[TODO zh-cn] A lightweight but scalable framework for startup brands that want to validate international demand without building a full enterprise localization stack first.",
     "industry": "Startup brands",
@@ -3126,6 +3135,7 @@
     "slug": "saas-localization-guide-2026",
     "href": "/guides/saas-localization-guide-2026",
     "year": 2026,
+    "publishedAt": "2026-08-26",
     "title": "[TODO zh-cn] SaaS Localization Guide 2026: Expanding Software Products Globally",
     "description": "[TODO zh-cn] A B2B-ready framework for SaaS teams that need localized marketing pages, onboarding copy, and product education for global demand capture.",
     "industry": "B2B SaaS",
@@ -3473,6 +3483,7 @@
     "slug": "manufacturing-website-translation-guide-2026",
     "href": "/guides/manufacturing-website-translation-guide-2026",
     "year": 2026,
+    "publishedAt": "2026-08-26",
     "title": "[TODO zh-cn] Manufacturing Website Translation Guide 2026",
     "description": "[TODO zh-cn] A B2B localization template for manufacturers that need multilingual product categories, technical copy, and inquiry-focused website pages.",
     "industry": "Manufacturing websites",
@@ -3820,6 +3831,7 @@
     "slug": "b2b-catalog-localization-guide-2026",
     "href": "/guides/b2b-catalog-localization-guide-2026",
     "year": 2026,
+    "publishedAt": "2026-08-26",
     "title": "[TODO zh-cn] B2B Catalog Localization Guide 2026",
     "description": "[TODO zh-cn] A practical guide for wholesale and distributor businesses that need multilingual catalog pages, structured product information, and better international lead capture.",
     "industry": "B2B catalogs",
@@ -4167,6 +4179,7 @@
     "slug": "clothing-store-translation-guide-2026",
     "href": "/guides/clothing-store-translation-guide-2026",
     "year": 2026,
+    "publishedAt": "2026-08-26",
     "title": "[TODO zh-cn] Clothing Store Translation Guide 2026: Languages, SEO & Localization Best Practices",
     "description": "[TODO zh-cn] A practical translation guide for clothing stores that need multilingual collections, sizing clarity, and stronger international SEO coverage.",
     "industry": "Clothing stores",
@@ -4514,6 +4527,7 @@
     "slug": "shoe-store-translation-guide-2026",
     "href": "/guides/shoe-store-translation-guide-2026",
     "year": 2026,
+    "publishedAt": "2026-08-26",
     "title": "[TODO zh-cn] Shoe Store Translation Guide 2026: How Footwear Brands Sell Globally",
     "description": "[TODO zh-cn] A category template for footwear brands that need localized fit guidance, product comparison clarity, and multilingual SEO support.",
     "industry": "Footwear ecommerce",
@@ -4861,6 +4875,7 @@
     "slug": "jewelry-ecommerce-localization-guide-2026",
     "href": "/guides/jewelry-ecommerce-localization-guide-2026",
     "year": 2026,
+    "publishedAt": "2026-08-26",
     "title": "[TODO zh-cn] Jewelry Ecommerce Localization Guide 2026: Building Trust Across Global Markets",
     "description": "[TODO zh-cn] A localization framework for jewelry brands that need premium positioning, trust signals, and market-ready product storytelling.",
     "industry": "Jewelry ecommerce",
@@ -5208,6 +5223,7 @@
     "slug": "skincare-translation-guide-2026",
     "href": "/guides/skincare-translation-guide-2026",
     "year": 2026,
+    "publishedAt": "2026-08-26",
     "title": "[TODO zh-cn] Skincare Translation Guide 2026: Languages, Localization Challenges & Best Practices",
     "description": "[TODO zh-cn] A category-specific guide for skincare brands that need localized ingredients, routines, and trust-building SEO pages.",
     "industry": "Skincare ecommerce",
@@ -5555,6 +5571,7 @@
     "slug": "cosmetics-brand-localization-strategy-2026",
     "href": "/guides/cosmetics-brand-localization-strategy-2026",
     "year": 2026,
+    "publishedAt": "2026-08-26",
     "title": "[TODO zh-cn] Cosmetics Brand Localization Strategy 2026: Expand Your Beauty Business Internationally",
     "description": "[TODO zh-cn] A localization strategy template for cosmetics brands that need localized merchandising, campaign copy, and multilingual product education.",
     "industry": "Cosmetics ecommerce",
@@ -5902,6 +5919,7 @@
     "slug": "hair-care-translation-guide-2026",
     "href": "/guides/hair-care-translation-guide-2026",
     "year": 2026,
+    "publishedAt": "2026-08-26",
     "title": "[TODO zh-cn] Hair Care Translation Guide 2026: Localizing Products for Global Customers",
     "description": "[TODO zh-cn] A guide template for hair care brands that need localized benefit messaging, routine education, and market-ready storefront copy.",
     "industry": "Hair care ecommerce",
@@ -6249,6 +6267,7 @@
     "slug": "furniture-brand-localization-guide-2026",
     "href": "/guides/furniture-brand-localization-guide-2026",
     "year": 2026,
+    "publishedAt": "2026-08-26",
     "title": "[TODO zh-cn] Furniture Brand Localization Guide 2026: Expanding Into International Markets",
     "description": "[TODO zh-cn] A furniture-focused localization template for brands that need multilingual category pages, product detail, and trust content for global expansion.",
     "industry": "Furniture ecommerce",
@@ -6596,6 +6615,7 @@
     "slug": "kitchen-product-translation-guide-2026",
     "href": "/guides/kitchen-product-translation-guide-2026",
     "year": 2026,
+    "publishedAt": "2026-08-26",
     "title": "[TODO zh-cn] Kitchen Product Translation Guide 2026: Languages and Localization Strategies",
     "description": "[TODO zh-cn] A practical guide for kitchen and cookware brands that need localized feature language, category SEO, and cleaner product comparison pages.",
     "industry": "Kitchen product ecommerce",
@@ -6943,6 +6963,7 @@
     "slug": "consumer-electronics-localization-guide-2026",
     "href": "/guides/consumer-electronics-localization-guide-2026",
     "year": 2026,
+    "publishedAt": "2026-08-26",
     "title": "[TODO zh-cn] Consumer Electronics Localization Guide 2026",
     "description": "[TODO zh-cn] A reusable SEO guide for consumer electronics brands that need multilingual specs, category pages, and trust-building comparison content.",
     "industry": "Consumer electronics",
@@ -7290,6 +7311,7 @@
     "slug": "smart-home-product-translation-guide-2026",
     "href": "/guides/smart-home-product-translation-guide-2026",
     "year": 2026,
+    "publishedAt": "2026-08-26",
     "title": "[TODO zh-cn] Smart Home Product Translation Guide 2026",
     "description": "[TODO zh-cn] A localization guide for smart home brands that need multilingual setup clarity, feature explanation, and SEO-ready category pages.",
     "industry": "Smart home ecommerce",
@@ -7637,6 +7659,7 @@
     "slug": "food-ecommerce-translation-guide-2026",
     "href": "/guides/food-ecommerce-translation-guide-2026",
     "year": 2026,
+    "publishedAt": "2026-08-26",
     "title": "[TODO zh-cn] Food Ecommerce Translation Guide 2026: Localizing Products for Global Markets",
     "description": "[TODO zh-cn] A practical localization guide for food brands that need trust-building product pages, category SEO, and clearer multilingual merchandising.",
     "industry": "Food ecommerce",
@@ -7984,6 +8007,7 @@
     "slug": "coffee-brand-translation-guide-2026",
     "href": "/guides/coffee-brand-translation-guide-2026",
     "year": 2026,
+    "publishedAt": "2026-08-26",
     "title": "[TODO zh-cn] Coffee Brand Translation Guide 2026: Expanding Internationally",
     "description": "[TODO zh-cn] A category-specific guide for coffee brands that need localized flavor notes, subscription messaging, and multilingual product discovery pages.",
     "industry": "Coffee ecommerce",
@@ -8331,6 +8355,7 @@
     "slug": "fitness-product-localization-guide-2026",
     "href": "/guides/fitness-product-localization-guide-2026",
     "year": 2026,
+    "publishedAt": "2026-08-26",
     "title": "[TODO zh-cn] Fitness Product Localization Guide 2026",
     "description": "[TODO zh-cn] A localization framework for fitness product brands that need multilingual category pages, benefit-focused product detail, and repeatable SEO content.",
     "industry": "Fitness product ecommerce",
@@ -8678,6 +8703,7 @@
     "slug": "outdoor-equipment-translation-guide-2026",
     "href": "/guides/outdoor-equipment-translation-guide-2026",
     "year": 2026,
+    "publishedAt": "2026-08-26",
     "title": "[TODO zh-cn] Outdoor Equipment Translation Guide 2026",
     "description": "[TODO zh-cn] A reusable guide for outdoor brands that need multilingual spec clarity, category discovery pages, and stronger international SEO coverage.",
     "industry": "Outdoor equipment ecommerce",
@@ -9025,6 +9051,7 @@
     "slug": "shopify-localization-strategy-2026",
     "href": "/guides/shopify-localization-strategy-2026",
     "year": 2026,
+    "publishedAt": "2026-08-26",
     "title": "[TODO zh-cn] Shopify Localization Strategy 2026: Languages, SEO & Conversion Optimization",
     "description": "[TODO zh-cn] A strategic guide for Shopify brands that want a repeatable localization system across storefront content, SEO pages, and conversion flows.",
     "industry": "Shopify localization",
@@ -9372,6 +9399,7 @@
     "slug": "shopify-international-expansion-guide-2026",
     "href": "/guides/shopify-international-expansion-guide-2026",
     "year": 2026,
+    "publishedAt": "2026-08-26",
     "title": "[TODO zh-cn] Shopify International Expansion Guide 2026",
     "description": "[TODO zh-cn] A guide template for Shopify brands planning multilingual expansion through better localization, SEO readiness, and market sequencing.",
     "industry": "Shopify international expansion",
@@ -9719,6 +9747,7 @@
     "slug": "software-translation-strategy-2026",
     "href": "/guides/software-translation-strategy-2026",
     "year": 2026,
+    "publishedAt": "2026-08-26",
     "title": "[TODO zh-cn] Software Translation Strategy 2026: Localization Best Practices",
     "description": "[TODO zh-cn] A B2B software guide for teams that need multilingual marketing pages, category SEO, and clearer product education for global demand.",
     "industry": "Software websites",
@@ -10066,6 +10095,7 @@
     "slug": "industrial-equipment-localization-guide-2026",
     "href": "/guides/industrial-equipment-localization-guide-2026",
     "year": 2026,
+    "publishedAt": "2026-08-26",
     "title": "[TODO zh-cn] Industrial Equipment Localization Guide 2026",
     "description": "[TODO zh-cn] A B2B localization guide for industrial equipment companies that need multilingual category pages, technical specs, and clearer inquiry journeys.",
     "industry": "Industrial equipment websites",
@@ -10413,6 +10443,7 @@
     "slug": "distributor-website-translation-strategy-2026",
     "href": "/guides/distributor-website-translation-strategy-2026",
     "year": 2026,
+    "publishedAt": "2026-08-26",
     "title": "[TODO zh-cn] Distributor Website Translation Strategy 2026",
     "description": "[TODO zh-cn] A guide template for distributor and wholesale websites that need multilingual product families, inquiry pages, and structured SEO coverage.",
     "industry": "Distributor websites",

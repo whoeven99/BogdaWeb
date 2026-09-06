@@ -39,7 +39,7 @@ export default async function ResourcesPage() {
         }
       : {
           title: "Guide translations are not published yet",
-          description: "We only show guide entries in locales that already have a published article body.",
+          description: "The guide articles don't have a published localized version yet, so we don't show untranslated article entries here.",
         };
   const localizationGuideResources = getLocalizationGuideCategoryResources(locale);
   const functionScenarioGuideResources = getFunctionScenarioGuideResources(locale);

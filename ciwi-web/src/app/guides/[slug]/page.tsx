@@ -383,7 +383,7 @@ function getFunctionScenarioPageCopy(locale: "en" | "zh-cn") {
 
 function buildGuideStructuredData(
   locale: "en" | "zh-cn",
-  guide: {title: string; description: string; href: string; keywords: string[]; faq: {question: string; answer: string}[]}
+  guide: {title: string; description: string; href: string; publishedAt: string; keywords: string[]; faq: {question: string; answer: string}[]}
 ) {
   const pageUrl = new URL(localizeHref(locale, guide.href), siteUrl).toString();
 
@@ -405,6 +405,7 @@ function buildGuideStructuredData(
         url: pageUrl,
         headline: guide.title,
         description: guide.description,
+        datePublished: guide.publishedAt,
         keywords: guide.keywords,
       }),
       buildFaqSchema(guide.faq),

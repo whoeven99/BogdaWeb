@@ -14,7 +14,7 @@ import {getProductMap, products} from "@/content/products";
 import {localizeHref} from "@/lib/i18n";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata, siteUrl} from "@/lib/seo/metadata";
-import {buildBreadcrumbSchema, buildFaqSchema, buildWebPageSchema} from "@/lib/seo/schema";
+import {buildBreadcrumbSchema, buildFaqSchema, buildProductSchema, buildWebPageSchema} from "@/lib/seo/schema";
 
 type ProductDetailPageProps = {
   params: Promise<{slug: string}>;
@@ -219,6 +219,18 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
       name: product.name,
       description: product.heroDescription,
       keywords: [product.name, ...product.metrics],
+    }),
+    buildProductSchema({
+      url: pageUrl,
+      name: product.name,
+      description: product.heroDescription,
+      rating: product.rating,
+      reviewCount: product.reviewCount,
+      bestRating: 5,
+      reviews: (product.reviewSnippets ?? []).map((snippet) => ({
+        reviewBody: snippet,
+        ratingValue: product.rating ?? 5,
+      })),
     }),
     buildFaqSchema(product.faq),
   ];

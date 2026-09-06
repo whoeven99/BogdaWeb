@@ -9,7 +9,7 @@ import {getToolReviewHrefMap} from "@/content/tool-reviews";
 import {localizeHref} from "@/lib/i18n";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata, siteUrl} from "@/lib/seo/metadata";
-import {buildBreadcrumbSchema, buildFaqSchema, buildWebPageSchema} from "@/lib/seo/schema";
+import {buildBreadcrumbSchema, buildFaqSchema, buildTechArticleSchema, buildWebPageSchema} from "@/lib/seo/schema";
 
 type ProductResearchArticlePageProps = {
   params: Promise<{slug: string}>;
@@ -139,7 +139,7 @@ function getPageCopy(locale: "en" | "zh-cn") {
       };
 }
 
-function buildStructuredData(locale: "en" | "zh-cn", article: {title: string; description: string; href: string; keywords: string[]; faq: {question: string; answer: string}[]}) {
+function buildStructuredData(locale: "en" | "zh-cn", article: {title: string; description: string; href: string; publishedAt: string; keywords: string[]; faq: {question: string; answer: string}[]}) {
   const pageUrl = new URL(localizeHref(locale, article.href), siteUrl).toString();
 
   return [
@@ -152,6 +152,13 @@ function buildStructuredData(locale: "en" | "zh-cn", article: {title: string; de
       url: pageUrl,
       name: article.title,
       description: article.description,
+      keywords: article.keywords,
+    }),
+    buildTechArticleSchema({
+      url: pageUrl,
+      headline: article.title,
+      description: article.description,
+      datePublished: article.publishedAt,
       keywords: article.keywords,
     }),
     buildFaqSchema(article.faq),
