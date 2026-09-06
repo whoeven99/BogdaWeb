@@ -6,8 +6,10 @@ import {getCompares} from "@/content/compare";
 import {getFunctionScenarioGuides} from "@/content/function-scenario-guides";
 import {getHelpCenterDocs} from "@/content/help-center";
 import {getLocalizationGuides} from "@/content/localization-guides";
+import {getProductResearchWorkflowArticles} from "@/content/product-research";
 import {getProducts} from "@/content/products";
 import {getSolutions} from "@/content/solutions";
+import {getToolReviews} from "@/content/tool-reviews";
 import {localizeHref, type Locale} from "@/lib/i18n";
 import {siteUrl} from "@/lib/seo/metadata";
 
@@ -22,6 +24,8 @@ const staticRoutes = [
   "/guides",
   "/help-center",
   "/privacy-policy",
+  "/resources/product-research",
+  "/resources/product-research/reviews",
   "/products",
   "/resources",
   "/solutions",
@@ -78,11 +82,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
 
     for (const guide of getLocalizationGuides(locale)) {
-      addEntry(guide.href, locale);
+      addEntry(guide.href, locale, guide.publishedAt);
     }
 
     for (const guide of getFunctionScenarioGuides(locale)) {
-      addEntry(guide.href, locale);
+      addEntry(guide.href, locale, guide.publishedAt);
+    }
+
+    for (const article of getProductResearchWorkflowArticles(locale)) {
+      addEntry(article.href, locale, article.publishedAt);
+    }
+
+    for (const review of getToolReviews(locale)) {
+      addEntry(review.href, locale, review.publishedAt);
     }
   }
 

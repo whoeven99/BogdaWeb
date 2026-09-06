@@ -11,6 +11,7 @@ type ArticleSchemaInput = {
   headline: string;
   description: string;
   datePublished?: string;
+  dateModified?: string;
   keywords?: string[];
 };
 
@@ -35,13 +36,14 @@ export function buildBreadcrumbSchema(items: BreadcrumbItem[]) {
   };
 }
 
-export function buildBlogPostingSchema({url, headline, description, datePublished, keywords = []}: ArticleSchemaInput) {
+export function buildBlogPostingSchema({url, headline, description, datePublished, dateModified, keywords = []}: ArticleSchemaInput) {
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline,
     description,
     datePublished,
+    dateModified,
     mainEntityOfPage: url,
     url,
     keywords,
@@ -57,12 +59,14 @@ export function buildBlogPostingSchema({url, headline, description, datePublishe
   };
 }
 
-export function buildTechArticleSchema({url, headline, description, keywords = []}: ArticleSchemaInput) {
+export function buildTechArticleSchema({url, headline, description, datePublished, dateModified, keywords = []}: ArticleSchemaInput) {
   return {
     "@context": "https://schema.org",
     "@type": "TechArticle",
     headline,
     description,
+    datePublished,
+    dateModified,
     mainEntityOfPage: url,
     url,
     keywords,
@@ -90,6 +94,99 @@ export function buildFaqSchema(entries: FaqEntry[]) {
         text: entry.answer,
       },
     })),
+  };
+}
+
+type ProductSchemaInput = {
+  url: string;
+  name: string;
+  description: string;
+  rating?: number;
+  reviewCount?: number;
+  bestRating?: number;
+  reviews?: {reviewBody: string; ratingValue: number}[];
+};
+
+export function buildProductSchema({
+  url,
+  name,
+  description,
+  rating,
+  reviewCount,
+  bestRating = 5,
+  reviews = [],
+}: ProductSchemaInput) {
+  const aggregateRating =
+    typeof rating === "number" && typeof reviewCount === "number"
+      ? {
+          "@type": "AggregateRating",
+          ratingValue: rating,
+          reviewCount,
+          bestRating,
+        }
+      : undefined;
+
+  const reviewItems = reviews.map((item) => ({
+    "@type": "Review",
+    author: {
+      "@type": "Organization",
+      name: siteName,
+    },
+    reviewBody: item.reviewBody,
+    reviewRating: {
+      "@type": "Rating",
+      ratingValue: item.ratingValue,
+      bestRating,
+    },
+  }));
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name,
+    description,
+    url,
+    ...(aggregateRating ? {aggregateRating} : {}),
+    ...(reviewItems.length ? {review: reviewItems} : {}),
+  };
+}
+
+type ReviewSchemaInput = {
+  url: string;
+  itemName: string;
+  reviewBody?: string;
+  ratingValue: number;
+  bestRating: number;
+  datePublished?: string;
+};
+
+export function buildReviewSchema({
+  url,
+  itemName,
+  reviewBody,
+  ratingValue,
+  bestRating,
+  datePublished,
+}: ReviewSchemaInput) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Review",
+    itemReviewed: {
+      "@type": "Product",
+      name: itemName,
+    },
+    author: {
+      "@type": "Organization",
+      name: siteName,
+    },
+    reviewRating: {
+      "@type": "Rating",
+      ratingValue,
+      bestRating,
+    },
+    ...(reviewBody ? {reviewBody} : {}),
+    ...(datePublished ? {datePublished} : {}),
+    url,
   };
 }
 

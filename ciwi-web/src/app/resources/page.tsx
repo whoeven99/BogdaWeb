@@ -11,6 +11,7 @@ import {
   getFunctionScenarioGuideResources,
   getHelpCenterResources,
   getLocalizationGuideCategoryResources,
+  getProductResearchResources,
 } from "@/content/resources";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata} from "@/lib/seo/metadata";
@@ -38,7 +39,7 @@ export default async function ResourcesPage() {
         }
       : {
           title: "Guide translations are not published yet",
-          description: "We only show guide entries in locales that already have a published article body.",
+          description: "The guide articles don't have a published localized version yet, so we don't show untranslated article entries here.",
         };
   const localizationGuideResources = getLocalizationGuideCategoryResources(locale);
   const functionScenarioGuideResources = getFunctionScenarioGuideResources(locale);
@@ -52,6 +53,8 @@ export default async function ResourcesPage() {
   const featuredBlogResources = blogResources.slice(0, 3);
   const featuredCompareResources = compareResources.slice(0, 3);
   const featuredBestShopifyAppsResources = bestShopifyAppsResources.slice(0, 3);
+  const productResearchResources = getProductResearchResources(locale);
+  const featuredProductResearchResources = productResearchResources.slice(0, 3);
   const guideModuleResources = [
     {
       title: copy.sections.guides.categoryTitle,
@@ -253,6 +256,30 @@ export default async function ResourcesPage() {
           <div className="resources-section__cta">
             <Button href={copy.sections.bestShopifyApps.ctaHref} variant="secondary">
               {copy.sections.bestShopifyApps.ctaLabel}
+            </Button>
+          </div>
+        </section>
+
+        <section className="page-section">
+          <SectionHeading
+            eyebrow={copy.sections.productResearch.eyebrow}
+            title={copy.sections.productResearch.title}
+            description={copy.sections.productResearch.description}
+          />
+          <div className="resource-grid">
+            {featuredProductResearchResources.map((item) => (
+              <ArticleCard
+                key={`${item.title}-${item.href}`}
+                title={item.title}
+                description={item.description}
+                href={item.href}
+                meta={item.meta}
+              />
+            ))}
+          </div>
+          <div className="resources-section__cta">
+            <Button href={copy.sections.productResearch.ctaHref} variant="secondary">
+              {copy.sections.productResearch.ctaLabel}
             </Button>
           </div>
         </section>

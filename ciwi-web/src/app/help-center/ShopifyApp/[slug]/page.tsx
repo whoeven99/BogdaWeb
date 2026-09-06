@@ -86,6 +86,7 @@ export default async function HelpCenterDetailPage({params}: HelpCenterDetailPag
       url: pageUrl,
       headline: doc.title,
       description: doc.description,
+      datePublished: doc.publishedAt,
       keywords: doc.meta,
     }),
     ...(faqEntries.length ? [buildFaqSchema(faqEntries)] : []),

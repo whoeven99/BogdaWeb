@@ -1,0 +1,269 @@
+[
+  {
+    "slug": "best-shopify-product-research-tools",
+    "href": "/resources/product-research",
+    "year": 2026,
+    "publishedAt": "2026-09-04",
+    "status": "published",
+    "title": "2026 年 Shopify 选品工具推荐：一套完整工作流",
+    "description": "按工作流拆解的 Shopify 选品工具指南，从需求发现、竞品拆解到利润测算和供货履约。",
+    "stage": "overview",
+    "stageLabel": "总览",
+    "audience": "正在评估选品工具的 Shopify 商家、独立站和代发货运营",
+    "mainValue": "最好的 Shopify 选品工具，是那个能解决你当前卡住环节的工具。这个专题把选品工作流拆成四个阶段，帮你分别选对需求发现、竞品拆解、利润测算和供货履约的工具。",
+    "keywords": ["shopify 选品工具", "电商选品工具", "shopify product research tool 免费"],
+    "overviewDrivers": [
+      {"title": "选品是一套工作流，不是一次搜索", "description": "真正能成的选品，取决于需求、竞争、毛利和供给四件事。只解决其中一个环节的工具，后面会留下盲区。"},
+      {"title": "大多数“爆款清单”其实已经饱和", "description": "一份热门产品清单不是策略。真正的价值在于，在下库存或广告预算之前，先验证这个产品为什么还有机会。"},
+      {"title": "免费工具足够起步", "description": "第一天不需要昂贵的工具组合。免费的需求信号加上一个更深度的工具，就能完成第一轮验证。"}
+    ],
+    "tools": [
+      {"name": "Sell The Trend", "pricing": "付费，含免费试用", "bestFor": "代发货一站式选品，带趋势和毛利信号", "strengths": ["趋势评分", "利润和毛利测算", "广告和店铺发现"], "watchouts": ["付费版价值更高", "覆盖广，仍需自己做过滤"]},
+      {"name": "Minea", "pricing": "付费，含免费版", "bestFor": "基于 Facebook、TikTok、Pinterest 广告的选品发现", "strengths": ["广告情报强", "AI 过滤", "多平台覆盖"], "watchouts": ["广告数据是滞后信号", "主要用于发现，不做供应商验证"]},
+      {"name": "Koala Inspector", "pricing": "付费，含有限免费版", "bestFor": "分析在运营的 Shopify 店铺", "strengths": ["展示店铺产品和主题", "爆款销量估算", "直接分析 Shopify 店铺"], "watchouts": ["收入估算只是方向性", "只覆盖 Shopify，不覆盖更广平台"]},
+      {"name": "Zik Analytics", "pricing": "付费", "bestFor": "AliExpress 和 Etsy 的平台竞争数据", "strengths": ["产品竞争评分", "利基需求信号", "覆盖 Etsy 和 AliExpress"], "watchouts": ["不是 Shopify 原生", "需要学习它的评分模型"]},
+      {"name": "Google Trends", "pricing": "免费", "bestFor": "方向性的需求和季节性判断", "strengths": ["免费且快速", "季节性信号清晰", "适合第一轮过滤"], "watchouts": ["是相对数据，不是绝对量", "需要配合关键词或平台工具"]},
+      {"name": "Ecomhunt", "pricing": "免费版加付费方案", "bestFor": "新手使用的精选爆款清单", "strengths": ["上手简单", "人工筛选产品", "适合作为起步候选"], "watchouts": ["精选产品可能被广泛使用", "不太适合自定义利基研究"]}
+    ],
+    "methods": [
+      {"title": "先从需求开始，而不是先看产品", "description": "在看任何一个具体产品之前，先确认用户确实在搜索这个问题或类目。"},
+      {"title": "再看竞争饱和度", "description": "看有多少店铺和广告已经瞄准了同一个角度，是否还有差异化定位的空间。"},
+      {"title": "最后验证毛利和供给", "description": "在下广告或备货之前，确认落地成本、合理售价和供应商可靠性。"}
+    ],
+    "mistakes": [
+      {"category": "工具优先思维", "wrongExample": "还没想清楚要验证什么，就先买了一整套昂贵工具。", "correct": "先明确你卡在哪个环节，再为那个环节选一个工具。", "impact": "订阅费浪费，研究不聚焦。", "severity": "high"},
+      {"category": "追逐爆款清单", "wrongExample": "直接导入“Top 爆款”清单并原样上架。", "correct": "把清单当信号，然后自己再跑一遍需求和毛利验证。", "impact": "进入没有优势的饱和产品。", "severity": "high"},
+      {"category": "忽略季节性", "wrongExample": "把季节性的峰值当成长期趋势。", "correct": "在下决策前先看 12-24 个月的 Google Trends。", "impact": "在错误时间备货。", "severity": "medium"}
+    ],
+    "checklist": [
+      "明确你现在卡在哪个选品环节",
+      "在付费买任何工具前，先跑一轮免费需求信号",
+      "验证竞争饱和度和差异化角度",
+      "用真实供应商报价确认毛利和落地成本",
+      "在备货或投放前，重新检查季节性"
+    ],
+    "recommendations": [
+      {"title": "免费和 AI 选品工具", "description": "先免费工具加 AI 辅助发现需求，再考虑付费工具组合。"},
+      {"title": "Reddit 推荐的 Shopify 选品工具", "description": "社区验证过的工具选择，以及商家真正在用的竞品拆解流程。"},
+      {"title": "代发货利润选品工具", "description": "如何验证毛利和 ROI，而不是只追趋势评分。"},
+      {"title": "Etsy 选品和供货", "description": "在 Etsy 侧发现利基、供应商和需求信号。"}
+    ],
+    "faq": [
+      {"question": "最好的 Shopify 选品工具是什么？", "answer": "没有单一答案。选哪个工具取决于你当前阶段：需求发现、竞品拆解、利润验证还是供货履约。这个专题把工具映射到了每个阶段。"},
+      {"question": "免费选品工具够用吗？", "answer": "第一轮验证够用。像 Google Trends 和平台数据这类免费工具，可以在你付费买更深的广告或竞争情报之前先确认需求。"},
+      {"question": "代发货和自有品牌需要不同工具吗？", "answer": "通常需要。代发货更依赖广告和店铺监控，自有品牌更依赖平台需求、评论挖掘和供应商成本验证。"}
+    ]
+  },
+  {
+    "slug": "product-research-tools-free",
+    "href": "/resources/product-research/resources/product-research-tools-free",
+    "year": 2026,
+    "publishedAt": "2026-09-04",
+    "status": "published",
+    "title": "Shopify 免费选品工具（以及什么时候该用 AI）",
+    "description": "免费选品工具和 AI 辅助的发现方法，帮你在不先买一整套工具的情况下找到 Shopify 产品创意。",
+    "stage": "discovery",
+    "stageLabel": "需求发现",
+    "audience": "预算有限、正在验证第一批产品创意的商家",
+    "mainValue": "免费工具足够确认一个产品创意是否有真实需求。AI 能帮你更快、更广地发散，但它不能替代需求和竞争验证。",
+    "keywords": ["免费选品工具", "AI 选品", "product research tools free"],
+    "overviewDrivers": [
+      {"title": "需求发现应该便宜且快", "description": "第一轮只需要把“值得再看一眼”和“不值得浪费时间”分开，这个阶段买昂贵工具为时过早。"},
+      {"title": "免费信号是方向性的，不是最终结论", "description": "Google Trends、平台爆款和广告库能告诉你注意力流向哪里，但不能证明利润。"},
+      {"title": "AI 能扩大创意面", "description": "AI 工具适合生成利基角度和痛点清单，然后你再拿排名靠前的候选去做真实数据验证。"}
+    ],
+    "tools": [
+      {"name": "Google Trends", "pricing": "免费", "bestFor": "季节性和相对需求方向", "strengths": ["免费", "季节性读取快", "适合第一轮过滤"], "watchouts": ["只有相对数据", "没有绝对搜索量"]},
+      {"name": "AliExpress Dropshipping Center", "pricing": "免费", "bestFor": "平台爆款和趋势信号", "strengths": ["免费", "产品级需求信号", "供应商发现"], "watchouts": ["以 AliExpress 为中心", "需要换算成 Shopify 毛利"]},
+      {"name": "TikTok Creative Center", "pricing": "免费", "bestFor": "趋势产品和话题标签需求", "strengths": ["免费", "当下文化信号", "适合短视频驱动的利基"], "watchouts": ["趋势数据偏重", "没有竞争或毛利数据"]},
+      {"name": "Meta Ad Library", "pricing": "免费", "bestFor": "看哪些产品正在被积极投放", "strengths": ["免费", "能看到真实广告投入", "竞争信号"], "watchouts": ["需要手动浏览", "没有投放表现数据"]},
+      {"name": "ChatGPT / AI 助手", "pricing": "含免费版", "bestFor": "利基角度、痛点和创意发散", "strengths": ["创意生成快", "帮助结构化研究", "成本低"], "watchouts": ["可能编造需求", "仍需真实数据验证"]}
+    ],
+    "methods": [
+      {"title": "先列痛点，再列产品", "description": "从问题或人群出发，再让 AI 发散成产品角度，避免随机追爆款。"},
+      {"title": "用免费需求信号验证", "description": "把排名靠前的候选放进 Google Trends 和平台数据里，先确认方向再考虑付费工具。"},
+      {"title": "维护 shortlist，而不是 backlog", "description": "逼自己对候选排序、尽早砍掉弱项，避免被未验证的创意淹没。"}
+    ],
+    "mistakes": [
+      {"category": "把 AI 输出当成市场证明", "wrongExample": "不查任何数据，就假设 ChatGPT 给的利基创意有需求。", "correct": "用 AI 做广度，再拿头部创意做真实需求验证。", "impact": "投资一个没人搜索的产品。", "severity": "high"},
+      {"category": "跳过季节性", "wrongExample": "在季节性峰值已经过去后才上线产品。", "correct": "下决策前先看 12-24 个月的趋势。", "impact": "错过需求窗口。", "severity": "medium"},
+      {"category": "无限收集创意", "wrongExample": "建了超长创意清单，却一个都没验证或排序。", "correct": "对 shortlist 排序，尽早砍掉弱候选。", "impact": "分析瘫痪，一直不上架。", "severity": "medium"}
+    ],
+    "checklist": [
+      "在列产品之前，先定义人群和问题",
+      "用 AI 生成 20+ 角度，再排序到 5 个 shortlist",
+      "对每个 shortlist 角度查 Google Trends",
+      "用平台爆款交叉验证同样的需求",
+      "砍掉任何没有清晰需求信号的产品"
+    ],
+    "recommendations": [
+      {"title": "Shopify 选品工具推荐", "description": "回到完整工作流，看需求发现在其中的位置。"},
+      {"title": "Reddit 推荐的 Shopify 选品工具", "description": "从需求发现进入竞品拆解，用社区验证过的工具。"},
+      {"title": "代发货利润选品工具", "description": "拿到需求信号后，确认毛利和 ROI。"}
+    ],
+    "faq": [
+      {"question": "可以完全免费做选品吗？", "answer": "第一轮验证可以。Google Trends、平台数据、广告库和 AI 助手，可以在你付费买更深的工具之前先确认需求。"},
+      {"question": "AI 适合找爆款产品吗？", "answer": "AI 擅长发散创意和找利基角度，但可能编造需求。一定要用真实数据验证 AI 生成的创意。"},
+      {"question": "什么时候该开始付费买选品工具？", "answer": "当你已经拿到验证过的需求信号，需要更深的竞品、广告或毛利情报来进一步收窄候选时。"}
+    ]
+  },
+  {
+    "slug": "shopify-product-research-tool-reddit",
+    "href": "/resources/product-research/shopify-product-research-tool-reddit",
+    "year": 2026,
+    "publishedAt": "2026-09-04",
+    "status": "published",
+    "title": "Reddit 推荐的 Shopify 选品工具（竞品拆解）",
+    "description": "Reddit 社区真正推荐的 Shopify 选品工具，以及一套用监控工具做竞品拆解的流程。",
+    "stage": "competitor",
+    "stageLabel": "竞品拆解",
+    "audience": "进入利基前需要理解竞争的商家",
+    "mainValue": "Reddit 的价值在于能找到带真实使用槽点的工具名字，但更深的价值是竞品拆解流程：先找到已经在赢的店铺和广告，再反推它们做对了什么。",
+    "keywords": ["shopify 选品工具 reddit", "shopify product research tool reddit"],
+    "overviewDrivers": [
+      {"title": "社区推荐自带槽点", "description": "Reddit 帖子里既有好用的工具，也有商家后悔买的东西，比营销落地页更有参考价值。"},
+      {"title": "竞品拆解揭示的是定位，不只是产品", "description": "产品只是一个变量。真正促成转化的是定价、角度、落地页和 offer 结构。"},
+      {"title": "店铺和广告监控是滞后但有用的信号", "description": "当产品出现在广告库或监控工具里时，它已经跑通了。用它学习打法，而不是盲目照抄。"}
+    ],
+    "tools": [
+      {"name": "Koala Inspector", "pricing": "付费，含有限免费版", "bestFor": "逆向分析在运营的 Shopify 店铺", "strengths": ["展示产品和主题", "爆款销量估算", "直接分析店铺"], "watchouts": ["收入估算只是方向", "只覆盖 Shopify"]},
+      {"name": "Minea", "pricing": "付费，含免费版", "bestFor": "基于广告的竞品发现", "strengths": ["广告情报", "AI 过滤", "多平台"], "watchouts": ["滞后信号", "没有供应商数据"]},
+      {"name": "SimilarWeb", "pricing": "免费版加付费方案", "bestFor": "流量和渠道估算", "strengths": ["流量方向", "渠道构成", "易用"], "watchouts": ["估算只是近似", "不是产品级"]},
+      {"name": "StoreLeads", "pricing": "付费", "bestFor": "按利基和规模发现 Shopify 店铺", "strengths": ["店铺发现", "利基过滤", "适合做 shortlist"], "watchouts": ["产品级数据有限", "需要再逐店分析"]},
+      {"name": "Zik Analytics", "pricing": "付费", "bestFor": "平台竞争评分", "strengths": ["竞争评分", "利基需求", "覆盖 Etsy 和 AliExpress"], "watchouts": ["不是 Shopify 原生", "评分模型有学习曲线"]}
+    ],
+    "methods": [
+      {"title": "先收集竞品店铺", "description": "用店铺发现或监控工具，列出已经在你的利基里卖货的店铺 shortlist。"},
+      {"title": "拆 offer，而不是只拆产品", "description": "对每个竞品记录它的角度、定价、捆绑和落地页结构，而不只是它卖什么。"},
+      {"title": "找定位缺口", "description": "识别竞品做得不好的地方，判断这个缺口值不值得补。"}
+    ],
+    "mistakes": [
+      {"category": "照抄饱和爆款", "wrongExample": "用和头部店铺一样的产品、一样的角度上线。", "correct": "提炼打法，再带差异化角度或人群进入。", "impact": "顾客没有理由选你。", "severity": "high"},
+      {"category": "轻信收入估算", "wrongExample": "把监控工具的收入估算当成确认数字。", "correct": "把估算当相对排序，而不是做账。", "impact": "基于弱数据过度投入。", "severity": "medium"},
+      {"category": "只研究不上架", "wrongExample": "无穷无尽地拆竞品，却不下任何决策。", "correct": "设定时间盒，逼自己做 go/no-go 决策。", "impact": "一直进不了市场。", "severity": "medium"}
+    ],
+    "checklist": [
+      "在利基里列出 5-10 个竞品店铺 shortlist",
+      "记录每个竞品的角度、定价和落地页结构",
+      "查看它们正在投放哪些广告和渠道",
+      "找出一个你真正能守住的定位缺口",
+      "在继续研究之前先做 go/no-go 决策"
+    ],
+    "recommendations": [
+      {"title": "Shopify 选品工具推荐", "description": "回到工作流总览。"},
+      {"title": "免费和 AI 选品工具", "description": "先免费需求信号，再做竞品拆解。"},
+      {"title": "代发货利润选品工具", "description": "把竞品洞察转化成毛利和 ROI 验证。"}
+    ],
+    "faq": [
+      {"question": "Reddit 推荐哪个 Shopify 选品工具？", "answer": "常见被提到的有 Koala Inspector（店铺监控）和 Minea（广告情报），但反复出现的建议是：按你的阶段选，而不是买一整套。"},
+      {"question": "Shopify 监控工具准确吗？", "answer": "能提供有用的方向信号，但收入和销量估算只是近似。把它当相对排序，而不是精确数字。"},
+      {"question": "应该直接抄竞品的爆款吗？", "answer": "通常不建议。学习它的打法，然后带差异化角度、人群或 offer 进入，这样你才有赢的理由。"}
+    ]
+  },
+  {
+    "slug": "best-product-research-tools-for-dropshipping",
+    "href": "/resources/product-research/best-product-research-tools-for-dropshipping",
+    "year": 2026,
+    "publishedAt": "2026-09-04",
+    "status": "published",
+    "title": "代发货利润选品工具推荐",
+    "description": "面向代发货的选品工具，聚焦毛利、ROI 和供应商可靠性，而不是只看趋势评分。",
+    "stage": "profit",
+    "stageLabel": "利润测算",
+    "audience": "需要在投放前验证毛利和 ROI 的代发货卖家",
+    "mainValue": "有趋势的产品不等于有利润的产品。代发货最该看的工具，是能帮你确认落地成本、合理售价和 ROI 的工具，而不是只看“爆款”信号。",
+    "keywords": ["代发货选品工具", "best product research tools for dropshipping"],
+    "overviewDrivers": [
+      {"title": "趋势评分不等于毛利", "description": "很多代发货工具优化的是“爆款”信号，但高需求往往伴随高广告成本和薄毛利。"},
+      {"title": "落地成本才是真正的起点数字", "description": "产品价、运费、手续费和退货，都夹在供应商价和你的售价之间。"},
+      {"title": "ROI 决定产品值不值得放大", "description": "一个在合理转化率下能留下健康毛利的产品，比一个 ROI 为负的爆款更值得做。"}
+    ],
+    "tools": [
+      {"name": "Sell The Trend", "pricing": "付费，含免费试用", "bestFor": "毛利和趋势评分一体", "strengths": ["利润估算", "趋势评分", "广告和店铺发现"], "watchouts": ["估算需要你自己要供应商报价", "付费版价值更高"]},
+      {"name": "AliExpress Dropshipping Center", "pricing": "免费", "bestFor": "找供应商成本基础", "strengths": ["免费", "供应商价格", "产品级数据"], "watchouts": ["运费和手续费需要单独算", "以 AliExpress 为中心"]},
+      {"name": "Helium 10", "pricing": "付费", "bestFor": "Amazon 式利润和关键词验证", "strengths": ["关键词数据深", "利润计算器", "数据集大"], "watchouts": ["以 Amazon 为中心", "对简单 Shopify 验证偏重"]},
+      {"name": "Zik Analytics", "pricing": "付费", "bestFor": "平台竞争和定价信号", "strengths": ["竞争评分", "定价信号", "覆盖 Etsy 和 AliExpress"], "watchouts": ["评分模型有学习曲线", "不是 Shopify 原生"]},
+      {"name": "表格毛利模型", "pricing": "免费", "bestFor": "自己搭落地成本和 ROI 计算", "strengths": ["透明", "可自定义", "无订阅"], "watchouts": ["需要手动维护", "需要自律"]}
+    ],
+    "methods": [
+      {"title": "先搭落地成本这条线", "description": "在看售价之前，把产品成本、运费、交易手续费和预期退货放进同一个数字。"},
+      {"title": "设定一个保守的转化假设", "description": "用保守的转化率做 ROI 建模，避免高估广告效率。"},
+      {"title": "要真实供应商报价", "description": "用真实供应商确认成本和运费，而不是只依赖工具估算。"}
+    ],
+    "mistakes": [
+      {"category": "把售价当成毛利", "wrongExample": "因为产品“卖 $40”就选它，却没查落地成本。", "correct": "从落地成本算毛利和 ROI，而不是从零售价。", "impact": "放大了亏钱的产品。", "severity": "high"},
+      {"category": "忽略退货和拒付", "wrongExample": "建模利润时没有算退货缓冲。", "correct": "在毛利模型里加退货缓冲。", "impact": "隐藏成本吃掉利润。", "severity": "high"},
+      {"category": "只用一个供应商报价", "wrongExample": "只靠单一供应商价格就锁定毛利。", "correct": "下决策前至少拿两份报价。", "impact": "供应商风险和毛利意外。", "severity": "medium"}
+    ],
+    "checklist": [
+      "用真实供应商报价计算落地成本",
+      "用保守转化率建模 ROI",
+      "加入退货和拒付缓冲",
+      "确认产品能过你的最低毛利线",
+      "放大前再拿一份供应商报价"
+    ],
+    "recommendations": [
+      {"title": "Shopify 选品工具推荐", "description": "回到完整工作流。"},
+      {"title": "免费和 AI 选品工具", "description": "先确认需求，再验证利润。"},
+      {"title": "Reddit 推荐的 Shopify 选品工具", "description": "用竞品拆解来打磨你的定价和角度。"}
+    ],
+    "faq": [
+      {"question": "代发货最好的选品工具是什么？", "answer": "取决于你的阶段。Sell The Trend 是趋势和毛利的一体化选择，但免费 AliExpress Dropshipping Center 加一个简单的毛利模型就足够起步。"},
+      {"question": "验证代发货利润需要昂贵工具吗？", "answer": "不需要。一个透明的毛利模型加真实供应商报价，比只会显示趋势评分的昂贵工具更可靠。"},
+      {"question": "代发货产品应该有多少毛利？", "answer": "没有统一数字，但目标是能覆盖广告费、手续费和退货、并留出放大空间，再用保守转化率去测试。"}
+    ]
+  },
+  {
+    "slug": "product-research-etsy",
+    "href": "/resources/product-research/resources/product-research-etsy",
+    "year": 2026,
+    "publishedAt": "2026-09-04",
+    "status": "published",
+    "title": "Etsy 选品：找到值得供货的利基和供应商",
+    "description": "如何做 Etsy 选品，找到需求、竞争和供应商信号，供你的店铺供货或复刻。",
+    "stage": "sourcing",
+    "stageLabel": "供货履约",
+    "audience": "研究 Etsy 利基和供应商、为供货决策做准备的商家",
+    "mainValue": "Etsy 是丰富的需求和利基信号来源，但它的选品逻辑和 Shopify 或 Amazon 不同。目标是先找到服务不足的利基和可靠的供应商信号，再下决策。",
+    "keywords": ["etsy 选品", "product research etsy"],
+    "overviewDrivers": [
+      {"title": "Etsy 信号是利基形态的", "description": "Etsy 买家按风格、场合和个性化搜索，所以研究要聚焦利基需求，而不是宽泛的“爆款”清单。"},
+      {"title": "竞争数据更不透明", "description": "Etsy 不像某些平台那样暴露收入，所以工具聚焦搜索需求、listing 标签和店铺信号。"},
+      {"title": "研究本身就是供应商发现", "description": "Etsy 研究能同时揭示卖什么、以及谁已经做得很好，这对供货决策很有用。"}
+    ],
+    "tools": [
+      {"name": "EverBee", "pricing": "免费版加付费方案", "bestFor": "Etsy listing 和店铺分析", "strengths": ["listing 收入估算", "店铺分析", "Etsy 原生"], "watchouts": ["估算只是方向", "仅限 Etsy"]},
+      {"name": "eRank", "pricing": "免费版加付费方案", "bestFor": "Etsy 关键词和 SEO 研究", "strengths": ["关键词需求", "标签建议", "竞争信号"], "watchouts": ["聚焦 SEO", "需要解读"]},
+      {"name": "EtsyHunt", "pricing": "免费版加付费方案", "bestFor": "Etsy 产品和店铺趋势发现", "strengths": ["产品趋势", "店铺发现", "关键词工具"], "watchouts": ["第三方估算", "数据覆盖有波动"]},
+      {"name": "Alura", "pricing": "付费", "bestFor": "Etsy 卖家一站式研究", "strengths": ["关键词和店铺工具", "产品研究", "卖家工作流"], "watchouts": ["仅限 Etsy", "付费"]},
+      {"name": "Sale Samurai", "pricing": "付费", "bestFor": "Etsy 关键词和 listing 优化", "strengths": ["关键词数据", "listing 优化", "竞争分析"], "watchouts": ["聚焦 SEO", "产品级收入数据较少"]}
+    ],
+    "methods": [
+      {"title": "研究利基，而不是单一产品", "description": "从风格、场合或人群出发，先摸清利基内的需求，再挑具体商品。"},
+      {"title": "读店铺和 listing 信号", "description": "看评论增速、爆款标签和 listing 标签，推断什么真正在跑。"},
+      {"title": "把研究转成供货决策", "description": "根据研究揭示的供应商和毛利情况，决定自制、采购还是代发。"}
+    ],
+    "mistakes": [
+      {"category": "把 Shopify 逻辑套到 Etsy", "wrongExample": "用找代发货爆款的方式去找 Etsy 产品。", "correct": "改为研究利基需求和个性化信号。", "impact": "错过平台的购买意图。", "severity": "high"},
+      {"category": "忽略履约约束", "wrongExample": "选了一个产品，却没有清晰的自制/采购/代发路径。", "correct": "下决策前先确认供应和履约路径。", "impact": "选了一个交付不了的利基。", "severity": "high"},
+      {"category": "只追单个爆款", "wrongExample": "在饱和利基里照抄排名第一的 listing。", "correct": "找有同样需求但服务不足的子利基。", "impact": "没有差异化。", "severity": "medium"}
+    ],
+    "checklist": [
+      "在挑产品之前先选利基或人群",
+      "摸清该利基的关键词需求和季节性",
+      "查看头部店铺的评论增速和 listing 信号",
+      "找出一个服务不足的子利基或角度",
+      "下决策前确认自制/采购/代发的可行性"
+    ],
+    "recommendations": [
+      {"title": "Shopify 选品工具推荐", "description": "回到工作流总览。"},
+      {"title": "免费和 AI 选品工具", "description": "用免费需求信号做更广的发现。"},
+      {"title": "代发货利润选品工具", "description": "找到可供货的利基后验证毛利。"}
+    ],
+    "faq": [
+      {"question": "Etsy 选品最好的工具是什么？", "answer": "EverBee 和 eRank 是常见的起步选择，分别做 listing 和关键词研究，但具体选哪个取决于你更关心收入信号还是 SEO 需求。"},
+      {"question": "能用 Etsy 给 Shopify 做选品吗？", "answer": "可以。Etsy 是利基需求和产品创意的强信号来源，但给 Shopify 店铺用仍需验证毛利和供应商适配。"},
+      {"question": "Etsy 选品和代发货选品不一样吗？", "answer": "不一样。Etsy 研究更偏利基和个性化驱动，代发货研究更依赖广告和店铺监控找更广的爆款。"}
+    ]
+  }
+]

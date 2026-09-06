@@ -89,7 +89,7 @@ export function HeroSection({
               <span className="hero-brand-visual__device-title">{visualWindowTitle}</span>
             </div>
             <Image
-              src="/media/help-center/image-39-1024x484-199851b9146b9d40442c609beacc3615.png"
+              src="https://img.bogdatech.com/ciwi-web/translator.webp"
               alt={visualAlt.mainImage}
               width={1024}
               height={484}
@@ -107,7 +107,7 @@ export function HeroSection({
           <div className="hero-brand-visual__rail">
             <div className="hero-brand-visual__thumb">
               <Image
-                src="/media/help-center/image-30-1024x483-bca184999f086a339ace9b093b68bed9.png"
+                src="https://img.bogdatech.com/ciwi-web/bundle.webp"
                 alt={visualAlt.secondaryTop}
                 width={1024}
                 height={483}
@@ -116,7 +116,7 @@ export function HeroSection({
             </div>
             <div className="hero-brand-visual__thumb">
               <Image
-                src="/media/help-center/image-41-1024x508-44cad0129e424014aed54ee5a962b9c4.png"
+                src="https://img.bogdatech.com/ciwi-web/Spark03.png"
                 alt={visualAlt.secondaryBottom}
                 width={1024}
                 height={508}

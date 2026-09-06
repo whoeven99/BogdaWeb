@@ -68,7 +68,7 @@ export default async function GuidesHubPage() {
           },
           emptyState: {
             title: "中文版指南正在准备中",
-            description: "当前这批 guides 还没有正式的中文正文版本。我们先保留英文文章页，避免把未翻译内容误当成中文文章展示。",
+            description: "当前 guide 正文还没有正式中文版本，所以这里先不展示未翻译文章入口。",
           },
         }
       : {
@@ -109,7 +109,7 @@ export default async function GuidesHubPage() {
           },
           emptyState: {
             title: "Guide translations are not published yet",
-            description: "This guide collection currently ships only with English article bodies. We hide unavailable locale entries until each translated version is ready.",
+            description: "The guide articles don't have a published localized version yet, so we don't show untranslated article entries here.",
           },
         };
 

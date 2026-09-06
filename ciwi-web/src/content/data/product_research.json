@@ -1,0 +1,269 @@
+[
+  {
+    "slug": "best-shopify-product-research-tools",
+    "href": "/resources/product-research",
+    "year": 2026,
+    "publishedAt": "2026-09-04",
+    "status": "published",
+    "title": "Best Shopify Product Research Tools (2026): A Complete Workflow",
+    "description": "A workflow-based guide to Shopify product research tools, from demand discovery and competitor teardowns to profit checks and sourcing.",
+    "stage": "overview",
+    "stageLabel": "Overview",
+    "audience": "Shopify merchants, dropshippers, and operators evaluating product research tools",
+    "mainValue": "The best Shopify product research tool is the one that fits the stage you are stuck on. This hub organizes the workflow into four stages so you can pick the right tool for discovery, competitor analysis, profit checks, and sourcing.",
+    "keywords": ["best shopify product research tool", "ecommerce product research tools", "shopify product research tool free"],
+    "overviewDrivers": [
+      {"title": "Product research is a workflow, not one search", "description": "Winning product selection depends on demand, competition, margin, and supply. Tools that only solve one stage create blind spots later."},
+      {"title": "Most 'winning product' lists are already saturated", "description": "A list of hot products is not a strategy. The value is in validating why a product still has room before you commit inventory or ad budget."},
+      {"title": "Free tools are enough to start", "description": "You do not need an expensive stack on day one. A mix of free demand signals and one deeper tool can carry the first validation pass."}
+    ],
+    "tools": [
+      {"name": "Sell The Trend", "pricing": "Paid, with a free trial", "bestFor": "All-in-one dropshipping research with trend and margin signals", "strengths": ["Trend scoring", "Profit and margin checks", "Ad and store discovery"], "watchouts": ["Best value comes from the paid plan", "Broad coverage means you still need your own filtering"]},
+      {"name": "Minea", "pricing": "Paid, with a free tier", "bestFor": "Ad-based product discovery across Facebook, TikTok, and Pinterest", "strengths": ["Strong ad intelligence", "AI-powered filtering", "Multi-platform coverage"], "watchouts": ["Ad data is a lagging signal", "Useful mostly for discovery, not supplier validation"]},
+      {"name": "Koala Inspector", "pricing": "Paid, with a limited free tier", "bestFor": "Spying on live Shopify stores", "strengths": ["Shows store products and themes", "Best-seller estimation", "Direct Shopify store analysis"], "watchouts": ["Revenue estimates are directional only", "Focuses on Shopify, not broader marketplaces"]},
+      {"name": "Zik Analytics", "pricing": "Paid", "bestFor": "Marketplace competition data for AliExpress and Etsy", "strengths": ["Product competition scoring", "Niche demand signals", "Etsy and AliExpress coverage"], "watchouts": ["Less Shopify-native", "Requires learning its scoring model"]},
+      {"name": "Google Trends", "pricing": "Free", "bestFor": "Directional demand and seasonality checks", "strengths": ["Free and fast", "Clear seasonality signal", "Good first filter"], "watchouts": ["Relative data, not absolute volume", "Needs pairing with keyword or marketplace tools"]},
+      {"name": "Ecomhunt", "pricing": "Free tier plus paid plans", "bestFor": "Curated winning-product lists for beginners", "strengths": ["Low learning curve", "Hand-picked products", "Good starting shortlist"], "watchouts": ["Curated picks can be widely used", "Less useful for custom niche research"]}
+    ],
+    "methods": [
+      {"title": "Start with demand, not the product", "description": "Confirm that people are actively searching for the problem or category before looking at any individual product."},
+      {"title": "Then check competition saturation", "description": "Look at how many stores and ads already target the same angle, and whether a differentiated position is still available."},
+      {"title": "Then verify margin and supply", "description": "Confirm landed cost, realistic selling price, and supplier reliability before spending on ads or inventory."}
+    ],
+    "mistakes": [
+      {"category": "Tool-first thinking", "wrongExample": "Buying an expensive tool stack before defining what to validate.", "correct": "Define the stage you are stuck on, then pick one tool for that stage.", "impact": "Wasted subscription cost and unfocused research.", "severity": "high"},
+      {"category": "Chasing viral lists", "wrongExample": "Importing a 'top winning products' list and launching it unchanged.", "correct": "Use lists as a signal, then run your own demand and margin check.", "impact": "Entering saturated products with no edge.", "severity": "high"},
+      {"category": "Ignoring seasonality", "wrongExample": "Treating a seasonal spike as a permanent trend.", "correct": "Check Google Trends over 12-24 months before committing.", "impact": "Inventory bought at the wrong time.", "severity": "medium"}
+    ],
+    "checklist": [
+      "Define the product research stage you are stuck on",
+      "Run a free demand signal check before paying for any tool",
+      "Validate competition saturation and differentiation angle",
+      "Confirm margin and landed cost with real supplier quotes",
+      "Recheck seasonality before committing inventory or ads"
+    ],
+    "recommendations": [
+      {"title": "Free and AI product research tools", "description": "Start with free demand tools and AI-assisted idea generation before paying for a suite."},
+      {"title": "What Reddit recommends for Shopify research", "description": "Community-driven tool picks and the competitor teardown workflow merchants actually use."},
+      {"title": "Product research tools for dropshipping profit", "description": "How to verify margin and ROI instead of only chasing trend scores."},
+      {"title": "Etsy product research and sourcing", "description": "Finding niches, suppliers, and demand signals on the Etsy side."}
+    ],
+    "faq": [
+      {"question": "What is the best Shopify product research tool?", "answer": "There is no single best tool. The right pick depends on your stage: discovery, competitor analysis, profit validation, or sourcing. This hub maps tools to each stage."},
+      {"question": "Are free product research tools enough?", "answer": "For a first validation pass, yes. Free tools like Google Trends and marketplace data can confirm demand before you pay for deeper ad or competition intelligence."},
+      {"question": "Do I need different tools for dropshipping and private label?", "answer": "Often yes. Dropshipping leans on ad and store spying, while private label leans more on marketplace demand, review mining, and supplier cost validation."}
+    ]
+  },
+  {
+    "slug": "product-research-tools-free",
+    "href": "/resources/product-research/resources/product-research-tools-free",
+    "year": 2026,
+    "publishedAt": "2026-09-04",
+    "status": "published",
+    "title": "Free Product Research Tools for Shopify (and When to Use AI)",
+    "description": "Free product research tools and AI-assisted discovery methods to find Shopify product ideas without paying for a full suite first.",
+    "stage": "discovery",
+    "stageLabel": "Demand discovery",
+    "audience": "Merchants validating their first product ideas on a budget",
+    "mainValue": "Free tools are enough to confirm whether a product idea has real demand. AI helps you go broader and faster, but it does not replace the demand and competition check.",
+    "keywords": ["product research tools free", "product research AI"],
+    "overviewDrivers": [
+      {"title": "Demand discovery should be cheap and fast", "description": "The first pass only needs to separate 'worth a second look' from 'not worth your time'. Expensive tools are premature at this stage."},
+      {"title": "Free signals are directional, not final", "description": "Google Trends, marketplace best-sellers, and ad libraries tell you where attention is flowing, but they do not prove profitability."},
+      {"title": "AI expands the idea surface", "description": "AI tools are useful for generating niche angles and pain-point lists, then you validate the top candidates with real data."}
+    ],
+    "tools": [
+      {"name": "Google Trends", "pricing": "Free", "bestFor": "Seasonality and relative demand direction", "strengths": ["Free", "Fast seasonality read", "Good first filter"], "watchouts": ["Relative data only", "No absolute search volume"]},
+      {"name": "AliExpress Dropshipping Center", "pricing": "Free", "bestFor": "Marketplace best-seller and trend signals", "strengths": ["Free", "Product-level demand signals", "Supplier discovery"], "watchouts": ["AliExpress-centric", "Needs margin translation for Shopify"]},
+      {"name": "TikTok Creative Center", "pricing": "Free", "bestFor": "Trending products and hashtag demand", "strengths": ["Free", "Current cultural signals", "Useful for short-form-driven niches"], "watchouts": ["Trend-heavy data", "No competition or margin data"]},
+      {"name": "Meta Ad Library", "pricing": "Free", "bestFor": "Seeing which products are being actively advertised", "strengths": ["Free", "Shows live ad investment", "Competitive signal"], "watchouts": ["Manual to browse", "No performance data"]},
+      {"name": "ChatGPT / AI assistants", "pricing": "Free tier available", "bestFor": "Niche angles, pain points, and idea expansion", "strengths": ["Fast idea generation", "Helps structure research", "Low cost"], "watchouts": ["Can hallucinate demand", "Needs real data validation"]}
+    ],
+    "methods": [
+      {"title": "List pain points before products", "description": "Start from a problem or audience, then let AI expand it into product angles. This avoids chasing random viral items."},
+      {"title": "Validate with free demand signals", "description": "Run the top candidates through Google Trends and marketplace data to confirm direction before any paid tool."},
+      {"title": "Keep a shortlist, not a backlog", "description": "Force yourself to rank candidates and drop weak ones early so you do not drown in unvalidated ideas."}
+    ],
+    "mistakes": [
+      {"category": "Treating AI output as market proof", "wrongExample": "Assuming a ChatGPT niche idea has demand without checking any data.", "correct": "Use AI for breadth, then validate the top ideas with real demand signals.", "impact": "Investing in a product nobody searches for.", "severity": "high"},
+      {"category": "Skipping seasonality", "wrongExample": "Launching a product after its seasonal spike has already peaked.", "correct": "Check 12-24 month trends before committing.", "impact": "Missed demand window.", "severity": "medium"},
+      {"category": "Collecting ideas endlessly", "wrongExample": "Building a huge idea list without validating or ranking any of them.", "correct": "Rank a shortlist and cut weak candidates early.", "impact": "Analysis paralysis and no shipping.", "severity": "medium"}
+    ],
+    "checklist": [
+      "Define the audience and problem before listing products",
+      "Generate 20+ angles with AI, then rank to a shortlist of 5",
+      "Check Google Trends for each shortlisted angle",
+      "Cross-check marketplace best-sellers for the same demand",
+      "Drop anything without a clear demand signal"
+    ],
+    "recommendations": [
+      {"title": "Best Shopify product research tools", "description": "Step back to the full workflow and see where discovery fits."},
+      {"title": "What Reddit recommends for Shopify research", "description": "Move from discovery to competitor teardowns with community-vetted tools."},
+      {"title": "Product research tools for dropshipping profit", "description": "Confirm margin and ROI once you have a demand signal."}
+    ],
+    "faq": [
+      {"question": "Can I do product research completely free?", "answer": "Yes for a first validation pass. Google Trends, marketplace data, ad libraries, and AI assistants can confirm demand before you pay for deeper tools."},
+      {"question": "Is AI good for finding winning products?", "answer": "AI is good at expanding ideas and finding niche angles, but it can invent demand. Always validate AI-generated ideas with real data."},
+      {"question": "When should I start paying for a product research tool?", "answer": "Once you have a validated demand signal and need deeper competitor, ad, or margin intelligence to narrow the shortlist further."}
+    ]
+  },
+  {
+    "slug": "shopify-product-research-tool-reddit",
+    "href": "/resources/product-research/shopify-product-research-tool-reddit",
+    "year": 2026,
+    "publishedAt": "2026-09-04",
+    "status": "published",
+    "title": "Shopify Product Research Tools Reddit Recommends (Competitor Teardowns)",
+    "description": "What Reddit communities actually recommend for Shopify product research, plus a competitor teardown workflow using spy tools.",
+    "stage": "competitor",
+    "stageLabel": "Competitor teardown",
+    "audience": "Merchants who need to understand competition before entering a niche",
+    "mainValue": "Reddit is useful for finding tool names with real user caveats, but the deeper value is the competitor teardown workflow: find stores and ads already winning, then reverse-engineer what they do well.",
+    "keywords": ["shopify product research tool reddit"],
+    "overviewDrivers": [
+      {"title": "Community recommendations come with caveats", "description": "Reddit threads surface both what works and what merchants regret buying, which is more useful than a marketing landing page."},
+      {"title": "Competitor teardowns reveal positioning, not just products", "description": "The product is only one variable. Pricing, angle, landing page, and offer structure are what actually convert."},
+      {"title": "Store and ad spying is a lagging but useful signal", "description": "By the time a product appears in ad libraries or spy tools, it is already working. Use it to learn the playbook, not to copy blindly."}
+    ],
+    "tools": [
+      {"name": "Koala Inspector", "pricing": "Paid, with a limited free tier", "bestFor": "Reverse-engineering live Shopify stores", "strengths": ["Shows products and themes", "Best-seller estimation", "Direct store analysis"], "watchouts": ["Revenue estimates are directional", "Shopify-only"]},
+      {"name": "Minea", "pricing": "Paid, with a free tier", "bestFor": "Ad-based competitor discovery", "strengths": ["Ad intelligence", "AI filtering", "Multi-platform"], "watchouts": ["Lagging signal", "No supplier data"]},
+      {"name": "SimilarWeb", "pricing": "Free tier plus paid plans", "bestFor": "Traffic and channel estimates", "strengths": ["Traffic direction", "Channel mix", "Easy to use"], "watchouts": ["Estimates are approximate", "Not product-level"]},
+      {"name": "StoreLeads", "pricing": "Paid", "bestFor": "Finding Shopify stores by niche and size", "strengths": ["Store discovery", "Niche filtering", "Good for shortlists"], "watchouts": ["Limited product-level data", "Requires further per-store analysis"]},
+      {"name": "Zik Analytics", "pricing": "Paid", "bestFor": "Marketplace competition scoring", "strengths": ["Competition scoring", "Niche demand", "Etsy and AliExpress"], "watchouts": ["Less Shopify-native", "Learning curve on scoring"]}
+    ],
+    "methods": [
+      {"title": "Collect competitor stores first", "description": "Use store discovery or spy tools to build a shortlist of stores already selling in your niche."},
+      {"title": "Tear down the offer, not just the product", "description": "For each competitor, note the angle, pricing, bundle, and landing page structure, not just which product they sell."},
+      {"title": "Look for the positioning gap", "description": "Identify what competitors are not doing well and decide whether that gap is worth filling."}
+    ],
+    "mistakes": [
+      {"category": "Copying a saturated winner", "wrongExample": "Launching the same product with the same angle as the top store.", "correct": "Extract the playbook, then enter with a differentiated angle or audience.", "impact": "No reason for customers to choose you.", "severity": "high"},
+      {"category": "Trusting revenue estimates", "wrongExample": "Treating a spy tool's revenue estimate as a confirmed number.", "correct": "Use estimates as relative ranking, not accounting.", "impact": "Overcommitting on weak data.", "severity": "medium"},
+      {"category": "Researching without shipping", "wrongExample": "Endless competitor teardowns with no decision.", "correct": "Set a timebox and force a go/no-go decision.", "impact": "Never entering the market.", "severity": "medium"}
+    ],
+    "checklist": [
+      "Build a shortlist of 5-10 competitor stores in the niche",
+      "Note each competitor's angle, pricing, and landing page structure",
+      "Check which ads and channels they are running",
+      "Identify one positioning gap you can actually own",
+      "Decide go/no-go before researching further"
+    ],
+    "recommendations": [
+      {"title": "Best Shopify product research tools", "description": "Return to the workflow overview."},
+      {"title": "Free and AI product research tools", "description": "Start with free demand signals before competitor teardowns."},
+      {"title": "Product research tools for dropshipping profit", "description": "Turn competitor insight into a margin and ROI check."}
+    ],
+    "faq": [
+      {"question": "Which Shopify product research tool does Reddit recommend?", "answer": "Commonly mentioned tools include Koala Inspector for store spying and Minea for ad intelligence, but the recurring advice is to pick for your stage rather than buy a full suite."},
+      {"question": "Are Shopify spy tools accurate?", "answer": "They provide useful directional signals, but revenue and sales estimates are approximations. Treat them as relative ranking, not exact numbers."},
+      {"question": "Should I copy a competitor's winning product?", "answer": "Usually not directly. Learn the playbook, then enter with a differentiated angle, audience, or offer so you have a reason to win."}
+    ]
+  },
+  {
+    "slug": "best-product-research-tools-for-dropshipping",
+    "href": "/resources/product-research/best-product-research-tools-for-dropshipping",
+    "year": 2026,
+    "publishedAt": "2026-09-04",
+    "status": "published",
+    "title": "Best Product Research Tools for Dropshipping Profitability",
+    "description": "Product research tools for dropshipping that focus on margin, ROI, and supplier reliability instead of just trend scores.",
+    "stage": "profit",
+    "stageLabel": "Profit validation",
+    "audience": "Dropshippers who need to validate margin and ROI before scaling",
+    "mainValue": "A trending product is not a profitable product. The dropshipping tools that matter most are the ones that help you confirm landed cost, realistic selling price, and ROI before you spend on ads.",
+    "keywords": ["best product research tools for dropshipping"],
+    "overviewDrivers": [
+      {"title": "Trend score does not equal margin", "description": "Many dropshipping tools optimize for 'hot product' signals, but high demand often comes with high ad costs and thin margins."},
+      {"title": "Landed cost is the real starting number", "description": "Product price, shipping, fees, and returns all sit between the supplier price and your selling price."},
+      {"title": "ROI decides whether a product is worth scaling", "description": "A product that clears a healthy margin at a realistic conversion rate is worth more than a viral product with negative ROI."}
+    ],
+    "tools": [
+      {"name": "Sell The Trend", "pricing": "Paid, with a free trial", "bestFor": "Margin and trend scoring in one place", "strengths": ["Profit estimates", "Trend scoring", "Ad and store discovery"], "watchouts": ["Estimates need your own supplier quotes", "Best value from paid plan"]},
+      {"name": "AliExpress Dropshipping Center", "pricing": "Free", "bestFor": "Finding supplier cost basis", "strengths": ["Free", "Supplier pricing", "Product-level data"], "watchouts": ["Shipping and fees need separate math", "AliExpress-centric"]},
+      {"name": "Helium 10", "pricing": "Paid", "bestFor": "Amazon-style profit and keyword validation", "strengths": ["Deep keyword data", "Profit calculator", "Large data set"], "watchouts": ["Amazon-focused", "Overkill for simple Shopify validation"]},
+      {"name": "Zik Analytics", "pricing": "Paid", "bestFor": "Marketplace competition and pricing signals", "strengths": ["Competition scoring", "Pricing signals", "Etsy and AliExpress"], "watchouts": ["Scoring model learning curve", "Less Shopify-native"]},
+      {"name": "Spreadsheet margin model", "pricing": "Free", "bestFor": "Building your own landed-cost and ROI math", "strengths": ["Transparent", "Customizable", "No subscription"], "watchouts": ["Manual upkeep", "Requires discipline"]}
+    ],
+    "methods": [
+      {"title": "Build the landed-cost line first", "description": "Add product cost, shipping, transaction fees, and expected returns into one number before looking at the selling price."},
+      {"title": "Set a realistic conversion assumption", "description": "Model ROI with a conservative conversion rate so you do not overestimate ad efficiency."},
+      {"title": "Get real supplier quotes", "description": "Confirm cost and shipping with an actual supplier instead of relying on a tool's estimate."}
+    ],
+    "mistakes": [
+      {"category": "Confusing price with margin", "wrongExample": "Choosing a product because it 'sells for $40' without checking landed cost.", "correct": "Calculate margin and ROI from landed cost, not retail price.", "impact": "Scaling a product that loses money.", "severity": "high"},
+      {"category": "Ignoring returns and chargebacks", "wrongExample": "Modeling profit without a returns allowance.", "correct": "Include a returns buffer in the margin model.", "impact": "Hidden cost eroding profit.", "severity": "high"},
+      {"category": "Using one supplier quote", "wrongExample": "Locking margin based on a single supplier price.", "correct": "Get at least two quotes before committing.", "impact": "Supplier risk and margin surprise.", "severity": "medium"}
+    ],
+    "checklist": [
+      "Calculate landed cost from real supplier quotes",
+      "Model ROI at a conservative conversion rate",
+      "Add a returns and chargeback buffer",
+      "Confirm the product clears your minimum margin",
+      "Get a second supplier quote before scaling"
+    ],
+    "recommendations": [
+      {"title": "Best Shopify product research tools", "description": "Return to the full workflow."},
+      {"title": "Free and AI product research tools", "description": "Confirm demand before validating profit."},
+      {"title": "What Reddit recommends for Shopify research", "description": "Use competitor teardowns to refine your pricing and angle."}
+    ],
+    "faq": [
+      {"question": "What is the best product research tool for dropshipping?", "answer": "It depends on your stage. Sell The Trend is a strong all-in-one for trend and margin, but the free AliExpress Dropshipping Center plus a simple margin model is enough to start."},
+      {"question": "Do I need an expensive tool to validate dropshipping profit?", "answer": "No. A transparent margin model with real supplier quotes is more reliable than an expensive tool that only shows trend scores."},
+      {"question": "What margin should a dropshipping product have?", "answer": "There is no universal number, but aim for a margin that clears ad costs, fees, and returns while leaving room to scale, then test at a conservative conversion rate."}
+    ]
+  },
+  {
+    "slug": "product-research-etsy",
+    "href": "/resources/product-research/resources/product-research-etsy",
+    "year": 2026,
+    "publishedAt": "2026-09-04",
+    "status": "published",
+    "title": "Etsy Product Research: Finding Niches and Suppliers Worth Sourcing",
+    "description": "How to do Etsy product research to find demand, competition, and supplier signals worth sourcing or replicating for your store.",
+    "stage": "sourcing",
+    "stageLabel": "Sourcing & fulfillment",
+    "audience": "Merchants researching Etsy niches and suppliers for sourcing decisions",
+    "mainValue": "Etsy is a rich demand and niche signal source, but its product research is different from Shopify or Amazon. The goal is to find underserved niches and reliable supplier signals before committing.",
+    "keywords": ["product research etsy"],
+    "overviewDrivers": [
+      {"title": "Etsy signals are niche-shaped", "description": "Etsy buyers search by style, occasion, and personalization, so research needs to focus on niche demand rather than broad 'winning product' lists."},
+      {"title": "Competition data is more opaque", "description": "Etsy does not expose revenue the way some marketplaces do, so tools focus on search demand, listing tags, and shop signals."},
+      {"title": "Research doubles as supplier discovery", "description": "Etsy research can reveal both what to sell and who already makes it well, which is useful for sourcing decisions."}
+    ],
+    "tools": [
+      {"name": "EverBee", "pricing": "Free tier plus paid plans", "bestFor": "Etsy listing and shop analytics", "strengths": ["Listing revenue estimates", "Shop analytics", "Etsy-native"], "watchouts": ["Estimates are directional", "Etsy-only"]},
+      {"name": "eRank", "pricing": "Free tier plus paid plans", "bestFor": "Etsy keyword and SEO research", "strengths": ["Keyword demand", "Tag suggestions", "Competition signals"], "watchouts": ["Focuses on SEO", "Needs interpretation"]},
+      {"name": "EtsyHunt", "pricing": "Free tier plus paid plans", "bestFor": "Etsy product and shop trend discovery", "strengths": ["Product trends", "Shop discovery", "Keyword tools"], "watchouts": ["Third-party estimates", "Data coverage varies"]},
+      {"name": "Alura", "pricing": "Paid", "bestFor": "All-in-one Etsy seller research", "strengths": ["Keyword and shop tools", "Product research", "Seller workflow"], "watchouts": ["Etsy-specific", "Paid"]},
+      {"name": "Sale Samurai", "pricing": "Paid", "bestFor": "Etsy keyword and listing optimization", "strengths": ["Keyword data", "Listing optimization", "Competition analysis"], "watchouts": ["SEO-focused", "Less product-level revenue data"]}
+    ],
+    "methods": [
+      {"title": "Research niches, not single products", "description": "Start from a style, occasion, or audience and map the demand within that niche before picking an item."},
+      {"title": "Read shop and listing signals", "description": "Look at review velocity, best-seller badges, and listing tags to infer what is actually working."},
+      {"title": "Turn research into sourcing decisions", "description": "Decide whether to make, buy, or dropship based on the supplier and margin picture the research reveals."}
+    ],
+    "mistakes": [
+      {"category": "Applying Shopify logic to Etsy", "wrongExample": "Looking for 'winning products' the same way you would for dropshipping.", "correct": "Research niche demand and personalization signals instead.", "impact": "Missing the platform's buying intent.", "severity": "high"},
+      {"category": "Ignoring fulfillment constraints", "wrongExample": "Choosing a product without a clear make/buy/dropship path.", "correct": "Confirm the supply and fulfillment path before committing.", "impact": "A niche you cannot deliver.", "severity": "high"},
+      {"category": "Chasing a single best-seller", "wrongExample": "Copying the top listing in a saturated niche.", "correct": "Find an underserved sub-niche with the same demand.", "impact": "No differentiation.", "severity": "medium"}
+    ],
+    "checklist": [
+      "Pick a niche or audience before a product",
+      "Map keyword demand and seasonality in that niche",
+      "Review top shops for review velocity and listing signals",
+      "Identify an underserved sub-niche or angle",
+      "Confirm make/buy/dropship feasibility before committing"
+    ],
+    "recommendations": [
+      {"title": "Best Shopify product research tools", "description": "Return to the workflow overview."},
+      {"title": "Free and AI product research tools", "description": "Start with free demand signals for broader discovery."},
+      {"title": "Product research tools for dropshipping profit", "description": "Validate margin after finding a sourceable niche."}
+    ],
+    "faq": [
+      {"question": "What is the best tool for Etsy product research?", "answer": "EverBee and eRank are common starting points for listing and keyword research, but the best tool depends on whether you care more about revenue signals or SEO demand."},
+      {"question": "Can I use Etsy for Shopify product research?", "answer": "Yes. Etsy is a strong signal source for niche demand and product ideas, but you still need to validate margin and supplier fit for a Shopify store."},
+      {"question": "Is Etsy product research different from dropshipping research?", "answer": "Yes. Etsy research is more niche- and personalization-driven, while dropshipping research leans on ad and store spying for broader winning products."}
+    ]
+  }
+]

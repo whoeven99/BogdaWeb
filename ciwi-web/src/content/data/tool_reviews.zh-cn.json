@@ -1,0 +1,314 @@
+[
+  {
+    "slug": "sell-the-trend",
+    "href": "/resources/product-research/reviews/sell-the-trend",
+    "year": 2026,
+    "publishedAt": "2026-09-04",
+    "status": "published",
+    "toolName": "Sell The Trend",
+    "title": "Sell The Trend 测评：一体化代发货选品工具",
+    "description": "对 Sell The Trend 的实测测评，覆盖趋势评分、毛利测算，以及它是否值得为 Shopify 和代发货选品订阅。",
+    "category": "profit",
+    "categoryLabel": "利润测算",
+    "verdict": "如果你想在一个工具里同时看趋势评分和毛利测算，Sell The Trend 是代发货选品里很扎实的一体化选择，但放大前仍需要自己找供应商要报价。",
+    "rating": 8.5,
+    "scoreBreakdown": [
+      {"label": "功能覆盖", "score": 9},
+      {"label": "易用性", "score": 8},
+      {"label": "数据准确性", "score": 8},
+      {"label": "价格价值", "score": 8},
+      {"label": "支持与更新", "score": 9}
+    ],
+    "pros": [
+      "趋势评分和毛利测算在同一套流程里",
+      "广告和店铺发现让研究更快",
+      "适合想要单一仪表盘的新手"
+    ],
+    "cons": [
+      "毛利数字仍需你自己向供应商确认",
+      "核心价值锁在付费版里",
+      "覆盖广，意味着仍需自己大量过滤"
+    ],
+    "pricing": "付费，含免费试用。",
+    "bestFor": [
+      "想在同一个工具里看趋势和毛利的代发货卖家",
+      "偏好单一研究仪表盘的新手",
+      "需要快速测试大量产品的店铺"
+    ],
+    "features": [
+      {"title": "趋势评分", "description": "按趋势信号给产品排序，帮你跳过明显已经冷掉的产品。"},
+      {"title": "利润和毛利测算", "description": "估算毛利，帮你过滤掉过不了最低毛利线的产品。"},
+      {"title": "广告和店铺发现", "description": "找到相关广告和店铺，加快竞品扫描。"}
+    ],
+    "alternatives": [
+      {"name": "Minea", "href": "/resources/product-research/reviews/minea"},
+      {"name": "Koala Inspector", "href": "/resources/product-research/reviews/koala-inspector"},
+      {"name": "Zik Analytics", "href": "/resources/product-research/reviews/zik-analytics"}
+    ],
+    "faq": [
+      {"question": "Sell The Trend 适合新手吗？", "answer": "适合。如果你想要一个仪表盘而不是拼接免费工具，它的趋势和毛利信号能明显降低早期学习成本。"},
+      {"question": "它的毛利估算准吗？", "answer": "方向上有用，但在投入广告或备货预算前，一定要用真实供应商确认落地成本。"},
+      {"question": "Sell The Trend 适合自有品牌吗？", "answer": "它更偏代发货。自有品牌通常还需要平台需求和评论挖掘工具配合使用。"}
+    ]
+  },
+  {
+    "slug": "minea",
+    "href": "/resources/product-research/reviews/minea",
+    "year": 2026,
+    "publishedAt": "2026-09-04",
+    "status": "published",
+    "toolName": "Minea",
+    "title": "Minea 测评：用广告情报找爆款产品",
+    "description": "对 Minea 在 Facebook、TikTok、Pinterest 上的广告情报测评，以及它如何支撑 Shopify 店铺的产品发现。",
+    "category": "discovery",
+    "categoryLabel": "需求发现",
+    "verdict": "Minea 是广告情报类里比较强的工具，能发现那些正在被积极投放的产品，但广告数据是滞后信号，仍需要再做一轮需求和毛利验证。",
+    "rating": 8.5,
+    "scoreBreakdown": [
+      {"label": "功能覆盖", "score": 9},
+      {"label": "易用性", "score": 9},
+      {"label": "数据准确性", "score": 8},
+      {"label": "价格价值", "score": 8},
+      {"label": "支持与更新", "score": 8}
+    ],
+    "pros": [
+      "一个工具里聚合多平台广告情报",
+      "AI 过滤帮助收窄大量广告数据",
+      "界面干净，上手快"
+    ],
+    "cons": [
+      "广告数据滞后于当下真正在跑的产品",
+      "没有供应商或毛利数据",
+      "核心价值需要付费版"
+    ],
+    "pricing": "付费，含免费版。",
+    "bestFor": [
+      "基于实时广告信号做发现",
+      "想看竞品在推什么的市场人员",
+      "需要跨 Facebook、TikTok、Pinterest 过滤的团队"
+    ],
+    "features": [
+      {"title": "广告情报", "description": "呈现各大平台正在跑的广告，让你看清什么在被投放。"},
+      {"title": "AI 过滤", "description": "用 AI 把海量广告分组过滤成可用信号。"},
+      {"title": "多平台覆盖", "description": "覆盖 Facebook、TikTok 和 Pinterest，而不是单一渠道。"}
+    ],
+    "alternatives": [
+      {"name": "Sell The Trend", "href": "/resources/product-research/reviews/sell-the-trend"},
+      {"name": "Koala Inspector", "href": "/resources/product-research/reviews/koala-inspector"},
+      {"name": "Helium 10", "href": "/resources/product-research/reviews/helium-10"}
+    ],
+    "faq": [
+      {"question": "Minea 适合 Shopify 选品吗？", "answer": "适合做广告驱动的发现，但它不展示 Shopify 店铺结构或毛利，建议配合店铺监控或毛利模型一起用。"},
+      {"question": "Minea 的广告数据是实时的吗？", "answer": "反映的是近期广告，但一个产品被大量投放时通常已经跑通了，所以要把它当滞后信号。"},
+      {"question": "Minea 有免费版吗？", "answer": "有免费版，但更深的过滤和更大的数据量需要付费版。"}
+    ]
+  },
+  {
+    "slug": "koala-inspector",
+    "href": "/resources/product-research/reviews/koala-inspector",
+    "year": 2026,
+    "publishedAt": "2026-09-04",
+    "status": "published",
+    "toolName": "Koala Inspector",
+    "title": "Koala Inspector 测评：监控在运营的 Shopify 店铺",
+    "description": "对 Koala Inspector 的测评，覆盖逆向分析 Shopify 店铺、估算爆款，以及如何把竞品拆解转化成产品创意。",
+    "category": "competitor",
+    "categoryLabel": "竞品拆解",
+    "verdict": "Koala Inspector 是拆解一个在运营 Shopify 店铺最直接的工具，但它的收入估算只是方向性，而且只覆盖 Shopify 生态。",
+    "rating": 7.5,
+    "scoreBreakdown": [
+      {"label": "功能覆盖", "score": 8},
+      {"label": "易用性", "score": 9},
+      {"label": "数据准确性", "score": 7},
+      {"label": "价格价值", "score": 7},
+      {"label": "支持与更新", "score": 8}
+    ],
+    "pros": [
+      "直接展示 Shopify 店铺的产品和主题",
+      "爆款估算让竞品拆解更快",
+      "浏览器插件流程简单"
+    ],
+    "cons": [
+      "收入估算只是近似",
+      "只覆盖 Shopify，不覆盖 Amazon 和 Etsy",
+      "免费版功能有限"
+    ],
+    "pricing": "付费，含有限免费版。",
+    "bestFor": [
+      "监控特定 Shopify 店铺",
+      "进入利基前的竞品拆解",
+      "快速爆款检查"
+    ],
+    "features": [
+      {"title": "店铺产品列表", "description": "展示一个 Shopify 店铺正在跑的产品和主题。"},
+      {"title": "爆款估算", "description": "估算哪些产品可能卖得最好，帮你聚焦分析。"},
+      {"title": "直接店铺分析", "description": "以插件形式工作，浏览店铺时就能即时分析。"}
+    ],
+    "alternatives": [
+      {"name": "Minea", "href": "/resources/product-research/reviews/minea"},
+      {"name": "Zik Analytics", "href": "/resources/product-research/reviews/zik-analytics"},
+      {"name": "Sell The Trend", "href": "/resources/product-research/reviews/sell-the-trend"}
+    ],
+    "faq": [
+      {"question": "Koala Inspector 准吗？", "answer": "能提供有用的方向信号，但收入和销量估算只是近似。把它当相对排序，而不是做账。"},
+      {"question": "Koala Inspector 能用在任何 Shopify 店铺上吗？", "answer": "能在在运营的 Shopify 前台用，但店铺可以限制部分信息，覆盖情况因店铺而异。"},
+      {"question": "Koala Inspector 值得买吗？", "answer": "如果竞品拆解是你的常规动作，值得。如果你只需要广撒网发现，广告情报工具可能更合适。"}
+    ]
+  },
+  {
+    "slug": "zik-analytics",
+    "href": "/resources/product-research/reviews/zik-analytics",
+    "year": 2026,
+    "publishedAt": "2026-09-04",
+    "status": "published",
+    "toolName": "Zik Analytics",
+    "title": "Zik Analytics 测评：AliExpress 和 Etsy 竞争数据",
+    "description": "对 Zik Analytics 的测评，覆盖竞争评分、利基需求，以及它如何帮助卖家在 AliExpress 和 Etsy 上验证产品。",
+    "category": "competitor",
+    "categoryLabel": "竞品拆解",
+    "verdict": "Zik Analytics 在 AliExpress 和 Etsy 的平台竞争评分上很强，但它不是 Shopify 原生，评分模型也有一点学习曲线。",
+    "rating": 8,
+    "scoreBreakdown": [
+      {"label": "功能覆盖", "score": 8},
+      {"label": "易用性", "score": 7},
+      {"label": "数据准确性", "score": 8},
+      {"label": "价格价值", "score": 8},
+      {"label": "支持与更新", "score": 8}
+    ],
+    "pros": [
+      "平台竞争评分清晰",
+      "同时覆盖 AliExpress 和 Etsy",
+      "利基需求信号好"
+    ],
+    "cons": [
+      "不是为 Shopify 店铺分析设计",
+      "评分模型有学习曲线",
+      "如果只在 Shopify 卖货，用处有限"
+    ],
+    "pricing": "付费。",
+    "bestFor": [
+      "AliExpress 和 Etsy 卖家",
+      "利基需求验证",
+      "平台竞争评分"
+    ],
+    "features": [
+      {"title": "竞争评分", "description": "按竞争程度给产品打分，帮你避开过度饱和的利基。"},
+      {"title": "利基需求信号", "description": "标出有真实需求的利基，而不是只给一个产品列表。"},
+      {"title": "AliExpress 和 Etsy 覆盖", "description": "覆盖 Shopify 选品工具常忽略的两个平台。"}
+    ],
+    "alternatives": [
+      {"name": "EverBee", "href": "/resources/product-research/reviews/everbee"},
+      {"name": "Koala Inspector", "href": "/resources/product-research/reviews/koala-inspector"},
+      {"name": "Helium 10", "href": "/resources/product-research/reviews/helium-10"}
+    ],
+    "faq": [
+      {"question": "Zik Analytics 适合 Shopify 吗？", "answer": "它更适合 AliExpress 和 Etsy 的竞争数据。分析 Shopify 店铺用 Koala Inspector 这类工具更合适。"},
+      {"question": "Zik Analytics 准吗？", "answer": "竞争和需求信号通常方向上有用，但收入类估算不要当精确数字。"},
+      {"question": "Zik Analytics 值这个价吗？", "answer": "如果你在 AliExpress 或 Etsy 卖货，值得。纯 Shopify 卖家可能在 Shopify 原生工具上获得更高价值。"}
+    ]
+  },
+  {
+    "slug": "helium-10",
+    "href": "/resources/product-research/reviews/helium-10",
+    "year": 2026,
+    "publishedAt": "2026-09-04",
+    "status": "published",
+    "toolName": "Helium 10",
+    "title": "Helium 10 测评：Amazon 式深度选品验证",
+    "description": "对 Helium 10 的测评，覆盖关键词深度、利润计算，以及它这套 Amazon 导向的数据何时值得用于更广的选品。",
+    "category": "profit",
+    "categoryLabel": "利润测算",
+    "verdict": "Helium 10 在本文这些工具里拥有最深的关键词和利润数据，但它以 Amazon 为中心，对一次简单的 Shopify 验证来说可能偏重。",
+    "rating": 9,
+    "scoreBreakdown": [
+      {"label": "功能覆盖", "score": 9},
+      {"label": "易用性", "score": 8},
+      {"label": "数据准确性", "score": 9},
+      {"label": "价格价值", "score": 7},
+      {"label": "支持与更新", "score": 9}
+    ],
+    "pros": [
+      "关键词和搜索数据很深",
+      "利润计算器强",
+      "验证用的数据集大"
+    ],
+    "cons": [
+      "以 Amazon 为中心，不是 Shopify 原生",
+      "对简单验证偏重",
+      "价格比轻量工具更高"
+    ],
+    "pricing": "付费。",
+    "bestFor": [
+      "验证需求的 Amazon 卖家",
+      "需要关键词深度的研究",
+      "想要完整研究套件的团队"
+    ],
+    "features": [
+      {"title": "关键词深度", "description": "提供轻量工具不展示的深层搜索和关键词数据。"},
+      {"title": "利润计算器", "description": "把手续费和成本算进利润建模，方便按毛利过滤。"},
+      {"title": "大数据集", "description": "覆盖更广的产品和关键词范围用于验证。"}
+    ],
+    "alternatives": [
+      {"name": "Sell The Trend", "href": "/resources/product-research/reviews/sell-the-trend"},
+      {"name": "Zik Analytics", "href": "/resources/product-research/reviews/zik-analytics"},
+      {"name": "Minea", "href": "/resources/product-research/reviews/minea"}
+    ],
+    "faq": [
+      {"question": "能用 Helium 10 做 Shopify 选品吗？", "answer": "能，但它的数据是 Amazon 导向，更适合做需求和关键词验证，而不是 Shopify 店铺或供应商信号。"},
+      {"question": "Helium 10 值这个价吗？", "answer": "对需要深关键词和利润数据的 Amazon 卖家来说值得。简单的 Shopify 发现通常用更轻的工具更便宜。"},
+      {"question": "Helium 10 适合新手吗？", "answer": "它很强但有学习曲线。新手也能从利润计算器和关键词工具获得价值，不必一次用全。"}
+    ]
+  },
+  {
+    "slug": "everbee",
+    "href": "/resources/product-research/reviews/everbee",
+    "year": 2026,
+    "publishedAt": "2026-09-04",
+    "status": "published",
+    "toolName": "EverBee",
+    "title": "EverBee 测评：Etsy Listing 和店铺分析",
+    "description": "对 EverBee 的测评，覆盖 Etsy listing 收入估算、店铺分析，以及它如何帮助卖家找到值得供货的利基和产品。",
+    "category": "sourcing",
+    "categoryLabel": "供货履约",
+    "verdict": "EverBee 是很有用的 Etsy 原生分析工具，适合做 listing 和店铺研究，但它的估算只是方向性，而且只覆盖 Etsy。",
+    "rating": 8,
+    "scoreBreakdown": [
+      {"label": "功能覆盖", "score": 8},
+      {"label": "易用性", "score": 9},
+      {"label": "数据准确性", "score": 7},
+      {"label": "价格价值", "score": 8},
+      {"label": "支持与更新", "score": 8}
+    ],
+    "pros": [
+      "Etsy 原生的 listing 和店铺分析",
+      "收入估算容易理解",
+      "免费版就能起步"
+    ],
+    "cons": [
+      "估算只是方向性",
+      "只覆盖 Etsy",
+      "更深的功能需要付费版"
+    ],
+    "pricing": "免费版加付费方案。",
+    "bestFor": [
+      "研究 listing 的 Etsy 卖家",
+      "找值得供货的利基和店铺",
+      "想低成本起步的新手"
+    ],
+    "features": [
+      {"title": "Listing 收入估算", "description": "估算每个 listing 的收入，帮你看出什么真正在卖。"},
+      {"title": "店铺分析", "description": "展示店铺级信号，如评论增速和产品构成。"},
+      {"title": "Etsy 原生数据", "description": "针对 Etsy 信号设计，而不是硬套 Shopify 或 Amazon 逻辑。"}
+    ],
+    "alternatives": [
+      {"name": "Zik Analytics", "href": "/resources/product-research/reviews/zik-analytics"},
+      {"name": "Koala Inspector", "href": "/resources/product-research/reviews/koala-inspector"},
+      {"name": "Sell The Trend", "href": "/resources/product-research/reviews/sell-the-trend"}
+    ],
+    "faq": [
+      {"question": "EverBee 准吗？", "answer": "它的 listing 和店铺估算方向上有用，但 Etsy 不暴露精确收入，所以要当近似值。"},
+      {"question": "EverBee 免费吗？", "answer": "有免费版，付费方案解锁更深分析和更高用量。"},
+      {"question": "EverBee 能帮 Shopify 选品吗？", "answer": "间接能。它是 Etsy 利基和产品创意的强信号来源，但 Shopify 店铺仍需做毛利和供应商验证。"}
+    ]
+  }
+]
