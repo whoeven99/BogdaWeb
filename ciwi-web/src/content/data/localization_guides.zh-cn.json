@@ -352,1740 +352,1740 @@
     "href": "/guides/beauty-localization-guide-2026",
     "year": 2026,
     "publishedAt": "2026-08-26",
-    "title": "美妆电商本地化指南 2026：美妆品牌如何走向全球",
-    "description": "一份面向美妆、护肤和彩妆品牌进入多语言电商市场的实用 SEO 页面模板。",
-    "industry": "美妆电商",
-    "audience": "美妆、护肤和彩妆品牌",
-    "segmentLabel": "美妆与个人护理",
-    "guideLabel": "本地化指南",
-    "mainValue": "本地化成分、护肤流程和信任信号，而不让前台显得千篇一律。",
+    "title": "[TODO zh-cn] Beauty Ecommerce Localization Guide 2026: How Beauty Brands Go Global",
+    "description": "[TODO zh-cn] A practical SEO page template for beauty, skincare, and cosmetics brands expanding into multilingual ecommerce markets.",
+    "industry": "Beauty ecommerce",
+    "audience": "Beauty, skincare, and cosmetics brands",
+    "segmentLabel": "Beauty & Personal Care",
+    "guideLabel": "Localization Guide",
+    "mainValue": "Localize ingredients, routines, and trust signals without making the storefront feel generic.",
     "keywords": [
-      "美妆本地化指南",
-      "护肤翻译指南",
-      "美妆电商翻译",
-      "彩妆本地化"
+      "beauty localization guide",
+      "skincare translation guide",
+      "beauty ecommerce translation",
+      "cosmetics localization"
     ],
     "overviewDrivers": [
       {
-        "title": "成分信任",
-        "description": "美妆买家在购买前会比较成分、功效和使用说明。"
+        "title": "Ingredient trust",
+        "description": "Beauty buyers compare ingredients, benefits, and usage instructions before they buy."
       },
       {
-        "title": "护肤流程教育",
-        "description": "护肤和彩妆往往需要教育性文案，而不只是直接的商品翻译。"
+        "title": "Routine education",
+        "description": "Skincare and cosmetics often need educational copy, not just direct product translation."
       },
       {
-        "title": "高端定位",
-        "description": "语气和一致性塑造美妆品牌在各市场的可信度。"
+        "title": "Premium positioning",
+        "description": "Tone and consistency shape how credible a beauty brand feels across markets."
       }
     ],
     "benefits": [
       {
-        "title": "信任",
-        "description": "本地化的美妆电商内容能帮助买家理解你的商品，而不必反复质疑术语、单位或商品意图。",
-        "evidence": "当关键购买信息读起来像本地市场内容而非翻译稿时，购物者停留更久。"
+        "title": "Trust",
+        "description": "Localized beauty ecommerce content helps buyers understand your offer without second-guessing terminology, units, or product intent.",
+        "evidence": "Shoppers stay longer when key buying details read like native-market content instead of translated copy."
       },
       {
-        "title": "转化",
-        "description": "清晰、面向市场的文案能减少商品、类目、定价和落地页等高意图页面上的摩擦。",
-        "evidence": "最大的提升通常来自离购买最近的页面，而不是一开始翻译所有内容。"
+        "title": "Conversion",
+        "description": "Clear, market-ready messaging reduces friction on high-intent pages such as product, category, pricing, and landing pages.",
+        "evidence": "The biggest lift usually comes from the pages closest to purchase, not from translating everything first."
       },
       {
         "title": "SEO",
-        "description": "本地化的元数据、合集页和搜索意图覆盖，能帮助美妆电商品牌在特定市场的搜索结果里竞争。",
-        "evidence": "当标题、描述和页面结构匹配市场时，搜索引擎能更有效地索引本地语言查询。"
+        "description": "Localized metadata, collection pages, and search intent coverage help beauty ecommerce brands compete in market-specific search results.",
+        "evidence": "Search engines index local-language queries more effectively when titles, descriptions, and page structure match the market."
       },
       {
-        "title": "客户体验",
-        "description": "当导航、支持入口和关键安心文案在翻译后保持一致时，前台会更可信。",
-        "evidence": "前台、SEO 和支持内容的一致性，能防止购物者在评估和结账过程中流失。"
+        "title": "Customer Experience",
+        "description": "A storefront feels more credible when navigation, support entry points, and key reassurance copy all stay consistent after translation.",
+        "evidence": "Consistency across storefront, SEO, and support content prevents drop-off during evaluation and checkout."
       }
     ],
     "mistakes": [
       {
-        "category": "功效声明直译",
-        "wrongExample": "逐字翻译美妆功效声明，却不针对本地成分语言、合规敏感度或语气预期做调整。",
-        "correct": "翻译买家关心的效果，再按本地美妆词汇和市场规则调整措辞。",
-        "impact": "页面在仔细阅读美妆文案的购物者看来会不可信、夸大或显得不自然。",
-        "severity": "高"
+        "category": "Literal benefit claims",
+        "wrongExample": "Translating beauty claims word for word without adjusting for local ingredient language, compliance sensitivity, or tone expectations.",
+        "correct": "Translate the result buyers care about, then adapt the wording to the local beauty vocabulary and market rules.",
+        "impact": "The page can sound untrustworthy, over-claimed, or simply unnatural to shoppers who read beauty copy closely.",
+        "severity": "High"
       },
       {
-        "category": "把护肤流程内容当可选项",
-        "wrongExample": "只翻译商品名，却让使用说明、成分和护肤流程指导本地化不足。",
-        "correct": "把成分、护肤流程、FAQ 和安心文案当作美妆的核心转化内容，而非辅助补充。",
-        "impact": "购物者对商品理解更差、信任更少，尤其在护肤和强功效类目。",
-        "severity": "高"
+        "category": "Routine content treated as optional",
+        "wrongExample": "Only translating product names while leaving usage, ingredient, and routine guidance under-localized.",
+        "correct": "Treat ingredients, routines, FAQs, and reassurance copy as core conversion content in beauty, not supporting extras.",
+        "impact": "Shoppers understand the product less clearly and trust it less, especially in skincare and treatment-heavy categories.",
+        "severity": "High"
       },
       {
-        "category": "美妆术语被扁平化",
-        "wrongExample": "finish、texture、coverage 或功效类词被翻译得太字面，丢失类目含义。",
-        "correct": "使用本地美妆习语和术语，让其在该市场自己的美妆词汇里显得自然。",
-        "impact": "商品仍可读，但不再像属于那个美妆市场。",
-        "severity": "中"
+        "category": "Beauty terminology flattened",
+        "wrongExample": "Terms like finish, texture, coverage, or treatment effects are translated too literally and lose category meaning.",
+        "correct": "Use local beauty idioms and terminology that sound natural inside the market's own beauty vocabulary.",
+        "impact": "The product may still be readable, but it stops sounding like it belongs in that beauty market.",
+        "severity": "Medium"
       }
     ],
     "impacts": [
       {
-        "metric": "转化流失",
-        "description": "当美妆、护肤和彩妆品牌的潜在客户无法快速评估你的商品时，他们会在进入下一步前离开。",
-        "source": "在多语言落地页和商品发现旅程中观察到。"
+        "metric": "Lost conversions",
+        "description": "When beauty, skincare, and cosmetics brands prospects cannot evaluate your offer quickly, they leave before reaching the next step.",
+        "source": "Observed across multilingual landing pages and product discovery journeys."
       },
       {
-        "metric": "SEO 可见度差",
-        "description": "搜索需求存在，但本地语言元数据和意图覆盖不够强，无法抓住它。",
-        "source": "在没有市场特定 SEO 规划的翻译页面上常见。"
+        "metric": "Poor SEO visibility",
+        "description": "Search demand exists, but local-language metadata and intent coverage are not strong enough to capture it.",
+        "source": "Common issue on pages translated without market-specific SEO planning."
       },
       {
-        "metric": "客户困惑",
-        "description": "页面、支持与导航之间术语混用，在买家最需要安心的时候制造犹豫。",
-        "source": "在扩张中的店铺和网站上常见的本地化 QA 发现。"
+        "metric": "Customer confusion",
+        "description": "Mixed terminology across pages, support, and navigation creates hesitation at exactly the point buyers need reassurance.",
+        "source": "Frequent localization QA finding on expanding stores and websites."
       },
       {
-        "metric": "品牌信任问题",
-        "description": "在美妆电商里，小小的措辞错误会让整个体验显得不够专业。",
-        "source": "在高端、技术或合规敏感类目上尤其明显。"
+        "metric": "Brand trust issues",
+        "description": "In beauty ecommerce, small wording mistakes can make the entire experience feel less professional.",
+        "source": "Especially visible on premium, technical, or compliance-sensitive categories."
       }
     ],
     "languages": [
       {
-        "market": "法国",
-        "language": "法语",
-        "priority": "高",
-        "reason": "美妆高度品牌敏感，买家期望精致本地文案。"
+        "market": "France",
+        "language": "French",
+        "priority": "High",
+        "reason": "Beauty is highly brand-sensitive and buyers expect polished local copy."
       },
       {
-        "market": "德国",
-        "language": "德语",
-        "priority": "高",
-        "reason": "高意图购物者想要清晰的商品细节和安心文案。"
+        "market": "Germany",
+        "language": "German",
+        "priority": "High",
+        "reason": "High-intent shoppers want clear product details and reassurance copy."
       },
       {
-        "market": "日本",
-        "language": "日语",
-        "priority": "中",
-        "reason": "护肤流程导向的商品教育和细节质量很重要。"
+        "market": "Japan",
+        "language": "Japanese",
+        "priority": "Medium",
+        "reason": "Routine-led product education and detail quality matter strongly."
       },
       {
-        "market": "西班牙",
-        "language": "西班牙语",
-        "priority": "中",
-        "reason": "欧盟扩张和搜索需求捕获的下一个务实市场。"
+        "market": "Spain",
+        "language": "Spanish",
+        "priority": "Medium",
+        "reason": "A practical next market for EU expansion and search demand capture."
       }
     ],
     "marketHabits": [
       {
-        "market": "法国",
-        "language": "法语",
-        "habit": "高端美妆语气和精致呈现几乎与成分或护肤流程细节一样影响信任。",
-        "localizationFocus": "保护品牌声音的优雅，避免过于字面或过于临床的翻译。美妆高度品牌敏感，买家期望精致本地文案。"
+        "market": "France",
+        "language": "French",
+        "habit": "Premium beauty tone and polished presentation can shape trust almost as much as the ingredient or routine detail itself.",
+        "localizationFocus": "Protect elegance in brand voice and avoid translation that feels too literal or too clinical. Beauty is highly brand-sensitive and buyers expect polished local copy."
       },
       {
-        "market": "德国",
-        "language": "德语",
-        "habit": "美妆买家通常对清晰的成分逻辑、克制的措辞和低夸张的商品框架反应更好。",
-        "localizationFocus": "让功效语言精确，减少含糊声明，让安心文案易于验证。高意图购物者想要清晰的商品细节和安心文案。"
+        "market": "Germany",
+        "language": "German",
+        "habit": "Beauty buyers often respond better to clear ingredient logic, grounded wording, and lower-hype product framing.",
+        "localizationFocus": "Keep benefit language precise, reduce vague claims, and make reassurance copy easy to verify. High-intent shoppers want clear product details and reassurance copy."
       },
       {
-        "market": "日本",
-        "language": "日语",
-        "habit": "护肤流程、质地和呈现细节通常很重要，尤其是购物者评估强功效或高端美妆商品时。",
-        "localizationFocus": "仔细审校细节，保留 finish 词汇，让护肤流程逻辑高度易读。护肤流程导向的商品教育和细节质量很重要。"
+        "market": "Japan",
+        "language": "Japanese",
+        "habit": "Routine, texture, and presentation detail often matter heavily, especially when shoppers evaluate treatment-heavy or premium beauty products.",
+        "localizationFocus": "Review nuance carefully, preserve finish vocabulary, and keep routine logic highly readable. Routine-led product education and detail quality matter strongly."
       },
       {
-        "market": "西班牙",
-        "language": "西班牙语",
-        "habit": "亲切但仍以功效为导向的美妆语言通常表现不错，尤其是在移动端友好的合集和促销页上。",
-        "localizationFocus": "让声明易读，压缩过于密集的措辞，快速说清使用场景。欧盟扩张和搜索需求捕获的下一个务实市场。"
+        "market": "Spain",
+        "language": "Spanish",
+        "habit": "Accessible but still benefit-led beauty language often performs well, especially on mobile-friendly collection and promo pages.",
+        "localizationFocus": "Keep claims readable, shorten overly dense phrasing, and make use cases obvious quickly. A practical next market for EU expansion and search demand capture."
       }
     ],
     "translationScope": [
       {
-        "category": "核心",
+        "category": "Critical",
         "items": [
-          "商品页",
-          "成分与护肤流程内容",
-          "FAQ 与信任区块",
-          "合集页"
+          "Product pages",
+          "Ingredient and routine content",
+          "FAQs and trust sections",
+          "Collection pages"
         ],
-        "priority": "高"
+        "priority": "High"
       },
       {
-        "category": "重要",
+        "category": "Important",
         "items": [
-          "SEO 元数据",
-          "活动落地页",
-          "使用说明",
-          "邮件订阅与促销文案"
+          "SEO metadata",
+          "Campaign landing pages",
+          "Usage instructions",
+          "Email capture and promo copy"
         ],
-        "priority": "中"
+        "priority": "Medium"
       },
       {
-        "category": "可选",
+        "category": "Optional",
         "items": [
-          "归档活动",
-          "旧编辑页",
-          "低流量博客内容"
+          "Archived campaigns",
+          "Older editorial pages",
+          "Low-traffic blog content"
         ],
-        "priority": "低"
+        "priority": "Lower"
       }
     ],
     "expansionPlan": [
       {
-        "stage": "第 1 阶段",
-        "market": "法国",
-        "language": "法语",
-        "reason": "从一个高端市场切入，那里品牌呈现和商品教育都很重要。"
+        "stage": "Stage 1",
+        "market": "France",
+        "language": "French",
+        "reason": "Lead with a premium market where brand presentation and product education matter."
       },
       {
-        "stage": "第 2 阶段",
-        "market": "德国",
-        "language": "德语",
-        "reason": "在成分、功效和护肤流程术语标准化后扩展。"
+        "stage": "Stage 2",
+        "market": "Germany",
+        "language": "German",
+        "reason": "Scale once ingredient, benefit, and routine terms are standardized."
       },
       {
-        "stage": "第 3 阶段",
-        "market": "日本",
-        "language": "日语",
-        "reason": "团队能支持更深入的质量审核和语气控制后再进入。"
+        "stage": "Stage 3",
+        "market": "Japan",
+        "language": "Japanese",
+        "reason": "Enter after the team can support deeper quality review and tone control."
       }
     ],
     "bestPractices": [
       {
-        "title": "从高意图页面开始",
-        "description": "从驱动美妆、护肤和彩妆品牌评估与购买的页面开始，等流程稳定后再扩展。"
+        "title": "Start with high-intent pages",
+        "description": "Begin with the pages that drive evaluation and purchase for beauty, skincare, and cosmetics brands, then expand once the workflow is stable."
       },
       {
-        "title": "扩展前先用术语表",
-        "description": "在批量翻译前锁定品牌词、重复功能名和类目词汇。"
+        "title": "Use a glossary before scaling",
+        "description": "Lock brand terms, recurring feature names, and category vocabulary before bulk translation begins."
       },
       {
-        "title": "按市场上下文审校",
-        "description": "检查语气、单位、格式和市场预期，而不只是语法。"
+        "title": "Review by market context",
+        "description": "Check tone, units, formatting, and market expectations instead of only checking grammar."
       },
       {
-        "title": "本地化与 SEO QA 配对",
-        "description": "每个上线市场都应附带本地化元数据、内链和页面意图覆盖。"
+        "title": "Pair localization with SEO QA",
+        "description": "Every launch market should ship with localized metadata, internal links, and page intent coverage."
       }
     ],
     "styleRules": [
       {
-        "title": "带类目细节翻译功效",
-        "description": "美妆买家读的是效果、质地和信任。保留这些线索，而不是把一切简化为通用商品声明。"
+        "title": "Translate benefits with category nuance",
+        "description": "Beauty buyers read for effect, texture, and trust. Preserve those cues instead of reducing everything to generic product claims."
       },
       {
-        "title": "保持成分和护肤流程措辞一致",
-        "description": "成分、步骤和使用逻辑应在商品页、FAQ 和护肤流程导向落地页间保持稳定。"
+        "title": "Keep ingredient and routine wording consistent",
+        "description": "Ingredients, steps, and usage logic should stay stable across PDPs, FAQs, and routine-led landing pages."
       },
       {
-        "title": "按市场审核声明敏感措辞",
-        "description": "围绕美白、修护、抗老等效果的用词，发布前往往需要市场感知的审核。"
+        "title": "Review claim-sensitive wording by market",
+        "description": "Words around whitening, repair, anti-aging, and other results often need market-aware review before publishing."
       },
       {
-        "title": "保护高端品牌表达",
-        "description": "对高端美妆品牌，语气是信任的一部分。为强依赖定位和 finish 语言的页面保留人工 QA。"
+        "title": "Protect premium brand expression",
+        "description": "For premium beauty brands, tone is part of trust. Keep a human QA layer for pages that rely heavily on positioning and finish language."
       }
     ],
     "solutions": [
       {
-        "name": "人工翻译",
+        "name": "Manual Translation",
         "advantages": [
-          "品牌控制最高",
-          "适合法律或受监管文案",
-          "适合旗舰活动"
+          "Highest brand control",
+          "Good for legal or regulated copy",
+          "Works well for flagship campaigns"
         ],
         "limitations": [
-          "扩展慢",
-          "每个市场成本高",
-          "目录变化后难保持更新"
+          "Slow to scale",
+          "High cost per market",
+          "Hard to keep updated after catalog changes"
         ]
       },
       {
-        "name": "通用机器翻译",
+        "name": "Generic Machine Translation",
         "advantages": [
-          "第一稿快",
-          "前期成本低",
-          "适合低优先级页面"
+          "Fast first draft",
+          "Low upfront cost",
+          "Useful for low-priority pages"
         ],
         "limitations": [
-          "上下文处理弱",
-          "术语不一致",
-          "常漏掉 SEO 和转化细节"
+          "Weak context handling",
+          "Inconsistent terminology",
+          "Often misses SEO and conversion nuance"
         ]
       },
       {
-        "name": "AI 电商翻译",
+        "name": "AI Ecommerce Translation",
         "advantages": [
-          "比人工快",
-          "对前台内容上下文更好",
-          "适合持续的目录和 SEO 更新"
+          "Faster than manual",
+          "Better context for storefront content",
+          "Fits ongoing catalog and SEO updates"
         ],
         "limitations": [
-          "仍需 QA",
-          "需要术语表规则",
-          "合规敏感内容需要市场审校"
+          "Still needs QA",
+          "Requires glossary rules",
+          "Needs market review for compliance-sensitive content"
         ]
       }
     ],
     "features": [
-      "商品翻译",
-      "主题翻译",
-      "SEO 翻译",
-      "图片翻译",
-      "HTML 保留"
+      "Product Translation",
+      "Theme Translation",
+      "SEO Translation",
+      "Image Translation",
+      "HTML Preservation"
     ],
     "recommendations": [
       {
-        "title": "把信任和向往感放在一起处理",
-        "description": "美妆页面既需要高端品牌表达，也需要成分级的安心感。翻译时不要让一个取代另一个。"
+        "title": "Treat trust and aspiration together",
+        "description": "Beauty pages need both premium brand expression and ingredient-level reassurance. Do not let one replace the other in translation."
       },
       {
-        "title": "先本地化高意图美妆 SEO",
-        "description": "从合集、成分和功效导向页面开始，它们已贴近美妆买家在市场里的搜索方式。"
+        "title": "Localize high-intent beauty SEO first",
+        "description": "Start with collection, ingredient, and concern-led pages that already map closely to how beauty buyers search in-market."
       },
       {
-        "title": "手工审核重功效的 hero 区块",
-        "description": "首页横幅、活动上线和商品功效区块通常需要在发布前多做一轮人工审核。"
+        "title": "Review claim-heavy hero sections manually",
+        "description": "Homepage banners, campaign launches, and product benefit sections usually need one extra human pass before publishing."
       }
     ],
     "terminology": [
       {
-        "term": "核心成分",
-        "meaning": "承载商品故事的标志性成分",
-        "localized": "把它翻译成信任和功效线索，而不只是原始成分标签。"
+        "term": "Hero ingredient",
+        "meaning": "The signature ingredient that carries the product story",
+        "localized": "Translate it as a trust and efficacy cue, not just a raw ingredient label."
       },
       {
-        "term": "光泽感",
-        "meaning": "与亮泽和妆效相关的美妆效果语言",
-        "localized": "使用本地美妆里描述可见肤效的习语，而非字面的光相关词。"
+        "term": "Glow",
+        "meaning": "Beauty result language tied to radiance and finish",
+        "localized": "Use the local beauty idiom for visible skin effect, not a literal light-related word."
       },
       {
-        "term": "不刺激",
-        "meaning": "围绕温和与耐受性的安心措辞",
-        "localized": "保持柔和可信，尤其在声明敏感度更高的地方。"
+        "term": "Non-irritating",
+        "meaning": "Reassurance wording around gentleness and tolerance",
+        "localized": "Keep it soft and credible, especially where claim sensitivity is higher."
       },
       {
-        "term": "每日仪式",
-        "meaning": "与重复使用和悦己框架相关的流程导向语言",
-        "localized": "翻译成市场本地的美妆护肤流程提示，而非通用的每日使用措辞。"
+        "term": "Daily ritual",
+        "meaning": "Routine-led language tied to repeat use and self-care framing",
+        "localized": "Translate as a market-native beauty routine cue, not generic daily use wording."
       }
     ],
     "checklist": [
-      "把首页、合集页、商品页和功效导向落地页一起翻译，而不是只翻商品详情文案。",
-      "在扩展到更多美妆商品前，锁定成分、finish 和功效术语。",
-      "发布前人工审核高端 hero 文案、促销横幅和功效声明。",
-      "本地化元数据和合集命名，让美妆 SEO 仍能干净地捕获搜索需求。",
-      "检查护肤流程或信任文案在目标市场仍显得本地化，而非过度声称。",
-      "最后对整套页面做一轮高端语气和声明一致性的终审。"
+      "Translate homepage, collection pages, product pages, and concern-led landing pages together instead of only the PDP copy.",
+      "Lock ingredient, finish, and benefit terminology before scaling across more beauty products.",
+      "Review premium hero copy, promo banners, and benefit claims manually before publishing.",
+      "Localize metadata and collection naming so beauty SEO can still capture search demand cleanly.",
+      "Check that routine or trust copy still feels native, not over-claimed, in the target market.",
+      "Run one final review for both premium tone and claim consistency across the page set."
     ],
     "faq": [
       {
-        "question": "美妆品牌应该翻译成分和护肤流程内容吗？",
-        "answer": "应该。成分名、使用指导和功效说明是美妆里的核心信任内容，而非可选项。"
+        "question": "Should beauty brands translate ingredient and routine content?",
+        "answer": "Yes. Ingredient names, usage guidance, and benefit explanations are core trust content in beauty, not optional extras."
       },
       {
-        "question": "美妆电商最大的本地化错误是什么？",
-        "answer": "把美妆当作通用零售文案。买家往往需要围绕功效、护肤流程和商品匹配度的细节才会转化。"
+        "question": "What is the biggest localization mistake in beauty ecommerce?",
+        "answer": "Treating beauty like generic retail copy. Buyers often need nuance around benefits, routines, and product fit before they convert."
       },
       {
-        "question": "哪些页面对美妆 SEO 本地化最重要？",
-        "answer": "商品页、合集页、成分导向内容，以及高意图护肤流程查询的元数据应优先。"
+        "question": "Which pages matter most for beauty SEO localization?",
+        "answer": "Product pages, collection pages, ingredient-focused content, and metadata for high-intent routine queries should be first."
       }
     ],
-    "status": "published",
+    "status": "draft",
     "sourceLocale": "en",
-    "translationStatus": "reviewed"
+    "translationStatus": "ai-draft"
   },
   {
     "slug": "fashion-ecommerce-localization-guide-2026",
     "href": "/guides/fashion-ecommerce-localization-guide-2026",
     "year": 2026,
     "publishedAt": "2026-08-26",
-    "title": "时尚电商本地化指南 2026：服装品牌如何全球扩张",
-    "description": "一份面向需要多语言前台、更好转化和市场就绪 SEO 的时尚与服装品牌的可复用框架。",
-    "industry": "时尚电商",
-    "audience": "时尚和服装品牌",
-    "segmentLabel": "时尚与服装",
-    "guideLabel": "本地化指南",
-    "mainValue": "翻译风格、尺码和合集意图，而不扁平化品牌声音。",
+    "title": "[TODO zh-cn] Fashion Ecommerce Localization Guide 2026: How Clothing Brands Expand Globally",
+    "description": "[TODO zh-cn] A reusable framework for fashion and apparel brands that need multilingual storefronts, better conversion, and market-ready SEO.",
+    "industry": "Fashion ecommerce",
+    "audience": "Fashion and apparel brands",
+    "segmentLabel": "Fashion & Apparel",
+    "guideLabel": "Localization Guide",
+    "mainValue": "Translate style, sizing, and collection intent without flattening the brand voice.",
     "keywords": [
-      "时尚本地化指南",
-      "服装翻译指南",
-      "时尚电商 seo",
-      "服装本地化"
+      "fashion localization guide",
+      "clothing translation guide",
+      "fashion ecommerce seo",
+      "apparel localization"
     ],
     "overviewDrivers": [
       {
-        "title": "尺码与合身清晰度",
-        "description": "时尚购物者需要尺码、合身和材质语言显得准确，才会信任商品。"
+        "title": "Size and fit clarity",
+        "description": "Fashion shoppers need size, fit, and material language to feel accurate before they trust the product."
       },
       {
-        "title": "合集导向的浏览",
-        "description": "类目和合集页对发现的影响不亚于单个商品页。"
+        "title": "Collection-led browsing",
+        "description": "Category and collection pages shape discovery as much as individual product pages."
       },
       {
-        "title": "品牌声音一致性",
-        "description": "语气很重要，因为时尚定位依赖风格线索，而不只是商品事实。"
+        "title": "Brand voice consistency",
+        "description": "Tone matters because fashion positioning depends on style cues, not just product facts."
       }
     ],
     "benefits": [
       {
-        "title": "信任",
-        "description": "本地化的时尚电商内容能帮助买家理解你的商品，而不必反复质疑术语、单位或商品意图。",
-        "evidence": "当关键购买信息读起来像本地市场内容而非翻译稿时，购物者停留更久。"
+        "title": "Trust",
+        "description": "Localized fashion ecommerce content helps buyers understand your offer without second-guessing terminology, units, or product intent.",
+        "evidence": "Shoppers stay longer when key buying details read like native-market content instead of translated copy."
       },
       {
-        "title": "转化",
-        "description": "清晰、面向市场的文案能减少商品、类目、定价和落地页等高意图页面上的摩擦。",
-        "evidence": "最大的提升通常来自离购买最近的页面，而不是一开始翻译所有内容。"
+        "title": "Conversion",
+        "description": "Clear, market-ready messaging reduces friction on high-intent pages such as product, category, pricing, and landing pages.",
+        "evidence": "The biggest lift usually comes from the pages closest to purchase, not from translating everything first."
       },
       {
         "title": "SEO",
-        "description": "本地化的元数据、合集页和搜索意图覆盖，能帮助时尚电商品牌在特定市场的搜索结果里竞争。",
-        "evidence": "当标题、描述和页面结构匹配市场时，搜索引擎能更有效地索引本地语言查询。"
+        "description": "Localized metadata, collection pages, and search intent coverage help fashion ecommerce brands compete in market-specific search results.",
+        "evidence": "Search engines index local-language queries more effectively when titles, descriptions, and page structure match the market."
       },
       {
-        "title": "客户体验",
-        "description": "当导航、支持入口和关键安心文案在翻译后保持一致时，前台会更可信。",
-        "evidence": "前台、SEO 和支持内容的一致性，能防止购物者在评估和结账过程中流失。"
+        "title": "Customer Experience",
+        "description": "A storefront feels more credible when navigation, support entry points, and key reassurance copy all stay consistent after translation.",
+        "evidence": "Consistency across storefront, SEO, and support content prevents drop-off during evaluation and checkout."
       }
     ],
     "mistakes": [
       {
-        "category": "风格语言被扁平化",
-        "wrongExample": "把时尚文案翻译成解释商品却去掉品牌风格线索和商品化语气的平淡描述。",
-        "correct": "让合集声音、廓形线索和合身语言与本地购物者浏览时尚类目的方式保持一致。",
-        "impact": "前台读起来仍正确，但不再像时尚品牌，也失去转化能量。",
-        "severity": "高"
+        "category": "Flattened style language",
+        "wrongExample": "Translating fashion copy into plain descriptive text that explains the product but removes the brand's style cues and merchandising tone.",
+        "correct": "Keep the collection voice, silhouette cues, and fit language aligned with how local shoppers browse fashion categories.",
+        "impact": "The storefront still reads correctly, but it stops feeling like a fashion brand and loses conversion energy.",
+        "severity": "High"
       },
       {
-        "category": "尺码与合身漂移",
-        "wrongExample": "让商品页和合集之间的尺码语言、合身指导或材质细节不一致。",
-        "correct": "在翻译更大目录前，把合身、尺码、材质和退换货措辞锁进共享术语表。",
-        "impact": "购物者更早犹豫、比较时更不自信，更可能跳出或之后退货。",
-        "severity": "高"
+        "category": "Sizing and fit drift",
+        "wrongExample": "Leaving size language, fit guidance, or material details inconsistent across product pages and collections.",
+        "correct": "Lock fit, sizing, material, and returns wording in a shared glossary before translating the wider catalog.",
+        "impact": "Shoppers hesitate earlier, compare less confidently, and are more likely to bounce or return the order later.",
+        "severity": "High"
       },
       {
-        "category": "合集页被当作次要",
-        "wrongExample": "只翻译商品描述，却让类目、风格和季节性合集页本地化不足。",
-        "correct": "合集、活动和商品页一起翻译，因为时尚的发现远早于商品详情文案。",
-        "impact": "品牌在本地市场同时失去 SEO 流量和商品化清晰度。",
-        "severity": "中"
+        "category": "Collection pages treated as secondary",
+        "wrongExample": "Only translating product descriptions while leaving category, style, and seasonal collection pages under-localized.",
+        "correct": "Translate collection, campaign, and product pages together because discovery in fashion starts long before PDP copy.",
+        "impact": "The brand loses both SEO traffic and merchandising clarity in the local market.",
+        "severity": "Medium"
       }
     ],
     "impacts": [
       {
-        "metric": "转化流失",
-        "description": "当时尚和服装品牌的潜在客户无法快速评估你的商品时，他们会在进入下一步前离开。",
-        "source": "在多语言落地页和商品发现旅程中观察到。"
+        "metric": "Lost conversions",
+        "description": "When fashion and apparel brands prospects cannot evaluate your offer quickly, they leave before reaching the next step.",
+        "source": "Observed across multilingual landing pages and product discovery journeys."
       },
       {
-        "metric": "SEO 可见度差",
-        "description": "搜索需求存在，但本地语言元数据和意图覆盖不够强，无法抓住它。",
-        "source": "在没有市场特定 SEO 规划的翻译页面上常见。"
+        "metric": "Poor SEO visibility",
+        "description": "Search demand exists, but local-language metadata and intent coverage are not strong enough to capture it.",
+        "source": "Common issue on pages translated without market-specific SEO planning."
       },
       {
-        "metric": "客户困惑",
-        "description": "页面、支持与导航之间术语混用，在买家最需要安心的时候制造犹豫。",
-        "source": "在扩张中的店铺和网站上常见的本地化 QA 发现。"
+        "metric": "Customer confusion",
+        "description": "Mixed terminology across pages, support, and navigation creates hesitation at exactly the point buyers need reassurance.",
+        "source": "Frequent localization QA finding on expanding stores and websites."
       },
       {
-        "metric": "品牌信任问题",
-        "description": "在时尚电商里，小小的措辞错误会让整个体验显得不够专业。",
-        "source": "在高端、技术或合规敏感类目上尤其明显。"
+        "metric": "Brand trust issues",
+        "description": "In fashion ecommerce, small wording mistakes can make the entire experience feel less professional.",
+        "source": "Especially visible on premium, technical, or compliance-sensitive categories."
       }
     ],
     "languages": [
       {
-        "market": "德国",
-        "language": "德语",
-        "priority": "高",
-        "reason": "服装电商需求强，且对细节准确性有清晰预期。"
+        "market": "Germany",
+        "language": "German",
+        "priority": "High",
+        "reason": "Strong apparel ecommerce demand with clear expectations around detail accuracy."
       },
       {
-        "market": "法国",
-        "language": "法语",
-        "priority": "高",
-        "reason": "时尚品牌化和语气质量在这个市场尤其显眼。"
+        "market": "France",
+        "language": "French",
+        "priority": "High",
+        "reason": "Fashion branding and tone quality are especially visible in this market."
       },
       {
-        "market": "意大利",
-        "language": "意大利语",
-        "priority": "中",
-        "reason": "尺码和材质术语稳定后是相关时尚市场。"
+        "market": "Italy",
+        "language": "Italian",
+        "priority": "Medium",
+        "reason": "A relevant fashion market once sizing and material terms are stabilized."
       },
       {
-        "market": "日本",
-        "language": "日语",
-        "priority": "中",
-        "reason": "合身细节和高端品牌呈现都很重要。"
+        "market": "Japan",
+        "language": "Japanese",
+        "priority": "Medium",
+        "reason": "Fit detail and premium brand presentation both matter heavily."
       }
     ],
     "marketHabits": [
       {
-        "market": "德国",
-        "language": "德语",
-        "habit": "时尚买家通常期望合身、面料和退换货信息在下单前易于比较。",
-        "localizationFocus": "让合身指导精确，材质细节易扫读，避免过于含糊的风格语言。服装电商需求强，且对细节准确性有清晰预期。"
+        "market": "Germany",
+        "language": "German",
+        "habit": "Fashion buyers often expect fit, fabric, and return-related information to be easy to compare before they trust the order.",
+        "localizationFocus": "Keep fit guidance precise, make material details easy to scan, and avoid overly vague styling language. Strong apparel ecommerce demand with clear expectations around detail accuracy."
       },
       {
-        "market": "法国",
-        "language": "法语",
-        "habit": "品牌语气和合集呈现对感知价值的影响不亚于商品事实本身。",
-        "localizationFocus": "保护编辑语气，合集命名优雅，避免平淡或纯机械的翻译。时尚品牌化和语气质量在这个市场尤其显眼。"
+        "market": "France",
+        "language": "French",
+        "habit": "Brand tone and collection presentation can influence perceived value as much as the product facts themselves.",
+        "localizationFocus": "Protect editorial tone, keep collection naming elegant, and avoid translation that feels flat or purely mechanical. Fashion branding and tone quality are especially visible in this market."
       },
       {
-        "market": "意大利",
-        "language": "意大利语",
-        "habit": "风格、妆效和设计线索在服装与配饰评估中分量很重。",
-        "localizationFocus": "保留美学词汇，让翻译文案有表现力却不失商品清晰度。尺码和材质术语稳定后是相关时尚市场。"
+        "market": "Italy",
+        "language": "Italian",
+        "habit": "Style, finish, and design cues often carry strong weight in how apparel and accessories are evaluated.",
+        "localizationFocus": "Preserve aesthetic vocabulary and keep the translated copy expressive without losing product clarity. A relevant fashion market once sizing and material terms are stabilized."
       },
       {
-        "market": "日本",
-        "language": "日语",
-        "habit": "买家通常期望更精确的合身细节和更高质量的呈现，才会信任时尚购买。",
-        "localizationFocus": "仔细审校细节，合身和尺码结构化，安心文案易找。合身细节和高端品牌呈现都很重要。"
+        "market": "Japan",
+        "language": "Japanese",
+        "habit": "Buyers often expect more precise fit detail and a higher-quality presentation before trusting fashion purchases.",
+        "localizationFocus": "Review nuance carefully, keep fit and sizing structured, and make reassurance copy easy to find. Fit detail and premium brand presentation both matter heavily."
       }
     ],
     "translationScope": [
       {
-        "category": "核心",
+        "category": "Critical",
         "items": [
-          "合集页",
-          "商品页",
-          "尺码与合身指导",
-          "退换货与信任文案"
+          "Collection pages",
+          "Product pages",
+          "Size and fit guidance",
+          "Returns and trust copy"
         ],
-        "priority": "高"
+        "priority": "High"
       },
       {
-        "category": "重要",
+        "category": "Important",
         "items": [
-          "SEO 元数据",
-          "季节性落地页",
-          "面料与护理细节",
-          "导航与筛选"
+          "SEO metadata",
+          "Seasonal landing pages",
+          "Fabric and care detail",
+          "Navigation and filters"
         ],
-        "priority": "中"
+        "priority": "Medium"
       },
       {
-        "category": "可选",
+        "category": "Optional",
         "items": [
-          "旧编辑页",
-          "归档活动",
-          "低流量博客内容"
+          "Older editorial pages",
+          "Archived campaigns",
+          "Low-traffic blog content"
         ],
-        "priority": "低"
+        "priority": "Lower"
       }
     ],
     "expansionPlan": [
       {
-        "stage": "第 1 阶段",
-        "market": "德国",
-        "language": "德语",
-        "reason": "在高意图页面上用精确的尺码、合身和材质术语切入。"
+        "stage": "Stage 1",
+        "market": "Germany",
+        "language": "German",
+        "reason": "Launch with precise sizing, fit, and material terminology on high-intent pages."
       },
       {
-        "stage": "第 2 阶段",
-        "market": "法国",
-        "language": "法语",
-        "reason": "把合集和编辑语气带进第二个高端市场。"
+        "stage": "Stage 2",
+        "market": "France",
+        "language": "French",
+        "reason": "Carry the collection and editorial tone into a second premium market."
       },
       {
-        "stage": "第 3 阶段",
-        "market": "日本",
-        "language": "日语",
-        "reason": "术语表和 QA 流程能应对更严格的质量预期后再扩展。"
+        "stage": "Stage 3",
+        "market": "Japan",
+        "language": "Japanese",
+        "reason": "Expand after your glossary and QA process can handle tighter quality expectations."
       }
     ],
     "bestPractices": [
       {
-        "title": "从高意图页面开始",
-        "description": "从驱动时尚和服装品牌评估与购买的页面开始，等流程稳定后再扩展。"
+        "title": "Start with high-intent pages",
+        "description": "Begin with the pages that drive evaluation and purchase for fashion and apparel brands, then expand once the workflow is stable."
       },
       {
-        "title": "扩展前先用术语表",
-        "description": "在批量翻译前锁定品牌词、重复功能名和类目词汇。"
+        "title": "Use a glossary before scaling",
+        "description": "Lock brand terms, recurring feature names, and category vocabulary before bulk translation begins."
       },
       {
-        "title": "按市场上下文审校",
-        "description": "检查语气、单位、格式和市场预期，而不只是语法。"
+        "title": "Review by market context",
+        "description": "Check tone, units, formatting, and market expectations instead of only checking grammar."
       },
       {
-        "title": "本地化与 SEO QA 配对",
-        "description": "每个上线市场都应附带本地化元数据、内链和页面意图覆盖。"
+        "title": "Pair localization with SEO QA",
+        "description": "Every launch market should ship with localized metadata, internal links, and page intent coverage."
       }
     ],
     "styleRules": [
       {
-        "title": "保护品牌的时尚语气",
-        "description": "别把时尚文案简化为通用商品事实。让廓形、造型和商品化语言在各市场保持可辨识。"
+        "title": "Protect the brand's fashion tone",
+        "description": "Do not reduce fashion copy to generic product facts. Keep silhouette, styling, and merchandising language recognizable across markets."
       },
       {
-        "title": "标准化合身和尺码语言",
-        "description": "合身说明、尺码指导和材质线索应在合集、商品页和退换货信任文案间保持一致。"
+        "title": "Standardize fit and sizing language",
+        "description": "Fit notes, sizing guidance, and material cues should read consistently across collections, PDPs, and returns-related trust copy."
       },
       {
-        "title": "翻译合集逻辑，而不只是商品",
-        "description": "时尚买家常按类目、季节和审美浏览。翻译后的网站应清晰保留这种浏览逻辑。"
+        "title": "Translate collection logic, not just products",
+        "description": "Fashion buyers often browse by category, season, and aesthetic. The translated site should preserve that browsing logic clearly."
       },
       {
-        "title": "手工审核高端定位",
-        "description": "品牌依赖高端或编辑表达的地方，保留人工审核步骤，让文案仍显得刻意。"
+        "title": "Review premium positioning manually",
+        "description": "Where the brand depends on premium or editorial expression, keep a human review step so the copy still feels intentional."
       }
     ],
     "solutions": [
       {
-        "name": "人工翻译",
+        "name": "Manual Translation",
         "advantages": [
-          "品牌控制最高",
-          "适合法律或受监管文案",
-          "适合旗舰活动"
+          "Highest brand control",
+          "Good for legal or regulated copy",
+          "Works well for flagship campaigns"
         ],
         "limitations": [
-          "扩展慢",
-          "每个市场成本高",
-          "目录变化后难保持更新"
+          "Slow to scale",
+          "High cost per market",
+          "Hard to keep updated after catalog changes"
         ]
       },
       {
-        "name": "通用机器翻译",
+        "name": "Generic Machine Translation",
         "advantages": [
-          "第一稿快",
-          "前期成本低",
-          "适合低优先级页面"
+          "Fast first draft",
+          "Low upfront cost",
+          "Useful for low-priority pages"
         ],
         "limitations": [
-          "上下文处理弱",
-          "术语不一致",
-          "常漏掉 SEO 和转化细节"
+          "Weak context handling",
+          "Inconsistent terminology",
+          "Often misses SEO and conversion nuance"
         ]
       },
       {
-        "name": "AI 电商翻译",
+        "name": "AI Ecommerce Translation",
         "advantages": [
-          "比人工快",
-          "对前台内容上下文更好",
-          "适合持续的目录和 SEO 更新"
+          "Faster than manual",
+          "Better context for storefront content",
+          "Fits ongoing catalog and SEO updates"
         ],
         "limitations": [
-          "仍需 QA",
-          "需要术语表规则",
-          "合规敏感内容需要市场审校"
+          "Still needs QA",
+          "Requires glossary rules",
+          "Needs market review for compliance-sensitive content"
         ]
       }
     ],
     "features": [
-      "商品翻译",
-      "主题翻译",
-      "SEO 翻译",
-      "图片翻译",
-      "HTML 保留"
+      "Product Translation",
+      "Theme Translation",
+      "SEO Translation",
+      "Image Translation",
+      "HTML Preservation"
     ],
     "recommendations": [
       {
-        "title": "从合集和造型页面入手",
-        "description": "当编辑合集逻辑和商品化语言被尽早翻译（而不只是目录基础信息）时，宽泛的时尚页面通常更有效。"
+        "title": "Lead with collection and styling pages",
+        "description": "Broad fashion pages usually win when editorial collection logic and merchandising language are translated early, not only the catalog basics."
       },
       {
-        "title": "跨季节页保留时尚声音",
-        "description": "季节性改版、活动页和常青合集在本地化后仍应像同一个品牌。"
+        "title": "Preserve fashion voice across seasonal pages",
+        "description": "Seasonal edits, campaign pages, and evergreen collections should still feel like one brand after localization."
       },
       {
-        "title": "翻译后检查类目和筛选逻辑",
-        "description": "时尚浏览常依赖微妙的合集和风格分类，若筛选本地化太松散会漂移。"
+        "title": "Check category and filter logic after translation",
+        "description": "Fashion browsing often depends on subtle collection and style taxonomy that can drift if filters are localized too loosely."
       }
     ],
     "terminology": [
       {
-        "term": "廓形",
-        "meaning": "造型和合身说明中由形状引领的时尚词汇",
-        "localized": "用仍能传递设计意图的本地时尚术语翻译。"
+        "term": "Silhouette",
+        "meaning": "Shape-led fashion vocabulary used in styling and fit explanation",
+        "localized": "Translate with the local fashion term that still signals design intent."
       },
       {
-        "term": "胶囊衣橱",
-        "meaning": "围绕百搭造型的编辑或生活方式框架",
-        "localized": "用本地时尚/编辑词汇，而非字面的衣橱措辞。"
+        "term": "Capsule wardrobe",
+        "meaning": "Editorial or lifestyle framing around versatile styling",
+        "localized": "Use local fashion/editorial vocabulary rather than literal wardrobe wording."
       },
       {
-        "term": "修身剪裁",
-        "meaning": "时尚评估中的结构和身体线条线索",
-        "localized": "与本地合身预期保持一致，而非通用的贴身描述。"
+        "term": "Tailored fit",
+        "meaning": "Structure and body-line cue in fashion evaluation",
+        "localized": "Keep it aligned with local fit expectations, not just a generic fitted description."
       },
       {
-        "term": "过渡单品",
-        "meaning": "与季节性和百搭性相关的造型线索",
-        "localized": "翻译成购物者在市场里认可的实际造型概念。"
+        "term": "Transitional piece",
+        "meaning": "Styling cue tied to seasonality and versatility",
+        "localized": "Translate as a practical styling concept shoppers recognize in-market."
       }
     ],
     "checklist": [
-      "在低优先级编辑内容之前，先翻译合集页、商品页和尺码指导。",
-      "批量翻译前，在术语表里标准化合身、面料、廓形和退换货措辞。",
-      "把活动、季节性和落地页文案与基础商品翻译分开审核。",
-      "把标题、元数据和合集结构一起本地化，让时尚 SEO 在目标市场仍有效。",
-      "检查翻译后尺码指导和商品筛选是否仍合理。",
-      "发布前对高端或编辑页面做最后一轮语气审核。"
+      "Translate collection pages, product pages, and size guidance before lower-priority editorial content.",
+      "Standardize fit, fabric, silhouette, and return-related wording in a glossary before bulk translation.",
+      "Review campaign, seasonal, and landing-page copy separately from basic product translation.",
+      "Localize titles, metadata, and collection structure together so fashion SEO still works in the target market.",
+      "Check that size guidance and product filters still make sense after translation.",
+      "Run a final tone review on premium or editorial pages before publishing."
     ],
     "faq": [
       {
-        "question": "时尚品牌在商品描述之外还应本地化什么？",
-        "answer": "合集页、尺码与合身指导、退换货安心文案和 SEO 元数据通常与商品文案本身一样重要。"
+        "question": "What should fashion brands localize beyond product descriptions?",
+        "answer": "Collection pages, size and fit guidance, returns reassurance, and SEO metadata usually matter just as much as the product copy itself."
       },
       {
-        "question": "机器翻译能处理好时尚语气吗？",
-        "answer": "能产出草稿，但时尚页面通常需要术语表规则和审核，让文案仍显得刻意且符合品牌。"
+        "question": "Can machine translation handle fashion tone well?",
+        "answer": "It can produce a draft, but fashion pages usually need glossary rules and review so the copy still sounds intentional and on-brand."
       },
       {
-        "question": "为什么合集页在时尚本地化里很重要？",
-        "answer": "它们驱动发现、内链和 SEO 意图覆盖，所以不翻译它们会同时削弱流量和转化路径。"
+        "question": "Why are collection pages important in fashion localization?",
+        "answer": "They drive discovery, internal linking, and SEO intent coverage, so leaving them untranslated weakens both traffic and conversion paths."
       }
     ],
-    "status": "published",
+    "status": "draft",
     "sourceLocale": "en",
-    "translationStatus": "reviewed"
+    "translationStatus": "ai-draft"
   },
   {
     "slug": "supplement-brand-localization-guide-2026",
     "href": "/guides/supplement-brand-localization-guide-2026",
     "year": 2026,
     "publishedAt": "2026-08-26",
-    "title": "保健品品牌本地化指南 2026：翻译、合规与客户信任",
-    "description": "一份面向保健品和健康品牌、需要清晰商品教育、信任文案和可扩展本地化工作流的类目专用指南。",
-    "industry": "保健品电商",
-    "audience": "保健品和健康品牌",
-    "segmentLabel": "食品与饮料",
-    "guideLabel": "本地化指南",
-    "mainValue": "足够谨慎地翻译功效导向内容，在建立信任的同时不引入本可避免的困惑。",
+    "title": "[TODO zh-cn] Supplement Brand Localization Guide 2026: Translation, Compliance & Customer Trust",
+    "description": "[TODO zh-cn] A category-specific guide for supplement and wellness brands that need clear product education, trust copy, and scalable localization workflows.",
+    "industry": "Supplement ecommerce",
+    "audience": "Supplement and wellness brands",
+    "segmentLabel": "Food & Beverage",
+    "guideLabel": "Localization Guide",
+    "mainValue": "Translate benefit-driven content carefully enough to build trust without introducing avoidable confusion.",
     "keywords": [
-      "保健品本地化指南",
-      "保健品翻译",
-      "健康商品本地化",
-      "健康电商翻译"
+      "supplement localization guide",
+      "supplement translation",
+      "wellness product localization",
+      "health ecommerce translation"
     ],
     "overviewDrivers": [
       {
-        "title": "信任敏感的声明",
-        "description": "保健品买家会仔细阅读商品细节，并对含糊或别扭的措辞反应很快。"
+        "title": "Trust-sensitive claims",
+        "description": "Supplement buyers read product details closely and react quickly to vague or awkward wording."
       },
       {
-        "title": "教育导向的页面",
-        "description": "类目、FAQ 和商品说明内容往往承担转化负担。"
+        "title": "Education-heavy pages",
+        "description": "Category, FAQ, and product explanation content often carries the conversion load."
       },
       {
-        "title": "市场预期差异",
-        "description": "同一段功效导向文案在一个市场显得清晰，在另一个市场却可能显得有风险或含糊。"
+        "title": "Market expectation shifts",
+        "description": "The same benefit-focused copy can feel clear in one market and risky or unclear in another."
       }
     ],
     "benefits": [
       {
-        "title": "信任",
-        "description": "本地化的保健品电商内容能帮助买家理解你的商品，而不必反复质疑术语、单位或商品意图。",
-        "evidence": "当关键购买信息读起来像本地市场内容而非翻译稿时，购物者停留更久。"
+        "title": "Trust",
+        "description": "Localized supplement ecommerce content helps buyers understand your offer without second-guessing terminology, units, or product intent.",
+        "evidence": "Shoppers stay longer when key buying details read like native-market content instead of translated copy."
       },
       {
-        "title": "转化",
-        "description": "清晰、面向市场的文案能减少商品、类目、定价和落地页等高意图页面上的摩擦。",
-        "evidence": "最大的提升通常来自离购买最近的页面，而不是一开始翻译所有内容。"
+        "title": "Conversion",
+        "description": "Clear, market-ready messaging reduces friction on high-intent pages such as product, category, pricing, and landing pages.",
+        "evidence": "The biggest lift usually comes from the pages closest to purchase, not from translating everything first."
       },
       {
         "title": "SEO",
-        "description": "本地化的元数据、合集页和搜索意图覆盖，能帮助保健品电商品牌在特定市场的搜索结果里竞争。",
-        "evidence": "当标题、描述和页面结构匹配市场时，搜索引擎能更有效地索引本地语言查询。"
+        "description": "Localized metadata, collection pages, and search intent coverage help supplement ecommerce brands compete in market-specific search results.",
+        "evidence": "Search engines index local-language queries more effectively when titles, descriptions, and page structure match the market."
       },
       {
-        "title": "客户体验",
-        "description": "当导航、支持入口和关键安心文案在翻译后保持一致时，前台会更可信。",
-        "evidence": "前台、SEO 和支持内容的一致性，能防止购物者在评估和结账过程中流失。"
+        "title": "Customer Experience",
+        "description": "A storefront feels more credible when navigation, support entry points, and key reassurance copy all stay consistent after translation.",
+        "evidence": "Consistency across storefront, SEO, and support content prevents drop-off during evaluation and checkout."
       }
     ],
     "mistakes": [
       {
-        "category": "信任线索翻译得太随意",
-        "wrongExample": "口味、成分或使用流程导向的功效语言在本地市场听起来含糊或夸大。",
-        "correct": "使用符合该市场买家判断食品、饮料或健康商品方式的本地信任词汇。",
-        "impact": "购物者犹豫，因为商品显得不如源品牌原本那么可信或清晰。",
-        "severity": "高"
+        "category": "Trust cues translated too loosely",
+        "wrongExample": "Flavor, ingredients, or routine-led benefit language is translated in a way that sounds vague or overstated in the local market.",
+        "correct": "Use local trust vocabulary that fits how buyers judge food, beverage, or wellness products in that market.",
+        "impact": "Shoppers hesitate because the product feels less credible or less clear than the source brand intended.",
+        "severity": "High"
       },
       {
-        "category": "类目和教育页被忽略",
-        "wrongExample": "只翻译商品名，FAQ、成分指导和类目页却太单薄。",
-        "correct": "教育、类目导向和安心页面一起翻译，因为它们在该类目里常支撑信任和 SEO。",
-        "impact": "品牌失去搜索可见度，也无法回答买家购买前通常会问的问题。",
-        "severity": "高"
+        "category": "Category and educational pages ignored",
+        "wrongExample": "Only product names are translated while FAQs, ingredient guidance, and category pages stay too thin.",
+        "correct": "Translate educational, category-led, and reassurance pages together because they often support trust and SEO in this category.",
+        "impact": "The brand loses search visibility and fails to answer the questions buyers usually ask before purchase.",
+        "severity": "High"
       },
       {
-        "category": "口味和使用流程语言被扁平化",
-        "wrongExample": "口味、使用或每日流程措辞变得字面化，失去让商品容易想象或信任的线索。",
-        "correct": "带着本地习语和类目预期翻译口味、流程和配方语言。",
-        "impact": "页面仍可读但说服力大减，尤其在高端或习惯驱动商品上。",
-        "severity": "中"
+        "category": "Taste and routine language flattened",
+        "wrongExample": "Flavor, usage, or daily routine wording becomes literal and loses the cues that make the product easy to imagine or trust.",
+        "correct": "Translate taste, routine, and formulation language with local idioms and category expectations in mind.",
+        "impact": "The page becomes readable but much less persuasive, especially in premium or habit-driven products.",
+        "severity": "Medium"
       }
     ],
     "impacts": [
       {
-        "metric": "转化流失",
-        "description": "当保健品和健康品牌的潜在客户无法快速评估你的商品时，他们会在进入下一步前离开。",
-        "source": "在多语言落地页和商品发现旅程中观察到。"
+        "metric": "Lost conversions",
+        "description": "When supplement and wellness brands prospects cannot evaluate your offer quickly, they leave before reaching the next step.",
+        "source": "Observed across multilingual landing pages and product discovery journeys."
       },
       {
-        "metric": "SEO 可见度差",
-        "description": "搜索需求存在，但本地语言元数据和意图覆盖不够强，无法抓住它。",
-        "source": "在没有市场特定 SEO 规划的翻译页面上常见。"
+        "metric": "Poor SEO visibility",
+        "description": "Search demand exists, but local-language metadata and intent coverage are not strong enough to capture it.",
+        "source": "Common issue on pages translated without market-specific SEO planning."
       },
       {
-        "metric": "客户困惑",
-        "description": "页面、支持与导航之间术语混用，在买家最需要安心的时候制造犹豫。",
-        "source": "在扩张中的店铺和网站上常见的本地化 QA 发现。"
+        "metric": "Customer confusion",
+        "description": "Mixed terminology across pages, support, and navigation creates hesitation at exactly the point buyers need reassurance.",
+        "source": "Frequent localization QA finding on expanding stores and websites."
       },
       {
-        "metric": "品牌信任问题",
-        "description": "在保健品电商里，小小的措辞错误会让整个体验显得不够专业。",
-        "source": "在高端、技术或合规敏感类目上尤其明显。"
+        "metric": "Brand trust issues",
+        "description": "In supplement ecommerce, small wording mistakes can make the entire experience feel less professional.",
+        "source": "Especially visible on premium, technical, or compliance-sensitive categories."
       }
     ],
     "languages": [
       {
-        "market": "德国",
-        "language": "德语",
-        "priority": "高",
-        "reason": "在健康相关类目里，信任和细节准确性尤其重要。"
+        "market": "Germany",
+        "language": "German",
+        "priority": "High",
+        "reason": "Trust and detail accuracy are especially important in health-adjacent categories."
       },
       {
-        "market": "法国",
-        "language": "法语",
-        "priority": "高",
-        "reason": "本地化安心文案和清晰的商品框架有助于减少犹豫。"
+        "market": "France",
+        "language": "French",
+        "priority": "High",
+        "reason": "Localized reassurance and clear product framing help reduce hesitation."
       },
       {
-        "market": "意大利",
-        "language": "意大利语",
-        "priority": "中",
-        "reason": "信任文案和 FAQ 本地化到位后的务实扩张市场。"
+        "market": "Italy",
+        "language": "Italian",
+        "priority": "Medium",
+        "reason": "A practical expansion market once trust copy and FAQs are localized well."
       },
       {
-        "market": "西班牙",
-        "language": "西班牙语",
-        "priority": "中",
-        "reason": "内容治理到位后，对更广泛的欧盟增长有用。"
+        "market": "Spain",
+        "language": "Spanish",
+        "priority": "Medium",
+        "reason": "Useful for broader EU growth when content governance is in place."
       }
     ],
     "marketHabits": [
       {
-        "market": "德国",
-        "language": "德语",
-        "habit": "食品和健康买家通常对克制的措辞、更清晰的成分逻辑和不过分夸大的商品框架反应更好。",
-        "localizationFocus": "保持功效精确，让成分易懂，避免含糊或过度声称。在健康相关类目里，信任和细节准确性尤其重要。"
+        "market": "Germany",
+        "language": "German",
+        "habit": "Food and wellness buyers often respond better to grounded wording, clearer ingredient logic, and less inflated product framing.",
+        "localizationFocus": "Keep benefits precise, make ingredients easy to understand, and avoid vague or over-claimed language. Trust and detail accuracy are especially important in health-adjacent categories."
       },
       {
-        "market": "法国",
-        "language": "法语",
-        "habit": "口味、品质框架和高端呈现可能很重要，尤其在饮料、特色食品和生活方式导向商品上。",
-        "localizationFocus": "保留品质线索，同时让信任和成分细节可读且平衡。本地化安心文案和清晰的商品框架有助于减少犹豫。"
+        "market": "France",
+        "language": "French",
+        "habit": "Taste, quality framing, and premium presentation can matter strongly, especially in beverage, specialty food, and lifestyle-led products.",
+        "localizationFocus": "Preserve quality cues while keeping trust and ingredient detail readable and balanced. Localized reassurance and clear product framing help reduce hesitation."
       },
       {
-        "market": "意大利",
-        "language": "意大利语",
-        "habit": "产地、商品身份和风味表达常塑造食品饮料商品的评价方式。",
-        "localizationFocus": "让感官词汇有表现力但仍可信，尤其在类目和商品页。信任文案和 FAQ 本地化到位后的务实扩张市场。"
+        "market": "Italy",
+        "language": "Italian",
+        "habit": "Origin, product identity, and flavor expression often shape how food and beverage products are evaluated.",
+        "localizationFocus": "Keep sensory vocabulary expressive but still credible, especially on category and product pages. A practical expansion market once trust copy and FAQs are localized well."
       },
       {
-        "market": "西班牙",
-        "language": "西班牙语",
-        "habit": "可读的类目和促销页很重要，因为浏览常在移动优先的会话里快速发生。",
-        "localizationFocus": "让信任线索简洁，类目意图清晰，尽可能简化密集的商品说明。内容治理到位后，对更广泛的欧盟增长有用。"
+        "market": "Spain",
+        "language": "Spanish",
+        "habit": "Readable category and promotional pages often matter because browsing can happen quickly across mobile-first sessions.",
+        "localizationFocus": "Keep trust cues concise, make category intent clear, and simplify dense product explanations where possible. Useful for broader EU growth when content governance is in place."
       }
     ],
     "translationScope": [
       {
-        "category": "核心",
+        "category": "Critical",
         "items": [
-          "商品页",
-          "类目与教育页",
-          "成分或使用流程指导",
-          "FAQ 与信任内容"
+          "Product pages",
+          "Category and educational pages",
+          "Ingredient or routine guidance",
+          "FAQs and trust content"
         ],
-        "priority": "高"
+        "priority": "High"
       },
       {
-        "category": "重要",
+        "category": "Important",
         "items": [
-          "SEO 元数据",
-          "促销或订阅页",
-          "导航与筛选",
-          "邮件订阅文案"
+          "SEO metadata",
+          "Promo or subscription pages",
+          "Navigation and filters",
+          "Email capture copy"
         ],
-        "priority": "中"
+        "priority": "Medium"
       },
       {
-        "category": "可选",
+        "category": "Optional",
         "items": [
-          "旧编辑页",
-          "归档活动",
-          "低流量博客内容"
+          "Older editorial pages",
+          "Archived campaigns",
+          "Low-traffic blog content"
         ],
-        "priority": "低"
+        "priority": "Lower"
       }
     ],
     "expansionPlan": [
       {
-        "stage": "第 1 阶段",
-        "market": "德国",
-        "language": "德语",
-        "reason": "从信任密集的商品和 FAQ 页开始，那里清晰度最重要。"
+        "stage": "Stage 1",
+        "market": "Germany",
+        "language": "German",
+        "reason": "Begin with trust-heavy product and FAQ pages where clarity matters most."
       },
       {
-        "stage": "第 2 阶段",
-        "market": "法国",
-        "language": "法语",
-        "reason": "高风险术语锁定进术语表后再扩展工作流。"
+        "stage": "Stage 2",
+        "market": "France",
+        "language": "French",
+        "reason": "Extend the workflow once high-risk terminology is locked in your glossary."
       },
       {
-        "stage": "第 3 阶段",
-        "market": "西班牙",
-        "language": "西班牙语",
-        "reason": "团队能保持稳定更新后再扩展到更广市场。"
+        "stage": "Stage 3",
+        "market": "Spain",
+        "language": "Spanish",
+        "reason": "Scale to a wider market after the team can maintain consistent updates."
       }
     ],
     "bestPractices": [
       {
-        "title": "从高意图页面开始",
-        "description": "从驱动评估和购买的页面开始，等流程稳定后再扩展。"
+        "title": "Start with high-intent pages",
+        "description": "Begin with the pages that drive evaluation and purchase for supplement and wellness brands, then expand once the workflow is stable."
       },
       {
-        "title": "扩展前先用术语表",
-        "description": "在批量翻译前锁定品牌词、重复功能名和类目词汇。"
+        "title": "Use a glossary before scaling",
+        "description": "Lock brand terms, recurring feature names, and category vocabulary before bulk translation begins."
       },
       {
-        "title": "按市场上下文审校",
-        "description": "检查语气、单位、格式和市场预期，而不只是语法。"
+        "title": "Review by market context",
+        "description": "Check tone, units, formatting, and market expectations instead of only checking grammar."
       },
       {
-        "title": "本地化与 SEO QA 配对",
-        "description": "每个上线市场都应附带本地化元数据、内链和页面意图覆盖。"
+        "title": "Pair localization with SEO QA",
+        "description": "Every launch market should ship with localized metadata, internal links, and page intent coverage."
       }
     ],
     "styleRules": [
       {
-        "title": "严格控制保健品信任语言",
-        "description": "买家会仔细阅读这些页面来判断可信度，所以功效措辞应在全站显得克制且一致。"
+        "title": "Keep supplement trust language tightly controlled",
+        "description": "Buyers read these pages carefully for credibility, so benefit wording should sound measured and consistent across the site."
       },
       {
-        "title": "保留使用流程和用法清晰度",
-        "description": "保健品常通过频率、功效时机和配方逻辑来评估，这些在翻译后都应保持可见。"
+        "title": "Preserve routine and usage clarity",
+        "description": "Supplements are often evaluated through frequency, benefit timing, and formulation logic, which should all stay visible after translation."
       },
       {
-        "title": "逐市场审核声明强度",
-        "description": "同一段功效措辞在一个市场可接受，在另一个市场可能太强，因此人工审核很关键。"
+        "title": "Review claim intensity market by market",
+        "description": "The same benefit wording may sound acceptable in one market and too strong in another, so manual review matters here."
       },
       {
-        "title": "让 FAQ 和信任页与商品页措辞对齐",
-        "description": "商品页和教育层之间的任何不匹配，都会在保健品类目里更快地削弱信任。"
+        "title": "Keep FAQ and trust pages aligned with PDP wording",
+        "description": "Any mismatch between the product page and the educational layer can undermine trust faster in supplement categories."
       }
     ],
     "solutions": [
       {
-        "name": "人工翻译",
+        "name": "Manual Translation",
         "advantages": [
-          "品牌控制最高",
-          "适合法律或受监管文案",
-          "适合旗舰活动"
+          "Highest brand control",
+          "Good for legal or regulated copy",
+          "Works well for flagship campaigns"
         ],
         "limitations": [
-          "扩展慢",
-          "每个市场成本高",
-          "目录变化后难保持更新"
+          "Slow to scale",
+          "High cost per market",
+          "Hard to keep updated after catalog changes"
         ]
       },
       {
-        "name": "通用机器翻译",
+        "name": "Generic Machine Translation",
         "advantages": [
-          "第一稿快",
-          "前期成本低",
-          "适合低优先级页面"
+          "Fast first draft",
+          "Low upfront cost",
+          "Useful for low-priority pages"
         ],
         "limitations": [
-          "上下文处理弱",
-          "术语不一致",
-          "常漏掉 SEO 和转化细节"
+          "Weak context handling",
+          "Inconsistent terminology",
+          "Often misses SEO and conversion nuance"
         ]
       },
       {
-        "name": "AI 电商翻译",
+        "name": "AI Ecommerce Translation",
         "advantages": [
-          "比人工快",
-          "对前台内容上下文更好",
-          "适合持续的目录和 SEO 更新"
+          "Faster than manual",
+          "Better context for storefront content",
+          "Fits ongoing catalog and SEO updates"
         ],
         "limitations": [
-          "仍需 QA",
-          "需要术语表规则",
-          "合规敏感内容需要市场审校"
+          "Still needs QA",
+          "Requires glossary rules",
+          "Needs market review for compliance-sensitive content"
         ]
       }
     ],
     "features": [
-      "商品翻译",
-      "主题翻译",
-      "SEO 翻译",
-      "图片翻译",
-      "HTML 保留"
+      "Product Translation",
+      "Theme Translation",
+      "SEO Translation",
+      "Image Translation",
+      "HTML Preservation"
     ],
     "recommendations": [
       {
-        "title": "在扩展品类前先翻译信任和教育内容",
-        "description": "保健品品牌通常在翻译商品页的同时翻译 FAQ、配方页和安心文案会更受益。"
+        "title": "Translate trust and education before scaling range",
+        "description": "Supplement brands usually benefit from translating FAQs, formulation pages, and reassurance copy at the same time as product pages."
       },
       {
-        "title": "先锁定使用流程和功效语言",
-        "description": "在扩展翻译覆盖前，标准化网站如何谈论支持、频率、成分和耐受性。"
+        "title": "Lock routine and benefit language first",
+        "description": "Standardize how the site talks about support, frequency, ingredients, and tolerability before expanding translation coverage."
       },
       {
-        "title": "更仔细地审核声明密集页面",
-        "description": "保健品通常需要比一般食品更严格的 QA 标准，因为信任和措辞敏感度更高。"
+        "title": "Review claim-heavy pages more carefully than the rest",
+        "description": "Supplements usually need a stricter QA bar than general food products because trust and wording sensitivity are higher."
       }
     ],
     "terminology": [
       {
-        "term": "每日支持",
-        "meaning": "保健品转化中由使用流程引领的功效语言",
-        "localized": "保持实用自然，不夸大结果。"
+        "term": "Daily support",
+        "meaning": "Routine-led benefit language used in supplement conversion",
+        "localized": "Keep it practical and natural without overstating the outcome."
       },
       {
-        "term": "定向配方",
-        "meaning": "围绕聚焦健康或功能支持的定位线索",
-        "localized": "使用本地信任和保健品语言，而非通用功效措辞。"
+        "term": "Targeted formula",
+        "meaning": "Positioning cue around focused health or functional support",
+        "localized": "Use local trust and supplement language rather than generic benefit phrasing."
       },
       {
-        "term": "对胃温和",
-        "meaning": "与耐受性相关的敏感安心措辞",
-        "localized": "在健康声明需要更严措辞的市场里谨慎翻译。"
+        "term": "Gentle on stomach",
+        "meaning": "Sensitive reassurance wording tied to tolerability",
+        "localized": "Translate with care in markets where wellness claims need tighter framing."
       },
       {
-        "term": "有临床依据",
-        "meaning": "围绕配方或循证信任的权威线索",
-        "localized": "让权威信号可信且不过度声称。"
+        "term": "Clinically informed",
+        "meaning": "Authority cue around formulation or evidence-led trust",
+        "localized": "Keep the authority signal credible and not overclaimed."
       }
     ],
     "checklist": [
-      "把商品页、类目页、成分详情、FAQ 和使用指导一起翻译，而不是只翻商品标题。",
-      "在跨目录扩展翻译前，锁定口味、配方和使用流程术语。",
-      "人工审核信任敏感措辞，尤其是涉及健康、消化或表现的声明。",
-      "本地化元数据和教育落地页，让类目 SEO 真正助力发现。",
-      "检查使用和安心文案在目标市场的购物风格里仍显得自然。",
-      "确保类目和商品命名在导航、落地页和商品模板间保持一致。"
+      "Translate product pages, category pages, ingredient detail, FAQs, and usage guidance together instead of only product titles.",
+      "Lock flavor, formulation, and routine terminology before scaling translation across the catalog.",
+      "Review trust-sensitive wording manually, especially where claims touch health, digestion, or performance.",
+      "Localize metadata and educational landing pages so category SEO can actually contribute to discovery.",
+      "Check that usage and reassurance copy still feel natural in the target market's shopping style.",
+      "Make sure category and product naming stay consistent across navigation, landing pages, and product templates."
     ],
     "faq": [
       {
-        "question": "保健品品牌应该先本地化哪些页面？",
-        "answer": "商品页、FAQ、成分或使用教育，以及信任导向落地页通常应先于更广泛的编辑内容。"
+        "question": "What pages should supplement brands localize first?",
+        "answer": "Product pages, FAQs, ingredient or usage education, and trust-oriented landing pages should usually come before broader editorial content."
       },
       {
-        "question": "为什么术语控制对保健品翻译重要？",
-        "answer": "因为围绕功效、成分或用法的措辞不一致，即使语法正确也会损害信任。"
+        "question": "Why is terminology control important for supplement translation?",
+        "answer": "Because inconsistent wording around benefits, ingredients, or usage can damage trust even when the grammar is technically correct."
       },
       {
-        "question": "保健品品牌也要本地化 SEO 页面吗？",
-        "answer": "要。教育和类目导向的搜索意图常在保健品发现中扮演重要角色，所以元数据和落地页很重要。"
+        "question": "Should supplement brands localize SEO pages too?",
+        "answer": "Yes. Educational and category-led search intent often plays a major role in supplement discovery, so metadata and landing pages matter."
       }
     ],
-    "status": "published",
+    "status": "draft",
     "sourceLocale": "en",
-    "translationStatus": "reviewed"
+    "translationStatus": "ai-draft"
   },
   {
     "slug": "electronics-ecommerce-translation-guide-2026",
     "href": "/guides/electronics-ecommerce-translation-guide-2026",
     "year": 2026,
     "publishedAt": "2026-08-26",
-    "title": "电子产品电商翻译指南 2026：全球销售科技商品",
-    "description": "一份面向需要多语言规格、SEO 覆盖和更清晰商品评估旅程的电子产品品牌的模板页。",
-    "industry": "电子产品电商",
-    "audience": "消费电子和智能设备品牌",
-    "segmentLabel": "电子产品",
-    "guideLabel": "翻译指南",
-    "mainValue": "通过一起本地化规格、功效和购买指导，让技术商品更容易比较。",
+    "title": "[TODO zh-cn] Electronics Ecommerce Translation Guide 2026: Selling Technology Products Globally",
+    "description": "[TODO zh-cn] A template page for electronics brands that need multilingual specs, SEO coverage, and cleaner product evaluation journeys.",
+    "industry": "Electronics ecommerce",
+    "audience": "Consumer electronics and smart device brands",
+    "segmentLabel": "Electronics",
+    "guideLabel": "Translation Guide",
+    "mainValue": "Make technical products easier to compare by localizing specs, benefits, and buying guidance together.",
     "keywords": [
-      "电子产品翻译指南",
-      "消费电子本地化",
-      "智能设备翻译",
-      "电子产品电商 seo"
+      "electronics translation guide",
+      "consumer electronics localization",
+      "smart device translation",
+      "electronics ecommerce seo"
     ],
     "overviewDrivers": [
       {
-        "title": "规格驱动的评估",
-        "description": "电子产品买家在购买前会比较规格、兼容性和功能取舍。"
+        "title": "Spec-driven evaluation",
+        "description": "Electronics buyers compare specifications, compatibility, and feature tradeoffs before purchase."
       },
       {
-        "title": "信息密度高",
-        "description": "当商品详情页承载过多结构而没有术语表规则时，翻译质量会迅速下降。"
+        "title": "High information density",
+        "description": "Translation quality drops quickly when product detail pages carry too much structure without glossary rules."
       },
       {
-        "title": "搜索导向的发现",
-        "description": "类目和对比查询往往比泛品牌搜索带来更高意图的流量。"
+        "title": "Search-led discovery",
+        "description": "Category and comparison queries often bring higher-intent traffic than generic brand searches."
       }
     ],
     "benefits": [
       {
-        "title": "信任",
-        "description": "本地化的电子产品电商内容能帮助买家理解你的商品，而不必反复质疑术语、单位或商品意图。",
-        "evidence": "当关键购买信息读起来像本地市场内容而非翻译稿时，购物者停留更久。"
+        "title": "Trust",
+        "description": "Localized electronics ecommerce content helps buyers understand your offer without second-guessing terminology, units, or product intent.",
+        "evidence": "Shoppers stay longer when key buying details read like native-market content instead of translated copy."
       },
       {
-        "title": "转化",
-        "description": "清晰、面向市场的文案能减少商品、类目、定价和落地页等高意图页面上的摩擦。",
-        "evidence": "最大的提升通常来自离购买最近的页面，而不是一开始翻译所有内容。"
+        "title": "Conversion",
+        "description": "Clear, market-ready messaging reduces friction on high-intent pages such as product, category, pricing, and landing pages.",
+        "evidence": "The biggest lift usually comes from the pages closest to purchase, not from translating everything first."
       },
       {
         "title": "SEO",
-        "description": "本地化的元数据、合集页和搜索意图覆盖，能帮助电子产品电商品牌在特定市场的搜索结果里竞争。",
-        "evidence": "当标题、描述和页面结构匹配市场时，搜索引擎能更有效地索引本地语言查询。"
+        "description": "Localized metadata, collection pages, and search intent coverage help electronics ecommerce brands compete in market-specific search results.",
+        "evidence": "Search engines index local-language queries more effectively when titles, descriptions, and page structure match the market."
       },
       {
-        "title": "客户体验",
-        "description": "当导航、支持入口和关键安心文案在翻译后保持一致时，前台会更可信。",
-        "evidence": "前台、SEO 和支持内容的一致性，能防止购物者在评估和结账过程中流失。"
+        "title": "Customer Experience",
+        "description": "A storefront feels more credible when navigation, support entry points, and key reassurance copy all stay consistent after translation.",
+        "evidence": "Consistency across storefront, SEO, and support content prevents drop-off during evaluation and checkout."
       }
     ],
     "mistakes": [
       {
-        "category": "技术细节翻译得太随意",
-        "wrongExample": "规格、兼容性说明和功能标签被不一致或含糊地翻译。",
-        "correct": "用精确术语翻译结构化规格，并让功能名在商品族间保持一致。",
-        "impact": "买家无法自信地比较商品，购买前开始怀疑准确性。",
-        "severity": "高"
+        "category": "Technical detail translated loosely",
+        "wrongExample": "Specifications, compatibility notes, and feature labels are translated inconsistently or with vague language.",
+        "correct": "Translate structured specs with exact terminology and keep feature names aligned across product families.",
+        "impact": "Buyers cannot compare products confidently and start to doubt accuracy before they purchase.",
+        "severity": "High"
       },
       {
-        "category": "对比内容本地化不足",
-        "wrongExample": "只翻译商品详情文案，类目、对比和 FAQ 页却太通用或不完整。",
-        "correct": "翻译支撑对比和决策的页面，而不只是最终商品页。",
-        "impact": "搜索可见度减弱，购物者失去选择设备前需要的上下文。",
-        "severity": "高"
+        "category": "Comparison content under-localized",
+        "wrongExample": "Only PDP copy is translated while category, comparison, and FAQ pages remain too generic or incomplete.",
+        "correct": "Translate the pages that support comparison and decision-making, not only the final product page.",
+        "impact": "Search visibility weakens and shoppers lose the context they need before choosing a device.",
+        "severity": "High"
       },
       {
-        "category": "营销文案压过商品清晰度",
-        "wrongExample": "本地化文案听起来很促销，却让核心功能或兼容性更难理解。",
-        "correct": "让功效语言干净，但在买家需要比较选项时始终让技术清晰度在前。",
-        "impact": "页面表面读起来更好，却因评估更难而转化更差。",
-        "severity": "中"
+        "category": "Marketing copy overwhelms product clarity",
+        "wrongExample": "Localized copy sounds promotional but makes core features or compatibility harder to understand.",
+        "correct": "Keep the benefit language clean, but let technical clarity stay in front whenever buyers need to compare options.",
+        "impact": "The page reads better on the surface but converts worse because evaluation gets harder.",
+        "severity": "Medium"
       }
     ],
     "impacts": [
       {
-        "metric": "转化流失",
-        "description": "当消费电子和智能设备品牌的潜在客户无法快速评估你的商品时，他们会在进入下一步前离开。",
-        "source": "在多语言落地页和商品发现旅程中观察到。"
+        "metric": "Lost conversions",
+        "description": "When consumer electronics and smart device brands prospects cannot evaluate your offer quickly, they leave before reaching the next step.",
+        "source": "Observed across multilingual landing pages and product discovery journeys."
       },
       {
-        "metric": "SEO 可见度差",
-        "description": "搜索需求存在，但本地语言元数据和意图覆盖不够强，无法抓住它。",
-        "source": "在没有市场特定 SEO 规划的翻译页面上常见。"
+        "metric": "Poor SEO visibility",
+        "description": "Search demand exists, but local-language metadata and intent coverage are not strong enough to capture it.",
+        "source": "Common issue on pages translated without market-specific SEO planning."
       },
       {
-        "metric": "客户困惑",
-        "description": "页面、支持与导航之间术语混用，在买家最需要安心的时候制造犹豫。",
-        "source": "在扩张中的店铺和网站上常见的本地化 QA 发现。"
+        "metric": "Customer confusion",
+        "description": "Mixed terminology across pages, support, and navigation creates hesitation at exactly the point buyers need reassurance.",
+        "source": "Frequent localization QA finding on expanding stores and websites."
       },
       {
-        "metric": "品牌信任问题",
-        "description": "在电子产品电商里，小小的措辞错误会让整个体验显得不够专业。",
-        "source": "在高端、技术或合规敏感类目上尤其明显。"
+        "metric": "Brand trust issues",
+        "description": "In electronics ecommerce, small wording mistakes can make the entire experience feel less professional.",
+        "source": "Especially visible on premium, technical, or compliance-sensitive categories."
       }
     ],
     "languages": [
       {
-        "market": "德国",
-        "language": "德语",
-        "priority": "高",
-        "reason": "技术细节质量强烈影响信任和购买信心。"
+        "market": "Germany",
+        "language": "German",
+        "priority": "High",
+        "reason": "Technical detail quality strongly affects trust and purchase confidence."
       },
       {
-        "market": "日本",
-        "language": "日语",
-        "priority": "高",
-        "reason": "高上下文评估和商品精度让本地化质量显眼。"
+        "market": "Japan",
+        "language": "Japanese",
+        "priority": "High",
+        "reason": "High-context evaluation and product precision make localization quality visible."
       },
       {
-        "market": "法国",
-        "language": "法语",
-        "priority": "中",
-        "reason": "规格和支持语言稳定后的有用下一市场。"
+        "market": "France",
+        "language": "French",
+        "priority": "Medium",
+        "reason": "Useful next market once spec and support language are stable."
       },
       {
-        "market": "西班牙",
-        "language": "西班牙语",
-        "priority": "中",
-        "reason": "支持更广泛的欧盟流量捕获和类目可见度。"
+        "market": "Spain",
+        "language": "Spanish",
+        "priority": "Medium",
+        "reason": "Supports broader EU traffic capture and category visibility."
       }
     ],
     "marketHabits": [
       {
-        "market": "德国",
-        "language": "德语",
-        "habit": "电子产品买家通常期望干净的技术结构、精确术语和直接的性能措辞，才会信任商品。",
-        "localizationFocus": "让规格精确，减少含糊促销语言，让类目和商品详情布局上的比较更简单。技术细节质量强烈影响信任和购买信心。"
+        "market": "Germany",
+        "language": "German",
+        "habit": "Electronics buyers often expect clean technical structure, exact terminology, and straightforward performance wording before they trust a product.",
+        "localizationFocus": "Keep specs precise, reduce vague promotional language, and make comparison easy on category and PDP layouts. Technical detail quality strongly affects trust and purchase confidence."
       },
       {
-        "market": "日本",
-        "language": "日语",
-        "habit": "围绕细节、精度和呈现的更高预期，常让电子产品类目的翻译质量尤其显眼。",
-        "localizationFocus": "仔细审校细节，功能语言精确，让设置或兼容指导易扫读。高上下文评估和商品精度让本地化质量显眼。"
+        "market": "Japan",
+        "language": "Japanese",
+        "habit": "Higher expectations around detail, precision, and presentation often make translation quality especially visible in electronics categories.",
+        "localizationFocus": "Review nuance carefully, keep feature language exact, and make setup or compatibility guidance easy to scan. High-context evaluation and product precision make localization quality visible."
       },
       {
-        "market": "法国",
-        "language": "法语",
-        "habit": "买家通常想要技术清晰度，但仍对更干净、更精致的商品呈现和品牌框架有反应。",
-        "localizationFocus": "平衡结构化功能语言和可读、仍显精致的功效导向文案。规格和支持语言稳定后的有用下一市场。"
+        "market": "France",
+        "language": "French",
+        "habit": "Buyers often want technical clarity, but still respond to cleaner, more polished product presentation and brand framing.",
+        "localizationFocus": "Balance structured feature language with readable benefit-led copy that still feels polished. Useful next market once spec and support language are stable."
       },
       {
-        "market": "西班牙",
-        "language": "西班牙语",
-        "habit": "可读的类目页和清晰的功能对比很重要，因为浏览可能快速跨越多个设备选项。",
-        "localizationFocus": "让类目易扫读，简化密集规格措辞，快速说清商品族差异。支持更广泛的欧盟流量捕获和类目可见度。"
+        "market": "Spain",
+        "language": "Spanish",
+        "habit": "Readable category pages and clear feature comparisons often matter because browsing can move quickly across multiple device options.",
+        "localizationFocus": "Keep categories easy to scan, simplify dense spec phrasing, and make product-family differences obvious quickly. Supports broader EU traffic capture and category visibility."
       }
     ],
     "translationScope": [
       {
-        "category": "核心",
+        "category": "Critical",
         "items": [
-          "商品页",
-          "类目与对比页",
-          "兼容性说明",
-          "FAQ 和支持式信任内容"
+          "Product pages",
+          "Category and comparison pages",
+          "Compatibility notes",
+          "FAQ and support-style trust content"
         ],
-        "priority": "高"
+        "priority": "High"
       },
       {
-        "category": "重要",
+        "category": "Important",
         "items": [
-          "SEO 元数据",
-          "设置指导",
-          "导航与筛选",
-          "功能族落地页"
+          "SEO metadata",
+          "Setup guidance",
+          "Navigation and filters",
+          "Feature family landing pages"
         ],
-        "priority": "中"
+        "priority": "Medium"
       },
       {
-        "category": "可选",
+        "category": "Optional",
         "items": [
-          "旧博客内容",
-          "归档发布页",
-          "低流量编辑页"
+          "Older blog content",
+          "Archived launch pages",
+          "Low-traffic editorial pages"
         ],
-        "priority": "低"
+        "priority": "Lower"
       }
     ],
     "expansionPlan": [
       {
-        "stage": "第 1 阶段",
-        "market": "德国",
-        "language": "德语",
-        "reason": "从规格密集的商品详情和类目页开始。"
+        "stage": "Stage 1",
+        "market": "Germany",
+        "language": "German",
+        "reason": "Start with specification-heavy PDPs and category pages."
       },
       {
-        "stage": "第 2 阶段",
-        "market": "日本",
-        "language": "日语",
-        "reason": "团队能干净本地化结构化功能内容后再扩展。"
+        "stage": "Stage 2",
+        "market": "Japan",
+        "language": "Japanese",
+        "reason": "Expand after the team can localize structured feature content cleanly."
       },
       {
-        "stage": "第 3 阶段",
-        "market": "法国",
-        "language": "法语",
-        "reason": "在第二个主要市场复用已验证的术语表和规格 QA 工作流。"
+        "stage": "Stage 3",
+        "market": "France",
+        "language": "French",
+        "reason": "Reuse the validated glossary and spec QA workflow in a second major market."
       }
     ],
     "bestPractices": [
       {
-        "title": "从高意图页面开始",
-        "description": "从驱动评估和购买的页面开始，等流程稳定后再扩展。"
+        "title": "Start with high-intent pages",
+        "description": "Begin with the pages that drive evaluation and purchase for consumer electronics and smart device brands, then expand once the workflow is stable."
       },
       {
-        "title": "扩展前先用术语表",
-        "description": "在批量翻译前锁定品牌词、重复功能名和类目词汇。"
+        "title": "Use a glossary before scaling",
+        "description": "Lock brand terms, recurring feature names, and category vocabulary before bulk translation begins."
       },
       {
-        "title": "按市场上下文审校",
-        "description": "检查语气、单位、格式和市场预期，而不只是语法。"
+        "title": "Review by market context",
+        "description": "Check tone, units, formatting, and market expectations instead of only checking grammar."
       },
       {
-        "title": "本地化与 SEO QA 配对",
-        "description": "每个上线市场都应附带本地化元数据、内链和页面意图覆盖。"
+        "title": "Pair localization with SEO QA",
+        "description": "Every launch market should ship with localized metadata, internal links, and page intent coverage."
       }
     ],
     "styleRules": [
       {
-        "title": "优先技术清晰度",
-        "description": "电子产品买家需要快速比较功能、兼容性和规格。让核心事实一眼可读。"
+        "title": "Prioritize technical clarity first",
+        "description": "Electronics buyers need to compare functions, compatibility, and specs quickly. Keep the core facts readable at a glance."
       },
       {
-        "title": "标准化功能和商品族命名",
-        "description": "同一商品族或功能不应在商品页、类目页和支持内容之间漂移。"
+        "title": "Standardize feature and product-family naming",
+        "description": "The same product family or feature should not drift across product pages, category pages, and support content."
       },
       {
-        "title": "让功效语言可衡量",
-        "description": "尽可能把性能措辞与清晰用法或结构化商品上下文绑定，而非含糊承诺。"
+        "title": "Keep benefit language measurable",
+        "description": "Where possible, tie performance wording to clear usage or structured product context instead of vague promises."
       },
       {
-        "title": "手工审核支持敏感内容",
-        "description": "兼容性说明、设置指导和技术信任文案发布前应经过人工 QA。"
+        "title": "Review support-sensitive content manually",
+        "description": "Compatibility notes, setup guidance, and technical trust copy should pass human QA before publishing."
       }
     ],
     "solutions": [
       {
-        "name": "人工翻译",
+        "name": "Manual Translation",
         "advantages": [
-          "品牌控制最高",
-          "适合法律或受监管文案",
-          "适合旗舰活动"
+          "Highest brand control",
+          "Good for legal or regulated copy",
+          "Works well for flagship campaigns"
         ],
         "limitations": [
-          "扩展慢",
-          "每个市场成本高",
-          "目录变化后难保持更新"
+          "Slow to scale",
+          "High cost per market",
+          "Hard to keep updated after catalog changes"
         ]
       },
       {
-        "name": "通用机器翻译",
+        "name": "Generic Machine Translation",
         "advantages": [
-          "第一稿快",
-          "前期成本低",
-          "适合低优先级页面"
+          "Fast first draft",
+          "Low upfront cost",
+          "Useful for low-priority pages"
         ],
         "limitations": [
-          "上下文处理弱",
-          "术语不一致",
-          "常漏掉 SEO 和转化细节"
+          "Weak context handling",
+          "Inconsistent terminology",
+          "Often misses SEO and conversion nuance"
         ]
       },
       {
-        "name": "AI 电商翻译",
+        "name": "AI Ecommerce Translation",
         "advantages": [
-          "比人工快",
-          "对前台内容上下文更好",
-          "适合持续的目录和 SEO 更新"
+          "Faster than manual",
+          "Better context for storefront content",
+          "Fits ongoing catalog and SEO updates"
         ],
         "limitations": [
-          "仍需 QA",
-          "需要术语表规则",
-          "合规敏感内容需要市场审校"
+          "Still needs QA",
+          "Requires glossary rules",
+          "Needs market review for compliance-sensitive content"
         ]
       }
     ],
     "features": [
-      "商品翻译",
-      "主题翻译",
-      "SEO 翻译",
-      "图片翻译",
-      "HTML 保留"
+      "Product Translation",
+      "Theme Translation",
+      "SEO Translation",
+      "Image Translation",
+      "HTML Preservation"
     ],
     "recommendations": [
       {
-        "title": "本地化对比优先的发现页",
-        "description": "电子产品 SEO 常在买家打开单个商品详情前，通过类目、对比和功能族页面取胜。"
+        "title": "Localize comparison-first discovery pages",
+        "description": "Electronics SEO often wins through category, comparison, and feature-family pages before buyers open a single PDP."
       },
       {
-        "title": "保持生态系统语言一致",
-        "description": "如果品牌依赖多个设备或连接配件，商品族命名需要特别严格的控制。"
+        "title": "Keep ecosystem language consistent",
+        "description": "If the brand relies on multiple devices or connected accessories, product-family naming needs especially tight control."
       },
       {
-        "title": "翻译后检查规格可读性",
-        "description": "即使翻译准确，如果表格、标签和要点层级变得难扫读，也会损害转化。"
+        "title": "Check spec readability after translation",
+        "description": "Even accurate translations can hurt conversion if tables, labels, and bullet hierarchies become harder to scan."
       }
     ],
     "terminology": [
       {
-        "term": "延迟",
-        "meaning": "围绕响应时间和速度的性能语言",
-        "localized": "使用买家已关联设备响应速度的本地技术词汇。"
+        "term": "Latency",
+        "meaning": "Performance language around response time and speed",
+        "localized": "Use local technical vocabulary buyers already associate with device responsiveness."
       },
       {
-        "term": "无缝设置",
-        "meaning": "与激活和上手相关的易用设置线索",
-        "localized": "翻译成易用概念，而非松散正面承诺。"
+        "term": "Seamless setup",
+        "meaning": "Benefit-led setup cue tied to activation and onboarding",
+        "localized": "Translate as an ease-of-use concept, not a loose positive promise."
       },
       {
-        "term": "多设备",
-        "meaning": "兼容性和生态系统线索",
-        "localized": "与实际设备关系绑定，而非通用的多设备短语。"
+        "term": "Multi-device",
+        "meaning": "Compatibility and ecosystem cue",
+        "localized": "Keep it tied to actual device relationships rather than a generic many-devices phrase."
       },
       {
-        "term": "性能模式",
-        "meaning": "与优化设备行为相关的功能状态语言",
-        "localized": "使用本地技术语境里显得熟悉的商品原生术语。"
+        "term": "Performance mode",
+        "meaning": "Feature-state language tied to optimized device behavior",
+        "localized": "Use product-native terminology that sounds familiar in local tech contexts."
       }
     ],
     "checklist": [
-      "把商品页、类目页、对比内容和 FAQ 一起翻译，而不是孤立商品详情文案。",
-      "在批量翻译前，把功能名、兼容性术语和商品族措辞锁进共享术语表。",
-      "检查表格、要点和结构化规格在本地化后仍清晰可读。",
-      "本地化元数据和类目意图页，让电子产品 SEO 仍能支持发现。",
-      "发布前手工审核设置、兼容性和支持敏感内容。",
-      "确保功效措辞可衡量，不遮蔽买家需要的技术事实。"
+      "Translate product pages, category pages, comparison content, and FAQs together instead of isolating PDP copy.",
+      "Lock feature names, compatibility terms, and product-family wording in a shared glossary before bulk translation.",
+      "Check that tables, bullets, and structured specifications still read cleanly after localization.",
+      "Localize metadata and category intent pages so electronics SEO can still support discovery.",
+      "Review setup, compatibility, and support-sensitive content manually before publishing.",
+      "Make sure benefit wording stays measurable and does not obscure the technical facts buyers need."
     ],
     "faq": [
       {
-        "question": "电子产品本地化和一般电商翻译有何不同？",
-        "answer": "电子产品页面常包含结构化规格、兼容性术语和功能对比，需要在全站保持一致。"
+        "question": "What makes electronics localization different from general ecommerce translation?",
+        "answer": "Electronics pages often include structured specs, compatibility terms, and feature comparisons that need consistency across the entire site."
       },
       {
-        "question": "电子产品品牌应该翻译对比和类目页吗？",
-        "answer": "应该。那些页面常捕获高意图流量，帮助买家在打开单个商品页前缩小选项。"
+        "question": "Should electronics brands translate comparison and category pages?",
+        "answer": "Yes. Those pages often capture high-intent traffic and help buyers narrow options before they ever open an individual product page."
       },
       {
-        "question": "电子产品品牌如何避免术语不一致？",
-        "answer": "在批量翻译前，为商品族、功能名和技术名词使用术语表。"
+        "question": "How do electronics brands avoid inconsistent terminology?",
+        "answer": "Use a glossary for product families, feature names, and technical nouns before running bulk translation."
       }
     ],
-    "status": "published",
+    "status": "draft",
     "sourceLocale": "en",
-    "translationStatus": "reviewed"
+    "translationStatus": "ai-draft"
   },
   {
     "slug": "home-decor-localization-guide-2026",
     "href": "/guides/home-decor-localization-guide-2026",
     "year": 2026,
     "publishedAt": "2026-08-26",
-    "title": "家居装饰翻译指南 2026：把电商店铺本地化到全球",
-    "description": "一份面向通过多语言搜索和商品发现扩张的家居装饰与家居用品店铺的实用本地化模板。",
-    "industry": "家居装饰电商",
-    "audience": "家居装饰、家具和家居用品品牌",
-    "segmentLabel": "家居与生活",
-    "guideLabel": "翻译指南",
-    "mainValue": "以一种对本地买家仍显鼓舞的方式，翻译风格意图、空间场景和商品细节。",
+    "title": "[TODO zh-cn] Home Decor Translation Guide 2026: Localizing Your Ecommerce Store Globally",
+    "description": "[TODO zh-cn] A practical localization template for home decor and home goods stores expanding through multilingual search and product discovery.",
+    "industry": "Home decor ecommerce",
+    "audience": "Home decor, furniture, and home goods brands",
+    "segmentLabel": "Home & Living",
+    "guideLabel": "Translation Guide",
+    "mainValue": "Translate style intent, room context, and product detail in a way that still feels inspiring to local buyers.",
     "keywords": [
-      "家居装饰翻译指南",
-      "家居用品本地化",
-      "家具本地化指南",
-      "家居生活电商翻译"
+      "home decor translation guide",
+      "home goods localization",
+      "furniture localization guide",
+      "home living ecommerce translation"
     ],
     "overviewDrivers": [
       {
-        "title": "视觉加描述式销售",
-        "description": "家居装饰购物者既依赖图片，也依赖详细文案来判断匹配度和品质。"
+        "title": "Visual plus descriptive selling",
+        "description": "Home decor shoppers rely on both imagery and detailed copy to judge fit and quality."
       },
       {
-        "title": "合集导航",
-        "description": "发现常通过空间、风格或用例类目在商品页之前发生。"
+        "title": "Collection navigation",
+        "description": "Discovery often happens through room, style, or use-case categories before product pages."
       },
       {
-        "title": "更长的考量周期",
-        "description": "信任和清晰度很重要，因为许多商品比冲动购买类目有更长的评估周期。"
+        "title": "Longer consideration",
+        "description": "Trust and clarity matter because many items have a longer evaluation cycle than impulse-buy categories."
       }
     ],
     "benefits": [
       {
-        "title": "信任",
-        "description": "本地化的家居装饰电商内容能帮助买家理解你的商品，而不必反复质疑术语、单位或商品意图。",
-        "evidence": "当关键购买信息读起来像本地市场内容而非翻译稿时，购物者停留更久。"
+        "title": "Trust",
+        "description": "Localized home decor ecommerce content helps buyers understand your offer without second-guessing terminology, units, or product intent.",
+        "evidence": "Shoppers stay longer when key buying details read like native-market content instead of translated copy."
       },
       {
-        "title": "转化",
-        "description": "清晰、面向市场的文案能减少商品、类目、定价和落地页等高意图页面上的摩擦。",
-        "evidence": "最大的提升通常来自离购买最近的页面，而不是一开始翻译所有内容。"
+        "title": "Conversion",
+        "description": "Clear, market-ready messaging reduces friction on high-intent pages such as product, category, pricing, and landing pages.",
+        "evidence": "The biggest lift usually comes from the pages closest to purchase, not from translating everything first."
       },
       {
         "title": "SEO",
-        "description": "本地化的元数据、合集页和搜索意图覆盖，能帮助家居装饰电商品牌在特定市场的搜索结果里竞争。",
-        "evidence": "当标题、描述和页面结构匹配市场时，搜索引擎能更有效地索引本地语言查询。"
+        "description": "Localized metadata, collection pages, and search intent coverage help home decor ecommerce brands compete in market-specific search results.",
+        "evidence": "Search engines index local-language queries more effectively when titles, descriptions, and page structure match the market."
       },
       {
-        "title": "客户体验",
-        "description": "当导航、支持入口和关键安心文案在翻译后保持一致时，前台会更可信。",
-        "evidence": "前台、SEO 和支持内容的一致性，能防止购物者在评估和结账过程中流失。"
+        "title": "Customer Experience",
+        "description": "A storefront feels more credible when navigation, support entry points, and key reassurance copy all stay consistent after translation.",
+        "evidence": "Consistency across storefront, SEO, and support content prevents drop-off during evaluation and checkout."
       }
     ],
     "mistakes": [
       {
-        "category": "风格语言翻译得太字面",
-        "wrongExample": "把空间、风格和生活方式文案变成通用商品事实，丢失购物者依赖的浏览线索。",
-        "correct": "以对本地购物者仍显自然的方式翻译空间场景、风格词汇和灵感导向标题。",
-        "impact": "前台变得更难浏览，也失去支撑高考量购买的情感上下文。",
-        "severity": "高"
+        "category": "Style language translated too literally",
+        "wrongExample": "Turning room, style, and lifestyle copy into generic product facts while losing the browsing cues buyers rely on.",
+        "correct": "Translate room context, style vocabulary, and inspiration-led headings in a way that still feels natural to local shoppers.",
+        "impact": "The storefront becomes harder to browse and loses the emotional context that supports higher-consideration purchases.",
+        "severity": "High"
       },
       {
-        "category": "材质和尺寸细节漂移",
-        "wrongExample": "尺寸、材质或护理说明在页面间措辞变化，或变得更难比较。",
-        "correct": "让尺寸、材质术语和实用用例措辞在模板间标准化。",
-        "impact": "买家难以判断匹配度、品质和实用性，拖慢转化并增加犹豫。",
-        "severity": "高"
+        "category": "Material and dimension detail drift",
+        "wrongExample": "Dimensions, materials, or care notes change wording from page to page or become harder to compare.",
+        "correct": "Keep dimensions, material terminology, and practical use-case wording standardized across templates.",
+        "impact": "Buyers struggle to judge fit, quality, and practicality, which slows conversion and increases hesitation.",
+        "severity": "High"
       },
       {
-        "category": "合集和空间分类被忽略",
-        "wrongExample": "只翻译商品页，空间、用例和风格合集却本地化不足。",
-        "correct": "用与商品详情同样的用心翻译类目、风格和空间导向发现页。",
-        "impact": "网站同时失去 SEO 覆盖和帮助买家缩小选项的浏览逻辑。",
-        "severity": "中"
+        "category": "Collection and room taxonomy ignored",
+        "wrongExample": "Only product pages are translated while room, use-case, and style collections stay under-localized.",
+        "correct": "Translate category, style, and room-based discovery pages with the same care as PDPs.",
+        "impact": "The site loses both SEO reach and the browsing logic that helps buyers narrow options.",
+        "severity": "Medium"
       }
     ],
     "impacts": [
       {
-        "metric": "转化流失",
-        "description": "当家居装饰、家具和家居用品品牌的潜在客户无法快速评估你的商品时，他们会在进入下一步前离开。",
-        "source": "在多语言落地页和商品发现旅程中观察到。"
+        "metric": "Lost conversions",
+        "description": "When home decor, furniture, and home goods brands prospects cannot evaluate your offer quickly, they leave before reaching the next step.",
+        "source": "Observed across multilingual landing pages and product discovery journeys."
       },
       {
-        "metric": "SEO 可见度差",
-        "description": "搜索需求存在，但本地语言元数据和意图覆盖不够强，无法抓住它。",
-        "source": "在没有市场特定 SEO 规划的翻译页面上常见。"
+        "metric": "Poor SEO visibility",
+        "description": "Search demand exists, but local-language metadata and intent coverage are not strong enough to capture it.",
+        "source": "Common issue on pages translated without market-specific SEO planning."
       },
       {
-        "metric": "客户困惑",
-        "description": "页面、支持与导航之间术语混用，在买家最需要安心的时候制造犹豫。",
-        "source": "在扩张中的店铺和网站上常见的本地化 QA 发现。"
+        "metric": "Customer confusion",
+        "description": "Mixed terminology across pages, support, and navigation creates hesitation at exactly the point buyers need reassurance.",
+        "source": "Frequent localization QA finding on expanding stores and websites."
       },
       {
-        "metric": "品牌信任问题",
-        "description": "在家居装饰电商里，小小的措辞错误会让整个体验显得不够专业。",
-        "source": "在高端、技术或合规敏感类目上尤其明显。"
+        "metric": "Brand trust issues",
+        "description": "In home decor ecommerce, small wording mistakes can make the entire experience feel less professional.",
+        "source": "Especially visible on premium, technical, or compliance-sensitive categories."
       }
     ],
     "languages": [
       {
-        "market": "德国",
-        "language": "德语",
-        "priority": "高",
-        "reason": "家居电商需求强，且对细节准确性有高预期。"
+        "market": "Germany",
+        "language": "German",
+        "priority": "High",
+        "reason": "Strong home ecommerce demand and high expectations on detail accuracy."
       },
       {
-        "market": "法国",
-        "language": "法语",
-        "priority": "高",
-        "reason": "在装饰导向类目里，品牌语气和呈现很重要。"
+        "market": "France",
+        "language": "French",
+        "priority": "High",
+        "reason": "Brand tone and presentation matter strongly in decor-led categories."
       },
       {
-        "market": "意大利",
-        "language": "意大利语",
-        "priority": "中",
-        "reason": "风格导向家居生活品牌的自然扩张市场。"
+        "market": "Italy",
+        "language": "Italian",
+        "priority": "Medium",
+        "reason": "A natural expansion market for style-led home and living brands."
       },
       {
-        "market": "西班牙",
-        "language": "西班牙语",
-        "priority": "中",
-        "reason": "对更广泛的类目可见度和合集页 SEO 有用。"
+        "market": "Spain",
+        "language": "Spanish",
+        "priority": "Medium",
+        "reason": "Useful for wider category visibility and collection-page SEO."
       }
     ],
     "marketHabits": [
       {
-        "market": "德国",
-        "language": "德语",
-        "habit": "买家通常期望家居商品能通过尺寸、材质和实用细节在下单前易于比较。",
-        "localizationFocus": "让规格精确，实用性明显，避免过于抽象的生活方式语言。家居电商需求强，且对细节准确性有高预期。"
+        "market": "Germany",
+        "language": "German",
+        "habit": "Buyers often expect home products to be easy to compare through dimensions, materials, and practical detail before they trust the purchase.",
+        "localizationFocus": "Keep specifications precise, make utility obvious, and avoid overly abstract lifestyle language. Strong home ecommerce demand and high expectations on detail accuracy."
       },
       {
-        "market": "法国",
-        "language": "法语",
-        "habit": "呈现、风格框架和合集命名能强烈影响装饰导向类目的感知价值。",
-        "localizationFocus": "保护视觉和编辑语气，同时让实用商品细节易找。在装饰导向类目里，品牌语气和呈现很重要。"
+        "market": "France",
+        "language": "French",
+        "habit": "Presentation, style framing, and collection naming can strongly influence perceived value in decor-led categories.",
+        "localizationFocus": "Protect visual and editorial tone while keeping practical product detail easy to find. Brand tone and presentation matter strongly in decor-led categories."
       },
       {
-        "market": "意大利",
-        "language": "意大利语",
-        "habit": "设计和美学语言常塑造家居和家具商品的评价方式，尤其在高端细分市场。",
-        "localizationFocus": "保留风格表达，同时不失去材质和空间匹配的清晰度。风格导向家居生活品牌的自然扩张市场。"
+        "market": "Italy",
+        "language": "Italian",
+        "habit": "Design and aesthetic language often shape how home and furniture products are evaluated, especially in premium segments.",
+        "localizationFocus": "Preserve style expression without losing clarity on materials and room fit. A natural expansion market for style-led home and living brands."
       },
       {
-        "market": "西班牙",
-        "language": "西班牙语",
-        "habit": "可读且易浏览的空间或类目页很重要，因为发现常在移动优先的会话里快速发生。",
-        "localizationFocus": "让空间意图清晰，简化密集措辞，让类目名一眼可懂。对更广泛的类目可见度和合集页 SEO 有用。"
+        "market": "Spain",
+        "language": "Spanish",
+        "habit": "Readable and easy-to-browse room or category pages often matter because discovery can happen quickly across mobile-first sessions.",
+        "localizationFocus": "Keep room intent clear, simplify dense phrasing, and make category names instantly understandable. Useful for wider category visibility and collection-page SEO."
       }
     ],
     "translationScope": [
       {
-        "category": "核心",
+        "category": "Critical",
         "items": [
-          "空间与风格合集",
-          "商品页",
-          "尺寸与材质细节",
-          "物流与退货安心文案"
+          "Room and style collections",
+          "Product pages",
+          "Dimensions and material detail",
+          "Shipping and returns reassurance"
         ],
-        "priority": "高"
+        "priority": "High"
       },
       {
-        "category": "重要",
+        "category": "Important",
         "items": [
-          "SEO 元数据",
-          "导航与筛选",
-          "护理或组装指导",
-          "类目落地页"
+          "SEO metadata",
+          "Navigation and filters",
+          "Care or assembly guidance",
+          "Category landing pages"
         ],
-        "priority": "中"
+        "priority": "Medium"
       },
       {
-        "category": "可选",
+        "category": "Optional",
         "items": [
-          "旧灵感文章",
-          "归档季节页",
-          "低流量编辑内容"
+          "Older inspiration articles",
+          "Archived seasonal pages",
+          "Low-traffic editorial content"
         ],
-        "priority": "低"
+        "priority": "Lower"
       }
     ],
     "expansionPlan": [
       {
-        "stage": "第 1 阶段",
-        "market": "德国",
-        "language": "德语",
-        "reason": "先本地化类目、商品和信任页。"
+        "stage": "Stage 1",
+        "market": "Germany",
+        "language": "German",
+        "reason": "Localize category, product, and trust pages first."
       },
       {
-        "stage": "第 2 阶段",
-        "market": "法国",
-        "language": "法语",
-        "reason": "把同一套空间和风格分类带进第二个高端市场。"
+        "stage": "Stage 2",
+        "market": "France",
+        "language": "French",
+        "reason": "Carry the same room and style taxonomy into a second premium market."
       },
       {
-        "stage": "第 3 阶段",
-        "market": "意大利",
-        "language": "意大利语",
-        "reason": "合集命名和灵感文案标准化后再扩展。"
+        "stage": "Stage 3",
+        "market": "Italy",
+        "language": "Italian",
+        "reason": "Expand after collection naming and inspiration copy are standardized."
       }
     ],
     "bestPractices": [
       {
-        "title": "从高意图页面开始",
-        "description": "从驱动评估和购买的页面开始，等流程稳定后再扩展。"
+        "title": "Start with high-intent pages",
+        "description": "Begin with the pages that drive evaluation and purchase for home decor, furniture, and home goods brands, then expand once the workflow is stable."
       },
       {
-        "title": "扩展前先用术语表",
-        "description": "在批量翻译前锁定品牌词、重复功能名和类目词汇。"
+        "title": "Use a glossary before scaling",
+        "description": "Lock brand terms, recurring feature names, and category vocabulary before bulk translation begins."
       },
       {
-        "title": "按市场上下文审校",
-        "description": "检查语气、单位、格式和市场预期，而不只是语法。"
+        "title": "Review by market context",
+        "description": "Check tone, units, formatting, and market expectations instead of only checking grammar."
       },
       {
-        "title": "本地化与 SEO QA 配对",
-        "description": "每个上线市场都应附带本地化元数据、内链和页面意图覆盖。"
+        "title": "Pair localization with SEO QA",
+        "description": "Every launch market should ship with localized metadata, internal links, and page intent coverage."
       }
     ],
     "styleRules": [
       {
-        "title": "保留空间和风格意图",
-        "description": "家居买家常按空间、用例和审美浏览。翻译后的文案应清晰保留这种购物逻辑。"
+        "title": "Preserve room and style intent",
+        "description": "Home buyers often browse by room, use case, and aesthetic. The translated copy should preserve that shopping logic clearly."
       },
       {
-        "title": "标准化材质和尺寸语言",
-        "description": "材质、尺寸、饰面和护理措辞应在类目和商品页间保持一致。"
+        "title": "Standardize material and dimension language",
+        "description": "Materials, measurements, finishes, and care wording should stay consistent across category and product pages."
       },
       {
-        "title": "平衡灵感与清晰",
-        "description": "家居生活页既需要生活方式线索，也需要实用细节。避免把文案推向任一极端。"
+        "title": "Balance inspiration with clarity",
+        "description": "Home and living pages need both lifestyle cues and practical detail. Avoid pushing the copy too far toward either extreme."
       },
       {
-        "title": "仔细审核信任和配送上下文",
-        "description": "物流、退货、组装和商品细节在家居类目里往往更重要，因为考量周期更长。"
+        "title": "Review trust and delivery context carefully",
+        "description": "Shipping, returns, assembly, and product detail often matter more in home categories because consideration cycles are longer."
       }
     ],
     "solutions": [
       {
-        "name": "人工翻译",
+        "name": "Manual Translation",
         "advantages": [
-          "品牌控制最高",
-          "适合法律或受监管文案",
-          "适合旗舰活动"
+          "Highest brand control",
+          "Good for legal or regulated copy",
+          "Works well for flagship campaigns"
         ],
         "limitations": [
-          "扩展慢",
-          "每个市场成本高",
-          "目录变化后难保持更新"
+          "Slow to scale",
+          "High cost per market",
+          "Hard to keep updated after catalog changes"
         ]
       },
       {
-        "name": "通用机器翻译",
+        "name": "Generic Machine Translation",
         "advantages": [
-          "第一稿快",
-          "前期成本低",
-          "适合低优先级页面"
+          "Fast first draft",
+          "Low upfront cost",
+          "Useful for low-priority pages"
         ],
         "limitations": [
-          "上下文处理弱",
-          "术语不一致",
-          "常漏掉 SEO 和转化细节"
+          "Weak context handling",
+          "Inconsistent terminology",
+          "Often misses SEO and conversion nuance"
         ]
       },
       {
-        "name": "AI 电商翻译",
+        "name": "AI Ecommerce Translation",
         "advantages": [
-          "比人工快",
-          "对前台内容上下文更好",
-          "适合持续的目录和 SEO 更新"
+          "Faster than manual",
+          "Better context for storefront content",
+          "Fits ongoing catalog and SEO updates"
         ],
         "limitations": [
-          "仍需 QA",
-          "需要术语表规则",
-          "合规敏感内容需要市场审校"
+          "Still needs QA",
+          "Requires glossary rules",
+          "Needs market review for compliance-sensitive content"
         ]
       }
     ],
     "features": [
-      "商品翻译",
-      "主题翻译",
-      "SEO 翻译",
-      "图片翻译",
-      "HTML 保留"
+      "Product Translation",
+      "Theme Translation",
+      "SEO Translation",
+      "Image Translation",
+      "HTML Preservation"
     ],
     "recommendations": [
       {
-        "title": "尽早翻译灵感导向页",
-        "description": "家居装饰常依赖空间氛围、视觉故事和风格导向浏览，所以灵感密集页比团队预期的更早重要。"
+        "title": "Translate inspiration-led pages early",
+        "description": "Home decor often depends on room mood, visual story, and style-led browsing, so inspiration-heavy pages matter sooner than teams expect."
       },
       {
-        "title": "让空间和美学语言对齐",
-        "description": "当风格、颜色和空间上下文在全站使用一套稳定词汇时，装饰合集表现更好。"
+        "title": "Keep room and aesthetic language aligned",
+        "description": "Decor collections perform better when style, color, and room context use one stable vocabulary across the site."
       },
       {
-        "title": "带类目上下文审核合集名",
-        "description": "装饰合集标签应听起来像本地买家真的会浏览的东西，而不只是源分类的字面翻译。"
+        "title": "Review collection names with category context",
+        "description": "Decor collection labels should sound like something a local buyer would actually browse, not just a literal translation of the source taxonomy."
       }
     ],
     "terminology": [
       {
-        "term": "层次感造型",
-        "meaning": "与空间构图和美学深度相关的装饰造型语言",
-        "localized": "使用仍传递造型意图的本地装饰短语，而非字面的层次。"
+        "term": "Layered look",
+        "meaning": "Decor styling language tied to room composition and aesthetic depth",
+        "localized": "Use a local decor phrase that still suggests styling intent, not literal layering."
       },
       {
-        "term": "点睛装饰",
-        "meaning": "用于空间焦点单品的商品语言",
-        "localized": "翻译成强烈的视觉角色，而非只是装饰物标签。"
+        "term": "Statement decor",
+        "meaning": "Product language for focal-point room pieces",
+        "localized": "Translate as a strong visual role, not just a decorative object label."
       },
       {
-        "term": "温暖中性色",
-        "meaning": "装饰浏览中的风格和颜色线索",
-        "localized": "匹配买家在市场里使用的本地装饰/颜色词汇。"
+        "term": "Warm neutral",
+        "meaning": "Style and color cue used in decor browsing",
+        "localized": "Match the local decor/color vocabulary buyers use in-market."
       },
       {
-        "term": "温馨空间",
-        "meaning": "与装饰如何支撑情绪和空间氛围相关的生活方式框架",
-        "localized": "自然地翻译空间感受，而非使用通用正面形容词。"
+        "term": "Inviting space",
+        "meaning": "Lifestyle framing tied to how decor supports mood and room feel",
+        "localized": "Translate the room feeling naturally instead of using generic positive adjectives."
       }
     ],
     "checklist": [
-      "把空间、风格和类目页与商品页一起翻译，而不是当次要。",
-      "在跨目录扩展翻译前，标准化材质、饰面和尺寸术语。",
-      "分开审核灵感导向文案和实用细节，让两者在本地化后都保持可读。",
-      "本地化元数据、合集名和内链，让发现页仍能在搜索里表现。",
-      "检查筛选、导航标签和空间分类在目标市场仍合理。",
-      "审核物流、退货、护理和组装文案，因为它们在本类目常强烈影响信任。"
+      "Translate room, style, and category pages together with product pages instead of treating them as secondary.",
+      "Standardize material, finish, and dimension terminology before scaling translation across the catalog.",
+      "Review inspiration-led copy and practical detail separately so both stay readable after localization.",
+      "Localize metadata, collection names, and internal linking so discovery pages can still perform in search.",
+      "Check that filters, navigation labels, and room taxonomy still make sense in the target market.",
+      "Review shipping, returns, care, and assembly copy because they often influence trust strongly in this category."
     ],
     "faq": [
       {
-        "question": "家居装饰店铺应该先翻译什么？",
-        "answer": "合集页、商品页、导航和安心内容通常优先，因为它们共同塑造发现和信任。"
+        "question": "What should home decor stores translate first?",
+        "answer": "Collection pages, product pages, navigation, and reassurance content usually matter first because they shape discovery and trust together."
       },
       {
-        "question": "家居用品品牌需要本地化 SEO 页面吗？",
-        "answer": "需要。买家常按空间、风格或用例搜索，这让本地化合集和元数据策略很重要。"
+        "question": "Do home goods brands need localized SEO pages?",
+        "answer": "Yes. Buyers often search by room, style, or use case, which makes localized collection and metadata strategy important."
       },
       {
-        "question": "为什么术语一致性在家居装饰里重要？",
-        "answer": "因为风格、材质和用例语言常出现在合集、商品页和筛选里。措辞不一致会让浏览更困难。"
+        "question": "Why does terminology consistency matter in home decor?",
+        "answer": "Because style, material, and use-case language often appears across collections, product pages, and filters. Inconsistent wording makes browsing harder."
       }
     ],
-    "status": "published",
+    "status": "draft",
     "sourceLocale": "en",
-    "translationStatus": "reviewed"
+    "translationStatus": "ai-draft"
   },
   {
     "slug": "sportswear-translation-guide-2026",

@@ -62,7 +62,6 @@ const navigationContent = {
       company: [
         {label: "About", href: "/about"},
         {label: "Contact", href: "/contact"},
-        {label: "Affiliate Program", href: "/affiliate"},
       ],
       legal: [
         {label: "Privacy Policy", href: "/privacy-policy"},
@@ -112,7 +111,6 @@ const navigationContent = {
       company: [
         {label: "关于我们", href: "/about"},
         {label: "联系我们", href: "/contact"},
-        {label: "联盟计划", href: "/affiliate"},
       ],
       legal: [
         {label: "隐私政策", href: "/privacy-policy"},
