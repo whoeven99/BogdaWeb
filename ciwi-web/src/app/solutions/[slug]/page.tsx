@@ -44,9 +44,9 @@ function getSolutionDetailCopy(locale: "en" | "zh-cn") {
         {label: "FAQ", href: "#faq"},
       ],
       media: {
-        eyebrow: "方案素材",
-        title: "方案页素材预留",
-        description: "方案页建议同时准备场景图和短视频，让用户更快看到问题如何被解决。",
+        eyebrow: "方案场景",
+        title: "先看问题，再看解决路径",
+        description: "用场景图和短视频，串起从问题出现到结果改善的完整路径。",
       },
       sections: {
         challenges: {id: "challenges", eyebrow: "常见问题", title: "常见问题", description: "先看摩擦点，再看解决方式。"},
@@ -85,9 +85,9 @@ function getSolutionDetailCopy(locale: "en" | "zh-cn") {
       {label: "FAQ", href: "#faq"},
     ],
     media: {
-      eyebrow: "Solution media",
-      title: "Solution page media placeholder",
-      description: "A solution page works best with scenario visuals and short clips that help merchants understand how the problem gets solved.",
+      eyebrow: "Solution scenario",
+      title: "See the problem first, then the path forward",
+      description: "Scenario visuals and short clips connect the initial friction to the outcome Ciwi helps reach.",
     },
     sections: {
       challenges: {id: "challenges", eyebrow: "Challenges", title: "Common challenges", description: "Look at the friction first, then the path forward."},

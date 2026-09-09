@@ -42,9 +42,9 @@ export default async function ComparePage() {
             cardMeta: ["对比", "选型"],
           },
           media: {
-            eyebrow: "对比素材",
-            title: "对比页视觉预留",
-            description: "对比页适合补一张总览型对照图，让差异一眼看明白。",
+            eyebrow: "对比总览",
+            title: "从关键维度，快速看清方案差异",
+            description: "围绕工作流深度、主题覆盖和商家适配，把每条路径的差异并排摆出来。",
           },
           finalCta: {
             title: "从比较，进入判断",
@@ -69,9 +69,9 @@ export default async function ComparePage() {
             cardMeta: ["Compare", "Selection"],
           },
           media: {
-            eyebrow: "Compare media",
-            title: "Comparison media placeholder",
-            description: "A side-by-side visual works well here to clarify the difference before merchants read the details.",
+            eyebrow: "Comparison overview",
+            title: "See the key differences at a glance",
+            description: "Compare each path side by side across workflow depth, theme coverage, and merchant fit.",
           },
           finalCta: {
             title: "Move from comparison to decision",
