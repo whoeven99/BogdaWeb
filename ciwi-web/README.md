@@ -149,6 +149,8 @@ DATABASE_URL="file:./dev.db"
 TURSO_DATABASE_URL="libsql://your-db.turso.io"
 TURSO_AUTH_TOKEN=""
 AFFILIATE_SESSION_SECRET="replace-with-a-long-random-string"
+SHOPIFY_TRANSLATOR_API_KEY="fb9fc15cbec02bd735e2a5b491cf8409"
+SHOPIFY_SPARK_API_KEY="d68a7533dbbe676af335f27d01d87a12"
 ```
 
 `DATABASE_URL` 只给 Prisma CLI 用。应用运行时读 `TURSO_*`。
@@ -193,6 +195,8 @@ HOSTNAME=0.0.0.0
 TURSO_DATABASE_URL=libsql://your-db.turso.io
 TURSO_AUTH_TOKEN=
 AFFILIATE_SESSION_SECRET=
+SHOPIFY_TRANSLATOR_API_KEY=fb9fc15cbec02bd735e2a5b491cf8409
+SHOPIFY_SPARK_API_KEY=d68a7533dbbe676af335f27d01d87a12
 ```
 
 部署前对目标库执行一次 `npm run turso:migrate`。

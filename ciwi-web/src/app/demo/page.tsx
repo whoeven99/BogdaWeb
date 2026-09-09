@@ -42,9 +42,9 @@ export default async function DemoPage() {
             ],
           },
           media: {
-            eyebrow: "演示素材",
-            title: "Demo Center 主素材预留",
-            description: "这里适合放一段总览视频，让访问者在几十秒内先看到效果变化。",
+            eyebrow: "演示总览",
+            title: "几十秒，先看到效果变化",
+            description: "用一段总览视频，把翻译前后、术语控制和套餐场景的差异快速过一遍。",
           },
           faq: [
             {
@@ -83,9 +83,9 @@ export default async function DemoPage() {
             ],
           },
           media: {
-            eyebrow: "Demo media",
-            title: "Demo Center media placeholder",
-            description: "A short overview video works well here so visitors can understand the product effect in under a minute.",
+            eyebrow: "Demo overview",
+            title: "See the effect in under a minute",
+            description: "A short overview video walks through the before-and-after, glossary control, and bundle scenarios.",
           },
           faq: [
             {

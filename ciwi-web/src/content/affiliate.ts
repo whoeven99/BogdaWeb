@@ -98,7 +98,16 @@ export type AffiliateCopy = {
     title: string;
     description: string;
     installLabel: string;
+    reviewsLabel: string;
+    reviewsCountLabel: string;
     benefits: Record<string, string>;
+    modalTitle: string;
+    shopDomainLabel: string;
+    shopDomainPlaceholder: string;
+    modalSubmitLabel: string;
+    modalCancelLabel: string;
+    modalCloseLabel: string;
+    modalErrorRequired: string;
   };
   faq: {
     eyebrow: string;
@@ -145,6 +154,9 @@ export type AffiliateCopy = {
       copyLinkLabel: string;
       copiedLabel: string;
       rateLabel: string;
+      usageTitle: string;
+      usageDescription: string;
+      usageConfirmLabel: string;
     };
     overview: {
       statsTitle: string;
@@ -196,12 +208,12 @@ const affiliateCopy = {
   en: {
     hero: {
       eyebrow: "Affiliate Program",
-      title: "Earn 20% from every merchant you bring to Ciwi",
+      title: "Earn up to 50% recurring commission for every merchant you bring to Ciwi",
       description:
         "Share your referral link, track signups and activated customers, and get paid on the revenue they generate. One dashboard for your progress and payouts.",
       registerLabel: "Create my referral code",
       loginLabel: "Sign in",
-      highlights: ["20% revenue share", "Tracked referrals", "Monthly payouts"],
+      highlights: ["Up to 50% revenue share", "Tracked referrals", "Monthly payouts"],
       sampleTitle: "Your dashboard, at a glance",
       sampleDescription: "Progress and payouts stay in one place after you sign in.",
       sampleLabels: {activated: "Activated", trackedRevenue: "Tracked revenue", commission: "Commission earned"},
@@ -221,7 +233,7 @@ const affiliateCopy = {
         },
         {
           title: "Earn and get paid",
-          description: "Earn 20% of the tracked revenue from merchants you bring in, paid out monthly.",
+          description: "Earn up to 50% recurring commission from the merchants you bring in, paid out monthly.",
         },
       ],
     },
@@ -238,11 +250,19 @@ const affiliateCopy = {
       title: "Start with Ciwi and claim your bonus",
       description: "You were referred by a Ciwi partner. Choose a product below and install to get started.",
       installLabel: "Install on Shopify",
+      reviewsLabel: "View reviews",
+      reviewsCountLabel: "reviews",
       benefits: {
         translator: "5-day free trial + 4,000,000 bonus credits",
-        "bundle-discount": "Bundle pricing to grow your average order value",
         "spark-analytics-agent": "Get 1,000,000 credits (worth $9.99) when you install",
       },
+      modalTitle: "You're about to claim: ",
+      shopDomainLabel: "Shop handle",
+      shopDomainPlaceholder: "e.g. your-store",
+      modalSubmitLabel: "Install",
+      modalCancelLabel: "Cancel",
+      modalCloseLabel: "Close",
+      modalErrorRequired: "Please enter your store ID.",
     },
     faq: {
       eyebrow: "FAQ",
@@ -302,6 +322,9 @@ const affiliateCopy = {
         copyLinkLabel: "Copy link",
         copiedLabel: "Copied",
         rateLabel: "Commission",
+        usageTitle: "How your referral code works",
+        usageDescription: "Share this code with customers. When they enter it during checkout while subscribing, we attribute the order to you and calculate your commission.",
+        usageConfirmLabel: "Got it",
       },
       overview: {
         statsTitle: "Performance overview",
@@ -351,12 +374,12 @@ const affiliateCopy = {
   "zh-cn": {
     hero: {
       eyebrow: "联盟计划",
-      title: "每带来一位 Ciwi 客户，赚取 20% 分成",
+      title: "每带来一位 Ciwi 客户，赚最高50% 连续分成",
       description:
         "分享你的推广链接，追踪注册与付费激活客户，并按他们带来的收入获得分成。进度与结算都在同一个后台里。",
       registerLabel: "创建我的推广码",
       loginLabel: "登录",
-      highlights: ["20% 收入分成", "推荐效果可追踪", "每月结算"],
+      highlights: ["最高 50% 收入分成", "推荐效果可追踪", "每月结算"],
       sampleTitle: "你的后台，一眼看清",
       sampleDescription: "登录后，进度与结算都集中在同一个页面。",
       sampleLabels: {activated: "激活客户", trackedRevenue: "追踪收入", commission: "累计佣金"},
@@ -368,7 +391,7 @@ const affiliateCopy = {
       steps: [
         {title: "创建推广码", description: "注册一次，即可获得专属推广码和可分享链接。"},
         {title: "分享链接", description: "把它发给可能用得上 Ciwi 本地化与增长工具的 Shopify 商家。"},
-        {title: "赚取并结算", description: "按你带来商家产生的收入赚取 20% 分成，每月结算。"},
+        {title: "赚取并结算", description: "按你带来商家产生的收入赚取最高50% 分成，每月结算。"},
       ],
     },
     commission: {
@@ -384,11 +407,19 @@ const affiliateCopy = {
       title: "安装 Ciwi，领取专属福利",
       description: "你通过 Ciwi 推广链接来到这里。选择下方产品安装即可开始。",
       installLabel: "前往 Shopify 安装",
+      reviewsLabel: "查看评价",
+      reviewsCountLabel: "条评价",
       benefits: {
         translator: "5 天免费试用 + 额外 400 万积分 bonus",
-        "bundle-discount": "套餐定价，帮助提升客单价",
         "spark-analytics-agent": "安装就送 100 万积分，价值 $9.99",
       },
+      modalTitle: "即将获得：",
+      shopDomainLabel: "商店 handle",
+      shopDomainPlaceholder: "例如：your-store",
+      modalSubmitLabel: "安装",
+      modalCancelLabel: "取消",
+      modalCloseLabel: "关闭",
+      modalErrorRequired: "请输入商店 ID。",
     },
     faq: {
       eyebrow: "常见问题",
@@ -439,6 +470,9 @@ const affiliateCopy = {
         copyLinkLabel: "复制链接",
         copiedLabel: "已复制",
         rateLabel: "分成比例",
+        usageTitle: "推广码如何使用",
+        usageDescription: "把这个码分享给客户。客户在订阅付费时输入这个码，我们才会把订单归因给你并计算佣金。",
+        usageConfirmLabel: "知道了",
       },
       overview: {
         statsTitle: "表现概览",
@@ -517,20 +551,21 @@ export const mockReferrals: ReferralRecord[] = [
   {id: "ref-6", email: "frank@minimaljewel.com", productSlug: "spark-analytics-agent", signedUpAt: "2026-09-01", installed: false, subscribed: false},
 ];
 
-export const affiliateInstallUrls: Record<string, string> = {
-  translator: "https://apps.shopify.com/translator-by-ciwi",
-  "bundle-discount": "https://apps.shopify.com/ciwi-ai-bundle",
-  "spark-analytics-agent": "https://apps.shopify.com/spark-1",
+export const affiliateReviews: Record<string, {rating: number; reviewCount: number; url: string}> = {
+  translator: {rating: 4.7, reviewCount: 22, url: "https://apps.shopify.com/translator-by-ciwi"},
+  "spark-analytics-agent": {rating: 5.0, reviewCount: 12, url: "https://apps.shopify.com/spark-1"},
 };
 
-export const affiliateLandingProducts = ["translator", "bundle-discount", "spark-analytics-agent"] as const;
+export const affiliateLandingProducts = ["translator", "spark-analytics-agent"] as const;
 
 export type AffiliateLandingOffer = {
   slug: string;
   name: string;
   description: string;
   benefit: string;
-  installUrl: string;
+  rating: number;
+  reviewCount: number;
+  reviewUrl: string;
 };
 
 export type AffiliateLandingData = {
@@ -552,7 +587,9 @@ export function getAffiliateLanding(locale: Locale): AffiliateLandingData {
         name: product?.name ?? slug,
         description: product?.shortDescription ?? "",
         benefit: landingCopy.benefits[slug] ?? "",
-        installUrl: affiliateInstallUrls[slug] ?? "",
+        rating: affiliateReviews[slug]?.rating ?? 0,
+        reviewCount: affiliateReviews[slug]?.reviewCount ?? 0,
+        reviewUrl: affiliateReviews[slug]?.url ?? "",
       };
     }),
   };

@@ -42,9 +42,9 @@ export default async function SolutionsPage() {
             cardMeta: ["方案", "Shopify"],
           },
           media: {
-            eyebrow: "方案素材",
-            title: "方案页素材预留",
-            description: "方案列表页更适合用按问题分类的场景图，帮助用户快速判断入口。",
+            eyebrow: "方案总览",
+            title: "按问题场景，快速找到对应路径",
+            description: "从跨市场转化、多语言运营到客单价提升，直接进入和当前目标最匹配的场景。",
           },
           finalCta: {
             eyebrow: "下一步",
@@ -69,9 +69,9 @@ export default async function SolutionsPage() {
             cardMeta: ["Solution", "Shopify"],
           },
           media: {
-            eyebrow: "Solutions media",
-            title: "Solution page media placeholder",
-            description: "A scenario-led visual works well here to help merchants understand each path faster.",
+            eyebrow: "Solutions overview",
+            title: "Start from the scenario that matches your goal",
+            description: "Move from cross-market conversion, multilingual operations, or AOV growth into the path that fits your focus.",
           },
           finalCta: {
             eyebrow: "Next step",
