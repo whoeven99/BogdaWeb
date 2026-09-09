@@ -1,6 +1,7 @@
 import type {ReactNode} from "react";
 import Script from "next/script";
 
+import {AffiliateProvider} from "@/components/providers/AffiliateProvider";
 import {LocaleProvider} from "@/components/providers/LocaleProvider";
 import {SiteFooter} from "@/components/layout/SiteFooter";
 import {SiteHeader} from "@/components/layout/SiteHeader";
@@ -42,11 +43,13 @@ export default async function RootLayout({
           `}
         </Script>
         <LocaleProvider locale={locale}>
-          <div className="site-shell">
-            <SiteHeader />
-            {children}
-            <SiteFooter />
-          </div>
+          <AffiliateProvider>
+            <div className="site-shell">
+              <SiteHeader />
+              {children}
+              <SiteFooter />
+            </div>
+          </AffiliateProvider>
         </LocaleProvider>
       </body>
     </html>

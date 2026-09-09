@@ -4,18 +4,23 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "npm run content:validate && next build",
+    "build": "npm run prisma:generate && npm run content:validate && next build",
     "start": "cross-env PORT=9000 HOST=0.0.0.0 next start",
     "lint": "next lint",
     "content:new": "node ./scripts/create-content-document.mjs",
     "best-apps:generate": "node ./scripts/generate-best-shopify-apps.mjs",
     "content:validate": "node ./scripts/validate-content.mjs",
     "content:translate": "node ./scripts/create-translation-draft.mjs",
-    "guides:translate": "node ./scripts/create-guide-translation-draft.mjs"
+    "guides:translate": "node ./scripts/create-guide-translation-draft.mjs",
+    "prisma:generate": "prisma generate",
+    "turso:migrate": "node ./scripts/turso-migrate.cjs"
   },
   "dependencies": {
     "@ant-design/icons": "^6.0.0",
     "@ant-design/v5-patch-for-react-19": "^1.0.3",
+    "@libsql/client": "^0.17.3",
+    "@prisma/adapter-libsql": "^6.19.3",
+    "@prisma/client": "^6.19.3",
     "gray-matter": "^4.0.3",
     "next": "15.3.4",
     "next-mdx-remote": "^5.0.0",
@@ -32,6 +37,7 @@
     "cross-env": "^7.0.3",
     "eslint": "^9",
     "eslint-config-next": "15.3.4",
+    "prisma": "^6.19.3",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

@@ -1,3 +1,4 @@
+import {AffiliateLanding} from "@/components/affiliate/AffiliateLanding";
 import {FinalCtaSection} from "@/components/sections/FinalCtaSection";
 import {FaqSection} from "@/components/sections/FaqSection";
 import {HeroSection} from "@/components/sections/HeroSection";
@@ -6,6 +7,7 @@ import {ProductMatrixSection} from "@/components/sections/ProductMatrixSection";
 import {ResourcesSection} from "@/components/sections/ResourcesSection";
 import {SocialProofSection} from "@/components/sections/SocialProofSection";
 import {PageContainer} from "@/components/ui/PageContainer";
+import {getAffiliateLanding} from "@/content/affiliate";
 import {getHomePageCopy} from "@/content/home-page-copy";
 import {getProducts} from "@/content/products";
 import {getUiCopy} from "@/content/ui-copy";
@@ -26,8 +28,29 @@ export async function generateMetadata() {
   });
 }
 
-export default async function HomePage() {
+type HomePageProps = {
+  searchParams?: Promise<{ref?: string; product?: string}>;
+};
+
+export default async function HomePage({searchParams}: HomePageProps) {
   const locale = await getRequestLocale();
+  const params = await searchParams;
+  const isAffiliate = Boolean(params?.ref);
+
+  if (isAffiliate) {
+    return (
+      <main>
+        <PageContainer>
+          <AffiliateLanding
+            data={getAffiliateLanding(locale)}
+            referralCode={params?.ref}
+            productSlug={params?.product}
+          />
+        </PageContainer>
+      </main>
+    );
+  }
+
   const copy = getHomePageCopy(locale);
   const uiCopy = getUiCopy(locale);
   const products = getProducts(locale);

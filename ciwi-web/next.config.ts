@@ -27,6 +27,7 @@ const legacyMarketingRedirects = Object.entries(legacyMarketingRedirectTargets).
 const nextConfig: NextConfig = {
   output: "standalone",
   trailingSlash: true,
+  serverExternalPackages: ["@libsql/client", "@prisma/adapter-libsql"],
   async redirects() {
     return [
       ...legacyMarketingRedirects,

@@ -4304,3 +4304,185 @@ select {
     justify-self: start;
   }
 }
+
+/* Affiliate program */
+.auth-hero {
+  align-items: start;
+}
+
+.dashboard-bar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-5);
+  flex-wrap: wrap;
+}
+
+.dashboard-tabs {
+  margin-top: var(--space-6);
+}
+
+.dashboard-panel {
+  margin-top: var(--space-6);
+}
+
+.referral-code-card {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.referral-code-card__field {
+  display: grid;
+  gap: 8px;
+}
+
+.referral-code-card__row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.referral-code-card__code {
+  flex: 1;
+  min-width: 200px;
+  padding: 12px 16px;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 12px;
+  background: rgba(248, 250, 252, 0.9);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--color-ink-900);
+  overflow-wrap: anywhere;
+}
+
+.referral-code-card__code--link {
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--color-primary);
+}
+
+.affiliate-stat-card {
+  display: grid;
+  gap: 6px;
+}
+
+.affiliate-stat__value {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--color-ink-900);
+}
+
+.affiliate-stat__label {
+  color: var(--color-ink-600);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.affiliate-table-card {
+  padding: 0;
+  overflow-x: auto;
+}
+
+.affiliate-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.affiliate-table th,
+.affiliate-table td {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid rgba(229, 231, 235, 0.9);
+}
+
+.affiliate-table thead th {
+  color: var(--color-ink-700);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: rgba(232, 245, 238, 0.6);
+}
+
+.affiliate-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.affiliate-footnote {
+  margin-top: var(--space-4);
+  color: var(--color-ink-600);
+  font-size: 13px;
+}
+
+.withdraw-card {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.withdraw-card__header {
+  display: flex;
+  gap: var(--space-6);
+  flex-wrap: wrap;
+}
+
+.withdraw-card__balance {
+  display: grid;
+  gap: 6px;
+  min-width: 160px;
+}
+
+.withdraw-card__notice {
+  margin: 0;
+  padding: 12px 16px;
+  border: 1px solid rgba(0, 128, 96, 0.22);
+  border-radius: 12px;
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.affiliate-empty {
+  display: grid;
+  gap: var(--space-4);
+  justify-items: start;
+}
+
+.referral-link-list {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.referral-link-list__item {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 1px solid rgba(229, 231, 235, 0.9);
+  border-radius: 12px;
+  background: rgba(248, 250, 252, 0.6);
+}
+
+.referral-link-list__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.affiliate-offer-card {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+
+.affiliate-offer-card__benefit {
+  margin: 0;
+  padding: 12px 16px;
+  border: 1px solid rgba(0, 128, 96, 0.22);
+  border-radius: 12px;
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  font-weight: 700;
+}
