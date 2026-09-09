@@ -41,7 +41,7 @@ export default async function HomePage({searchParams}: HomePageProps) {
     return (
       <main>
         <PageContainer>
-          <AffiliateLanding data={getAffiliateLanding(locale)} />
+          <AffiliateLanding data={getAffiliateLanding(locale)} refCode={params?.ref ?? ""} />
         </PageContainer>
       </main>
     );
