@@ -1,6 +1,6 @@
 "use client";
 
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useRouter} from "next/navigation";
 
 import {AuthGate} from "@/components/affiliate/AuthGate";
@@ -13,7 +13,8 @@ import {useAffiliate} from "@/components/providers/AffiliateProvider";
 import {useLocale} from "@/components/providers/LocaleProvider";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import type {AffiliateCopy} from "@/content/affiliate";
-import {getAffiliateProducts, mockPayouts, mockProgressStats, mockReferrals} from "@/content/affiliate";
+import {getAffiliateProducts} from "@/content/affiliate";
+import {emptyAffiliateStats, fetchAffiliateStats} from "@/lib/affiliate-api";
 import {localizeHref} from "@/lib/i18n";
 
 type AffiliateDashboardProps = {
@@ -35,14 +36,33 @@ function DashboardContent({copy}: AffiliateDashboardProps) {
   const locale = useLocale();
   const router = useRouter();
   const [activeTab, setActiveTab] = useState<TabKey>("overview");
+  const [stats, setStats] = useState(emptyAffiliateStats);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    fetchAffiliateStats().then((nextStats) => {
+      if (!cancelled) {
+        setStats(nextStats);
+      }
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   if (!account) {
     return null;
   }
 
-  function handleLogout() {
-    logout();
+  async function handleLogout() {
+    await logout();
     router.push(localizeHref(locale, "/affiliate"));
+  }
+
+  async function handleGenerateReferral() {
+    await generateReferral();
   }
 
   const products = getAffiliateProducts(locale);
@@ -53,12 +73,8 @@ function DashboardContent({copy}: AffiliateDashboardProps) {
     {key: "payouts", label: copy.tabs.payouts},
   ];
 
-  const paidTotal = mockPayouts
-    .filter((payout) => payout.status === "paid")
-    .reduce((sum, payout) => sum + payout.amount, 0);
-  const pendingTotal = mockPayouts
-    .filter((payout) => payout.status === "pending")
-    .reduce((sum, payout) => sum + payout.amount, 0);
+  const paidTotal = 0;
+  const pendingTotal = 0;
 
   return (
     <section className="page-section page-hero">
@@ -94,23 +110,23 @@ function DashboardContent({copy}: AffiliateDashboardProps) {
                   <p className="quote">{copy.referralCard.description}</p>
                 </div>
                 <p className="quote">{copy.referralCard.emptyState}</p>
-                <button type="button" className="button button--primary" onClick={generateReferral}>
+                <button type="button" className="button button--primary" onClick={handleGenerateReferral}>
                   {copy.referralCard.generateLabel}
                 </button>
               </div>
             )}
-            <ProgressOverview stats={mockProgressStats} copy={copy.overview} />
+            <ProgressOverview stats={stats} copy={copy.overview} />
           </div>
         ) : null}
 
         {activeTab === "progress" ? (
-          <ReferralTable referrals={mockReferrals} products={products} copy={copy.progress} />
+          <ReferralTable referrals={[]} products={products} copy={copy.progress} />
         ) : null}
 
         {activeTab === "payouts" ? (
           <div className="section-stack">
             <WithdrawCard copy={copy.withdraw} available={paidTotal} pending={pendingTotal} />
-            <PayoutTable payouts={mockPayouts} copy={copy.payouts} />
+            <PayoutTable payouts={[]} copy={copy.payouts} />
           </div>
         ) : null}
       </div>

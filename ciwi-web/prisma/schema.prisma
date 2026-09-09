@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+  // 生成到 node_modules 外，避免 Windows 上 query_engine 重命名 EPERM
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model AffiliateAccount {
+  id           String              @id @default(cuid())
+  name         String
+  email        String              @unique
+  passwordHash String
+  referralCode String?             @unique
+  status       String              @default("active")
+  createdAt    DateTime            @default(now())
+  updatedAt    DateTime            @updatedAt
+  sessions     AffiliateSession[]
+  clicks       AffiliateClick[]
+}
+
+model AffiliateSession {
+  id        String           @id @default(cuid())
+  accountId String
+  account   AffiliateAccount @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+
+  @@index([accountId])
+  @@index([expiresAt])
+}
+
+model AffiliateClick {
+  id           String           @id @default(cuid())
+  accountId    String
+  account      AffiliateAccount @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  referralCode String
+  productSlug  String?
+  visitorKey   String
+  clickedOn    String
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+
+  @@unique([accountId, visitorKey, clickedOn])
+  @@index([accountId, createdAt])
+}

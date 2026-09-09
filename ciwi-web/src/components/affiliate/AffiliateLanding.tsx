@@ -1,16 +1,20 @@
+import {AffiliateClickTracker} from "@/components/affiliate/AffiliateClickTracker";
 import {Button} from "@/components/ui/Button";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import type {AffiliateLandingData} from "@/content/affiliate";
 
 type AffiliateLandingProps = {
   data: AffiliateLandingData;
+  referralCode?: string;
+  productSlug?: string;
 };
 
-export function AffiliateLanding({data}: AffiliateLandingProps) {
+export function AffiliateLanding({data, referralCode, productSlug}: AffiliateLandingProps) {
   const {copy, offers} = data;
 
   return (
     <section className="page-section page-hero">
+      {referralCode ? <AffiliateClickTracker code={referralCode} product={productSlug} /> : null}
       <SectionHeading eyebrow={copy.eyebrow} title={copy.title} description={copy.description} as="h1" />
       <div className="card-grid">
         {offers.map((offer) => (
