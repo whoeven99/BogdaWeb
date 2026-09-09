@@ -33,14 +33,14 @@ export function RegisterForm({locale, copy}: RegisterFormProps) {
   const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
   const [message, setMessage] = useState<string | null>(null);
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     setStatus("loading");
     setMessage(null);
 
     try {
-      register(formState);
+      await register(formState);
       router.push(localizeHref(locale, "/affiliate/dashboard"));
     } catch {
       setStatus("error");

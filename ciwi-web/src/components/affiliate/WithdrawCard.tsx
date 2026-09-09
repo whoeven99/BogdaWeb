@@ -1,7 +1,5 @@
 "use client";
 
-import {useState} from "react";
-
 import type {AffiliateCopy} from "@/content/affiliate";
 import {formatCurrency} from "@/lib/affiliate";
 
@@ -12,8 +10,6 @@ type WithdrawCardProps = {
 };
 
 export function WithdrawCard({copy, available, pending}: WithdrawCardProps) {
-  const [notified, setNotified] = useState(false);
-
   return (
     <div className="surface-card withdraw-card">
       <div className="withdraw-card__header">
@@ -27,13 +23,6 @@ export function WithdrawCard({copy, available, pending}: WithdrawCardProps) {
         </div>
       </div>
       <p className="quote">{copy.termNote}</p>
-      {notified ? (
-        <p className="withdraw-card__notice">{copy.notice}</p>
-      ) : (
-        <button type="button" className="button button--primary" onClick={() => setNotified(true)}>
-          {copy.buttonLabel}
-        </button>
-      )}
     </div>
   );
 }

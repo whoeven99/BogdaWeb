@@ -2,15 +2,17 @@
 
 import {useState, type CSSProperties} from "react";
 
+import {AffiliateClickTracker} from "@/components/affiliate/AffiliateClickTracker";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import type {AffiliateLandingData} from "@/content/affiliate";
 
 type AffiliateLandingProps = {
   data: AffiliateLandingData;
-  refCode: string;
+  referralCode?: string;
+  productSlug?: string;
 };
 
-export function AffiliateLanding({data, refCode}: AffiliateLandingProps) {
+export function AffiliateLanding({data, referralCode, productSlug}: AffiliateLandingProps) {
   const {copy, offers} = data;
   const [activeProduct, setActiveProduct] = useState<string | null>(null);
   const [shopHandle, setShopHandle] = useState("");
@@ -18,8 +20,8 @@ export function AffiliateLanding({data, refCode}: AffiliateLandingProps) {
 
   const activeOffer = offers.find((offer) => offer.slug === activeProduct);
 
-  function openModal(productSlug: string) {
-    setActiveProduct(productSlug);
+  function openModal(slug: string) {
+    setActiveProduct(slug);
     setShopHandle("");
     setError(null);
   }
@@ -47,8 +49,8 @@ export function AffiliateLanding({data, refCode}: AffiliateLandingProps) {
       product: activeProduct,
     });
 
-    if (refCode) {
-      params.set("ref", refCode);
+    if (referralCode) {
+      params.set("ref", referralCode);
     }
 
     window.location.href = `/api/affiliate/install/?${params.toString()}`;
@@ -57,6 +59,7 @@ export function AffiliateLanding({data, refCode}: AffiliateLandingProps) {
   return (
     <>
       <section className="page-section page-hero">
+        {referralCode ? <AffiliateClickTracker code={referralCode} product={productSlug} /> : null}
         <SectionHeading eyebrow={copy.eyebrow} title={copy.title} description={copy.description} as="h1" />
         <div className="card-grid">
           {offers.map((offer) => (

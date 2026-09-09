@@ -138,6 +138,28 @@ npm run guides:translate -- --type=localization --from=en --to=zh-cn --slug=shop
 
 这些组件已经同时支持 `blog` 和 `help center`。
 
+## 数据库（Turso + Prisma）
+
+Affiliate 账号存在独立的 Turso 库，运行时用 Prisma 6 + `@prisma/adapter-libsql`。
+
+本地 `.env`（不要提交）：
+
+```text
+DATABASE_URL="file:./dev.db"
+TURSO_DATABASE_URL="libsql://your-db.turso.io"
+TURSO_AUTH_TOKEN=""
+AFFILIATE_SESSION_SECRET="replace-with-a-long-random-string"
+```
+
+`DATABASE_URL` 只给 Prisma CLI 用。应用运行时读 `TURSO_*`。
+
+```bash
+npm run prisma:generate
+npm run turso:migrate
+```
+
+不要把 `prisma migrate deploy` 直接指向 `libsql://`。
+
 ## Docker
 
 本项目已支持 Docker 部署，使用 Next.js standalone 输出。
@@ -168,7 +190,12 @@ docker run --rm -p 9000:9000 ciwi-web
 NODE_ENV=production
 PORT=9000
 HOSTNAME=0.0.0.0
+TURSO_DATABASE_URL=libsql://your-db.turso.io
+TURSO_AUTH_TOKEN=
+AFFILIATE_SESSION_SECRET=
 ```
+
+部署前对目标库执行一次 `npm run turso:migrate`。
 
 ## 发布流程
 
