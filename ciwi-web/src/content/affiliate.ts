@@ -551,11 +551,6 @@ export const mockReferrals: ReferralRecord[] = [
   {id: "ref-6", email: "frank@minimaljewel.com", productSlug: "spark-analytics-agent", signedUpAt: "2026-09-01", installed: false, subscribed: false},
 ];
 
-export const affiliateAdminPaths: Record<string, string> = {
-  translator: "ciwi-translator/app/translate-v4-mvp",
-  "spark-analytics-agent": "spark-1102/app",
-};
-
 export const affiliateReviews: Record<string, {rating: number; reviewCount: number; url: string}> = {
   translator: {rating: 4.7, reviewCount: 22, url: "https://apps.shopify.com/translator-by-ciwi"},
   "spark-analytics-agent": {rating: 5.0, reviewCount: 12, url: "https://apps.shopify.com/spark-1"},
