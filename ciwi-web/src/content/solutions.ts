@@ -171,9 +171,9 @@ const solutionsEn: SolutionItem[] = [
     ],
     recommendedProducts: [
       {
-        title: "Bundle Discount",
-        description: "Increase AOV through bundle combinations, upsell guidance, and clearer promotional framing.",
-        href: "/products/bundle-discount",
+        title: "Spark: AI Store Assistant",
+        description: "Bring store signals, content, and task workflows together to find and act on AOV opportunities.",
+        href: "/products/spark-analytics-agent",
         meta: ["Product", "AOV"],
       },
       {
@@ -191,10 +191,10 @@ const solutionsEn: SolutionItem[] = [
         meta: ["Resources", "Growth"],
       },
       {
-        title: "Bundle Discount",
-        description: "Go directly to the product page to see how bundle framing and upsell flow should be designed.",
-        href: "/products/bundle-discount",
-        meta: ["Product", "Bundle"],
+        title: "Spark: AI Store Assistant",
+        description: "Go directly to the product page to see how Spark turns store signals into actions.",
+        href: "/products/spark-analytics-agent",
+        meta: ["Product", "Spark"],
       },
       {
         title: "About the Ciwi AI Translator Shopify app",
@@ -207,8 +207,8 @@ const solutionsEn: SolutionItem[] = [
       {question: "Why does AOV growth need content and page templates too?", answer: "Because whether shoppers accept bundles and add-ons depends heavily on how clearly the page explains the combined value, not just on the backend rule."},
       {question: "Should brands optimize discount rules or copy first?", answer: "Often the message should be fixed first. Rules matter, but if shoppers cannot understand the value, even complex rules will not convert well."},
     ],
-    ctaLabel: "Open Bundle Discount",
-    ctaHref: "/products/bundle-discount",
+    ctaLabel: "Open Spark",
+    ctaHref: "/products/spark-analytics-agent",
   },
 ];
 
@@ -354,9 +354,9 @@ const solutionsZh: SolutionItem[] = [
     ],
     recommendedProducts: [
       {
-        title: "Bundle Discount",
-        description: "围绕套餐组合、加购引导和优惠表达提升 AOV。",
-        href: "/products/bundle-discount",
+        title: "Spark: AI Store Assistant",
+        description: "把店铺信号、内容与任务工作流汇聚起来，发现并推进 AOV 相关的行动机会。",
+        href: "/products/spark-analytics-agent",
         meta: ["Product", "AOV"],
       },
       {
@@ -374,10 +374,10 @@ const solutionsZh: SolutionItem[] = [
         meta: ["Resources", "Growth"],
       },
       {
-        title: "Bundle Discount",
-        description: "直接进入产品页，看套餐表达和加购路径应该如何设计。",
-        href: "/products/bundle-discount",
-        meta: ["Product", "Bundle"],
+        title: "Spark: AI Store Assistant",
+        description: "直接进入产品页，了解 Spark 如何把店铺信号转化为行动。",
+        href: "/products/spark-analytics-agent",
+        meta: ["Product", "Spark"],
       },
       {
         title: "About ciwi.ai-translator Shopify App",
@@ -390,8 +390,8 @@ const solutionsZh: SolutionItem[] = [
       {question: "为什么 AOV 提升也需要内容和页面模板？", answer: "因为用户是否接受套餐和加购，很大程度取决于页面有没有把组合价值讲清楚，而不是后台规则本身。"},
       {question: "应该先优化折扣规则还是先优化表达？", answer: "很多时候先优化表达就能提升理解和接受度。规则重要，但如果用户看不懂价值，再复杂的规则也很难转化。"},
     ],
-    ctaLabel: "查看 Bundle Discount",
-    ctaHref: "/products/bundle-discount",
+    ctaLabel: "查看 Spark",
+    ctaHref: "/products/spark-analytics-agent",
   },
 ];
 

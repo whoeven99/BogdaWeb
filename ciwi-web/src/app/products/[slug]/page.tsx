@@ -11,6 +11,7 @@ import {FinalCtaSection} from "@/components/sections/FinalCtaSection";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getProductMap, products} from "@/content/products";
+import {getUseCasesByProduct} from "@/content/use-cases";
 import {localizeHref} from "@/lib/i18n";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata, siteUrl} from "@/lib/seo/metadata";
@@ -236,6 +237,8 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
   ];
   const isTranslator = product.slug === "translator";
   const translatorCopy = isTranslator ? copy.translator : null;
+  const linkedUseCases = getUseCasesByProduct(locale, product.slug);
+  const hasLinkedUseCases = linkedUseCases.length > 0;
   const hasVideo = Boolean(product.videoUrl);
   let anchorItems = (isTranslator ? translatorCopy?.anchors : copy.anchors)?.map((item) => ({...item})) ?? [];
   if (hasVideo && !isTranslator) {
@@ -320,14 +323,35 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
             title={copy.sections.useCases.title}
             description={copy.sections.useCases.description}
           />
-          <div className="card-grid">
-            {product.useCases.map((useCase) => (
-              <article key={useCase.title} className="surface-card">
-                <h3>{useCase.title}</h3>
-                <p className="quote">{useCase.description}</p>
-              </article>
-            ))}
-          </div>
+          {hasLinkedUseCases ? (
+            <>
+              <div className="resource-grid">
+                {linkedUseCases.map((useCase) => (
+                  <ArticleCard
+                    key={useCase.slug}
+                    title={useCase.title}
+                    description={useCase.description}
+                    href={`/use-cases/${useCase.slug}`}
+                    meta={[product.name, useCase.category]}
+                  />
+                ))}
+              </div>
+              <div className="resources-section__cta">
+                <Button href="/use-cases" variant="secondary">
+                  {locale === "zh-cn" ? "查看全部 use cases" : "Browse all use cases"}
+                </Button>
+              </div>
+            </>
+          ) : (
+            <div className="card-grid">
+              {product.useCases.map((useCase) => (
+                <article key={useCase.title} className="surface-card">
+                  <h3>{useCase.title}</h3>
+                  <p className="quote">{useCase.description}</p>
+                </article>
+              ))}
+            </div>
+          )}
         </section>
 
         {hasVideo ? (

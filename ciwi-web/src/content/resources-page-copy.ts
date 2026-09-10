@@ -32,6 +32,13 @@ const resourcesPageCopyByLocale = {
         ctaLabel: "Open guides",
         ctaHref: "/guides",
       },
+      useCases: {
+        eyebrow: "Use Cases",
+        title: "Use case playbooks",
+        description: "Landing-page style workflow pages built around product-specific operating problems and outcomes.",
+        ctaLabel: "Open use cases",
+        ctaHref: "/use-cases",
+      },
       helpCenter: {
         eyebrow: "Help center",
         title: "Help Center",
@@ -110,6 +117,13 @@ const resourcesPageCopyByLocale = {
         pagesLabel: "页面数",
         ctaLabel: "查看指南",
         ctaHref: "/guides",
+      },
+      useCases: {
+        eyebrow: "Use Cases",
+        title: "Use case 栏目",
+        description: "围绕产品真实经营场景整理的模板落地页，适合继续扩成聚合页 + 详情页的结构化内容体系。",
+        ctaLabel: "查看 use cases",
+        ctaHref: "/use-cases",
       },
       helpCenter: {
         eyebrow: "帮助中心",

@@ -53,13 +53,13 @@ export const legacyRouteMap = {
   },
   "product-description-generation": {
     title: "Product Description Generation 页面已整合",
-    destination: "/products/content-ai#features",
-    description: "该功能已经并入 Content AI 产品页的功能模块。",
+    destination: "/products/spark-analytics-agent",
+    description: "该功能已经并入 Spark 产品页的功能模块。",
   },
   "image-alt-text-generation": {
     title: "Image Alt Text Generation 页面已整合",
-    destination: "/products/content-ai#features",
-    description: "该功能已经并入 Content AI 产品页的功能模块。",
+    destination: "/products/spark-analytics-agent",
+    description: "该功能已经并入 Spark 产品页的功能模块。",
   },
   deepl: {
     title: "DeepL 能力已并入 Translator 页面",

@@ -48,7 +48,7 @@ export const productsIndexMediaBriefs: MediaAssetBrief[] = [
     format: "Image",
     aspectRatio: "16:9",
     placement: "Products 列表页首屏",
-    description: "准备一张产品矩阵或多产品拼图，帮助用户快速理解 Translator、Bundle 和 Content AI 的关系。",
+    description: "准备一张产品矩阵或多产品拼图，帮助用户快速理解 Translator 和 Spark 的关系。",
     checklist: [
       "适合用 2 到 3 个产品界面拼接成一张图",
       "每个产品只露出最有辨识度的部分",
@@ -215,7 +215,7 @@ export const demoPageMediaBriefs: MediaAssetBrief[] = [
     format: "Video",
     aspectRatio: "16:9",
     placement: "Demo Center 首屏",
-    description: "准备一段总览视频，快速概括 Translator、Glossary 和 Bundle 三类演示能力。",
+    description: "准备一段总览视频，快速概括 Translator 和 Glossary 两类演示能力。",
     checklist: [
       "时长控制在 45 秒以内",
       "尽量一镜到底或少量切镜，减少理解负担",

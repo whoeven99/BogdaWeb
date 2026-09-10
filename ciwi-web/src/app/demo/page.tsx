@@ -14,8 +14,8 @@ export async function generateMetadata() {
     title: locale === "zh-cn" ? "演示中心" : "Demo Center",
     description:
       locale === "zh-cn"
-        ? "通过前后对比、术语控制和套餐场景，快速判断产品价值。"
-        : "Use focused before-and-after demos, terminology control examples, and bundle scenarios to understand product value faster.",
+        ? "通过前后对比和术语控制，快速判断产品价值。"
+        : "Use focused before-and-after demos and terminology control examples to understand product value faster.",
     path: "/demo",
     locale,
   });
@@ -29,7 +29,7 @@ export default async function DemoPage() {
           hero: {
             eyebrow: "演示",
             title: "用最短路径看懂产品能力",
-            description: "这里聚焦最关键的前后对比、术语控制和 bundle 场景。",
+            description: "这里聚焦最关键的前后对比和术语控制。",
             cards: [
               {
                 eyebrow: "翻译演示",
@@ -38,13 +38,12 @@ export default async function DemoPage() {
                 accent: true,
               },
               {title: "Glossary 术语干预", description: "展示 glossary 如何影响品牌词、产品词和营销文案的输出。"},
-              {title: "Bundle 增长场景", description: "展示套餐折扣前后，购物车表达与客单价机会的变化。"},
             ],
           },
           media: {
             eyebrow: "演示总览",
             title: "几十秒，先看到效果变化",
-            description: "用一段总览视频，把翻译前后、术语控制和套餐场景的差异快速过一遍。",
+            description: "用一段总览视频，把翻译前后和术语控制的差异快速过一遍。",
           },
           faq: [
             {
@@ -53,7 +52,7 @@ export default async function DemoPage() {
             },
             {
               question: "先看 Demo 能带来什么？",
-              answer: "你可以先用最短时间看到翻译前后差异、术语控制效果和套餐表达变化，再判断这套产品是否值得继续深入。",
+              answer: "你可以先用最短时间看到翻译前后差异和术语控制效果，再判断这套产品是否值得继续深入。",
             },
           ],
           finalCta: {
@@ -70,7 +69,7 @@ export default async function DemoPage() {
           hero: {
             eyebrow: "Demo",
             title: "Understand the product through the shortest path",
-            description: "This page focuses on before-and-after comparisons, glossary control, and bundle-led scenarios.",
+            description: "This page focuses on before-and-after comparisons and glossary control.",
             cards: [
               {
                 eyebrow: "Translation demo",
@@ -79,13 +78,12 @@ export default async function DemoPage() {
                 accent: true,
               },
               {title: "Glossary intervention", description: "See how glossary changes brand terms, product terms, and promotional language."},
-              {title: "Bundle growth story", description: "See how bundle offers change cart messaging and AOV opportunities."},
             ],
           },
           media: {
             eyebrow: "Demo overview",
             title: "See the effect in under a minute",
-            description: "A short overview video walks through the before-and-after, glossary control, and bundle scenarios.",
+            description: "A short overview video walks through the before-and-after and glossary control scenarios.",
           },
           faq: [
             {

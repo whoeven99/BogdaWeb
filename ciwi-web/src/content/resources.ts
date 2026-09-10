@@ -6,6 +6,7 @@ import {getFunctionScenarioGuides} from "@/content/function-scenario-guides";
 import {getFeaturedHelpCenterDocs, getHelpCenterDocs} from "@/content/help-center";
 import {getLocalizationGuides} from "@/content/localization-guides";
 import {getProductResearchWorkflowArticles} from "@/content/product-research";
+import {getFeaturedUseCases} from "@/content/use-cases";
 
 export type ResourceItem = {
   title: string;
@@ -82,5 +83,14 @@ export function getProductResearchResources(locale: Locale): ResourceItem[] {
     description: article.description,
     href: article.href,
     meta: [locale === "zh-cn" ? "选品" : "Product Research", article.stageLabel, String(article.year)],
+  }));
+}
+
+export function getUseCaseResources(locale: Locale): ResourceItem[] {
+  return getFeaturedUseCases(locale).map((item) => ({
+    title: item.title,
+    description: item.description,
+    href: `/use-cases/${item.slug}`,
+    meta: [locale === "zh-cn" ? "Use Case" : "Use Case", item.category],
   }));
 }
