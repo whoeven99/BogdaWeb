@@ -349,7 +349,10 @@ export function MediaPlaceholderSection({
           const preset = getShowcasePreset(item, index, locale);
           const placementLabel = locale === "zh-cn" ? "位置" : "Placement";
           const placementValue = locale === "zh-cn" ? item.placement : item.title;
-          const itemDescription = locale === "zh-cn" ? normalizeItemDescription(item.description, locale) : preset.summary;
+          const itemDescription =
+            locale === "zh-cn"
+              ? normalizeItemDescription(item.description, locale)
+              : item.description || preset.summary;
           const watchLabel = locale === "zh-cn" ? "查看演示" : "Watch walkthrough";
 
           return (
@@ -408,7 +411,6 @@ export function MediaPlaceholderSection({
                 <div>
                   <h3 className="text-2xl font-semibold tracking-[-0.04em] text-slate-950">{item.title}</h3>
                   <p className="mt-3 text-sm leading-7 text-slate-600">{itemDescription}</p>
-                  <p className="mt-3 text-sm leading-7 text-slate-500">{preset.summary}</p>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {preset.highlights.map((entry) => (

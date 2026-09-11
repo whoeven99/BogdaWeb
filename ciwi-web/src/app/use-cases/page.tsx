@@ -1,4 +1,6 @@
 import {UseCasePlaybookCard} from "@/components/cards/UseCasePlaybookCard";
+import {ContentIndexHero} from "@/components/sections/ContentIndexHero";
+import {FinalCtaSection} from "@/components/sections/FinalCtaSection";
 import {Button} from "@/components/ui/Button";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
@@ -11,30 +13,29 @@ function getPageCopy(locale: "en" | "zh-cn") {
   if (locale === "zh-cn") {
     return {
       metadata: {
-        title: "Use Cases",
-        description: "围绕 Ciwi 产品整理的一组 playbook 入口页，先按产品查看 use case 聚合页，再进入具体场景。",
+        title: "Ciwi 应用场景",
+        description: "按产品组织的 Ciwi 应用场景入口页，先浏览产品方案集，再进入具体场景页面。",
       },
       hero: {
-        eyebrow: "Use Cases",
-        title: "Ciwi Business playbook",
-        description: "基于真实的商业实践打造工作流和 agent 操作，从 shopify 卖家体验出发，通过 Ciwi 获得最佳的经营效果",
-        primaryLabel: "查看 Spark Playbook",
+        eyebrow: "应用场景",
+        title: "按产品浏览 Ciwi 场景方案",
+        description: "围绕真实经营问题整理各产品的代表性场景，先快速判断方向，再进入更完整的产品方案集或具体场景页。",
+        primaryLabel: "查看 Spark 方案集",
         primaryHref: "/products/spark-analytics-agent/playbook",
-        secondaryLabel: "查看产品列表",
+        secondaryLabel: "浏览产品列表",
         secondaryHref: "/products",
       },
       modules: {
         eyebrow: "按产品展开",
-        title: "每个产品直接展开具体 use cases",
-        description: "每个模块先给你足够判断方向的几张具体卡片，再决定要不要进入对应产品的完整 use case 聚合页。",
+        title: "每个产品先展开代表性场景",
+        description: "每个模块先展示几张足够判断方向的具体卡片，再决定是否进入对应产品的完整方案集。",
         countLabel: "个场景",
-        actionLabel: "查看完整 use cases",
-        actionLabelEn: "Open full playbook",
+        actionLabel: "查看完整方案集",
         linkLabel: "查看场景详情",
       },
       finalCta: {
-        title: "你有更好的操作实践？",
-        description: "欢迎和我们分享你是如何使用 Ciwi 产品更好地经营shopify 商店，我们愿意针对真实、有效的用户案例提供最高100 美金的反馈奖励",
+        title: "有真实的应用场景想分享？",
+        description: "欢迎告诉我们你如何使用 Ciwi 改善 Shopify 店铺经营；对于真实、有效的案例，我们愿意提供最高 100 美元的反馈奖励。",
         primaryLabel: "联系我们",
         primaryHref: "/contact",
         secondaryLabel: "查看资源中心",
@@ -63,7 +64,6 @@ function getPageCopy(locale: "en" | "zh-cn") {
       description: "Each module exposes a few concrete use cases up front, then links to the complete product playbook when you want the full list.",
       countLabel: "use cases",
       actionLabel: "Open full playbook",
-      actionLabelEn: "Open full playbook",
       linkLabel: "Open use case",
     },
     finalCta: {
@@ -104,22 +104,20 @@ export default async function UseCasesPage() {
     <main>
       <PageContainer>
         <section className="py-12 sm:py-16 lg:py-20">
-          <div className="content-hero-shell overflow-hidden lg:py-4">
-            <div className="max-w-4xl">
-              <SectionHeading
-                eyebrow={copy.hero.eyebrow}
-                title={copy.hero.title}
-                description={copy.hero.description}
-                as="h1"
-              />
-              <div className="mt-8 flex flex-wrap items-center gap-3">
+          <ContentIndexHero
+            eyebrow={copy.hero.eyebrow}
+            title={copy.hero.title}
+            description={copy.hero.description}
+            className="overflow-hidden lg:py-4"
+            actions={
+              <>
                 <Button href={copy.hero.primaryHref}>{copy.hero.primaryLabel}</Button>
                 <Button href={copy.hero.secondaryHref} variant="secondary">
                   {copy.hero.secondaryLabel}
                 </Button>
-              </div>
-            </div>
-          </div>
+              </>
+            }
+          />
         </section>
 
         <section className="py-8 sm:py-10 lg:py-12">
@@ -133,17 +131,17 @@ export default async function UseCasesPage() {
                   eyebrow={group.product.name}
                   title={
                     locale === "zh-cn"
-                      ? `${group.product.name} 的 use cases`
+                      ? `${group.product.name} 相关场景`
                       : `${group.product.name} use cases`
                   }
                   description={`${group.product.shortDescription} ${
                     locale === "zh-cn"
-                      ? `当前先展示 ${Math.min(group.items.length, 4)} 个代表场景。`
+                      ? `当前先展示 ${Math.min(group.items.length, 4)} 个代表场景，方便快速判断方向。`
                       : `Showing ${Math.min(group.items.length, 4)} representative use cases first.`
                   }`}
                   action={
                     <Button href={getProductPlaybookHref(group.product.slug)} variant="secondary">
-                      {locale === "zh-cn" ? copy.modules.actionLabel : copy.modules.actionLabelEn}
+                      {copy.modules.actionLabel}
                     </Button>
                   }
                 />
@@ -167,24 +165,14 @@ export default async function UseCasesPage() {
           </div>
         </section>
 
-        <section className="py-12 sm:py-14 lg:py-16">
-          <div className="final-cta-panel">
-            <div className="max-w-3xl space-y-3">
-              <h2 className="text-3xl font-semibold tracking-[-0.04em] text-slate-950 sm:text-4xl">
-                {copy.finalCta.title}
-              </h2>
-              <p className="text-[15px] leading-7 text-slate-600">{copy.finalCta.description}</p>
-            </div>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <Button href={copy.finalCta.primaryHref} variant="primary">
-                {copy.finalCta.primaryLabel}
-              </Button>
-              <Button href={copy.finalCta.secondaryHref} variant="secondary">
-                {copy.finalCta.secondaryLabel}
-              </Button>
-            </div>
-          </div>
-        </section>
+        <FinalCtaSection
+          title={copy.finalCta.title}
+          description={copy.finalCta.description}
+          primaryLabel={copy.finalCta.primaryLabel}
+          primaryHref={copy.finalCta.primaryHref}
+          secondaryLabel={copy.finalCta.secondaryLabel}
+          secondaryHref={copy.finalCta.secondaryHref}
+        />
       </PageContainer>
     </main>
   );

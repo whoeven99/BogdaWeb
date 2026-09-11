@@ -1,4 +1,5 @@
 import {UseCasePlaybookCard} from "@/components/cards/UseCasePlaybookCard";
+import {FinalCtaSection} from "@/components/sections/FinalCtaSection";
 import {Button} from "@/components/ui/Button";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
@@ -18,33 +19,33 @@ function getPlaybookCopy(locale: "en" | "zh-cn") {
   if (locale === "zh-cn") {
     return {
       notFound: {
-        title: "未找到 Playbook",
-        description: "你访问的产品 playbook 不存在。",
+        title: "未找到方案集",
+        description: "你访问的产品方案集不存在。",
       },
       hero: {
-        eyebrow: "Playbook",
-        titleSuffix: "use case playbook",
-        description: "参考 Manus playbook 的聚合形式，先集中浏览这个产品最值得展开的 use case，再决定进入哪个具体场景。",
+        eyebrow: "方案集",
+        titleSuffix: "产品方案集",
+        description: "先集中浏览这个产品最值得展开的应用场景，再决定进入哪个具体场景页面。",
         primaryLabel: "查看产品页",
-        secondaryLabel: "查看全部产品 playbook",
+        secondaryLabel: "查看全部产品方案集",
       },
       picks: {
-        eyebrow: "Picks",
-        title: "优先看这些高频 use cases",
+        eyebrow: "精选场景",
+        title: "优先看这些高频场景",
         description: "先从最常见、最容易承接搜索和销售语境的场景开始看。",
       },
       all: {
-        eyebrow: "All use cases",
+        eyebrow: "全部场景",
         title: "这个产品下的全部场景",
         description: "每个卡片都可以继续扩成更完整的落地页，但聚合页本身先承担总入口。",
       },
       card: {
-        linkLabel: "打开 use case",
-        metaLabel: "Use Case",
+        linkLabel: "打开场景",
+        metaLabel: "应用场景",
       },
       finalCta: {
-        title: "继续扩这个产品的 playbook",
-        description: "现在已经有产品级聚合页，接下来可以继续补更多 use case、缩略图和差异化内容模块。",
+        title: "继续扩展这个产品的方案集",
+        description: "现在已经有产品级聚合页，接下来可以继续补更多场景、缩略图和差异化内容模块。",
         primaryLabel: "返回产品页",
         secondaryLabel: "查看全部产品",
       },
@@ -106,7 +107,7 @@ export async function generateMetadata({params}: ProductPlaybookPageProps) {
   }
 
   return buildPageMetadata({
-    title: `${product.name} Playbook`,
+    title: locale === "zh-cn" ? `${product.name} 方案集` : `${product.name} Playbook`,
     description: `${product.shortDescription} ${copy.hero.description}`,
     path: getProductPlaybookHref(product.slug),
     locale,
@@ -132,11 +133,11 @@ export default async function ProductPlaybookPage({params}: ProductPlaybookPageP
       {name: "Home", item: siteUrl},
       {name: locale === "zh-cn" ? "产品" : "Products", item: new URL(localizeHref(locale, "/products"), siteUrl).toString()},
       {name: product.name, item: new URL(localizeHref(locale, `/products/${product.slug}`), siteUrl).toString()},
-      {name: locale === "zh-cn" ? "Playbook" : "Playbook", item: pageUrl},
+      {name: locale === "zh-cn" ? "方案集" : "Playbook", item: pageUrl},
     ]),
     buildWebPageSchema({
       url: pageUrl,
-      name: `${product.name} Playbook`,
+      name: locale === "zh-cn" ? `${product.name} 方案集` : `${product.name} Playbook`,
       description: `${product.shortDescription} ${copy.hero.description}`,
       keywords: [product.name, ...useCases.map((item) => item.category)],
       type: "CollectionPage",
@@ -171,7 +172,7 @@ export default async function ProductPlaybookPage({params}: ProductPlaybookPageP
               </article>
               <article className="rounded-[24px] border border-slate-200/80 bg-white/90 p-5 shadow-sm">
                 <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">
-                  {locale === "zh-cn" ? "Use cases" : "Use cases"}
+                  {locale === "zh-cn" ? "应用场景" : "Use cases"}
                 </span>
                 <strong className="mt-3 block text-lg font-semibold text-slate-950">{useCases.length}</strong>
               </article>
@@ -244,20 +245,14 @@ export default async function ProductPlaybookPage({params}: ProductPlaybookPageP
           </div>
         </section>
 
-        <section className="py-12 sm:py-14 lg:py-16">
-          <div className="final-cta-panel">
-            <div className="max-w-3xl space-y-3">
-              <h2 className="text-3xl font-semibold tracking-[-0.04em] text-white sm:text-4xl">{copy.finalCta.title}</h2>
-              <p className="text-[15px] leading-7 text-slate-300">{copy.finalCta.description}</p>
-            </div>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <Button href={`/products/${product.slug}`}>{copy.finalCta.primaryLabel}</Button>
-              <Button href="/products" variant="secondary">
-                {copy.finalCta.secondaryLabel}
-              </Button>
-            </div>
-          </div>
-        </section>
+        <FinalCtaSection
+          title={copy.finalCta.title}
+          description={copy.finalCta.description}
+          primaryLabel={copy.finalCta.primaryLabel}
+          primaryHref={`/products/${product.slug}`}
+          secondaryLabel={copy.finalCta.secondaryLabel}
+          secondaryHref="/products"
+        />
       </PageContainer>
     </main>
   );

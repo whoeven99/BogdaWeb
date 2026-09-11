@@ -1,8 +1,8 @@
-import {ArticleCard} from "@/components/cards/ArticleCard";
+import {ContentIndexHero} from "@/components/sections/ContentIndexHero";
 import {FinalCtaSection} from "@/components/sections/FinalCtaSection";
 import {MediaPlaceholderSection} from "@/components/sections/MediaPlaceholderSection";
+import {ResourceCollectionSection} from "@/components/sections/ResourceCollectionSection";
 import {PageContainer} from "@/components/ui/PageContainer";
-import {SectionHeading} from "@/components/ui/SectionHeading";
 import {solutionsIndexMediaBriefs} from "@/content/media-briefs";
 import {getSolutions} from "@/content/solutions";
 import {getRequestLocale} from "@/lib/i18n-server";
@@ -109,23 +109,16 @@ export default async function SolutionsPage() {
           />
         ))}
         <section className="page-section page-hero">
-          <SectionHeading
-            eyebrow={copy.hero.eyebrow}
-            title={copy.hero.title}
-            description={copy.hero.description}
-            as="h1"
+          <ContentIndexHero eyebrow={copy.hero.eyebrow} title={copy.hero.title} description={copy.hero.description} />
+          <ResourceCollectionSection
+            items={solutions.map((solution) => ({
+              title: solution.name,
+              description: solution.description,
+              href: `/solutions/${solution.slug}`,
+              meta: [...copy.hero.cardMeta],
+            }))}
+            className="mt-8 py-0"
           />
-          <div className="resource-grid">
-            {solutions.map((solution) => (
-              <ArticleCard
-                key={solution.slug}
-                title={solution.name}
-                description={solution.description}
-                href={`/solutions/${solution.slug}`}
-                meta={[...copy.hero.cardMeta]}
-              />
-            ))}
-          </div>
         </section>
         <MediaPlaceholderSection
           eyebrow={copy.media.eyebrow}

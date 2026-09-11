@@ -2,7 +2,8 @@
 
 import {useMemo, useState} from "react";
 
-import {LocalizedLink} from "@/components/ui/LocalizedLink";
+import {ContentIndexCard} from "@/components/cards/ContentIndexCard";
+import {ContentIndexHero} from "@/components/sections/ContentIndexHero";
 import type {HelpCenterDoc} from "@/content/help-center";
 import {getUiCopy} from "@/content/ui-copy";
 import type {Locale} from "@/lib/i18n";
@@ -90,13 +91,7 @@ export function HelpCenterLanding({docs, featuredDocs, locale, eyebrow}: HelpCen
 
   return (
     <section className="py-12 sm:py-16 lg:py-20">
-      <div className="content-hero-shell">
-        <div className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-700">{eyebrow}</div>
-        <h1 className="mt-4 max-w-4xl text-pretty text-4xl font-semibold tracking-[-0.05em] text-slate-950 sm:text-5xl">
-          {uiCopy.docs.landingTitle}
-        </h1>
-        <p className="mt-4 max-w-3xl text-base leading-8 text-slate-600">{uiCopy.docs.landingDescription}</p>
-      </div>
+      <ContentIndexHero eyebrow={eyebrow} title={uiCopy.docs.landingTitle} description={uiCopy.docs.landingDescription} />
 
       <div className="mt-12 space-y-10">
         <section className="rounded-[32px] bg-white/90 p-7 shadow-[0_16px_48px_-24px_rgba(15,23,42,0.14)] sm:p-9">
@@ -112,27 +107,14 @@ export function HelpCenterLanding({docs, featuredDocs, locale, eyebrow}: HelpCen
 
           <div className="mt-10 grid gap-6 md:grid-cols-2 xl:gap-8 xl:grid-cols-3">
             {featuredDocs.map((doc) => (
-              <LocalizedLink
+              <ContentIndexCard
                 key={doc.entryId}
                 href={doc.href}
-                className="group flex h-full flex-col rounded-[28px] bg-slate-50/70 p-7 shadow-[0_14px_36px_-28px_rgba(15,23,42,0.18)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-white sm:p-8"
-              >
-                <div className="flex flex-wrap gap-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">
-                  {doc.meta.map((item) => (
-                    <span key={item} className="rounded-full bg-white px-3 py-1">
-                      {item}
-                    </span>
-                  ))}
-                </div>
-                <h3 className="mt-5 text-[22px] font-semibold tracking-[-0.03em] text-slate-950">{doc.title}</h3>
-                <p className="mt-4 flex-1 text-[15px] leading-8 text-slate-600">{doc.description}</p>
-                <span className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-emerald-700">
-                  {uiCopy.docs.openArticleLabel}
-                  <span aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-0.5">
-                    →
-                  </span>
-                </span>
-              </LocalizedLink>
+                title={doc.title}
+                description={doc.description}
+                meta={doc.meta}
+                ctaLabel={uiCopy.docs.openArticleLabel}
+              />
             ))}
           </div>
         </section>
@@ -210,32 +192,15 @@ export function HelpCenterLanding({docs, featuredDocs, locale, eyebrow}: HelpCen
 
                   <div className="grid gap-6 md:grid-cols-2 xl:gap-8 xl:grid-cols-3">
                     {group.docs.map((doc) => (
-                      <LocalizedLink
+                      <ContentIndexCard
                         key={doc.entryId}
                         href={doc.href}
-                        className="group flex h-full flex-col rounded-[28px] border border-slate-200/80 bg-slate-50/70 p-7 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:bg-white sm:p-8"
-                      >
-                        <div className="flex flex-wrap gap-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">
-                          {doc.meta.map((item) => (
-                            <span key={item} className="rounded-full border border-slate-200 bg-white/90 px-3 py-1">
-                              {item}
-                            </span>
-                          ))}
-                          <span className="rounded-full border border-slate-200 bg-white/90 px-3 py-1">
-                            {doc.readingTime}
-                          </span>
-                        </div>
-                        <strong className="mt-5 text-[21px] font-semibold tracking-[-0.03em] text-slate-950">
-                          {doc.title}
-                        </strong>
-                        <p className="mt-4 flex-1 text-[15px] leading-8 text-slate-600">{doc.description}</p>
-                        <span className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-emerald-700">
-                          {uiCopy.docs.openArticleLabel}
-                          <span aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-0.5">
-                            →
-                          </span>
-                        </span>
-                      </LocalizedLink>
+                        title={doc.title}
+                        description={doc.description}
+                        meta={[...doc.meta, doc.readingTime]}
+                        ctaLabel={uiCopy.docs.openArticleLabel}
+                        variant="bordered"
+                      />
                     ))}
                   </div>
                 </section>

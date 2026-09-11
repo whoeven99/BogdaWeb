@@ -18,7 +18,7 @@ export function Button({href, children, variant = "primary"}: ButtonProps) {
     "!inline-flex !min-h-11 !items-center !justify-center !rounded-full !px-5 !text-sm !font-semibold !transition-all !duration-200",
     "focus-visible:!outline-none focus-visible:!ring-2 focus-visible:!ring-emerald-500/60 focus-visible:!ring-offset-2",
     variant === "primary"
-      ? "!border-transparent !bg-slate-950 !text-white shadow-[0_12px_30px_-12px_rgba(15,23,42,0.4)] hover:!bg-emerald-700 hover:!text-white"
+      ? "!border-transparent !bg-slate-950 !text-white hover:!bg-emerald-700 hover:!text-white"
       : "",
     variant === "secondary"
       ? "!border-transparent !bg-emerald-50 !text-slate-950 !ring-1 !ring-inset !ring-emerald-200 hover:!bg-emerald-100 hover:!text-slate-950"

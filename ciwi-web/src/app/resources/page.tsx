@@ -1,5 +1,6 @@
-import {ArticleCard} from "@/components/cards/ArticleCard";
+import {ContentIndexHero} from "@/components/sections/ContentIndexHero";
 import {NewsletterSubscriptionCard} from "@/components/sections/NewsletterSubscriptionCard";
+import {ResourceCollectionSection} from "@/components/sections/ResourceCollectionSection";
 import {Button} from "@/components/ui/Button";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
@@ -79,50 +80,11 @@ export default async function ResourcesPage() {
     },
   ];
 
-  function renderArticleGrid(
-    items: Array<{title: string; description: string; href: string; meta: string[]}>,
-    emptyState?: {title: string; description: string},
-  ) {
-    if (items.length > 0) {
-      return (
-        <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {items.map((item) => (
-            <ArticleCard
-              key={`${item.title}-${item.href}`}
-              title={item.title}
-              description={item.description}
-              href={item.href}
-              meta={item.meta}
-            />
-          ))}
-        </div>
-      );
-    }
-
-    if (!emptyState) {
-      return null;
-    }
-
-    return (
-      <div className="mt-8 rounded-[28px] border border-dashed border-slate-300 bg-slate-50/80 px-6 py-8">
-        <h3 className="text-xl font-semibold tracking-[-0.03em] text-slate-950">{emptyState.title}</h3>
-        <p className="mt-3 text-sm leading-7 text-slate-600">{emptyState.description}</p>
-      </div>
-    );
-  }
-
   return (
     <main className="resources-page">
       <PageContainer>
         <section className="py-12 sm:py-16 lg:py-20">
-          <div className="content-hero-shell">
-              <SectionHeading
-                eyebrow={copy.hero.eyebrow}
-                title={copy.hero.title}
-                description={copy.hero.description}
-                as="h1"
-              />
-          </div>
+          <ContentIndexHero eyebrow={copy.hero.eyebrow} title={copy.hero.title} description={copy.hero.description} />
         </section>
 
         <section className="py-8 sm:py-10 lg:py-12">
@@ -133,22 +95,25 @@ export default async function ResourcesPage() {
           />
           <div className="mt-8 space-y-12">
             <section className="space-y-6">
-              {renderArticleGrid(guideModuleResources)}
-            </section>
-            <section className="space-y-6 border-t border-slate-200/70 pt-10">
-              <SectionHeading
-                title={copy.sections.guides.categoryTitle}
-                description={copy.sections.guides.categoryDescription}
+              <ResourceCollectionSection
+                items={guideModuleResources}
+                className="py-0"
               />
-              {renderArticleGrid(featuredLocalizationGuideResources, unavailableGuideCopy)}
             </section>
-            <section className="space-y-6 border-t border-slate-200/70 pt-10">
-              <SectionHeading
-                title={copy.sections.guides.scenarioTitle}
-                description={copy.sections.guides.scenarioDescription}
-              />
-              {renderArticleGrid(featuredFunctionScenarioGuideResources, unavailableGuideCopy)}
-            </section>
+            <ResourceCollectionSection
+              title={copy.sections.guides.categoryTitle}
+              description={copy.sections.guides.categoryDescription}
+              items={featuredLocalizationGuideResources}
+              emptyState={unavailableGuideCopy}
+              className="space-y-6 border-t border-slate-200/70 pt-10"
+            />
+            <ResourceCollectionSection
+              title={copy.sections.guides.scenarioTitle}
+              description={copy.sections.guides.scenarioDescription}
+              items={featuredFunctionScenarioGuideResources}
+              emptyState={unavailableGuideCopy}
+              className="space-y-6 border-t border-slate-200/70 pt-10"
+            />
           </div>
           <div className="mt-8 flex justify-start">
             <Button href={copy.sections.guides.ctaHref} variant="secondary">
@@ -157,143 +122,53 @@ export default async function ResourcesPage() {
           </div>
         </section>
 
-        <section className="py-12 sm:py-14 lg:py-16">
-          <SectionHeading
-            title={copy.sections.useCases.title}
-            description={copy.sections.useCases.description}
-          />
-          <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {featuredUseCaseResources.map((item) => (
-              <ArticleCard
-                key={`${item.title}-${item.href}`}
-                title={item.title}
-                description={item.description}
-                href={item.href}
-                meta={item.meta}
-              />
-            ))}
-          </div>
-          <div className="mt-8 flex justify-start">
-            <Button href={copy.sections.useCases.ctaHref} variant="secondary">
-              {copy.sections.useCases.ctaLabel}
-            </Button>
-          </div>
-        </section>
+        <ResourceCollectionSection
+          title={copy.sections.useCases.title}
+          description={copy.sections.useCases.description}
+          items={featuredUseCaseResources}
+          ctaLabel={copy.sections.useCases.ctaLabel}
+          ctaHref={copy.sections.useCases.ctaHref}
+        />
 
-        <section className="py-12 sm:py-14 lg:py-16">
-          <SectionHeading
-            title={copy.sections.helpCenter.title}
-            description={copy.sections.helpCenter.description}
-          />
-          <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {featuredHelpCenterResources.map((item) => (
-              <ArticleCard
-                key={`${item.title}-${item.href}`}
-                title={item.title}
-                description={item.description}
-                href={item.href}
-                meta={item.meta}
-              />
-            ))}
-          </div>
-          <div className="mt-8 flex justify-start">
-            <Button href={copy.sections.helpCenter.ctaHref} variant="secondary">
-              {copy.sections.helpCenter.ctaLabel}
-            </Button>
-          </div>
-        </section>
+        <ResourceCollectionSection
+          title={copy.sections.helpCenter.title}
+          description={copy.sections.helpCenter.description}
+          items={featuredHelpCenterResources}
+          ctaLabel={copy.sections.helpCenter.ctaLabel}
+          ctaHref={copy.sections.helpCenter.ctaHref}
+        />
 
-        <section className="py-12 sm:py-14 lg:py-16">
-          <SectionHeading
-            title={copy.sections.blog.title}
-            description={copy.sections.blog.description}
-          />
-          <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {featuredBlogResources.map((item) => (
-              <ArticleCard
-                key={`${item.title}-${item.href}`}
-                title={item.title}
-                description={item.description}
-                href={item.href}
-                meta={item.meta}
-              />
-            ))}
-          </div>
-          <div className="mt-8 flex justify-start">
-            <Button href={copy.sections.blog.ctaHref} variant="secondary">
-              {copy.sections.blog.ctaLabel}
-            </Button>
-          </div>
-        </section>
+        <ResourceCollectionSection
+          title={copy.sections.blog.title}
+          description={copy.sections.blog.description}
+          items={featuredBlogResources}
+          ctaLabel={copy.sections.blog.ctaLabel}
+          ctaHref={copy.sections.blog.ctaHref}
+        />
 
-        <section className="py-12 sm:py-14 lg:py-16">
-          <SectionHeading
-            title={copy.sections.compare.title}
-            description={copy.sections.compare.description}
-          />
-          <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {featuredCompareResources.map((item) => (
-              <ArticleCard
-                key={`${item.title}-${item.href}`}
-                title={item.title}
-                description={item.description}
-                href={item.href}
-                meta={item.meta}
-              />
-            ))}
-          </div>
-          <div className="mt-8 flex justify-start">
-            <Button href={copy.sections.compare.ctaHref} variant="secondary">
-              {copy.sections.compare.ctaLabel}
-            </Button>
-          </div>
-        </section>
+        <ResourceCollectionSection
+          title={copy.sections.compare.title}
+          description={copy.sections.compare.description}
+          items={featuredCompareResources}
+          ctaLabel={copy.sections.compare.ctaLabel}
+          ctaHref={copy.sections.compare.ctaHref}
+        />
 
-        <section className="py-12 sm:py-14 lg:py-16">
-          <SectionHeading
-            title={copy.sections.bestShopifyApps.title}
-            description={copy.sections.bestShopifyApps.description}
-          />
-          <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {featuredBestShopifyAppsResources.map((item) => (
-              <ArticleCard
-                key={`${item.title}-${item.href}`}
-                title={item.title}
-                description={item.description}
-                href={item.href}
-                meta={item.meta}
-              />
-            ))}
-          </div>
-          <div className="mt-8 flex justify-start">
-            <Button href={copy.sections.bestShopifyApps.ctaHref} variant="secondary">
-              {copy.sections.bestShopifyApps.ctaLabel}
-            </Button>
-          </div>
-        </section>
+        <ResourceCollectionSection
+          title={copy.sections.bestShopifyApps.title}
+          description={copy.sections.bestShopifyApps.description}
+          items={featuredBestShopifyAppsResources}
+          ctaLabel={copy.sections.bestShopifyApps.ctaLabel}
+          ctaHref={copy.sections.bestShopifyApps.ctaHref}
+        />
 
-        <section className="py-12 sm:py-14 lg:py-16">
-          <SectionHeading
-            title={copy.sections.productResearch.title}
-            description={copy.sections.productResearch.description}
-          />
-          <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {featuredProductResearchResources.map((item) => (
-              <ArticleCard
-                key={`${item.title}-${item.href}`}
-                title={item.title}
-                description={item.description}
-                href={item.href}
-                meta={item.meta}
-              />
-            ))}
-          </div>
-          <div className="mt-8 flex justify-start">
-            <Button href={copy.sections.productResearch.ctaHref} variant="secondary">
-              {copy.sections.productResearch.ctaLabel}
-            </Button>
-          </div>
-        </section>
+        <ResourceCollectionSection
+          title={copy.sections.productResearch.title}
+          description={copy.sections.productResearch.description}
+          items={featuredProductResearchResources}
+          ctaLabel={copy.sections.productResearch.ctaLabel}
+          ctaHref={copy.sections.productResearch.ctaHref}
+        />
 
         <section className="py-12 sm:py-14 lg:py-16">
           <NewsletterSubscriptionCard source="resources_newsletter" copy={copy.subscription} />

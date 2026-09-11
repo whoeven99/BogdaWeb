@@ -1,8 +1,8 @@
-import {ArticleCard} from "@/components/cards/ArticleCard";
+import {ContentIndexHero} from "@/components/sections/ContentIndexHero";
 import {FinalCtaSection} from "@/components/sections/FinalCtaSection";
 import {MediaPlaceholderSection} from "@/components/sections/MediaPlaceholderSection";
+import {ResourceCollectionSection} from "@/components/sections/ResourceCollectionSection";
 import {PageContainer} from "@/components/ui/PageContainer";
-import {SectionHeading} from "@/components/ui/SectionHeading";
 import {compareIndexMediaBriefs} from "@/content/media-briefs";
 import {getCompares} from "@/content/compare";
 import {getRequestLocale} from "@/lib/i18n-server";
@@ -109,25 +109,16 @@ export default async function ComparePage() {
           />
         ))}
         <section className="py-12 sm:py-16 lg:py-20">
-          <div className="content-hero-shell">
-            <SectionHeading
-              eyebrow={copy.hero.eyebrow}
-              title={copy.hero.title}
-              description={copy.hero.description}
-              as="h1"
-            />
-            <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-              {compares.map((item) => (
-                <ArticleCard
-                  key={item.slug}
-                  title={item.title}
-                  description={item.description}
-                  href={`/compare/${item.slug}`}
-                  meta={[...copy.hero.cardMeta]}
-                />
-              ))}
-            </div>
-          </div>
+          <ContentIndexHero eyebrow={copy.hero.eyebrow} title={copy.hero.title} description={copy.hero.description} />
+          <ResourceCollectionSection
+            items={compares.map((item) => ({
+              title: item.title,
+              description: item.description,
+              href: `/compare/${item.slug}`,
+              meta: [...copy.hero.cardMeta],
+            }))}
+            className="mt-8 py-0"
+          />
         </section>
         <MediaPlaceholderSection
           eyebrow={copy.media.eyebrow}

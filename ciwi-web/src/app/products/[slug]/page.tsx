@@ -2,8 +2,12 @@ import {ArticleCard} from "@/components/cards/ArticleCard";
 import {UseCasePlaybookCard} from "@/components/cards/UseCasePlaybookCard";
 import {DemoShowcaseSection} from "@/components/sections/DemoShowcaseSection";
 import {InteractiveDemoExplorer} from "@/components/sections/InteractiveDemoExplorer";
+import {ChecklistCardGrid} from "@/components/sections/ChecklistCardGrid";
+import {NumberedCardGridSection} from "@/components/sections/NumberedCardGridSection";
 import {ProductAnchorNav} from "@/components/sections/ProductAnchorNav";
 import {ProductFeatureSpotlightsSection} from "@/components/sections/ProductFeatureSpotlightsSection";
+import {SimpleCardGridSection} from "@/components/sections/SimpleCardGridSection";
+import {StackedInfoPanel} from "@/components/sections/StackedInfoPanel";
 import {Button} from "@/components/ui/Button";
 import {notFound} from "next/navigation";
 
@@ -32,7 +36,7 @@ function getProductDetailCopy(locale: "en" | "zh-cn") {
       },
       hero: {
         eyebrow: "产品",
-        playbookLabel: "查看 Use Case Playbook",
+        playbookLabel: "查看产品方案集",
         viewDemoLabel: "查看演示",
         viewDemoHref: "/demo",
         panels: {
@@ -46,9 +50,9 @@ function getProductDetailCopy(locale: "en" | "zh-cn") {
         {label: "演示", href: "#demo"},
         {label: "适合谁", href: "#audience-fit"},
         {label: "核心能力", href: "#features"},
-        {label: "使用路径", href: "#workflow"},
+        {label: "使用流程", href: "#workflow"},
         {label: "相关资源", href: "#resources"},
-        {label: "FAQ", href: "#faq"},
+        {label: "常见问题", href: "#faq"},
       ],
       translator: {
         anchors: [
@@ -57,7 +61,7 @@ function getProductDetailCopy(locale: "en" | "zh-cn") {
           {label: "功能总览", href: "#function-overview"},
           {label: "产品对比", href: "#compare"},
           {label: "相关资源", href: "#resources"},
-          {label: "FAQ", href: "#faq"},
+          {label: "常见问题", href: "#faq"},
         ],
         sections: {
           featureSpotlights: {
@@ -75,7 +79,7 @@ function getProductDetailCopy(locale: "en" | "zh-cn") {
         },
       },
       sections: {
-        useCases: {id: "use-cases", eyebrow: "典型场景", title: "我们解决什么问题", description: "我们围绕获客和转化率，打造高ROI 的产品方案"},
+        useCases: {id: "use-cases", eyebrow: "典型场景", title: "这款产品适合解决什么问题", description: "围绕获客、转化与效率提升，整理这款产品最常见的使用场景。"},
         video: {id: "video-demo", eyebrow: "视频演示", title: "先用视频快速看一遍产品体验", description: "通过一段真实演示，先快速理解产品界面、核心流程和关键能力。"},
         demoFocus: {id: "demo-focus", eyebrow: "演示重点", title: "先看关键演示点", description: "先看最容易影响判断的几个关键结果。"},
         interactiveDemo: {eyebrow: "交互演示", title: "交互演示", description: "通过场景切换快速看懂前后差异、术语控制和 Shopify 适配方式。"},
@@ -89,7 +93,7 @@ function getProductDetailCopy(locale: "en" | "zh-cn") {
           benefitsTitle: "核心收益",
         },
         features: {id: "features", eyebrow: "核心能力", title: "核心能力", description: "围绕商家最常用、最直接影响结果的部分展开。"},
-        workflow: {id: "workflow", eyebrow: "使用路径", title: "使用路径", description: "按实际操作顺序理解产品。"},
+        workflow: {id: "workflow", eyebrow: "使用流程", title: "使用流程", description: "按实际操作顺序理解产品，更容易判断落地成本和使用门槛。"},
         resources: {id: "resources", eyebrow: "相关资源", title: "相关资源", description: "从这里继续看文档、文章和对比内容。"},
       },
       finalCta: {
@@ -297,46 +301,24 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
               </div>
               </div>
               {!isTranslator ? (
-                <div className="rounded-[28px] border border-slate-200/80 bg-white/90 p-6 shadow-[0_16px_48px_-24px_rgba(15,23,42,0.24)] sm:p-7">
-                  <div className="grid gap-6">
-                    <div>
-                      <h3 className="text-lg font-semibold tracking-[-0.03em] text-slate-950">
-                        {copy.hero.panels.targetUsersTitle}
-                      </h3>
-                      <ul className="mt-4 grid gap-2 text-sm leading-7 text-slate-600">
-                        {product.targetUsers.map((item) => (
-                          <li key={item} className="rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-3">
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold tracking-[-0.03em] text-slate-950">
-                        {copy.hero.panels.benefitsTitle}
-                      </h3>
-                      <ul className="mt-4 grid gap-2 text-sm leading-7 text-slate-600">
-                        {product.benefits.map((item) => (
-                          <li key={item} className="rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-3">
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold tracking-[-0.03em] text-slate-950">
-                        {copy.hero.panels.demoHighlightsTitle}
-                      </h3>
-                      <div className="mt-4 flex flex-wrap gap-2">
-                        {product.demoHighlights.map((item) => (
-                          <span key={item} className="pill">
-                            {item}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <StackedInfoPanel
+                  sections={[
+                    {
+                      title: copy.hero.panels.targetUsersTitle,
+                      items: product.targetUsers,
+                      listVariant: "boxed",
+                    },
+                    {
+                      title: copy.hero.panels.benefitsTitle,
+                      items: product.benefits,
+                      listVariant: "boxed",
+                    },
+                    {
+                      title: copy.hero.panels.demoHighlightsTitle,
+                      chips: product.demoHighlights,
+                    },
+                  ]}
+                />
               ) : null}
             </div>
           </div>
@@ -344,20 +326,18 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
 
         <ProductAnchorNav items={anchorItems} />
 
-        <section className="page-section anchor-offset" id={copy.sections.useCases.id}>
-          <SectionHeading
-            eyebrow={copy.sections.useCases.eyebrow}
-            title={copy.sections.useCases.title}
-            description={copy.sections.useCases.description}
-            action={
-              hasLinkedUseCases ? (
+        {hasLinkedUseCases ? (
+          <section className="page-section anchor-offset" id={copy.sections.useCases.id}>
+            <SectionHeading
+              eyebrow={copy.sections.useCases.eyebrow}
+              title={copy.sections.useCases.title}
+              description={copy.sections.useCases.description}
+              action={
                 <Button href={getProductPlaybookHref(product.slug)} variant="secondary">
-                  {locale === "zh-cn" ? "打开产品 playbook" : "Open product playbook"}
+                  {locale === "zh-cn" ? "打开产品方案集" : "Open product playbook"}
                 </Button>
-              ) : undefined
-            }
-          />
-          {hasLinkedUseCases ? (
+              }
+            />
             <div className="playbook-grid">
               {linkedUseCases.map((useCase) => (
                 <UseCasePlaybookCard
@@ -368,22 +348,25 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
                   icon={product.icon}
                   productName={product.name}
                   eyebrow={useCase.category}
-                  meta={[locale === "zh-cn" ? "Use Case" : "Use Case", useCase.category]}
+                  meta={[locale === "zh-cn" ? "应用场景" : "Use Case", useCase.category]}
                   linkLabel={locale === "zh-cn" ? "查看场景详情" : "Open use case"}
                 />
               ))}
             </div>
-          ) : (
-            <div className="card-grid">
-              {product.useCases.map((useCase) => (
-                <article key={useCase.title} className="surface-card">
-                  <h3>{useCase.title}</h3>
-                  <p className="quote">{useCase.description}</p>
-                </article>
-              ))}
-            </div>
-          )}
-        </section>
+          </section>
+        ) : (
+          <SimpleCardGridSection
+            id={copy.sections.useCases.id}
+            className="page-section anchor-offset"
+            eyebrow={copy.sections.useCases.eyebrow}
+            title={copy.sections.useCases.title}
+            description={copy.sections.useCases.description}
+            items={product.useCases.map((useCase) => ({
+              title: useCase.title,
+              description: useCase.description,
+            }))}
+          />
+        )}
 
         {hasVideo ? (
           <section className="page-section anchor-offset" id={copy.sections.video.id}>
@@ -444,21 +427,14 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
           </>
         ) : (
           <>
-            <section className="page-section anchor-offset" id={copy.sections.demoFocus.id}>
-              <SectionHeading
-                eyebrow={copy.sections.demoFocus.eyebrow}
-                title={copy.sections.demoFocus.title}
-                description={copy.sections.demoFocus.description}
-              />
-              <div className="card-grid">
-                {product.demoHighlights.map((item, index) => (
-                  <article key={item} className="surface-card">
-                    <h3>{`0${index + 1}`}</h3>
-                    <p className="quote">{item}</p>
-                  </article>
-                ))}
-              </div>
-            </section>
+            <NumberedCardGridSection
+              id={copy.sections.demoFocus.id}
+              className="page-section anchor-offset"
+              eyebrow={copy.sections.demoFocus.eyebrow}
+              title={copy.sections.demoFocus.title}
+              description={copy.sections.demoFocus.description}
+              items={product.demoHighlights.map((item) => ({description: item}))}
+            />
 
             <InteractiveDemoExplorer
               eyebrow={copy.sections.interactiveDemo.eyebrow}
@@ -480,57 +456,34 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
                 title={copy.sections.audienceFit.title}
                 description={copy.sections.audienceFit.description}
               />
-              <div className="detail-grid">
-                <div className="surface-card">
-                  <h3>{copy.sections.audienceFit.targetUsersTitle}</h3>
-                  <ul>
-                    {product.targetUsers.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="surface-card">
-                  <h3>{copy.sections.audienceFit.benefitsTitle}</h3>
-                  <ul>
-                    {product.benefits.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
+              <ChecklistCardGrid
+                cards={[
+                  {title: copy.sections.audienceFit.targetUsersTitle, items: product.targetUsers},
+                  {title: copy.sections.audienceFit.benefitsTitle, items: product.benefits},
+                ]}
+              />
             </section>
 
-            <section className="page-section anchor-offset" id={copy.sections.features.id}>
-              <SectionHeading
-                eyebrow={copy.sections.features.eyebrow}
-                title={copy.sections.features.title}
-                description={copy.sections.features.description}
-              />
-              <div className="card-grid">
-                {product.features.map((feature) => (
-                  <article key={feature.title} className="feature-card">
-                    <h3>{feature.title}</h3>
-                    <p className="quote">{feature.description}</p>
-                  </article>
-                ))}
-              </div>
-            </section>
+            <SimpleCardGridSection
+              id={copy.sections.features.id}
+              className="page-section anchor-offset"
+              eyebrow={copy.sections.features.eyebrow}
+              title={copy.sections.features.title}
+              description={copy.sections.features.description}
+              items={product.features.map((feature) => ({
+                title: feature.title,
+                description: feature.description,
+              }))}
+            />
 
-            <section className="page-section anchor-offset" id={copy.sections.workflow.id}>
-              <SectionHeading
-                eyebrow={copy.sections.workflow.eyebrow}
-                title={copy.sections.workflow.title}
-                description={copy.sections.workflow.description}
-              />
-              <div className="card-grid">
-                {product.workflow.map((step, index) => (
-                  <article key={step} className="surface-card">
-                    <h3>{`0${index + 1}`}</h3>
-                    <p className="quote">{step}</p>
-                  </article>
-                ))}
-              </div>
-            </section>
+            <NumberedCardGridSection
+              id={copy.sections.workflow.id}
+              className="page-section anchor-offset"
+              eyebrow={copy.sections.workflow.eyebrow}
+              title={copy.sections.workflow.title}
+              description={copy.sections.workflow.description}
+              items={product.workflow.map((step) => ({description: step}))}
+            />
           </>
         )}
 
@@ -556,7 +509,7 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
         <div id="faq" className="anchor-offset" />
         <FaqSection items={product.faq} />
         <FinalCtaSection
-          title={locale === "zh-cn" ? `了解 ${product.name}` : `Explore ${product.name}`}
+          title={locale === "zh-cn" ? `进一步了解 ${product.name}` : `Explore ${product.name}`}
           description={product.shortDescription}
           primaryLabel={product.ctaLabel}
           primaryHref={product.ctaHref}

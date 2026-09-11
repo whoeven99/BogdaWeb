@@ -2,11 +2,11 @@
 
 import {useMemo, useState} from "react";
 
+import {ContentIndexCard} from "@/components/cards/ContentIndexCard";
 import {useLocale} from "@/components/providers/LocaleProvider";
-import {CardCtaLink} from "@/components/ui/CardCtaLink";
-import {LocalizedLink} from "@/components/ui/LocalizedLink";
 import type {BlogPost} from "@/content/blog";
 import {getUiCopy} from "@/content/ui-copy";
+import {ContentIndexHero} from "@/components/sections/ContentIndexHero";
 
 const POSTS_PER_PAGE = 2;
 
@@ -29,43 +29,21 @@ export function BlogFeed({posts, title, description}: BlogFeedProps) {
 
   return (
     <section className="py-12 sm:py-16 lg:py-20">
-      <header className="content-hero-shell max-w-4xl">
-        <div className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-700">
-          {uiCopy.blog.eyebrow}
-        </div>
-        <h1 className="mt-4 text-pretty text-4xl font-semibold tracking-[-0.05em] text-slate-950 sm:text-5xl">
-          {title}
-        </h1>
-        <p className="mt-4 max-w-3xl text-base leading-8 text-slate-600">{description}</p>
-      </header>
+      <ContentIndexHero eyebrow={uiCopy.blog.eyebrow} title={title} description={description} />
 
       <div className="mt-12 grid gap-6 lg:gap-7">
         {visiblePosts.map((post) => (
-          <article
+          <ContentIndexCard
             key={post.slug}
-            className="rounded-[28px] border border-slate-200/80 bg-white/90 p-7 shadow-[0_16px_48px_-24px_rgba(15,23,42,0.28)] sm:p-8"
-          >
-            <div className="flex flex-wrap gap-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">
-              <span>{post.publishedAt}</span>
-              <span>{post.readingTime}</span>
-              {post.tags.map((tag) => (
-                <span key={tag} className="rounded-full border border-slate-200 bg-slate-100/80 px-3 py-1">
-                  {tag}
-                </span>
-              ))}
-            </div>
-            <h2 className="mt-5 text-2xl font-semibold tracking-[-0.04em] text-slate-950">
-              <LocalizedLink href={post.href} className="transition-colors hover:text-emerald-700">
-                {post.title}
-              </LocalizedLink>
-            </h2>
-            <p className="mt-4 max-w-3xl text-[15px] leading-8 text-slate-600">{post.description}</p>
-            <div className="mt-7">
-              <CardCtaLink href={post.href} variant="text">
-                {uiCopy.blog.readArticleLabel}
-              </CardCtaLink>
-            </div>
-          </article>
+            href={post.href}
+            title={post.title}
+            description={post.description}
+            meta={[post.publishedAt, post.readingTime, ...post.tags]}
+            ctaLabel={uiCopy.blog.readArticleLabel}
+            titleLevel="h2"
+            variant="bordered"
+            className="bg-white/90 shadow-[0_16px_48px_-24px_rgba(15,23,42,0.28)]"
+          />
         ))}
       </div>
 

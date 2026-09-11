@@ -1,6 +1,6 @@
-import {ArticleCard} from "@/components/cards/ArticleCard";
+import {ContentIndexHero} from "@/components/sections/ContentIndexHero";
+import {ResourceCollectionSection} from "@/components/sections/ResourceCollectionSection";
 import {PageContainer} from "@/components/ui/PageContainer";
-import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getBestShopifyAppCollections} from "@/content/best-shopify-apps";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {localizeHref} from "@/lib/i18n";
@@ -11,7 +11,7 @@ export async function generateMetadata() {
   const locale = await getRequestLocale();
 
   return buildPageMetadata({
-    title: locale === "zh-cn" ? "Best Shopify Apps 合集" : "Best Shopify Apps",
+    title: locale === "zh-cn" ? "最佳 Shopify 应用合集" : "Best Shopify Apps",
     description:
       locale === "zh-cn"
         ? "按年份和类目组织的 Shopify App 合集入口，方便后续批量扩展推荐页。"
@@ -28,14 +28,14 @@ export default async function BestShopifyAppsHubPage() {
     locale === "zh-cn"
       ? {
           structuredData: {
-            name: "Best Shopify Apps 合集",
+            name: "最佳 Shopify 应用合集",
             description: "按年份和类目组织的 Shopify App 合集入口。",
             keywords: ["Shopify app 推荐", "Best Shopify Apps", "Shopify 榜单"],
           },
           hero: {
-            eyebrow: "Best Shopify Apps",
-            title: "Best Shopify Apps",
-            description: "这里作为所有榜单子集合的聚合页，只展示每个合集的卡片入口。",
+            eyebrow: "最佳 Shopify 应用",
+            title: "最佳 Shopify 应用合集",
+            description: "这里集中整理各类榜单合集入口，方便按主题继续浏览具体合集。",
           },
         }
       : {
@@ -78,23 +78,16 @@ export default async function BestShopifyAppsHubPage() {
         ))}
 
         <section className="page-section page-hero">
-          <SectionHeading
-            eyebrow={copy.hero.eyebrow}
-            title={copy.hero.title}
-            description={copy.hero.description}
-            as="h1"
+          <ContentIndexHero eyebrow={copy.hero.eyebrow} title={copy.hero.title} description={copy.hero.description} />
+          <ResourceCollectionSection
+            items={collections.map((item) => ({
+              title: item.title,
+              description: item.description,
+              href: item.href,
+              meta: [item.categoryLabel, item.year.toString(), item.updatedLabel],
+            }))}
+            className="mt-8 py-0"
           />
-          <div className="resource-grid">
-            {collections.map((item) => (
-              <ArticleCard
-                key={item.slug}
-                title={item.title}
-                description={item.description}
-                href={item.href}
-                meta={[item.categoryLabel, item.year.toString(), item.updatedLabel]}
-              />
-            ))}
-          </div>
         </section>
       </PageContainer>
     </main>

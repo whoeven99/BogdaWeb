@@ -1,8 +1,9 @@
+import {ContentIndexHero} from "@/components/sections/ContentIndexHero";
 import {FinalCtaSection} from "@/components/sections/FinalCtaSection";
 import {FaqSection} from "@/components/sections/FaqSection";
+import {HeroPreviewCardGrid} from "@/components/sections/HeroPreviewCardGrid";
 import {MediaPlaceholderSection} from "@/components/sections/MediaPlaceholderSection";
 import {PageContainer} from "@/components/ui/PageContainer";
-import {SectionHeading} from "@/components/ui/SectionHeading";
 import {demoPageMediaBriefs} from "@/content/media-briefs";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata} from "@/lib/seo/metadata";
@@ -110,25 +111,9 @@ export default async function DemoPage() {
     <main>
       <PageContainer>
         <section className="page-section page-hero">
-          <SectionHeading
-            eyebrow={copy.hero.eyebrow}
-            title={copy.hero.title}
-            description={copy.hero.description}
-            as="h1"
-          />
-          <div className="card-grid">
-            {copy.hero.cards.map((card) => {
-              const accent = "accent" in card && card.accent;
-
-              return (
-                <article key={card.title} className={accent ? "hero-panel" : "surface-card"}>
-                  {"eyebrow" in card ? <div className="hero-panel__badge">{card.eyebrow}</div> : null}
-                  <h3>{card.title}</h3>
-                  <p className={accent ? "quote light-copy" : "quote"}>{card.description}</p>
-                </article>
-              );
-            })}
-          </div>
+          <ContentIndexHero eyebrow={copy.hero.eyebrow} title={copy.hero.title} description={copy.hero.description}>
+            <HeroPreviewCardGrid items={copy.hero.cards} />
+          </ContentIndexHero>
         </section>
         <MediaPlaceholderSection
           eyebrow={copy.media.eyebrow}

@@ -102,7 +102,7 @@ export default async function ContactPage() {
               <div className="surface-card">
                 <h3>{copy.alternateTitle}</h3>
                 <p className="quote">{copy.alternateDescription}</p>
-                <div className="faq-list">
+                <div className="mt-6 flex flex-wrap items-center gap-3">
                   <Button href={copy.installHref}>{copy.installLabel}</Button>
                   <Button href={copy.supportEmailHref} variant="secondary">
                     {copy.supportEmailLabel}

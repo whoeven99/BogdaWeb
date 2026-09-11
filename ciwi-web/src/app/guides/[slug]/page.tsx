@@ -1,8 +1,11 @@
 import {notFound, permanentRedirect} from "next/navigation";
 
 import {FaqSection} from "@/components/sections/FaqSection";
+import {ComparisonCardStack} from "@/components/sections/ComparisonCardStack";
+import {DetailHeroPanel} from "@/components/sections/DetailHeroPanel";
+import {FinalCtaSection} from "@/components/sections/FinalCtaSection";
+import {BackLink} from "@/components/ui/BackLink";
 import {Button} from "@/components/ui/Button";
-import {LocalizedLink} from "@/components/ui/LocalizedLink";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getAvailableFunctionScenarioGuideLocales, getFunctionScenarioGuideMap, getFunctionScenarioGuides} from "@/content/function-scenario-guides";
@@ -80,7 +83,7 @@ function getLocalizationGuidePageCopy(locale: "en" | "zh-cn") {
           recommendations: {
             eyebrow: "补充建议",
             title: "除了翻译，还应该补哪些内容？",
-            description: "这里放执行建议、内容范围和 app / workflow 推荐，让页面更像真正可落地的指南。",
+            description: "这里放执行建议、内容范围和工具建议，让页面更像真正可落地的指南。",
             priorityLabel: "优先级",
           },
           scope: {
@@ -109,14 +112,14 @@ function getLocalizationGuidePageCopy(locale: "en" | "zh-cn") {
             description: "把本地化从一次性项目变成可重复执行的检查流程，后续扩更多页面时会轻松很多。",
           },
           faq: {
-            eyebrow: "FAQ",
+            eyebrow: "常见问题",
             title: "常见问题",
             description: "补齐长尾搜索问题，并回答团队在启动本地化时最常见的疑问。",
           },
           cta: {
             eyebrow: "下一步",
             title: "准备开始做全球化了吗？",
-            description: "先把高意图页面和核心市场跑通，再继续批量生成更多行业 guide 页面。",
+            description: "先把高意图页面和核心市场跑通，再继续扩展更多行业指南页面。",
             primaryCtaLabel: "安装 Ciwi",
             secondaryCtaLabel: "联系团队",
           },
@@ -269,7 +272,7 @@ function getFunctionScenarioPageCopy(locale: "en" | "zh-cn") {
           workflow: {
             eyebrow: "方案选择",
             title: "用哪种方式处理这个场景更合适？",
-            description: "帮助用户在手工处理、翻译 app 和自定义开发之间做选择。",
+            description: "帮助用户在手工处理、翻译工具和自定义开发之间做选择。",
             solution: "方案",
             advantage: "优势",
             limitation: "限制",
@@ -291,7 +294,7 @@ function getFunctionScenarioPageCopy(locale: "en" | "zh-cn") {
             description: "这些内容适合继续往下看，形成更完整的 Shopify 多语言工作流。",
           },
           faq: {
-            eyebrow: "FAQ",
+            eyebrow: "常见问题",
             title: "常见问题",
             description: "覆盖用户在执行这个功能场景时最常问的问题。",
           },
@@ -392,7 +395,7 @@ function buildGuideStructuredData(
     structuredData: [
       buildBreadcrumbSchema([
         {name: "Home", item: siteUrl},
-        {name: locale === "zh-cn" ? "本地化指南" : "Localization Guides", item: new URL(localizeHref(locale, "/guides"), siteUrl).toString()},
+        {name: locale === "zh-cn" ? "本地化与翻译指南" : "Localization Guides", item: new URL(localizeHref(locale, "/guides"), siteUrl).toString()},
         {name: guide.title, item: pageUrl},
       ]),
       buildWebPageSchema({
@@ -540,56 +543,37 @@ function renderLocalizationGuidePage(
 
         <section className="page-section guide-hero">
           <div className="guide-hero__topbar">
-            <LocalizedLink href="/guides" className="guide-backlink">
-              {copy.backLabel}
-            </LocalizedLink>
+            <BackLink href="/guides" label={copy.backLabel} />
           </div>
 
           <SectionHeading eyebrow={copy.hero.eyebrow} title={guide.title} description={guide.description} as="h1" />
 
-          <div className="guide-meta-grid">
-            <div className="surface-card guide-meta-card">
-              <span>{copy.hero.audienceLabel}</span>
-              <strong>{guide.audience}</strong>
-            </div>
-            <div className="surface-card guide-meta-card">
-              <span>{copy.hero.segmentLabel}</span>
-              <strong>{guide.segmentLabel}</strong>
-            </div>
-            <div className="surface-card guide-meta-card">
-              <span>{copy.hero.yearLabel}</span>
-              <strong>{guide.year}</strong>
-            </div>
-          </div>
-
-          <div className="guide-hero__layout">
-            <article className="surface-card guide-hero__summary">
-              <span className="guide-hero__summary-label">{copy.hero.summaryLabel}</span>
-              <p>{guide.mainValue}</p>
-              <div className="guide-hero__intro">
+          <DetailHeroPanel
+            metaItems={[
+              {label: copy.hero.audienceLabel, value: guide.audience},
+              {label: copy.hero.segmentLabel, value: guide.segmentLabel},
+              {label: copy.hero.yearLabel, value: guide.year},
+            ]}
+            summaryLabel={copy.hero.summaryLabel}
+            summary={guide.mainValue}
+            intro={
+              <>
                 {guide.overviewDrivers.slice(0, 3).map((item) => (
                   <p key={item.title}>{item.description}</p>
                 ))}
-              </div>
-              <div className="guide-hero__actions">
+              </>
+            }
+            actions={
+              <>
                 <Button href={uiCopy.cta.installHref}>{copy.hero.primaryCtaLabel}</Button>
                 <Button href={uiCopy.cta.talkHref} variant="secondary">
                   {copy.hero.secondaryCtaLabel}
                 </Button>
-              </div>
-            </article>
-
-            <nav className="surface-card guide-toc" aria-label={copy.hero.tocLabel}>
-              <span className="guide-hero__summary-label">{copy.hero.tocLabel}</span>
-              <ul>
-                {tocItems.map((item) => (
-                  <li key={item.href}>
-                    <a href={item.href}>{item.label}</a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </div>
+              </>
+            }
+            tocLabel={copy.hero.tocLabel}
+            tocItems={tocItems}
+          />
         </section>
 
         <section id="category" className="page-section">
@@ -843,31 +827,21 @@ function renderLocalizationGuidePage(
                 <p>{guide.solutions.map((item) => item.name).join(" / ")}</p>
               </div>
             </article>
-            <div className="guide-solution-stack">
-              {guide.solutions.map((item) => (
-                <article key={item.name} className="surface-card guide-solution-card">
-                  <h3>{item.name}</h3>
-                  <div className="guide-solution-card__columns">
-                    <div>
-                      <span className="guide-hero__summary-label">{copy.sections.solutions.advantage}</span>
-                      <ul className="check-list">
-                        {item.advantages.map((advantage) => (
-                          <li key={advantage}>{advantage}</li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div>
-                      <span className="guide-hero__summary-label">{copy.sections.solutions.limitation}</span>
-                      <ul className="check-list">
-                        {item.limitations.map((limitation) => (
-                          <li key={limitation}>{limitation}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </div>
+            <ComparisonCardStack
+              cards={guide.solutions.map((item) => ({
+                title: item.name,
+                columns: [
+                  {
+                    label: copy.sections.solutions.advantage,
+                    items: item.advantages,
+                  },
+                  {
+                    label: copy.sections.solutions.limitation,
+                    items: item.limitations,
+                  },
+                ],
+              }))}
+            />
           </div>
         </section>
 
@@ -919,17 +893,17 @@ function renderLocalizationGuidePage(
           <FaqSection eyebrow={copy.sections.faq.eyebrow} title={copy.sections.faq.title} description={copy.sections.faq.description} items={guide.faq} />
         </section>
 
-        <section className="page-section">
-          <div className="final-cta-panel guide-final-cta">
-            <SectionHeading eyebrow={copy.sections.cta.eyebrow} title={copy.sections.cta.title} description={copy.sections.cta.description} />
-            <div className="guide-hero__actions">
-              <Button href={uiCopy.cta.installHref}>{copy.sections.cta.primaryCtaLabel}</Button>
-              <Button href={uiCopy.cta.talkHref} variant="secondary">
-                {copy.sections.cta.secondaryCtaLabel}
-              </Button>
-            </div>
-          </div>
-        </section>
+        <FinalCtaSection
+          eyebrow={copy.sections.cta.eyebrow}
+          title={copy.sections.cta.title}
+          description={copy.sections.cta.description}
+          primaryLabel={copy.sections.cta.primaryCtaLabel}
+          primaryHref={uiCopy.cta.installHref}
+          secondaryLabel={copy.sections.cta.secondaryCtaLabel}
+          secondaryHref={uiCopy.cta.talkHref}
+          panelClassName="guide-final-cta"
+          actionsClassName="guide-hero__actions"
+        />
       </PageContainer>
     </main>
   );
@@ -969,9 +943,7 @@ function renderFunctionScenarioGuidePage(
 
         <section className="page-section guide-hero">
           <div className="guide-hero__topbar">
-            <LocalizedLink href="/guides" className="guide-backlink">
-              {copy.backLabel}
-            </LocalizedLink>
+            <BackLink href="/guides" label={copy.backLabel} />
           </div>
 
           <SectionHeading eyebrow={copy.hero.eyebrow} title={guide.title} description={guide.description} as="h1" />
@@ -1125,31 +1097,21 @@ function renderFunctionScenarioGuidePage(
                 <p>{guide.solutions.map((item) => item.name).join(" / ")}</p>
               </div>
             </article>
-            <div className="guide-solution-stack">
-              {guide.solutions.map((item) => (
-                <article key={item.name} className="surface-card guide-solution-card">
-                  <h3>{item.name}</h3>
-                  <div className="guide-solution-card__columns">
-                    <div>
-                      <span className="guide-hero__summary-label">{copy.sections.workflow.advantage}</span>
-                      <ul className="check-list">
-                        {item.advantages.map((advantage) => (
-                          <li key={advantage}>{advantage}</li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div>
-                      <span className="guide-hero__summary-label">{copy.sections.workflow.limitation}</span>
-                      <ul className="check-list">
-                        {item.limitations.map((limitation) => (
-                          <li key={limitation}>{limitation}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </div>
+            <ComparisonCardStack
+              cards={guide.solutions.map((item) => ({
+                title: item.name,
+                columns: [
+                  {
+                    label: copy.sections.workflow.advantage,
+                    items: item.advantages,
+                  },
+                  {
+                    label: copy.sections.workflow.limitation,
+                    items: item.limitations,
+                  },
+                ],
+              }))}
+            />
           </div>
         </section>
 
@@ -1224,17 +1186,17 @@ function renderFunctionScenarioGuidePage(
           <FaqSection eyebrow={copy.sections.faq.eyebrow} title={copy.sections.faq.title} description={copy.sections.faq.description} items={guide.faq} />
         </section>
 
-        <section className="page-section">
-          <div className="final-cta-panel guide-final-cta">
-            <SectionHeading eyebrow={copy.sections.cta.eyebrow} title={copy.sections.cta.title} description={copy.sections.cta.description} />
-            <div className="guide-hero__actions">
-              <Button href={uiCopy.cta.installHref}>{copy.sections.cta.primaryCtaLabel}</Button>
-              <Button href={uiCopy.cta.talkHref} variant="secondary">
-                {copy.sections.cta.secondaryCtaLabel}
-              </Button>
-            </div>
-          </div>
-        </section>
+        <FinalCtaSection
+          eyebrow={copy.sections.cta.eyebrow}
+          title={copy.sections.cta.title}
+          description={copy.sections.cta.description}
+          primaryLabel={copy.sections.cta.primaryCtaLabel}
+          primaryHref={uiCopy.cta.installHref}
+          secondaryLabel={copy.sections.cta.secondaryCtaLabel}
+          secondaryHref={uiCopy.cta.talkHref}
+          panelClassName="guide-final-cta"
+          actionsClassName="guide-hero__actions"
+        />
       </PageContainer>
     </main>
   );

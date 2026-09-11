@@ -1,6 +1,8 @@
-import {ArticleCard} from "@/components/cards/ArticleCard";
+import {ContentIndexHero} from "@/components/sections/ContentIndexHero";
 import {FaqSection} from "@/components/sections/FaqSection";
 import {CardCtaLink} from "@/components/ui/CardCtaLink";
+import {ComparisonCardStack} from "@/components/sections/ComparisonCardStack";
+import {ResourceCollectionSection} from "@/components/sections/ResourceCollectionSection";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getProductResearchHub, getProductResearchWorkflowArticles} from "@/content/product-research";
@@ -183,9 +185,7 @@ export default async function ProductResearchHubPage() {
         ))}
 
         <section className="py-12 sm:py-16 lg:py-20">
-          <div className="content-hero-shell">
-            <SectionHeading eyebrow={copy.hero.eyebrow} title={hub.title} description={hub.description} as="h1" />
-
+          <ContentIndexHero eyebrow={copy.hero.eyebrow} title={hub.title} description={hub.description}>
             <div className="guide-meta-grid">
               <div className="guide-meta-card">
                 <span>{copy.hero.audienceLabel}</span>
@@ -223,7 +223,7 @@ export default async function ProductResearchHubPage() {
                 </ul>
               </nav>
             </div>
-          </div>
+          </ContentIndexHero>
         </section>
 
         <section id="overview" className="page-section">
@@ -253,47 +253,30 @@ export default async function ProductResearchHubPage() {
             title={copy.sections.tools.title}
             description={copy.sections.tools.description}
           />
-          <div className="guide-solution-stack">
-            {hub.tools.map((tool) => {
+          <ComparisonCardStack
+            cards={hub.tools.map((tool) => {
               const reviewHref = reviewHrefMap.get(tool.name);
-              return (
-                <article key={tool.name} className="surface-card guide-solution-card">
-                  <div className="guide-chip-row">
-                    <span className="guide-chip">
-                      {copy.sections.tools.pricingLabel}: {tool.pricing}
-                    </span>
-                    <span className="guide-chip">
-                      {copy.sections.tools.bestForLabel}: {tool.bestFor}
-                    </span>
-                  </div>
-                  <h3>{tool.name}</h3>
-                  <div className="guide-solution-card__columns">
-                    <div>
-                      <span className="guide-hero__summary-label">{copy.sections.tools.strengthsLabel}</span>
-                      <ul className="check-list">
-                        {tool.strengths.map((point) => (
-                          <li key={point}>{point}</li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div>
-                      <span className="guide-hero__summary-label">{copy.sections.tools.watchoutsLabel}</span>
-                      <ul className="check-list">
-                        {tool.watchouts.map((point) => (
-                          <li key={point}>{point}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                  {reviewHref ? (
-                    <div className="space-top-lg">
-                      <CardCtaLink href={reviewHref}>{copy.sections.tools.reviewLinkLabel}</CardCtaLink>
-                    </div>
-                  ) : null}
-                </article>
-              );
+
+              return {
+                title: tool.name,
+                chips: [
+                  `${copy.sections.tools.pricingLabel}: ${tool.pricing}`,
+                  `${copy.sections.tools.bestForLabel}: ${tool.bestFor}`,
+                ],
+                columns: [
+                  {
+                    label: copy.sections.tools.strengthsLabel,
+                    items: tool.strengths,
+                  },
+                  {
+                    label: copy.sections.tools.watchoutsLabel,
+                    items: tool.watchouts,
+                  },
+                ],
+                footer: reviewHref ? <CardCtaLink href={reviewHref}>{copy.sections.tools.reviewLinkLabel}</CardCtaLink> : undefined,
+              };
             })}
-          </div>
+          />
         </section>
 
         <section id="methods" className="page-section">
@@ -312,50 +295,33 @@ export default async function ProductResearchHubPage() {
           </ol>
         </section>
 
-        <section id="stages" className="page-section">
-          <SectionHeading
-            eyebrow={copy.sections.stages.eyebrow}
-            title={copy.sections.stages.title}
-            description={copy.sections.stages.description}
-          />
-          <div className="resource-grid">
-            {articles.map((article) => (
-              <ArticleCard
-                key={article.slug}
-                title={article.title}
-                description={article.description}
-                href={article.href}
-                meta={[article.stageLabel, String(article.year)]}
-              />
-            ))}
-          </div>
-        </section>
+        <ResourceCollectionSection
+          eyebrow={copy.sections.stages.eyebrow}
+          title={copy.sections.stages.title}
+          description={copy.sections.stages.description}
+          items={articles.map((article) => ({
+            title: article.title,
+            description: article.description,
+            href: article.href,
+            meta: [article.stageLabel, String(article.year)],
+          }))}
+          className="page-section"
+        />
 
-        <section id="reviews" className="page-section">
-          <SectionHeading
-            eyebrow={copy.sections.reviews.eyebrow}
-            title={copy.sections.reviews.title}
-            description={copy.sections.reviews.description}
-            action={
-              reviews.length > 6 ? (
-                <CardCtaLink href="/resources/product-research/reviews">
-                  {copy.sections.reviews.viewAllLabel}
-                </CardCtaLink>
-              ) : undefined
-            }
-          />
-          <div className="resource-grid">
-            {reviews.slice(0, 6).map((review) => (
-              <ArticleCard
-                key={review.slug}
-                title={review.title}
-                description={review.description}
-                href={review.href}
-                meta={[review.categoryLabel, `${review.rating}/10`, String(review.year)]}
-              />
-            ))}
-          </div>
-        </section>
+        <ResourceCollectionSection
+          eyebrow={copy.sections.reviews.eyebrow}
+          title={copy.sections.reviews.title}
+          description={copy.sections.reviews.description}
+          items={reviews.slice(0, 6).map((review) => ({
+            title: review.title,
+            description: review.description,
+            href: review.href,
+            meta: [review.categoryLabel, `${review.rating}/10`, String(review.year)],
+          }))}
+          ctaLabel={reviews.length > 6 ? copy.sections.reviews.viewAllLabel : undefined}
+          ctaHref={reviews.length > 6 ? "/resources/product-research/reviews" : undefined}
+          className="page-section"
+        />
 
         <section id="faq" className="page-section page-section--compact">
           <FaqSection

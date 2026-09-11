@@ -1,8 +1,10 @@
 import {notFound} from "next/navigation";
 
 import {FaqSection} from "@/components/sections/FaqSection";
+import {ComparisonCardStack} from "@/components/sections/ComparisonCardStack";
+import {DetailHeroPanel} from "@/components/sections/DetailHeroPanel";
+import {BackLink} from "@/components/ui/BackLink";
 import {CardCtaLink} from "@/components/ui/CardCtaLink";
-import {LocalizedLink} from "@/components/ui/LocalizedLink";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getAvailableProductResearchLocales, getProductResearchArticleMap, getProductResearchWorkflowArticles} from "@/content/product-research";
@@ -233,50 +235,29 @@ export default async function ProductResearchArticlePage({params}: ProductResear
         <section className="py-12 sm:py-16 lg:py-20">
           <div className="content-hero-shell">
             <div className="mb-6">
-              <LocalizedLink href="/resources/product-research" className="guide-backlink">
-                {copy.backLabel}
-              </LocalizedLink>
+              <BackLink href="/resources/product-research" label={copy.backLabel} />
             </div>
 
             <SectionHeading title={article.title} description={article.description} as="h1" />
 
-            <div className="guide-meta-grid">
-              <div className="guide-meta-card">
-                <span>{copy.hero.audienceLabel}</span>
-                <strong>{article.audience}</strong>
-              </div>
-              <div className="guide-meta-card">
-                <span>{copy.hero.stageLabel}</span>
-                <strong>{article.stageLabel}</strong>
-              </div>
-              <div className="guide-meta-card">
-                <span>{copy.hero.yearLabel}</span>
-                <strong>{article.year}</strong>
-              </div>
-            </div>
-
-            <div className="guide-hero__layout">
-              <article className="guide-hero__summary">
-                <span className="guide-hero__summary-label">{copy.hero.summaryLabel}</span>
-                <p>{article.mainValue}</p>
-                <div className="guide-hero__intro">
+            <DetailHeroPanel
+              metaItems={[
+                {label: copy.hero.audienceLabel, value: article.audience},
+                {label: copy.hero.stageLabel, value: article.stageLabel},
+                {label: copy.hero.yearLabel, value: article.year},
+              ]}
+              summaryLabel={copy.hero.summaryLabel}
+              summary={article.mainValue}
+              intro={
+                <>
                   {article.overviewDrivers.slice(0, 3).map((item) => (
                     <p key={item.title}>{item.description}</p>
                   ))}
-                </div>
-              </article>
-
-              <nav className="guide-toc" aria-label={copy.hero.tocLabel}>
-                <span className="guide-hero__summary-label">{copy.hero.tocLabel}</span>
-                <ul>
-                  {tocItems.map((item) => (
-                    <li key={item.href}>
-                      <a href={item.href}>{item.label}</a>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
-            </div>
+                </>
+              }
+              tocLabel={copy.hero.tocLabel}
+              tocItems={tocItems}
+            />
           </div>
         </section>
 
@@ -308,47 +289,30 @@ export default async function ProductResearchArticlePage({params}: ProductResear
             title={copy.sections.tools.title}
             description={copy.sections.tools.description}
           />
-          <div className="guide-solution-stack">
-            {article.tools.map((tool) => {
+          <ComparisonCardStack
+            cards={article.tools.map((tool) => {
               const reviewHref = reviewHrefMap.get(tool.name);
-              return (
-                <article key={tool.name} className="surface-card guide-solution-card">
-                  <div className="guide-chip-row">
-                    <span className="guide-chip">
-                      {copy.sections.tools.pricingLabel}: {tool.pricing}
-                    </span>
-                    <span className="guide-chip">
-                      {copy.sections.tools.bestForLabel}: {tool.bestFor}
-                    </span>
-                  </div>
-                  <h3>{tool.name}</h3>
-                  <div className="guide-solution-card__columns">
-                    <div>
-                      <span className="guide-hero__summary-label">{copy.sections.tools.strengthsLabel}</span>
-                      <ul className="check-list">
-                        {tool.strengths.map((point) => (
-                          <li key={point}>{point}</li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div>
-                      <span className="guide-hero__summary-label">{copy.sections.tools.watchoutsLabel}</span>
-                      <ul className="check-list">
-                        {tool.watchouts.map((point) => (
-                          <li key={point}>{point}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                  {reviewHref ? (
-                    <div className="space-top-lg">
-                      <CardCtaLink href={reviewHref}>{copy.sections.tools.reviewLinkLabel}</CardCtaLink>
-                    </div>
-                  ) : null}
-                </article>
-              );
+
+              return {
+                title: tool.name,
+                chips: [
+                  `${copy.sections.tools.pricingLabel}: ${tool.pricing}`,
+                  `${copy.sections.tools.bestForLabel}: ${tool.bestFor}`,
+                ],
+                columns: [
+                  {
+                    label: copy.sections.tools.strengthsLabel,
+                    items: tool.strengths,
+                  },
+                  {
+                    label: copy.sections.tools.watchoutsLabel,
+                    items: tool.watchouts,
+                  },
+                ],
+                footer: reviewHref ? <CardCtaLink href={reviewHref}>{copy.sections.tools.reviewLinkLabel}</CardCtaLink> : undefined,
+              };
             })}
-          </div>
+          />
         </section>
 
         <section id="methods" className="page-section">

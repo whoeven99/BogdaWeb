@@ -3,6 +3,8 @@ import {defaultLocale, locales, type Locale} from "@/lib/i18n";
 type SluggedContent = {
   slug: string;
   status?: "draft" | "published";
+  sourceLocale?: Locale;
+  translationStatus?: "manual" | "ai-draft" | "reviewed";
   title?: string;
   description?: string;
   mainValue?: string;
@@ -19,6 +21,15 @@ export function createLocalizedGuideContent<T extends SluggedContent>(collection
     }
 
     if (locale !== defaultLocale && [item.title, item.description, item.mainValue].some(hasTodoMarker)) {
+      return false;
+    }
+
+    // Non-default locales should only expose content that has moved past draft translation.
+    if (locale !== defaultLocale && item.translationStatus === "ai-draft") {
+      return false;
+    }
+
+    if (locale !== defaultLocale && item.sourceLocale && item.sourceLocale !== locale && item.translationStatus !== "reviewed" && item.translationStatus !== "manual") {
       return false;
     }
 

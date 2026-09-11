@@ -1,6 +1,6 @@
-import {ArticleCard} from "@/components/cards/ArticleCard";
+import {ContentIndexHero} from "@/components/sections/ContentIndexHero";
+import {ResourceCollectionSection} from "@/components/sections/ResourceCollectionSection";
 import {PageContainer} from "@/components/ui/PageContainer";
-import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getToolReviews} from "@/content/tool-reviews";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {localizeHref} from "@/lib/i18n";
@@ -83,23 +83,16 @@ export default async function ToolReviewsIndexPage() {
         ))}
 
         <section className="page-section page-hero">
-          <SectionHeading
-            eyebrow={copy.hero.eyebrow}
-            title={copy.hero.title}
-            description={copy.hero.description}
-            as="h1"
+          <ContentIndexHero eyebrow={copy.hero.eyebrow} title={copy.hero.title} description={copy.hero.description} />
+          <ResourceCollectionSection
+            items={reviews.map((review) => ({
+              title: review.title,
+              description: review.description,
+              href: review.href,
+              meta: [review.categoryLabel, `${formatRating(review.rating)}/10`, String(review.year)],
+            }))}
+            className="mt-8 py-0"
           />
-          <div className="resource-grid">
-            {reviews.map((review) => (
-              <ArticleCard
-                key={review.slug}
-                title={review.title}
-                description={review.description}
-                href={review.href}
-                meta={[review.categoryLabel, `${formatRating(review.rating)}/10`, String(review.year)]}
-              />
-            ))}
-          </div>
         </section>
       </PageContainer>
     </main>

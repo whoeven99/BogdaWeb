@@ -1,6 +1,6 @@
 import {FinalCtaSection} from "@/components/sections/FinalCtaSection";
+import {ContentIndexHero} from "@/components/sections/ContentIndexHero";
 import {ProductMatrixSection} from "@/components/sections/ProductMatrixSection";
-import {SectionHeading} from "@/components/ui/SectionHeading";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {getProducts} from "@/content/products";
 import {getRequestLocale} from "@/lib/i18n-server";
@@ -27,17 +27,17 @@ export default async function ProductsPage() {
     locale === "zh-cn"
       ? {
           hero: {
-            title: "Ciwi AI 电商工具",
-            description: "围绕 Shopify 商家的真实经营问题，提供更贴近转化、流量和效率目标的 AI 产品。",
+            title: "Ciwi 产品",
+            description: "围绕 Shopify 商家的真实经营问题，提供更贴近转化、流量和效率目标的产品组合。",
           },
           matrix: {
             eyebrow: "产品",
-            title: "Shopify 产品列表",
+            title: "Ciwi 产品列表",
             description: "从多语言、本地化到内容生产与客单价提升，Ciwi 提供一组可直接上手的 Shopify 产品。",
           },
           finalCta: {
             eyebrow: "你的需求",
-            title: "我们也支持按业务需求定制 Shopify App",
+            title: "我们也支持按业务需求定制 Shopify 应用",
             description: "把你的目标、约束和当前流程发给我们，我们会一起评估更合适的实现方式。",
             primaryLabel: "提出需求",
             primaryHref: "/contact",
@@ -70,9 +70,11 @@ export default async function ProductsPage() {
     <main>
       <PageContainer>
         <section className="py-12 sm:py-16 lg:py-20">
-          <div className="content-hero-shell">
-            <SectionHeading title={copy.hero.title} description={copy.hero.description} as="h1" />
-          </div>
+          <ContentIndexHero
+            eyebrow={copy.matrix.eyebrow}
+            title={copy.hero.title}
+            description={copy.hero.description}
+          />
         </section>
         <ProductMatrixSection
           eyebrow={copy.matrix.eyebrow}
