@@ -1,6 +1,6 @@
 import {ArticleCard} from "@/components/cards/ArticleCard";
 import {FaqSection} from "@/components/sections/FaqSection";
-import {LocalizedLink} from "@/components/ui/LocalizedLink";
+import {CardCtaLink} from "@/components/ui/CardCtaLink";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getProductResearchHub, getProductResearchWorkflowArticles} from "@/content/product-research";
@@ -182,45 +182,47 @@ export default async function ProductResearchHubPage() {
           />
         ))}
 
-        <section className="page-section guide-hero">
-          <SectionHeading eyebrow={copy.hero.eyebrow} title={hub.title} description={hub.description} as="h1" />
+        <section className="py-12 sm:py-16 lg:py-20">
+          <div className="rounded-[32px] border border-slate-200/80 bg-[radial-gradient(circle_at_top_right,_rgba(16,185,129,0.14),_transparent_30%),linear-gradient(180deg,_rgba(255,255,255,0.96),_rgba(248,250,252,0.92))] px-6 py-10 shadow-[0_24px_80px_-40px_rgba(15,23,42,0.35)] sm:px-8 lg:px-12">
+            <SectionHeading eyebrow={copy.hero.eyebrow} title={hub.title} description={hub.description} as="h1" />
 
-          <div className="guide-meta-grid">
-            <div className="surface-card guide-meta-card">
-              <span>{copy.hero.audienceLabel}</span>
-              <strong>{hub.audience}</strong>
-            </div>
-            <div className="surface-card guide-meta-card">
-              <span>{copy.hero.stageLabel}</span>
-              <strong>{articles.length}</strong>
-            </div>
-            <div className="surface-card guide-meta-card">
-              <span>{copy.hero.yearLabel}</span>
-              <strong>{hub.year}</strong>
-            </div>
-          </div>
-
-          <div className="guide-hero__layout">
-            <article className="surface-card guide-hero__summary">
-              <span className="guide-hero__summary-label">{copy.hero.summaryLabel}</span>
-              <p>{hub.mainValue}</p>
-              <div className="guide-hero__intro">
-                {hub.overviewDrivers.slice(0, 3).map((item) => (
-                  <p key={item.title}>{item.description}</p>
-                ))}
+            <div className="guide-meta-grid">
+              <div className="guide-meta-card">
+                <span>{copy.hero.audienceLabel}</span>
+                <strong>{hub.audience}</strong>
               </div>
-            </article>
+              <div className="guide-meta-card">
+                <span>{copy.hero.stageLabel}</span>
+                <strong>{articles.length}</strong>
+              </div>
+              <div className="guide-meta-card">
+                <span>{copy.hero.yearLabel}</span>
+                <strong>{hub.year}</strong>
+              </div>
+            </div>
 
-            <nav className="surface-card guide-toc" aria-label={copy.hero.tocLabel}>
-              <span className="guide-hero__summary-label">{copy.hero.tocLabel}</span>
-              <ul>
-                {tocItems.map((item) => (
-                  <li key={item.href}>
-                    <a href={item.href}>{item.label}</a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
+            <div className="guide-hero__layout">
+              <article className="guide-hero__summary">
+                <span className="guide-hero__summary-label">{copy.hero.summaryLabel}</span>
+                <p>{hub.mainValue}</p>
+                <div className="guide-hero__intro">
+                  {hub.overviewDrivers.slice(0, 3).map((item) => (
+                    <p key={item.title}>{item.description}</p>
+                  ))}
+                </div>
+              </article>
+
+              <nav className="guide-toc" aria-label={copy.hero.tocLabel}>
+                <span className="guide-hero__summary-label">{copy.hero.tocLabel}</span>
+                <ul>
+                  {tocItems.map((item) => (
+                    <li key={item.href}>
+                      <a href={item.href}>{item.label}</a>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </div>
           </div>
         </section>
 
@@ -285,9 +287,7 @@ export default async function ProductResearchHubPage() {
                   </div>
                   {reviewHref ? (
                     <div className="space-top-lg">
-                      <LocalizedLink href={reviewHref} className="site-nav__link">
-                        {copy.sections.tools.reviewLinkLabel}
-                      </LocalizedLink>
+                      <CardCtaLink href={reviewHref}>{copy.sections.tools.reviewLinkLabel}</CardCtaLink>
                     </div>
                   ) : null}
                 </article>
@@ -332,13 +332,18 @@ export default async function ProductResearchHubPage() {
         </section>
 
         <section id="reviews" className="page-section">
-          <div className="section-heading">
-            <div className="section-heading__eyebrow">{copy.sections.reviews.eyebrow}</div>
-            <h2>
-              <LocalizedLink href="/resources/product-research/reviews">{copy.sections.reviews.title}</LocalizedLink>
-            </h2>
-            <p>{copy.sections.reviews.description}</p>
-          </div>
+          <SectionHeading
+            eyebrow={copy.sections.reviews.eyebrow}
+            title={copy.sections.reviews.title}
+            description={copy.sections.reviews.description}
+            action={
+              reviews.length > 6 ? (
+                <CardCtaLink href="/resources/product-research/reviews">
+                  {copy.sections.reviews.viewAllLabel}
+                </CardCtaLink>
+              ) : undefined
+            }
+          />
           <div className="resource-grid">
             {reviews.slice(0, 6).map((review) => (
               <ArticleCard
@@ -350,13 +355,6 @@ export default async function ProductResearchHubPage() {
               />
             ))}
           </div>
-          {reviews.length > 6 ? (
-            <div className="resources-section__cta">
-              <LocalizedLink href="/resources/product-research/reviews" className="site-nav__link">
-                {copy.sections.reviews.viewAllLabel}
-              </LocalizedLink>
-            </div>
-          ) : null}
         </section>
 
         <section id="faq" className="page-section page-section--compact">

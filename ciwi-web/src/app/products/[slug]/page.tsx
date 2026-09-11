@@ -1,4 +1,5 @@
 import {ArticleCard} from "@/components/cards/ArticleCard";
+import {UseCasePlaybookCard} from "@/components/cards/UseCasePlaybookCard";
 import {DemoShowcaseSection} from "@/components/sections/DemoShowcaseSection";
 import {InteractiveDemoExplorer} from "@/components/sections/InteractiveDemoExplorer";
 import {ProductAnchorNav} from "@/components/sections/ProductAnchorNav";
@@ -11,7 +12,7 @@ import {FinalCtaSection} from "@/components/sections/FinalCtaSection";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getProductMap, products} from "@/content/products";
-import {getUseCasesByProduct} from "@/content/use-cases";
+import {getProductPlaybookHref, getUseCasesByProduct} from "@/content/use-cases";
 import {localizeHref} from "@/lib/i18n";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata, siteUrl} from "@/lib/seo/metadata";
@@ -31,6 +32,7 @@ function getProductDetailCopy(locale: "en" | "zh-cn") {
       },
       hero: {
         eyebrow: "产品",
+        playbookLabel: "查看 Use Case Playbook",
         viewDemoLabel: "查看演示",
         viewDemoHref: "/demo",
         panels: {
@@ -105,6 +107,7 @@ function getProductDetailCopy(locale: "en" | "zh-cn") {
     },
     hero: {
       eyebrow: "Product",
+      playbookLabel: "Open use case playbook",
       viewDemoLabel: "View demo",
       viewDemoHref: "/demo",
       panels: {
@@ -259,59 +262,83 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
             dangerouslySetInnerHTML={{__html: JSON.stringify(schema)}}
           />
         ))}
-        <section className="page-section page-hero">
-          <div className={isTranslator ? "detail-grid detail-grid--single" : "detail-grid"}>
-            <div>
+        <section className="py-12 sm:py-16 lg:py-20">
+          <div
+            className={[
+              "rounded-[32px] border border-slate-200/80 bg-[radial-gradient(circle_at_top_right,_rgba(16,185,129,0.14),_transparent_30%),linear-gradient(180deg,_rgba(255,255,255,0.96),_rgba(248,250,252,0.92))] px-6 py-10 shadow-[0_24px_80px_-40px_rgba(15,23,42,0.35)] sm:px-8 lg:px-12",
+              isTranslator ? "" : "",
+            ].join(" ")}
+          >
+            <div className={isTranslator ? "grid gap-8" : "grid gap-8 lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.92fr)] lg:items-start"}>
+              <div>
               <SectionHeading
                 eyebrow={copy.hero.eyebrow}
                 title={product.heroTitle}
                 description={product.heroDescription}
                 as="h1"
               />
-              <div className="tag-list">
+              <div className="mt-6 flex flex-wrap gap-2">
                 {product.metrics.map((metric) => (
                   <span key={metric} className="pill">
                     {metric}
                   </span>
                 ))}
               </div>
-              <div className="inline-list space-top-xl">
+              <div className="mt-8 flex flex-wrap items-center gap-3">
                 <Button href={product.ctaHref}>{product.ctaLabel}</Button>
-                <Button href={copy.hero.viewDemoHref} variant="secondary">
+                {hasLinkedUseCases ? (
+                  <Button href={getProductPlaybookHref(product.slug)} variant="secondary">
+                    {copy.hero.playbookLabel}
+                  </Button>
+                ) : null}
+                <Button href={copy.hero.viewDemoHref} variant="ghost">
                   {copy.hero.viewDemoLabel}
                 </Button>
               </div>
-            </div>
-            {!isTranslator ? (
-              <div className="surface-card section-stack">
-                <div>
-                  <h3>{copy.hero.panels.targetUsersTitle}</h3>
-                  <ul className="check-list">
-                    {product.targetUsers.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <h3>{copy.hero.panels.benefitsTitle}</h3>
-                  <ul className="check-list">
-                    {product.benefits.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <h3>{copy.hero.panels.demoHighlightsTitle}</h3>
-                  <div className="tag-list">
-                    {product.demoHighlights.map((item) => (
-                      <span key={item} className="pill">
-                        {item}
-                      </span>
-                    ))}
+              </div>
+              {!isTranslator ? (
+                <div className="rounded-[28px] border border-slate-200/80 bg-white/90 p-6 shadow-[0_16px_48px_-24px_rgba(15,23,42,0.24)] sm:p-7">
+                  <div className="grid gap-6">
+                    <div>
+                      <h3 className="text-lg font-semibold tracking-[-0.03em] text-slate-950">
+                        {copy.hero.panels.targetUsersTitle}
+                      </h3>
+                      <ul className="mt-4 grid gap-2 text-sm leading-7 text-slate-600">
+                        {product.targetUsers.map((item) => (
+                          <li key={item} className="rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-3">
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold tracking-[-0.03em] text-slate-950">
+                        {copy.hero.panels.benefitsTitle}
+                      </h3>
+                      <ul className="mt-4 grid gap-2 text-sm leading-7 text-slate-600">
+                        {product.benefits.map((item) => (
+                          <li key={item} className="rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-3">
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold tracking-[-0.03em] text-slate-950">
+                        {copy.hero.panels.demoHighlightsTitle}
+                      </h3>
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        {product.demoHighlights.map((item) => (
+                          <span key={item} className="pill">
+                            {item}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ) : null}
+              ) : null}
+            </div>
           </div>
         </section>
 
@@ -322,26 +349,30 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
             eyebrow={copy.sections.useCases.eyebrow}
             title={copy.sections.useCases.title}
             description={copy.sections.useCases.description}
+            action={
+              hasLinkedUseCases ? (
+                <Button href={getProductPlaybookHref(product.slug)} variant="secondary">
+                  {locale === "zh-cn" ? "打开产品 playbook" : "Open product playbook"}
+                </Button>
+              ) : undefined
+            }
           />
           {hasLinkedUseCases ? (
-            <>
-              <div className="resource-grid">
-                {linkedUseCases.map((useCase) => (
-                  <ArticleCard
-                    key={useCase.slug}
-                    title={useCase.title}
-                    description={useCase.description}
-                    href={`/use-cases/${useCase.slug}`}
-                    meta={[product.name, useCase.category]}
-                  />
-                ))}
-              </div>
-              <div className="resources-section__cta">
-                <Button href="/use-cases" variant="secondary">
-                  {locale === "zh-cn" ? "查看全部 use cases" : "Browse all use cases"}
-                </Button>
-              </div>
-            </>
+            <div className="playbook-grid">
+              {linkedUseCases.map((useCase) => (
+                <UseCasePlaybookCard
+                  key={useCase.slug}
+                  title={useCase.title}
+                  description={useCase.description}
+                  href={`/use-cases/${useCase.slug}`}
+                  icon={product.icon}
+                  productName={product.name}
+                  eyebrow={useCase.category}
+                  meta={[locale === "zh-cn" ? "Use Case" : "Use Case", useCase.category]}
+                  linkLabel={locale === "zh-cn" ? "查看场景详情" : "Open use case"}
+                />
+              ))}
+            </div>
           ) : (
             <div className="card-grid">
               {product.useCases.map((useCase) => (

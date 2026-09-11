@@ -79,101 +79,90 @@ export default async function ResourcesPage() {
     },
   ];
 
+  function renderArticleGrid(
+    items: Array<{title: string; description: string; href: string; meta: string[]}>,
+    emptyState?: {title: string; description: string},
+  ) {
+    if (items.length > 0) {
+      return (
+        <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {items.map((item) => (
+            <ArticleCard
+              key={`${item.title}-${item.href}`}
+              title={item.title}
+              description={item.description}
+              href={item.href}
+              meta={item.meta}
+            />
+          ))}
+        </div>
+      );
+    }
+
+    if (!emptyState) {
+      return null;
+    }
+
+    return (
+      <div className="mt-8 rounded-[28px] border border-dashed border-slate-300 bg-slate-50/80 px-6 py-8">
+        <h3 className="text-xl font-semibold tracking-[-0.03em] text-slate-950">{emptyState.title}</h3>
+        <p className="mt-3 text-sm leading-7 text-slate-600">{emptyState.description}</p>
+      </div>
+    );
+  }
+
   return (
     <main className="resources-page">
       <PageContainer>
-        <section className="page-section page-hero">
-          <SectionHeading
-            eyebrow={copy.hero.eyebrow}
-            title={copy.hero.title}
-            description={copy.hero.description}
-            as="h1"
-          />
+        <section className="py-12 sm:py-16 lg:py-20">
+          <div className="rounded-[32px] border border-slate-200/80 bg-[radial-gradient(circle_at_top_right,_rgba(16,185,129,0.14),_transparent_30%),linear-gradient(180deg,_rgba(255,255,255,0.96),_rgba(248,250,252,0.92))] px-6 py-10 shadow-[0_24px_80px_-40px_rgba(15,23,42,0.35)] sm:px-8 lg:px-12">
+              <SectionHeading
+                eyebrow={copy.hero.eyebrow}
+                title={copy.hero.title}
+                description={copy.hero.description}
+                as="h1"
+              />
+          </div>
         </section>
 
-        <section className="page-section">
+        <section className="py-8 sm:py-10 lg:py-12">
           <SectionHeading
             eyebrow={copy.sections.guides.eyebrow}
             title={copy.sections.guides.title}
             description={copy.sections.guides.description}
           />
-          <div className="resource-subsection">
-            <div className="resource-grid">
-              {guideModuleResources.map((item) => (
-                <ArticleCard
-                  key={`${item.title}-${item.href}`}
-                  title={item.title}
-                  description={item.description}
-                  href={item.href}
-                  meta={item.meta}
-                />
-              ))}
-            </div>
+          <div className="mt-8 space-y-12">
+            <section className="space-y-6">
+              {renderArticleGrid(guideModuleResources)}
+            </section>
+            <section className="space-y-6 border-t border-slate-200/70 pt-10">
+              <SectionHeading
+                title={copy.sections.guides.categoryTitle}
+                description={copy.sections.guides.categoryDescription}
+              />
+              {renderArticleGrid(featuredLocalizationGuideResources, unavailableGuideCopy)}
+            </section>
+            <section className="space-y-6 border-t border-slate-200/70 pt-10">
+              <SectionHeading
+                title={copy.sections.guides.scenarioTitle}
+                description={copy.sections.guides.scenarioDescription}
+              />
+              {renderArticleGrid(featuredFunctionScenarioGuideResources, unavailableGuideCopy)}
+            </section>
           </div>
-          <div className="resource-subsection">
-            <SectionHeading
-              eyebrow={copy.sections.guides.categoryEyebrow}
-              title={copy.sections.guides.categoryTitle}
-              description={copy.sections.guides.categoryDescription}
-            />
-            <div className="resource-grid">
-              {featuredLocalizationGuideResources.length > 0 ? (
-                featuredLocalizationGuideResources.map((item) => (
-                  <ArticleCard
-                    key={`${item.title}-${item.href}`}
-                    title={item.title}
-                    description={item.description}
-                    href={item.href}
-                    meta={item.meta}
-                  />
-                ))
-              ) : (
-                <div className="surface-card">
-                  <h3>{unavailableGuideCopy.title}</h3>
-                  <p className="quote">{unavailableGuideCopy.description}</p>
-                </div>
-              )}
-            </div>
-          </div>
-          <div className="resource-subsection">
-            <SectionHeading
-              eyebrow={copy.sections.guides.scenarioEyebrow}
-              title={copy.sections.guides.scenarioTitle}
-              description={copy.sections.guides.scenarioDescription}
-            />
-            <div className="resource-grid">
-              {featuredFunctionScenarioGuideResources.length > 0 ? (
-                featuredFunctionScenarioGuideResources.map((item) => (
-                  <ArticleCard
-                    key={`${item.title}-${item.href}`}
-                    title={item.title}
-                    description={item.description}
-                    href={item.href}
-                    meta={item.meta}
-                  />
-                ))
-              ) : (
-                <div className="surface-card">
-                  <h3>{unavailableGuideCopy.title}</h3>
-                  <p className="quote">{unavailableGuideCopy.description}</p>
-                </div>
-              )}
-            </div>
-          </div>
-          <div className="resources-section__cta">
+          <div className="mt-8 flex justify-start">
             <Button href={copy.sections.guides.ctaHref} variant="secondary">
               {copy.sections.guides.ctaLabel}
             </Button>
           </div>
         </section>
 
-        <section className="page-section">
+        <section className="py-12 sm:py-14 lg:py-16">
           <SectionHeading
-            eyebrow={copy.sections.useCases.eyebrow}
             title={copy.sections.useCases.title}
             description={copy.sections.useCases.description}
           />
-          <div className="resource-grid">
+          <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {featuredUseCaseResources.map((item) => (
               <ArticleCard
                 key={`${item.title}-${item.href}`}
@@ -184,20 +173,19 @@ export default async function ResourcesPage() {
               />
             ))}
           </div>
-          <div className="resources-section__cta">
+          <div className="mt-8 flex justify-start">
             <Button href={copy.sections.useCases.ctaHref} variant="secondary">
               {copy.sections.useCases.ctaLabel}
             </Button>
           </div>
         </section>
 
-        <section className="page-section">
+        <section className="py-12 sm:py-14 lg:py-16">
           <SectionHeading
-            eyebrow={copy.sections.helpCenter.eyebrow}
             title={copy.sections.helpCenter.title}
             description={copy.sections.helpCenter.description}
           />
-          <div className="resource-grid">
+          <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {featuredHelpCenterResources.map((item) => (
               <ArticleCard
                 key={`${item.title}-${item.href}`}
@@ -208,20 +196,19 @@ export default async function ResourcesPage() {
               />
             ))}
           </div>
-          <div className="resources-section__cta">
+          <div className="mt-8 flex justify-start">
             <Button href={copy.sections.helpCenter.ctaHref} variant="secondary">
               {copy.sections.helpCenter.ctaLabel}
             </Button>
           </div>
         </section>
 
-        <section className="page-section">
+        <section className="py-12 sm:py-14 lg:py-16">
           <SectionHeading
-            eyebrow={copy.sections.blog.eyebrow}
             title={copy.sections.blog.title}
             description={copy.sections.blog.description}
           />
-          <div className="resource-grid">
+          <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {featuredBlogResources.map((item) => (
               <ArticleCard
                 key={`${item.title}-${item.href}`}
@@ -232,20 +219,19 @@ export default async function ResourcesPage() {
               />
             ))}
           </div>
-          <div className="resources-section__cta">
+          <div className="mt-8 flex justify-start">
             <Button href={copy.sections.blog.ctaHref} variant="secondary">
               {copy.sections.blog.ctaLabel}
             </Button>
           </div>
         </section>
 
-        <section className="page-section">
+        <section className="py-12 sm:py-14 lg:py-16">
           <SectionHeading
-            eyebrow={copy.sections.compare.eyebrow}
             title={copy.sections.compare.title}
             description={copy.sections.compare.description}
           />
-          <div className="resource-grid">
+          <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {featuredCompareResources.map((item) => (
               <ArticleCard
                 key={`${item.title}-${item.href}`}
@@ -256,20 +242,19 @@ export default async function ResourcesPage() {
               />
             ))}
           </div>
-          <div className="resources-section__cta">
+          <div className="mt-8 flex justify-start">
             <Button href={copy.sections.compare.ctaHref} variant="secondary">
               {copy.sections.compare.ctaLabel}
             </Button>
           </div>
         </section>
 
-        <section className="page-section">
+        <section className="py-12 sm:py-14 lg:py-16">
           <SectionHeading
-            eyebrow={copy.sections.bestShopifyApps.eyebrow}
             title={copy.sections.bestShopifyApps.title}
             description={copy.sections.bestShopifyApps.description}
           />
-          <div className="resource-grid">
+          <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {featuredBestShopifyAppsResources.map((item) => (
               <ArticleCard
                 key={`${item.title}-${item.href}`}
@@ -280,20 +265,19 @@ export default async function ResourcesPage() {
               />
             ))}
           </div>
-          <div className="resources-section__cta">
+          <div className="mt-8 flex justify-start">
             <Button href={copy.sections.bestShopifyApps.ctaHref} variant="secondary">
               {copy.sections.bestShopifyApps.ctaLabel}
             </Button>
           </div>
         </section>
 
-        <section className="page-section">
+        <section className="py-12 sm:py-14 lg:py-16">
           <SectionHeading
-            eyebrow={copy.sections.productResearch.eyebrow}
             title={copy.sections.productResearch.title}
             description={copy.sections.productResearch.description}
           />
-          <div className="resource-grid">
+          <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {featuredProductResearchResources.map((item) => (
               <ArticleCard
                 key={`${item.title}-${item.href}`}
@@ -304,14 +288,14 @@ export default async function ResourcesPage() {
               />
             ))}
           </div>
-          <div className="resources-section__cta">
+          <div className="mt-8 flex justify-start">
             <Button href={copy.sections.productResearch.ctaHref} variant="secondary">
               {copy.sections.productResearch.ctaLabel}
             </Button>
           </div>
         </section>
 
-        <section className="page-section">
+        <section className="py-12 sm:py-14 lg:py-16">
           <NewsletterSubscriptionCard source="resources_newsletter" copy={copy.subscription} />
         </section>
       </PageContainer>

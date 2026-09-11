@@ -18,27 +18,33 @@ export function SiteFooter() {
   ];
 
   return (
-    <footer className="site-footer">
+    <footer className="border-t border-slate-200 bg-white/80">
       <PageContainer>
-        <div className="footer-grid">
-          <div>
-            <div className="site-brand">Ciwi</div>
-            <p className="muted">{uiCopy.footer.description}</p>
+        <div className="grid gap-10 py-14 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,2fr)]">
+          <div className="space-y-4">
+            <div className="text-2xl font-semibold tracking-[-0.04em] text-slate-950">Ciwi</div>
+            <p className="max-w-md text-sm leading-7 text-slate-600">{uiCopy.footer.description}</p>
           </div>
-          {footerGroups.map((group) => (
-            <div key={group.title} className="site-footer__group">
-              <h4>{group.title}</h4>
-              <div className="site-footer__links">
-                {group.items.map((item) => (
-                  <LocalizedLink key={item.href} href={item.href} className="site-footer__link">
-                    {item.label}
-                  </LocalizedLink>
-                ))}
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {footerGroups.map((group) => (
+              <div key={group.title} className="space-y-3">
+                <h4 className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">{group.title}</h4>
+                <div className="grid gap-2">
+                  {group.items.map((item) => (
+                    <LocalizedLink
+                      key={item.href}
+                      href={item.href}
+                      className="text-sm font-medium text-slate-600 transition-colors hover:text-emerald-700"
+                    >
+                      {item.label}
+                    </LocalizedLink>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-        <div className="site-footer__meta">{uiCopy.footer.meta}</div>
+        <div className="border-t border-slate-200 py-5 text-sm text-slate-500">{uiCopy.footer.meta}</div>
       </PageContainer>
     </footer>
   );

@@ -1,6 +1,5 @@
 import type {Locale} from "@/lib/i18n";
 import {getLocalizedValue} from "@/lib/i18n-content";
-import {ciwiShopifyInstallUrl} from "@/lib/marketing-links";
 
 const homePageCopyEn = {
     outcomeItems: [
@@ -32,6 +31,21 @@ const homePageCopyEn = {
         name: "Cooviphair",
         tag: "Fashion / Shopify",
         quote: "We needed a workflow that could support multilingual operations over time, not just finish the first translation. Ciwi fits that better.",
+      },
+      {
+        name: "Vivaia",
+        tag: "Footwear / Global Store",
+        quote: "Our team no longer has to chase every language version manually. Ciwi made localization feel like part of daily operations, not a one-time launch task.",
+      },
+      {
+        name: "SURI",
+        tag: "Lifestyle / DTC",
+        quote: "The biggest win was clarity. Product messaging stayed more consistent across markets, and that gave us more confidence when scaling paid traffic.",
+      },
+      {
+        name: "MoriMoss",
+        tag: "Home / Shopify Plus",
+        quote: "We used to treat translated pages as a separate project. With Ciwi, they finally move at the same speed as the rest of the storefront.",
       },
     ],
     featuredResources: [
@@ -75,7 +89,7 @@ const homePageCopyEn = {
         "Ciwi builds AI-powered products for Shopify merchants so brands can cross language and market barriers more easily, and serve global customers with more confidence.",
       proofItems: ["Built for Shopify", "Expert support", "Designed for global growth"],
       primaryCtaLabel: "Explore Ciwi products",
-      primaryCtaHref: ciwiShopifyInstallUrl,
+      primaryCtaHref: "/products",
       secondaryCtaLabel: "View demo",
       secondaryCtaHref: "/demo",
       brandName: "Ciwi",
@@ -168,6 +182,21 @@ const homePageCopyZh: typeof homePageCopyEn = {
         tag: "Fashion / Shopify",
         quote: "我们需要的是能长期支撑多语言运营的方案，而不是只完成第一次翻译。Ciwi 在这点上更靠谱。",
       },
+      {
+        name: "Vivaia",
+        tag: "Footwear / Global Store",
+        quote: "现在团队不用再靠人工逐个语言版本去追更新。Ciwi 让本地化真正进入了日常运营，而不是一次性项目。",
+      },
+      {
+        name: "SURI",
+        tag: "Lifestyle / DTC",
+        quote: "最大的提升是表达更清楚了。不同市场的商品文案更一致，我们在放大广告投放时也更有把握。",
+      },
+      {
+        name: "MoriMoss",
+        tag: "Home / Shopify Plus",
+        quote: "以前翻译页面总像独立项目，现在它终于能和 storefront 的日常更新保持同样的节奏了。",
+      },
     ],
     featuredResources: [
       {
@@ -210,7 +239,7 @@ const homePageCopyZh: typeof homePageCopyEn = {
         "Ciwi 为 Shopify 商家打造 AI 驱动的产品，帮助品牌跨越语言与市场障碍，更轻松地触达、连接并服务全球消费者。",
       proofItems: ["专为 Shopify 打造", "专业团队支持", "面向全球增长"],
       primaryCtaLabel: "探索 Ciwi 产品",
-      primaryCtaHref: ciwiShopifyInstallUrl,
+      primaryCtaHref: "/products",
       secondaryCtaLabel: "查看演示",
       secondaryCtaHref: "/demo",
       brandName: "Ciwi",

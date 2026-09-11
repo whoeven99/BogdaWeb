@@ -10,7 +10,7 @@ import {getProductResearchWorkflowArticles} from "@/content/product-research";
 import {getProducts} from "@/content/products";
 import {getSolutions} from "@/content/solutions";
 import {getToolReviews} from "@/content/tool-reviews";
-import {getUseCases} from "@/content/use-cases";
+import {getProductPlaybookHref, getUseCases} from "@/content/use-cases";
 import {localizeHref, type Locale} from "@/lib/i18n";
 import {siteUrl} from "@/lib/seo/metadata";
 
@@ -61,6 +61,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     for (const product of getProducts(locale)) {
       addEntry(`/products/${product.slug}`, locale);
+      addEntry(getProductPlaybookHref(product.slug), locale);
     }
 
     for (const useCase of getUseCases(locale)) {

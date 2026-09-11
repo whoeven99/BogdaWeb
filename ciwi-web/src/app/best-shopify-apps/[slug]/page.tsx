@@ -350,7 +350,7 @@ export default async function BestShopifyAppCollectionPage({params}: BestShopify
         </section>
 
         <section id="final-verdict" className="page-section">
-          <div className="callout best-apps-verdict">
+          <div className="final-cta-panel best-apps-verdict">
             <SectionHeading title={collection.finalVerdict.title} />
             <div className="best-apps-verdict__body">
               {collection.finalVerdict.paragraphs.map((paragraph) => (

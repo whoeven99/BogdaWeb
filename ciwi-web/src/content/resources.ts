@@ -6,7 +6,8 @@ import {getFunctionScenarioGuides} from "@/content/function-scenario-guides";
 import {getFeaturedHelpCenterDocs, getHelpCenterDocs} from "@/content/help-center";
 import {getLocalizationGuides} from "@/content/localization-guides";
 import {getProductResearchWorkflowArticles} from "@/content/product-research";
-import {getFeaturedUseCases} from "@/content/use-cases";
+import {getProductPlaybookHref} from "@/content/use-cases";
+import {getProducts} from "@/content/products";
 
 export type ResourceItem = {
   title: string;
@@ -87,10 +88,10 @@ export function getProductResearchResources(locale: Locale): ResourceItem[] {
 }
 
 export function getUseCaseResources(locale: Locale): ResourceItem[] {
-  return getFeaturedUseCases(locale).map((item) => ({
-    title: item.title,
-    description: item.description,
-    href: `/use-cases/${item.slug}`,
-    meta: [locale === "zh-cn" ? "Use Case" : "Use Case", item.category],
+  return getProducts(locale).map((product) => ({
+    title: locale === "zh-cn" ? `${product.name} Playbook` : `${product.name} Playbook`,
+    description: product.shortDescription,
+    href: getProductPlaybookHref(product.slug),
+    meta: [locale === "zh-cn" ? "Playbook" : "Playbook", product.metrics[0]],
   }));
 }

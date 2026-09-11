@@ -920,7 +920,7 @@ function renderLocalizationGuidePage(
         </section>
 
         <section className="page-section">
-          <div className="callout guide-final-cta">
+          <div className="final-cta-panel guide-final-cta">
             <SectionHeading eyebrow={copy.sections.cta.eyebrow} title={copy.sections.cta.title} description={copy.sections.cta.description} />
             <div className="guide-hero__actions">
               <Button href={uiCopy.cta.installHref}>{copy.sections.cta.primaryCtaLabel}</Button>
@@ -1225,7 +1225,7 @@ function renderFunctionScenarioGuidePage(
         </section>
 
         <section className="page-section">
-          <div className="callout guide-final-cta">
+          <div className="final-cta-panel guide-final-cta">
             <SectionHeading eyebrow={copy.sections.cta.eyebrow} title={copy.sections.cta.title} description={copy.sections.cta.description} />
             <div className="guide-hero__actions">
               <Button href={uiCopy.cta.installHref}>{copy.sections.cta.primaryCtaLabel}</Button>

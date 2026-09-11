@@ -1,6 +1,7 @@
 import {notFound} from "next/navigation";
 
 import {FaqSection} from "@/components/sections/FaqSection";
+import {CardCtaLink} from "@/components/ui/CardCtaLink";
 import {LocalizedLink} from "@/components/ui/LocalizedLink";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
@@ -228,50 +229,52 @@ export default async function ToolReviewDetailPage({params}: ToolReviewDetailPag
           />
         ))}
 
-        <section className="page-section guide-hero">
-          <div className="guide-hero__topbar">
-            <LocalizedLink href="/resources/product-research/reviews" className="guide-backlink">
-              {copy.backLabel}
-            </LocalizedLink>
-          </div>
-
-          <SectionHeading eyebrow={copy.hero.eyebrow} title={review.title} description={review.description} as="h1" />
-
-          <div className="guide-meta-grid">
-            <div className="surface-card guide-meta-card">
-              <span>{copy.hero.ratingLabel}</span>
-              <strong>{formatRating(review.rating)}/10</strong>
+        <section className="py-12 sm:py-16 lg:py-20">
+          <div className="rounded-[32px] border border-slate-200/80 bg-[radial-gradient(circle_at_top_right,_rgba(16,185,129,0.14),_transparent_30%),linear-gradient(180deg,_rgba(255,255,255,0.96),_rgba(248,250,252,0.92))] px-6 py-10 shadow-[0_24px_80px_-40px_rgba(15,23,42,0.35)] sm:px-8 lg:px-12">
+            <div className="mb-6">
+              <LocalizedLink href="/resources/product-research/reviews" className="guide-backlink">
+                {copy.backLabel}
+              </LocalizedLink>
             </div>
-            <div className="surface-card guide-meta-card">
-              <span>{copy.hero.categoryLabel}</span>
-              <strong>{review.categoryLabel}</strong>
-            </div>
-            <div className="surface-card guide-meta-card">
-              <span>{copy.hero.yearLabel}</span>
-              <strong>{review.year}</strong>
-            </div>
-            <div className="surface-card guide-meta-card">
-              <span>{copy.hero.pricingLabel}</span>
-              <strong>{review.pricing}</strong>
-            </div>
-          </div>
 
-          <div className="guide-hero__layout">
-            <article className="surface-card guide-hero__summary">
-              <span className="guide-hero__summary-label">{copy.hero.summaryLabel}</span>
-              <p>{review.verdict}</p>
-            </article>
+            <SectionHeading eyebrow={copy.hero.eyebrow} title={review.title} description={review.description} as="h1" />
 
-            <nav className="surface-card guide-toc" aria-label={copy.hero.tocLabel}>
-              <span className="guide-hero__summary-label">{copy.hero.tocLabel}</span>
-              <ul>
-                {tocItems.map((item) => (
-                  <li key={item.href}>
-                    <a href={item.href}>{item.label}</a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
+            <div className="mt-8 grid gap-4 md:grid-cols-4">
+              <div className="guide-meta-card">
+                <span>{copy.hero.ratingLabel}</span>
+                <strong>{formatRating(review.rating)}/10</strong>
+              </div>
+              <div className="guide-meta-card">
+                <span>{copy.hero.categoryLabel}</span>
+                <strong>{review.categoryLabel}</strong>
+              </div>
+              <div className="guide-meta-card">
+                <span>{copy.hero.yearLabel}</span>
+                <strong>{review.year}</strong>
+              </div>
+              <div className="guide-meta-card">
+                <span>{copy.hero.pricingLabel}</span>
+                <strong>{review.pricing}</strong>
+              </div>
+            </div>
+
+            <div className="guide-hero__layout">
+              <article className="guide-hero__summary">
+                <span className="guide-hero__summary-label">{copy.hero.summaryLabel}</span>
+                <p>{review.verdict}</p>
+              </article>
+
+              <nav className="guide-toc" aria-label={copy.hero.tocLabel}>
+                <span className="guide-hero__summary-label">{copy.hero.tocLabel}</span>
+                <ul>
+                  {tocItems.map((item) => (
+                    <li key={item.href}>
+                      <a href={item.href}>{item.label}</a>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </div>
           </div>
         </section>
 
@@ -373,9 +376,7 @@ export default async function ToolReviewDetailPage({params}: ToolReviewDetailPag
               <article key={item.name} className="surface-card guide-narrative-card">
                 <h3>{item.name}</h3>
                 <div className="space-top-lg">
-                  <LocalizedLink href={item.href} className="site-nav__link">
-                    {locale === "zh-cn" ? "查看测评" : "Read review"}
-                  </LocalizedLink>
+                  <CardCtaLink href={item.href}>{locale === "zh-cn" ? "查看测评" : "Read review"}</CardCtaLink>
                 </div>
               </article>
             ))}

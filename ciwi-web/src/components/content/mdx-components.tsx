@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type {ComponentPropsWithoutRef, ReactNode} from "react";
 
+import {CardCtaLink} from "@/components/ui/CardCtaLink";
 import {LocalizedLink} from "@/components/ui/LocalizedLink";
 import {Button} from "@/components/ui/Button";
 import {isExternalHref} from "@/lib/i18n";
@@ -45,7 +46,7 @@ type ComparisonTableProps = {
 };
 
 type FeatureGridProps = {
-  items: {eyebrow?: string; title: string; description: string}[];
+  items: {eyebrow?: string; title: string; description: string; href?: string; buttonLabel?: string}[];
 };
 
 function ContentImage({
@@ -159,6 +160,11 @@ function FeatureGrid({items}: FeatureGridProps) {
           {item.eyebrow ? <span className="mdx-feature-card__eyebrow">{item.eyebrow}</span> : null}
           <h3>{item.title}</h3>
           <p>{item.description}</p>
+          {item.href && item.buttonLabel ? (
+            <div className="space-top-lg">
+              <CardCtaLink href={item.href}>{item.buttonLabel}</CardCtaLink>
+            </div>
+          ) : null}
         </article>
       ))}
     </div>
