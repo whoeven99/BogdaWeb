@@ -29,7 +29,7 @@ export function BlogFeed({posts, title, description}: BlogFeedProps) {
 
   return (
     <section className="py-12 sm:py-16 lg:py-20">
-      <header className="max-w-4xl rounded-[32px] border border-slate-200/80 bg-[radial-gradient(circle_at_top_right,_rgba(16,185,129,0.14),_transparent_30%),linear-gradient(180deg,_rgba(255,255,255,0.96),_rgba(248,250,252,0.92))] px-6 py-10 shadow-[0_24px_80px_-40px_rgba(15,23,42,0.35)] sm:px-8 lg:px-12">
+      <header className="content-hero-shell max-w-4xl">
         <div className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-700">
           {uiCopy.blog.eyebrow}
         </div>
@@ -39,13 +39,13 @@ export function BlogFeed({posts, title, description}: BlogFeedProps) {
         <p className="mt-4 max-w-3xl text-base leading-8 text-slate-600">{description}</p>
       </header>
 
-      <div className="mt-10 grid gap-5">
+      <div className="mt-12 grid gap-6 lg:gap-7">
         {visiblePosts.map((post) => (
           <article
             key={post.slug}
-            className="rounded-[28px] border border-slate-200/80 bg-white/90 p-6 shadow-[0_16px_48px_-24px_rgba(15,23,42,0.28)] sm:p-7"
+            className="rounded-[28px] border border-slate-200/80 bg-white/90 p-7 shadow-[0_16px_48px_-24px_rgba(15,23,42,0.28)] sm:p-8"
           >
-            <div className="flex flex-wrap gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+            <div className="flex flex-wrap gap-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">
               <span>{post.publishedAt}</span>
               <span>{post.readingTime}</span>
               {post.tags.map((tag) => (
@@ -54,13 +54,13 @@ export function BlogFeed({posts, title, description}: BlogFeedProps) {
                 </span>
               ))}
             </div>
-            <h2 className="mt-4 text-2xl font-semibold tracking-[-0.04em] text-slate-950">
+            <h2 className="mt-5 text-2xl font-semibold tracking-[-0.04em] text-slate-950">
               <LocalizedLink href={post.href} className="transition-colors hover:text-emerald-700">
                 {post.title}
               </LocalizedLink>
             </h2>
-            <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-600">{post.description}</p>
-            <div className="mt-6">
+            <p className="mt-4 max-w-3xl text-[15px] leading-8 text-slate-600">{post.description}</p>
+            <div className="mt-7">
               <CardCtaLink href={post.href} variant="text">
                 {uiCopy.blog.readArticleLabel}
               </CardCtaLink>
@@ -71,7 +71,7 @@ export function BlogFeed({posts, title, description}: BlogFeedProps) {
 
       {pageCount > 1 ? (
         <nav
-          className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
+          className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
           aria-label={uiCopy.blog.paginationLabel}
         >
           <button

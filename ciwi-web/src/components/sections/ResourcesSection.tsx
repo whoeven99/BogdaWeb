@@ -30,7 +30,7 @@ export function ResourcesSection({eyebrow, title, description, items, subscripti
   return (
     <section className="py-12 sm:py-14 lg:py-16">
       <SectionHeading eyebrow={eyebrow} title={title} description={description} />
-      <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+      <div className="mt-10 grid gap-6 md:grid-cols-2 xl:gap-8 xl:grid-cols-3">
         {items.map((item) => (
           <ArticleCard
             key={item.title}
@@ -41,7 +41,7 @@ export function ResourcesSection({eyebrow, title, description, items, subscripti
           />
         ))}
       </div>
-      <div className="mt-8">
+      <div className="mt-10">
         <NewsletterSubscriptionCard source={subscription.source} copy={subscription} />
       </div>
     </section>

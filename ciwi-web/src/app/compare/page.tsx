@@ -109,7 +109,7 @@ export default async function ComparePage() {
           />
         ))}
         <section className="py-12 sm:py-16 lg:py-20">
-          <div className="rounded-[32px] border border-slate-200/80 bg-[radial-gradient(circle_at_top_right,_rgba(16,185,129,0.14),_transparent_30%),linear-gradient(180deg,_rgba(255,255,255,0.96),_rgba(248,250,252,0.92))] px-6 py-10 shadow-[0_24px_80px_-40px_rgba(15,23,42,0.35)] sm:px-8 lg:px-12">
+          <div className="content-hero-shell">
             <SectionHeading
               eyebrow={copy.hero.eyebrow}
               title={copy.hero.title}

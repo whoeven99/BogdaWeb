@@ -90,7 +90,7 @@ export function HelpCenterLanding({docs, featuredDocs, locale, eyebrow}: HelpCen
 
   return (
     <section className="py-12 sm:py-16 lg:py-20">
-      <div className="rounded-[32px] border border-slate-200/80 bg-[radial-gradient(circle_at_top_right,_rgba(16,185,129,0.14),_transparent_30%),linear-gradient(180deg,_rgba(255,255,255,0.96),_rgba(248,250,252,0.92))] px-6 py-10 shadow-[0_24px_80px_-40px_rgba(15,23,42,0.35)] sm:px-8 lg:px-12">
+      <div className="content-hero-shell">
         <div className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-700">{eyebrow}</div>
         <h1 className="mt-4 max-w-4xl text-pretty text-4xl font-semibold tracking-[-0.05em] text-slate-950 sm:text-5xl">
           {uiCopy.docs.landingTitle}
@@ -98,9 +98,9 @@ export function HelpCenterLanding({docs, featuredDocs, locale, eyebrow}: HelpCen
         <p className="mt-4 max-w-3xl text-base leading-8 text-slate-600">{uiCopy.docs.landingDescription}</p>
       </div>
 
-      <div className="mt-10 space-y-8">
-        <section className="rounded-[32px] bg-white/90 p-6 shadow-[0_16px_48px_-24px_rgba(15,23,42,0.14)] sm:p-8">
-          <div className="max-w-3xl space-y-3">
+      <div className="mt-12 space-y-10">
+        <section className="rounded-[32px] bg-white/90 p-7 shadow-[0_16px_48px_-24px_rgba(15,23,42,0.14)] sm:p-9">
+          <div className="max-w-3xl space-y-4">
             <div className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-700">
               {uiCopy.docs.featuredTitle}
             </div>
@@ -110,23 +110,23 @@ export function HelpCenterLanding({docs, featuredDocs, locale, eyebrow}: HelpCen
             <p className="text-base leading-7 text-slate-600">{uiCopy.docs.featuredDescription}</p>
           </div>
 
-          <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:gap-8 xl:grid-cols-3">
             {featuredDocs.map((doc) => (
               <LocalizedLink
                 key={doc.entryId}
                 href={doc.href}
-                className="group flex h-full flex-col rounded-[28px] bg-slate-50/70 p-6 shadow-[0_14px_36px_-28px_rgba(15,23,42,0.18)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-white"
+                className="group flex h-full flex-col rounded-[28px] bg-slate-50/70 p-7 shadow-[0_14px_36px_-28px_rgba(15,23,42,0.18)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-white sm:p-8"
               >
-                <div className="flex flex-wrap gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+                <div className="flex flex-wrap gap-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">
                   {doc.meta.map((item) => (
                     <span key={item} className="rounded-full bg-white px-3 py-1">
                       {item}
                     </span>
                   ))}
                 </div>
-                <h3 className="mt-4 text-xl font-semibold tracking-[-0.03em] text-slate-950">{doc.title}</h3>
-                <p className="mt-3 flex-1 text-sm leading-7 text-slate-600">{doc.description}</p>
-                <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-emerald-700">
+                <h3 className="mt-5 text-[22px] font-semibold tracking-[-0.03em] text-slate-950">{doc.title}</h3>
+                <p className="mt-4 flex-1 text-[15px] leading-8 text-slate-600">{doc.description}</p>
+                <span className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-emerald-700">
                   {uiCopy.docs.openArticleLabel}
                   <span aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-0.5">
                     →
@@ -137,8 +137,8 @@ export function HelpCenterLanding({docs, featuredDocs, locale, eyebrow}: HelpCen
           </div>
         </section>
 
-        <section className="rounded-[32px] bg-white/90 p-6 shadow-[0_16px_48px_-24px_rgba(15,23,42,0.14)] sm:p-8">
-          <div className="max-w-3xl space-y-3">
+        <section className="rounded-[32px] bg-white/90 p-7 shadow-[0_16px_48px_-24px_rgba(15,23,42,0.14)] sm:p-9">
+          <div className="max-w-3xl space-y-4">
             <div className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-700">
               {uiCopy.docs.browseTopicLabel}
             </div>
@@ -148,7 +148,7 @@ export function HelpCenterLanding({docs, featuredDocs, locale, eyebrow}: HelpCen
             <p className="text-base leading-7 text-slate-600">{uiCopy.docs.allDocsDescription}</p>
           </div>
 
-          <div className="mt-8 grid gap-4 lg:grid-cols-[minmax(280px,0.9fr)_minmax(0,1.1fr)]">
+          <div className="mt-10 grid gap-5 lg:grid-cols-[minmax(280px,0.9fr)_minmax(0,1.1fr)]">
             <label className="block">
               <span className="sr-only">{uiCopy.docs.searchPlaceholder}</span>
               <input
@@ -198,24 +198,24 @@ export function HelpCenterLanding({docs, featuredDocs, locale, eyebrow}: HelpCen
           </div>
 
           {filteredGroups.length ? (
-            <div className="mt-8 space-y-8">
+          <div className="mt-10 space-y-10">
               {filteredGroups.map((group) => (
-                <section key={group.key} className="space-y-4">
-                  <header className="flex flex-col gap-2 border-b border-slate-200 pb-4 sm:flex-row sm:items-center sm:justify-between">
+                <section key={group.key} className="space-y-5">
+                  <header className="flex flex-col gap-3 border-b border-slate-200 pb-5 sm:flex-row sm:items-center sm:justify-between">
                     <h3 className="text-2xl font-semibold tracking-[-0.03em] text-slate-950">{group.label}</h3>
                     <span className="text-sm text-slate-500">
                       {group.docs.length} {uiCopy.docs.articleCountLabel}
                     </span>
                   </header>
 
-                  <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+                  <div className="grid gap-6 md:grid-cols-2 xl:gap-8 xl:grid-cols-3">
                     {group.docs.map((doc) => (
                       <LocalizedLink
                         key={doc.entryId}
                         href={doc.href}
-                        className="group flex h-full flex-col rounded-[28px] border border-slate-200/80 bg-slate-50/70 p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:bg-white"
+                        className="group flex h-full flex-col rounded-[28px] border border-slate-200/80 bg-slate-50/70 p-7 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:bg-white sm:p-8"
                       >
-                        <div className="flex flex-wrap gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+                        <div className="flex flex-wrap gap-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">
                           {doc.meta.map((item) => (
                             <span key={item} className="rounded-full border border-slate-200 bg-white/90 px-3 py-1">
                               {item}
@@ -225,11 +225,11 @@ export function HelpCenterLanding({docs, featuredDocs, locale, eyebrow}: HelpCen
                             {doc.readingTime}
                           </span>
                         </div>
-                        <strong className="mt-4 text-lg font-semibold tracking-[-0.03em] text-slate-950">
+                        <strong className="mt-5 text-[21px] font-semibold tracking-[-0.03em] text-slate-950">
                           {doc.title}
                         </strong>
-                        <p className="mt-3 flex-1 text-sm leading-7 text-slate-600">{doc.description}</p>
-                        <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-emerald-700">
+                        <p className="mt-4 flex-1 text-[15px] leading-8 text-slate-600">{doc.description}</p>
+                        <span className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-emerald-700">
                           {uiCopy.docs.openArticleLabel}
                           <span aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-0.5">
                             →

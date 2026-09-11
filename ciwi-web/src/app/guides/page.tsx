@@ -1,7 +1,7 @@
 import {ArticleCard} from "@/components/cards/ArticleCard";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
-import {getFunctionScenarioGuideTopics, getFunctionScenarioGuides} from "@/content/function-scenario-guides";
+import {getFunctionScenarioGuides} from "@/content/function-scenario-guides";
 import {getLocalizationGuides} from "@/content/localization-guides";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {localizeHref} from "@/lib/i18n";
@@ -26,8 +26,6 @@ export default async function GuidesHubPage() {
   const locale = await getRequestLocale();
   const localizationGuides = getLocalizationGuides(locale);
   const functionScenarioGuides = getFunctionScenarioGuides(locale);
-  const localizationSegments = [...new Set(localizationGuides.map((guide) => guide.segmentLabel))];
-  const functionScenarioTopics = getFunctionScenarioGuideTopics(locale);
   const copy =
     locale === "zh-cn"
       ? {
@@ -55,15 +53,11 @@ export default async function GuidesHubPage() {
               eyebrow: "Localization Guides",
               title: "行业、品牌与 B2B 本地化指南",
               description: "适合承接行业类搜索需求，重点讲类目特点、市场习惯、常见错误和本地化策略。",
-              coverageLabel: "覆盖类目",
-              pagesLabel: "页面数",
             },
             scenarios: {
               eyebrow: "Function Scenario Guides",
               title: "Shopify 功能场景翻译指南",
               description: "适合承接 how-to 搜索需求，重点讲某个 Shopify 功能点该翻哪些内容、怎么做、容易错在哪里。",
-              coverageLabel: "覆盖主题",
-              pagesLabel: "页面数",
             },
           },
           emptyState: {
@@ -96,15 +90,11 @@ export default async function GuidesHubPage() {
               eyebrow: "Localization Guides",
               title: "Industry, Brand, and B2B localization guides",
               description: "Built for category-led search demand and broader localization education across markets, content types, and buying contexts.",
-              coverageLabel: "Coverage",
-              pagesLabel: "Pages",
             },
             scenarios: {
               eyebrow: "Function Scenario Guides",
               title: "Shopify function scenario guides",
               description: "Built for how-to search intent around specific Shopify surfaces, translation tasks, and rollout workflows.",
-              coverageLabel: "Topics",
-              pagesLabel: "Pages",
             },
           },
           emptyState: {
@@ -176,18 +166,6 @@ export default async function GuidesHubPage() {
             title={copy.sections.localization.title}
             description={copy.sections.localization.description}
           />
-          <div className="guide-hub-section__meta">
-            <div className="guide-chip-row">
-              <span className="guide-chip">
-                {copy.sections.localization.pagesLabel}: {localizationGuides.length}
-              </span>
-              {localizationSegments.map((segment) => (
-                <span key={segment} className="guide-chip">
-                  {segment}
-                </span>
-              ))}
-            </div>
-          </div>
           <div className="resource-grid">
             {localizationGuides.length > 0 ? (
               localizationGuides.map((guide) => (
@@ -214,18 +192,6 @@ export default async function GuidesHubPage() {
             title={copy.sections.scenarios.title}
             description={copy.sections.scenarios.description}
           />
-          <div className="guide-hub-section__meta">
-            <div className="guide-chip-row">
-              <span className="guide-chip">
-                {copy.sections.scenarios.pagesLabel}: {functionScenarioGuides.length}
-              </span>
-              {functionScenarioTopics.map((topic) => (
-                <span key={topic} className="guide-chip">
-                  {topic}
-                </span>
-              ))}
-            </div>
-          </div>
           <div className="resource-grid">
             {functionScenarioGuides.length > 0 ? (
               functionScenarioGuides.map((guide) => (

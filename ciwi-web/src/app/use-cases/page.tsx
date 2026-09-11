@@ -104,7 +104,7 @@ export default async function UseCasesPage() {
     <main>
       <PageContainer>
         <section className="py-12 sm:py-16 lg:py-20">
-          <div className="overflow-hidden rounded-[32px] border border-slate-200/80 bg-[radial-gradient(circle_at_top_right,_rgba(16,185,129,0.14),_transparent_30%),linear-gradient(180deg,_rgba(255,255,255,0.96),_rgba(248,250,252,0.92))] px-6 py-10 shadow-[0_24px_80px_-40px_rgba(15,23,42,0.35)] sm:px-8 lg:px-12 lg:py-14">
+          <div className="content-hero-shell overflow-hidden lg:py-4">
             <div className="max-w-4xl">
               <SectionHeading
                 eyebrow={copy.hero.eyebrow}
@@ -123,11 +123,11 @@ export default async function UseCasesPage() {
         </section>
 
         <section className="py-8 sm:py-10 lg:py-12">
-          <div className="space-y-10">
+          <div className="space-y-12">
             {productGroups.map((group) => (
               <section
                 key={group.product.slug}
-                className="rounded-[32px] bg-white/80 px-6 py-8 shadow-[0_16px_48px_-28px_rgba(15,23,42,0.14)] sm:px-8 lg:px-10"
+                className="rounded-[32px] bg-white/80 px-6 py-9 shadow-[0_16px_48px_-28px_rgba(15,23,42,0.14)] sm:px-8 sm:py-10 lg:px-10 lg:py-11"
               >
                 <SectionHeading
                   eyebrow={group.product.name}
@@ -147,7 +147,7 @@ export default async function UseCasesPage() {
                     </Button>
                   }
                 />
-                <div className="mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+                <div className="mt-10 grid gap-6 sm:grid-cols-2 xl:gap-8 xl:grid-cols-4">
                   {group.items.slice(0, 4).map((item) => (
                     <UseCasePlaybookCard
                       key={item.slug}
@@ -170,10 +170,10 @@ export default async function UseCasesPage() {
         <section className="py-12 sm:py-14 lg:py-16">
           <div className="final-cta-panel">
             <div className="max-w-3xl space-y-3">
-              <h2 className="text-3xl font-semibold tracking-[-0.04em] text-white sm:text-4xl">
+              <h2 className="text-3xl font-semibold tracking-[-0.04em] text-slate-950 sm:text-4xl">
                 {copy.finalCta.title}
               </h2>
-              <p className="text-[15px] leading-7 text-slate-300">{copy.finalCta.description}</p>
+              <p className="text-[15px] leading-7 text-slate-600">{copy.finalCta.description}</p>
             </div>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Button href={copy.finalCta.primaryHref} variant="primary">

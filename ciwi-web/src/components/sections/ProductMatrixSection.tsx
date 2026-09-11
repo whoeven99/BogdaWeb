@@ -21,7 +21,7 @@ export function ProductMatrixSection({
   return (
     <section className={className}>
       <SectionHeading eyebrow={eyebrow} title={title} description={description} />
-      <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+      <div className="mt-10 grid gap-6 md:grid-cols-2 xl:gap-8 xl:grid-cols-3">
         {products.map((product) => (
           <ProductCard
             key={product.slug}

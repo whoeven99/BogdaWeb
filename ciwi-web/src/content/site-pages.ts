@@ -11,10 +11,48 @@ const sitePagesZh = {
     description:
       "让每一个小品牌，都有机会走向全球市场。",
     contentHtml: `
-      <p><strong>我们是谁？</strong> 我们是从业电商平台业务数十年的专家产品经理和专家工程师组成的团队，诞生于 2025 年。我们的愿景是让每一个小的品牌，都能走向全球。我们的使命是致力于让更多中小商家获得先进的技术来参与全球化市场的竞争，帮助他们塑造自己的生意和品牌。我们的价值观是不与时间为敌，做长期正确有价值的事情。</p>
-      <p><strong>我们想为中小品牌做什么？</strong> 我们希望利用我们丰富的电商经验和视角，把这些专家知识变成可以让每一个品牌运营者都可以开箱即用的工具，帮助他们思考和管理自己的生意和品牌，更高效，更有用。我们在经营过程中发现许多人的生意和品牌并不是死在了产品自身，而是不懂全球化的规则、不清楚平台的规则和玩法，没有办法很好地使用数据工具进行决策。我们希望利用自己的经验和能力，帮助大家不踩坑，不被这些陌生领域的游戏规则束缚和打败。我们希望每一个品牌都专注地发挥自己的优势，做好产品，剩下的工作我们会基于先进的 AI Agent 技术来实现，与各个品牌一起发展和闯关。</p>
-      <p><strong>为什么我们可以这样做？</strong> 我们团队有来自 Amazon、Tiktok、Temu 等知名电商平台的专家，同时我们拥有 Microsoft、bytedance 等多家世界级互联网公司的技术专家。我们不仅有来自平台视角的经验，也有先进的技术理念和工程能力，帮助中小商家获得和头部品牌一样的技术支持和科技赋能。</p>
-    `,
+      <p>Ciwi 不是从一句营销口号开始的，而是从一个很具体的判断开始的：很多成长中的品牌，并不是输在产品本身，而是输在扩张过程中不断叠加的复杂度。语言、平台规则、内容更新、数据判断、跨市场运营，这些问题叠在一起之后，中小团队很容易被拖慢。</p>
+
+      <h2>我们是谁</h2>
+      <p>我们是一支由资深产品经理和资深工程师组成的团队，长期在电商平台、产品系统和工程一线工作，并在 2025 年正式启动 Ciwi。团队成员来自 Amazon、TikTok、Temu、Microsoft、ByteDance 等平台和技术体系，这让我们同时理解平台侧规则、产品落地细节，以及工程能力怎样真正服务经营。</p>
+      <p>我们想做的不是再增加一个复杂工具，而是把这些长期积累的经验收敛成更直接的产品和工作流，让 Shopify 商家能更快上手，也能随着业务增长持续积累自己的方法。</p>
+
+      <h2>我们为什么做这件事</h2>
+      <p>在很多品牌走向全球的过程中，真正让团队吃力的往往不是“要不要增长”，而是“要如何在有限资源下继续做对的事”。我们反复看到几类问题：</p>
+      <div class="about-point-list">
+        <div class="about-point-item">不熟悉不同市场的语言、内容与本地化规则，导致扩张动作很慢。</div>
+        <div class="about-point-item">理解平台机制的成本很高，做了很多动作，但经营结果并不稳定。</div>
+        <div class="about-point-item">数据分散在多个工具和渠道里，很难真正进入日常决策。</div>
+        <div class="about-point-item">团队没有足够工程资源把重复工作自动化，只能反复手工推进。</div>
+      </div>
+      <p>这些问题会不断消耗品牌团队的判断力和执行力。我们希望把这部分复杂度接过来，让商家把更多精力放回产品、品牌和增长本身。</p>
+
+      <blockquote>我们不想让商家把时间花在理解系统和补齐流程上，而是把更多注意力留给真正能拉开差距的产品判断、品牌表达和经营动作。</blockquote>
+
+      <h2>Ciwi 想提供什么</h2>
+      <p>我们想做的是一套更贴近真实经营动作的产品系统，而不是一组彼此割裂的功能点。对我们来说，好的产品至少要完成三件事：</p>
+
+      <h3>把复杂的平台知识变成可以直接使用的产品</h3>
+      <p>很多商家缺的不是意愿，而是缺少一套能够立即上手的框架。我们希望把平台经验、规则理解和最佳实践做成真正可用的产品，而不是留在咨询、经验贴或者零散文档里。</p>
+
+      <h3>把重复的运营工作变成更稳定的流程</h3>
+      <p>无论是翻译、多语言内容同步、数据分析还是经营复盘，团队真正需要的都不是更多手工步骤，而是更少的重复劳动和更明确的工作流。Ciwi 会持续把这些重复动作沉淀成可复用的系统能力。</p>
+
+      <h3>让 AI 进入日常工作，而不是只停留在演示里</h3>
+      <p>我们相信 AI 的价值，不在于做一个“看起来很聪明”的回答，而在于它是否真的进入了商家的日常运营：是否能辅助判断、加快执行、连接上下文，并和已有业务流程一起长期运转。</p>
+
+      <h2>为什么我们有机会把这件事做好</h2>
+      <p>因为我们既理解平台，也理解产品和工程。我们知道规则是怎么形成的，系统是怎么约束用户的，也知道一个功能要怎样设计、怎样落地、怎样稳定运行，才能在真实商业环境里长期有用。</p>
+      <p>这意味着我们不是只从顾问视角提出建议，也不是只从技术视角堆功能，而是尽量从“商家今天要完成什么经营动作”出发，把产品、内容、数据和 AI 工作流重新组织起来。</p>
+
+      <h2>我们坚持的工作方式</h2>
+      <ul>
+        <li>不追求功能数量，先判断它是否真的改善经营动作。</li>
+        <li>不与时间为敌，持续做长期正确、有复利价值的事。</li>
+        <li>不把 AI 当噱头，而把它当成效率、判断和执行的基础设施。</li>
+        <li>不站在远处定义问题，而是和真实商家一起迭代产品与方法。</li>
+      </ul>
+      `,
   },
   contact: {
     title: "Contact Us",
@@ -225,9 +263,47 @@ const sitePagesEn = {
     title: "About Ciwi.ai",
     description: "Give every growing brand a fair chance to reach global markets.",
     contentHtml: `
-      <p><strong>Who we are</strong> We are a team of senior product managers and senior engineers with decades of experience in ecommerce platforms, founded in 2025. Our vision is to help every smaller brand reach global markets. Our mission is to bring advanced technology to more growing merchants so they can compete internationally, build stronger businesses, and shape stronger brands. Our value is simple: do not fight time, and keep doing the long-term work that is right and valuable.</p>
-      <p><strong>What we want to do for growing brands</strong> We want to turn our ecommerce experience and platform perspective into practical tools that every brand operator can use out of the box. Those tools should help merchants think more clearly, manage their businesses better, and operate with more efficiency and usefulness. In practice, many brands do not fail because of the product itself. They get blocked by unfamiliar global rules, unclear platform mechanics, and the inability to use data tools well enough to make decisions. We want to help merchants avoid those traps, reduce the cost of learning unfamiliar systems, and keep their energy focused on building great products. The remaining operational work is what we want to keep improving through advanced AI agent capabilities, together with the brands we support.</p>
-      <p><strong>Why we can do this</strong> Our team includes specialists from leading ecommerce platforms such as Amazon, TikTok, and Temu, alongside technical experts from world-class technology companies including Microsoft and ByteDance. We combine platform-side experience with strong engineering and product thinking so that smaller merchants can access the same level of technical support and enablement that larger brands often take for granted.</p>
+      <p>Ciwi did not start from a slogan. It started from a practical observation: many growing brands do not lose because their products are weak. They lose because expansion adds too much complexity at once. Language, platform rules, content updates, data interpretation, and cross-market operations all pile up faster than a small team can absorb them.</p>
+
+      <h2>Who we are</h2>
+      <p>We are a team of senior product managers and senior engineers with long experience across ecommerce platforms, product systems, and engineering execution, and we formally started Ciwi in 2025. Our team includes people from Amazon, TikTok, Temu, Microsoft, and ByteDance. That background gives us a practical understanding of platform rules, product tradeoffs, and how engineering should support real business operations.</p>
+      <p>What we want to build is not another layer of complexity. We want to turn that accumulated experience into products and workflows that Shopify merchants can adopt quickly and keep compounding over time.</p>
+
+      <h2>Why we are doing this</h2>
+      <p>For many brands trying to grow internationally, the hard part is not deciding to grow. The hard part is continuing to make good decisions when resources are limited and the operating environment gets more complex. We keep seeing the same patterns:</p>
+      <div class="about-point-list">
+        <div class="about-point-item">Teams struggle with market-specific language, content, and localization rules.</div>
+        <div class="about-point-item">Platform mechanics are hard to learn, so a lot of work produces uneven results.</div>
+        <div class="about-point-item">Data lives across too many tools and channels to support day-to-day decisions well.</div>
+        <div class="about-point-item">There is rarely enough engineering capacity to automate repetitive operational work.</div>
+      </div>
+      <p>Those constraints drain time, focus, and judgment. We want to absorb more of that complexity so brands can spend more energy on product quality, brand building, and growth itself.</p>
+
+      <blockquote>We do not want merchants to spend their time decoding systems and patching workflows. We want them to keep more of that attention for product decisions, brand expression, and operating moves that actually create advantage.</blockquote>
+
+      <h2>What we want Ciwi to provide</h2>
+      <p>We are trying to build a product system that follows real operating work instead of a collection of disconnected features. For us, that means at least three things:</p>
+
+      <h3>Turn complex platform knowledge into usable products</h3>
+      <p>Most merchants are not missing intent. They are missing a structure they can actually apply. We want to productize platform knowledge, operating judgment, and best practices instead of leaving them scattered across consulting advice, internal know-how, or fragmented documentation.</p>
+
+      <h3>Turn repetitive operational work into stable workflows</h3>
+      <p>Whether the job is translation, multilingual content sync, analysis, or business review, teams usually do not need more manual steps. They need fewer repeated actions and clearer working systems. Ciwi keeps pushing those repeated motions into reusable product capabilities.</p>
+
+      <h3>Make AI part of daily work, not just part of a demo</h3>
+      <p>We believe AI is useful only when it enters real operating workflows: helping teams judge faster, execute more consistently, connect context across tasks, and keep improving with the business instead of sitting on the side as a novelty.</p>
+
+      <h2>Why we think we can do this well</h2>
+      <p>Because we understand both the platform side and the product-building side. We know how rules are formed, how systems constrain users, and how features need to be designed, implemented, and maintained if they are going to remain useful in real commercial environments.</p>
+      <p>That means we are not approaching the problem only as advisers and not only as engineers shipping features. We try to start from the merchant's real operating move, then reorganize product, content, data, and AI workflows around it.</p>
+
+      <h2>How we want to work</h2>
+      <ul>
+        <li>We do not optimize for feature count first. We ask whether the work improves the business motion.</li>
+        <li>We do not fight time. We keep doing the long-term work that is right and valuable.</li>
+        <li>We do not treat AI as a gimmick. We treat it as infrastructure for speed, judgment, and execution.</li>
+        <li>We do not define the problem from a distance. We iterate with real merchants and real operating constraints.</li>
+      </ul>
     `,
   },
   contact: {
