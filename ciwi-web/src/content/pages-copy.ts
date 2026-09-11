@@ -207,13 +207,13 @@ export const pagesCopy = {
   demo: {
     metadata: {
       title: "Demo Center",
-      description: "Ciwi Demo Center，用前后对比、术语控制和套餐场景帮助 Shopify 商家更快判断产品价值。",
+      description: "Ciwi Demo Center，用前后对比和术语控制帮助 Shopify 商家更快判断产品价值。",
       path: "/demo",
     },
     hero: {
       eyebrow: "Demo",
       title: "用最短路径看懂产品能力",
-      description: "这里聚焦最关键的前后对比、术语控制和 bundle 场景。",
+      description: "这里聚焦最关键的前后对比和术语控制。",
       cards: [
         {
           eyebrow: "Translation demo",
@@ -222,7 +222,6 @@ export const pagesCopy = {
           accent: true,
         },
         {title: "Glossary intervention", description: "展示 glossary 如何影响品牌词、产品词和营销文案的输出。"},
-        {title: "Bundle growth story", description: "展示套餐折扣前后，购物车表达与客单价机会的变化。"},
       ],
     },
     media: {
@@ -237,7 +236,7 @@ export const pagesCopy = {
       },
       {
         question: "先看 Demo 能带来什么？",
-        answer: "你可以先用最短时间看到翻译前后差异、术语控制效果和套餐表达变化，再判断这套产品是否值得继续深入。",
+        answer: "你可以先用最短时间看到翻译前后差异和术语控制效果，再判断这套产品是否值得继续深入。",
       },
     ],
     finalCta: {
@@ -257,8 +256,7 @@ export const pagesCopy = {
       description: "不同产品解决不同问题，购买方式也应保持清晰。",
       cards: [
         {title: "Translator", description: "围绕多语言翻译、本地化和 glossary 管理设计价格表达。"},
-        {title: "Bundle Discount", description: "围绕 AOV 与促销场景设计更贴近商家收益的定价说明。"},
-        {title: "Content AI", description: "围绕内容生成、FAQ 与 SEO 页面扩展能力设计价格说明。"},
+        {title: "Spark", description: "围绕店铺数据、健康信号、内容与任务工作流设计价格表达。"},
       ],
     },
     media: {

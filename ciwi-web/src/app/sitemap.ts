@@ -10,8 +10,9 @@ import {getProductResearchWorkflowArticles} from "@/content/product-research";
 import {getProducts} from "@/content/products";
 import {getSolutions} from "@/content/solutions";
 import {getToolReviews} from "@/content/tool-reviews";
-import {localizeHref, type Locale} from "@/lib/i18n";
-import {siteUrl} from "@/lib/seo/metadata";
+import {getProductPlaybookHref, getUseCases} from "@/content/use-cases";
+import type {Locale} from "@/lib/i18n";
+import {toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 
 const staticRoutes = [
   "/",
@@ -30,11 +31,12 @@ const staticRoutes = [
   "/resources",
   "/solutions",
   "/terms-and-conditions",
+  "/use-cases",
   "/waitlist",
 ] as const;
 
 function toAbsoluteUrl(locale: Locale, path: string) {
-  return new URL(localizeHref(locale, path), siteUrl).toString();
+  return toAbsoluteLocalizedUrl(locale, path);
 }
 
 function buildEntry(path: string, locale: Locale, lastModified?: string): MetadataRoute.Sitemap[number] {
@@ -59,6 +61,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     for (const product of getProducts(locale)) {
       addEntry(`/products/${product.slug}`, locale);
+      addEntry(getProductPlaybookHref(product.slug), locale);
+    }
+
+    for (const useCase of getUseCases(locale)) {
+      addEntry(`/use-cases/${useCase.slug}`, locale);
     }
 
     for (const solution of getSolutions(locale)) {

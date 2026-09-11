@@ -1,4 +1,5 @@
 import {SectionHeading} from "@/components/ui/SectionHeading";
+import {FaqAccordionList} from "@/components/ui/FaqAccordionList";
 
 type FaqSectionProps = {
   eyebrow?: string;
@@ -9,23 +10,9 @@ type FaqSectionProps = {
 
 export function FaqSection({eyebrow, title, description, items}: FaqSectionProps) {
   return (
-    <section className="page-section">
+    <section className="py-12 sm:py-14 lg:py-16">
       {title ? <SectionHeading eyebrow={eyebrow} title={title} description={description} /> : null}
-      <div className="faq-list">
-        {items.map((item) => (
-          <details key={item.question} className="surface-card faq-item">
-            <summary>{item.question}</summary>
-            <p>{item.answer}</p>
-            {item.evidence?.length ? (
-              <ul className="faq-evidence-list">
-                {item.evidence.map((evidence) => (
-                  <li key={evidence}>{evidence}</li>
-                ))}
-              </ul>
-            ) : null}
-          </details>
-        ))}
-      </div>
+      <FaqAccordionList items={items} className={title ? "mt-8" : undefined} />
     </section>
   );
 }

@@ -1,7 +1,11 @@
 import {notFound} from "next/navigation";
 
 import {FaqSection} from "@/components/sections/FaqSection";
-import {LocalizedLink} from "@/components/ui/LocalizedLink";
+import {ChecklistCardGrid} from "@/components/sections/ChecklistCardGrid";
+import {DetailHeroPanel} from "@/components/sections/DetailHeroPanel";
+import {SimpleCardGridSection} from "@/components/sections/SimpleCardGridSection";
+import {BackLink} from "@/components/ui/BackLink";
+import {CardCtaLink} from "@/components/ui/CardCtaLink";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getAvailableToolReviewLocales, getToolReviewMap, getToolReviews} from "@/content/tool-reviews";
@@ -228,50 +232,27 @@ export default async function ToolReviewDetailPage({params}: ToolReviewDetailPag
           />
         ))}
 
-        <section className="page-section guide-hero">
-          <div className="guide-hero__topbar">
-            <LocalizedLink href="/resources/product-research/reviews" className="guide-backlink">
-              {copy.backLabel}
-            </LocalizedLink>
-          </div>
-
-          <SectionHeading eyebrow={copy.hero.eyebrow} title={review.title} description={review.description} as="h1" />
-
-          <div className="guide-meta-grid">
-            <div className="surface-card guide-meta-card">
-              <span>{copy.hero.ratingLabel}</span>
-              <strong>{formatRating(review.rating)}/10</strong>
+        <section className="py-12 sm:py-16 lg:py-20">
+          <div className="content-hero-shell">
+            <div className="mb-6">
+              <BackLink href="/resources/product-research/reviews" label={copy.backLabel} />
             </div>
-            <div className="surface-card guide-meta-card">
-              <span>{copy.hero.categoryLabel}</span>
-              <strong>{review.categoryLabel}</strong>
-            </div>
-            <div className="surface-card guide-meta-card">
-              <span>{copy.hero.yearLabel}</span>
-              <strong>{review.year}</strong>
-            </div>
-            <div className="surface-card guide-meta-card">
-              <span>{copy.hero.pricingLabel}</span>
-              <strong>{review.pricing}</strong>
-            </div>
-          </div>
 
-          <div className="guide-hero__layout">
-            <article className="surface-card guide-hero__summary">
-              <span className="guide-hero__summary-label">{copy.hero.summaryLabel}</span>
-              <p>{review.verdict}</p>
-            </article>
+            <SectionHeading eyebrow={copy.hero.eyebrow} title={review.title} description={review.description} as="h1" />
 
-            <nav className="surface-card guide-toc" aria-label={copy.hero.tocLabel}>
-              <span className="guide-hero__summary-label">{copy.hero.tocLabel}</span>
-              <ul>
-                {tocItems.map((item) => (
-                  <li key={item.href}>
-                    <a href={item.href}>{item.label}</a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
+            <DetailHeroPanel
+              metaItems={[
+                {label: copy.hero.ratingLabel, value: `${formatRating(review.rating)}/10`},
+                {label: copy.hero.categoryLabel, value: review.categoryLabel},
+                {label: copy.hero.yearLabel, value: review.year},
+                {label: copy.hero.pricingLabel, value: review.pricing},
+              ]}
+              metaGridClassName="md:grid-cols-2 xl:grid-cols-4"
+              summaryLabel={copy.hero.summaryLabel}
+              summary={review.verdict}
+              tocLabel={copy.hero.tocLabel}
+              tocItems={tocItems}
+            />
           </div>
         </section>
 
@@ -310,42 +291,27 @@ export default async function ToolReviewDetailPage({params}: ToolReviewDetailPag
             description={copy.sections.prosCons.description}
           />
           <div className="guide-article-layout">
-            <div className="guide-solution-stack">
-              <article className="surface-card guide-solution-card">
-                <h3>{copy.sections.prosCons.prosLabel}</h3>
-                <ul className="check-list">
-                  {review.pros.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </article>
-              <article className="surface-card guide-solution-card">
-                <h3>{copy.sections.prosCons.consLabel}</h3>
-                <ul className="check-list">
-                  {review.cons.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </article>
-            </div>
+            <ChecklistCardGrid
+              gridClassName="guide-solution-stack"
+              cardClassName="guide-solution-card"
+              cards={[
+                {title: copy.sections.prosCons.prosLabel, items: review.pros},
+                {title: copy.sections.prosCons.consLabel, items: review.cons},
+              ]}
+            />
           </div>
         </section>
 
-        <section id="features" className="page-section">
-          <SectionHeading
-            eyebrow={copy.sections.features.eyebrow}
-            title={copy.sections.features.title}
-            description={copy.sections.features.description}
-          />
-          <div className="card-grid">
-            {review.features.map((feature) => (
-              <article key={feature.title} className="surface-card">
-                <h3>{feature.title}</h3>
-                <p className="quote">{feature.description}</p>
-              </article>
-            ))}
-          </div>
-        </section>
+        <SimpleCardGridSection
+          id="features"
+          eyebrow={copy.sections.features.eyebrow}
+          title={copy.sections.features.title}
+          description={copy.sections.features.description}
+          items={review.features.map((feature) => ({
+            title: feature.title,
+            description: feature.description,
+          }))}
+        />
 
         <section id="best-for" className="page-section">
           <SectionHeading
@@ -373,9 +339,7 @@ export default async function ToolReviewDetailPage({params}: ToolReviewDetailPag
               <article key={item.name} className="surface-card guide-narrative-card">
                 <h3>{item.name}</h3>
                 <div className="space-top-lg">
-                  <LocalizedLink href={item.href} className="site-nav__link">
-                    {locale === "zh-cn" ? "查看测评" : "Read review"}
-                  </LocalizedLink>
+                  <CardCtaLink href={item.href}>{locale === "zh-cn" ? "查看测评" : "Read review"}</CardCtaLink>
                 </div>
               </article>
             ))}

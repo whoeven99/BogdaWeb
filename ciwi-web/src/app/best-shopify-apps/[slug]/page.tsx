@@ -1,20 +1,27 @@
 import {notFound} from "next/navigation";
 
+import {DetailHeroPanel} from "@/components/sections/DetailHeroPanel";
+import {FinalCtaSection} from "@/components/sections/FinalCtaSection";
+import {SimpleCardGridSection} from "@/components/sections/SimpleCardGridSection";
+import {BackLink} from "@/components/ui/BackLink";
 import {Button} from "@/components/ui/Button";
-import {LocalizedLink} from "@/components/ui/LocalizedLink";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getBestShopifyAppCollectionMap, getBestShopifyAppCollections} from "@/content/best-shopify-apps";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {localizeHref} from "@/lib/i18n";
-import {buildPageMetadata, siteUrl} from "@/lib/seo/metadata";
+import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildWebPageSchema} from "@/lib/seo/schema";
 
 type BestShopifyAppCollectionPageProps = {
   params: Promise<{slug: string}>;
 };
 
-function buildItemListSchema(url: string, collection: ReturnType<typeof getBestShopifyAppCollectionMap>[string]) {
+function buildItemListSchema(
+  url: string,
+  locale: "en" | "zh-cn",
+  collection: ReturnType<typeof getBestShopifyAppCollectionMap>[string],
+) {
   return {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -26,7 +33,7 @@ function buildItemListSchema(url: string, collection: ReturnType<typeof getBestS
       position: item.rank,
       name: item.name,
       description: item.summary,
-      url: item.href ? new URL(item.href, siteUrl).toString() : undefined,
+      url: item.href ? toAbsoluteLocalizedUrl(locale, item.href) : undefined,
     })),
   };
 }
@@ -71,7 +78,7 @@ export default async function BestShopifyAppCollectionPage({params}: BestShopify
   const copy =
     locale === "zh-cn"
       ? {
-          backLabel: "返回合集页",
+          backLabel: "返回应用合集",
           hero: {
             metaLabels: {
               category: "类目",
@@ -163,7 +170,7 @@ export default async function BestShopifyAppCollectionPage({params}: BestShopify
   const structuredData = [
     buildBreadcrumbSchema([
       {name: "Home", item: siteUrl},
-      {name: "Best Shopify Apps", item: new URL(localizeHref(locale, "/best-shopify-apps"), siteUrl).toString()},
+      {name: locale === "zh-cn" ? "最佳 Shopify 应用合集" : "Best Shopify Apps", item: new URL(localizeHref(locale, "/best-shopify-apps"), siteUrl).toString()},
       {name: collection.title, item: pageUrl},
     ]),
     buildWebPageSchema({
@@ -173,7 +180,7 @@ export default async function BestShopifyAppCollectionPage({params}: BestShopify
       keywords: [...collection.keywords],
       type: "CollectionPage",
     }),
-    buildItemListSchema(pageUrl, collection),
+    buildItemListSchema(pageUrl, locale, collection),
   ];
 
   return (
@@ -189,9 +196,7 @@ export default async function BestShopifyAppCollectionPage({params}: BestShopify
 
         <section className="page-section best-apps-hero">
           <div className="best-apps-hero__topbar">
-            <LocalizedLink href="/best-shopify-apps" className="best-apps-backlink">
-              {copy.backLabel}
-            </LocalizedLink>
+            <BackLink href="/best-shopify-apps" label={copy.backLabel} />
           </div>
 
           <SectionHeading
@@ -201,60 +206,36 @@ export default async function BestShopifyAppCollectionPage({params}: BestShopify
             as="h1"
           />
 
-          <div className="best-apps-meta">
-            <div className="surface-card best-apps-meta__card">
-              <span>{copy.hero.metaLabels.category}</span>
-              <strong>{collection.categoryLabel}</strong>
-            </div>
-            <div className="surface-card best-apps-meta__card">
-              <span>{copy.hero.metaLabels.year}</span>
-              <strong>{collection.year}</strong>
-            </div>
-            <div className="surface-card best-apps-meta__card">
-              <span>{copy.hero.metaLabels.updated}</span>
-              <strong>{collection.updatedLabel}</strong>
-            </div>
-          </div>
-
-          <div className="best-apps-overview">
-            <article className="surface-card best-apps-summary-card">
-              <span className="best-apps-summary-card__label">{copy.hero.summaryLabel}</span>
-              <p>{collection.summary}</p>
-              <div className="best-apps-intro">
+          <DetailHeroPanel
+            metaItems={[
+              {label: copy.hero.metaLabels.category, value: collection.categoryLabel},
+              {label: copy.hero.metaLabels.year, value: collection.year},
+              {label: copy.hero.metaLabels.updated, value: collection.updatedLabel},
+            ]}
+            summaryLabel={copy.hero.summaryLabel}
+            summary={collection.summary}
+            intro={
+              <>
                 {collection.intro.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
-              </div>
-            </article>
-
-            <nav className="surface-card best-apps-toc" aria-label={copy.hero.tocLabel}>
-              <span className="best-apps-summary-card__label">{copy.hero.tocLabel}</span>
-              <ul>
-                {copy.toc.map((item) => (
-                  <li key={item.href}>
-                    <a href={item.href}>{item.label}</a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </div>
-        </section>
-
-        <section id="why-these-apps" className="page-section">
-          <SectionHeading
-            eyebrow={copy.why.eyebrow}
-            title={copy.why.title}
-            description={copy.why.description}
+              </>
+            }
+            tocLabel={copy.hero.tocLabel}
+            tocItems={copy.toc}
           />
-          <div className="card-grid">
-            {collection.methodology.map((item) => (
-              <article key={item.title} className="surface-card">
-                <h3>{item.title}</h3>
-                <p className="quote">{item.description}</p>
-              </article>
-            ))}
-          </div>
         </section>
+
+        <SimpleCardGridSection
+          id="why-these-apps"
+          eyebrow={copy.why.eyebrow}
+          title={copy.why.title}
+          description={copy.why.description}
+          items={collection.methodology.map((item) => ({
+            title: item.title,
+            description: item.description,
+          }))}
+        />
 
         <section id="ranked-apps" className="page-section">
           <SectionHeading
@@ -349,22 +330,22 @@ export default async function BestShopifyAppCollectionPage({params}: BestShopify
           </ol>
         </section>
 
-        <section id="final-verdict" className="page-section">
-          <div className="callout best-apps-verdict">
-            <SectionHeading title={collection.finalVerdict.title} />
+        <FinalCtaSection
+          title={collection.finalVerdict.title}
+          primaryLabel={collection.finalVerdict.primaryLabel}
+          primaryHref={collection.finalVerdict.primaryHref}
+          secondaryLabel={collection.finalVerdict.secondaryLabel}
+          secondaryHref={collection.finalVerdict.secondaryHref}
+          body={
             <div className="best-apps-verdict__body">
               {collection.finalVerdict.paragraphs.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
-            <div className="inline-list">
-              <Button href={collection.finalVerdict.primaryHref}>{collection.finalVerdict.primaryLabel}</Button>
-              <Button href={collection.finalVerdict.secondaryHref} variant="secondary">
-                {collection.finalVerdict.secondaryLabel}
-              </Button>
-            </div>
-          </div>
-        </section>
+          }
+          panelClassName="best-apps-verdict"
+          actionsClassName="inline-list"
+        />
       </PageContainer>
     </main>
   );

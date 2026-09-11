@@ -338,68 +338,81 @@ export function MediaPlaceholderSection({
   }
 
   return (
-    <section className={`page-section ${compact ? "page-section--compact" : ""}`}>
+    <section className={compact ? "py-10 sm:py-12" : "py-12 sm:py-14 lg:py-16"}>
       <SectionHeading
         eyebrow={eyebrow}
         title={normalizeHeadingTitle(title, locale)}
         description={normalizeHeadingDescription(description, locale)}
       />
-      <div className={`media-showcase-grid ${compact ? "media-showcase-grid--compact" : ""}`}>
+      <div className={compact ? "mt-8 grid gap-5 lg:grid-cols-2" : "mt-8 grid gap-6 xl:grid-cols-2"}>
         {items.map((item, index) => {
           const preset = getShowcasePreset(item, index, locale);
           const placementLabel = locale === "zh-cn" ? "位置" : "Placement";
           const placementValue = locale === "zh-cn" ? item.placement : item.title;
-          const itemDescription = locale === "zh-cn" ? normalizeItemDescription(item.description, locale) : preset.summary;
+          const itemDescription =
+            locale === "zh-cn"
+              ? normalizeItemDescription(item.description, locale)
+              : item.description || preset.summary;
           const watchLabel = locale === "zh-cn" ? "查看演示" : "Watch walkthrough";
 
           return (
-            <article key={`${item.placement}-${item.title}`} className="media-showcase-card">
-              <div className="media-showcase-card__frame">
-                <div className="media-showcase-card__toolbar">
-                  <span className="media-showcase-card__label">{preset.badge}</span>
-                  <span className="media-showcase-card__ratio">{item.aspectRatio}</span>
+            <article
+              key={`${item.placement}-${item.title}`}
+              className="overflow-hidden rounded-[32px] border border-slate-200/80 bg-white/90 shadow-[0_18px_54px_-28px_rgba(15,23,42,0.3)]"
+            >
+              <div className="border-b border-slate-200 bg-slate-950/95 p-4 text-white">
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-200">
+                    {preset.badge}
+                  </span>
+                  <span className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-300">{item.aspectRatio}</span>
                 </div>
-                <div className="media-showcase-card__visual">
-                  <div className="media-showcase-card__main">
+                <div className="mt-4 grid gap-3 lg:grid-cols-[minmax(0,1fr)_180px]">
+                  <div className="overflow-hidden rounded-[24px] border border-white/10 bg-slate-900">
                     <Image
                       src={preset.main.src}
                       alt={preset.main.alt}
                       width={1024}
                       height={640}
-                      className="media-showcase-card__image"
+                      className="h-full w-full object-cover"
                     />
-                    {item.format === "Video" ? (
-                      <span className="media-showcase-card__play">{watchLabel}</span>
-                    ) : null}
                   </div>
-                  <div className="media-showcase-card__rail">
+                  <div className="grid gap-3">
                     {preset.secondary.map((asset) => (
-                      <div key={`${item.title}-${asset.src}`} className="media-showcase-card__thumb">
+                      <div key={`${item.title}-${asset.src}`} className="overflow-hidden rounded-[20px] border border-white/10 bg-slate-900">
                         <Image
                           src={asset.src}
                           alt={asset.alt}
                           width={320}
                           height={220}
-                          className="media-showcase-card__image"
+                          className="h-full w-full object-cover"
                         />
                       </div>
                     ))}
                   </div>
                 </div>
               </div>
-              <div className="section-stack">
+              <div className="flex flex-col gap-5 p-6 sm:p-7">
                 <div>
-                  <div className="media-showcase-card__meta">
-                    <strong>{placementLabel}</strong>
-                    <p>{placementValue}</p>
+                  <div className="flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+                    <span className="rounded-full border border-slate-200 bg-slate-100/80 px-3 py-1">
+                      {placementLabel}
+                    </span>
+                    <span className="rounded-full border border-slate-200 bg-slate-100/80 px-3 py-1">
+                      {placementValue}
+                    </span>
+                    {item.format === "Video" ? (
+                      <span className="rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-emerald-700">
+                        {watchLabel}
+                      </span>
+                    ) : null}
                   </div>
                 </div>
                 <div>
-                  <h3>{item.title}</h3>
-                  <p className="quote">{itemDescription}</p>
-                  <p className="quote media-showcase-card__summary">{preset.summary}</p>
+                  <h3 className="text-2xl font-semibold tracking-[-0.04em] text-slate-950">{item.title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-slate-600">{itemDescription}</p>
                 </div>
-                <div className="media-showcase-card__chips">
+                <div className="flex flex-wrap gap-2">
                   {preset.highlights.map((entry) => (
                     <span key={entry} className="pill">
                       {entry}

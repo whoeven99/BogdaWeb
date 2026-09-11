@@ -1,6 +1,7 @@
 import {notFound} from "next/navigation";
 
 import {MdxContent} from "@/components/content/MdxContent";
+import {BackLink} from "@/components/ui/BackLink";
 import {LocalizedLink} from "@/components/ui/LocalizedLink";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {getAllBlogPosts, getBlogPostMap, getBlogPosts} from "@/content/blog";
@@ -115,9 +116,7 @@ export default async function BlogDetailPage({params}: BlogDetailPageProps) {
         <section className="blog-article-shell">
           <article className="blog-article-single">
             <div className="blog-article-single__topbar">
-              <LocalizedLink href={copy.hero.backToBlogHref} className="blog-article-single__backlink">
-                {copy.hero.backToBlogLabel}
-              </LocalizedLink>
+              <BackLink href={copy.hero.backToBlogHref} label={copy.hero.backToBlogLabel} />
             </div>
 
             <div className="article-meta">

@@ -2,14 +2,12 @@ import type {Locale} from "@/lib/i18n";
 import {getLocalizedValue} from "@/lib/i18n-content";
 import {getProducts} from "@/content/products";
 
-export const affiliateProductSlugs = ["translator", "bundle-discount", "content-ai", "spark-analytics-agent"] as const;
+export const affiliateProductSlugs = ["translator", "spark-analytics-agent"] as const;
 export type AffiliateProductSlug = (typeof affiliateProductSlugs)[number];
 export const defaultAffiliateProductSlug: AffiliateProductSlug = "translator";
 
 export const productCommissionRates: Record<AffiliateProductSlug, number> = {
   translator: 0.2,
-  "bundle-discount": 0.25,
-  "content-ai": 0.2,
   "spark-analytics-agent": 0.3,
 };
 
@@ -545,8 +543,6 @@ export const mockPayouts: PayoutRecord[] = [
 export const mockReferrals: ReferralRecord[] = [
   {id: "ref-1", email: "alice@coastalhome.com", storeId: "coastal-home", productSlug: "translator", signedUpAt: "2026-08-01", installed: true, subscribed: true, plan: "Pro"},
   {id: "ref-2", email: "bob@fitgear.co", storeId: "fit-gear", productSlug: "spark-analytics-agent", signedUpAt: "2026-08-04", installed: true, subscribed: true, plan: "Pro"},
-  {id: "ref-3", email: "carol@petboutique.com", storeId: "pet-boutique", productSlug: "bundle-discount", signedUpAt: "2026-08-08", installed: true, subscribed: false},
-  {id: "ref-4", email: "dave@glowbeauty.shop", productSlug: "content-ai", signedUpAt: "2026-08-15", installed: false, subscribed: false},
   {id: "ref-5", email: "erin@brewbox.store", storeId: "brew-box", productSlug: "translator", signedUpAt: "2026-08-20", installed: true, subscribed: true, plan: "Basic"},
   {id: "ref-6", email: "frank@minimaljewel.com", productSlug: "spark-analytics-agent", signedUpAt: "2026-09-01", installed: false, subscribed: false},
 ];

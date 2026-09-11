@@ -1,5 +1,6 @@
-import {ArticleCard} from "@/components/cards/ArticleCard";
+import {ContentIndexHero} from "@/components/sections/ContentIndexHero";
 import {NewsletterSubscriptionCard} from "@/components/sections/NewsletterSubscriptionCard";
+import {ResourceCollectionSection} from "@/components/sections/ResourceCollectionSection";
 import {Button} from "@/components/ui/Button";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
@@ -12,6 +13,7 @@ import {
   getHelpCenterResources,
   getLocalizationGuideCategoryResources,
   getProductResearchResources,
+  getUseCaseResources,
 } from "@/content/resources";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata} from "@/lib/seo/metadata";
@@ -47,12 +49,14 @@ export default async function ResourcesPage() {
   const blogResources = getBlogResources(locale);
   const compareResources = getCompareResources(locale);
   const bestShopifyAppsResources = getBestShopifyAppsResources(locale);
+  const useCaseResources = getUseCaseResources(locale);
   const featuredLocalizationGuideResources = localizationGuideResources.slice(0, 3);
   const featuredFunctionScenarioGuideResources = functionScenarioGuideResources.slice(0, 3);
   const featuredHelpCenterResources = helpCenterResources.slice(0, 3);
   const featuredBlogResources = blogResources.slice(0, 3);
   const featuredCompareResources = compareResources.slice(0, 3);
   const featuredBestShopifyAppsResources = bestShopifyAppsResources.slice(0, 3);
+  const featuredUseCaseResources = useCaseResources.slice(0, 3);
   const productResearchResources = getProductResearchResources(locale);
   const featuredProductResearchResources = productResearchResources.slice(0, 3);
   const guideModuleResources = [
@@ -79,212 +83,94 @@ export default async function ResourcesPage() {
   return (
     <main className="resources-page">
       <PageContainer>
-        <section className="page-section page-hero">
-          <SectionHeading
-            eyebrow={copy.hero.eyebrow}
-            title={copy.hero.title}
-            description={copy.hero.description}
-            as="h1"
-          />
+        <section className="py-12 sm:py-16 lg:py-20">
+          <ContentIndexHero eyebrow={copy.hero.eyebrow} title={copy.hero.title} description={copy.hero.description} />
         </section>
 
-        <section className="page-section">
+        <section className="py-8 sm:py-10 lg:py-12">
           <SectionHeading
             eyebrow={copy.sections.guides.eyebrow}
             title={copy.sections.guides.title}
             description={copy.sections.guides.description}
           />
-          <div className="resource-subsection">
-            <div className="resource-grid">
-              {guideModuleResources.map((item) => (
-                <ArticleCard
-                  key={`${item.title}-${item.href}`}
-                  title={item.title}
-                  description={item.description}
-                  href={item.href}
-                  meta={item.meta}
-                />
-              ))}
-            </div>
-          </div>
-          <div className="resource-subsection">
-            <SectionHeading
-              eyebrow={copy.sections.guides.categoryEyebrow}
+          <div className="mt-8 space-y-12">
+            <section className="space-y-6">
+              <ResourceCollectionSection
+                items={guideModuleResources}
+                className="py-0"
+              />
+            </section>
+            <ResourceCollectionSection
               title={copy.sections.guides.categoryTitle}
               description={copy.sections.guides.categoryDescription}
+              items={featuredLocalizationGuideResources}
+              emptyState={unavailableGuideCopy}
+              className="space-y-6 border-t border-slate-200/70 pt-10"
             />
-            <div className="resource-grid">
-              {featuredLocalizationGuideResources.length > 0 ? (
-                featuredLocalizationGuideResources.map((item) => (
-                  <ArticleCard
-                    key={`${item.title}-${item.href}`}
-                    title={item.title}
-                    description={item.description}
-                    href={item.href}
-                    meta={item.meta}
-                  />
-                ))
-              ) : (
-                <div className="surface-card">
-                  <h3>{unavailableGuideCopy.title}</h3>
-                  <p className="quote">{unavailableGuideCopy.description}</p>
-                </div>
-              )}
-            </div>
-          </div>
-          <div className="resource-subsection">
-            <SectionHeading
-              eyebrow={copy.sections.guides.scenarioEyebrow}
+            <ResourceCollectionSection
               title={copy.sections.guides.scenarioTitle}
               description={copy.sections.guides.scenarioDescription}
+              items={featuredFunctionScenarioGuideResources}
+              emptyState={unavailableGuideCopy}
+              className="space-y-6 border-t border-slate-200/70 pt-10"
             />
-            <div className="resource-grid">
-              {featuredFunctionScenarioGuideResources.length > 0 ? (
-                featuredFunctionScenarioGuideResources.map((item) => (
-                  <ArticleCard
-                    key={`${item.title}-${item.href}`}
-                    title={item.title}
-                    description={item.description}
-                    href={item.href}
-                    meta={item.meta}
-                  />
-                ))
-              ) : (
-                <div className="surface-card">
-                  <h3>{unavailableGuideCopy.title}</h3>
-                  <p className="quote">{unavailableGuideCopy.description}</p>
-                </div>
-              )}
-            </div>
           </div>
-          <div className="resources-section__cta">
+          <div className="mt-8 flex justify-start">
             <Button href={copy.sections.guides.ctaHref} variant="secondary">
               {copy.sections.guides.ctaLabel}
             </Button>
           </div>
         </section>
 
-        <section className="page-section">
-          <SectionHeading
-            eyebrow={copy.sections.helpCenter.eyebrow}
-            title={copy.sections.helpCenter.title}
-            description={copy.sections.helpCenter.description}
-          />
-          <div className="resource-grid">
-            {featuredHelpCenterResources.map((item) => (
-              <ArticleCard
-                key={`${item.title}-${item.href}`}
-                title={item.title}
-                description={item.description}
-                href={item.href}
-                meta={item.meta}
-              />
-            ))}
-          </div>
-          <div className="resources-section__cta">
-            <Button href={copy.sections.helpCenter.ctaHref} variant="secondary">
-              {copy.sections.helpCenter.ctaLabel}
-            </Button>
-          </div>
-        </section>
+        <ResourceCollectionSection
+          title={copy.sections.useCases.title}
+          description={copy.sections.useCases.description}
+          items={featuredUseCaseResources}
+          ctaLabel={copy.sections.useCases.ctaLabel}
+          ctaHref={copy.sections.useCases.ctaHref}
+        />
 
-        <section className="page-section">
-          <SectionHeading
-            eyebrow={copy.sections.blog.eyebrow}
-            title={copy.sections.blog.title}
-            description={copy.sections.blog.description}
-          />
-          <div className="resource-grid">
-            {featuredBlogResources.map((item) => (
-              <ArticleCard
-                key={`${item.title}-${item.href}`}
-                title={item.title}
-                description={item.description}
-                href={item.href}
-                meta={item.meta}
-              />
-            ))}
-          </div>
-          <div className="resources-section__cta">
-            <Button href={copy.sections.blog.ctaHref} variant="secondary">
-              {copy.sections.blog.ctaLabel}
-            </Button>
-          </div>
-        </section>
+        <ResourceCollectionSection
+          title={copy.sections.helpCenter.title}
+          description={copy.sections.helpCenter.description}
+          items={featuredHelpCenterResources}
+          ctaLabel={copy.sections.helpCenter.ctaLabel}
+          ctaHref={copy.sections.helpCenter.ctaHref}
+        />
 
-        <section className="page-section">
-          <SectionHeading
-            eyebrow={copy.sections.compare.eyebrow}
-            title={copy.sections.compare.title}
-            description={copy.sections.compare.description}
-          />
-          <div className="resource-grid">
-            {featuredCompareResources.map((item) => (
-              <ArticleCard
-                key={`${item.title}-${item.href}`}
-                title={item.title}
-                description={item.description}
-                href={item.href}
-                meta={item.meta}
-              />
-            ))}
-          </div>
-          <div className="resources-section__cta">
-            <Button href={copy.sections.compare.ctaHref} variant="secondary">
-              {copy.sections.compare.ctaLabel}
-            </Button>
-          </div>
-        </section>
+        <ResourceCollectionSection
+          title={copy.sections.blog.title}
+          description={copy.sections.blog.description}
+          items={featuredBlogResources}
+          ctaLabel={copy.sections.blog.ctaLabel}
+          ctaHref={copy.sections.blog.ctaHref}
+        />
 
-        <section className="page-section">
-          <SectionHeading
-            eyebrow={copy.sections.bestShopifyApps.eyebrow}
-            title={copy.sections.bestShopifyApps.title}
-            description={copy.sections.bestShopifyApps.description}
-          />
-          <div className="resource-grid">
-            {featuredBestShopifyAppsResources.map((item) => (
-              <ArticleCard
-                key={`${item.title}-${item.href}`}
-                title={item.title}
-                description={item.description}
-                href={item.href}
-                meta={item.meta}
-              />
-            ))}
-          </div>
-          <div className="resources-section__cta">
-            <Button href={copy.sections.bestShopifyApps.ctaHref} variant="secondary">
-              {copy.sections.bestShopifyApps.ctaLabel}
-            </Button>
-          </div>
-        </section>
+        <ResourceCollectionSection
+          title={copy.sections.compare.title}
+          description={copy.sections.compare.description}
+          items={featuredCompareResources}
+          ctaLabel={copy.sections.compare.ctaLabel}
+          ctaHref={copy.sections.compare.ctaHref}
+        />
 
-        <section className="page-section">
-          <SectionHeading
-            eyebrow={copy.sections.productResearch.eyebrow}
-            title={copy.sections.productResearch.title}
-            description={copy.sections.productResearch.description}
-          />
-          <div className="resource-grid">
-            {featuredProductResearchResources.map((item) => (
-              <ArticleCard
-                key={`${item.title}-${item.href}`}
-                title={item.title}
-                description={item.description}
-                href={item.href}
-                meta={item.meta}
-              />
-            ))}
-          </div>
-          <div className="resources-section__cta">
-            <Button href={copy.sections.productResearch.ctaHref} variant="secondary">
-              {copy.sections.productResearch.ctaLabel}
-            </Button>
-          </div>
-        </section>
+        <ResourceCollectionSection
+          title={copy.sections.bestShopifyApps.title}
+          description={copy.sections.bestShopifyApps.description}
+          items={featuredBestShopifyAppsResources}
+          ctaLabel={copy.sections.bestShopifyApps.ctaLabel}
+          ctaHref={copy.sections.bestShopifyApps.ctaHref}
+        />
 
-        <section className="page-section">
+        <ResourceCollectionSection
+          title={copy.sections.productResearch.title}
+          description={copy.sections.productResearch.description}
+          items={featuredProductResearchResources}
+          ctaLabel={copy.sections.productResearch.ctaLabel}
+          ctaHref={copy.sections.productResearch.ctaHref}
+        />
+
+        <section className="py-12 sm:py-14 lg:py-16">
           <NewsletterSubscriptionCard source="resources_newsletter" copy={copy.subscription} />
         </section>
       </PageContainer>

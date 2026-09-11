@@ -1193,27 +1193,32 @@ export default async function CompareDetailPage({params}: CompareDetailPageProps
             dangerouslySetInnerHTML={{__html: JSON.stringify(schema)}}
           />
         ))}
-        <section className="page-section page-hero compare-page-hero">
-          <SectionHeading eyebrow={copy.hero.eyebrow} title={data.title} description={data.description} as="h1" />
-          <div className="compare-page-overview" aria-label={locale === "zh-cn" ? "对比页概览" : "Compare page overview"}>
-            <div className="compare-page-overview__item">
-              <span className="compare-page-overview__label">{locale === "zh-cn" ? "对比产品" : "Products"}</span>
-              <strong className="compare-page-overview__value">{primaryProductName} vs {data.alternativeName}</strong>
-            </div>
-            <div className="compare-page-overview__item">
-              <span className="compare-page-overview__label">{locale === "zh-cn" ? "评分维度" : "Score dimensions"}</span>
-              <strong className="compare-page-overview__value">
-                {locale === "zh-cn"
-                  ? `${data.scoreMatrix.length} 项功能 + ${data.summaryMetrics.length} 项摘要`
-                  : `${data.scoreMatrix.length} feature signals + ${data.summaryMetrics.length} summary signals`}
-              </strong>
-            </div>
-            <div className="compare-page-overview__item">
-              <span className="compare-page-overview__label">{locale === "zh-cn" ? "评测方式" : "Method"}</span>
-              <strong className="compare-page-overview__value">{locale === "zh-cn" ? "10 分制 / 弱中强" : "10-point / weak-medium-strong"}</strong>
+        <section className="py-12 sm:py-16 lg:py-20">
+          <div className="content-hero-shell">
+            <SectionHeading eyebrow={copy.hero.eyebrow} title={data.title} description={data.description} as="h1" />
+            <div className="compare-page-overview" aria-label={locale === "zh-cn" ? "对比页概览" : "Compare page overview"}>
+              <div className="compare-page-overview__item">
+                <span className="compare-page-overview__label">{locale === "zh-cn" ? "对比产品" : "Products"}</span>
+                <strong className="compare-page-overview__value">{primaryProductName} vs {data.alternativeName}</strong>
+              </div>
+              <div className="compare-page-overview__item">
+                <span className="compare-page-overview__label">{locale === "zh-cn" ? "评分维度" : "Score dimensions"}</span>
+                <strong className="compare-page-overview__value">
+                  {locale === "zh-cn"
+                    ? `${data.scoreMatrix.length} 项功能 + ${data.summaryMetrics.length} 项摘要`
+                    : `${data.scoreMatrix.length} feature signals + ${data.summaryMetrics.length} summary signals`}
+                </strong>
+              </div>
+              <div className="compare-page-overview__item">
+                <span className="compare-page-overview__label">{locale === "zh-cn" ? "评测方式" : "Method"}</span>
+                <strong className="compare-page-overview__value">{locale === "zh-cn" ? "10 分制 / 弱中强" : "10-point / weak-medium-strong"}</strong>
+              </div>
             </div>
           </div>
-          <div className="detail-grid detail-grid--single compare-detail-stack">
+        </section>
+
+        <section className="page-section page-section--compact">
+          <div className="grid gap-6 xl:grid-cols-[minmax(0,1.45fr)_minmax(320px,0.8fr)]">
             <article className="compare-hero-panel compare-summary-card">
               <h2 className="compare-hero-panel__title">{copy.hero.panels.summaryTitle}</h2>
               <p className="compare-summary-card__lead">{overallReview}</p>

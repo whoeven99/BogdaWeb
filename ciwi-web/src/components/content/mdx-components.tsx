@@ -1,8 +1,10 @@
 import Image from "next/image";
 import type {ComponentPropsWithoutRef, ReactNode} from "react";
 
+import {CardCtaLink} from "@/components/ui/CardCtaLink";
 import {LocalizedLink} from "@/components/ui/LocalizedLink";
 import {Button} from "@/components/ui/Button";
+import {FaqAccordionList} from "@/components/ui/FaqAccordionList";
 import {isExternalHref} from "@/lib/i18n";
 
 type ContentImageProps = {
@@ -45,7 +47,7 @@ type ComparisonTableProps = {
 };
 
 type FeatureGridProps = {
-  items: {eyebrow?: string; title: string; description: string}[];
+  items: {eyebrow?: string; title: string; description: string; href?: string; buttonLabel?: string}[];
 };
 
 function ContentImage({
@@ -112,16 +114,7 @@ function CtaCard({eyebrow, title, description, href, buttonLabel, variant = "pri
 }
 
 function FaqAccordion({items}: FaqAccordionProps) {
-  return (
-    <div className="mdx-faq-list">
-      {items.map((item) => (
-        <details key={item.question} className="mdx-faq-item">
-          <summary>{item.question}</summary>
-          <p>{item.answer}</p>
-        </details>
-      ))}
-    </div>
-  );
+  return <FaqAccordionList items={items} className="mdx-faq-block" />;
 }
 
 function ComparisonTable({columns, rows}: ComparisonTableProps) {
@@ -159,6 +152,11 @@ function FeatureGrid({items}: FeatureGridProps) {
           {item.eyebrow ? <span className="mdx-feature-card__eyebrow">{item.eyebrow}</span> : null}
           <h3>{item.title}</h3>
           <p>{item.description}</p>
+          {item.href && item.buttonLabel ? (
+            <div className="space-top-lg">
+              <CardCtaLink href={item.href}>{item.buttonLabel}</CardCtaLink>
+            </div>
+          ) : null}
         </article>
       ))}
     </div>

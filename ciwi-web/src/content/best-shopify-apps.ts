@@ -62,7 +62,7 @@ const collectionsEn: BestShopifyAppCollection[] = [
     title: "Best Shopify Translation Apps (2026)",
     description:
       "A year-based roundup of Shopify translation apps, focused on structured localization coverage, workflow depth, and long-term maintenance fit.",
-    heroEyebrow: "Best Shopify Apps",
+    heroEyebrow: "最佳 Shopify 应用",
     summary:
       "If your store needs more than quick text translation, the best option in 2026 is usually the app that handles Shopify structure, repeated updates, and long-term terminology control with the least operational friction.",
     intro: [
@@ -439,7 +439,7 @@ const collectionsZh: BestShopifyAppCollection[] = [
       ],
       primaryLabel: "打开 Ciwi Translator",
       primaryHref: "/products/translator",
-      secondaryLabel: "返回 Best Shopify Apps",
+      secondaryLabel: "返回最佳 Shopify 应用合集",
       secondaryHref: "/best-shopify-apps",
     },
     keywords: [
@@ -875,6 +875,18 @@ function localizeImportedCollections(
   });
 }
 
+function normalizeZhBestShopifyAppCollection(item: BestShopifyAppCollection): BestShopifyAppCollection {
+  return {
+    ...item,
+    heroEyebrow: item.heroEyebrow === "Best Shopify Apps" ? "最佳 Shopify 应用" : item.heroEyebrow,
+    finalVerdict: {
+      ...item.finalVerdict,
+      secondaryLabel:
+        item.finalVerdict.secondaryLabel === "返回 Best Shopify Apps" ? "返回最佳 Shopify 应用合集" : item.finalVerdict.secondaryLabel,
+    },
+  };
+}
+
 const generatedCollectionMap = generatedCollections as Record<Locale, BestShopifyAppCollection[]>;
 const importedCollectionItemsEn = localizeImportedCollections(importedCollections as BestShopifyAppCollection[], "en");
 const importedCollectionItemsZh = localizeImportedCollections(importedCollections as BestShopifyAppCollection[], "zh-cn");
@@ -885,7 +897,7 @@ const mergedCollectionsEn = mergeCollections(
 const mergedCollectionsZh = mergeCollections(
   mergeCollections(collectionsZh, importedCollectionItemsZh),
   generatedCollectionMap["zh-cn"] ?? [],
-);
+).map(normalizeZhBestShopifyAppCollection);
 
 export function getBestShopifyAppCollections(locale: Locale) {
   return locale === "zh-cn" ? mergedCollectionsZh : mergedCollectionsEn;

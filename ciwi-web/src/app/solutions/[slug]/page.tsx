@@ -4,7 +4,10 @@ import {ArticleCard} from "@/components/cards/ArticleCard";
 import {FaqSection} from "@/components/sections/FaqSection";
 import {FinalCtaSection} from "@/components/sections/FinalCtaSection";
 import {MediaPlaceholderSection} from "@/components/sections/MediaPlaceholderSection";
+import {NumberedCardGridSection} from "@/components/sections/NumberedCardGridSection";
 import {ProductAnchorNav} from "@/components/sections/ProductAnchorNav";
+import {SimpleCardGridSection} from "@/components/sections/SimpleCardGridSection";
+import {StackedInfoPanel} from "@/components/sections/StackedInfoPanel";
 import {Button} from "@/components/ui/Button";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
@@ -191,20 +194,21 @@ export default async function SolutionDetailPage({params}: SolutionDetailPagePro
                 </Button>
               </div>
             </div>
-            <div className="surface-card section-stack">
-              <div>
-                <h3>{copy.hero.panels.overviewTitle}</h3>
-                <p className="quote">{solution.description}</p>
-              </div>
-              <div>
-                <h3>{copy.hero.panels.signalsTitle}</h3>
-                <ul className="check-list">
-                  {solution.targetSignals.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+            <StackedInfoPanel
+              className="surface-card section-stack"
+              stackClassName="grid gap-6"
+              sections={[
+                {
+                  title: copy.hero.panels.overviewTitle,
+                  description: solution.description,
+                },
+                {
+                  title: copy.hero.panels.signalsTitle,
+                  items: solution.targetSignals,
+                  listVariant: "checklist",
+                },
+              ]}
+            />
           </div>
         </section>
 
@@ -218,39 +222,26 @@ export default async function SolutionDetailPage({params}: SolutionDetailPagePro
 
         <ProductAnchorNav items={anchorItems} />
 
-        <section className="page-section anchor-offset" id={copy.sections.challenges.id}>
-          <SectionHeading
-            eyebrow={copy.sections.challenges.eyebrow}
-            title={copy.sections.challenges.title}
-            description={copy.sections.challenges.description}
-          />
-          <div className="card-grid">
-            {solution.challenges.map((item) => (
-              <article key={item} className="surface-card">
-                <p className="quote">{item}</p>
-              </article>
-            ))}
-          </div>
-        </section>
+        <SimpleCardGridSection
+          id={copy.sections.challenges.id}
+          className="page-section anchor-offset"
+          eyebrow={copy.sections.challenges.eyebrow}
+          title={copy.sections.challenges.title}
+          description={copy.sections.challenges.description}
+          items={solution.challenges.map((item) => ({description: item}))}
+        />
 
-        <section className="page-section anchor-offset" id={copy.sections.approach.id}>
-          <SectionHeading
-            eyebrow={copy.sections.approach.eyebrow}
-            title={copy.sections.approach.title}
-            description={copy.sections.approach.description}
-          />
-          <div className="card-grid">
-            {solution.approach.map((item, index) => (
-              <article key={item.title} className="surface-card">
-                <h3>{`0${index + 1}`}</h3>
-                <p className="quote">
-                  <strong>{item.title}</strong>
-                </p>
-                <p className="quote">{item.description}</p>
-              </article>
-            ))}
-          </div>
-        </section>
+        <NumberedCardGridSection
+          id={copy.sections.approach.id}
+          className="page-section anchor-offset"
+          eyebrow={copy.sections.approach.eyebrow}
+          title={copy.sections.approach.title}
+          description={copy.sections.approach.description}
+          items={solution.approach.map((item) => ({
+            title: item.title,
+            description: item.description,
+          }))}
+        />
 
         <section className="page-section anchor-offset" id={copy.sections.products.id}>
           <SectionHeading

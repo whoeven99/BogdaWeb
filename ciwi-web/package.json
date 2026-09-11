@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "npm run prisma:generate && npm run content:validate && next build",
+    "build": "npm run prisma:generate && npm run content:validate && npm run seo:check && next build",
     "start": "cross-env PORT=9000 HOST=0.0.0.0 next start",
     "lint": "next lint",
+    "seo:check": "node ./scripts/check-seo.mjs",
     "content:new": "node ./scripts/create-content-document.mjs",
     "best-apps:generate": "node ./scripts/generate-best-shopify-apps.mjs",
     "content:validate": "node ./scripts/validate-content.mjs",

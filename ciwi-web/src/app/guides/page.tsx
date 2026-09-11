@@ -1,7 +1,7 @@
-import {ArticleCard} from "@/components/cards/ArticleCard";
+import {ContentIndexHero} from "@/components/sections/ContentIndexHero";
+import {ResourceCollectionSection} from "@/components/sections/ResourceCollectionSection";
 import {PageContainer} from "@/components/ui/PageContainer";
-import {SectionHeading} from "@/components/ui/SectionHeading";
-import {getFunctionScenarioGuideTopics, getFunctionScenarioGuides} from "@/content/function-scenario-guides";
+import {getFunctionScenarioGuides} from "@/content/function-scenario-guides";
 import {getLocalizationGuides} from "@/content/localization-guides";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {localizeHref} from "@/lib/i18n";
@@ -12,7 +12,7 @@ export async function generateMetadata() {
   const locale = await getRequestLocale();
 
   return buildPageMetadata({
-    title: locale === "zh-cn" ? "本地化指南" : "Localization Guides",
+    title: locale === "zh-cn" ? "本地化与翻译指南" : "Localization Guides",
     description:
       locale === "zh-cn"
         ? "面向行业、品牌与 B2B 场景的本地化与翻译指南集合页，可作为批量 SEO 页面模板入口。"
@@ -26,20 +26,18 @@ export default async function GuidesHubPage() {
   const locale = await getRequestLocale();
   const localizationGuides = getLocalizationGuides(locale);
   const functionScenarioGuides = getFunctionScenarioGuides(locale);
-  const localizationSegments = [...new Set(localizationGuides.map((guide) => guide.segmentLabel))];
-  const functionScenarioTopics = getFunctionScenarioGuideTopics(locale);
   const copy =
     locale === "zh-cn"
       ? {
           structuredData: {
-            name: "本地化指南",
+            name: "本地化与翻译指南",
             description: "面向行业、品牌与 B2B 场景的本地化与翻译指南集合页。",
             keywords: ["本地化指南", "翻译指南", "SEO 页面模板", "全球化增长", "Shopify 功能场景"],
           },
           hero: {
-            eyebrow: "Guides",
-            title: "Localization & Translation Guides",
-            description: "这里集中承载行业 guide 和 Shopify 功能场景 guide，既能承接资源入口，也能继续批量扩展 SEO 页面。",
+            eyebrow: "指南",
+            title: "本地化与翻译指南",
+            description: "这里集中整理行业、品牌、B2B 与 Shopify 功能场景相关的本地化指南，方便按主题继续浏览。",
           },
           summaryCards: {
             localization: "行业 / 品牌 / B2B",
@@ -52,23 +50,19 @@ export default async function GuidesHubPage() {
           },
           sections: {
             localization: {
-              eyebrow: "Localization Guides",
+              eyebrow: "本地化指南",
               title: "行业、品牌与 B2B 本地化指南",
               description: "适合承接行业类搜索需求，重点讲类目特点、市场习惯、常见错误和本地化策略。",
-              coverageLabel: "覆盖类目",
-              pagesLabel: "页面数",
             },
             scenarios: {
-              eyebrow: "Function Scenario Guides",
+              eyebrow: "功能场景指南",
               title: "Shopify 功能场景翻译指南",
-              description: "适合承接 how-to 搜索需求，重点讲某个 Shopify 功能点该翻哪些内容、怎么做、容易错在哪里。",
-              coverageLabel: "覆盖主题",
-              pagesLabel: "页面数",
+              description: "适合承接操作类搜索需求，重点讲某个 Shopify 功能点该翻哪些内容、怎么做、容易错在哪里。",
             },
           },
           emptyState: {
             title: "中文版指南正在准备中",
-            description: "当前 guide 正文还没有正式中文版本，所以这里先不展示未翻译文章入口。",
+            description: "当前正文还没有正式中文版本，所以这里先不展示未翻译的文章入口。",
           },
         }
       : {
@@ -96,15 +90,11 @@ export default async function GuidesHubPage() {
               eyebrow: "Localization Guides",
               title: "Industry, Brand, and B2B localization guides",
               description: "Built for category-led search demand and broader localization education across markets, content types, and buying contexts.",
-              coverageLabel: "Coverage",
-              pagesLabel: "Pages",
             },
             scenarios: {
               eyebrow: "Function Scenario Guides",
               title: "Shopify function scenario guides",
               description: "Built for how-to search intent around specific Shopify surfaces, translation tasks, and rollout workflows.",
-              coverageLabel: "Topics",
-              pagesLabel: "Pages",
             },
           },
           emptyState: {
@@ -140,111 +130,59 @@ export default async function GuidesHubPage() {
         ))}
 
         <section className="page-section page-hero">
-          <SectionHeading
-            eyebrow={copy.hero.eyebrow}
-            title={copy.hero.title}
-            description={copy.hero.description}
-            as="h1"
-          />
-          <div className="guide-meta-grid">
-            <div className="surface-card guide-meta-card">
-              <span>{copy.summaryCards.localization}</span>
-              <strong>
-                {localizationGuides.length} {copy.summaryCards.pagesLabel}
-              </strong>
+          <ContentIndexHero eyebrow={copy.hero.eyebrow} title={copy.hero.title} description={copy.hero.description}>
+            <div className="guide-meta-grid guide-meta-grid--two-up">
+              <div className="guide-meta-card guide-meta-card--plain">
+                <span>{copy.summaryCards.localization}</span>
+                <strong>
+                  {localizationGuides.length} {copy.summaryCards.pagesLabel}
+                </strong>
+              </div>
+              <div className="guide-meta-card guide-meta-card--plain">
+                <span>{copy.summaryCards.scenarios}</span>
+                <strong>
+                  {functionScenarioGuides.length} {copy.summaryCards.pagesLabel}
+                </strong>
+              </div>
             </div>
-            <div className="surface-card guide-meta-card">
-              <span>{copy.summaryCards.scenarios}</span>
-              <strong>
-                {functionScenarioGuides.length} {copy.summaryCards.pagesLabel}
-              </strong>
-            </div>
-          </div>
-          <nav className="guide-hub-jumpnav" aria-label={locale === "zh-cn" ? "快速跳转" : "Quick jump"}>
-            <a href="#localization-guides" className="guide-chip">
-              {copy.quickJump.localization}
-            </a>
-            <a href="#function-scenario-guides" className="guide-chip">
-              {copy.quickJump.scenarios}
-            </a>
-          </nav>
+            <nav className="guide-hub-jumpnav" aria-label={locale === "zh-cn" ? "快速跳转" : "Quick jump"}>
+              <a href="#localization-guides" className="guide-chip">
+                {copy.quickJump.localization}
+              </a>
+              <a href="#function-scenario-guides" className="guide-chip">
+                {copy.quickJump.scenarios}
+              </a>
+            </nav>
+          </ContentIndexHero>
         </section>
 
-        <section id="localization-guides" className="page-section">
-          <SectionHeading
-            eyebrow={copy.sections.localization.eyebrow}
-            title={copy.sections.localization.title}
-            description={copy.sections.localization.description}
-          />
-          <div className="guide-hub-section__meta">
-            <div className="guide-chip-row">
-              <span className="guide-chip">
-                {copy.sections.localization.pagesLabel}: {localizationGuides.length}
-              </span>
-              {localizationSegments.map((segment) => (
-                <span key={segment} className="guide-chip">
-                  {segment}
-                </span>
-              ))}
-            </div>
-          </div>
-          <div className="resource-grid">
-            {localizationGuides.length > 0 ? (
-              localizationGuides.map((guide) => (
-                <ArticleCard
-                  key={guide.slug}
-                  title={guide.title}
-                  description={guide.description}
-                  href={guide.href}
-                  meta={[guide.segmentLabel, guide.guideLabel, String(guide.year)]}
-                />
-              ))
-            ) : (
-              <div className="surface-card">
-                <h3>{copy.emptyState.title}</h3>
-                <p className="quote">{copy.emptyState.description}</p>
-              </div>
-            )}
-          </div>
-        </section>
+        <ResourceCollectionSection
+          eyebrow={copy.sections.localization.eyebrow}
+          title={copy.sections.localization.title}
+          description={copy.sections.localization.description}
+          items={localizationGuides.map((guide) => ({
+            title: guide.title,
+            description: guide.description,
+            href: guide.href,
+            meta: [guide.segmentLabel, guide.guideLabel, String(guide.year)],
+          }))}
+          emptyState={copy.emptyState}
+          className="page-section"
+        />
 
-        <section id="function-scenario-guides" className="page-section">
-          <SectionHeading
-            eyebrow={copy.sections.scenarios.eyebrow}
-            title={copy.sections.scenarios.title}
-            description={copy.sections.scenarios.description}
-          />
-          <div className="guide-hub-section__meta">
-            <div className="guide-chip-row">
-              <span className="guide-chip">
-                {copy.sections.scenarios.pagesLabel}: {functionScenarioGuides.length}
-              </span>
-              {functionScenarioTopics.map((topic) => (
-                <span key={topic} className="guide-chip">
-                  {topic}
-                </span>
-              ))}
-            </div>
-          </div>
-          <div className="resource-grid">
-            {functionScenarioGuides.length > 0 ? (
-              functionScenarioGuides.map((guide) => (
-                <ArticleCard
-                  key={guide.slug}
-                  title={guide.title}
-                  description={guide.description}
-                  href={guide.href}
-                  meta={[guide.segmentLabel, guide.guideLabel, String(guide.year)]}
-                />
-              ))
-            ) : (
-              <div className="surface-card">
-                <h3>{copy.emptyState.title}</h3>
-                <p className="quote">{copy.emptyState.description}</p>
-              </div>
-            )}
-          </div>
-        </section>
+        <ResourceCollectionSection
+          eyebrow={copy.sections.scenarios.eyebrow}
+          title={copy.sections.scenarios.title}
+          description={copy.sections.scenarios.description}
+          items={functionScenarioGuides.map((guide) => ({
+            title: guide.title,
+            description: guide.description,
+            href: guide.href,
+            meta: [guide.segmentLabel, guide.guideLabel, String(guide.year)],
+          }))}
+          emptyState={copy.emptyState}
+          className="page-section"
+        />
       </PageContainer>
     </main>
   );

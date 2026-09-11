@@ -2,10 +2,11 @@
 
 import {useMemo, useState} from "react";
 
+import {ContentIndexCard} from "@/components/cards/ContentIndexCard";
 import {useLocale} from "@/components/providers/LocaleProvider";
-import {LocalizedLink} from "@/components/ui/LocalizedLink";
 import type {BlogPost} from "@/content/blog";
 import {getUiCopy} from "@/content/ui-copy";
+import {ContentIndexHero} from "@/components/sections/ContentIndexHero";
 
 const POSTS_PER_PAGE = 2;
 
@@ -27,46 +28,40 @@ export function BlogFeed({posts, title, description}: BlogFeedProps) {
   }, [page, posts]);
 
   return (
-    <section className="blog-feed">
-      <header className="blog-feed__header">
-        <span className="section-heading__eyebrow">{uiCopy.blog.eyebrow}</span>
-        <h1>{title}</h1>
-        <p>{description}</p>
-      </header>
+    <section className="py-12 sm:py-16 lg:py-20">
+      <ContentIndexHero eyebrow={uiCopy.blog.eyebrow} title={title} description={description} />
 
-      <div className="blog-feed__list">
+      <div className="mt-12 grid gap-6 lg:gap-7">
         {visiblePosts.map((post) => (
-          <article key={post.slug} className="blog-summary-card">
-            <div className="article-meta">
-              <span>{post.publishedAt}</span>
-              <span>{post.readingTime}</span>
-              {post.tags.map((tag) => (
-                <span key={tag}>{tag}</span>
-              ))}
-            </div>
-            <h2>
-              <LocalizedLink href={post.href}>{post.title}</LocalizedLink>
-            </h2>
-            <p>{post.description}</p>
-            <LocalizedLink href={post.href} className="blog-summary-card__link">
-              {uiCopy.blog.readArticleLabel}
-            </LocalizedLink>
-          </article>
+          <ContentIndexCard
+            key={post.slug}
+            href={post.href}
+            title={post.title}
+            description={post.description}
+            meta={[post.publishedAt, post.readingTime, ...post.tags]}
+            ctaLabel={uiCopy.blog.readArticleLabel}
+            titleLevel="h2"
+            variant="bordered"
+            className="bg-white/90 shadow-[0_16px_48px_-24px_rgba(15,23,42,0.28)]"
+          />
         ))}
       </div>
 
       {pageCount > 1 ? (
-        <nav className="blog-feed__pagination" aria-label={uiCopy.blog.paginationLabel}>
+        <nav
+          className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
+          aria-label={uiCopy.blog.paginationLabel}
+        >
           <button
             type="button"
-            className="blog-feed__page-button"
+            className="inline-flex h-11 items-center justify-center rounded-full border border-slate-200 bg-white px-5 text-sm font-semibold text-slate-700 shadow-sm transition-colors hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-700 disabled:cursor-not-allowed disabled:opacity-50"
             onClick={() => setPage((current) => Math.max(1, current - 1))}
             disabled={page === 1}
           >
             {uiCopy.blog.previousLabel}
           </button>
 
-          <div className="blog-feed__page-list">
+          <div className="flex flex-wrap items-center gap-2">
             {Array.from({length: pageCount}, (_, index) => {
               const targetPage = index + 1;
               const isActive = targetPage === page;
@@ -75,7 +70,12 @@ export function BlogFeed({posts, title, description}: BlogFeedProps) {
                 <button
                   key={targetPage}
                   type="button"
-                  className={`blog-feed__page-button${isActive ? " blog-feed__page-button--active" : ""}`}
+                  className={[
+                    "inline-flex h-11 min-w-11 items-center justify-center rounded-full border px-4 text-sm font-semibold transition-colors",
+                    isActive
+                      ? "border-slate-950 bg-slate-950 text-white"
+                      : "border-slate-200 bg-white text-slate-700 hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-700",
+                  ].join(" ")}
                   onClick={() => setPage(targetPage)}
                   aria-current={isActive ? "page" : undefined}
                 >
@@ -87,7 +87,7 @@ export function BlogFeed({posts, title, description}: BlogFeedProps) {
 
           <button
             type="button"
-            className="blog-feed__page-button"
+            className="inline-flex h-11 items-center justify-center rounded-full border border-slate-200 bg-white px-5 text-sm font-semibold text-slate-700 shadow-sm transition-colors hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-700 disabled:cursor-not-allowed disabled:opacity-50"
             onClick={() => setPage((current) => Math.min(pageCount, current + 1))}
             disabled={page === pageCount}
           >

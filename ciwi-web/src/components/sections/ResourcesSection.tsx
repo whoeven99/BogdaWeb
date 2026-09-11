@@ -28,9 +28,9 @@ type ResourcesSectionProps = {
 
 export function ResourcesSection({eyebrow, title, description, items, subscription}: ResourcesSectionProps) {
   return (
-    <section className="page-section">
+    <section className="py-12 sm:py-14 lg:py-16">
       <SectionHeading eyebrow={eyebrow} title={title} description={description} />
-      <div className="resource-grid">
+      <div className="mt-10 grid gap-6 md:grid-cols-2 xl:gap-8 xl:grid-cols-3">
         {items.map((item) => (
           <ArticleCard
             key={item.title}
@@ -41,7 +41,7 @@ export function ResourcesSection({eyebrow, title, description, items, subscripti
           />
         ))}
       </div>
-      <div className="space-top-xl">
+      <div className="mt-10">
         <NewsletterSubscriptionCard source={subscription.source} copy={subscription} />
       </div>
     </section>

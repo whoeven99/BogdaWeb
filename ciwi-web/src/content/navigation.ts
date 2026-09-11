@@ -34,6 +34,7 @@ const navigationContent = {
         href: "/resources",
         children: [
           {label: "Resources Hub", href: "/resources"},
+          {label: "Use Cases", href: "/use-cases"},
           {label: "Localization Guides", href: "/guides#localization-guides"},
           {label: "Shopify How-to Guides", href: "/guides#function-scenario-guides"},
           {label: "Help Center", href: "/help-center"},
@@ -47,11 +48,10 @@ const navigationContent = {
     footerNavigation: {
       products: [
         {label: "AI Translator", href: "/products/translator"},
-        {label: "Bundle Discount", href: "/products/bundle-discount"},
-        {label: "Content AI", href: "/products/content-ai"},
         {label: "Spark: AI Store Assistant", href: "/products/spark-analytics-agent"},
       ],
       resources: [
+        {label: "Use Cases", href: "/use-cases"},
         {label: "Blog", href: "/blog"},
         {label: "Help Center", href: "/help-center"},
         {label: "Localization Guides", href: "/guides#localization-guides"},
@@ -84,12 +84,13 @@ const navigationContent = {
         href: "/resources",
         children: [
           {label: "资源中心", href: "/resources"},
+          {label: "应用场景", href: "/use-cases"},
           {label: "本地化指南", href: "/guides#localization-guides"},
-          {label: "Shopify 功能指南", href: "/guides#function-scenario-guides"},
+          {label: "功能场景指南", href: "/guides#function-scenario-guides"},
           {label: "帮助中心", href: "/help-center"},
           {label: "博客", href: "/blog"},
           {label: "产品测评", href: "/compare"},
-          {label: "Best Shopify Apps", href: "/best-shopify-apps"},
+          {label: "最佳 Shopify 应用", href: "/best-shopify-apps"},
         ],
       },
       {label: "关于我们", href: "/about"},
@@ -97,16 +98,15 @@ const navigationContent = {
     footerNavigation: {
       products: [
         {label: "AI 翻译", href: "/products/translator"},
-        {label: "套餐折扣", href: "/products/bundle-discount"},
-        {label: "内容 AI", href: "/products/content-ai"},
         {label: "Spark AI 店铺助手", href: "/products/spark-analytics-agent"},
       ],
       resources: [
+        {label: "应用场景", href: "/use-cases"},
         {label: "博客", href: "/blog"},
         {label: "帮助中心", href: "/help-center"},
         {label: "本地化指南", href: "/guides#localization-guides"},
-        {label: "Shopify 功能指南", href: "/guides#function-scenario-guides"},
-        {label: "Best Shopify Apps", href: "/best-shopify-apps"},
+        {label: "功能场景指南", href: "/guides#function-scenario-guides"},
+        {label: "最佳 Shopify 应用", href: "/best-shopify-apps"},
         {label: "资源中心", href: "/resources"},
       ],
       company: [
