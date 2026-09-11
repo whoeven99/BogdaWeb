@@ -10,14 +10,18 @@ import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getBestShopifyAppCollectionMap, getBestShopifyAppCollections} from "@/content/best-shopify-apps";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {localizeHref} from "@/lib/i18n";
-import {buildPageMetadata, siteUrl} from "@/lib/seo/metadata";
+import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildWebPageSchema} from "@/lib/seo/schema";
 
 type BestShopifyAppCollectionPageProps = {
   params: Promise<{slug: string}>;
 };
 
-function buildItemListSchema(url: string, collection: ReturnType<typeof getBestShopifyAppCollectionMap>[string]) {
+function buildItemListSchema(
+  url: string,
+  locale: "en" | "zh-cn",
+  collection: ReturnType<typeof getBestShopifyAppCollectionMap>[string],
+) {
   return {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -29,7 +33,7 @@ function buildItemListSchema(url: string, collection: ReturnType<typeof getBestS
       position: item.rank,
       name: item.name,
       description: item.summary,
-      url: item.href ? new URL(item.href, siteUrl).toString() : undefined,
+      url: item.href ? toAbsoluteLocalizedUrl(locale, item.href) : undefined,
     })),
   };
 }
@@ -176,7 +180,7 @@ export default async function BestShopifyAppCollectionPage({params}: BestShopify
       keywords: [...collection.keywords],
       type: "CollectionPage",
     }),
-    buildItemListSchema(pageUrl, collection),
+    buildItemListSchema(pageUrl, locale, collection),
   ];
 
   return (

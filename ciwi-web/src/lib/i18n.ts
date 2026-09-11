@@ -44,6 +44,14 @@ function ensureTrailingSlash(href: string): string {
   return `${pathname}/${suffix}`;
 }
 
+export function normalizeInternalHref(href: string): string {
+  if (!href || isExternalHref(href) || href.startsWith("#") || !href.startsWith("/")) {
+    return href;
+  }
+
+  return ensureTrailingSlash(href);
+}
+
 export function localizeHref(locale: Locale, href: string): string {
   if (!href || isExternalHref(href) || href.startsWith("#")) {
     return href;
@@ -54,19 +62,22 @@ export function localizeHref(locale: Locale, href: string): string {
   }
 
   if (locale === defaultLocale || href.startsWith(`/${chineseLocale}`)) {
-    return ensureTrailingSlash(href);
+    return normalizeInternalHref(href);
   }
 
-  return ensureTrailingSlash(href === "/" ? `/${chineseLocale}` : `/${chineseLocale}${href}`);
+  return normalizeInternalHref(href === "/" ? `/${chineseLocale}` : `/${chineseLocale}${href}`);
 }
 
 export function buildAlternates(path: string) {
+  const normalizedPath = stripLocalePrefix(path);
+  const englishPath = localizeHref(defaultLocale, normalizedPath);
+
   return {
-    canonical: path,
+    canonical: englishPath,
     languages: {
-      en: path,
-      "zh-CN": localizeHref(chineseLocale, path),
-      "x-default": path,
+      en: englishPath,
+      "zh-CN": localizeHref(chineseLocale, normalizedPath),
+      "x-default": englishPath,
     },
   };
 }
