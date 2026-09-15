@@ -1,5 +1,6 @@
 import {notFound, permanentRedirect} from "next/navigation";
 
+import {AuthorByline} from "@/components/content/AuthorByline";
 import {FaqSection} from "@/components/sections/FaqSection";
 import {ComparisonCardStack} from "@/components/sections/ComparisonCardStack";
 import {DetailHeroPanel} from "@/components/sections/DetailHeroPanel";
@@ -9,6 +10,7 @@ import {Button} from "@/components/ui/Button";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getAvailableFunctionScenarioGuideLocales, getFunctionScenarioGuideMap, getFunctionScenarioGuides} from "@/content/function-scenario-guides";
+import {getAuthorBySlug} from "@/content/authors";
 import {getAvailableLocalizationGuideLocales, getLocalizationGuideMap, getLocalizationGuides} from "@/content/localization-guides";
 import {getUiCopy} from "@/content/ui-copy";
 import {localizeHref} from "@/lib/i18n";
@@ -389,6 +391,7 @@ function buildGuideStructuredData(
   guide: {title: string; description: string; href: string; publishedAt: string; keywords: string[]; faq: {question: string; answer: string}[]}
 ) {
   const pageUrl = new URL(localizeHref(locale, guide.href), siteUrl).toString();
+  const author = getAuthorBySlug(guide.href);
 
   return {
     pageUrl,
@@ -410,6 +413,7 @@ function buildGuideStructuredData(
         description: guide.description,
         datePublished: guide.publishedAt,
         keywords: guide.keywords,
+        author: {name: author.name, jobTitle: author.role[locale], url: new URL(localizeHref(locale, `/authors/${author.id}`), siteUrl).toString()},
       }),
       buildFaqSchema(guide.faq),
     ],
@@ -514,6 +518,7 @@ function renderLocalizationGuidePage(
   const copy = getLocalizationGuidePageCopy(locale);
   const articleCopy = getLocalizationNarrativeCopy(locale);
   const {structuredData} = buildGuideStructuredData(locale, guide);
+  const author = getAuthorBySlug(guide.href);
   const criticalScope = guide.translationScope.find((item) => item.category.toLowerCase() === "critical") ?? guide.translationScope[0];
   const importantScope = guide.translationScope.find((item) => item.category.toLowerCase() === "important") ?? guide.translationScope[1];
   const tocItems = [
@@ -547,6 +552,8 @@ function renderLocalizationGuidePage(
           </div>
 
           <SectionHeading eyebrow={copy.hero.eyebrow} title={guide.title} description={guide.description} as="h1" />
+
+          <AuthorByline author={author} className="mt-6" />
 
           <DetailHeroPanel
             metaItems={[
@@ -917,6 +924,7 @@ function renderFunctionScenarioGuidePage(
   const copy = getFunctionScenarioPageCopy(locale);
   const articleCopy = getFunctionScenarioNarrativeCopy(locale);
   const {structuredData} = buildGuideStructuredData(locale, guide);
+  const author = getAuthorBySlug(guide.href);
   const criticalScope = guide.translationScope.find((item) => item.category.toLowerCase() === "critical") ?? guide.translationScope[0];
   const importantScope = guide.translationScope.find((item) => item.category.toLowerCase() === "important") ?? guide.translationScope[1];
   const tocItems = [
@@ -947,6 +955,8 @@ function renderFunctionScenarioGuidePage(
           </div>
 
           <SectionHeading eyebrow={copy.hero.eyebrow} title={guide.title} description={guide.description} as="h1" />
+
+          <AuthorByline author={author} className="mt-6" />
 
           <div className="guide-meta-grid">
             <div className="surface-card guide-meta-card">

@@ -232,13 +232,6 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
       url: pageUrl,
       name: product.name,
       description: product.heroDescription,
-      rating: product.rating,
-      reviewCount: product.reviewCount,
-      bestRating: 5,
-      reviews: (product.reviewSnippets ?? []).map((snippet) => ({
-        reviewBody: snippet,
-        ratingValue: product.rating ?? 5,
-      })),
     }),
     buildFaqSchema(product.faq),
   ];

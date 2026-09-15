@@ -13,6 +13,7 @@ type ArticleSchemaInput = {
   datePublished?: string;
   dateModified?: string;
   keywords?: string[];
+  author?: {name: string; jobTitle?: string; url?: string};
 };
 
 type WebPageSchemaInput = {
@@ -36,7 +37,7 @@ export function buildBreadcrumbSchema(items: BreadcrumbItem[]) {
   };
 }
 
-export function buildBlogPostingSchema({url, headline, description, datePublished, dateModified, keywords = []}: ArticleSchemaInput) {
+export function buildBlogPostingSchema({url, headline, description, datePublished, dateModified, keywords = [], author}: ArticleSchemaInput) {
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -47,10 +48,14 @@ export function buildBlogPostingSchema({url, headline, description, datePublishe
     mainEntityOfPage: url,
     url,
     keywords,
-    author: {
-      "@type": "Organization",
-      name: siteName,
-    },
+    author: author
+      ? {
+          "@type": "Person",
+          name: author.name,
+          ...(author.jobTitle ? {jobTitle: author.jobTitle} : {}),
+          ...(author.url ? {url: author.url} : {}),
+        }
+      : {"@type": "Organization", name: siteName},
     publisher: {
       "@type": "Organization",
       name: siteName,
@@ -59,7 +64,7 @@ export function buildBlogPostingSchema({url, headline, description, datePublishe
   };
 }
 
-export function buildTechArticleSchema({url, headline, description, datePublished, dateModified, keywords = []}: ArticleSchemaInput) {
+export function buildTechArticleSchema({url, headline, description, datePublished, dateModified, keywords = [], author}: ArticleSchemaInput) {
   return {
     "@context": "https://schema.org",
     "@type": "TechArticle",
@@ -70,10 +75,14 @@ export function buildTechArticleSchema({url, headline, description, datePublishe
     mainEntityOfPage: url,
     url,
     keywords,
-    author: {
-      "@type": "Organization",
-      name: siteName,
-    },
+    author: author
+      ? {
+          "@type": "Person",
+          name: author.name,
+          ...(author.jobTitle ? {jobTitle: author.jobTitle} : {}),
+          ...(author.url ? {url: author.url} : {}),
+        }
+      : {"@type": "Organization", name: siteName},
     publisher: {
       "@type": "Organization",
       name: siteName,

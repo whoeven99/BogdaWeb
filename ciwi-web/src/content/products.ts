@@ -1,5 +1,5 @@
 import type {Locale} from "@/lib/i18n";
-import {ciwiShopifyInstallUrl} from "@/lib/marketing-links";
+import {ciwiShopifyInstallUrl, sparkShopifyInstallUrl} from "@/lib/marketing-links";
 
 export type ProductItem = {
   slug: string;
@@ -362,8 +362,8 @@ const productsEn: ProductItem[] = [
           "Spark supports Meta, Google, TikTok, GA4, Search Console, PageSpeed, and related data sources, plus Web Pixel and storefront tracking setup and validation.",
       },
     ],
-    ctaLabel: "Talk to us",
-    ctaHref: "/waitlist",
+    ctaLabel: "Install on Shopify",
+    ctaHref: sparkShopifyInstallUrl,
   },
 ];
 
@@ -659,8 +659,8 @@ const productsZh: ProductItem[] = [
         answer: "支持 Meta、Google、TikTok、GA4、Search Console、PageSpeed 及相关数据源，也支持 Web Pixel 和前台追踪的配置与校验。",
       },
     ],
-    ctaLabel: "加入 waiting list",
-    ctaHref: "/contact",
+    ctaLabel: "前往 Shopify 安装",
+    ctaHref: sparkShopifyInstallUrl,
   },
 ];
 

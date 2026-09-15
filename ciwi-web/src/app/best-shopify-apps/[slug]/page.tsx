@@ -8,6 +8,7 @@ import {Button} from "@/components/ui/Button";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getBestShopifyAppCollectionMap, getBestShopifyAppCollections} from "@/content/best-shopify-apps";
+import appRatings from "@/content/data/app_ratings.json";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {localizeHref} from "@/lib/i18n";
 import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
@@ -16,6 +17,12 @@ import {buildBreadcrumbSchema, buildWebPageSchema} from "@/lib/seo/schema";
 type BestShopifyAppCollectionPageProps = {
   params: Promise<{slug: string}>;
 };
+
+function extractAppSlug(href?: string): string | undefined {
+  if (!href) return undefined;
+  const match = href.match(/apps\.shopify\.com\/([^/?#]+)/);
+  return match?.[1];
+}
 
 function buildItemListSchema(
   url: string,
@@ -28,13 +35,28 @@ function buildItemListSchema(
     name: collection.title,
     description: collection.description,
     url,
-    itemListElement: collection.picks.map((item) => ({
-      "@type": "ListItem",
-      position: item.rank,
-      name: item.name,
-      description: item.summary,
-      url: item.href ? toAbsoluteLocalizedUrl(locale, item.href) : undefined,
-    })),
+    itemListElement: collection.picks.map((item) => {
+      const appSlug = extractAppSlug(item.href);
+      const rating = appSlug ? (appRatings as Record<string, {rating: number; reviewCount: number}>)[appSlug] : undefined;
+
+      return {
+        "@type": "Product",
+        position: item.rank,
+        name: item.name,
+        description: item.summary,
+        url: item.href ? toAbsoluteLocalizedUrl(locale, item.href) : undefined,
+        ...(rating
+          ? {
+              aggregateRating: {
+                "@type": "AggregateRating",
+                ratingValue: rating.rating,
+                reviewCount: rating.reviewCount,
+                bestRating: 5,
+              },
+            }
+          : {}),
+      };
+    }),
   };
 }
 

@@ -32,21 +32,21 @@
     "picks": [
       {
         "rank": 1,
-        "name": "Webrex: AI SEO Schema, JSON‑LD",
+        "name": "Judge.me Product Reviews App",
         "badge": "Best overall",
-        "summary": "Webrex AI SEO Schema helps stores get discovered in AI-driven search and rich-result SERPs. It converts your products, reviews, FAQs, and content into clean,...",
+        "summary": "Sell more with unlimited product reviews, UGC, star ratings, and testimonials Driving traffic is only half the battle – trust is what converts. Judge.me boosts...",
         "bestFor": "collecting and displaying customer reviews",
-        "pricing": "Free plan available",
+        "pricing": "Free plan available; paid plans from $15 / month",
         "strengths": [
-          "Strong 4.9-star rating",
-          "813 merchant reviews",
-          "Estimated 16,260 total installs",
+          "Strong 5.0-star rating",
+          "36,690 merchant reviews",
+          "Estimated 733,800 total installs",
           "Shows current install momentum"
         ],
         "watchouts": [
-          "Newer app with less long-term operating history"
+          "Confirm feature fit and plan limits before installing"
         ],
-        "href": "https://apps.shopify.com/webrex-seo-schema"
+        "href": "https://apps.shopify.com/judgeme"
       },
       {
         "rank": 2,
@@ -86,24 +86,6 @@
       },
       {
         "rank": 4,
-        "name": "Judge.me Product Reviews App",
-        "badge": "Best free plan",
-        "summary": "Sell more with unlimited product reviews, UGC, star ratings, and testimonials Driving traffic is only half the battle – trust is what converts. Judge.me boosts...",
-        "bestFor": "collecting and displaying customer reviews",
-        "pricing": "Free plan available; paid plans from $15 / month",
-        "strengths": [
-          "Strong 5.0-star rating",
-          "36,690 merchant reviews",
-          "Estimated 733,800 total installs",
-          "Shows current install momentum"
-        ],
-        "watchouts": [
-          "Confirm feature fit and plan limits before installing"
-        ],
-        "href": "https://apps.shopify.com/judgeme"
-      },
-      {
-        "rank": 5,
         "name": "TrustWILL Product Reviews App",
         "badge": "Best free plan",
         "summary": "TrustWILL(formerly Trustoo): collect photo&video reviews, engage customers, and build brand trust. TrustWILL from CWILL is a review solution (formerly Trustoo...",
@@ -121,7 +103,7 @@
         "href": "https://apps.shopify.com/sealapps-product-review"
       },
       {
-        "rank": 6,
+        "rank": 5,
         "name": "Google Reviews Rocket",
         "badge": "Best free plan",
         "summary": "All-in-One Google Reviews Manager: Collects Reviews, Shows Widget, AI Reply, Filters & Auto Syncs NEW! Multi-Widget Support. Enhance your sales with Google...",
@@ -139,7 +121,7 @@
         "href": "https://apps.shopify.com/google-review-plus-by-entangle-1"
       },
       {
-        "rank": 7,
+        "rank": 6,
         "name": "Vitals: Reviews, Bundles & 40+",
         "badge": "Fast-growing",
         "summary": "The All-in-One App: Reviews, Upsells, Sticky Add to Cart, Wishlist, AI Page Builder & 40+ More Vitals is an all-in-one Shopify app for Product Reviews, product...",
@@ -157,7 +139,7 @@
         "href": "https://apps.shopify.com/vitals"
       },
       {
-        "rank": 8,
+        "rank": 7,
         "name": "Google Reviews by Reputon",
         "badge": "Fast-growing",
         "summary": "Import Google Reviews from Google Map: store locator, AI summary, reviews w/ photos, collect reviews NEW! AI review reply added. Enhance your website's trust,...",
@@ -175,25 +157,7 @@
         "href": "https://apps.shopify.com/google-reviews-trust-badge"
       },
       {
-        "rank": 9,
-        "name": "Dondy: WhatsApp Marketing+Chat",
-        "badge": "Best free plan",
-        "summary": "WhatsApp automation to drive marketing, sales, support, and COD using WhatsApp API and AI Recover abandoned carts and drive revenue via WhatsApp Business API...",
-        "bestFor": "collecting and displaying customer reviews",
-        "pricing": "Free plan available; paid plans from $6.99 / month or $67.10/year and save 20%",
-        "strengths": [
-          "Strong 4.8-star rating",
-          "772 merchant reviews",
-          "Estimated 15,440 total installs",
-          "Shows current install momentum"
-        ],
-        "watchouts": [
-          "Confirm feature fit and plan limits before installing"
-        ],
-        "href": "https://apps.shopify.com/dondy-marketing-ai"
-      },
-      {
-        "rank": 10,
+        "rank": 8,
         "name": "Junip Product Reviews App & AI",
         "badge": "Best free plan",
         "summary": "Convert more shoppers with real product reviews from your customers & AI. Unlimited review requests. Help every shopper make the right decision. Increase...",
@@ -245,8 +209,8 @@
         "The best option is the one that fits your store's current bottleneck and can scale with your operating model.",
         "Use this ranking to build a shortlist, then compare current pricing, recent reviews, support quality, and implementation effort on the live Shopify App Store."
       ],
-      "primaryLabel": "Webrex: AI SEO Schema, JSON‑LD",
-      "primaryHref": "https://apps.shopify.com/webrex-seo-schema",
+      "primaryLabel": "Judge.me Product Reviews App",
+      "primaryHref": "https://apps.shopify.com/judgeme",
       "secondaryLabel": "Browse Shopify App Store",
       "secondaryHref": "https://apps.shopify.com/"
     },
@@ -452,24 +416,6 @@
           "Confirm feature fit and plan limits before installing"
         ],
         "href": "https://apps.shopify.com/qikify-popup-social-proof"
-      },
-      {
-        "rank": 10,
-        "name": "Redo",
-        "badge": "Best free plan",
-        "summary": "Elevate shopper experiences with premium returns, shipping & fulfillment, email marketing & checkout Upgrade to Redo to transform your operations. Ditch old...",
-        "bestFor": "building email, SMS, and lifecycle marketing flows",
-        "pricing": "Free plan available; paid plans from $10 / month $0.50 per order for checkout optimization and $0.06 for order upsell",
-        "strengths": [
-          "Strong 5.0-star rating",
-          "477 merchant reviews",
-          "Estimated 9,540 total installs",
-          "Shows current install momentum"
-        ],
-        "watchouts": [
-          "Confirm feature fit and plan limits before installing"
-        ],
-        "href": "https://apps.shopify.com/redo"
       }
     ],
     "selectionGuide": [
@@ -663,24 +609,6 @@
       },
       {
         "rank": 7,
-        "name": "Appstle Loyalty Reward Program",
-        "badge": "Best free plan",
-        "summary": "Comprehensive loyalty program with rewards, referrals, store credits, cart redemption, VIP, and more Appstle Loyalty Program and Rewards offers a customizable,...",
-        "bestFor": "increasing average order value with bundles and offers",
-        "pricing": "Free plan available; paid plans from $10 / month or $96/year and save 20%",
-        "strengths": [
-          "Strong 5.0-star rating",
-          "979 merchant reviews",
-          "Estimated 19,580 total installs",
-          "Shows current install momentum"
-        ],
-        "watchouts": [
-          "Confirm feature fit and plan limits before installing"
-        ],
-        "href": "https://apps.shopify.com/appstle-loyalty"
-      },
-      {
-        "rank": 8,
         "name": "FBP | Fast Bundle Product",
         "badge": "Best free plan",
         "summary": "Seamlessly create all bundle types like mix and match, BOGO, addons, etc, to effortlessly boost AOV! FBP | Fast Bundles provides seamless tools for creating...",
@@ -698,25 +626,7 @@
         "href": "https://apps.shopify.com/fast-bundle-product-bundles"
       },
       {
-        "rank": 9,
-        "name": "EComposer Landing Page Builder",
-        "badge": "Best free plan",
-        "summary": "Easy and smart page builder: build any stunning, sales-ready pages - now supercharged with AI EComposer Landing Page builder lets you design any Shopify page...",
-        "bestFor": "increasing average order value with bundles and offers",
-        "pricing": "Free plan available; paid plans from $19 / month or $190/year and save 17%",
-        "strengths": [
-          "Strong 4.9-star rating",
-          "3,455 merchant reviews",
-          "Estimated 69,100 total installs",
-          "Shows current install momentum"
-        ],
-        "watchouts": [
-          "Confirm feature fit and plan limits before installing"
-        ],
-        "href": "https://apps.shopify.com/ecomposer"
-      },
-      {
-        "rank": 10,
+        "rank": 8,
         "name": "Appstle℠ Bundles & Upsells",
         "badge": "Best free plan",
         "summary": "Comprehensive and highly customizable bundling & discounts app to increase sales, AOV & wallet share From the makers of Appstle Subscriptions! Discover...",
@@ -908,24 +818,6 @@
       },
       {
         "rank": 6,
-        "name": "SEA Accessibility Widget ADA",
-        "badge": "Best free plan",
-        "summary": "Ensure your store complies with accessibility laws, especially in Germany, the United States, EU,etc SEA Accessibility EAA ADA AODA helps Shopify merchants meet...",
-        "bestFor": "improving search visibility and technical SEO hygiene",
-        "pricing": "Free plan available; paid plans from $9 / month or $90/year and save 17%",
-        "strengths": [
-          "Strong 5.0-star rating",
-          "256 merchant reviews",
-          "Estimated 5,120 total installs",
-          "Shows current install momentum"
-        ],
-        "watchouts": [
-          "Newer app with less long-term operating history"
-        ],
-        "href": "https://apps.shopify.com/sea-accessibility-ada-wcag"
-      },
-      {
-        "rank": 7,
         "name": "EZ AI: SEO & AEO & AI Blog",
         "badge": "Best free plan",
         "summary": "Boost organic traffic and speed in a few clicks — SEO made simple for anyone, no expert needed. SEO doesn’t have to be hard. Scan your store for issues, write...",
@@ -943,7 +835,7 @@
         "href": "https://apps.shopify.com/ez-seo-ai-products-optimizer"
       },
       {
-        "rank": 8,
+        "rank": 7,
         "name": "Essential AI SEO: AI Blog Post",
         "badge": "Best free plan",
         "summary": "Generate SEO-optimized blog posts using auto blog writer! Boost SEO and build professional blogs. Elevate your blog writing with Essential SEO - AI Blogger, the...",
@@ -961,7 +853,7 @@
         "href": "https://apps.shopify.com/essential-seo-ai-blog-writer"
       },
       {
-        "rank": 9,
+        "rank": 8,
         "name": "Tiny SEO Speed Image Optimizer",
         "badge": "Best free plan",
         "summary": "Boost sales, AI organic & SEO traffic, improve page speed, optimize images and outrank competition! TinySEO is your all-in-one tool for SEO image & page speed...",
@@ -979,7 +871,7 @@
         "href": "https://apps.shopify.com/smart-image-optimizer"
       },
       {
-        "rank": 10,
+        "rank": 9,
         "name": "StoreSEO: AI SEO Blog & Image",
         "badge": "Best free plan",
         "summary": "Boost SEO & Sales by AI SEO Optimizer, Blog, Image Alt Text, Sitemap, Schema Rank In ChatGPT, Gemini Get smart SEO booster to improve Google, ChatGPT, Gemini,...",
@@ -1170,42 +1062,6 @@
       },
       {
         "rank": 6,
-        "name": "DSers‑AliExpress Dropshipping",
-        "badge": "Best free plan",
-        "summary": "AliExpress Dropshipping Solution to place orders, find suppliers and import products! DSers, AliExpress Dropshipping Solution, the new standard to process...",
-        "bestFor": "shipping, delivery tracking, returns, and fulfillment workflows",
-        "pricing": "Free plan available; paid plans from $19.90 / month or $190.80/year and save 20%",
-        "strengths": [
-          "Strong 4.9-star rating",
-          "5,458 merchant reviews",
-          "Estimated 109,160 total installs",
-          "Shows current install momentum"
-        ],
-        "watchouts": [
-          "Confirm feature fit and plan limits before installing"
-        ],
-        "href": "https://apps.shopify.com/dsers"
-      },
-      {
-        "rank": 7,
-        "name": "AfterShip Referral & Affiliate",
-        "badge": "Best free plan",
-        "summary": "Referral program software that builds brand trust, increases brand advocators and generates revenue. Leverage word-of-mouth marketing to turn your customers into...",
-        "bestFor": "shipping, delivery tracking, returns, and fulfillment workflows",
-        "pricing": "Free",
-        "strengths": [
-          "Strong 4.9-star rating",
-          "1,019 merchant reviews",
-          "Estimated 20,380 total installs",
-          "Shows current install momentum"
-        ],
-        "watchouts": [
-          "Confirm feature fit and plan limits before installing"
-        ],
-        "href": "https://apps.shopify.com/automizely-loyalty"
-      },
-      {
-        "rank": 8,
         "name": "ParcelWILL Returns & Exchange",
         "badge": "Best free plan",
         "summary": "Returns that turn to profit by incentivizing exchanges and providing a self-service returns portal. Returns Management app provides a clear, flow-based solution...",
@@ -1223,25 +1079,7 @@
         "href": "https://apps.shopify.com/parcel-panel-returns-exchanges"
       },
       {
-        "rank": 9,
-        "name": "Appstle℠ Memberships",
-        "badge": "Best free plan",
-        "summary": "Only end-to-end memberships tool covering member plans, perks (e.g. discounts, access), and billing Discover the powerful memberships (think, Amazon Prime!)...",
-        "bestFor": "shipping, delivery tracking, returns, and fulfillment workflows",
-        "pricing": "From Free to install",
-        "strengths": [
-          "Strong 4.9-star rating",
-          "682 merchant reviews",
-          "Estimated 13,640 total installs",
-          "Shows current install momentum"
-        ],
-        "watchouts": [
-          "Confirm feature fit and plan limits before installing"
-        ],
-        "href": "https://apps.shopify.com/appstle-memberships"
-      },
-      {
-        "rank": 10,
+        "rank": 7,
         "name": "Bird Pickup Delivery Date",
         "badge": "Best free plan",
         "summary": "Turn store pickup & delivery into a competitive advantage. Happier customers, confident growth. Give customers scheduling flexibility where they want—pickup,...",
@@ -1449,24 +1287,6 @@
       },
       {
         "rank": 7,
-        "name": "Ali Reviews: AI Product Review",
-        "badge": "Best free plan",
-        "summary": "AliReviews: Review import made easy - product reviews that build trust & boost sales faster Meet Ali Reviews (formerly Kudosi), the AI-powered product reviews...",
-        "bestFor": "sourcing, importing, and fulfilling dropshipping products",
-        "pricing": "Free plan available; paid plans from $14.95 / month or $134.40/year and save 25%",
-        "strengths": [
-          "Strong 4.8-star rating",
-          "1,316 merchant reviews",
-          "Estimated 26,320 total installs",
-          "Shows current install momentum"
-        ],
-        "watchouts": [
-          "Confirm feature fit and plan limits before installing"
-        ],
-        "href": "https://apps.shopify.com/ali-reviews"
-      },
-      {
-        "rank": 8,
         "name": "DropSure ‑ Dropshipping & POD",
         "badge": "Best free plan",
         "summary": "Global sourcing and suppliers for dropshipping, POD, and fast fulfillment with global warehouses DropSure is a professional dropshipping and POD solution for...",
@@ -1484,7 +1304,7 @@
         "href": "https://apps.shopify.com/dropsure"
       },
       {
-        "rank": 9,
+        "rank": 8,
         "name": "Printify: Print on Demand",
         "badge": "Best free plan",
         "summary": "Create and sell custom products around the world. You design and sell, we - print, pack, and ship. Customize a wide selection of products in seconds with...",
@@ -1500,24 +1320,6 @@
           "Confirm feature fit and plan limits before installing"
         ],
         "href": "https://apps.shopify.com/printify"
-      },
-      {
-        "rank": 10,
-        "name": "TxtCart AI: SMS Marketing",
-        "badge": "Best free plan",
-        "summary": "AI-native conversational SMS marketing that recovers revenue, drives campaigns, and scales growth. TxtCart is an AI-native SMS marketing platform built for...",
-        "bestFor": "sourcing, importing, and fulfilling dropshipping products",
-        "pricing": "From Free to install $29/mo minimum spend. $100 in FREE credits during trial. Then $0.009/SMS, $0.045/MMS + Carrier fees.",
-        "strengths": [
-          "Strong 4.9-star rating",
-          "348 merchant reviews",
-          "Estimated 6,960 total installs",
-          "Shows current install momentum"
-        ],
-        "watchouts": [
-          "Confirm feature fit and plan limits before installing"
-        ],
-        "href": "https://apps.shopify.com/txtcart-plus"
       }
     ],
     "selectionGuide": [
@@ -1864,26 +1666,8 @@
     "picks": [
       {
         "rank": 1,
-        "name": "Rubik Variant Images & Swatch",
-        "badge": "Best overall",
-        "summary": "Set multiple variant images, display only correct images. Show color swatches with image variants Increase conversion and decrease returns on your store by...",
-        "bestFor": "building storefront pages and landing pages without heavy theme work",
-        "pricing": "Free plan available; paid plans from $25 / month or $200/year and save 33%",
-        "strengths": [
-          "Strong 5.0-star rating",
-          "337 merchant reviews",
-          "Estimated 6,740 total installs",
-          "Shows current install momentum"
-        ],
-        "watchouts": [
-          "Confirm feature fit and plan limits before installing"
-        ],
-        "href": "https://apps.shopify.com/rubik-variant-images"
-      },
-      {
-        "rank": 2,
         "name": "EComposer Landing Page Builder",
-        "badge": "Best free plan",
+        "badge": "Best overall",
         "summary": "Easy and smart page builder: build any stunning, sales-ready pages - now supercharged with AI EComposer Landing Page builder lets you design any Shopify page...",
         "bestFor": "building storefront pages and landing pages without heavy theme work",
         "pricing": "Free plan available; paid plans from $19 / month or $190/year and save 17%",
@@ -1899,7 +1683,7 @@
         "href": "https://apps.shopify.com/ecomposer"
       },
       {
-        "rank": 3,
+        "rank": 2,
         "name": "OT Section: Theme Sections",
         "badge": "Best free plan",
         "summary": "Stunning theme sections, templates & blocks—build your store in seconds. One-click setup, no coding! Don’t let 15 default Shopify theme sections limit your...",
@@ -1917,7 +1701,7 @@
         "href": "https://apps.shopify.com/ot-theme-sections-store-page-builder"
       },
       {
-        "rank": 4,
+        "rank": 3,
         "name": "Section Store: Theme Sections",
         "badge": "Best free plan",
         "summary": "Browse our section library and find sections, add to any theme, edit from the theme editor. Shopify themes usually comes with around 15 sections for you to...",
@@ -1935,7 +1719,7 @@
         "href": "https://apps.shopify.com/section-factory"
       },
       {
-        "rank": 5,
+        "rank": 4,
         "name": "Beae Landing Page Builder",
         "badge": "Best free plan",
         "summary": "Boost Sales with A/B Testing – Build, Test & Optimize Your Store Design with a Powerful Page Builder Turn visitors into customers with A/B testing and a powerful...",
@@ -1953,7 +1737,7 @@
         "href": "https://apps.shopify.com/beae"
       },
       {
-        "rank": 6,
+        "rank": 5,
         "name": "Instant AI Page Builder",
         "badge": "Best free plan",
         "summary": "Build your entire store easily with Instant: Product pages, Landings, Sections & more, without code. Create everything your store needs: a home page, PDPs,...",
@@ -1971,7 +1755,7 @@
         "href": "https://apps.shopify.com/instant-builder"
       },
       {
-        "rank": 7,
+        "rank": 6,
         "name": "LayoutHub ‑ Easy Page Builder",
         "badge": "Best free plan",
         "summary": "Allows you to quickly create pages through the layouts from the library and change their content. Customers are busy individuals who do not have time to create...",
@@ -1989,7 +1773,7 @@
         "href": "https://apps.shopify.com/layout-hub"
       },
       {
-        "rank": 8,
+        "rank": 7,
         "name": "GemPages Landing Page Builder",
         "badge": "Best free plan",
         "summary": "AI-powered Page Builder built for Conversion. Create Sales Funnels with Post-Purchase Upsell Offers Conversion-Focused Page Builder for Shopify. Build all page...",
@@ -2007,7 +1791,7 @@
         "href": "https://apps.shopify.com/gempages"
       },
       {
-        "rank": 9,
+        "rank": 8,
         "name": "G: Theme Sections & Blocks",
         "badge": "Best free plan",
         "summary": "Perfect Theme Sections: Build Stunning Storefronts with Sections & Blocks Grouptify Theme Section Builder empowers Shopify merchants to create high-converting...",
@@ -2025,7 +1809,7 @@
         "href": "https://apps.shopify.com/section-store-builder"
       },
       {
-        "rank": 10,
+        "rank": 9,
         "name": "AfterShip Page Builder",
         "badge": "Best free plan",
         "summary": "All-in-one page builder to help merchants optimize their stores with beautiful landing pages. Optimize your Shopify store with a powerful page builder. Build...",
@@ -2077,8 +1861,8 @@
         "The best option is the one that fits your store's current bottleneck and can scale with your operating model.",
         "Use this ranking to build a shortlist, then compare current pricing, recent reviews, support quality, and implementation effort on the live Shopify App Store."
       ],
-      "primaryLabel": "Rubik Variant Images & Swatch",
-      "primaryHref": "https://apps.shopify.com/rubik-variant-images",
+      "primaryLabel": "EComposer Landing Page Builder",
+      "primaryHref": "https://apps.shopify.com/ecomposer",
       "secondaryLabel": "Browse Shopify App Store",
       "secondaryHref": "https://apps.shopify.com/"
     },
@@ -2286,24 +2070,6 @@
           "Newer app with less long-term operating history"
         ],
         "href": "https://apps.shopify.com/cartmax"
-      },
-      {
-        "rank": 10,
-        "name": "Mulwi | 200+ Shopping Feeds",
-        "badge": "Best free plan",
-        "summary": "Sell on 200+ sales channels: Ready-to-use feeds for Google Shopping, Facebook, Awin, custom & more! Boost sales on 200+ channels: Ready-to-use templates for...",
-        "bestFor": "selling customizable products, variants, and personalized options",
-        "pricing": "From Free to install",
-        "strengths": [
-          "Strong 5.0-star rating",
-          "537 merchant reviews",
-          "Estimated 10,740 total installs",
-          "Shows current install momentum"
-        ],
-        "watchouts": [
-          "Confirm feature fit and plan limits before installing"
-        ],
-        "href": "https://apps.shopify.com/mulwi-shopping-feeds"
       }
     ],
     "selectionGuide": [
@@ -5059,24 +4825,6 @@
       },
       {
         "rank": 4,
-        "name": "eBay Integration ‑ DPL",
-        "badge": "Fast-growing",
-        "summary": "Effortless product import and export with eBay. Keep inventory & orders synced across both channels. Seamlessly integrate Shopify and eBay for smooth product...",
-        "bestFor": "answering customer questions faster and reducing support workload",
-        "pricing": "From $19.99 / month",
-        "strengths": [
-          "Strong 4.9-star rating",
-          "913 merchant reviews",
-          "Estimated 18,260 total installs",
-          "Shows current install momentum"
-        ],
-        "watchouts": [
-          "No clearly listed free plan in the dataset"
-        ],
-        "href": "https://apps.shopify.com/ebay-integration-sync"
-      },
-      {
-        "rank": 5,
         "name": "17TRACK Order Tracking",
         "badge": "Best free plan",
         "summary": "Order tracking and return management for merchants to reduce WISMO and drive more sales Automate tracking and returns to lower support costs and retain revenue....",
@@ -5094,7 +4842,7 @@
         "href": "https://apps.shopify.com/17track"
       },
       {
-        "rank": 6,
+        "rank": 5,
         "name": "KwikEngage: Whatsapp Marketing",
         "badge": "Best free plan",
         "summary": "Scale D2C with AI-powered WhatsApp marketing, abandoned cart recovery, & customer retention Kwik Engage helps D2C brands convert, recover, and retain customers...",
@@ -5112,7 +4860,7 @@
         "href": "https://apps.shopify.com/kwikengage"
       },
       {
-        "rank": 7,
+        "rank": 6,
         "name": "Dondy: WhatsApp Marketing+Chat",
         "badge": "Best free plan",
         "summary": "WhatsApp automation to drive marketing, sales, support, and COD using WhatsApp API and AI Recover abandoned carts and drive revenue via WhatsApp Business API...",
@@ -5130,7 +4878,7 @@
         "href": "https://apps.shopify.com/dondy-marketing-ai"
       },
       {
-        "rank": 8,
+        "rank": 7,
         "name": "ParcelWILL Returns & Exchange",
         "badge": "Best free plan",
         "summary": "Returns that turn to profit by incentivizing exchanges and providing a self-service returns portal. Returns Management app provides a clear, flow-based solution...",
@@ -5146,42 +4894,6 @@
           "Confirm feature fit and plan limits before installing"
         ],
         "href": "https://apps.shopify.com/parcel-panel-returns-exchanges"
-      },
-      {
-        "rank": 9,
-        "name": "LayoutHub ‑ Easy Page Builder",
-        "badge": "Best free plan",
-        "summary": "Allows you to quickly create pages through the layouts from the library and change their content. Customers are busy individuals who do not have time to create...",
-        "bestFor": "answering customer questions faster and reducing support workload",
-        "pricing": "Free plan available; paid plans from $14.99 / month or $149.90/year and save 17%",
-        "strengths": [
-          "Strong 4.9-star rating",
-          "1,334 merchant reviews",
-          "Estimated 26,680 total installs",
-          "Shows current install momentum"
-        ],
-        "watchouts": [
-          "Confirm feature fit and plan limits before installing"
-        ],
-        "href": "https://apps.shopify.com/layout-hub"
-      },
-      {
-        "rank": 10,
-        "name": "Shopney ‑ Mobile App Builder",
-        "badge": "Fast-growing",
-        "summary": "Turn your store into iOS & Android mobile apps. Generate more sales and decrease marketing ad spend. Build a mobile app for your Shopify store with just one...",
-        "bestFor": "answering customer questions faster and reducing support workload",
-        "pricing": "From $149 / month",
-        "strengths": [
-          "Strong 5.0-star rating",
-          "744 merchant reviews",
-          "Estimated 14,880 total installs",
-          "Shows current install momentum"
-        ],
-        "watchouts": [
-          "No clearly listed free plan in the dataset"
-        ],
-        "href": "https://apps.shopify.com/shopney-mobile-app"
       }
     ],
     "selectionGuide": [

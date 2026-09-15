@@ -58,6 +58,7 @@ export default async function GuidesHubPage() {
               eyebrow: "功能场景指南",
               title: "Shopify 功能场景翻译指南",
               description: "适合承接操作类搜索需求，重点讲某个 Shopify 功能点该翻哪些内容、怎么做、容易错在哪里。",
+              viewStructureMap: "查看完整 Shopify 翻译结构地图",
             },
           },
           emptyState: {
@@ -95,6 +96,7 @@ export default async function GuidesHubPage() {
               eyebrow: "Function Scenario Guides",
               title: "Shopify function scenario guides",
               description: "Built for how-to search intent around specific Shopify surfaces, translation tasks, and rollout workflows.",
+              viewStructureMap: "View the full Shopify translation map",
             },
           },
           emptyState: {
@@ -180,6 +182,8 @@ export default async function GuidesHubPage() {
             href: guide.href,
             meta: [guide.segmentLabel, guide.guideLabel, String(guide.year)],
           }))}
+          ctaLabel={copy.sections.scenarios.viewStructureMap}
+          ctaHref={localizeHref(locale, "/guides/shopify-translation")}
           emptyState={copy.emptyState}
           className="page-section"
         />
