@@ -115,7 +115,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
 
   const merchantProblems = getPublishedProblems();
-  if (merchantProblems.length) addEntry("/shopify", "en");
   for (const problem of merchantProblems) {
     addEntry(targetUrl(problem), "en", problem.page?.reviewedAt ?? undefined);
   }

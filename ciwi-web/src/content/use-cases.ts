@@ -135,7 +135,7 @@ const useCasesEn: UseCaseItem[] = [
     slug: "spark-budget-reallocation",
     productSlug: "spark-analytics-agent",
     category: "Scaling",
-    title: "Reallocate budget during a scaling week before weak ads waste another day",
+    title: "Reallocate Paid Budget During Scaling Weeks",
     description: "When traffic is moving and spend is rising, use Spark to spot low-efficiency ads faster, pause the obvious losers, and move budget toward the campaigns that are still producing acceptable ROAS.",
     heroTitle: "When spend is climbing fast, protect the budget before weak campaigns burn through it",
     heroDescription:
@@ -222,7 +222,7 @@ const useCasesEn: UseCaseItem[] = [
     slug: "spark-catalog-feed-monitoring",
     productSlug: "spark-analytics-agent",
     category: "Catalog",
-    title: "Recover paid growth when winning products get blocked by catalog or feed issues",
+    title: "Fix Catalog & Feed Issues Blocking Paid Ads",
     description: "When ads suddenly stop spending or products are rejected, use Spark to see whether missing fields, price mismatches, or broken catalog sync are blocking the products that should be scaling.",
     heroTitle: "When good products stop moving through paid channels, check the catalog before touching the campaign",
     heroDescription:
@@ -308,7 +308,7 @@ const useCasesEn: UseCaseItem[] = [
     slug: "spark-tracking-and-anomaly-alerts",
     productSlug: "spark-analytics-agent",
     category: "Attribution",
-    title: "Validate tracking before a false performance drop triggers the wrong budget cut",
+    title: "Validate Tracking Before Wrong Budget Cuts",
     description: "When spend spikes, conversions disappear, or platform revenue drifts away from Shopify, use Spark to check whether the problem is real performance or broken tracking before cutting the budget.",
     heroTitle: "Before calling it a performance problem, rule out the data problem first",
     heroDescription:
@@ -394,7 +394,7 @@ const useCasesEn: UseCaseItem[] = [
     slug: "translator-new-market-launch",
     productSlug: "translator",
     category: "Market Launch",
-    title: "Launch a new market without spending weeks localizing the whole store by hand",
+    title: "Launch New Markets Faster With Localized Stores",
     description: "When an English storefront is preparing for Germany, France, or Japan, use Ciwi to localize products, theme, SEO, metafields, and visual content together instead of shipping a half-translated launch.",
     heroTitle: "Before a new market goes live, get the storefront localized fast enough to match the launch timeline",
     heroDescription:
@@ -482,7 +482,7 @@ const useCasesEn: UseCaseItem[] = [
     slug: "translator-auto-sync-localization",
     productSlug: "translator",
     category: "Sync",
-    title: "Keep multilingual storefronts updated without checking every language version by hand",
+    title: "Automatically Sync Multilingual Storefronts",
     description: "When new SKUs, product edits, and promotion updates keep making other languages go stale, use Ciwi to automatically send new and changed content back into the translation workflow.",
     heroTitle: "Stop letting multilingual storefronts drift every time the primary store changes",
     heroDescription:
@@ -569,7 +569,7 @@ const useCasesEn: UseCaseItem[] = [
     slug: "translator-brand-voice-control",
     productSlug: "translator",
     category: "Brand Voice",
-    title: "Make translation sound like the brand instead of a generic machine draft",
+    title: "Keep Brand Voice Consistent in Translation",
     description: "When the brand already has a clear tone, use custom prompts and glossary rules to keep product names, materials, ingredients, and brand language more consistent across languages.",
     heroTitle: "When translation quality matters to brand perception, control the tone before it spreads across every page",
     heroDescription:
@@ -656,7 +656,7 @@ const useCasesEn: UseCaseItem[] = [
     slug: "translator-market-specific-localization",
     productSlug: "translator",
     category: "Market Fit",
-    title: "Localize for each market instead of using one translation for every country",
+    title: "Market-Specific Localization vs Generic Translation",
     description: "When the same language behaves differently across regions, use Ciwi to apply market-specific prompts, rules, and terminology instead of shipping one generic version everywhere.",
     heroTitle: "If different countries need different wording, treat localization like market fit instead of just language conversion",
     heroDescription:
@@ -1520,7 +1520,7 @@ const useCasesZh: UseCaseItem[] = [
     slug: "spark-budget-reallocation",
     productSlug: "spark-analytics-agent",
     category: "预算调度",
-    title: "放量周里，先把低效广告停掉，再把预算转给赢家",
+    title: "在放量周及时重新分配付费预算",
     description: "当花费在涨、投放节奏在变时，用 Spark 更快找出 ROAS 太低或连续无转化的广告，把预算从弱广告转到还值得继续放量的 Campaign。",
     heroTitle: "当预算快速上升时，先保护花费效率，而不是等一周后再回头补救",
     heroDescription:
@@ -1607,7 +1607,7 @@ const useCasesZh: UseCaseItem[] = [
     slug: "spark-catalog-feed-monitoring",
     productSlug: "spark-analytics-agent",
     category: "Catalog / Feed",
-    title: "爆品突然跑不动时，先排查 Catalog / Feed 错误，而不是先怪 Campaign",
+    title: "修复阻塞投放的目录与 Feed 问题",
     description: "当广告突然不花钱、商品被拒或 Feed 字段出错时，用 Spark 先看是不是 Catalog 同步、价格不一致、缺图或字段问题拦住了本该继续跑量的商品。",
     heroTitle: "当好商品在广告里突然失速时，先看 Catalog 和 Feed 有没有把它卡住",
     heroDescription:
@@ -1693,7 +1693,7 @@ const useCasesZh: UseCaseItem[] = [
     slug: "spark-tracking-and-anomaly-alerts",
     productSlug: "spark-analytics-agent",
     category: "Tracking / 归因",
-    title: "广告数据看起来失真时，先排查 Tracking，而不是误砍预算",
+    title: "先验证追踪再判断是否掉量",
     description: "当花费异常上涨、转化突然消失，或者平台收入和 Shopify 收入开始明显对不上时，用 Spark 先判断问题是投放变差，还是 Tracking / 归因出了错。",
     heroTitle: "在把它认定为投放问题之前，先把数据问题排除掉",
     heroDescription:
@@ -1779,7 +1779,7 @@ const useCasesZh: UseCaseItem[] = [
     slug: "translator-new-market-launch",
     productSlug: "translator",
     category: "新市场上线",
-    title: "进入新市场前，不再靠人工把整店本地化拖成几周项目",
+    title: "更快完成新市场本地化上线",
     description: "当英文店铺准备进入德国、法国或日本市场时，用 Ciwi 一次性覆盖 Products、Theme、SEO、Metafields 和图片内容，而不是上线一个“半翻译”的版本。",
     heroTitle: "新市场要上线时，先把整店本地化速度拉到和业务节奏匹配",
     heroDescription:
@@ -1867,7 +1867,7 @@ const useCasesZh: UseCaseItem[] = [
     slug: "translator-auto-sync-localization",
     productSlug: "translator",
     category: "自动同步",
-    title: "多语言商店持续更新时，不再靠人工反复补翻和检查",
+    title: "多语言店铺自动同步更新",
     description: "当商家不断新增 SKU、修改商品描述和更新促销内容时，用 Ciwi 自动把新增和变更内容重新送进翻译流程，避免其他语言版本越来越旧。",
     heroTitle: "让多语言店铺长期保持同步，而不是每次更新后再人工补救",
     heroDescription:
@@ -1954,7 +1954,7 @@ const useCasesZh: UseCaseItem[] = [
     slug: "translator-brand-voice-control",
     productSlug: "translator",
     category: "品牌语气控制",
-    title: "让翻译更像品牌自己写的，而不是一眼就能看出的机器直译",
+    title: "翻译保持品牌统一语调",
     description: "当品牌已经有明确语气、术语和命名规则时，用 Custom Prompt 和 Glossary 把品牌词、材质名、成分词和行业术语稳定下来，减少“翻得通但不像品牌”的问题。",
     heroTitle: "当翻译质量直接影响品牌感知时，先把语气和术语控制住",
     heroDescription:
@@ -2041,7 +2041,7 @@ const useCasesZh: UseCaseItem[] = [
     slug: "translator-market-specific-localization",
     productSlug: "translator",
     category: "市场本地化",
-    title: "针对不同国家做真正本地化，而不是一份翻译覆盖所有国家",
+    title: "按市场本地化而非通用翻译",
     description: "当同样是葡萄牙语、西班牙语或英语，不同国家的表达习惯并不一样时，用 Ciwi 为不同目标市场设置不同规则，而不是把一个语言版本硬套所有国家。",
     heroTitle: "同一种语言进入多个国家时，先把“市场差异”当成问题来处理",
     heroDescription:

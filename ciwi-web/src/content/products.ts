@@ -249,13 +249,13 @@ const productsEn: ProductItem[] = [
     slug: "spark-analytics-agent",
     name: "Spark: AI Store Assistant",
     shortDescription:
-      "An AI store assistant for Shopify merchants that brings store data, health signals, marketing connections, tracking, content workflows, and operations tasks into one workspace.",
-    heroTitle: "Bring your whole Shopify store into one AI assistant",
+      "An AI agent for Shopify merchants that turns goals into plans and executes supported store tasks using connected data and tools.",
+    heroTitle: "Give Spark a goal. Let it plan and execute.",
     heroDescription:
-      "Spark is an AI store assistant built for Shopify merchants. It brings store data, health signals, marketing connections, tracking status, content workflows, and operations tasks into one workspace, so you can find what needs attention and take action faster.",
+      "Spark is an AI agent built for Shopify merchants. Describe the outcome you want, and Spark plans the steps and executes supported tasks using your connected store data and tools. Set the scope and permissions for each task, then review the results.",
     videoUrl: "https://www.youtube.com/embed/UO8Hz0fCMJw?si=eBaqLeLxbLjxjKzw",
     icon: "/ai-generate-landscape-image-spark.svg",
-    metrics: ["AI store assistant", "Issue detection & guidance", "Data, content & tasks in one workspace"],
+    metrics: ["Goal-driven AI agent", "Autonomous planning & execution", "Connected store data & tools"],
     targetUsers: [
       "Growing Shopify teams that want clearer store visibility and faster issue discovery",
       "Merchants managing marketing, tracking, content, and daily operations across multiple tools",
@@ -263,7 +263,7 @@ const productsEn: ProductItem[] = [
     ],
     benefits: [
       "See what needs attention across your store without stitching reports together",
-      "Move from insight to action with AI guidance and task workflows",
+      "Turn a store goal into a plan and carry out supported tasks with Spark",
       "Keep marketing, tracking, content, and operations in one workspace",
     ],
     features: [
@@ -272,7 +272,7 @@ const productsEn: ProductItem[] = [
       {title: "Today overview", description: "Review key performance signals like revenue, profit, conversion, traffic, and short-term ROI."},
       {title: "Store health monitor", description: "Check data reliability, tracking status, channel setup, and potential risks."},
       {title: "AI guidance", description: "Understand what may be happening, why it matters, and what to do next."},
-      {title: "AI task workflows", description: "Turn insights into AI tasks, automation tasks, and store operations actions."},
+      {title: "Task planning & execution", description: "Describe a goal and let Spark plan and execute supported store tasks within the connected tools and permissions."},
       {title: "Content Studio", description: "Generate and improve product copy for products, campaigns, and store content."},
       {title: "Image tools", description: "Support AI-powered image workflows for product and marketing content."},
       {title: "Pixels & tracking", description: "Set up and validate Web Pixel and storefront tracking for Meta, TikTok, Google, and more."},
@@ -282,7 +282,7 @@ const productsEn: ProductItem[] = [
     workflow: [
       "Connect your store, marketing, and tracking data sources",
       "Review today's performance, health signals, and issues in one view",
-      "Ask AI for guidance and turn insights into tasks or actions",
+      "Give Spark a goal, let it plan and execute supported steps, then review the result",
     ],
     useCases: [
       {
@@ -349,12 +349,12 @@ const productsEn: ProductItem[] = [
       {
         question: "What is Spark?",
         answer:
-          "Spark is an AI store assistant for Shopify merchants that brings store data, health signals, marketing connections, tracking, content, and operations tasks into one workspace.",
+          "Spark is an AI agent for Shopify merchants. It uses connected store data and tools to plan and execute supported tasks from a goal you describe.",
       },
       {
         question: "Is Spark just another analytics dashboard?",
         answer:
-          "No. Spark is designed to help you understand what matters, why it may be happening, and what to do next — and to turn insights into tasks instead of just showing more charts.",
+          "No. Spark can move from understanding store signals to planning and executing supported tasks. What it can complete depends on the connected tools and permissions for the task.",
       },
       {
         question: "What data sources can Spark connect?",
@@ -552,13 +552,13 @@ const productsZh: ProductItem[] = [
   {
     slug: "spark-analytics-agent",
     name: "Spark: AI Store Assistant",
-    shortDescription: "面向 Shopify 商家的 AI 店铺助手，把店铺数据、健康信号、营销连接、追踪、内容工作流和运营任务汇聚到一个工作台。",
-    heroTitle: "把整家 Shopify 店铺，装进一个 AI 助手",
+    shortDescription: "面向 Shopify 商家的 AI Agent，将目标拆解为计划，并通过已连接的数据和工具执行支持的店铺任务。",
+    heroTitle: "告诉 Spark 目标，让它规划并执行",
     heroDescription:
-      "Spark 是面向 Shopify 商家打造的 AI 店铺助手。它把店铺数据、健康信号、营销连接、追踪状态、内容工作流和运营任务汇聚到一个工作台，让你更快发现需要关注的问题并采取行动。",
+      "Spark 是面向 Shopify 商家的 AI Agent。描述你希望达成的目标，Spark 会自主规划步骤，并使用已连接的店铺数据和工具执行支持的任务。你可以明确任务范围和权限，再检查执行结果。",
     videoUrl: "https://www.youtube.com/embed/UO8Hz0fCMJw?si=eBaqLeLxbLjxjKzw",
     icon: "/ai-generate-landscape-image-spark.svg",
-    metrics: ["AI 店铺助手", "问题发现与 AI 指引", "数据、内容与任务一体化"],
+    metrics: ["目标驱动的 AI Agent", "自主规划与执行", "连接店铺数据与工具"],
     targetUsers: [
       "希望更清晰地看清店铺状态、更快发现问题的高成长 Shopify 团队",
       "需要在营销、追踪、内容和日常运营之间频繁切换工具的商家",
@@ -566,7 +566,7 @@ const productsZh: ProductItem[] = [
     ],
     benefits: [
       "无需拼凑多个报表，一眼看到店铺里需要关注的问题",
-      "借助 AI 指引和任务工作流，把洞察直接变成行动",
+      "将店铺目标拆解为计划，由 Spark 执行支持的任务",
       "把营销、追踪、内容和运营统一放进一个工作台",
     ],
     features: [
@@ -575,7 +575,7 @@ const productsZh: ProductItem[] = [
       {title: "今日概览", description: "查看收入、利润、转化、流量和短期 ROI 等关键经营信号。"},
       {title: "店铺健康监测", description: "检查数据可靠性、追踪状态、渠道配置和潜在风险。"},
       {title: "AI 指引", description: "理解可能发生了什么、为什么重要，以及下一步该怎么做。"},
-      {title: "AI 任务工作流", description: "把洞察转化为 AI 任务、自动化任务和店铺运营动作。"},
+      {title: "任务规划与执行", description: "描述目标，让 Spark 在已连接的工具和授权范围内规划并执行支持的店铺任务。"},
       {title: "内容工作台", description: "为商品、活动和店铺内容生成并优化产品文案。"},
       {title: "图片工具", description: "支持面向商品和营销内容的 AI 图片工作流。"},
       {title: "Pixel 与追踪", description: "配置并校验 Meta、TikTok、Google 等渠道的 Web Pixel 和前台追踪。"},
@@ -585,7 +585,7 @@ const productsZh: ProductItem[] = [
     workflow: [
       "连接店铺、营销和追踪数据源",
       "在一个视图里查看今日表现、健康信号和问题",
-      "向 AI 寻求指引，并把洞察转化为任务或行动",
+      "告诉 Spark 目标，让它规划并执行支持的步骤，再检查结果",
     ],
     useCases: [
       {
@@ -648,11 +648,11 @@ const productsZh: ProductItem[] = [
     faq: [
       {
         question: "Spark 是什么？",
-        answer: "Spark 是面向 Shopify 商家的 AI 店铺助手，把店铺数据、健康信号、营销连接、追踪、内容和运营任务汇聚到一个工作台。",
+        answer: "Spark 是面向 Shopify 商家的 AI Agent，根据你描述的目标，使用已连接的店铺数据和工具规划并执行支持的任务。",
       },
       {
         question: "Spark 只是另一个分析仪表盘吗？",
-        answer: "不是。Spark 的重点是帮你理解什么重要、为什么会发生，以及接下来该怎么做，并把洞察转化为任务，而不是展示更多图表。",
+        answer: "不是。Spark 可以从理解店铺信号进一步规划并执行支持的任务，具体能完成的动作取决于该任务连接的工具和授予的权限。",
       },
       {
         question: "Spark 可以连接哪些数据源？",

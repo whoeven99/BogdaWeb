@@ -1,3 +1,6 @@
+import {MerchantGuide} from "@/components/guides/MerchantGuide";
+import {getPublishedProblems} from "@/lib/merchant-intelligence/content";
+import {targetUrl} from "@/lib/merchant-intelligence/core.mjs";
 import {notFound, permanentRedirect} from "next/navigation";
 
 import {AuthorByline} from "@/components/content/AuthorByline";
@@ -1208,13 +1211,17 @@ function renderFunctionScenarioGuidePage(
 
 export function generateStaticParams() {
   return [
-    ...new Set([...getLocalizationGuides("en").map((guide) => guide.slug), ...getFunctionScenarioGuides("en").map((guide) => guide.slug)]),
+    ...new Set([...getLocalizationGuides("en").map((guide) => guide.slug), ...getFunctionScenarioGuides("en").map((guide) => guide.slug), ...getPublishedProblems().map(problem => problem.id)]),
   ].map((slug) => ({slug}));
 }
 
 export async function generateMetadata({params}: GuideDetailPageProps) {
   const locale = await getRequestLocale();
   const {slug} = await params;
+  const merchantGuide = getPublishedProblems().find(problem => problem.id === slug);
+  if (merchantGuide?.page) {
+    return buildPageMetadata({title: merchantGuide.page.title, description: merchantGuide.page.description, path: targetUrl(merchantGuide), locale, supportedLocales: ["en"]});
+  }
   const availableLocales = [...new Set([...getAvailableLocalizationGuideLocales(slug), ...getAvailableFunctionScenarioGuideLocales(slug)])];
   const primaryLocale = availableLocales[0] ?? "en";
   const localizationGuide = getLocalizationGuideMap(primaryLocale)[slug];
@@ -1244,6 +1251,12 @@ export async function generateMetadata({params}: GuideDetailPageProps) {
 export default async function GuideDetailPage({params}: GuideDetailPageProps) {
   const locale = await getRequestLocale();
   const {slug} = await params;
+  const merchantGuides = getPublishedProblems();
+  const merchantGuide = merchantGuides.find(problem => problem.id === slug);
+  if (merchantGuide) {
+    if (locale !== "en") permanentRedirect(localizeHref("en", targetUrl(merchantGuide)));
+    return <MerchantGuide problem={merchantGuide} related={merchantGuides.filter(problem => problem.topic === merchantGuide.topic && problem.id !== merchantGuide.id)} />;
+  }
   const availableLocales = [...new Set([...getAvailableLocalizationGuideLocales(slug), ...getAvailableFunctionScenarioGuideLocales(slug)])];
   const fallbackLocale = availableLocales[0] ?? "en";
   const localizationGuide = getLocalizationGuideMap(locale)[slug] ?? getLocalizationGuideMap(fallbackLocale)[slug];

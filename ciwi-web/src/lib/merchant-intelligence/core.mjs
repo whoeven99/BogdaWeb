@@ -1,12 +1,14 @@
 import {z} from "zod";
 
+// Content types select editorial structure, never a separate URL namespace.
 export const templates = {
-  faq: ["Short answer", "When this matters", "Available options", "Related questions"],
-  guide: ["Before you start", "Steps", "Verify the result", "Common mistakes"],
-  problem: ["Symptoms", "Possible causes", "Diagnosis", "Possible fixes", "Verify recovery"],
-  error: ["Error and affected scope", "Checks", "Resolution", "Verification", "When to escalate"],
-  workflow: ["Goal", "Prerequisites", "Trigger and steps", "Approval and rollback", "Verify the outcome"],
+  faq: ["Short answer", "Before you start", "How to complete the task", "Verify the result", "Related questions"],
+  guide: ["What you will achieve", "Before you start", "Steps", "Verify the result", "Related questions"],
+  workflow: ["Goal", "Prerequisites", "Trigger and steps", "Approval and rollback", "Verify the outcome", "Related questions"],
+  problem: ["Symptoms", "Possible causes", "Diagnosis", "Possible fixes", "Verify recovery", "Related questions"],
+  error: ["Error and affected scope", "Checks", "Resolution", "Verification", "When to escalate", "Related questions"],
 };
+export const contentTypeLabels = {faq: "Question", guide: "How-to", workflow: "Workflow", problem: "Troubleshooting", error: "Error resolution"};
 const slug = z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
 const text = z.string().trim().min(1);
 const date = z.iso.date();
@@ -21,9 +23,14 @@ export const signalSchema = z.object({
   evidence: z.enum(["search-result", "user-provided", "verified"]),
   keywordVariants: z.array(text).min(1),
 }).strict();
+export const sparkTaskSchema = z.object({
+  prompt: text, prerequisites: text, executionScope: text, confirmationPoints: text,
+  successCriteria: text, ctaLabel: text,
+}).strict();
 export const pageSchema = z.object({
   title: text, description: text, sections: z.array(z.object({heading: text, body: text}).strict()),
   reviewedBy: text.nullable(), reviewedAt: date.nullable(), references: z.array(url),
+  sparkTask: sparkTaskSchema.nullable().default(null),
 }).strict();
 export const problemSchema = z.object({
   id: slug, canonicalProblem: text, category: slug, topic: slug, merchantGoal: text,
@@ -36,9 +43,16 @@ export const problemSchema = z.object({
 }).strict();
 export const databaseSchema = z.object({version: z.literal(1), signals: z.array(signalSchema), problems: z.array(problemSchema)}).strict();
 export const normalizeQuery = value => value.normalize("NFKC").toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim();
-export const targetUrl = problem => `/shopify/${problem.contentType}/${problem.id}`;
+export const targetUrl = problem => `/guides/${problem.id}`;
 export const isPublished = problem => ["published", "updated"].includes(problem.status);
 const route = {question: "faq", "how-to": "guide", problem: "problem", error: "error", automation: "workflow"};
+
+export function validateGuideSlugs(problems, reservedSlugs) {
+  const reserved = new Set(reservedSlugs);
+  for (const problem of problems) {
+    if (reserved.has(problem.id)) throw new Error(`Guide slug already exists: ${problem.id}`);
+  }
+}
 
 export function validateDatabase(input) {
   const db = databaseSchema.parse(input);
@@ -51,6 +65,7 @@ export function validateDatabase(input) {
     for (const id of problem.signalIds) {
       if (signals.get(id)?.canonicalId !== problem.id) throw new Error(`Invalid signal relationship: ${id}`);
     }
+    if (problem.page?.sparkTask && !problem.capability) throw new Error(`Spark capability evidence required: ${problem.id}`);
     if (isPublished(problem)) {
       const page = problem.page;
       if (!page?.reviewedBy || !page.reviewedAt || !page.references.length) throw new Error(`Review and references required: ${problem.id}`);

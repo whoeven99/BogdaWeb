@@ -133,9 +133,6 @@
       "page": {
         "title": "Shopify traffic but no sales",
         "description": "Identify where store visitors stop before purchasing",
-        "reviewedBy": null,
-        "reviewedAt": null,
-        "references": [],
         "sections": [
           {
             "heading": "Symptoms",
@@ -156,8 +153,16 @@
           {
             "heading": "Verify recovery",
             "body": "[PLACEHOLDER] Write an original, evidence-backed answer."
+          },
+          {
+            "heading": "Related questions",
+            "body": "[PLACEHOLDER] Write an original, evidence-backed answer."
           }
-        ]
+        ],
+        "reviewedBy": null,
+        "reviewedAt": null,
+        "references": [],
+        "sparkTask": null
       }
     },
     {
@@ -183,7 +188,40 @@
         "evidenceNotes": ""
       },
       "capability": null,
-      "page": null
+      "page": {
+        "title": "Automate Shopify supplier purchase orders",
+        "description": "Create supplier purchase orders from store orders",
+        "sections": [
+          {
+            "heading": "Goal",
+            "body": "[PLACEHOLDER] Write an original, evidence-backed answer."
+          },
+          {
+            "heading": "Prerequisites",
+            "body": "[PLACEHOLDER] Write an original, evidence-backed answer."
+          },
+          {
+            "heading": "Trigger and steps",
+            "body": "[PLACEHOLDER] Write an original, evidence-backed answer."
+          },
+          {
+            "heading": "Approval and rollback",
+            "body": "[PLACEHOLDER] Write an original, evidence-backed answer."
+          },
+          {
+            "heading": "Verify the outcome",
+            "body": "[PLACEHOLDER] Write an original, evidence-backed answer."
+          },
+          {
+            "heading": "Related questions",
+            "body": "[PLACEHOLDER] Write an original, evidence-backed answer."
+          }
+        ],
+        "reviewedBy": null,
+        "reviewedAt": null,
+        "references": [],
+        "sparkTask": null
+      }
     },
     {
       "id": "shopify-reorder-planning",
@@ -209,7 +247,36 @@
         "evidenceNotes": ""
       },
       "capability": null,
-      "page": null
+      "page": {
+        "title": "Plan Shopify inventory reorders",
+        "description": "Use inventory and sales data to plan replenishment",
+        "reviewedBy": null,
+        "reviewedAt": null,
+        "references": [],
+        "sparkTask": null,
+        "sections": [
+          {
+            "heading": "What you will achieve",
+            "body": "[PLACEHOLDER] Write an original, evidence-backed answer."
+          },
+          {
+            "heading": "Before you start",
+            "body": "[PLACEHOLDER] Write an original, evidence-backed answer."
+          },
+          {
+            "heading": "Steps",
+            "body": "[PLACEHOLDER] Write an original, evidence-backed answer."
+          },
+          {
+            "heading": "Verify the result",
+            "body": "[PLACEHOLDER] Write an original, evidence-backed answer."
+          },
+          {
+            "heading": "Related questions",
+            "body": "[PLACEHOLDER] Write an original, evidence-backed answer."
+          }
+        ]
+      }
     }
   ]
 }

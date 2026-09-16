@@ -1,3 +1,5 @@
+import {getPublishedProblems} from "@/lib/merchant-intelligence/content";
+import {contentTypeLabels, targetUrl} from "@/lib/merchant-intelligence/core.mjs";
 import {ContentIndexHero} from "@/components/sections/ContentIndexHero";
 import {ResourceCollectionSection} from "@/components/sections/ResourceCollectionSection";
 import {PageContainer} from "@/components/ui/PageContainer";
@@ -12,11 +14,11 @@ export async function generateMetadata() {
   const locale = await getRequestLocale();
 
   return buildPageMetadata({
-    title: locale === "zh-cn" ? "本地化与翻译指南" : "Localization Guides",
+    title: locale === "zh-cn" ? "Shopify 实操与自动化指南" : "Shopify How-to & Automation Guides",
     description:
       locale === "zh-cn"
-        ? "面向行业、品牌与 B2B 场景的本地化与翻译指南集合页，可作为批量 SEO 页面模板入口。"
-        : "A reusable hub for industry, brand, and B2B localization guides built for SEO-driven global growth.",
+        ? "学习如何完成 Shopify 店铺任务、规划自动化工作流，以及开展本地化与翻译。"
+        : "Practical Shopify how-to guides, automation workflows, and localization advice to help you complete store tasks.",
     path: "/guides",
     locale,
   });
@@ -26,18 +28,19 @@ export default async function GuidesHubPage() {
   const locale = await getRequestLocale();
   const localizationGuides = getLocalizationGuides(locale);
   const functionScenarioGuides = getFunctionScenarioGuides(locale);
+  const merchantGuides = locale === "en" ? getPublishedProblems() : [];
   const copy =
     locale === "zh-cn"
       ? {
           structuredData: {
-            name: "本地化与翻译指南",
-            description: "面向行业、品牌与 B2B 场景的本地化与翻译指南集合页。",
-            keywords: ["本地化指南", "翻译指南", "SEO 页面模板", "全球化增长", "Shopify 功能场景"],
+            name: "Shopify 实操与自动化指南",
+            description: "Shopify 店铺任务、自动化工作流、本地化与翻译实操指南。",
+            keywords: ["Shopify 操作指南", "自动化工作流", "本地化指南", "翻译指南"],
           },
           hero: {
             eyebrow: "指南",
-            title: "本地化与翻译指南",
-            description: "这里集中整理行业、品牌、B2B 与 Shopify 功能场景相关的本地化指南，方便按主题继续浏览。",
+            title: "Shopify 实操与自动化指南",
+            description: "从明确目标到完成任务，查找 Shopify 操作方法、自动化工作流，以及本地化与翻译指南。",
           },
           summaryCards: {
             localization: "行业 / 品牌 / B2B",
@@ -68,14 +71,14 @@ export default async function GuidesHubPage() {
         }
       : {
           structuredData: {
-            name: "Localization Guides",
-            description: "A reusable collection of localization and translation guide pages for industries, brand segments, B2B categories, and Shopify function scenarios.",
-            keywords: ["localization guide", "translation guide", "seo landing pages", "global ecommerce growth", "shopify how-to guides"],
+            name: "Shopify How-to & Automation Guides",
+            description: "Step-by-step Shopify task guides, automation workflows, and localization advice for merchants.",
+            keywords: ["shopify how-to guides", "shopify automation workflows", "localization guide", "translation guide"],
           },
           hero: {
             eyebrow: "Guides",
-            title: "Localization & Translation Guides",
-            description: "A scalable collection of industry-specific SEO pages and Shopify function-scenario guides for multilingual growth.",
+            title: "Shopify How-to & Automation Guides",
+            description: "Find the steps to complete your Shopify tasks, plan repeatable workflows, and grow across languages and markets.",
           },
           summaryCards: {
             localization: "Industry / Brand / B2B",
@@ -144,7 +147,9 @@ export default async function GuidesHubPage() {
                 </strong>
               </div>
             </div>
+            {merchantGuides.length > 0 && <p className="mt-4 text-sm text-slate-600">{merchantGuides.length} task guides and workflows</p>}
             <nav className="guide-hub-jumpnav" aria-label={locale === "zh-cn" ? "快速跳转" : "Quick jump"}>
+              {merchantGuides.length > 0 && <a href="#task-guides" className="guide-chip">Jump to task guides</a>}
               <a href="#localization-guides" className="guide-chip">
                 {copy.quickJump.localization}
               </a>
@@ -154,6 +159,16 @@ export default async function GuidesHubPage() {
             </nav>
           </ContentIndexHero>
         </section>
+
+        {merchantGuides.length > 0 && <div id="task-guides">
+          <ResourceCollectionSection
+            eyebrow="Tasks & workflows"
+            title="Complete your Shopify tasks"
+            description="Find a direct answer, follow the steps, and use Spark for tasks it can plan and execute."
+            items={merchantGuides.map(problem => ({title: problem.page?.title ?? problem.canonicalProblem, description: problem.page?.description ?? problem.merchantGoal, href: targetUrl(problem), meta: [contentTypeLabels[problem.contentType], problem.topic.replaceAll("-", " ")]}))}
+            className="page-section"
+          />
+        </div>}
 
         <ResourceCollectionSection
           eyebrow={copy.sections.localization.eyebrow}

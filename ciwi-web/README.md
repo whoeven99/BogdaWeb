@@ -216,4 +216,4 @@ SHOPIFY_SPARK_API_KEY=d68a7533dbbe676af335f27d01d87a12
 
 ## Merchant Problem Intelligence
 
-问题信号导入、归并、评分、五类内容模板和发布流程见 [MVP 说明](docs/merchant-intelligence/README.md)。运行 `npm run intelligence -- report` 查看机会列表，`npm run intelligence:test` 验证核心流程。公共入口为 `/shopify/`，仅展示已审核发布的英文内容。
+问题信号导入、归并、评分、五类内容模板和发布流程见 [MVP 说明](docs/merchant-intelligence/README.md)。运行 `npm run intelligence -- report` 查看机会列表，`npm run intelligence:test` 验证核心流程。任务型内容统一并入 `/guides/`，仅展示已审核发布的英文内容。How-to、Workflow 和 Question 共用 `/guides/{slug}/`，经能力核实的页面可提供 Spark 任务复制与安装入口。

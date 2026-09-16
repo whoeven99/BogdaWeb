@@ -206,7 +206,7 @@ const affiliateCopy = {
   en: {
     hero: {
       eyebrow: "Affiliate Program",
-      title: "Earn up to 50% recurring commission for every merchant you bring to Ciwi",
+      title: "Ciwi Affiliate Program: 50% Recurring Commission",
       description:
         "Share your referral link, track signups and activated customers, and get paid on the revenue they generate. One dashboard for your progress and payouts.",
       registerLabel: "Create my referral code",
@@ -372,7 +372,7 @@ const affiliateCopy = {
   "zh-cn": {
     hero: {
       eyebrow: "联盟计划",
-      title: "每带来一位 Ciwi 客户，赚最高50% 连续分成",
+      title: "Ciwi 联盟计划：50% 持续佣金",
       description:
         "分享你的推广链接，追踪注册与付费激活客户，并按他们带来的收入获得分成。进度与结算都在同一个后台里。",
       registerLabel: "创建我的推广码",

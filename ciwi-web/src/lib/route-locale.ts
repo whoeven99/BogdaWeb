@@ -11,10 +11,6 @@ function normalizePathname(pathname: string) {
 export function getSupportedLocalesForPath(pathname: string): Locale[] {
   const normalizedPathname = normalizePathname(pathname);
 
-  if (normalizedPathname === "/shopify" || normalizedPathname.startsWith("/shopify/")) {
-    return [defaultLocale];
-  }
-
   if (normalizedPathname.startsWith("/guides/")) {
     const slug = normalizedPathname.slice("/guides/".length).replace(/\/$/, "");
     const supportedLocales = [

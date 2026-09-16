@@ -7,7 +7,7 @@
       "topic": "conversion-diagnosis",
       "contentType": "problem",
       "status": "discovered",
-      "targetUrl": "/shopify/problem/shopify-traffic-no-sales",
+      "targetUrl": "/guides/shopify-traffic-no-sales",
       "keywords": [
         "shopify traffic but no sales",
         "shopify visitors but no orders",
@@ -31,7 +31,7 @@
       "topic": "inventory-planning",
       "contentType": "workflow",
       "status": "discovered",
-      "targetUrl": "/shopify/workflow/shopify-purchase-order-automation",
+      "targetUrl": "/guides/shopify-purchase-order-automation",
       "keywords": [
         "shopify purchase order automation",
         "automatically create supplier purchase orders shopify"
@@ -52,7 +52,7 @@
       "topic": "inventory-planning",
       "contentType": "guide",
       "status": "discovered",
-      "targetUrl": "/shopify/guide/shopify-reorder-planning",
+      "targetUrl": "/guides/shopify-reorder-planning",
       "keywords": [
         "shopify inventory reorder planning",
         "shopify reorder reports",
