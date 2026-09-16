@@ -11,10 +11,9 @@ import {getAffiliateLanding} from "@/content/affiliate";
 import {getHomePageCopy} from "@/content/home-page-copy";
 import {getProducts} from "@/content/products";
 import {getUiCopy} from "@/content/ui-copy";
-import {localizeHref} from "@/lib/i18n";
 import {getRequestLocale} from "@/lib/i18n-server";
-import {buildPageMetadata, siteUrl} from "@/lib/seo/metadata";
-import {buildBreadcrumbSchema, buildFaqSchema, buildWebPageSchema} from "@/lib/seo/schema";
+import {buildPageMetadata, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
+import {buildBreadcrumbSchema, buildFaqSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 
 export async function generateMetadata() {
   const locale = await getRequestLocale();
@@ -54,8 +53,8 @@ export default async function HomePage({searchParams}: HomePageProps) {
   const copy = getHomePageCopy(locale);
   const uiCopy = getUiCopy(locale);
   const products = getProducts(locale);
-  const pageUrl = new URL(localizeHref(locale, "/"), siteUrl).toString();
-  const structuredData = [
+  const pageUrl = toAbsoluteLocalizedUrl(locale, "/");
+  const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
       {name: "Home", item: pageUrl},
     ]),
@@ -66,18 +65,15 @@ export default async function HomePage({searchParams}: HomePageProps) {
       keywords: locale === "zh-cn" ? ["Shopify AI", "Shopify 多语言", "Ciwi"] : ["Shopify AI", "Shopify localization", "Ciwi"],
     }),
     buildFaqSchema(copy.homeFaq),
-  ];
+  ]);
 
   return (
     <main>
       <PageContainer>
-        {structuredData.map((schema, index) => (
-          <script
-            key={`home-schema-${index}`}
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{__html: JSON.stringify(schema)}}
-          />
-        ))}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{__html: JSON.stringify(structuredData)}}
+        />
         <HeroSection
           eyebrow={copy.hero.eyebrow}
           title={copy.hero.title}

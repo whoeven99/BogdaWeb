@@ -9,10 +9,9 @@ import {CardCtaLink} from "@/components/ui/CardCtaLink";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getAvailableToolReviewLocales, getToolReviewMap, getToolReviews} from "@/content/tool-reviews";
-import {localizeHref} from "@/lib/i18n";
 import {getRequestLocale} from "@/lib/i18n-server";
-import {buildPageMetadata, siteUrl} from "@/lib/seo/metadata";
-import {buildBreadcrumbSchema, buildFaqSchema, buildReviewSchema, buildWebPageSchema} from "@/lib/seo/schema";
+import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
+import {buildBreadcrumbSchema, buildFaqSchema, buildReviewSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 
 type ToolReviewDetailPageProps = {
   params: Promise<{slug: string}>;
@@ -145,13 +144,13 @@ function buildStructuredData(
     faq: {question: string; answer: string}[];
   }
 ) {
-  const pageUrl = new URL(localizeHref(locale, review.href), siteUrl).toString();
+  const pageUrl = toAbsoluteLocalizedUrl(locale, review.href);
 
-  return [
+  return buildGraphSchema([
     buildBreadcrumbSchema([
       {name: "Home", item: siteUrl},
-      {name: locale === "zh-cn" ? "Shopify 选品" : "Product Research", item: new URL(localizeHref(locale, "/resources/product-research"), siteUrl).toString()},
-      {name: locale === "zh-cn" ? "工具测评" : "Tool Reviews", item: new URL(localizeHref(locale, "/resources/product-research/reviews"), siteUrl).toString()},
+      {name: locale === "zh-cn" ? "Shopify 选品" : "Product Research", item: toAbsoluteLocalizedUrl(locale, "/resources/product-research")},
+      {name: locale === "zh-cn" ? "工具测评" : "Tool Reviews", item: toAbsoluteLocalizedUrl(locale, "/resources/product-research/reviews")},
       {name: review.toolName, item: pageUrl},
     ]),
     buildWebPageSchema({
@@ -169,7 +168,7 @@ function buildStructuredData(
       datePublished: review.publishedAt,
     }),
     buildFaqSchema(review.faq),
-  ];
+  ]);
 }
 
 export function generateStaticParams() {
@@ -224,13 +223,10 @@ export default async function ToolReviewDetailPage({params}: ToolReviewDetailPag
   return (
     <main className="guide-detail-page">
       <PageContainer>
-        {structuredData.map((schema, index) => (
-          <script
-            key={`${review.slug}-schema-${index}`}
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{__html: JSON.stringify(schema)}}
-          />
-        ))}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{__html: JSON.stringify(structuredData)}}
+        />
 
         <section className="py-12 sm:py-16 lg:py-20">
           <div className="content-hero-shell">

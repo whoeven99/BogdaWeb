@@ -16,13 +16,13 @@ export function ChecklistCardGrid({
   cardClassName,
   listClassName = "check-list",
 }: ChecklistCardGridProps) {
-  const cardClasses = ["surface-card", cardClassName].filter(Boolean).join(" ");
+  const cardClasses = ["ui-surface-card", cardClassName].filter(Boolean).join(" ");
 
   return (
     <div className={gridClassName}>
       {cards.map((card) => (
         <article key={`${card.title}-${card.items.join("-")}`} className={cardClasses}>
-          <h3>{card.title}</h3>
+          <h3 className="ui-simple-card-grid__item-title">{card.title}</h3>
           <ul className={listClassName}>
             {card.items.map((item) => (
               <li key={item}>{item}</li>

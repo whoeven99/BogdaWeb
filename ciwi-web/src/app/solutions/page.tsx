@@ -6,9 +6,8 @@ import {PageContainer} from "@/components/ui/PageContainer";
 import {solutionsIndexMediaBriefs} from "@/content/media-briefs";
 import {getSolutions} from "@/content/solutions";
 import {getRequestLocale} from "@/lib/i18n-server";
-import {localizeHref} from "@/lib/i18n";
-import {buildPageMetadata, siteUrl} from "@/lib/seo/metadata";
-import {buildBreadcrumbSchema, buildWebPageSchema} from "@/lib/seo/schema";
+import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
+import {buildBreadcrumbSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 
 export async function generateMetadata() {
   const locale = await getRequestLocale();
@@ -83,8 +82,8 @@ export default async function SolutionsPage() {
             secondaryHref: "/resources",
           },
         };
-  const pageUrl = new URL(localizeHref(locale, "/solutions"), siteUrl).toString();
-  const structuredData = [
+  const pageUrl = toAbsoluteLocalizedUrl(locale, "/solutions");
+  const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
       {name: "Home", item: siteUrl},
       {name: copy.structuredData.name, item: pageUrl},
@@ -96,18 +95,15 @@ export default async function SolutionsPage() {
       keywords: [...copy.structuredData.keywords],
       type: "CollectionPage",
     }),
-  ];
+  ]);
 
   return (
     <main>
       <PageContainer>
-        {structuredData.map((schema, index) => (
-          <script
-            key={`solutions-schema-${index}`}
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{__html: JSON.stringify(schema)}}
-          />
-        ))}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{__html: JSON.stringify(structuredData)}}
+        />
         <section className="page-section page-hero">
           <ContentIndexHero eyebrow={copy.hero.eyebrow} title={copy.hero.title} description={copy.hero.description} />
           <ResourceCollectionSection

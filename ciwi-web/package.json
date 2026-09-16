@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "npm run prisma:generate && npm run content:validate && npm run seo:check && next build",
+    "build": "npm run prisma:generate && npm run intelligence -- validate && npm run content:validate && npm run seo:check && next build",
     "start": "cross-env PORT=9000 HOST=0.0.0.0 next start",
     "lint": "next lint",
     "seo:check": "node ./scripts/check-seo.mjs",
@@ -14,7 +14,9 @@
     "content:translate": "node ./scripts/create-translation-draft.mjs",
     "guides:translate": "node ./scripts/create-guide-translation-draft.mjs",
     "prisma:generate": "prisma generate",
-    "turso:migrate": "node ./scripts/turso-migrate.cjs"
+    "turso:migrate": "node ./scripts/turso-migrate.cjs",
+    "intelligence": "node scripts/merchant-intelligence/run.mjs",
+    "intelligence:test": "node --test scripts/merchant-intelligence/core.test.mjs"
   },
   "dependencies": {
     "@ant-design/icons": "^6.0.0",

@@ -1,0 +1,282 @@
+{
+  "version": 1,
+  "signals": [
+    {
+      "id": "traffic-thousands",
+      "canonicalId": "shopify-traffic-no-sales",
+      "canonicalProblem": "Shopify traffic but no sales",
+      "originalQuery": "Getting thousands of people everyday to my store but no sales",
+      "category": "conversion",
+      "topic": "conversion-diagnosis",
+      "merchantGoal": "Identify where store visitors stop before purchasing",
+      "intent": "problem",
+      "source": "community",
+      "sourceUrl": "https://community.shopify.com/t/getting-thousands-of-people-everyday-to-my-store-but-no-sales/631163",
+      "sourceDate": null,
+      "observedAt": "2026-09-16",
+      "evidence": "search-result",
+      "keywordVariants": [
+        "shopify traffic but no sales",
+        "shopify visitors but no orders",
+        "Getting thousands of people everyday to my store but no sales"
+      ]
+    },
+    {
+      "id": "traffic-500",
+      "canonicalId": "shopify-traffic-no-sales",
+      "canonicalProblem": "Shopify traffic but no sales",
+      "originalQuery": "Getting 500 visitors per day but no sales",
+      "category": "conversion",
+      "topic": "conversion-diagnosis",
+      "merchantGoal": "Identify where store visitors stop before purchasing",
+      "intent": "problem",
+      "source": "community",
+      "sourceUrl": "https://community.shopify.com/t/getting-500-visitors-per-day-but-no-sales/348462",
+      "sourceDate": null,
+      "observedAt": "2026-09-16",
+      "evidence": "search-result",
+      "keywordVariants": [
+        "shopify traffic but no sales",
+        "shopify visitors but no orders",
+        "Getting 500 visitors per day but no sales"
+      ]
+    },
+    {
+      "id": "traffic-online",
+      "canonicalId": "shopify-traffic-no-sales",
+      "canonicalProblem": "Shopify traffic but no sales",
+      "originalQuery": "Why am I getting traffic but no sales on my online store?",
+      "category": "conversion",
+      "topic": "conversion-diagnosis",
+      "merchantGoal": "Identify where store visitors stop before purchasing",
+      "intent": "problem",
+      "source": "community",
+      "sourceUrl": "https://community.shopify.com/t/why-am-i-getting-traffic-but-no-sales-on-my-online-store/47055",
+      "sourceDate": null,
+      "observedAt": "2026-09-16",
+      "evidence": "search-result",
+      "keywordVariants": [
+        "shopify traffic but no sales",
+        "shopify visitors but no orders",
+        "Why am I getting traffic but no sales on my online store?"
+      ]
+    },
+    {
+      "id": "purchase-order-app",
+      "canonicalId": "shopify-purchase-order-automation",
+      "canonicalProblem": "Automate Shopify supplier purchase orders",
+      "originalQuery": "Purchase order app",
+      "category": "inventory",
+      "topic": "inventory-planning",
+      "merchantGoal": "Create supplier purchase orders from store orders",
+      "intent": "automation",
+      "source": "community",
+      "sourceUrl": "https://community.shopify.com/t/purchase-order-app-what-are-you-using/213283",
+      "sourceDate": null,
+      "observedAt": "2026-09-16",
+      "evidence": "search-result",
+      "keywordVariants": [
+        "shopify purchase order automation",
+        "automatically create supplier purchase orders shopify"
+      ]
+    },
+    {
+      "id": "reorder-reports",
+      "canonicalId": "shopify-reorder-planning",
+      "canonicalProblem": "Plan Shopify inventory reorders",
+      "originalQuery": "Reports to help manage necessary reorders",
+      "category": "inventory",
+      "topic": "inventory-planning",
+      "merchantGoal": "Use inventory and sales data to plan replenishment",
+      "intent": "how-to",
+      "source": "community",
+      "sourceUrl": "https://community.shopify.com/c/shopify-discussions/reports-to-help-manage-necessary-reorders/m-p/2948863",
+      "sourceDate": null,
+      "observedAt": "2026-09-16",
+      "evidence": "search-result",
+      "keywordVariants": [
+        "shopify inventory reorder planning",
+        "shopify reorder reports",
+        "how much inventory should i reorder"
+      ]
+    }
+  ],
+  "problems": [
+    {
+      "id": "shopify-traffic-no-sales",
+      "canonicalProblem": "Shopify traffic but no sales",
+      "category": "conversion",
+      "topic": "conversion-diagnosis",
+      "merchantGoal": "Identify where store visitors stop before purchasing",
+      "contentType": "problem",
+      "status": "discovered",
+      "keywordVariants": [
+        "shopify traffic but no sales",
+        "shopify visitors but no orders",
+        "getting thousands of people everyday to my store but no sales",
+        "getting 500 visitors per day but no sales",
+        "why am i getting traffic but no sales on my online store"
+      ],
+      "signalIds": [
+        "traffic-thousands",
+        "traffic-500",
+        "traffic-online"
+      ],
+      "assessment": {
+        "searchIntent": null,
+        "commercialRelevance": null,
+        "capabilityMatch": null,
+        "serpWeakness": null,
+        "evidenceNotes": ""
+      },
+      "capability": null,
+      "page": {
+        "title": "Shopify traffic but no sales",
+        "description": "Identify where store visitors stop before purchasing",
+        "sections": [
+          {
+            "heading": "Symptoms",
+            "body": "[PLACEHOLDER] Write an original, evidence-backed answer."
+          },
+          {
+            "heading": "Possible causes",
+            "body": "[PLACEHOLDER] Write an original, evidence-backed answer."
+          },
+          {
+            "heading": "Diagnosis",
+            "body": "[PLACEHOLDER] Write an original, evidence-backed answer."
+          },
+          {
+            "heading": "Possible fixes",
+            "body": "[PLACEHOLDER] Write an original, evidence-backed answer."
+          },
+          {
+            "heading": "Verify recovery",
+            "body": "[PLACEHOLDER] Write an original, evidence-backed answer."
+          },
+          {
+            "heading": "Related questions",
+            "body": "[PLACEHOLDER] Write an original, evidence-backed answer."
+          }
+        ],
+        "reviewedBy": null,
+        "reviewedAt": null,
+        "references": [],
+        "sparkTask": null
+      }
+    },
+    {
+      "id": "shopify-purchase-order-automation",
+      "canonicalProblem": "Automate Shopify supplier purchase orders",
+      "category": "inventory",
+      "topic": "inventory-planning",
+      "merchantGoal": "Create supplier purchase orders from store orders",
+      "contentType": "workflow",
+      "status": "discovered",
+      "keywordVariants": [
+        "shopify purchase order automation",
+        "automatically create supplier purchase orders shopify"
+      ],
+      "signalIds": [
+        "purchase-order-app"
+      ],
+      "assessment": {
+        "searchIntent": null,
+        "commercialRelevance": null,
+        "capabilityMatch": null,
+        "serpWeakness": null,
+        "evidenceNotes": ""
+      },
+      "capability": null,
+      "page": {
+        "title": "Automate Shopify supplier purchase orders",
+        "description": "Create supplier purchase orders from store orders",
+        "sections": [
+          {
+            "heading": "Goal",
+            "body": "[PLACEHOLDER] Write an original, evidence-backed answer."
+          },
+          {
+            "heading": "Prerequisites",
+            "body": "[PLACEHOLDER] Write an original, evidence-backed answer."
+          },
+          {
+            "heading": "Trigger and steps",
+            "body": "[PLACEHOLDER] Write an original, evidence-backed answer."
+          },
+          {
+            "heading": "Approval and rollback",
+            "body": "[PLACEHOLDER] Write an original, evidence-backed answer."
+          },
+          {
+            "heading": "Verify the outcome",
+            "body": "[PLACEHOLDER] Write an original, evidence-backed answer."
+          },
+          {
+            "heading": "Related questions",
+            "body": "[PLACEHOLDER] Write an original, evidence-backed answer."
+          }
+        ],
+        "reviewedBy": null,
+        "reviewedAt": null,
+        "references": [],
+        "sparkTask": null
+      }
+    },
+    {
+      "id": "shopify-reorder-planning",
+      "canonicalProblem": "Plan Shopify inventory reorders",
+      "category": "inventory",
+      "topic": "inventory-planning",
+      "merchantGoal": "Use inventory and sales data to plan replenishment",
+      "contentType": "guide",
+      "status": "discovered",
+      "keywordVariants": [
+        "shopify inventory reorder planning",
+        "shopify reorder reports",
+        "how much inventory should i reorder"
+      ],
+      "signalIds": [
+        "reorder-reports"
+      ],
+      "assessment": {
+        "searchIntent": null,
+        "commercialRelevance": null,
+        "capabilityMatch": null,
+        "serpWeakness": null,
+        "evidenceNotes": ""
+      },
+      "capability": null,
+      "page": {
+        "title": "Plan Shopify inventory reorders",
+        "description": "Use inventory and sales data to plan replenishment",
+        "reviewedBy": null,
+        "reviewedAt": null,
+        "references": [],
+        "sparkTask": null,
+        "sections": [
+          {
+            "heading": "What you will achieve",
+            "body": "[PLACEHOLDER] Write an original, evidence-backed answer."
+          },
+          {
+            "heading": "Before you start",
+            "body": "[PLACEHOLDER] Write an original, evidence-backed answer."
+          },
+          {
+            "heading": "Steps",
+            "body": "[PLACEHOLDER] Write an original, evidence-backed answer."
+          },
+          {
+            "heading": "Verify the result",
+            "body": "[PLACEHOLDER] Write an original, evidence-backed answer."
+          },
+          {
+            "heading": "Related questions",
+            "body": "[PLACEHOLDER] Write an original, evidence-backed answer."
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -17,10 +17,9 @@ import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getProductMap, products} from "@/content/products";
 import {getProductPlaybookHref, getUseCasesByProduct} from "@/content/use-cases";
-import {localizeHref} from "@/lib/i18n";
 import {getRequestLocale} from "@/lib/i18n-server";
-import {buildPageMetadata, siteUrl} from "@/lib/seo/metadata";
-import {buildBreadcrumbSchema, buildFaqSchema, buildProductSchema, buildWebPageSchema} from "@/lib/seo/schema";
+import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
+import {buildBreadcrumbSchema, buildFaqSchema, buildGraphSchema, buildProductSchema, buildWebPageSchema} from "@/lib/seo/schema";
 
 type ProductDetailPageProps = {
   params: Promise<{slug: string}>;
@@ -215,11 +214,12 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
     notFound();
   }
 
-  const pageUrl = new URL(localizeHref(locale, `/products/${product.slug}`), siteUrl).toString();
-  const structuredData = [
+  const pageUrl = toAbsoluteLocalizedUrl(locale, `/products/${product.slug}`);
+  const productsIndexUrl = toAbsoluteLocalizedUrl(locale, "/products");
+  const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
       {name: "Home", item: siteUrl},
-      {name: locale === "zh-cn" ? "产品" : "Products", item: new URL(localizeHref(locale, "/products"), siteUrl).toString()},
+      {name: locale === "zh-cn" ? "产品" : "Products", item: productsIndexUrl},
       {name: product.name, item: pageUrl},
     ]),
     buildWebPageSchema({
@@ -232,16 +232,20 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
       url: pageUrl,
       name: product.name,
       description: product.heroDescription,
+      image: product.icon ? toAbsoluteLocalizedUrl(locale, product.icon) : undefined,
       rating: product.rating,
       reviewCount: product.reviewCount,
-      bestRating: 5,
-      reviews: (product.reviewSnippets ?? []).map((snippet) => ({
-        reviewBody: snippet,
-        ratingValue: product.rating ?? 5,
-      })),
+      offers: product.ctaHref
+        ? {
+            price: "0",
+            priceCurrency: "USD",
+            availability: "https://schema.org/InStock",
+            url: product.ctaHref,
+          }
+        : undefined,
     }),
     buildFaqSchema(product.faq),
-  ];
+  ]);
   const isTranslator = product.slug === "translator";
   const translatorCopy = isTranslator ? copy.translator : null;
   const linkedUseCases = getUseCasesByProduct(locale, product.slug);
@@ -259,13 +263,10 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
   return (
     <main>
       <PageContainer>
-        {structuredData.map((schema, index) => (
-          <script
-            key={`${product.slug}-schema-${index}`}
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{__html: JSON.stringify(schema)}}
-          />
-        ))}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{__html: JSON.stringify(structuredData)}}
+        />
         <section className="py-12 sm:py-16 lg:py-20">
           <div
             className={[
@@ -394,11 +395,6 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
 
         {isTranslator && translatorCopy ? (
           <>
-            <div id="models" className="anchor-offset" />
-            <div id="engines" className="anchor-offset" />
-            <div id="glossary" className="anchor-offset" />
-            <div id="languages" className="anchor-offset" />
-            <div id="localization" className="anchor-offset" />
             <ProductFeatureSpotlightsSection
               id={translatorCopy.sections.featureSpotlights.id}
               eyebrow={translatorCopy.sections.featureSpotlights.eyebrow}
@@ -506,8 +502,7 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
           </div>
         </section>
 
-        <div id="faq" className="anchor-offset" />
-        <FaqSection items={product.faq} />
+        <FaqSection id="faq" className="anchor-offset" items={product.faq} />
         <FinalCtaSection
           title={locale === "zh-cn" ? `进一步了解 ${product.name}` : `Explore ${product.name}`}
           description={product.shortDescription}

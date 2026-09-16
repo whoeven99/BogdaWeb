@@ -32,9 +32,9 @@ export function FinalCtaSection({
     <section className="py-12 sm:py-14 lg:py-16">
       <div className={panelClassName ? `final-cta-panel ${panelClassName}` : "final-cta-panel"}>
         <div className="final-cta-content max-w-3xl space-y-3">
-          {eyebrow ? <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-emerald-700">{eyebrow}</div> : null}
-          <h2 className="text-3xl font-semibold tracking-[-0.04em] text-slate-950 sm:text-4xl">{title}</h2>
-          {body ?? (description ? <p className="text-[15px] leading-7 text-slate-600">{description}</p> : null)}
+          {eyebrow ? <div className="ui-final-cta__eyebrow">{eyebrow}</div> : null}
+          <h2 className="ui-final-cta__title">{title}</h2>
+          {body ?? (description ? <p className="ui-final-cta__text">{description}</p> : null)}
         </div>
         <div className={actionsClassName ? `final-cta-actions mt-8 ${actionsClassName}` : "final-cta-actions mt-8 flex flex-wrap items-center gap-3"}>
           <Button href={primaryHref}>{primaryLabel}</Button>

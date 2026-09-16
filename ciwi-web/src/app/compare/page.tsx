@@ -6,9 +6,8 @@ import {PageContainer} from "@/components/ui/PageContainer";
 import {compareIndexMediaBriefs} from "@/content/media-briefs";
 import {getCompares} from "@/content/compare";
 import {getRequestLocale} from "@/lib/i18n-server";
-import {localizeHref} from "@/lib/i18n";
-import {buildPageMetadata, siteUrl} from "@/lib/seo/metadata";
-import {buildBreadcrumbSchema, buildWebPageSchema} from "@/lib/seo/schema";
+import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
+import {buildBreadcrumbSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 
 export async function generateMetadata() {
   const locale = await getRequestLocale();
@@ -83,8 +82,8 @@ export default async function ComparePage() {
             secondaryHref: "/help-center",
           },
         };
-  const pageUrl = new URL(localizeHref(locale, "/compare"), siteUrl).toString();
-  const structuredData = [
+  const pageUrl = toAbsoluteLocalizedUrl(locale, "/compare");
+  const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
       {name: "Home", item: siteUrl},
       {name: copy.structuredData.name, item: pageUrl},
@@ -96,18 +95,15 @@ export default async function ComparePage() {
       keywords: [...copy.structuredData.keywords],
       type: "CollectionPage",
     }),
-  ];
+  ]);
 
   return (
     <main>
       <PageContainer>
-        {structuredData.map((schema, index) => (
-          <script
-            key={`compare-list-schema-${index}`}
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{__html: JSON.stringify(schema)}}
-          />
-        ))}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{__html: JSON.stringify(structuredData)}}
+        />
         <section className="py-12 sm:py-16 lg:py-20">
           <ContentIndexHero eyebrow={copy.hero.eyebrow} title={copy.hero.title} description={copy.hero.description} />
           <ResourceCollectionSection

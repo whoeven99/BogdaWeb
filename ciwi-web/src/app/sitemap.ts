@@ -1,5 +1,8 @@
+import {getPublishedProblems} from "@/lib/merchant-intelligence/content";
+import {targetUrl} from "@/lib/merchant-intelligence/core.mjs";
 import type {MetadataRoute} from "next";
 
+import {authors} from "@/content/authors";
 import {getBestShopifyAppCollections} from "@/content/best-shopify-apps";
 import {getBlogPosts} from "@/content/blog";
 import {getCompares} from "@/content/compare";
@@ -23,6 +26,8 @@ const staticRoutes = [
   "/contact",
   "/demo",
   "/guides",
+  "/guides/shopify-translation",
+  "/guides/shopify-translation/prompts",
   "/help-center",
   "/privacy-policy",
   "/resources/product-research",
@@ -57,6 +62,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const locale of ["en", "zh-cn"] as const) {
     for (const route of staticRoutes) {
       addEntry(route, locale);
+    }
+
+    for (const author of authors) {
+      addEntry(`/authors/${author.id}`, locale);
     }
 
     for (const product of getProducts(locale)) {
@@ -103,6 +112,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const review of getToolReviews(locale)) {
       addEntry(review.href, locale, review.publishedAt);
     }
+  }
+
+  const merchantProblems = getPublishedProblems();
+  for (const problem of merchantProblems) {
+    addEntry(targetUrl(problem), "en", problem.page?.reviewedAt ?? undefined);
   }
 
   return [...entries.values()];

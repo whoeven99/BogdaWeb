@@ -13,6 +13,7 @@ type ArticleSchemaInput = {
   datePublished?: string;
   dateModified?: string;
   keywords?: string[];
+  author?: {name: string; jobTitle?: string; url?: string};
 };
 
 type WebPageSchemaInput = {
@@ -22,6 +23,17 @@ type WebPageSchemaInput = {
   keywords?: string[];
   type?: "WebPage" | "CollectionPage";
 };
+
+export function buildGraphSchema(schemas: unknown[]) {
+  return {
+    "@context": "https://schema.org",
+    "@graph": schemas.map((schema) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const {["@context"]: __context, ...rest} = schema as Record<string, unknown>;
+      return rest;
+    }),
+  };
+}
 
 export function buildBreadcrumbSchema(items: BreadcrumbItem[]) {
   return {
@@ -36,7 +48,7 @@ export function buildBreadcrumbSchema(items: BreadcrumbItem[]) {
   };
 }
 
-export function buildBlogPostingSchema({url, headline, description, datePublished, dateModified, keywords = []}: ArticleSchemaInput) {
+export function buildBlogPostingSchema({url, headline, description, datePublished, dateModified, keywords = [], author}: ArticleSchemaInput) {
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -47,10 +59,14 @@ export function buildBlogPostingSchema({url, headline, description, datePublishe
     mainEntityOfPage: url,
     url,
     keywords,
-    author: {
-      "@type": "Organization",
-      name: siteName,
-    },
+    author: author
+      ? {
+          "@type": "Person",
+          name: author.name,
+          ...(author.jobTitle ? {jobTitle: author.jobTitle} : {}),
+          ...(author.url ? {url: author.url} : {}),
+        }
+      : {"@type": "Organization", name: siteName},
     publisher: {
       "@type": "Organization",
       name: siteName,
@@ -59,7 +75,7 @@ export function buildBlogPostingSchema({url, headline, description, datePublishe
   };
 }
 
-export function buildTechArticleSchema({url, headline, description, datePublished, dateModified, keywords = []}: ArticleSchemaInput) {
+export function buildTechArticleSchema({url, headline, description, datePublished, dateModified, keywords = [], author}: ArticleSchemaInput) {
   return {
     "@context": "https://schema.org",
     "@type": "TechArticle",
@@ -70,10 +86,14 @@ export function buildTechArticleSchema({url, headline, description, datePublishe
     mainEntityOfPage: url,
     url,
     keywords,
-    author: {
-      "@type": "Organization",
-      name: siteName,
-    },
+    author: author
+      ? {
+          "@type": "Person",
+          name: author.name,
+          ...(author.jobTitle ? {jobTitle: author.jobTitle} : {}),
+          ...(author.url ? {url: author.url} : {}),
+        }
+      : {"@type": "Organization", name: siteName},
     publisher: {
       "@type": "Organization",
       name: siteName,
@@ -101,20 +121,33 @@ type ProductSchemaInput = {
   url: string;
   name: string;
   description: string;
+  image?: string;
+  sku?: string;
+  brand?: string;
   rating?: number;
   reviewCount?: number;
   bestRating?: number;
   reviews?: {reviewBody: string; ratingValue: number}[];
+  offers?: {
+    price: string;
+    priceCurrency: string;
+    availability?: string;
+    url?: string;
+  };
 };
 
 export function buildProductSchema({
   url,
   name,
   description,
+  image,
+  sku,
+  brand = siteName,
   rating,
   reviewCount,
   bestRating = 5,
   reviews = [],
+  offers,
 }: ProductSchemaInput) {
   const aggregateRating =
     typeof rating === "number" && typeof reviewCount === "number"
@@ -140,14 +173,40 @@ export function buildProductSchema({
     },
   }));
 
+  const defaultOffer =
+    !aggregateRating && reviewItems.length === 0
+      ? {
+          "@type": "Offer",
+          url: offers?.url ?? url,
+          price: offers?.price ?? "0",
+          priceCurrency: offers?.priceCurrency ?? "USD",
+          availability: offers?.availability ?? "https://schema.org/InStock",
+        }
+      : offers
+        ? {
+            "@type": "Offer",
+            url: offers.url ?? url,
+            price: offers.price,
+            priceCurrency: offers.priceCurrency,
+            availability: offers.availability ?? "https://schema.org/InStock",
+          }
+        : undefined;
+
   return {
     "@context": "https://schema.org",
     "@type": "Product",
     name,
     description,
     url,
+    ...(image ? {image} : {}),
+    ...(sku ? {sku} : {}),
+    brand: {
+      "@type": "Brand",
+      name: brand,
+    },
     ...(aggregateRating ? {aggregateRating} : {}),
     ...(reviewItems.length ? {review: reviewItems} : {}),
+    ...(defaultOffer ? {offers: defaultOffer} : {}),
   };
 }
 
@@ -203,7 +262,7 @@ export function buildWebPageSchema({
     name,
     description,
     url,
-    keywords,
+    keywords: keywords.length ? keywords.join(", ") : undefined,
     isPartOf: {
       "@type": "WebSite",
       name: siteName,

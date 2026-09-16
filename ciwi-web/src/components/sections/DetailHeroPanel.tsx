@@ -37,7 +37,7 @@ export function DetailHeroPanel({
     <>
       <div className={metaGridClasses}>
         {metaItems.map((item) => (
-          <div key={item.label} className="surface-card guide-meta-card">
+          <div key={item.label} className="ui-surface-card guide-meta-card">
             <span>{item.label}</span>
             <strong>{item.value}</strong>
           </div>
@@ -45,7 +45,7 @@ export function DetailHeroPanel({
       </div>
 
       <div className="guide-hero__layout">
-        <article className="surface-card guide-hero__summary">
+        <article className="ui-surface-card guide-hero__summary">
           <span className="guide-hero__summary-label">{summaryLabel}</span>
           <div className="guide-hero__summary-copy">
             {typeof summary === "string" ? <p>{summary}</p> : summary}
@@ -55,7 +55,7 @@ export function DetailHeroPanel({
         </article>
 
         {tocLabel && tocItems?.length ? (
-          <nav className="surface-card guide-toc" aria-label={tocLabel}>
+          <nav className="ui-surface-card guide-toc" aria-label={tocLabel}>
             <span className="guide-hero__summary-label">{tocLabel}</span>
             <ul>
               {tocItems.map((item) => (

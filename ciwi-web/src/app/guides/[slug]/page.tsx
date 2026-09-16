@@ -1,5 +1,10 @@
+import {MerchantGuide} from "@/components/guides/MerchantGuide";
+import {getPublishedProblems} from "@/lib/merchant-intelligence/content";
+import {targetUrl} from "@/lib/merchant-intelligence/core.mjs";
 import {notFound, permanentRedirect} from "next/navigation";
 
+import {AuthorByline} from "@/components/content/AuthorByline";
+import {ContentIndexCard} from "@/components/cards/ContentIndexCard";
 import {FaqSection} from "@/components/sections/FaqSection";
 import {ComparisonCardStack} from "@/components/sections/ComparisonCardStack";
 import {DetailHeroPanel} from "@/components/sections/DetailHeroPanel";
@@ -9,16 +14,103 @@ import {Button} from "@/components/ui/Button";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getAvailableFunctionScenarioGuideLocales, getFunctionScenarioGuideMap, getFunctionScenarioGuides} from "@/content/function-scenario-guides";
+import {getAuthorBySlug} from "@/content/authors";
 import {getAvailableLocalizationGuideLocales, getLocalizationGuideMap, getLocalizationGuides} from "@/content/localization-guides";
 import {getUiCopy} from "@/content/ui-copy";
 import {localizeHref} from "@/lib/i18n";
 import {getRequestLocale} from "@/lib/i18n-server";
-import {buildPageMetadata, siteUrl} from "@/lib/seo/metadata";
-import {buildBreadcrumbSchema, buildFaqSchema, buildTechArticleSchema, buildWebPageSchema} from "@/lib/seo/schema";
+import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
+import {buildBreadcrumbSchema, buildFaqSchema, buildTechArticleSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 
 type GuideDetailPageProps = {
   params: Promise<{slug: string}>;
 };
+
+type SlimGuide = {
+  slug: string;
+  href: string;
+  title: string;
+  description: string;
+  segmentLabel: string;
+  guideLabel: string;
+  year?: number;
+  keywords?: string[];
+  industry?: string;
+  topic?: string;
+};
+
+const STOPWORDS = new Set([
+  "the","a","an","and","or","of","in","on","to","with","into","how","guide","translation","localization","shopify","brand","store","stores","2026","strategy","your","you","from","that","best","practices","every","ciwi","vs","for","&","to"
+]);
+
+function tokenizeGuide(guide: SlimGuide): Set<string> {
+  const fields = [guide.title, guide.description, guide.industry ?? "", guide.topic ?? "", ...(guide.keywords ?? [])];
+  const tokens = new Set<string>();
+  for (const raw of fields) {
+    for (const word of String(raw).toLowerCase().split(/[^a-z0-9]+/)) {
+      if (!word || word.length < 3 || STOPWORDS.has(word)) continue;
+      tokens.add(word);
+    }
+  }
+  return tokens;
+}
+
+function scoreGuideSimilarity(aTokens: Set<string>, bTokens: Set<string>): number {
+  let score = 0;
+  for (const t of aTokens) if (bTokens.has(t)) score += 1;
+  return score;
+}
+
+function pickRelatedGuides<T extends SlimGuide>(
+  guide: SlimGuide,
+  sameTypePool: readonly T[],
+  crossTypePool: readonly SlimGuide[],
+  target = 6,
+  sameTarget = 4,
+  crossTarget = 2
+): SlimGuide[] {
+  const exclude = new Set([guide.slug]);
+  const currentTokens = tokenizeGuide(guide);
+  const sameCandidates = sameTypePool
+    .filter((item) => !exclude.has(item.slug))
+    .map((item) => {
+      let score = 0;
+      if (item.segmentLabel && item.segmentLabel === guide.segmentLabel) score += 8;
+      if (item.industry && guide.industry && item.industry === guide.industry) score += 5;
+      if (item.topic && guide.topic && item.topic === guide.topic) score += 5;
+      score += scoreGuideSimilarity(currentTokens, tokenizeGuide(item));
+      return {item, score};
+    })
+    .sort((a, b) => b.score - a.score)
+    .map((x) => x.item)
+    .slice(0, sameTarget);
+
+  for (const item of sameCandidates) exclude.add(item.slug);
+
+  const crossCandidates = crossTypePool
+    .filter((item) => !exclude.has(item.slug))
+    .map((item) => ({item, score: scoreGuideSimilarity(currentTokens, tokenizeGuide(item))}))
+    .sort((a, b) => b.score - a.score)
+    .map((x) => x.item)
+    .slice(0, crossTarget);
+
+  const picked: SlimGuide[] = [...sameCandidates, ...crossCandidates];
+  for (const item of sameCandidates) exclude.add(item.slug);
+  for (const item of crossCandidates) exclude.add(item.slug);
+
+  if (picked.length < target) {
+    const fillerPool: SlimGuide[] = [...sameTypePool, ...crossTypePool].filter(
+      (item) => !exclude.has(item.slug)
+    );
+    for (const item of fillerPool) {
+      if (picked.length >= target) break;
+      picked.push(item);
+      exclude.add(item.slug);
+    }
+  }
+
+  return picked.slice(0, target);
+}
 
 function getLocalizationGuidePageCopy(locale: "en" | "zh-cn") {
   return locale === "zh-cn"
@@ -115,6 +207,12 @@ function getLocalizationGuidePageCopy(locale: "en" | "zh-cn") {
             eyebrow: "常见问题",
             title: "常见问题",
             description: "补齐长尾搜索问题，并回答团队在启动本地化时最常见的疑问。",
+          },
+          moreGuides: {
+            eyebrow: "延伸阅读",
+            title: "相关指南与 Shopify 工作流",
+            description: "看看和当前主题最接近的本地化指南，以及具体到某个 Shopify 模块的翻译处理方式。",
+            ctaLabel: "查看指南",
           },
           cta: {
             eyebrow: "下一步",
@@ -219,6 +317,12 @@ function getLocalizationGuidePageCopy(locale: "en" | "zh-cn") {
             title: "Frequently asked questions",
             description: "Cover long-tail search intent and the most common rollout questions teams ask early.",
           },
+          moreGuides: {
+            eyebrow: "Keep reading",
+            title: "Related guides & Shopify workflows",
+            description: "Continue with the category localization guides or function-specific Shopify translation workflows closest to this topic.",
+            ctaLabel: "Read guide",
+          },
           cta: {
             eyebrow: "Next step",
             title: "Ready to expand globally?",
@@ -298,6 +402,12 @@ function getFunctionScenarioPageCopy(locale: "en" | "zh-cn") {
             title: "常见问题",
             description: "覆盖用户在执行这个功能场景时最常问的问题。",
           },
+          moreGuides: {
+            eyebrow: "延伸阅读",
+            title: "相关指南与 Shopify 工作流",
+            description: "看看和当前 Shopify 翻译场景最接近的其他模块，以及跨行业的本地化指南。",
+            ctaLabel: "查看指南",
+          },
           cta: {
             eyebrow: "下一步",
             title: "准备把这个场景真正跑起来了吗？",
@@ -373,6 +483,12 @@ function getFunctionScenarioPageCopy(locale: "en" | "zh-cn") {
             title: "Frequently asked questions",
             description: "Cover the most common execution questions users ask when working through this scenario.",
           },
+          moreGuides: {
+            eyebrow: "Keep reading",
+            title: "Related guides & Shopify workflows",
+            description: "Continue with Shopify translation scenarios for adjacent surfaces and category-level localization guides.",
+            ctaLabel: "Read guide",
+          },
           cta: {
             eyebrow: "Next step",
             title: "Ready to operationalize this workflow?",
@@ -388,14 +504,15 @@ function buildGuideStructuredData(
   locale: "en" | "zh-cn",
   guide: {title: string; description: string; href: string; publishedAt: string; keywords: string[]; faq: {question: string; answer: string}[]}
 ) {
-  const pageUrl = new URL(localizeHref(locale, guide.href), siteUrl).toString();
+  const pageUrl = toAbsoluteLocalizedUrl(locale, guide.href);
+  const author = getAuthorBySlug(guide.href);
 
   return {
     pageUrl,
-    structuredData: [
+    structuredData: buildGraphSchema([
       buildBreadcrumbSchema([
         {name: "Home", item: siteUrl},
-        {name: locale === "zh-cn" ? "本地化与翻译指南" : "Localization Guides", item: new URL(localizeHref(locale, "/guides"), siteUrl).toString()},
+        {name: locale === "zh-cn" ? "本地化与翻译指南" : "Localization Guides", item: toAbsoluteLocalizedUrl(locale, "/guides")},
         {name: guide.title, item: pageUrl},
       ]),
       buildWebPageSchema({
@@ -410,9 +527,10 @@ function buildGuideStructuredData(
         description: guide.description,
         datePublished: guide.publishedAt,
         keywords: guide.keywords,
+        author: {name: author.name, jobTitle: author.role[locale], url: toAbsoluteLocalizedUrl(locale, `/authors/${author.id}`)},
       }),
       buildFaqSchema(guide.faq),
-    ],
+    ]),
   };
 }
 
@@ -509,11 +627,14 @@ function getLocalizationNarrativeCopy(locale: "en" | "zh-cn") {
 function renderLocalizationGuidePage(
   locale: "en" | "zh-cn",
   guide: ReturnType<typeof getLocalizationGuides>[number],
-  uiCopy: ReturnType<typeof getUiCopy>
+  uiCopy: ReturnType<typeof getUiCopy>,
+  sameTypePool: ReadonlyArray<ReturnType<typeof getLocalizationGuides>[number]>,
+  crossTypePool: ReadonlyArray<ReturnType<typeof getFunctionScenarioGuides>[number]>
 ) {
   const copy = getLocalizationGuidePageCopy(locale);
   const articleCopy = getLocalizationNarrativeCopy(locale);
   const {structuredData} = buildGuideStructuredData(locale, guide);
+  const author = getAuthorBySlug(guide.href);
   const criticalScope = guide.translationScope.find((item) => item.category.toLowerCase() === "critical") ?? guide.translationScope[0];
   const importantScope = guide.translationScope.find((item) => item.category.toLowerCase() === "important") ?? guide.translationScope[1];
   const tocItems = [
@@ -533,13 +654,10 @@ function renderLocalizationGuidePage(
   return (
     <main className="guide-detail-page">
       <PageContainer>
-        {structuredData.map((schema, index) => (
-          <script
-            key={`${guide.slug}-schema-${index}`}
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{__html: JSON.stringify(schema)}}
-          />
-        ))}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{__html: JSON.stringify(structuredData)}}
+        />
 
         <section className="page-section guide-hero">
           <div className="guide-hero__topbar">
@@ -547,6 +665,8 @@ function renderLocalizationGuidePage(
           </div>
 
           <SectionHeading eyebrow={copy.hero.eyebrow} title={guide.title} description={guide.description} as="h1" />
+
+          <AuthorByline author={author} className="mt-6" />
 
           <DetailHeroPanel
             metaItems={[
@@ -893,6 +1013,28 @@ function renderLocalizationGuidePage(
           <FaqSection eyebrow={copy.sections.faq.eyebrow} title={copy.sections.faq.title} description={copy.sections.faq.description} items={guide.faq} />
         </section>
 
+        {(() => {
+          const related = pickRelatedGuides(guide, sameTypePool, crossTypePool);
+          if (!related.length) return null;
+          return (
+            <section id="more-guides" className="page-section page-section--compact" aria-label="Related guides">
+              <SectionHeading eyebrow={copy.sections.moreGuides.eyebrow} title={copy.sections.moreGuides.title} description={copy.sections.moreGuides.description} />
+              <div className="ui-simple-card-grid mt-8">
+                {related.map((item) => (
+                  <ContentIndexCard
+                    key={item.href}
+                    href={item.href}
+                    title={item.title}
+                    description={item.description}
+                    meta={[item.guideLabel]}
+                    ctaLabel={copy.sections.moreGuides.ctaLabel}
+                  />
+                ))}
+              </div>
+            </section>
+          );
+        })()}
+
         <FinalCtaSection
           eyebrow={copy.sections.cta.eyebrow}
           title={copy.sections.cta.title}
@@ -912,11 +1054,14 @@ function renderLocalizationGuidePage(
 function renderFunctionScenarioGuidePage(
   locale: "en" | "zh-cn",
   guide: ReturnType<typeof getFunctionScenarioGuides>[number],
-  uiCopy: ReturnType<typeof getUiCopy>
+  uiCopy: ReturnType<typeof getUiCopy>,
+  sameTypePool: ReadonlyArray<ReturnType<typeof getFunctionScenarioGuides>[number]>,
+  crossTypePool: ReadonlyArray<ReturnType<typeof getLocalizationGuides>[number]>
 ) {
   const copy = getFunctionScenarioPageCopy(locale);
   const articleCopy = getFunctionScenarioNarrativeCopy(locale);
   const {structuredData} = buildGuideStructuredData(locale, guide);
+  const author = getAuthorBySlug(guide.href);
   const criticalScope = guide.translationScope.find((item) => item.category.toLowerCase() === "critical") ?? guide.translationScope[0];
   const importantScope = guide.translationScope.find((item) => item.category.toLowerCase() === "important") ?? guide.translationScope[1];
   const tocItems = [
@@ -933,13 +1078,10 @@ function renderFunctionScenarioGuidePage(
   return (
     <main className="guide-detail-page">
       <PageContainer>
-        {structuredData.map((schema, index) => (
-          <script
-            key={`${guide.slug}-schema-${index}`}
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{__html: JSON.stringify(schema)}}
-          />
-        ))}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{__html: JSON.stringify(structuredData)}}
+        />
 
         <section className="page-section guide-hero">
           <div className="guide-hero__topbar">
@@ -947,6 +1089,8 @@ function renderFunctionScenarioGuidePage(
           </div>
 
           <SectionHeading eyebrow={copy.hero.eyebrow} title={guide.title} description={guide.description} as="h1" />
+
+          <AuthorByline author={author} className="mt-6" />
 
           <div className="guide-meta-grid">
             <div className="surface-card guide-meta-card">
@@ -1186,6 +1330,28 @@ function renderFunctionScenarioGuidePage(
           <FaqSection eyebrow={copy.sections.faq.eyebrow} title={copy.sections.faq.title} description={copy.sections.faq.description} items={guide.faq} />
         </section>
 
+        {(() => {
+          const related = pickRelatedGuides(guide, sameTypePool, crossTypePool);
+          if (!related.length) return null;
+          return (
+            <section id="more-guides" className="page-section page-section--compact" aria-label="Related guides">
+              <SectionHeading eyebrow={copy.sections.moreGuides.eyebrow} title={copy.sections.moreGuides.title} description={copy.sections.moreGuides.description} />
+              <div className="ui-simple-card-grid mt-8">
+                {related.map((item) => (
+                  <ContentIndexCard
+                    key={item.href}
+                    href={item.href}
+                    title={item.title}
+                    description={item.description}
+                    meta={[item.guideLabel]}
+                    ctaLabel={copy.sections.moreGuides.ctaLabel}
+                  />
+                ))}
+              </div>
+            </section>
+          );
+        })()}
+
         <FinalCtaSection
           eyebrow={copy.sections.cta.eyebrow}
           title={copy.sections.cta.title}
@@ -1204,13 +1370,17 @@ function renderFunctionScenarioGuidePage(
 
 export function generateStaticParams() {
   return [
-    ...new Set([...getLocalizationGuides("en").map((guide) => guide.slug), ...getFunctionScenarioGuides("en").map((guide) => guide.slug)]),
+    ...new Set([...getLocalizationGuides("en").map((guide) => guide.slug), ...getFunctionScenarioGuides("en").map((guide) => guide.slug), ...getPublishedProblems().map(problem => problem.id)]),
   ].map((slug) => ({slug}));
 }
 
 export async function generateMetadata({params}: GuideDetailPageProps) {
   const locale = await getRequestLocale();
   const {slug} = await params;
+  const merchantGuide = getPublishedProblems().find(problem => problem.id === slug);
+  if (merchantGuide?.page) {
+    return buildPageMetadata({title: merchantGuide.page.title, description: merchantGuide.page.description, path: targetUrl(merchantGuide), locale, supportedLocales: ["en"]});
+  }
   const availableLocales = [...new Set([...getAvailableLocalizationGuideLocales(slug), ...getAvailableFunctionScenarioGuideLocales(slug)])];
   const primaryLocale = availableLocales[0] ?? "en";
   const localizationGuide = getLocalizationGuideMap(primaryLocale)[slug];
@@ -1240,6 +1410,12 @@ export async function generateMetadata({params}: GuideDetailPageProps) {
 export default async function GuideDetailPage({params}: GuideDetailPageProps) {
   const locale = await getRequestLocale();
   const {slug} = await params;
+  const merchantGuides = getPublishedProblems();
+  const merchantGuide = merchantGuides.find(problem => problem.id === slug);
+  if (merchantGuide) {
+    if (locale !== "en") permanentRedirect(localizeHref("en", targetUrl(merchantGuide)));
+    return <MerchantGuide problem={merchantGuide} related={merchantGuides.filter(problem => problem.topic === merchantGuide.topic && problem.id !== merchantGuide.id)} />;
+  }
   const availableLocales = [...new Set([...getAvailableLocalizationGuideLocales(slug), ...getAvailableFunctionScenarioGuideLocales(slug)])];
   const fallbackLocale = availableLocales[0] ?? "en";
   const localizationGuide = getLocalizationGuideMap(locale)[slug] ?? getLocalizationGuideMap(fallbackLocale)[slug];
@@ -1254,13 +1430,15 @@ export default async function GuideDetailPage({params}: GuideDetailPageProps) {
   }
 
   const uiCopy = getUiCopy(locale);
+  const localizationPool = getLocalizationGuides(locale);
+  const functionScenarioPool = getFunctionScenarioGuides(locale);
 
   if (localizationGuide) {
-    return renderLocalizationGuidePage(locale, localizationGuide, uiCopy);
+    return renderLocalizationGuidePage(locale, localizationGuide, uiCopy, localizationPool, functionScenarioPool);
   }
 
   if (functionScenarioGuide) {
-    return renderFunctionScenarioGuidePage(locale, functionScenarioGuide, uiCopy);
+    return renderFunctionScenarioGuidePage(locale, functionScenarioGuide, uiCopy, functionScenarioPool, localizationPool);
   }
 
   notFound();

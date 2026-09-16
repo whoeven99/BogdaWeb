@@ -57,23 +57,23 @@ function getSectionKey(section: InfoPanelSection) {
 
 export function StackedInfoPanel({
   sections,
-  className = "rounded-[28px] border border-slate-200/80 bg-white/90 p-6 shadow-[0_16px_48px_-24px_rgba(15,23,42,0.24)] sm:p-7",
-  stackClassName = "grid gap-6",
+  className = "ui-stacked-info",
+  stackClassName = "ui-stacked-info__stack",
 }: StackedInfoPanelProps) {
   return (
     <div className={className}>
       <div className={stackClassName}>
         {sections.map((section) => (
           <div key={getSectionKey(section)}>
-            <h3 className="text-lg font-semibold tracking-[-0.03em] text-slate-950">{section.title}</h3>
+            <h3 className="ui-stacked-info__section-title">{section.title}</h3>
             {hasDescription(section) ? (
               <p className="quote mt-4">{section.description}</p>
             ) : null}
             {hasItems(section) ? (
               section.listVariant === "boxed" ? (
-                <ul className="mt-4 grid gap-2 text-sm leading-7 text-slate-600">
+                <ul className="ui-stacked-info__boxed-list">
                   {section.items.map((item) => (
-                    <li key={item} className="rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-3">
+                    <li key={item} className="ui-stacked-info__boxed-item">
                       {item}
                     </li>
                   ))}
@@ -87,7 +87,7 @@ export function StackedInfoPanel({
               )
             ) : null}
             {hasChips(section) ? (
-              <div className="mt-4 flex flex-wrap gap-2">
+              <div className="ui-stacked-info__chip-row">
                 {section.chips.map((item) => (
                   <span key={item} className="pill">
                     {item}

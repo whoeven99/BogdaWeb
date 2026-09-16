@@ -4,13 +4,13 @@ import {MdxContent} from "@/components/content/MdxContent";
 import {BackLink} from "@/components/ui/BackLink";
 import {LocalizedLink} from "@/components/ui/LocalizedLink";
 import {PageContainer} from "@/components/ui/PageContainer";
+import {AuthorByline} from "@/components/content/AuthorByline";
+import {getAuthorBySlug} from "@/content/authors";
 import {getAllBlogPosts, getBlogPostMap, getBlogPosts} from "@/content/blog";
 import {getUiCopy} from "@/content/ui-copy";
 import {getRequestLocale} from "@/lib/i18n-server";
-import {localizeHref} from "@/lib/i18n";
-import {buildPageMetadata} from "@/lib/seo/metadata";
-import {siteUrl} from "@/lib/seo/metadata";
-import {buildBlogPostingSchema, buildBreadcrumbSchema} from "@/lib/seo/schema";
+import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
+import {buildBlogPostingSchema, buildBreadcrumbSchema, buildGraphSchema} from "@/lib/seo/schema";
 
 type BlogDetailPageProps = {
   params: Promise<{slug: string}>;
@@ -83,14 +83,15 @@ export default async function BlogDetailPage({params}: BlogDetailPageProps) {
     notFound();
   }
 
-  const pageUrl = new URL(localizeHref(locale, post.href), siteUrl).toString();
+  const pageUrl = toAbsoluteLocalizedUrl(locale, post.href);
+  const author = getAuthorBySlug(post.slug);
   const currentIndex = posts.findIndex((item) => item.slug === post.slug);
   const previousPost = currentIndex > 0 ? posts[currentIndex - 1] : null;
   const nextPost = currentIndex >= 0 && currentIndex < posts.length - 1 ? posts[currentIndex + 1] : null;
-  const structuredData = [
+  const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
       {name: "Home", item: siteUrl},
-      {name: locale === "zh-cn" ? "博客" : "Blog", item: new URL(localizeHref(locale, "/blog"), siteUrl).toString()},
+      {name: locale === "zh-cn" ? "博客" : "Blog", item: toAbsoluteLocalizedUrl(locale, "/blog")},
       {name: post.title, item: pageUrl},
     ]),
     buildBlogPostingSchema({
@@ -99,19 +100,17 @@ export default async function BlogDetailPage({params}: BlogDetailPageProps) {
       description: post.description,
       datePublished: post.publishedAt,
       keywords: post.tags,
+      author: {name: author.name, jobTitle: author.role[locale], url: toAbsoluteLocalizedUrl(locale, `/authors/${author.id}`)},
     }),
-  ];
+  ]);
 
   return (
     <main className="blog-article-page">
       <PageContainer>
-        {structuredData.map((schema, index) => (
-          <script
-            key={`${post.slug}-schema-${index}`}
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{__html: JSON.stringify(schema)}}
-          />
-        ))}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{__html: JSON.stringify(structuredData)}}
+        />
 
         <section className="blog-article-shell">
           <article className="blog-article-single">
@@ -132,6 +131,8 @@ export default async function BlogDetailPage({params}: BlogDetailPageProps) {
               <h1>{post.title}</h1>
               <p>{post.description}</p>
             </header>
+
+            <AuthorByline author={author} />
 
             <MdxContent source={post.content} className="article-prose blog-article-single__prose" />
 

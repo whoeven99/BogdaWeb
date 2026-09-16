@@ -22,8 +22,40 @@ export function toAbsoluteLocalizedUrl(locale: Locale, href: string) {
   return new URL(localizeHref(locale, href), siteUrl).toString();
 }
 
+function estimateSERPWidth(title: string): number {
+  let width = 0;
+  for (const ch of title) {
+    const code = ch.codePointAt(0) ?? 0;
+    if (ch === " " || ch === "-" || ch === "|" || ch === ":") width += 0.3;
+    else if (ch === "." || ch === "," || ch === "'" || ch === "/") width += 0.25;
+    else if (code < 128) width += 0.52;
+    else if (ch === "「" || ch === "」" || ch === "（" || ch === "）") width += 1.0;
+    else width += 1.0;
+  }
+  return width;
+}
+
+function truncateTitleToSERPWidth(title: string, targetPxWidth = 480): string {
+  if (!title) return title;
+  if (estimateSERPWidth(title) <= targetPxWidth) return title;
+  const ellipsis = "…";
+  const allowance = estimateSERPWidth(ellipsis);
+  let width = 0;
+  let result = "";
+  for (const ch of title) {
+    const w = estimateSERPWidth(ch);
+    if (width + w > targetPxWidth - allowance) break;
+    result += ch;
+    width += w;
+  }
+  if (!result) return title;
+  return result + ellipsis;
+}
+
 export function buildPageMetadata({title, description, path = "/", locale = "en", supportedLocales}: MetadataInput): Metadata {
-  const fullTitle = `${title} | ${siteName}`;
+  const brandSuffix = ` | ${siteName}`;
+  const safeTitle = truncateTitleToSERPWidth(title, 480 - estimateSERPWidth(brandSuffix));
+  const fullTitle = safeTitle + brandSuffix;
   const alternates = buildAlternates(path);
   const enabledLocales = supportedLocales?.length ? supportedLocales : [defaultLocale, "zh-cn"];
   const canonicalLocale = enabledLocales.includes(locale) ? locale : defaultLocale;

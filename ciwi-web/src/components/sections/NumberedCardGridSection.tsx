@@ -25,16 +25,18 @@ export function NumberedCardGridSection({
   return (
     <section id={id} className={className}>
       <SectionHeading eyebrow={eyebrow} title={title} description={description} />
-      <div className="card-grid">
+      <div className="ui-numbered-card-grid">
         {items.map((item, index) => (
-          <article key={`${item.title ?? "step"}-${item.description}`} className="surface-card">
-            <h3>{String(index + 1).padStart(2, "0")}</h3>
-            {item.title ? (
-              <p className="quote">
-                <strong>{item.title}</strong>
-              </p>
-            ) : null}
-            <p className="quote">{item.description}</p>
+          <article key={`${item.title ?? "step"}-${item.description}`} className="ui-numbered-card-grid__item">
+            <div className="ui-numbered-card-grid__index">{String(index + 1).padStart(2, "0")}</div>
+            <div className="ui-numbered-card-grid__body">
+              {item.title ? (
+                <p className="quote">
+                  <strong>{item.title}</strong>
+                </p>
+              ) : null}
+              <p className="quote">{item.description}</p>
+            </div>
           </article>
         ))}
       </div>

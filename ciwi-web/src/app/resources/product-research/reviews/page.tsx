@@ -3,9 +3,8 @@ import {ResourceCollectionSection} from "@/components/sections/ResourceCollectio
 import {PageContainer} from "@/components/ui/PageContainer";
 import {getToolReviews} from "@/content/tool-reviews";
 import {getRequestLocale} from "@/lib/i18n-server";
-import {localizeHref} from "@/lib/i18n";
-import {buildPageMetadata, siteUrl} from "@/lib/seo/metadata";
-import {buildBreadcrumbSchema, buildWebPageSchema} from "@/lib/seo/schema";
+import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
+import {buildBreadcrumbSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 
 function formatRating(value: number) {
   return Number.isInteger(value) ? value.toString() : value.toFixed(1);
@@ -55,11 +54,11 @@ export default async function ToolReviewsIndexPage() {
           },
         };
 
-  const pageUrl = new URL(localizeHref(locale, "/resources/product-research/reviews"), siteUrl).toString();
-  const structuredData = [
+  const pageUrl = toAbsoluteLocalizedUrl(locale, "/resources/product-research/reviews");
+  const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
       {name: "Home", item: siteUrl},
-      {name: locale === "zh-cn" ? "Shopify 选品" : "Product Research", item: new URL(localizeHref(locale, "/resources/product-research"), siteUrl).toString()},
+      {name: locale === "zh-cn" ? "Shopify 选品" : "Product Research", item: toAbsoluteLocalizedUrl(locale, "/resources/product-research")},
       {name: copy.structuredData.name, item: pageUrl},
     ]),
     buildWebPageSchema({
@@ -69,18 +68,15 @@ export default async function ToolReviewsIndexPage() {
       keywords: [...copy.structuredData.keywords],
       type: "CollectionPage",
     }),
-  ];
+  ]);
 
   return (
     <main className="product-research-reviews-page">
       <PageContainer>
-        {structuredData.map((schema, index) => (
-          <script
-            key={`tool-reviews-schema-${index}`}
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{__html: JSON.stringify(schema)}}
-          />
-        ))}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{__html: JSON.stringify(structuredData)}}
+        />
 
         <section className="page-section page-hero">
           <ContentIndexHero eyebrow={copy.hero.eyebrow} title={copy.hero.title} description={copy.hero.description} />

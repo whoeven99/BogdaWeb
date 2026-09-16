@@ -11,19 +11,12 @@ type CardCtaLinkProps = {
 };
 
 export function CardCtaLink({href, children, variant = "outlined"}: CardCtaLinkProps) {
-  const className = [
-    "group !inline-flex !items-center !gap-2 !text-sm !font-semibold !transition-colors !duration-200",
-    variant === "outlined"
-      ? "!rounded-full !border-transparent !bg-slate-950 !px-4 !py-2 !text-white shadow-[0_10px_24px_-14px_rgba(15,23,42,0.45)] hover:!bg-emerald-700 hover:!text-white"
-      : "!text-slate-700 hover:!text-emerald-700",
-  ]
-    .filter(Boolean)
-    .join(" ");
+  const baseClass = variant === "outlined" ? "ui-card-cta ui-card-cta--outlined group" : "ui-card-cta ui-card-cta--text group";
 
   return (
-    <LocalizedLink href={href} className={className} data-card-cta-variant={variant}>
+    <LocalizedLink href={href} className={baseClass} data-card-cta-variant={variant}>
       {children}
-      <span aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-0.5">
+      <span aria-hidden="true" className="ui-card-cta__arrow">
         →
       </span>
     </LocalizedLink>

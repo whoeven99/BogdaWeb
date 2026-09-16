@@ -14,9 +14,8 @@ import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getSolutionMediaBriefs} from "@/content/media-briefs";
 import {getSolutionMap, solutions} from "@/content/solutions";
 import {getRequestLocale} from "@/lib/i18n-server";
-import {localizeHref} from "@/lib/i18n";
-import {buildPageMetadata, siteUrl} from "@/lib/seo/metadata";
-import {buildBreadcrumbSchema, buildFaqSchema, buildWebPageSchema} from "@/lib/seo/schema";
+import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
+import {buildBreadcrumbSchema, buildFaqSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 
 type SolutionDetailPageProps = {
   params: Promise<{slug: string}>;
@@ -143,12 +142,12 @@ export default async function SolutionDetailPage({params}: SolutionDetailPagePro
     notFound();
   }
 
-  const pageUrl = new URL(localizeHref(locale, `/solutions/${solution.slug}`), siteUrl).toString();
+  const pageUrl = toAbsoluteLocalizedUrl(locale, `/solutions/${solution.slug}`);
   const anchorItems = copy.anchors.map((item) => ({...item}));
-  const structuredData = [
+  const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
       {name: "Home", item: siteUrl},
-      {name: copy.breadcrumbLabel, item: new URL(localizeHref(locale, "/solutions"), siteUrl).toString()},
+      {name: copy.breadcrumbLabel, item: toAbsoluteLocalizedUrl(locale, "/solutions")},
       {name: solution.title, item: pageUrl},
     ]),
     buildWebPageSchema({
@@ -158,19 +157,16 @@ export default async function SolutionDetailPage({params}: SolutionDetailPagePro
       keywords: [solution.name, locale === "zh-cn" ? "Shopify 解决方案" : "Shopify solutions", ...solution.targetSignals],
     }),
     buildFaqSchema(solution.faq),
-  ];
+  ]);
   const mediaBriefs = getSolutionMediaBriefs(solution);
 
   return (
     <main>
       <PageContainer>
-        {structuredData.map((schema, index) => (
-          <script
-            key={`${solution.slug}-schema-${index}`}
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{__html: JSON.stringify(schema)}}
-          />
-        ))}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{__html: JSON.stringify(structuredData)}}
+        />
         <section className="page-section page-hero">
           <div className="detail-grid">
             <div>
@@ -281,8 +277,7 @@ export default async function SolutionDetailPage({params}: SolutionDetailPagePro
           </div>
         </section>
 
-        <div id="faq" className="anchor-offset" />
-        <FaqSection items={solution.faq} />
+        <FaqSection id="faq" className="anchor-offset" items={solution.faq} />
         <FinalCtaSection
           title={`Explore ${solution.name}`}
           description={solution.description}

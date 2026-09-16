@@ -15,8 +15,8 @@ import {getHelpCenterDocs} from "@/content/help-center";
 import {localizeHref} from "@/lib/i18n";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {ciwiShopifyInstallUrl} from "@/lib/marketing-links";
-import {buildPageMetadata, siteUrl} from "@/lib/seo/metadata";
-import {buildBreadcrumbSchema, buildFaqSchema, buildWebPageSchema} from "@/lib/seo/schema";
+import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
+import {buildBreadcrumbSchema, buildFaqSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 
 type CompareDetailPageProps = {
   params: Promise<{slug: string}>;
@@ -1143,7 +1143,7 @@ export default async function CompareDetailPage({params}: CompareDetailPageProps
     permanentRedirect(localizeHref(locale, `/compare/${canonicalSlug}`));
   }
 
-  const pageUrl = new URL(localizeHref(locale, `/compare/${data.slug}`), siteUrl).toString();
+  const pageUrl = toAbsoluteLocalizedUrl(locale, `/compare/${data.slug}`);
   const continueResourceItems = getContinueResourceItems(data, locale, compares, blogPosts, helpCenterDocs, copy);
   const allScores = [...data.summaryMetrics, ...data.scoreMatrix];
   const overallReview = buildOverallAssessment(data, locale);
@@ -1169,10 +1169,10 @@ export default async function CompareDetailPage({params}: CompareDetailPageProps
   const bestFitItems = getBestFitItems(data, locale);
   const renderedFaqItems = getRenderedFaqItems(data, locale);
   const hasFaq = renderedFaqItems.length > 0;
-  const structuredData = [
+  const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
       {name: "Home", item: siteUrl},
-      {name: copy.breadcrumbLabel, item: new URL(localizeHref(locale, "/compare"), siteUrl).toString()},
+      {name: copy.breadcrumbLabel, item: toAbsoluteLocalizedUrl(locale, "/compare")},
       {name: data.title, item: pageUrl},
     ]),
     buildWebPageSchema({
@@ -1182,17 +1182,14 @@ export default async function CompareDetailPage({params}: CompareDetailPageProps
       keywords: [copy.keywordLabel, data.title, ...data.bestFor],
     }),
     ...(hasFaq ? [buildFaqSchema(renderedFaqItems)] : []),
-  ];
+  ]);
   return (
     <main className="compare-detail-page">
       <PageContainer>
-        {structuredData.map((schema, index) => (
-          <script
-            key={`${data.slug}-schema-${index}`}
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{__html: JSON.stringify(schema)}}
-          />
-        ))}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{__html: JSON.stringify(structuredData)}}
+        />
         <section className="py-12 sm:py-16 lg:py-20">
           <div className="content-hero-shell">
             <SectionHeading eyebrow={copy.hero.eyebrow} title={data.title} description={data.description} as="h1" />

@@ -1,0 +1,73 @@
+{
+  "asOf": "2026-09-16",
+  "signals": 5,
+  "problems": [
+    {
+      "id": "shopify-traffic-no-sales",
+      "topic": "conversion-diagnosis",
+      "contentType": "problem",
+      "status": "discovered",
+      "targetUrl": "/guides/shopify-traffic-no-sales",
+      "keywords": [
+        "shopify traffic but no sales",
+        "shopify visitors but no orders",
+        "getting thousands of people everyday to my store but no sales",
+        "getting 500 visitors per day but no sales",
+        "why am i getting traffic but no sales on my online store"
+      ],
+      "score": 12,
+      "confidence": 20,
+      "missing": [
+        "searchIntent",
+        "recency",
+        "commercialRelevance",
+        "capabilityMatch",
+        "serpWeakness"
+      ],
+      "repetitions": 3
+    },
+    {
+      "id": "shopify-purchase-order-automation",
+      "topic": "inventory-planning",
+      "contentType": "workflow",
+      "status": "discovered",
+      "targetUrl": "/guides/shopify-purchase-order-automation",
+      "keywords": [
+        "shopify purchase order automation",
+        "automatically create supplier purchase orders shopify"
+      ],
+      "score": 4,
+      "confidence": 20,
+      "missing": [
+        "searchIntent",
+        "recency",
+        "commercialRelevance",
+        "capabilityMatch",
+        "serpWeakness"
+      ],
+      "repetitions": 1
+    },
+    {
+      "id": "shopify-reorder-planning",
+      "topic": "inventory-planning",
+      "contentType": "guide",
+      "status": "discovered",
+      "targetUrl": "/guides/shopify-reorder-planning",
+      "keywords": [
+        "shopify inventory reorder planning",
+        "shopify reorder reports",
+        "how much inventory should i reorder"
+      ],
+      "score": 4,
+      "confidence": 20,
+      "missing": [
+        "searchIntent",
+        "recency",
+        "commercialRelevance",
+        "capabilityMatch",
+        "serpWeakness"
+      ],
+      "repetitions": 1
+    }
+  ]
+}

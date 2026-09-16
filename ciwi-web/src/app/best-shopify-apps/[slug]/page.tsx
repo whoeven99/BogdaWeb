@@ -8,14 +8,20 @@ import {Button} from "@/components/ui/Button";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getBestShopifyAppCollectionMap, getBestShopifyAppCollections} from "@/content/best-shopify-apps";
+import appRatings from "@/content/data/app_ratings.json";
 import {getRequestLocale} from "@/lib/i18n-server";
-import {localizeHref} from "@/lib/i18n";
 import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
-import {buildBreadcrumbSchema, buildWebPageSchema} from "@/lib/seo/schema";
+import {buildBreadcrumbSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 
 type BestShopifyAppCollectionPageProps = {
   params: Promise<{slug: string}>;
 };
+
+function extractAppSlug(href?: string): string | undefined {
+  if (!href) return undefined;
+  const match = href.match(/apps\.shopify\.com\/([^/?#]+)/);
+  return match?.[1];
+}
 
 function buildItemListSchema(
   url: string,
@@ -28,13 +34,28 @@ function buildItemListSchema(
     name: collection.title,
     description: collection.description,
     url,
-    itemListElement: collection.picks.map((item) => ({
-      "@type": "ListItem",
-      position: item.rank,
-      name: item.name,
-      description: item.summary,
-      url: item.href ? toAbsoluteLocalizedUrl(locale, item.href) : undefined,
-    })),
+    itemListElement: collection.picks.map((item) => {
+      const appSlug = extractAppSlug(item.href);
+      const rating = appSlug ? (appRatings as Record<string, {rating: number; reviewCount: number}>)[appSlug] : undefined;
+
+      return {
+        "@type": "Product",
+        position: item.rank,
+        name: item.name,
+        description: item.summary,
+        url: item.href ? toAbsoluteLocalizedUrl(locale, item.href) : undefined,
+        ...(rating
+          ? {
+              aggregateRating: {
+                "@type": "AggregateRating",
+                ratingValue: rating.rating,
+                reviewCount: rating.reviewCount,
+                bestRating: 5,
+              },
+            }
+          : {}),
+      };
+    }),
   };
 }
 
@@ -166,11 +187,11 @@ export default async function BestShopifyAppCollectionPage({params}: BestShopify
           },
         };
 
-  const pageUrl = new URL(localizeHref(locale, collection.href), siteUrl).toString();
-  const structuredData = [
+  const pageUrl = toAbsoluteLocalizedUrl(locale, collection.href);
+  const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
       {name: "Home", item: siteUrl},
-      {name: locale === "zh-cn" ? "最佳 Shopify 应用合集" : "Best Shopify Apps", item: new URL(localizeHref(locale, "/best-shopify-apps"), siteUrl).toString()},
+      {name: locale === "zh-cn" ? "最佳 Shopify 应用合集" : "Best Shopify Apps", item: toAbsoluteLocalizedUrl(locale, "/best-shopify-apps")},
       {name: collection.title, item: pageUrl},
     ]),
     buildWebPageSchema({
@@ -181,18 +202,15 @@ export default async function BestShopifyAppCollectionPage({params}: BestShopify
       type: "CollectionPage",
     }),
     buildItemListSchema(pageUrl, locale, collection),
-  ];
+  ]);
 
   return (
     <main className="best-apps-page">
       <PageContainer>
-        {structuredData.map((schema, index) => (
-          <script
-            key={`${collection.slug}-schema-${index}`}
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{__html: JSON.stringify(schema)}}
-          />
-        ))}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{__html: JSON.stringify(structuredData)}}
+        />
 
         <section className="page-section best-apps-hero">
           <div className="best-apps-hero__topbar">

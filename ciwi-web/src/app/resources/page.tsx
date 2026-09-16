@@ -50,8 +50,8 @@ export default async function ResourcesPage() {
   const compareResources = getCompareResources(locale);
   const bestShopifyAppsResources = getBestShopifyAppsResources(locale);
   const useCaseResources = getUseCaseResources(locale);
-  const featuredLocalizationGuideResources = localizationGuideResources.slice(0, 3);
-  const featuredFunctionScenarioGuideResources = functionScenarioGuideResources.slice(0, 3);
+  const featuredLocalizationGuideResources = localizationGuideResources.slice(0, 6);
+  const featuredFunctionScenarioGuideResources = functionScenarioGuideResources.slice(0, 6);
   const featuredHelpCenterResources = helpCenterResources.slice(0, 3);
   const featuredBlogResources = blogResources.slice(0, 3);
   const featuredCompareResources = compareResources.slice(0, 3);
