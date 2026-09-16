@@ -5268,10 +5268,17 @@ select {
 }
 
 .ui-simple-card-grid {
-  @apply mt-8 card-grid;
+  margin-top: var(--space-8);
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 .ui-simple-card-grid__item {
-  @apply surface-card;
+  padding: var(--space-6);
+  border: 1px solid rgba(229, 231, 235, 0.9);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow-card);
 }
 .ui-simple-card-grid__item-title {
   @apply mb-3 text-lg font-semibold text-slate-950;
