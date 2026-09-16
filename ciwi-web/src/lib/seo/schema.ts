@@ -24,6 +24,16 @@ type WebPageSchemaInput = {
   type?: "WebPage" | "CollectionPage";
 };
 
+export function buildGraphSchema(schemas: unknown[]) {
+  return {
+    "@context": "https://schema.org",
+    "@graph": schemas.map((schema) => {
+      const {["@context"]: _context, ...rest} = schema as Record<string, unknown>;
+      return rest;
+    }),
+  };
+}
+
 export function buildBreadcrumbSchema(items: BreadcrumbItem[]) {
   return {
     "@context": "https://schema.org",
@@ -110,20 +120,33 @@ type ProductSchemaInput = {
   url: string;
   name: string;
   description: string;
+  image?: string;
+  sku?: string;
+  brand?: string;
   rating?: number;
   reviewCount?: number;
   bestRating?: number;
   reviews?: {reviewBody: string; ratingValue: number}[];
+  offers?: {
+    price: string;
+    priceCurrency: string;
+    availability?: string;
+    url?: string;
+  };
 };
 
 export function buildProductSchema({
   url,
   name,
   description,
+  image,
+  sku,
+  brand = siteName,
   rating,
   reviewCount,
   bestRating = 5,
   reviews = [],
+  offers,
 }: ProductSchemaInput) {
   const aggregateRating =
     typeof rating === "number" && typeof reviewCount === "number"
@@ -149,14 +172,40 @@ export function buildProductSchema({
     },
   }));
 
+  const defaultOffer =
+    !aggregateRating && reviewItems.length === 0
+      ? {
+          "@type": "Offer",
+          url: offers?.url ?? url,
+          price: offers?.price ?? "0",
+          priceCurrency: offers?.priceCurrency ?? "USD",
+          availability: offers?.availability ?? "https://schema.org/InStock",
+        }
+      : offers
+        ? {
+            "@type": "Offer",
+            url: offers.url ?? url,
+            price: offers.price,
+            priceCurrency: offers.priceCurrency,
+            availability: offers.availability ?? "https://schema.org/InStock",
+          }
+        : undefined;
+
   return {
     "@context": "https://schema.org",
     "@type": "Product",
     name,
     description,
     url,
+    ...(image ? {image} : {}),
+    ...(sku ? {sku} : {}),
+    brand: {
+      "@type": "Brand",
+      name: brand,
+    },
     ...(aggregateRating ? {aggregateRating} : {}),
     ...(reviewItems.length ? {review: reviewItems} : {}),
+    ...(defaultOffer ? {offers: defaultOffer} : {}),
   };
 }
 
@@ -212,7 +261,7 @@ export function buildWebPageSchema({
     name,
     description,
     url,
-    keywords,
+    keywords: keywords.length ? keywords.join(", ") : undefined,
     isPartOf: {
       "@type": "WebSite",
       name: siteName,
