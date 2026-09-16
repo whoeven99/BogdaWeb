@@ -17,7 +17,6 @@ import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getProductMap, products} from "@/content/products";
 import {getProductPlaybookHref, getUseCasesByProduct} from "@/content/use-cases";
-import {localizeHref} from "@/lib/i18n";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildFaqSchema, buildGraphSchema, buildProductSchema, buildWebPageSchema} from "@/lib/seo/schema";
@@ -396,11 +395,6 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
 
         {isTranslator && translatorCopy ? (
           <>
-            <div id="models" className="anchor-offset" />
-            <div id="engines" className="anchor-offset" />
-            <div id="glossary" className="anchor-offset" />
-            <div id="languages" className="anchor-offset" />
-            <div id="localization" className="anchor-offset" />
             <ProductFeatureSpotlightsSection
               id={translatorCopy.sections.featureSpotlights.id}
               eyebrow={translatorCopy.sections.featureSpotlights.eyebrow}
@@ -508,8 +502,7 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
           </div>
         </section>
 
-        <div id="faq" className="anchor-offset" />
-        <FaqSection items={product.faq} />
+        <FaqSection id="faq" className="anchor-offset" items={product.faq} />
         <FinalCtaSection
           title={locale === "zh-cn" ? `进一步了解 ${product.name}` : `Explore ${product.name}`}
           description={product.shortDescription}

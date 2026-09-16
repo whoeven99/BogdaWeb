@@ -15,8 +15,8 @@ import {getAvailableLocalizationGuideLocales, getLocalizationGuideMap, getLocali
 import {getUiCopy} from "@/content/ui-copy";
 import {localizeHref} from "@/lib/i18n";
 import {getRequestLocale} from "@/lib/i18n-server";
-import {buildPageMetadata, siteUrl} from "@/lib/seo/metadata";
-import {buildBreadcrumbSchema, buildFaqSchema, buildTechArticleSchema, buildWebPageSchema} from "@/lib/seo/schema";
+import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
+import {buildBreadcrumbSchema, buildFaqSchema, buildTechArticleSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 
 type GuideDetailPageProps = {
   params: Promise<{slug: string}>;
@@ -390,15 +390,15 @@ function buildGuideStructuredData(
   locale: "en" | "zh-cn",
   guide: {title: string; description: string; href: string; publishedAt: string; keywords: string[]; faq: {question: string; answer: string}[]}
 ) {
-  const pageUrl = new URL(localizeHref(locale, guide.href), siteUrl).toString();
+  const pageUrl = toAbsoluteLocalizedUrl(locale, guide.href);
   const author = getAuthorBySlug(guide.href);
 
   return {
     pageUrl,
-    structuredData: [
+    structuredData: buildGraphSchema([
       buildBreadcrumbSchema([
         {name: "Home", item: siteUrl},
-        {name: locale === "zh-cn" ? "本地化与翻译指南" : "Localization Guides", item: new URL(localizeHref(locale, "/guides"), siteUrl).toString()},
+        {name: locale === "zh-cn" ? "本地化与翻译指南" : "Localization Guides", item: toAbsoluteLocalizedUrl(locale, "/guides")},
         {name: guide.title, item: pageUrl},
       ]),
       buildWebPageSchema({
@@ -413,10 +413,10 @@ function buildGuideStructuredData(
         description: guide.description,
         datePublished: guide.publishedAt,
         keywords: guide.keywords,
-        author: {name: author.name, jobTitle: author.role[locale], url: new URL(localizeHref(locale, `/authors/${author.id}`), siteUrl).toString()},
+        author: {name: author.name, jobTitle: author.role[locale], url: toAbsoluteLocalizedUrl(locale, `/authors/${author.id}`)},
       }),
       buildFaqSchema(guide.faq),
-    ],
+    ]),
   };
 }
 
@@ -538,13 +538,10 @@ function renderLocalizationGuidePage(
   return (
     <main className="guide-detail-page">
       <PageContainer>
-        {structuredData.map((schema, index) => (
-          <script
-            key={`${guide.slug}-schema-${index}`}
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{__html: JSON.stringify(schema)}}
-          />
-        ))}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{__html: JSON.stringify(structuredData)}}
+        />
 
         <section className="page-section guide-hero">
           <div className="guide-hero__topbar">
@@ -941,13 +938,10 @@ function renderFunctionScenarioGuidePage(
   return (
     <main className="guide-detail-page">
       <PageContainer>
-        {structuredData.map((schema, index) => (
-          <script
-            key={`${guide.slug}-schema-${index}`}
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{__html: JSON.stringify(schema)}}
-          />
-        ))}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{__html: JSON.stringify(structuredData)}}
+        />
 
         <section className="page-section guide-hero">
           <div className="guide-hero__topbar">

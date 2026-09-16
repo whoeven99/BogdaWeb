@@ -4,11 +4,9 @@ import {HelpCenterDocsLayout} from "@/components/sections/HelpCenterDocsLayout";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {getHelpCenterDocMap, getHelpCenterDocs, helpCenterDocs} from "@/content/help-center";
 import {extractFaqEntriesFromHtml} from "@/lib/content/sections";
-import {localizeHref} from "@/lib/i18n";
 import {getRequestLocale} from "@/lib/i18n-server";
-import {buildPageMetadata} from "@/lib/seo/metadata";
-import {siteUrl} from "@/lib/seo/metadata";
-import {buildBreadcrumbSchema, buildFaqSchema, buildTechArticleSchema} from "@/lib/seo/schema";
+import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
+import {buildBreadcrumbSchema, buildFaqSchema, buildTechArticleSchema, buildGraphSchema} from "@/lib/seo/schema";
 
 type HelpCenterDetailPageProps = {
   params: Promise<{slug: string}>;
@@ -75,11 +73,11 @@ export default async function HelpCenterDetailPage({params}: HelpCenterDetailPag
   }
 
   const faqEntries = extractFaqEntriesFromHtml(doc.contentHtml);
-  const pageUrl = new URL(localizeHref(locale, doc.href), siteUrl).toString();
-  const structuredData = [
+  const pageUrl = toAbsoluteLocalizedUrl(locale, doc.href);
+  const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
       {name: "Home", item: siteUrl},
-      {name: copy.breadcrumbLabel, item: new URL(localizeHref(locale, "/help-center"), siteUrl).toString()},
+      {name: copy.breadcrumbLabel, item: toAbsoluteLocalizedUrl(locale, "/help-center")},
       {name: doc.title, item: pageUrl},
     ]),
     buildTechArticleSchema({
@@ -90,18 +88,15 @@ export default async function HelpCenterDetailPage({params}: HelpCenterDetailPag
       keywords: doc.meta,
     }),
     ...(faqEntries.length ? [buildFaqSchema(faqEntries)] : []),
-  ];
+  ]);
 
   return (
     <main>
       <PageContainer>
-        {structuredData.map((schema, index) => (
-          <script
-            key={`${doc.slug}-schema-${index}`}
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{__html: JSON.stringify(schema)}}
-          />
-        ))}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{__html: JSON.stringify(structuredData)}}
+        />
         <HelpCenterDocsLayout currentDoc={doc} docs={docs} eyebrow={copy.eyebrow} locale={locale} />
       </PageContainer>
     </main>

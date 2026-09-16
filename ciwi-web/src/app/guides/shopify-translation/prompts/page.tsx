@@ -1,10 +1,9 @@
 import {ContentIndexHero} from "@/components/sections/ContentIndexHero";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {promptGroups, promptModels, translationPrompts} from "@/content/translation-prompts";
-import {localizeHref} from "@/lib/i18n";
 import {getRequestLocale} from "@/lib/i18n-server";
-import {buildPageMetadata, siteUrl} from "@/lib/seo/metadata";
-import {buildBreadcrumbSchema, buildWebPageSchema} from "@/lib/seo/schema";
+import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
+import {buildBreadcrumbSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 
 export async function generateMetadata() {
   const locale = await getRequestLocale();
@@ -70,12 +69,12 @@ export default async function ShopifyTranslationPromptsPage() {
           },
         };
 
-  const pageUrl = new URL(localizeHref(locale, "/guides/shopify-translation/prompts"), siteUrl).toString();
-  const structuredData = [
+  const pageUrl = toAbsoluteLocalizedUrl(locale, "/guides/shopify-translation/prompts");
+  const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
       {name: "Home", item: siteUrl},
-      {name: locale === "zh-cn" ? "指南" : "Guides", item: new URL(localizeHref(locale, "/guides"), siteUrl).toString()},
-      {name: locale === "zh-cn" ? "翻译地图" : "Translation map", item: new URL(localizeHref(locale, "/guides/shopify-translation"), siteUrl).toString()},
+      {name: locale === "zh-cn" ? "指南" : "Guides", item: toAbsoluteLocalizedUrl(locale, "/guides")},
+      {name: locale === "zh-cn" ? "翻译地图" : "Translation map", item: toAbsoluteLocalizedUrl(locale, "/guides/shopify-translation")},
       {name: copy.structuredData.name, item: pageUrl},
     ]),
     buildWebPageSchema({
@@ -85,20 +84,17 @@ export default async function ShopifyTranslationPromptsPage() {
       keywords: copy.structuredData.keywords,
       type: "CollectionPage",
     }),
-  ];
+  ]);
 
   const hasPrompts = translationPrompts.length > 0;
 
   return (
     <main className="guides-hub-page">
       <PageContainer>
-        {structuredData.map((schema, index) => (
-          <script
-            key={`shopify-translation-prompts-schema-${index}`}
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{__html: JSON.stringify(schema)}}
-          />
-        ))}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{__html: JSON.stringify(structuredData)}}
+        />
 
         <section className="page-section page-hero">
           <ContentIndexHero eyebrow={copy.hero.eyebrow} title={copy.hero.title} description={copy.hero.description} />

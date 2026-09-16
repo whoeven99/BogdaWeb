@@ -5,10 +5,9 @@ import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getProductMap, products} from "@/content/products";
 import {getFeaturedUseCasesByProduct, getProductPlaybookHref, getUseCasesByProduct} from "@/content/use-cases";
-import {localizeHref} from "@/lib/i18n";
 import {getRequestLocale} from "@/lib/i18n-server";
-import {buildPageMetadata, siteUrl} from "@/lib/seo/metadata";
-import {buildBreadcrumbSchema, buildWebPageSchema} from "@/lib/seo/schema";
+import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
+import {buildBreadcrumbSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 import {notFound} from "next/navigation";
 
 type ProductPlaybookPageProps = {
@@ -127,12 +126,12 @@ export default async function ProductPlaybookPage({params}: ProductPlaybookPageP
   const useCases = getUseCasesByProduct(locale, product.slug);
   const featuredUseCases = getFeaturedUseCasesByProduct(locale, product.slug);
   const pagePath = getProductPlaybookHref(product.slug);
-  const pageUrl = new URL(localizeHref(locale, pagePath), siteUrl).toString();
-  const structuredData = [
+  const pageUrl = toAbsoluteLocalizedUrl(locale, pagePath);
+  const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
       {name: "Home", item: siteUrl},
-      {name: locale === "zh-cn" ? "产品" : "Products", item: new URL(localizeHref(locale, "/products"), siteUrl).toString()},
-      {name: product.name, item: new URL(localizeHref(locale, `/products/${product.slug}`), siteUrl).toString()},
+      {name: locale === "zh-cn" ? "产品" : "Products", item: toAbsoluteLocalizedUrl(locale, "/products")},
+      {name: product.name, item: toAbsoluteLocalizedUrl(locale, `/products/${product.slug}`)},
       {name: locale === "zh-cn" ? "方案集" : "Playbook", item: pageUrl},
     ]),
     buildWebPageSchema({
@@ -142,18 +141,15 @@ export default async function ProductPlaybookPage({params}: ProductPlaybookPageP
       keywords: [product.name, ...useCases.map((item) => item.category)],
       type: "CollectionPage",
     }),
-  ];
+  ]);
 
   return (
     <main>
       <PageContainer>
-        {structuredData.map((schema, index) => (
-          <script
-            key={`${product.slug}-playbook-schema-${index}`}
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{__html: JSON.stringify(schema)}}
-          />
-        ))}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{__html: JSON.stringify(structuredData)}}
+        />
 
         <section className="py-12 sm:py-16 lg:py-20">
           <div className="content-hero-shell">

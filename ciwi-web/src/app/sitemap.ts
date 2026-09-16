@@ -1,3 +1,5 @@
+import {getPublishedProblems} from "@/lib/merchant-intelligence/content";
+import {targetUrl} from "@/lib/merchant-intelligence/core.mjs";
 import type {MetadataRoute} from "next";
 
 import {authors} from "@/content/authors";
@@ -110,6 +112,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const review of getToolReviews(locale)) {
       addEntry(review.href, locale, review.publishedAt);
     }
+  }
+
+  const merchantProblems = getPublishedProblems();
+  if (merchantProblems.length) addEntry("/shopify", "en");
+  for (const problem of merchantProblems) {
+    addEntry(targetUrl(problem), "en", problem.page?.reviewedAt ?? undefined);
   }
 
   return [...entries.values()];

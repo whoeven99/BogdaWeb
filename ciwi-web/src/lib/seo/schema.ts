@@ -28,7 +28,8 @@ export function buildGraphSchema(schemas: unknown[]) {
   return {
     "@context": "https://schema.org",
     "@graph": schemas.map((schema) => {
-      const {["@context"]: _context, ...rest} = schema as Record<string, unknown>;
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const {["@context"]: __context, ...rest} = schema as Record<string, unknown>;
       return rest;
     }),
   };

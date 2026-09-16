@@ -9,10 +9,9 @@ import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getAvailableProductResearchLocales, getProductResearchArticleMap, getProductResearchWorkflowArticles} from "@/content/product-research";
 import {getToolReviewHrefMap} from "@/content/tool-reviews";
-import {localizeHref} from "@/lib/i18n";
 import {getRequestLocale} from "@/lib/i18n-server";
-import {buildPageMetadata, siteUrl} from "@/lib/seo/metadata";
-import {buildBreadcrumbSchema, buildFaqSchema, buildTechArticleSchema, buildWebPageSchema} from "@/lib/seo/schema";
+import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
+import {buildBreadcrumbSchema, buildFaqSchema, buildTechArticleSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 
 type ProductResearchArticlePageProps = {
   params: Promise<{slug: string}>;
@@ -143,12 +142,12 @@ function getPageCopy(locale: "en" | "zh-cn") {
 }
 
 function buildStructuredData(locale: "en" | "zh-cn", article: {title: string; description: string; href: string; publishedAt: string; keywords: string[]; faq: {question: string; answer: string}[]}) {
-  const pageUrl = new URL(localizeHref(locale, article.href), siteUrl).toString();
+  const pageUrl = toAbsoluteLocalizedUrl(locale, article.href);
 
-  return [
+  return buildGraphSchema([
     buildBreadcrumbSchema([
       {name: "Home", item: siteUrl},
-      {name: locale === "zh-cn" ? "Shopify 选品" : "Product Research", item: new URL(localizeHref(locale, "/resources/product-research"), siteUrl).toString()},
+      {name: locale === "zh-cn" ? "Shopify 选品" : "Product Research", item: toAbsoluteLocalizedUrl(locale, "/resources/product-research")},
       {name: article.title, item: pageUrl},
     ]),
     buildWebPageSchema({
@@ -165,7 +164,7 @@ function buildStructuredData(locale: "en" | "zh-cn", article: {title: string; de
       keywords: article.keywords,
     }),
     buildFaqSchema(article.faq),
-  ];
+  ]);
 }
 
 export function generateStaticParams() {
@@ -224,13 +223,10 @@ export default async function ProductResearchArticlePage({params}: ProductResear
   return (
     <main className="guide-detail-page">
       <PageContainer>
-        {structuredData.map((schema, index) => (
-          <script
-            key={`${article.slug}-schema-${index}`}
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{__html: JSON.stringify(schema)}}
-          />
-        ))}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{__html: JSON.stringify(structuredData)}}
+        />
 
         <section className="py-12 sm:py-16 lg:py-20">
           <div className="content-hero-shell">

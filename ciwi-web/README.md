@@ -213,3 +213,7 @@ SHOPIFY_SPARK_API_KEY=d68a7533dbbe676af335f27d01d87a12
 - 增加 MDX 富媒体组件
 - 增加内容校验的重复 slug / alternate 完整性检查
 - 增加更完整的内容发布 SOP
+
+## Merchant Problem Intelligence
+
+问题信号导入、归并、评分、五类内容模板和发布流程见 [MVP 说明](docs/merchant-intelligence/README.md)。运行 `npm run intelligence -- report` 查看机会列表，`npm run intelligence:test` 验证核心流程。公共入口为 `/shopify/`，仅展示已审核发布的英文内容。

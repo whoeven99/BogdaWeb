@@ -23,32 +23,30 @@ export function ContentIndexCard({
   className,
 }: ContentIndexCardProps) {
   const HeadingTag = titleLevel;
-  const classes = [
-    "group flex h-full flex-col rounded-[28px] p-7 transition-all duration-200 sm:p-8",
+  const variantClass =
+    variant === "soft" ? "ui-content-index-card--soft" : "ui-content-index-card--bordered";
+  const metaPillClass =
     variant === "soft"
-      ? "bg-slate-50/70 shadow-[0_14px_36px_-28px_rgba(15,23,42,0.18)] hover:-translate-y-0.5 hover:bg-white"
-      : "border border-slate-200/80 bg-slate-50/70 hover:-translate-y-0.5 hover:border-emerald-200 hover:bg-white",
-    className,
-  ]
-    .filter(Boolean)
-    .join(" ");
+      ? "ui-content-index-card__meta-pill--soft"
+      : "ui-content-index-card__meta-pill";
+  const classes = ["ui-content-index-card", variantClass, className].filter(Boolean).join(" ");
 
   return (
     <article className={classes}>
-      <div className="flex flex-wrap gap-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+      <div className="ui-content-index-card__meta">
         {meta.map((item) => (
-          <span key={item} className={variant === "soft" ? "rounded-full bg-white px-3 py-1" : "rounded-full border border-slate-200 bg-white/90 px-3 py-1"}>
+          <span key={item} className={metaPillClass}>
             {item}
           </span>
         ))}
       </div>
-      <HeadingTag className="mt-5 text-[22px] font-semibold tracking-[-0.03em] text-slate-950">
+      <HeadingTag className="ui-content-index-card__heading">
         <LocalizedLink href={href} className="transition-colors hover:text-emerald-700">
           {title}
         </LocalizedLink>
       </HeadingTag>
-      <p className="mt-4 flex-1 text-[15px] leading-8 text-slate-600">{description}</p>
-      <div className="mt-7">
+      <p className="ui-content-index-card__body">{description}</p>
+      <div className="ui-content-index-card__cta">
         <CardCtaLink href={href} variant="text">
           {ctaLabel}
         </CardCtaLink>

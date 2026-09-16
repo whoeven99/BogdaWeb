@@ -3,9 +3,8 @@ import {ResourceCollectionSection} from "@/components/sections/ResourceCollectio
 import {PageContainer} from "@/components/ui/PageContainer";
 import {getBestShopifyAppCollections} from "@/content/best-shopify-apps";
 import {getRequestLocale} from "@/lib/i18n-server";
-import {localizeHref} from "@/lib/i18n";
-import {buildPageMetadata, siteUrl} from "@/lib/seo/metadata";
-import {buildBreadcrumbSchema, buildWebPageSchema} from "@/lib/seo/schema";
+import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
+import {buildBreadcrumbSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 
 export async function generateMetadata() {
   const locale = await getRequestLocale();
@@ -51,8 +50,8 @@ export default async function BestShopifyAppsHubPage() {
           },
         };
 
-  const pageUrl = new URL(localizeHref(locale, "/best-shopify-apps"), siteUrl).toString();
-  const structuredData = [
+  const pageUrl = toAbsoluteLocalizedUrl(locale, "/best-shopify-apps");
+  const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
       {name: "Home", item: siteUrl},
       {name: copy.structuredData.name, item: pageUrl},
@@ -64,18 +63,15 @@ export default async function BestShopifyAppsHubPage() {
       keywords: [...copy.structuredData.keywords],
       type: "CollectionPage",
     }),
-  ];
+  ]);
 
   return (
     <main className="best-apps-hub-page">
       <PageContainer>
-        {structuredData.map((schema, index) => (
-          <script
-            key={`best-apps-hub-schema-${index}`}
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{__html: JSON.stringify(schema)}}
-          />
-        ))}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{__html: JSON.stringify(structuredData)}}
+        />
 
         <section className="page-section page-hero">
           <ContentIndexHero eyebrow={copy.hero.eyebrow} title={copy.hero.title} description={copy.hero.description} />

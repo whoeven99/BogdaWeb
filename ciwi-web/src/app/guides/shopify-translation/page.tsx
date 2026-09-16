@@ -6,10 +6,9 @@ import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getFunctionScenarioGuides} from "@/content/function-scenario-guides";
 import {getUiCopy} from "@/content/ui-copy";
 import type {Locale} from "@/lib/i18n";
-import {localizeHref} from "@/lib/i18n";
 import {getRequestLocale} from "@/lib/i18n-server";
-import {buildPageMetadata, siteUrl} from "@/lib/seo/metadata";
-import {buildBreadcrumbSchema, buildWebPageSchema} from "@/lib/seo/schema";
+import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
+import {buildBreadcrumbSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 
 type StructureGroup = {
   id: string;
@@ -170,11 +169,11 @@ export default async function ShopifyTranslationMapPage() {
           },
         };
 
-  const pageUrl = new URL(localizeHref(locale, "/guides/shopify-translation"), siteUrl).toString();
-  const structuredData = [
+  const pageUrl = toAbsoluteLocalizedUrl(locale, "/guides/shopify-translation");
+  const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
       {name: "Home", item: siteUrl},
-      {name: locale === "zh-cn" ? "指南" : "Guides", item: new URL(localizeHref(locale, "/guides"), siteUrl).toString()},
+      {name: locale === "zh-cn" ? "指南" : "Guides", item: toAbsoluteLocalizedUrl(locale, "/guides")},
       {name: copy.structuredData.name, item: pageUrl},
     ]),
     buildWebPageSchema({
@@ -184,18 +183,15 @@ export default async function ShopifyTranslationMapPage() {
       keywords: copy.structuredData.keywords,
       type: "CollectionPage",
     }),
-  ];
+  ]);
 
   return (
     <main className="guides-hub-page">
       <PageContainer>
-        {structuredData.map((schema, index) => (
-          <script
-            key={`shopify-translation-schema-${index}`}
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{__html: JSON.stringify(schema)}}
-          />
-        ))}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{__html: JSON.stringify(structuredData)}}
+        />
 
         <section className="page-section page-hero">
           <ContentIndexHero eyebrow={copy.hero.eyebrow} title={copy.hero.title} description={copy.hero.description}>

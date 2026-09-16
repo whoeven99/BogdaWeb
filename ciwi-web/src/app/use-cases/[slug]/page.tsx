@@ -3,10 +3,9 @@ import {UseCaseHero} from "@/components/sections/UseCaseHero";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {getProductMap} from "@/content/products";
 import {getProductPlaybookHref, getUseCaseMap, useCases} from "@/content/use-cases";
-import {localizeHref} from "@/lib/i18n";
 import {getRequestLocale} from "@/lib/i18n-server";
-import {buildPageMetadata, siteUrl} from "@/lib/seo/metadata";
-import {buildBreadcrumbSchema, buildFaqSchema, buildWebPageSchema} from "@/lib/seo/schema";
+import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
+import {buildBreadcrumbSchema, buildFaqSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 import {notFound} from "next/navigation";
 
 type UseCaseDetailPageProps = {
@@ -96,12 +95,12 @@ export default async function UseCaseDetailPage({params}: UseCaseDetailPageProps
 
   const product = getProductMap(locale)[useCase.productSlug];
   const playbookHref = getProductPlaybookHref(useCase.productSlug);
-  const pageUrl = new URL(localizeHref(locale, `/use-cases/${useCase.slug}`), siteUrl).toString();
+  const pageUrl = toAbsoluteLocalizedUrl(locale, `/use-cases/${useCase.slug}`);
   const productName = product?.name ?? useCase.productSlug;
-  const structuredData = [
+  const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
       {name: "Home", item: siteUrl},
-      {name: locale === "zh-cn" ? "应用场景" : "Use Cases", item: new URL(localizeHref(locale, "/use-cases"), siteUrl).toString()},
+      {name: locale === "zh-cn" ? "应用场景" : "Use Cases", item: toAbsoluteLocalizedUrl(locale, "/use-cases")},
       {name: useCase.title, item: pageUrl},
     ]),
     buildWebPageSchema({
@@ -111,18 +110,15 @@ export default async function UseCaseDetailPage({params}: UseCaseDetailPageProps
       keywords: [useCase.category, productName, ...useCase.outcomes],
     }),
     buildFaqSchema(useCase.faq),
-  ];
+  ]);
 
   return (
     <main>
       <PageContainer>
-        {structuredData.map((schema, index) => (
-          <script
-            key={`${useCase.slug}-schema-${index}`}
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{__html: JSON.stringify(schema)}}
-          />
-        ))}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{__html: JSON.stringify(structuredData)}}
+        />
 
         <UseCaseHero
           backHref={playbookHref}

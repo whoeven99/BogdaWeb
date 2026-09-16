@@ -26,8 +26,8 @@ export function SimpleCardGridSection({
   gridClassName,
   cardClassName,
 }: SimpleCardGridSectionProps) {
-  const gridClasses = ["card-grid", gridClassName].filter(Boolean).join(" ");
-  const itemClasses = ["surface-card", cardClassName].filter(Boolean).join(" ");
+  const gridClasses = ["ui-simple-card-grid", gridClassName].filter(Boolean).join(" ");
+  const itemClasses = ["ui-simple-card-grid__item", cardClassName].filter(Boolean).join(" ");
 
   return (
     <section id={id} className={className}>
@@ -35,7 +35,7 @@ export function SimpleCardGridSection({
       <div className={gridClasses}>
         {items.map((item) => (
           <article key={`${item.title ?? "body"}-${item.description}`} className={itemClasses}>
-            {item.title ? <h3>{item.title}</h3> : null}
+            {item.title ? <h3 className="ui-simple-card-grid__item-title">{item.title}</h3> : null}
             <p className="quote">{item.description}</p>
           </article>
         ))}

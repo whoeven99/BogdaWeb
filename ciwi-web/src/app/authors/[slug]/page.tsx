@@ -7,10 +7,9 @@ import {authors, getAuthorById, getAuthorBySlug} from "@/content/authors";
 import {getBlogPosts} from "@/content/blog";
 import {getFunctionScenarioGuides} from "@/content/function-scenario-guides";
 import {getLocalizationGuides} from "@/content/localization-guides";
-import {localizeHref} from "@/lib/i18n";
 import {getRequestLocale} from "@/lib/i18n-server";
-import {buildPageMetadata, siteUrl} from "@/lib/seo/metadata";
-import {buildBreadcrumbSchema, buildWebPageSchema} from "@/lib/seo/schema";
+import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
+import {buildBreadcrumbSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 
 type AuthorPageProps = {
   params: Promise<{slug: string}>;
@@ -105,8 +104,8 @@ export default async function AuthorDetailPage({params}: AuthorPageProps) {
           },
         };
 
-  const pageUrl = new URL(localizeHref(locale, `/authors/${author.id}`), siteUrl).toString();
-  const structuredData = [
+  const pageUrl = toAbsoluteLocalizedUrl(locale, `/authors/${author.id}`);
+  const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
       {name: "Home", item: siteUrl},
       {name: copy.structuredData.name, item: pageUrl},
@@ -117,18 +116,15 @@ export default async function AuthorDetailPage({params}: AuthorPageProps) {
       description: copy.structuredData.description,
       type: "CollectionPage",
     }),
-  ];
+  ]);
 
   return (
     <main className="author-page">
       <PageContainer>
-        {structuredData.map((schema, index) => (
-          <script
-            key={`author-schema-${index}`}
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{__html: JSON.stringify(schema)}}
-          />
-        ))}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{__html: JSON.stringify(structuredData)}}
+        />
 
         <section className="page-section page-hero">
           <div className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">{copy.hero.eyebrow}</div>

@@ -49,19 +49,19 @@ export function BlogFeed({posts, title, description}: BlogFeedProps) {
 
       {pageCount > 1 ? (
         <nav
-          className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
+          className="ui-blog-feed__pagination"
           aria-label={uiCopy.blog.paginationLabel}
         >
           <button
             type="button"
-            className="inline-flex h-11 items-center justify-center rounded-full border border-slate-200 bg-white px-5 text-sm font-semibold text-slate-700 shadow-sm transition-colors hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-700 disabled:cursor-not-allowed disabled:opacity-50"
+            className="ui-btn--pagination-prevnext"
             onClick={() => setPage((current) => Math.max(1, current - 1))}
             disabled={page === 1}
           >
             {uiCopy.blog.previousLabel}
           </button>
 
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="ui-blog-feed__pagination-pages">
             {Array.from({length: pageCount}, (_, index) => {
               const targetPage = index + 1;
               const isActive = targetPage === page;
@@ -70,12 +70,7 @@ export function BlogFeed({posts, title, description}: BlogFeedProps) {
                 <button
                   key={targetPage}
                   type="button"
-                  className={[
-                    "inline-flex h-11 min-w-11 items-center justify-center rounded-full border px-4 text-sm font-semibold transition-colors",
-                    isActive
-                      ? "border-slate-950 bg-slate-950 text-white"
-                      : "border-slate-200 bg-white text-slate-700 hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-700",
-                  ].join(" ")}
+                  className={`ui-btn--pagination${isActive ? " ui-btn--pagination-active" : ""}`}
                   onClick={() => setPage(targetPage)}
                   aria-current={isActive ? "page" : undefined}
                 >
@@ -87,7 +82,7 @@ export function BlogFeed({posts, title, description}: BlogFeedProps) {
 
           <button
             type="button"
-            className="inline-flex h-11 items-center justify-center rounded-full border border-slate-200 bg-white px-5 text-sm font-semibold text-slate-700 shadow-sm transition-colors hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-700 disabled:cursor-not-allowed disabled:opacity-50"
+            className="ui-btn--pagination-prevnext"
             onClick={() => setPage((current) => Math.min(pageCount, current + 1))}
             disabled={page === pageCount}
           >

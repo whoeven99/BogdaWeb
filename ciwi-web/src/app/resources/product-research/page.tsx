@@ -8,9 +8,8 @@ import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getProductResearchHub, getProductResearchWorkflowArticles} from "@/content/product-research";
 import {getToolReviewHrefMap, getToolReviews} from "@/content/tool-reviews";
 import {getRequestLocale} from "@/lib/i18n-server";
-import {localizeHref} from "@/lib/i18n";
-import {buildPageMetadata, siteUrl} from "@/lib/seo/metadata";
-import {buildBreadcrumbSchema, buildFaqSchema, buildWebPageSchema} from "@/lib/seo/schema";
+import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
+import {buildBreadcrumbSchema, buildFaqSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 
 function getHubCopy(locale: "en" | "zh-cn") {
   return locale === "zh-cn"
@@ -148,8 +147,8 @@ export default async function ProductResearchHubPage() {
     return null;
   }
 
-  const pageUrl = new URL(localizeHref(locale, "/resources/product-research"), siteUrl).toString();
-  const structuredData = [
+  const pageUrl = toAbsoluteLocalizedUrl(locale, "/resources/product-research");
+  const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
       {name: "Home", item: siteUrl},
       {name: copy.structuredData.name, item: pageUrl},
@@ -162,7 +161,7 @@ export default async function ProductResearchHubPage() {
       type: "CollectionPage",
     }),
     buildFaqSchema(hub.faq),
-  ];
+  ]);
 
   const tocItems = [
     {href: "#overview", label: copy.sections.overview.title},
@@ -176,13 +175,10 @@ export default async function ProductResearchHubPage() {
   return (
     <main className="product-research-hub-page">
       <PageContainer>
-        {structuredData.map((schema, index) => (
-          <script
-            key={`product-research-hub-schema-${index}`}
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{__html: JSON.stringify(schema)}}
-          />
-        ))}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{__html: JSON.stringify(structuredData)}}
+        />
 
         <section className="py-12 sm:py-16 lg:py-20">
           <ContentIndexHero eyebrow={copy.hero.eyebrow} title={hub.title} description={hub.description}>
