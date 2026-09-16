@@ -1,8 +1,11 @@
 import {UseCasePlaybookCard} from "@/components/cards/UseCasePlaybookCard";
+import {ContentIndexCard} from "@/components/cards/ContentIndexCard";
 import {FinalCtaSection} from "@/components/sections/FinalCtaSection";
 import {Button} from "@/components/ui/Button";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
+import {getFunctionScenarioGuides} from "@/content/function-scenario-guides";
+import {getLocalizationGuides} from "@/content/localization-guides";
 import {getProductMap, products} from "@/content/products";
 import {getFeaturedUseCasesByProduct, getProductPlaybookHref, getUseCasesByProduct} from "@/content/use-cases";
 import {getRequestLocale} from "@/lib/i18n-server";
@@ -42,6 +45,12 @@ function getPlaybookCopy(locale: "en" | "zh-cn") {
         linkLabel: "打开场景",
         metaLabel: "应用场景",
       },
+      guides: {
+        eyebrow: "配套指南",
+        title: "相关指南与最佳实践",
+        description: "按产品对应的翻译场景去看更具体的工作流，或直接进入行业本地化指南。",
+        ctaLabel: "阅读指南",
+      },
       finalCta: {
         title: "继续扩展这个产品的方案集",
         description: "现在已经有产品级聚合页，接下来可以继续补更多场景、缩略图和差异化内容模块。",
@@ -76,6 +85,12 @@ function getPlaybookCopy(locale: "en" | "zh-cn") {
     card: {
       linkLabel: "Open use case",
       metaLabel: "Use Case",
+    },
+    guides: {
+      eyebrow: "Related guides",
+      title: "Guides & best practices for this product",
+      description: "Drill into the Shopify translation workflows and localization strategy guides that pair with this product.",
+      ctaLabel: "Read guide",
     },
     finalCta: {
       title: "Ready to grow this product playbook",
@@ -125,7 +140,56 @@ export default async function ProductPlaybookPage({params}: ProductPlaybookPageP
 
   const useCases = getUseCasesByProduct(locale, product.slug);
   const featuredUseCases = getFeaturedUseCasesByProduct(locale, product.slug);
+  const localizationGuides = getLocalizationGuides(locale);
+  const functionScenarioGuides = getFunctionScenarioGuides(locale);
   const pagePath = getProductPlaybookHref(product.slug);
+
+  let relatedGuides: Array<{href: string; title: string; description: string; meta: string[]; ctaLabel: string}> | null = null;
+  if (product.slug === "translator") {
+    const fsTop = functionScenarioGuides.slice(0, 12).map((item) => ({
+      href: item.href,
+      title: item.title,
+      description: item.description,
+      meta: [item.guideLabel],
+      ctaLabel: copy.guides.ctaLabel,
+    }));
+    const lsShopify = localizationGuides.filter((item) => item.segmentLabel === "Shopify").slice(0, 3).map((item) => ({
+      href: item.href,
+      title: item.title,
+      description: item.description,
+      meta: [item.guideLabel],
+      ctaLabel: copy.guides.ctaLabel,
+    }));
+    relatedGuides = [...fsTop, ...lsShopify].slice(0, 12);
+  } else if (product.slug === "spark-analytics-agent") {
+    const slugKeywords = [
+      "metafields-metaobjects",
+      "structured-data-schema",
+      "search-filters",
+      "markets",
+      "customer-support-content",
+      "store-locator-locations",
+      "shopify-localization-strategy-2026",
+      "shopify-international-expansion-guide-2026",
+      "meta-titles-descriptions",
+      "checkout",
+    ];
+    const fs = functionScenarioGuides.filter((item) => slugKeywords.some((kw) => item.slug.includes(kw))).slice(0, 6).map((item) => ({
+      href: item.href,
+      title: item.title,
+      description: item.description,
+      meta: [item.guideLabel],
+      ctaLabel: copy.guides.ctaLabel,
+    }));
+    const ls = localizationGuides.filter((item) => slugKeywords.some((kw) => item.slug.includes(kw))).slice(0, 3).map((item) => ({
+      href: item.href,
+      title: item.title,
+      description: item.description,
+      meta: [item.guideLabel],
+      ctaLabel: copy.guides.ctaLabel,
+    }));
+    relatedGuides = [...fs, ...ls].slice(0, 8);
+  }
   const pageUrl = toAbsoluteLocalizedUrl(locale, pagePath);
   const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
@@ -240,6 +304,24 @@ export default async function ProductPlaybookPage({params}: ProductPlaybookPageP
             ))}
           </div>
         </section>
+
+        {relatedGuides && relatedGuides.length > 0 && (
+          <section className="page-section">
+            <SectionHeading eyebrow={copy.guides.eyebrow} title={copy.guides.title} description={copy.guides.description} />
+            <div className="ui-simple-card-grid mt-8">
+              {relatedGuides.map((item) => (
+                <ContentIndexCard
+                  key={item.href}
+                  href={item.href}
+                  title={item.title}
+                  description={item.description}
+                  meta={item.meta}
+                  ctaLabel={item.ctaLabel}
+                />
+              ))}
+            </div>
+          </section>
+        )}
 
         <FinalCtaSection
           title={copy.finalCta.title}
