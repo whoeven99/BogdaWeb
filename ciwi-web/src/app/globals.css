@@ -5182,6 +5182,38 @@ select {
     @apply grid gap-7 sm:grid-cols-2 xl:grid-cols-4;
   }
 
+  .product-playbook-page .page-section .ui-section-heading {
+    @apply space-y-4 sm:space-y-5;
+  }
+  .product-playbook-page .page-section .ui-section-heading__content {
+    @apply space-y-4 sm:space-y-5;
+  }
+  .product-playbook-page .page-section .ui-section-heading__eyebrow {
+    @apply text-[11px] tracking-[0.2em];
+  }
+  .product-playbook-page .page-section .ui-section-heading__title {
+    @apply text-[28px] leading-[1.15] sm:text-[32px] sm:leading-[1.15];
+  }
+  .product-playbook-page .page-section .ui-section-heading__description {
+    @apply text-base leading-8 sm:text-[17px];
+  }
+  .product-playbook-page .page-section .playbook-grid {
+    @apply mt-10 sm:mt-12 lg:mt-14;
+  }
+  .product-playbook-page .page-section .scenario-library-header + .empty,
+  .product-playbook-page .page-section .scenario-library-header + .grid {
+    @apply mt-10 sm:mt-12 lg:mt-14;
+  }
+  .product-playbook-page .scenario-library-card h3 {
+    @apply text-xl leading-[1.2] tracking-[-0.02em];
+  }
+  .product-playbook-page .scenario-library-card ul {
+    @apply mt-5 space-y-3;
+  }
+  .product-playbook-page .scenario-library-card .card-footer {
+    @apply mt-7 pt-6;
+  }
+
   .callout {
     @apply rounded-[32px] bg-[linear-gradient(180deg,rgba(240,247,243,0.94),rgba(255,255,255,0.96))] px-6 py-8 text-slate-950 shadow-[0_24px_80px_-40px_rgba(15,23,42,0.14)] sm:px-8 lg:px-10;
   }

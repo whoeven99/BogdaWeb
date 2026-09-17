@@ -11,6 +11,7 @@ import {getProducts} from "@/content/products";
 import {getSolutions} from "@/content/solutions";
 import {getToolReviews} from "@/content/tool-reviews";
 import {getProductPlaybookHref, getUseCases} from "@/content/use-cases";
+import {getKeywordUseCases} from "@/content/shopify-keyword-use-cases";
 import type {Locale} from "@/lib/i18n";
 import {toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 
@@ -31,6 +32,7 @@ const llmsConfig = {
     blog: "/blog/",
     products: "/products/",
     use_cases: "/use-cases/",
+    spark_playbook_keyword: "/products/spark-analytics-agent/playbook/keyword/",
     solutions: "/solutions/",
     compare: "/compare/",
     best_shopify_apps: "/best-shopify-apps/",
@@ -127,6 +129,23 @@ function buildBody() {
     lines.push(`### Locale: ${locale}  (total: ${getUseCases(locale).length})`);
     for (const item of getUseCases(locale).sort((a, b) => a.slug.localeCompare(b.slug))) {
       lines.push(`${absolute(locale, `/use-cases/${item.slug}`)}  [${item.category}] ${item.title}`);
+    }
+    lines.push("");
+  }
+  lines.push("## Spark Playbook Keyword Library");
+  lines.push("");
+  for (const locale of locales) {
+    const sparkProduct = getProducts(locale).find((p) => p.slug === "spark-analytics-agent");
+    const sparkName = sparkProduct ? sparkProduct.name : "Spark Analytics Agent";
+    const kwItems = getKeywordUseCases(locale).sort((a, b) => a.slug.localeCompare(b.slug));
+    const sparkPlaybookHref = getProductPlaybookHref("spark-analytics-agent");
+    const kwIndexHref = `${sparkPlaybookHref}/keyword`;
+    lines.push(`### Locale: ${locale}  (product: ${sparkName})  (total: ${kwItems.length})  |  index: ${absolute(locale, kwIndexHref)}`);
+    for (const product of getProducts(locale)) {
+      const prodPlaybook = getProductPlaybookHref(product.slug);
+      for (const item of kwItems) {
+        lines.push(`${absolute(locale, `${prodPlaybook}/keyword/${item.slug}`)}  [${item.category}] (${product.name}) ${item.keyword} :: ${item.title}`);
+      }
     }
     lines.push("");
   }

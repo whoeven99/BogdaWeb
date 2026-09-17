@@ -137,14 +137,14 @@ export default async function UseCaseDetailPage({params}: UseCaseDetailPageProps
           <div className="mx-auto max-w-6xl">
             <h2 className="text-3xl font-semibold tracking-[-0.04em] text-slate-950 sm:text-4xl">{copy.sections.howItWorksTitle}</h2>
             <p className="mt-4 max-w-3xl text-[15px] leading-7 text-slate-600">{copy.sections.howItWorksDescription}</p>
-            <div className="mt-8 grid gap-6">
+            <div className="mt-10 grid gap-6 sm:mt-12">
               {useCase.workflow.map((step, index) => (
                 <article
                   key={step.title}
-                  className="grid gap-6 overflow-hidden rounded-[24px] border border-slate-200/80 bg-white/94 p-5 shadow-[0_14px_34px_-26px_rgba(15,23,42,0.2)] md:grid-cols-[minmax(0,360px)_minmax(0,1fr)] md:p-6"
+                  className="grid gap-5 overflow-hidden rounded-[24px] border border-slate-200/80 bg-white/94 p-5 shadow-[0_14px_34px_-26px_rgba(15,23,42,0.2)] md:grid-cols-[minmax(0,280px)_minmax(0,1fr)] md:gap-7 md:p-6 lg:grid-cols-[minmax(0,320px)_minmax(0,1fr)]"
                 >
                   <div
-                    className="aspect-[4/3] rounded-[18px] bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.14),transparent_34%),linear-gradient(135deg,rgba(241,245,249,0.95),rgba(255,255,255,0.98))]"
+                    className="mx-auto aspect-[5/4] w-full max-w-[280px] rounded-[18px] bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.14),transparent_34%),linear-gradient(135deg,rgba(241,245,249,0.95),rgba(255,255,255,0.98))] lg:max-w-[320px]"
                     aria-hidden="true"
                   />
                   <div className="flex flex-col justify-center">

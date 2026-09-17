@@ -14,6 +14,7 @@ import {getProducts} from "@/content/products";
 import {getSolutions} from "@/content/solutions";
 import {getToolReviews} from "@/content/tool-reviews";
 import {getProductPlaybookHref, getUseCases} from "@/content/use-cases";
+import {getKeywordUseCases} from "@/content/shopify-keyword-use-cases";
 import type {Locale} from "@/lib/i18n";
 import {toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 
@@ -71,6 +72,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const product of getProducts(locale)) {
       addEntry(`/products/${product.slug}`, locale);
       addEntry(getProductPlaybookHref(product.slug), locale);
+      addEntry(`${getProductPlaybookHref(product.slug)}/keyword`, locale);
+      for (const keywordUseCase of getKeywordUseCases(locale)) {
+        addEntry(`${getProductPlaybookHref(product.slug)}/keyword/${keywordUseCase.slug}`, locale);
+      }
     }
 
     for (const useCase of getUseCases(locale)) {

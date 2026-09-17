@@ -30,7 +30,13 @@ export function Button({href, children, variant = "primary"}: ButtonProps) {
 
   if (isExternalHref(href)) {
     return (
-      <a href={href} className={className} data-button-variant={variant}>
+      <a
+        href={href}
+        className={className}
+        data-button-variant={variant}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         {children}
       </a>
     );

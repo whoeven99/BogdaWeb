@@ -249,6 +249,30 @@ export function buildReviewSchema({
   };
 }
 
+type HowToSchemaInput = {
+  url: string;
+  name: string;
+  description?: string;
+  steps: {name: string; text: string; url?: string}[];
+};
+
+export function buildHowToSchema({url, name, description, steps}: HowToSchemaInput) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name,
+    ...(description ? {description} : undefined),
+    ...(url ? {mainEntityOfPage: url} : undefined),
+    step: steps.map((step, index) => ({
+      "@type": "HowToStep",
+      position: index + 1,
+      name: step.name,
+      text: step.text,
+      ...(step.url ? {url: step.url} : undefined),
+    })),
+  };
+}
+
 export function buildWebPageSchema({
   url,
   name,
