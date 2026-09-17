@@ -1998,8 +1998,8 @@ select {
 }
 
 .guides-hub-page__hero {
-  padding-top: var(--space-6);
-  padding-bottom: var(--space-6);
+  padding-top: var(--space-4);
+  padding-bottom: var(--space-3);
 }
 
 .guides-hub-page__section {
@@ -2050,7 +2050,7 @@ select {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--space-4);
-  margin: var(--space-6) 0;
+  margin: var(--space-4) 0 var(--space-2);
 }
 
 .guide-meta-grid--two-up {
@@ -4761,8 +4761,8 @@ select {
   }
 
   .guides-hub-page__hero {
-    padding-top: var(--space-5);
-    padding-bottom: var(--space-5);
+    padding-top: var(--space-4);
+    padding-bottom: var(--space-4);
   }
 
   .guides-hub-page__section {
@@ -5148,7 +5148,7 @@ select {
   }
 
   .guides-hub-page__hero {
-    @apply pt-6 pb-6 sm:pt-8 sm:pb-8 lg:pt-9 lg:pb-9;
+    @apply pt-4 pb-3 sm:pt-5 sm:pb-4 lg:pt-6 lg:pb-4;
   }
 
   .guides-hub-page__section {
@@ -5252,7 +5252,7 @@ select {
 
   .guide-meta-grid,
   .compare-page-overview {
-    @apply mt-8 grid gap-4 md:grid-cols-3;
+    @apply mt-5 mb-2 grid gap-4 md:grid-cols-3;
   }
 
   .guide-meta-grid--two-up {
