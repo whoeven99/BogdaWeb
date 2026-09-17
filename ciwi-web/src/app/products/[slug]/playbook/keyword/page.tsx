@@ -2,6 +2,7 @@ import {FinalCtaSection} from "@/components/sections/FinalCtaSection";
 import {BackLink} from "@/components/ui/BackLink";
 import {Button} from "@/components/ui/Button";
 import {CardCtaLink} from "@/components/ui/CardCtaLink";
+import {PaginationNav, ScenarioFilterBar} from "@/components/ui/CategoryFilter";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {
@@ -14,11 +15,14 @@ import {getProductPlaybookHref} from "@/content/use-cases";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
-import {notFound} from "next/navigation";
+import {notFound, permanentRedirect} from "next/navigation";
 
 type SparkPlaybookKeywordIndexPageProps = {
-  params: Promise<{slug: string}>;
+  params: Promise<{slug: string; page?: string}>;
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
 };
+
+const CATEGORIES_PER_PAGE = 25;
 
 function keywordIndexHref(productSlug: string) {
   return `${getProductPlaybookHref(productSlug)}/keyword`;
@@ -26,6 +30,70 @@ function keywordIndexHref(productSlug: string) {
 
 function keywordDetailHref(productSlug: string, slug: string) {
   return `${keywordIndexHref(productSlug)}/${slug}`;
+}
+
+function keywordPageHref(productSlug: string, page: number) {
+  const base = keywordIndexHref(productSlug);
+  if (page <= 1) return base;
+  return `${base}/page/${page}`;
+}
+
+function keywordCategoryHref(productSlug: string, categoryName: string) {
+  const base = keywordIndexHref(productSlug);
+  return `${base}/category/${catSlug(categoryName)}`;
+}
+
+function catSlug(name: string) {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function buildPagination(
+  current: number,
+  total: number,
+  pageHref: (page: number) => string,
+  locale: "en" | "zh-cn",
+) {
+  void locale;
+  type P =
+    | {type: "prev" | "next"; href?: string; disabled?: boolean}
+    | {type: "page"; page: number; label: string; href: string; active?: boolean}
+    | {type: "ellipsis"};
+
+  const out: P[] = [];
+  out.push({
+    type: "prev",
+    href: current > 1 ? pageHref(current - 1) : undefined,
+    disabled: current <= 1,
+  });
+
+  const pages = new Set<number>([1, 2, total - 1, total, current, current - 1, current + 1]);
+  const ordered = [...pages]
+    .filter((p) => p >= 1 && p <= total)
+    .sort((a, b) => a - b);
+
+  let lastShown = 0;
+  for (const p of ordered) {
+    if (p - lastShown > 1) {
+      out.push({type: "ellipsis"});
+    }
+    out.push({
+      type: "page",
+      page: p,
+      label: String(p),
+      href: pageHref(p),
+      active: p === current,
+    });
+    lastShown = p;
+  }
+  out.push({
+    type: "next",
+    href: current < total ? pageHref(current + 1) : undefined,
+    disabled: current >= total,
+  });
+  return out;
 }
 
 function getUiCopy(locale: "en" | "zh-cn") {
@@ -52,7 +120,8 @@ function getUiCopy(locale: "en" | "zh-cn") {
       categories: {
         eyebrow: "主题目录",
         title: "按主题进入你关心的 Spark 运营流程",
-        description: "按场景数量从多到少排序，每个主题下直接列出对应场景页入口。",
+        description:
+          "按场景数量从多到少排序，每个主题下直接列出对应场景页入口。支持按关键词/主题即时筛选；主题较多时可翻页浏览。",
         totalLabel: "条场景",
       },
       finalCta: {
@@ -88,7 +157,7 @@ function getUiCopy(locale: "en" | "zh-cn") {
       eyebrow: "Topics",
       title: "Pick the Spark workflow you care about",
       description:
-        "Sorted by topic size so the most common Spark workflows are visible first. Every entry links to a dedicated scenario page with the full prompt and FAQ set.",
+        "Sorted by topic size so the most common Spark workflows are visible first. Filter by keyword or topic name; paginate to browse beyond the first 25 topics.",
       totalLabel: "scenarios",
     },
     finalCta: {
@@ -107,7 +176,10 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({params}: SparkPlaybookKeywordIndexPageProps) {
   const locale = await getRequestLocale();
-  const {slug} = await params;
+  const resolved = await params;
+  const {slug} = resolved;
+  const page = (resolved as {page?: string}).page;
+  const pageNum = page ? Number(page) : 1;
   const copy = getUiCopy(locale);
   const product = getProductMap(locale)[slug];
 
@@ -120,18 +192,54 @@ export async function generateMetadata({params}: SparkPlaybookKeywordIndexPagePr
     });
   }
 
+  if (page === "1") {
+    // canonical 指向 keyword/（无 page）
+    return buildPageMetadata({
+      title: locale === "zh-cn" ? `${product.name} ${copy.metadata.titleSuffix}` : `${product.name} ${copy.metadata.titleSuffix}`,
+      description: product.shortDescription + " " + copy.metadata.description,
+      path: keywordIndexHref(slug),
+      locale,
+      keywords: ["Shopify AI", "Shopify automation", "Spark playbook", `${product.name} AI prompts`],
+    });
+  }
+
+  const categories = getKeywordUseCaseCategories(locale);
+  const totalPages = Math.max(1, Math.ceil(categories.length / CATEGORIES_PER_PAGE));
+  const safePage = Math.min(totalPages, Math.max(1, Number.isFinite(pageNum) ? pageNum : 1));
+  const pageTitle =
+    locale === "zh-cn"
+      ? `${product.name} ${copy.metadata.titleSuffix} (第 ${safePage}/${totalPages} 页)`
+      : `${product.name} ${copy.metadata.titleSuffix} (page ${safePage}/${totalPages})`;
   return buildPageMetadata({
-    title: locale === "zh-cn" ? `${product.name} ${copy.metadata.titleSuffix}` : `${product.name} ${copy.metadata.titleSuffix}`,
+    title: pageTitle,
     description: product.shortDescription + " " + copy.metadata.description,
-    path: keywordIndexHref(slug),
+    path: keywordPageHref(slug, safePage),
     locale,
-    keywords: ["Shopify AI", "Shopify automation", "Spark playbook", `${product.name} AI prompts`],
+    keywords: [
+      "Shopify AI",
+      "Shopify automation",
+      "Spark playbook",
+      `${product.name} AI prompts`,
+      locale === "zh-cn" ? `第 ${safePage} 页` : `page ${safePage}`,
+    ],
   });
+}
+
+async function resolvePageParam(param?: string): Promise<{resolvedPage: number; totalPages: number}> {
+  const locale = await getRequestLocale();
+  const totalPages = Math.max(1, Math.ceil(getKeywordUseCaseCategories(locale).length / CATEGORIES_PER_PAGE));
+  if (!param) return {resolvedPage: 1, totalPages};
+  const n = Number(param);
+  if (!Number.isFinite(n)) return {resolvedPage: 1, totalPages};
+  const resolved = Math.max(1, Math.min(totalPages, Math.floor(n)));
+  return {resolvedPage: resolved, totalPages};
 }
 
 export default async function SparkPlaybookKeywordIndexPage({params}: SparkPlaybookKeywordIndexPageProps) {
   const locale = await getRequestLocale();
-  const {slug: productSlug} = await params;
+  const resolved = await params;
+  const {slug: productSlug} = resolved;
+  const pageParam = (resolved as {page?: string}).page;
   const copy = getUiCopy(locale);
   const product = getProductMap(locale)[productSlug];
 
@@ -139,11 +247,23 @@ export default async function SparkPlaybookKeywordIndexPage({params}: SparkPlayb
     notFound();
   }
 
+  const {resolvedPage, totalPages} = await resolvePageParam(pageParam);
+
+  if (pageParam && (pageParam === "1" || String(resolvedPage) !== pageParam)) {
+    // page=1 或越界值，永久跳转到规范化的页 URL
+    permanentRedirect(keywordPageHref(productSlug, resolvedPage));
+  }
+
   const categories = getKeywordUseCaseCategories(locale);
   const total = getKeywordUseCases(locale).length;
   const INDEX_HREF = keywordIndexHref(productSlug);
   const playbookHref = getProductPlaybookHref(productSlug);
-  const pageUrl = toAbsoluteLocalizedUrl(locale, INDEX_HREF);
+
+  const startIdx = (resolvedPage - 1) * CATEGORIES_PER_PAGE;
+  const endIdx = startIdx + CATEGORIES_PER_PAGE;
+  const pagedCategories = categories.slice(startIdx, endIdx);
+
+  const pageUrl = toAbsoluteLocalizedUrl(locale, keywordPageHref(productSlug, resolvedPage));
   const playbookUrl = toAbsoluteLocalizedUrl(locale, playbookHref);
 
   const structuredData = buildGraphSchema([
@@ -160,21 +280,37 @@ export default async function SparkPlaybookKeywordIndexPage({params}: SparkPlayb
           locale === "zh-cn"
             ? `${product.name} 运营场景库`
             : `${product.name} operational scenario library`,
-        item: pageUrl,
+        item: toAbsoluteLocalizedUrl(locale, INDEX_HREF),
       },
+      ...(totalPages > 1 && resolvedPage > 1
+        ? [
+            {
+              name:
+                locale === "zh-cn"
+                  ? `第 ${resolvedPage} 页`
+                  : `Page ${resolvedPage}`,
+              item: pageUrl,
+            },
+          ]
+        : []),
     ]),
     buildWebPageSchema({
       url: pageUrl,
       name:
         locale === "zh-cn"
-          ? `${product.name} ${copy.metadata.titleSuffix}`
-          : `${product.name} ${copy.metadata.titleSuffix}`,
+          ? `${product.name} ${copy.metadata.titleSuffix}` +
+            (resolvedPage > 1 ? ` (第 ${resolvedPage}/${totalPages} 页)` : "")
+          : `${product.name} ${copy.metadata.titleSuffix}` +
+            (resolvedPage > 1 ? ` (page ${resolvedPage}/${totalPages})` : ""),
       description: product.shortDescription + " " + copy.metadata.description,
       keywords: [
         "Shopify AI",
         "Shopify automation",
         `${product.name} playbook`,
         `${total} Shopify use cases`,
+        ...(resolvedPage > 1
+          ? [locale === "zh-cn" ? `第 ${resolvedPage} 页` : `page ${resolvedPage}`]
+          : []),
       ],
       type: "CollectionPage",
     }),
@@ -185,6 +321,24 @@ export default async function SparkPlaybookKeywordIndexPage({params}: SparkPlayb
       ? `${product.name} 按主题浏览 500+ AI 运营场景`
       : `Browse ${product.name} 500+ operational scenarios by topic`;
 
+  const categoriesForFilter = categories.map((cat) => {
+    const items = getKeywordUseCasesByCategory(locale, cat.name);
+    return {
+      slug: catSlug(cat.name),
+      name: cat.name,
+      count: cat.count,
+      sampleKeywords: items.slice(0, 8).map((i) => i.keyword),
+      sampleTitles: items.slice(0, 6).map((i) => i.title),
+    };
+  });
+
+  const pagination = buildPagination(
+    resolvedPage,
+    totalPages,
+    (p) => keywordPageHref(productSlug, p),
+    locale,
+  );
+
   return (
     <main>
       <PageContainer>
@@ -193,25 +347,34 @@ export default async function SparkPlaybookKeywordIndexPage({params}: SparkPlayb
           dangerouslySetInnerHTML={{__html: JSON.stringify(structuredData)}}
         />
 
-        <section className="py-12 sm:py-16 lg:py-20">
+        <section className="py-10 sm:py-12 lg:py-16">
           <div className="mx-auto max-w-6xl">
             <BackLink href={playbookHref} label={copy.hero.backLabel} />
-            <div className="mt-8 grid gap-10 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] lg:items-end">
+            <div className="mt-6 grid gap-8 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] lg:items-end sm:mt-8 lg:gap-10">
               <div>
                 <div className="text-xs font-medium uppercase tracking-[0.2em] text-emerald-700/90">
                   {copy.hero.eyebrow}
                   <span className="ml-3 rounded-full bg-slate-100 px-2.5 py-0.5 text-[11px] font-semibold tracking-[0.12em] text-slate-500">
                     {total.toLocaleString()} {copy.categories.totalLabel} · {categories.length}{" "}
                     {locale === "zh-cn" ? "主题" : "topics"}
+                    {totalPages > 1 && (
+                      <>
+                        <span className="mx-2 text-slate-300">·</span>
+                        <span>
+                          {locale === "zh-cn" ? "第 " : "Page "}
+                          {resolvedPage}/{totalPages}
+                        </span>
+                      </>
+                    )}
                   </span>
                 </div>
-                <h1 className="mt-5 text-3xl font-semibold tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-5xl">
+                <h1 className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-slate-950 sm:mt-5 sm:text-4xl lg:text-5xl">
                   {heroTitle}
                 </h1>
-                <p className="mt-5 max-w-2xl text-[15px] leading-8 text-slate-600 sm:text-base">
+                <p className="mt-4 max-w-2xl text-[15px] leading-8 text-slate-600 sm:mt-5 sm:text-base">
                   {copy.hero.description}
                 </p>
-                <div className="mt-8 flex flex-wrap gap-3">
+                <div className="mt-6 flex flex-wrap gap-3 sm:mt-8">
                   <Button href={playbookHref}>{copy.hero.primaryLabel}</Button>
                   <Button href={`/products/${product.slug}`} variant="secondary">
                     {copy.hero.secondaryLabel}
@@ -219,66 +382,96 @@ export default async function SparkPlaybookKeywordIndexPage({params}: SparkPlayb
                 </div>
               </div>
             </div>
+
+            <div className="mt-8 sm:mt-10 lg:mt-12">
+              <ScenarioFilterBar
+                locale={locale}
+                productSlug={productSlug}
+                categories={categoriesForFilter}
+                chips={pagedCategories.map((c) => ({
+                  slug: catSlug(c.name),
+                  name: c.name,
+                  count: c.count,
+                }))}
+                currentPage={resolvedPage}
+                totalPages={totalPages}
+              />
+            </div>
           </div>
         </section>
 
-        <section className="py-10 sm:py-12 lg:py-14">
-          <div className="mx-auto max-w-6xl space-y-14">
+        <section className="pb-14 pt-6 sm:pb-16 sm:pt-8 lg:pb-20 lg:pt-10">
+          <div className="mx-auto max-w-6xl space-y-10 sm:space-y-12 lg:space-y-14">
             <SectionHeading
               eyebrow={copy.categories.eyebrow}
               title={copy.categories.title}
               description={copy.categories.description}
             />
 
-            {categories.map((cat) => {
-              const items = getKeywordUseCasesByCategory(locale, cat.name);
-              const slug = cat.name
-                .toLowerCase()
-                .replace(/[^a-z0-9]+/g, "-")
-                .replace(/^-+|-+$/g, "");
-              return (
-                <section
-                  key={cat.name}
-                  id={`cat-${slug}`}
-                  className="rounded-[30px] bg-white/82 px-6 py-9 shadow-[0_16px_48px_-28px_rgba(15,23,42,0.16)] sm:px-8 sm:py-10 lg:px-10 lg:py-11"
-                >
+            <div className="space-y-8 sm:space-y-10 lg:space-y-12">
+              {pagedCategories.map((cat) => {
+                const items = getKeywordUseCasesByCategory(locale, cat.name);
+                const slug = catSlug(cat.name);
+                return (
+                  <section
+                    key={cat.name}
+                    id={`cat-${slug}`}
+                    data-cat-slug={slug}
+                    className="rounded-[26px] bg-white/85 px-5 py-7 shadow-[0_14px_40px_-32px_rgba(15,23,42,0.16)] sm:px-7 sm:py-8 lg:px-8 lg:py-9"
+                  >
                   <div className="flex flex-wrap items-start justify-between gap-4">
-                    <div>
-                      <div className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">
-                        {cat.count} {copy.categories.totalLabel}
+                      <div>
+                        <div className="text-[11px] font-medium uppercase tracking-[0.18em] text-slate-400">
+                          {cat.count} {copy.categories.totalLabel}
+                        </div>
+                        <h2 className="mt-2 text-xl font-semibold tracking-[-0.03em] text-slate-950 sm:text-2xl lg:text-[26px]">
+                          {cat.name}
+                        </h2>
                       </div>
-                      <h2 className="mt-2 text-2xl font-semibold tracking-[-0.03em] text-slate-950 sm:text-3xl">
-                        {cat.name}
-                      </h2>
+                      <div>
+                        <CardCtaLink
+                          href={keywordCategoryHref(productSlug, cat.name)}
+                          variant="outlined"
+                        >
+                          {locale === "zh-cn" ? "查看全部场景" : "Open category page"}
+                        </CardCtaLink>
+                      </div>
                     </div>
-                  </div>
-                  <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                    {items.map((item) => (
-                      <li key={item.slug}>
-                        <article className="group flex h-full flex-col rounded-2xl border border-slate-200/75 bg-white/80 p-4.5 transition-colors hover:border-emerald-200 hover:bg-emerald-50/40 sm:p-5">
-                          <div className="flex flex-wrap items-center gap-2 text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">
-                            <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-slate-500 line-clamp-1">
-                              {item.keyword}
-                            </span>
-                          </div>
-                          <h3 className="mt-3 line-clamp-3 text-base font-semibold leading-6 text-slate-900 sm:text-[15px]">
-                            <CardCtaLink
-                              href={keywordDetailHref(productSlug, item.slug)}
-                              variant="text"
-                            >
-                              {item.title}
-                            </CardCtaLink>
-                          </h3>
-                          <p className="mt-3 line-clamp-3 text-[13.5px] leading-6 text-slate-500">
-                            {item.scenarioDescription}
-                          </p>
-                        </article>
-                      </li>
-                    ))}
-                  </ul>
-                </section>
-              );
-            })}
+                    <ul className="mt-6 grid gap-2.5 sm:grid-cols-2 sm:gap-3 lg:grid-cols-3">
+                      {items.map((item) => (
+                        <li key={item.slug}>
+                          <article className="group flex h-full flex-col rounded-2xl border border-slate-200/75 bg-white/85 p-4 transition-colors hover:border-emerald-200 hover:bg-emerald-50/40 sm:p-4.5">
+                            <div className="flex flex-wrap items-center gap-2 text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">
+                              <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-slate-500 line-clamp-1">
+                                {item.keyword}
+                              </span>
+                            </div>
+                            <h3 className="mt-2.5 line-clamp-3 text-[14.5px] font-semibold leading-6 text-slate-900 sm:mt-3 sm:text-base">
+                              <CardCtaLink
+                                href={keywordDetailHref(productSlug, item.slug)}
+                                variant="text"
+                              >
+                                {item.title}
+                              </CardCtaLink>
+                            </h3>
+                            <p className="mt-2 line-clamp-3 text-[13px] leading-6 text-slate-500 sm:mt-2.5 sm:text-[13.5px]">
+                              {item.scenarioDescription}
+                            </p>
+                          </article>
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
+                );
+              })}
+            </div>
+
+            <PaginationNav
+              locale={locale}
+              currentPage={resolvedPage}
+              totalPages={totalPages}
+              pagination={pagination}
+            />
           </div>
         </section>
 

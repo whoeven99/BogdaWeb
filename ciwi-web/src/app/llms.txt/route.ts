@@ -11,7 +11,7 @@ import {getProducts} from "@/content/products";
 import {getSolutions} from "@/content/solutions";
 import {getToolReviews} from "@/content/tool-reviews";
 import {getProductPlaybookHref, getUseCases} from "@/content/use-cases";
-import {getKeywordUseCases} from "@/content/shopify-keyword-use-cases";
+import {getKeywordUseCases, getKeywordUseCaseCategories} from "@/content/shopify-keyword-use-cases";
 import type {Locale} from "@/lib/i18n";
 import {toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 
@@ -140,9 +140,15 @@ function buildBody() {
     const kwItems = getKeywordUseCases(locale).sort((a, b) => a.slug.localeCompare(b.slug));
     const sparkPlaybookHref = getProductPlaybookHref("spark-analytics-agent");
     const kwIndexHref = `${sparkPlaybookHref}/keyword`;
-    lines.push(`### Locale: ${locale}  (product: ${sparkName})  (total: ${kwItems.length})  |  index: ${absolute(locale, kwIndexHref)}`);
+    const categories = getKeywordUseCaseCategories(locale);
+    lines.push(`### Locale: ${locale}  (product: ${sparkName})  (total: ${kwItems.length}) (categories: ${categories.length})  |  index: ${absolute(locale, kwIndexHref)}`);
+    const catNameSlug = (n: string) =>
+      n.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
     for (const product of getProducts(locale)) {
       const prodPlaybook = getProductPlaybookHref(product.slug);
+      for (const cat of categories) {
+        lines.push(`${absolute(locale, `${prodPlaybook}/keyword/category/${catNameSlug(cat.name)}`)}  [Category · ${cat.count}] (${product.name}) ${cat.name}`);
+      }
       for (const item of kwItems) {
         lines.push(`${absolute(locale, `${prodPlaybook}/keyword/${item.slug}`)}  [${item.category}] (${product.name}) ${item.keyword} :: ${item.title}`);
       }

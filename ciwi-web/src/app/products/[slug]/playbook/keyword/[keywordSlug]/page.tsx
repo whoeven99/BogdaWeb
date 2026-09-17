@@ -38,6 +38,14 @@ function keywordDetailHref(productSlug: string, slug: string) {
   return `${keywordIndexHref(productSlug)}/${slug}`;
 }
 
+function keywordCategoryHref(productSlug: string, categoryName: string) {
+  const slug = categoryName
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+  return `${keywordIndexHref(productSlug)}/category/${slug}`;
+}
+
 function getUiCopy(locale: "en" | "zh-cn") {
   if (locale === "zh-cn") {
     return {
@@ -337,6 +345,13 @@ export default async function SparkPlaybookKeywordDetailPage({params}: SparkPlay
       {
         name: locale === "zh-cn" ? "运营场景库" : "Scenario library",
         item: toAbsoluteLocalizedUrl(locale, INDEX_HREF),
+      },
+      {
+        name: item.category,
+        item: toAbsoluteLocalizedUrl(
+          locale,
+          keywordCategoryHref(product.slug, item.category),
+        ),
       },
       {name: item.title, item: pageUrl},
     ]),
