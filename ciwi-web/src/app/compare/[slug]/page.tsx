@@ -5,6 +5,7 @@ import type {CSSProperties} from "react";
 import {FaqSection} from "@/components/sections/FaqSection";
 import {FinalCtaSection} from "@/components/sections/FinalCtaSection";
 import {ArticleCard} from "@/components/cards/ArticleCard";
+import {BackLink} from "@/components/ui/BackLink";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import type {CompareItem, CompareMetric} from "@/content/compare";
@@ -17,6 +18,8 @@ import {getRequestLocale} from "@/lib/i18n-server";
 import {ciwiShopifyInstallUrl} from "@/lib/marketing-links";
 import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildFaqSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
+
+export const dynamic = "force-dynamic";
 
 type CompareDetailPageProps = {
   params: Promise<{slug: string}>;
@@ -1190,25 +1193,41 @@ export default async function CompareDetailPage({params}: CompareDetailPageProps
           type="application/ld+json"
           dangerouslySetInnerHTML={{__html: JSON.stringify(structuredData)}}
         />
-        <section className="py-12 sm:py-16 lg:py-20">
-          <div className="content-hero-shell">
-            <SectionHeading eyebrow={copy.hero.eyebrow} title={data.title} description={data.description} as="h1" />
-            <div className="compare-page-overview" aria-label={locale === "zh-cn" ? "对比页概览" : "Compare page overview"}>
-              <div className="compare-page-overview__item">
-                <span className="compare-page-overview__label">{locale === "zh-cn" ? "对比产品" : "Products"}</span>
-                <strong className="compare-page-overview__value">{primaryProductName} vs {data.alternativeName}</strong>
+        <section className="py-8 sm:py-10 lg:py-12">
+          <div className="mx-auto max-w-5xl">
+            <BackLink href="/compare" label={copy.breadcrumbLabel} />
+            <div className="mt-5 sm:mt-6">
+              <SectionHeading eyebrow={copy.hero.eyebrow} title={data.title} description={data.description} as="h1" />
+            </div>
+            <div
+              className="mt-6 grid gap-3 sm:grid-cols-3"
+              aria-label={locale === "zh-cn" ? "对比页概览" : "Compare page overview"}
+            >
+              <div className="rounded-2xl border border-slate-200/80 bg-white/90 p-4">
+                <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+                  {locale === "zh-cn" ? "对比产品" : "Products"}
+                </div>
+                <div className="mt-2 text-sm font-semibold text-slate-900">
+                  {primaryProductName} vs {data.alternativeName}
+                </div>
               </div>
-              <div className="compare-page-overview__item">
-                <span className="compare-page-overview__label">{locale === "zh-cn" ? "评分维度" : "Score dimensions"}</span>
-                <strong className="compare-page-overview__value">
+              <div className="rounded-2xl border border-slate-200/80 bg-white/90 p-4">
+                <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+                  {locale === "zh-cn" ? "评分维度" : "Score dimensions"}
+                </div>
+                <div className="mt-2 text-sm font-semibold text-slate-900">
                   {locale === "zh-cn"
                     ? `${data.scoreMatrix.length} 项功能 + ${data.summaryMetrics.length} 项摘要`
                     : `${data.scoreMatrix.length} feature signals + ${data.summaryMetrics.length} summary signals`}
-                </strong>
+                </div>
               </div>
-              <div className="compare-page-overview__item">
-                <span className="compare-page-overview__label">{locale === "zh-cn" ? "评测方式" : "Method"}</span>
-                <strong className="compare-page-overview__value">{locale === "zh-cn" ? "10 分制 / 弱中强" : "10-point / weak-medium-strong"}</strong>
+              <div className="rounded-2xl border border-slate-200/80 bg-white/90 p-4">
+                <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+                  {locale === "zh-cn" ? "评测方式" : "Method"}
+                </div>
+                <div className="mt-2 text-sm font-semibold text-slate-900">
+                  {locale === "zh-cn" ? "10 分制 / 弱中强" : "10-point / weak-medium-strong"}
+                </div>
               </div>
             </div>
           </div>

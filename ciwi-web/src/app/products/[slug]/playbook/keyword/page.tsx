@@ -7,15 +7,19 @@ import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {
   getKeywordUseCaseCategories,
+  getKeywordUseCaseCategorySlug,
   getKeywordUseCases,
   getKeywordUseCasesByCategory,
 } from "@/content/shopify-keyword-use-cases";
 import {getProductMap, products} from "@/content/products";
 import {getProductPlaybookHref} from "@/content/use-cases";
 import {getRequestLocale} from "@/lib/i18n-server";
+import {localizeHref} from "@/lib/i18n";
 import {buildPageMetadata, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 import {notFound, permanentRedirect} from "next/navigation";
+
+export const dynamic = "force-dynamic";
 
 type SparkPlaybookKeywordIndexPageProps = {
   params: Promise<{slug: string; page?: string}>;
@@ -38,16 +42,9 @@ function keywordPageHref(productSlug: string, page: number) {
   return `${base}/page/${page}`;
 }
 
-function keywordCategoryHref(productSlug: string, categoryName: string) {
+function keywordCategoryHref(productSlug: string, locale: "en" | "zh-cn", categoryName: string) {
   const base = keywordIndexHref(productSlug);
-  return `${base}/category/${catSlug(categoryName)}`;
-}
-
-function catSlug(name: string) {
-  return name
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
+  return `${base}/category/${getKeywordUseCaseCategorySlug(locale, categoryName)}`;
 }
 
 function buildPagination(
@@ -56,7 +53,6 @@ function buildPagination(
   pageHref: (page: number) => string,
   locale: "en" | "zh-cn",
 ) {
-  void locale;
   type P =
     | {type: "prev" | "next"; href?: string; disabled?: boolean}
     | {type: "page"; page: number; label: string; href: string; active?: boolean}
@@ -65,7 +61,7 @@ function buildPagination(
   const out: P[] = [];
   out.push({
     type: "prev",
-    href: current > 1 ? pageHref(current - 1) : undefined,
+      href: current > 1 ? localizeHref(locale, pageHref(current - 1)) : undefined,
     disabled: current <= 1,
   });
 
@@ -83,14 +79,14 @@ function buildPagination(
       type: "page",
       page: p,
       label: String(p),
-      href: pageHref(p),
+        href: localizeHref(locale, pageHref(p)),
       active: p === current,
     });
     lastShown = p;
   }
   out.push({
     type: "next",
-    href: current < total ? pageHref(current + 1) : undefined,
+      href: current < total ? localizeHref(locale, pageHref(current + 1)) : undefined,
     disabled: current >= total,
   });
   return out;
@@ -171,7 +167,9 @@ function getUiCopy(locale: "en" | "zh-cn") {
 }
 
 export async function generateStaticParams() {
-  return products.map((product) => ({slug: product.slug}));
+  return products
+    .filter((product) => product.slug === "spark-analytics-agent")
+    .map((product) => ({slug: product.slug}));
 }
 
 export async function generateMetadata({params}: SparkPlaybookKeywordIndexPageProps) {
@@ -246,12 +244,15 @@ export default async function SparkPlaybookKeywordIndexPage({params}: SparkPlayb
   if (!product) {
     notFound();
   }
+  if (product.slug !== "spark-analytics-agent") {
+    notFound();
+  }
 
   const {resolvedPage, totalPages} = await resolvePageParam(pageParam);
 
   if (pageParam && (pageParam === "1" || String(resolvedPage) !== pageParam)) {
     // page=1 或越界值，永久跳转到规范化的页 URL
-    permanentRedirect(keywordPageHref(productSlug, resolvedPage));
+    permanentRedirect(localizeHref(locale, keywordPageHref(productSlug, resolvedPage)));
   }
 
   const categories = getKeywordUseCaseCategories(locale);
@@ -324,7 +325,7 @@ export default async function SparkPlaybookKeywordIndexPage({params}: SparkPlayb
   const categoriesForFilter = categories.map((cat) => {
     const items = getKeywordUseCasesByCategory(locale, cat.name);
     return {
-      slug: catSlug(cat.name),
+      slug: getKeywordUseCaseCategorySlug(locale, cat.name),
       name: cat.name,
       count: cat.count,
       sampleKeywords: items.slice(0, 8).map((i) => i.keyword),
@@ -383,20 +384,6 @@ export default async function SparkPlaybookKeywordIndexPage({params}: SparkPlayb
               </div>
             </div>
 
-            <div className="mt-8 sm:mt-10 lg:mt-12">
-              <ScenarioFilterBar
-                locale={locale}
-                productSlug={productSlug}
-                categories={categoriesForFilter}
-                chips={pagedCategories.map((c) => ({
-                  slug: catSlug(c.name),
-                  name: c.name,
-                  count: c.count,
-                }))}
-                currentPage={resolvedPage}
-                totalPages={totalPages}
-              />
-            </div>
           </div>
         </section>
 
@@ -408,10 +395,26 @@ export default async function SparkPlaybookKeywordIndexPage({params}: SparkPlayb
               description={copy.categories.description}
             />
 
+              <div className="-mt-2 sm:-mt-3 lg:-mt-4">
+                <ScenarioFilterBar
+                  locale={locale}
+                  productSlug={productSlug}
+                  categories={categoriesForFilter}
+                  chips={pagedCategories.map((c) => ({
+                    slug: getKeywordUseCaseCategorySlug(locale, c.name),
+                    name: c.name,
+                    count: c.count,
+                  }))}
+                  currentPage={resolvedPage}
+                  totalPages={totalPages}
+                />
+              </div>
+
             <div className="space-y-8 sm:space-y-10 lg:space-y-12">
               {pagedCategories.map((cat) => {
                 const items = getKeywordUseCasesByCategory(locale, cat.name);
-                const slug = catSlug(cat.name);
+                  const previewItems = items.slice(0, 3);
+                const slug = getKeywordUseCaseCategorySlug(locale, cat.name);
                 return (
                   <section
                     key={cat.name}
@@ -428,17 +431,19 @@ export default async function SparkPlaybookKeywordIndexPage({params}: SparkPlayb
                           {cat.name}
                         </h2>
                       </div>
-                      <div>
-                        <CardCtaLink
-                          href={keywordCategoryHref(productSlug, cat.name)}
-                          variant="outlined"
-                        >
-                          {locale === "zh-cn" ? "查看全部场景" : "Open category page"}
-                        </CardCtaLink>
-                      </div>
+                        {items.length > 3 ? (
+                          <div>
+                            <CardCtaLink
+                              href={keywordCategoryHref(productSlug, locale, cat.name)}
+                              variant="outlined"
+                            >
+                              {locale === "zh-cn" ? "查看全部场景" : "Open category page"}
+                            </CardCtaLink>
+                          </div>
+                        ) : null}
                     </div>
                     <ul className="mt-6 grid gap-2.5 sm:grid-cols-2 sm:gap-3 lg:grid-cols-3">
-                      {items.map((item) => (
+                        {previewItems.map((item) => (
                         <li key={item.slug}>
                           <article className="group flex h-full flex-col rounded-2xl border border-slate-200/75 bg-white/85 p-4 transition-colors hover:border-emerald-200 hover:bg-emerald-50/40 sm:p-4.5">
                             <div className="flex flex-wrap items-center gap-2 text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">

@@ -2,6 +2,7 @@ import {getPublishedProblems} from "@/lib/merchant-intelligence/content";
 import {contentTypeLabels, targetUrl} from "@/lib/merchant-intelligence/core.mjs";
 import {ContentIndexHero} from "@/components/sections/ContentIndexHero";
 import {ResourceCollectionSection} from "@/components/sections/ResourceCollectionSection";
+import {LocalizedLink} from "@/components/ui/LocalizedLink";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {getFunctionScenarioGuides} from "@/content/function-scenario-guides";
 import {getLocalizationGuides} from "@/content/localization-guides";
@@ -9,6 +10,8 @@ import {getRequestLocale} from "@/lib/i18n-server";
 import {localizeHref} from "@/lib/i18n";
 import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
+
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata() {
   const locale = await getRequestLocale();
@@ -48,20 +51,44 @@ export default async function GuidesHubPage() {
             pagesLabel: "页面数",
           },
           quickJump: {
-            localization: "跳转到本地化指南",
-            scenarios: "跳转到功能场景指南",
+            localization: "跳转到本地化板块",
+            scenarios: "跳转到功能场景板块",
+          },
+          structureGuide: {
+            title: "页面关系说明",
+            description: "当前页是总览页，下面两个 section 用来集中展示全部指南；如果你只想浏览某一类内容，再进入对应的专题聚合页。",
+            hub: {
+              label: "当前页",
+              title: "Guides 总览页",
+              description: "先看全站指南结构，再从这里进入具体专题。",
+            },
+            localization: {
+              label: "专题聚合页",
+              title: "本地化指南页",
+              description: "聚焦行业、品牌与 B2B 本地化内容。",
+              cta: "进入本地化专题页",
+            },
+            scenarios: {
+              label: "专题聚合页",
+              title: "功能场景指南页",
+              description: "聚焦 Shopify 功能点与执行流程内容。",
+              cta: "进入功能场景专题页",
+            },
+            pagesLabel: "页面数",
           },
           sections: {
             localization: {
               eyebrow: "本地化指南",
               title: "行业、品牌与 B2B 本地化指南",
               description: "适合承接行业类搜索需求，重点讲类目特点、市场习惯、常见错误和本地化策略。",
+              cta: "进入本地化专题页",
             },
             scenarios: {
               eyebrow: "功能场景指南",
               title: "Shopify 功能场景翻译指南",
               description: "适合承接操作类搜索需求，重点讲某个 Shopify 功能点该翻哪些内容、怎么做、容易错在哪里。",
               viewStructureMap: "查看完整 Shopify 翻译结构地图",
+              cta: "进入功能场景专题页",
             },
           },
           emptyState: {
@@ -86,20 +113,44 @@ export default async function GuidesHubPage() {
             pagesLabel: "Pages",
           },
           quickJump: {
-            localization: "Jump to localization guides",
-            scenarios: "Jump to function scenario guides",
+            localization: "Jump to localization section",
+            scenarios: "Jump to function scenario section",
+          },
+          structureGuide: {
+            title: "How these pages relate",
+            description: "This page is the hub. The two sections below summarize all guides here, and each also has its own dedicated collection page when you want to browse only one topic cluster.",
+            hub: {
+              label: "Current page",
+              title: "Guides hub",
+              description: "Start here when you want the full site-wide guide overview.",
+            },
+            localization: {
+              label: "Collection page",
+              title: "Localization guides",
+              description: "Focused on industry, brand, and B2B localization content.",
+              cta: "Open localization collection",
+            },
+            scenarios: {
+              label: "Collection page",
+              title: "Function scenario guides",
+              description: "Focused on Shopify surfaces and execution workflows.",
+              cta: "Open function scenario collection",
+            },
+            pagesLabel: "Pages",
           },
           sections: {
             localization: {
               eyebrow: "Localization Guides",
               title: "Industry, Brand, and B2B localization guides",
               description: "Built for category-led search demand and broader localization education across markets, content types, and buying contexts.",
+              cta: "Open localization collection",
             },
             scenarios: {
               eyebrow: "Function Scenario Guides",
               title: "Shopify function scenario guides",
               description: "Built for how-to search intent around specific Shopify surfaces, translation tasks, and rollout workflows.",
               viewStructureMap: "View the full Shopify translation map",
+              cta: "Open function scenario collection",
             },
           },
           emptyState: {
@@ -131,7 +182,7 @@ export default async function GuidesHubPage() {
           dangerouslySetInnerHTML={{__html: JSON.stringify(structuredData)}}
         />
 
-        <section className="page-section page-hero">
+        <section className="page-section page-hero guides-hub-page__hero">
           <ContentIndexHero eyebrow={copy.hero.eyebrow} title={copy.hero.title} description={copy.hero.description}>
             <div className="guide-meta-grid guide-meta-grid--two-up">
               <div className="guide-meta-card guide-meta-card--plain">
@@ -160,6 +211,75 @@ export default async function GuidesHubPage() {
           </ContentIndexHero>
         </section>
 
+        <section className="page-section pt-0">
+          <div className="mx-auto max-w-6xl">
+            <div className="rounded-[24px] border border-slate-200/70 bg-slate-50/70 p-5 sm:p-6">
+              <div className="max-w-3xl">
+                <h2 className="text-[20px] font-semibold tracking-[-0.03em] text-slate-950 sm:text-[22px]">
+                  {copy.structureGuide.title}
+                </h2>
+                <p className="mt-2 text-sm leading-7 text-slate-600 sm:text-[15px]">
+                  {copy.structureGuide.description}
+                </p>
+              </div>
+
+              <div className="mt-5 grid gap-3 lg:grid-cols-3">
+                <div className="rounded-[20px] border border-slate-200/70 bg-white/80 p-4">
+                  <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+                    {copy.structureGuide.hub.label}
+                  </div>
+                  <h3 className="mt-2 text-base font-semibold text-slate-950">
+                    {copy.structureGuide.hub.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">
+                    {copy.structureGuide.hub.description}
+                  </p>
+                </div>
+
+                <div className="rounded-[20px] border border-slate-200/70 bg-white/80 p-4">
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+                      {copy.structureGuide.localization.label}
+                    </div>
+                    <span className="rounded-full bg-slate-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">
+                      {localizationGuides.length} {copy.structureGuide.pagesLabel}
+                    </span>
+                  </div>
+                  <h3 className="mt-2 text-base font-semibold text-slate-950">
+                    {copy.structureGuide.localization.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">
+                    {copy.structureGuide.localization.description}
+                  </p>
+                  <LocalizedLink href="/guides/localization" className="mt-3 inline-flex text-sm font-semibold text-emerald-700 hover:text-emerald-800">
+                    {copy.structureGuide.localization.cta}
+                  </LocalizedLink>
+                </div>
+
+                <div className="rounded-[20px] border border-slate-200/70 bg-white/80 p-4">
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+                      {copy.structureGuide.scenarios.label}
+                    </div>
+                    <span className="rounded-full bg-slate-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">
+                      {functionScenarioGuides.length} {copy.structureGuide.pagesLabel}
+                    </span>
+                  </div>
+                  <h3 className="mt-2 text-base font-semibold text-slate-950">
+                    {copy.structureGuide.scenarios.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">
+                    {copy.structureGuide.scenarios.description}
+                  </p>
+                  <LocalizedLink href="/guides/function-scenarios" className="mt-3 inline-flex text-sm font-semibold text-emerald-700 hover:text-emerald-800">
+                    {copy.structureGuide.scenarios.cta}
+                  </LocalizedLink>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {merchantGuides.length > 0 && <div id="task-guides">
           <ResourceCollectionSection
             eyebrow="Tasks & workflows"
@@ -171,6 +291,7 @@ export default async function GuidesHubPage() {
         </div>}
 
         <ResourceCollectionSection
+          id="localization-guides"
           eyebrow={copy.sections.localization.eyebrow}
           title={copy.sections.localization.title}
           description={copy.sections.localization.description}
@@ -180,11 +301,14 @@ export default async function GuidesHubPage() {
             href: guide.href,
             meta: [guide.segmentLabel, guide.guideLabel, String(guide.year)],
           }))}
+          ctaLabel={copy.sections.localization.cta}
+          ctaHref={localizeHref(locale, "/guides/localization")}
           emptyState={copy.emptyState}
-          className="page-section"
+          className="page-section guides-hub-page__section"
         />
 
         <ResourceCollectionSection
+          id="function-scenario-guides"
           eyebrow={copy.sections.scenarios.eyebrow}
           title={copy.sections.scenarios.title}
           description={copy.sections.scenarios.description}
@@ -194,11 +318,22 @@ export default async function GuidesHubPage() {
             href: guide.href,
             meta: [guide.segmentLabel, guide.guideLabel, String(guide.year)],
           }))}
-          ctaLabel={copy.sections.scenarios.viewStructureMap}
-          ctaHref={localizeHref(locale, "/guides/shopify-translation")}
+          ctaLabel={copy.sections.scenarios.cta}
+          ctaHref={localizeHref(locale, "/guides/function-scenarios")}
           emptyState={copy.emptyState}
-          className="page-section"
+          className="page-section guides-hub-page__section"
         />
+
+        <section className="page-section pt-0">
+          <div className="flex justify-start">
+            <LocalizedLink
+              href="/guides/shopify-translation"
+              className="inline-flex text-sm font-semibold text-slate-600 hover:text-slate-900"
+            >
+              {copy.sections.scenarios.viewStructureMap}
+            </LocalizedLink>
+          </div>
+        </section>
       </PageContainer>
     </main>
   );

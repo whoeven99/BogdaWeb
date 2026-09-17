@@ -1,12 +1,16 @@
 import {FaqSection} from "@/components/sections/FaqSection";
-import {UseCaseHero} from "@/components/sections/UseCaseHero";
+import {BackLink} from "@/components/ui/BackLink";
+import {Button} from "@/components/ui/Button";
 import {PageContainer} from "@/components/ui/PageContainer";
+import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getProductMap} from "@/content/products";
 import {getProductPlaybookHref, getUseCaseMap, useCases} from "@/content/use-cases";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildFaqSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 import {notFound} from "next/navigation";
+
+export const dynamic = "force-dynamic";
 
 type UseCaseDetailPageProps = {
   params: Promise<{slug: string}>;
@@ -120,18 +124,34 @@ export default async function UseCaseDetailPage({params}: UseCaseDetailPageProps
           dangerouslySetInnerHTML={{__html: JSON.stringify(structuredData)}}
         />
 
-        <UseCaseHero
-          backHref={playbookHref}
-          backLabel={copy.hero.backToPlaybook}
-          title={useCase.title}
-          description={useCase.heroDescription}
-          primaryLabel={useCase.ctaLabel || copy.hero.primaryLabel}
-          primaryHref={useCase.ctaHref}
-          metaItems={[
-            {label: copy.hero.productLabel, value: productName},
-            {label: copy.hero.categoryLabel, value: useCase.category},
-          ]}
-        />
+        <section className="py-8 sm:py-10 lg:py-12">
+          <div className="mx-auto max-w-5xl">
+            <BackLink href={playbookHref} label={copy.hero.backToPlaybook} />
+            <div className="mt-5 sm:mt-6">
+              <SectionHeading
+                title={useCase.title}
+                description={useCase.heroDescription}
+                as="h1"
+              />
+            </div>
+            <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:max-w-2xl">
+              {[
+                {label: copy.hero.productLabel, value: productName},
+                {label: copy.hero.categoryLabel, value: useCase.category},
+              ].map((item) => (
+                <div key={item.label} className="rounded-2xl border border-slate-200/80 bg-white/90 p-4">
+                  <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+                    {item.label}
+                  </div>
+                  <div className="mt-2 text-sm font-semibold text-slate-900">{item.value}</div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Button href={useCase.ctaHref}>{useCase.ctaLabel || copy.hero.primaryLabel}</Button>
+            </div>
+          </div>
+        </section>
 
         <section className="py-12 sm:py-14 lg:py-16">
           <div className="mx-auto max-w-6xl">

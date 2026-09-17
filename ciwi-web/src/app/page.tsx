@@ -15,6 +15,8 @@ import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildFaqSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata() {
   const locale = await getRequestLocale();
   const copy = getHomePageCopy(locale);

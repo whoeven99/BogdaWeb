@@ -21,6 +21,8 @@ import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildFaqSchema, buildGraphSchema, buildProductSchema, buildWebPageSchema} from "@/lib/seo/schema";
 
+export const dynamic = "force-dynamic";
+
 type ProductDetailPageProps = {
   params: Promise<{slug: string}>;
 };

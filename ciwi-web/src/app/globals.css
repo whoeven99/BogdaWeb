@@ -1997,6 +1997,17 @@ select {
   padding: var(--space-7) 0 var(--space-9);
 }
 
+.guides-hub-page__hero {
+  padding-top: var(--space-6);
+  padding-bottom: var(--space-6);
+}
+
+.guides-hub-page__section {
+  padding-top: var(--space-6);
+  padding-bottom: var(--space-7);
+  scroll-margin-top: var(--space-5);
+}
+
 .guide-hero__topbar {
   margin-bottom: var(--space-5);
 }
@@ -2319,14 +2330,6 @@ select {
 
 .guide-checklist {
   padding: var(--space-4) var(--space-6);
-}
-
-.best-apps-hero {
-  padding-top: var(--space-4);
-}
-
-.best-apps-hero__topbar {
-  margin-bottom: var(--space-5);
 }
 
 .best-apps-picks {
@@ -4757,6 +4760,17 @@ select {
     padding: var(--space-6) 0 var(--space-8);
   }
 
+  .guides-hub-page__hero {
+    padding-top: var(--space-5);
+    padding-bottom: var(--space-5);
+  }
+
+  .guides-hub-page__section {
+    padding-top: var(--space-5);
+    padding-bottom: var(--space-6);
+    scroll-margin-top: var(--space-4);
+  }
+
   .best-apps-pick__facts,
   .best-apps-pick__lists {
     grid-template-columns: 1fr;
@@ -5132,6 +5146,16 @@ select {
   .page-hero {
     @apply pt-8 sm:pt-10 lg:pt-12;
   }
+
+  .guides-hub-page__hero {
+    @apply pt-6 pb-6 sm:pt-8 sm:pb-8 lg:pt-9 lg:pb-9;
+  }
+
+  .guides-hub-page__section {
+    @apply pt-6 pb-8 sm:pt-8 sm:pb-10 lg:pt-9 lg:pb-12;
+    scroll-margin-top: 1.5rem;
+  }
+
 
   .surface-card,
   .info-card,
@@ -5649,34 +5673,6 @@ select {
 }
 .ui-stacked-info__chip-row {
   @apply mt-4 flex flex-wrap gap-2;
-}
-
-.ui-uc-hero {
-  @apply py-12 sm:py-16 lg:py-20;
-}
-.ui-uc-hero__inner {
-  @apply mx-auto max-w-5xl;
-}
-.ui-uc-hero__title-wrap {
-  @apply mt-8 space-y-5;
-}
-.ui-uc-hero__title {
-  @apply max-w-4xl text-pretty text-4xl font-semibold tracking-[-0.05em] text-slate-950 sm:text-5xl lg:text-[60px] lg:leading-[1.04];
-}
-.ui-uc-hero__desc {
-  @apply max-w-3xl text-lg leading-8 text-slate-600;
-}
-.ui-uc-hero__actions {
-  @apply mt-8 flex flex-wrap items-center gap-3;
-}
-.ui-uc-hero__meta {
-  @apply mt-10 grid max-w-2xl gap-4 border-t border-slate-200 pt-6 text-sm leading-7 text-slate-600 sm:grid-cols-2;
-}
-.ui-uc-hero__meta-label {
-  @apply text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400;
-}
-.ui-uc-hero__meta-value {
-  @apply mt-1 text-slate-900;
 }
 
 .ui-final-cta__eyebrow {

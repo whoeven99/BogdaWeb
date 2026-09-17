@@ -1,6 +1,5 @@
 import {notFound} from "next/navigation";
 
-import {DetailHeroPanel} from "@/components/sections/DetailHeroPanel";
 import {FinalCtaSection} from "@/components/sections/FinalCtaSection";
 import {SimpleCardGridSection} from "@/components/sections/SimpleCardGridSection";
 import {BackLink} from "@/components/ui/BackLink";
@@ -12,6 +11,8 @@ import appRatings from "@/content/data/app_ratings.json";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
+
+export const dynamic = "force-dynamic";
 
 type BestShopifyAppCollectionPageProps = {
   params: Promise<{slug: string}>;
@@ -212,36 +213,67 @@ export default async function BestShopifyAppCollectionPage({params}: BestShopify
           dangerouslySetInnerHTML={{__html: JSON.stringify(structuredData)}}
         />
 
-        <section className="page-section best-apps-hero">
-          <div className="best-apps-hero__topbar">
+        <section className="py-8 sm:py-10 lg:py-12">
+          <div className="mx-auto max-w-5xl">
             <BackLink href="/best-shopify-apps" label={copy.backLabel} />
-          </div>
+            <div className="mt-5 sm:mt-6">
+              <SectionHeading
+                eyebrow={collection.heroEyebrow}
+                title={collection.title}
+                description={collection.description}
+                as="h1"
+              />
+            </div>
 
-          <SectionHeading
-            eyebrow={collection.heroEyebrow}
-            title={collection.title}
-            description={collection.description}
-            as="h1"
-          />
+            <div className="mt-6 grid gap-3 sm:grid-cols-3">
+              {[
+                {label: copy.hero.metaLabels.category, value: collection.categoryLabel},
+                {label: copy.hero.metaLabels.year, value: collection.year},
+                {label: copy.hero.metaLabels.updated, value: collection.updatedLabel},
+              ].map((item) => (
+                <div key={item.label} className="rounded-2xl border border-slate-200/80 bg-white/90 p-4">
+                  <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+                    {item.label}
+                  </div>
+                  <div className="mt-2 text-sm font-semibold text-slate-900">{item.value}</div>
+                </div>
+              ))}
+            </div>
 
-          <DetailHeroPanel
-            metaItems={[
-              {label: copy.hero.metaLabels.category, value: collection.categoryLabel},
-              {label: copy.hero.metaLabels.year, value: collection.year},
-              {label: copy.hero.metaLabels.updated, value: collection.updatedLabel},
-            ]}
-            summaryLabel={copy.hero.summaryLabel}
-            summary={collection.summary}
-            intro={
-              <>
+            <div className="mt-6 rounded-[24px] border border-slate-200/80 bg-white/92 p-5 sm:p-6">
+              <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+                {copy.hero.summaryLabel}
+              </div>
+              <p className="mt-3 text-[15px] leading-7 text-slate-700 sm:text-base">
+                {collection.summary}
+              </p>
+              <div className="mt-4 space-y-3 text-[15px] leading-7 text-slate-600 sm:text-base">
                 {collection.intro.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
-              </>
-            }
-            tocLabel={copy.hero.tocLabel}
-            tocItems={copy.toc}
-          />
+              </div>
+            </div>
+
+            <nav
+              className="mt-6 rounded-[24px] border border-slate-200/80 bg-slate-50/80 p-5"
+              aria-label={copy.hero.tocLabel}
+            >
+              <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+                {copy.hero.tocLabel}
+              </div>
+              <div className="mt-3 flex flex-wrap gap-x-4 gap-y-2">
+                {copy.toc.map((item) => (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className="text-sm font-medium text-slate-600 transition-colors hover:text-emerald-700"
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </div>
+            </nav>
+          </div>
         </section>
 
         <SimpleCardGridSection

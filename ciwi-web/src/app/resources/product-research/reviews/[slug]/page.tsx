@@ -2,7 +2,6 @@ import {notFound} from "next/navigation";
 
 import {FaqSection} from "@/components/sections/FaqSection";
 import {ChecklistCardGrid} from "@/components/sections/ChecklistCardGrid";
-import {DetailHeroPanel} from "@/components/sections/DetailHeroPanel";
 import {SimpleCardGridSection} from "@/components/sections/SimpleCardGridSection";
 import {BackLink} from "@/components/ui/BackLink";
 import {CardCtaLink} from "@/components/ui/CardCtaLink";
@@ -12,6 +11,8 @@ import {getAvailableToolReviewLocales, getToolReviewMap, getToolReviews} from "@
 import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildFaqSchema, buildReviewSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
+
+export const dynamic = "force-dynamic";
 
 type ToolReviewDetailPageProps = {
   params: Promise<{slug: string}>;
@@ -228,27 +229,57 @@ export default async function ToolReviewDetailPage({params}: ToolReviewDetailPag
           dangerouslySetInnerHTML={{__html: JSON.stringify(structuredData)}}
         />
 
-        <section className="py-12 sm:py-16 lg:py-20">
-          <div className="content-hero-shell">
-            <div className="mb-6">
-              <BackLink href="/resources/product-research/reviews" label={copy.backLabel} />
+        <section className="py-8 sm:py-10 lg:py-12">
+          <div className="mx-auto max-w-5xl">
+            <BackLink href="/resources/product-research/reviews" label={copy.backLabel} />
+            <div className="mt-5 sm:mt-6">
+              <SectionHeading eyebrow={copy.hero.eyebrow} title={review.title} description={review.description} as="h1" />
             </div>
 
-            <SectionHeading eyebrow={copy.hero.eyebrow} title={review.title} description={review.description} as="h1" />
-
-            <DetailHeroPanel
-              metaItems={[
+            <div className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+              {[
                 {label: copy.hero.ratingLabel, value: `${formatRating(review.rating)}/10`},
                 {label: copy.hero.categoryLabel, value: review.categoryLabel},
                 {label: copy.hero.yearLabel, value: review.year},
                 {label: copy.hero.pricingLabel, value: review.pricing},
-              ]}
-              metaGridClassName="md:grid-cols-2 xl:grid-cols-4"
-              summaryLabel={copy.hero.summaryLabel}
-              summary={review.verdict}
-              tocLabel={copy.hero.tocLabel}
-              tocItems={tocItems}
-            />
+              ].map((item) => (
+                <div key={item.label} className="rounded-2xl border border-slate-200/80 bg-white/90 p-4">
+                  <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+                    {item.label}
+                  </div>
+                  <div className="mt-2 text-sm font-semibold text-slate-900">{item.value}</div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-6 rounded-[24px] border border-slate-200/80 bg-white/92 p-5 sm:p-6">
+              <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+                {copy.hero.summaryLabel}
+              </div>
+              <p className="mt-3 text-[15px] leading-7 text-slate-700 sm:text-base">
+                {review.verdict}
+              </p>
+            </div>
+
+            <nav
+              className="mt-6 rounded-[24px] border border-slate-200/80 bg-slate-50/80 p-5"
+              aria-label={copy.hero.tocLabel}
+            >
+              <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+                {copy.hero.tocLabel}
+              </div>
+              <div className="mt-3 flex flex-wrap gap-x-4 gap-y-2">
+                {tocItems.map((item) => (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className="text-sm font-medium text-slate-600 transition-colors hover:text-emerald-700"
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </div>
+            </nav>
           </div>
         </section>
 

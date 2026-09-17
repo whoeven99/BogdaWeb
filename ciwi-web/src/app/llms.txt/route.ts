@@ -11,7 +11,11 @@ import {getProducts} from "@/content/products";
 import {getSolutions} from "@/content/solutions";
 import {getToolReviews} from "@/content/tool-reviews";
 import {getProductPlaybookHref, getUseCases} from "@/content/use-cases";
-import {getKeywordUseCases, getKeywordUseCaseCategories} from "@/content/shopify-keyword-use-cases";
+import {
+  getKeywordUseCases,
+  getKeywordUseCaseCategories,
+  getKeywordUseCaseCategorySlug,
+} from "@/content/shopify-keyword-use-cases";
 import type {Locale} from "@/lib/i18n";
 import {toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 
@@ -27,6 +31,8 @@ const llmsConfig = {
   },
   content: {
     guides: "/guides/",
+    guides_localization: "/guides/localization/",
+    guides_function_scenarios: "/guides/function-scenarios/",
     resources: "/resources/",
     help_center: "/help-center/",
     blog: "/blog/",
@@ -142,15 +148,12 @@ function buildBody() {
     const kwIndexHref = `${sparkPlaybookHref}/keyword`;
     const categories = getKeywordUseCaseCategories(locale);
     lines.push(`### Locale: ${locale}  (product: ${sparkName})  (total: ${kwItems.length}) (categories: ${categories.length})  |  index: ${absolute(locale, kwIndexHref)}`);
-    const catNameSlug = (n: string) =>
-      n.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
-    for (const product of getProducts(locale)) {
-      const prodPlaybook = getProductPlaybookHref(product.slug);
+    if (sparkProduct) {
       for (const cat of categories) {
-        lines.push(`${absolute(locale, `${prodPlaybook}/keyword/category/${catNameSlug(cat.name)}`)}  [Category · ${cat.count}] (${product.name}) ${cat.name}`);
+        lines.push(`${absolute(locale, `${sparkPlaybookHref}/keyword/category/${getKeywordUseCaseCategorySlug(locale, cat.name)}`)}  [Category · ${cat.count}] (${sparkName}) ${cat.name}`);
       }
       for (const item of kwItems) {
-        lines.push(`${absolute(locale, `${prodPlaybook}/keyword/${item.slug}`)}  [${item.category}] (${product.name}) ${item.keyword} :: ${item.title}`);
+        lines.push(`${absolute(locale, `${sparkPlaybookHref}/keyword/${item.slug}`)}  [${item.category}] (${sparkName}) ${item.keyword} :: ${item.title}`);
       }
     }
     lines.push("");

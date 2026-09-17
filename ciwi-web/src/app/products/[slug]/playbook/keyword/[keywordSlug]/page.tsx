@@ -8,6 +8,7 @@ import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {
   getKeywordUseCaseBySlug,
+  getKeywordUseCaseCategorySlug,
   getKeywordUseCases,
   getRelatedKeywordUseCases,
 } from "@/content/shopify-keyword-use-cases";
@@ -24,6 +25,8 @@ import {
 } from "@/lib/seo/schema";
 import {notFound} from "next/navigation";
 
+export const dynamic = "force-dynamic";
+
 type SparkPlaybookKeywordDetailPageProps = {
   params: Promise<{slug: string; keywordSlug: string}>;
 };
@@ -38,11 +41,8 @@ function keywordDetailHref(productSlug: string, slug: string) {
   return `${keywordIndexHref(productSlug)}/${slug}`;
 }
 
-function keywordCategoryHref(productSlug: string, categoryName: string) {
-  const slug = categoryName
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
+function keywordCategoryHref(productSlug: string, locale: "en" | "zh-cn", categoryName: string) {
+  const slug = getKeywordUseCaseCategorySlug(locale, categoryName);
   return `${keywordIndexHref(productSlug)}/category/${slug}`;
 }
 
@@ -54,7 +54,7 @@ function getUiCopy(locale: "en" | "zh-cn") {
         description: "你访问的 Spark 运营场景页不存在。",
       },
       hero: {
-        backLabel: "返回 Spark 运营场景库",
+        backLabel: "返回所属主题",
         eyebrow: "Spark 运营场景库",
         categoryLabel: "所属主题",
         keywordLabel: "目标关键词",
@@ -111,7 +111,7 @@ function getUiCopy(locale: "en" | "zh-cn") {
       description: "The requested Spark operational scenario page does not exist.",
     },
     hero: {
-      backLabel: "Back to Spark scenario library",
+      backLabel: "Back to topic",
       eyebrow: "Spark playbook scenarios",
       categoryLabel: "Topic",
       keywordLabel: "Target keyword",
@@ -269,7 +269,9 @@ function formatAiPrompt(text: string): string {
 
 export async function generateStaticParams() {
   const keywords = getKeywordUseCases("en").map((item) => ({slug: item.slug}));
-  const productSlugs = products.map((product) => ({slug: product.slug}));
+  const productSlugs = products
+    .filter((product) => product.slug === "spark-analytics-agent")
+    .map((product) => ({slug: product.slug}));
   const params: Array<{slug: string; keywordSlug: string}> = [];
   for (const product of productSlugs) {
     for (const kw of keywords) {
@@ -314,8 +316,12 @@ export default async function SparkPlaybookKeywordDetailPage({params}: SparkPlay
   if (!product || !item) {
     notFound();
   }
+  if (product.slug !== "spark-analytics-agent") {
+    notFound();
+  }
 
   const INDEX_HREF = keywordIndexHref(productSlug);
+  const CATEGORY_HREF = keywordCategoryHref(productSlug, locale, item.category);
   const playbookHref = getProductPlaybookHref(productSlug);
   const pageUrl = toAbsoluteLocalizedUrl(locale, keywordDetailHref(productSlug, keywordSlug));
   const playbookUrl = toAbsoluteLocalizedUrl(locale, playbookHref);
@@ -350,7 +356,7 @@ export default async function SparkPlaybookKeywordDetailPage({params}: SparkPlay
         name: item.category,
         item: toAbsoluteLocalizedUrl(
           locale,
-          keywordCategoryHref(product.slug, item.category),
+          keywordCategoryHref(product.slug, locale, item.category),
         ),
       },
       {name: item.title, item: pageUrl},
@@ -378,27 +384,27 @@ export default async function SparkPlaybookKeywordDetailPage({params}: SparkPlay
           dangerouslySetInnerHTML={{__html: JSON.stringify(structuredData)}}
         />
 
-        <section className="py-12 sm:py-14 lg:py-18">
+        <section className="py-8 sm:py-10 lg:py-12">
           <div className="mx-auto max-w-5xl">
-            <BackLink href={INDEX_HREF} label={copy.hero.backLabel} />
-            <div className="mt-8">
-              <div className="text-xs font-medium uppercase tracking-[0.18em] text-emerald-700/90">
+            <BackLink href={CATEGORY_HREF} label={copy.hero.backLabel} />
+            <div className="mt-5 sm:mt-6">
+              <div className="text-[11px] font-medium uppercase tracking-[0.18em] text-emerald-700/90">
                 {copy.hero.eyebrow} · {product.name}
               </div>
-              <h1 className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-5xl">
+              <h1 className="mt-3 max-w-4xl text-3xl font-semibold tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-[42px] lg:leading-[1.08]">
                 {item.title}
               </h1>
-              <p className="mt-5 max-w-3xl text-[15px] leading-8 text-slate-600 sm:text-base">
+              <p className="mt-4 max-w-3xl text-[15px] leading-7 text-slate-600 sm:text-base">
                 {item.scenarioDescription}
               </p>
-              <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:max-w-2xl">
-                <div className="rounded-2xl border border-slate-200/80 bg-white/80 p-4 shadow-[0_14px_34px_-28px_rgba(15,23,42,0.18)]">
+              <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:max-w-2xl">
+                <div className="rounded-2xl border border-slate-200/80 bg-white/90 p-4">
                   <div className="text-xs font-medium uppercase tracking-[0.16em] text-slate-400">
                     {copy.hero.categoryLabel}
                   </div>
                   <div className="mt-2 text-sm font-semibold text-slate-900">{item.category}</div>
                 </div>
-                <div className="rounded-2xl border border-slate-200/80 bg-white/80 p-4 shadow-[0_14px_34px_-28px_rgba(15,23,42,0.18)]">
+                <div className="rounded-2xl border border-slate-200/80 bg-white/90 p-4">
                   <div className="text-xs font-medium uppercase tracking-[0.16em] text-slate-400">
                     {copy.hero.keywordLabel}
                   </div>
@@ -406,9 +412,6 @@ export default async function SparkPlaybookKeywordDetailPage({params}: SparkPlay
                     {item.keyword}
                   </div>
                 </div>
-              </div>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Button href={playbookHref}>{copy.hero.primaryLabel}</Button>
               </div>
             </div>
           </div>

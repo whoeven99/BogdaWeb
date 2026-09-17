@@ -22,6 +22,8 @@ import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildFaqSchema, buildTechArticleSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 
+export const dynamic = "force-dynamic";
+
 type GuideDetailPageProps = {
   params: Promise<{slug: string}>;
 };

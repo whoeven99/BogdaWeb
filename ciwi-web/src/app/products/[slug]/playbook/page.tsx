@@ -1,6 +1,7 @@
 import {UseCasePlaybookCard} from "@/components/cards/UseCasePlaybookCard";
 import {ContentIndexCard} from "@/components/cards/ContentIndexCard";
 import {FinalCtaSection} from "@/components/sections/FinalCtaSection";
+import {BackLink} from "@/components/ui/BackLink";
 import {Button} from "@/components/ui/Button";
 import {CardCtaLink} from "@/components/ui/CardCtaLink";
 import {PageContainer} from "@/components/ui/PageContainer";
@@ -15,6 +16,7 @@ import {
 } from "@/content/use-cases";
 import {
   getKeywordUseCaseCategories,
+  getKeywordUseCaseCategorySlug,
   getKeywordUseCases,
   getKeywordUseCasesByCategory,
 } from "@/content/shopify-keyword-use-cases";
@@ -22,6 +24,8 @@ import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 import {notFound} from "next/navigation";
+
+export const dynamic = "force-dynamic";
 
 type ProductPlaybookPageProps = {
   params: Promise<{slug: string}>;
@@ -188,9 +192,10 @@ export default async function ProductPlaybookPage({params}: ProductPlaybookPageP
   const featuredUseCases = getFeaturedUseCasesByProduct(locale, product.slug);
   const localizationGuides = getLocalizationGuides(locale);
   const functionScenarioGuides = getFunctionScenarioGuides(locale);
-  const keywordUseCases = getKeywordUseCases(locale);
-  const keywordCategories = getKeywordUseCaseCategories(locale).slice(0, 6);
-  const keywordIndexHref = `${getProductPlaybookHref(product.slug)}/keyword`;
+  const isSpark = product.slug === "spark-analytics-agent";
+  const keywordUseCases = isSpark ? getKeywordUseCases(locale) : [];
+  const keywordCategories = isSpark ? getKeywordUseCaseCategories(locale).slice(0, 6) : [];
+  const keywordIndexHref = isSpark ? `${getProductPlaybookHref(product.slug)}/keyword` : null;
   const pagePath = getProductPlaybookHref(product.slug);
 
   let relatedGuides: Array<{href: string; title: string; description: string; meta: string[]; ctaLabel: string}> | null = null;
@@ -254,9 +259,9 @@ export default async function ProductPlaybookPage({params}: ProductPlaybookPageP
       keywords: [
         product.name,
         ...useCases.map((item) => item.category),
-        ...keywordCategories.map((c) => c.name),
+        ...(isSpark ? keywordCategories.map((c) => c.name) : []),
         "Shopify AI",
-        `${keywordUseCases.length} operational scenarios`,
+        ...(isSpark ? [`${keywordUseCases.length} operational scenarios`] : []),
       ],
       type: "CollectionPage",
     }),
@@ -270,56 +275,50 @@ export default async function ProductPlaybookPage({params}: ProductPlaybookPageP
           dangerouslySetInnerHTML={{__html: JSON.stringify(structuredData)}}
         />
 
-        <section className="py-12 sm:py-16 lg:py-20">
-          <div className="content-hero-shell">
-            <SectionHeading
-              eyebrow={copy.hero.eyebrow}
-              title={`${product.name} ${copy.hero.titleSuffix}`}
-              description={copy.hero.description}
-              as="h1"
-            />
-            <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-              <article className="rounded-[24px] border border-slate-200/80 bg-white/90 p-5 shadow-sm">
-                <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">
+        <section className="py-8 sm:py-10 lg:py-12">
+          <div className="mx-auto max-w-5xl">
+            <BackLink href={`/products/${product.slug}`} label={copy.finalCta.primaryLabel} />
+            <div className="mt-5 sm:mt-6">
+              <SectionHeading
+                eyebrow={copy.hero.eyebrow}
+                title={`${product.name} ${copy.hero.titleSuffix}`}
+                description={copy.hero.description}
+                as="h1"
+              />
+            </div>
+            <div className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+              <article className="rounded-2xl border border-slate-200/80 bg-white/90 p-4">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
                   {copy.stats.productLabel}
                 </span>
-                <strong className="mt-3 block text-lg font-semibold text-slate-950">{product.name}</strong>
+                <strong className="mt-2 block text-base font-semibold text-slate-950">{product.name}</strong>
               </article>
-              <article className="rounded-[24px] border border-slate-200/80 bg-white/90 p-5 shadow-sm">
-                <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">
+              <article className="rounded-2xl border border-slate-200/80 bg-white/90 p-4">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
                   {copy.stats.coreLabel}
                 </span>
-                <strong className="mt-3 block text-lg font-semibold text-slate-950">{useCases.length}</strong>
+                <strong className="mt-2 block text-base font-semibold text-slate-950">{useCases.length}</strong>
               </article>
-              <article className="rounded-[24px] border border-emerald-200/70 bg-emerald-50/60 p-5 shadow-sm">
-                <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-700">
-                  {copy.stats.scenariosLabel}
-                </span>
-                <strong className="mt-3 block text-lg font-semibold text-slate-950">
-                  {keywordUseCases.length.toLocaleString()}
-                </strong>
-              </article>
-              <article className="rounded-[24px] border border-slate-200/80 bg-white/90 p-5 shadow-sm">
-                <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">
-                  {copy.stats.scenarioCatsLabel}
-                </span>
-                <strong className="mt-3 block text-lg font-semibold text-slate-950">
-                  {getKeywordUseCaseCategories(locale).length}
-                </strong>
-              </article>
-            </div>
-            <div className="mt-6 flex flex-wrap gap-2">
-              {product.metrics.map((metric) => (
-                <span key={metric} className="pill">
-                  {metric}
-                </span>
-              ))}
-            </div>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <Button href={`/products/${product.slug}`}>{copy.hero.primaryLabel}</Button>
-              <Button href="/use-cases" variant="secondary">
-                {copy.hero.secondaryLabel}
-              </Button>
+              {isSpark && (
+                <>
+                  <article className="rounded-2xl border border-emerald-200/70 bg-emerald-50/55 p-4">
+                    <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-700">
+                      {copy.stats.scenariosLabel}
+                    </span>
+                    <strong className="mt-2 block text-base font-semibold text-slate-950">
+                      {keywordUseCases.length.toLocaleString()}
+                    </strong>
+                  </article>
+                  <article className="rounded-2xl border border-slate-200/80 bg-white/90 p-4">
+                    <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+                      {copy.stats.scenarioCatsLabel}
+                    </span>
+                    <strong className="mt-2 block text-base font-semibold text-slate-950">
+                      {getKeywordUseCaseCategories(locale).length}
+                    </strong>
+                  </article>
+                </>
+              )}
             </div>
           </div>
         </section>
@@ -370,83 +369,82 @@ export default async function ProductPlaybookPage({params}: ProductPlaybookPageP
           </div>
         </section>
 
-        <section className="page-section">
-          <div className="scenario-library-header flex flex-wrap items-start justify-between gap-6 md:items-end">
-            <div>
-              <div className="text-xs font-medium uppercase tracking-[0.2em] text-emerald-700/90">
-                {copy.scenarios.eyebrow}
-                <span className="ml-3 rounded-full bg-slate-100 px-2.5 py-0.5 text-[11px] font-semibold tracking-[0.12em] text-slate-500">
-                  {keywordUseCases.length.toLocaleString()} {copy.scenarios.countLabel} ·{" "}
-                  {getKeywordUseCaseCategories(locale).length}{" "}
-                  {locale === "zh-cn" ? "主题" : "topics"}
-                </span>
+        {isSpark && keywordIndexHref && (
+          <section className="page-section">
+            <div className="scenario-library-header flex flex-wrap items-start justify-between gap-6 md:items-end">
+              <div>
+                <div className="text-xs font-medium uppercase tracking-[0.2em] text-emerald-700/90">
+                  {copy.scenarios.eyebrow}
+                  <span className="ml-3 rounded-full bg-slate-100 px-2.5 py-0.5 text-[11px] font-semibold tracking-[0.12em] text-slate-500">
+                    {keywordUseCases.length.toLocaleString()} {copy.scenarios.countLabel} ·{" "}
+                    {getKeywordUseCaseCategories(locale).length}{" "}
+                    {locale === "zh-cn" ? "主题" : "topics"}
+                  </span>
+                </div>
+                <h2 className="mt-4 text-[28px] font-semibold leading-[1.15] tracking-[-0.03em] text-slate-950 sm:text-[32px]">
+                  {copy.scenarios.title}
+                </h2>
+                <p className="mt-4 max-w-3xl text-base leading-8 text-slate-600 sm:text-[17px]">
+                  {copy.scenarios.description}
+                </p>
               </div>
-              <h2 className="mt-4 text-[28px] font-semibold leading-[1.15] tracking-[-0.03em] text-slate-950 sm:text-[32px]">
-                {copy.scenarios.title}
-              </h2>
-              <p className="mt-4 max-w-3xl text-base leading-8 text-slate-600 sm:text-[17px]">
-                {copy.scenarios.description}
-              </p>
+              <div className="shrink-0">
+                <Button href={keywordIndexHref}>{copy.scenarios.primaryLabel}</Button>
+              </div>
             </div>
-            <div className="shrink-0">
-              <Button href={keywordIndexHref}>{copy.scenarios.primaryLabel}</Button>
-            </div>
-          </div>
 
-          {keywordUseCases.length === 0 ? (
-            <div className="empty mt-10 rounded-[28px] border border-dashed border-slate-200/80 bg-white/60 px-6 py-14 text-center text-sm text-slate-500 sm:mt-12 lg:mt-14">
-              {copy.scenarios.emptyLabel}
-            </div>
-          ) : (
-            <div className="grid mt-10 gap-6 sm:grid-cols-2 sm:mt-12 lg:grid-cols-3 lg:mt-14 lg:gap-7">
-              {keywordCategories.map((cat) => {
-                const items = getKeywordUseCasesByCategory(locale, cat.name).slice(0, 3);
-                const catSlug = cat.name
-                  .toLowerCase()
-                  .replace(/[^a-z0-9]+/g, "-")
-                  .replace(/^-+|-+$/g, "");
-                return (
-                  <article
-                    key={cat.name}
-                    className="scenario-library-card flex h-full flex-col rounded-[26px] border border-slate-200/80 bg-white/90 p-6 sm:p-7 shadow-[0_18px_48px_-32px_rgba(15,23,42,0.18)] transition-colors hover:border-emerald-200 hover:bg-emerald-50/40"
-                  >
-                    <div className="flex flex-wrap items-center justify-between gap-3">
-                      <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
-                        {copy.scenarios.categoryTitleLabel}
-                      </div>
-                      <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-[11px] font-semibold tracking-[0.12em] text-slate-500">
-                        {cat.count} {copy.scenarios.countLabel}
-                      </span>
-                    </div>
-                    <h3
-                      id={`cat-${catSlug}-summary`}
-                      className="mt-4 text-lg font-semibold tracking-[-0.02em] text-slate-950 sm:mt-5"
+            {keywordUseCases.length === 0 ? (
+              <div className="empty mt-10 rounded-[28px] border border-dashed border-slate-200/80 bg-white/60 px-6 py-14 text-center text-sm text-slate-500 sm:mt-12 lg:mt-14">
+                {copy.scenarios.emptyLabel}
+              </div>
+            ) : (
+              <div className="grid mt-10 gap-6 sm:grid-cols-2 sm:mt-12 lg:grid-cols-3 lg:mt-14 lg:gap-7">
+                {keywordCategories.map((cat) => {
+                  const items = getKeywordUseCasesByCategory(locale, cat.name).slice(0, 3);
+                    const catSlug = getKeywordUseCaseCategorySlug(locale, cat.name);
+                  return (
+                    <article
+                      key={cat.name}
+                      className="scenario-library-card flex h-full flex-col rounded-[26px] border border-slate-200/80 bg-white/90 p-6 sm:p-7 shadow-[0_18px_48px_-32px_rgba(15,23,42,0.18)] transition-colors hover:border-emerald-200 hover:bg-emerald-50/40"
                     >
-                      {cat.name}
-                    </h3>
-                    <ul className="mt-5 space-y-3 text-sm leading-7 text-slate-700 sm:text-[15px]">
-                      {items.map((item) => (
-                        <li key={item.slug}>
-                          <CardCtaLink
-                            href={`${keywordIndexHref}/${item.slug}`}
-                            variant="text"
-                          >
-                            {item.title}
-                          </CardCtaLink>
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="card-footer mt-7 pt-6 border-t border-slate-100/80">
-                      <CardCtaLink href={`${keywordIndexHref}#cat-${catSlug}`} variant="outlined">
-                        {copy.scenarios.categoryCardPrimaryLabel}
-                      </CardCtaLink>
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
-          )}
-        </section>
+                      <div className="flex flex-wrap items-center justify-between gap-3">
+                        <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+                          {copy.scenarios.categoryTitleLabel}
+                        </div>
+                        <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-[11px] font-semibold tracking-[0.12em] text-slate-500">
+                          {cat.count} {copy.scenarios.countLabel}
+                        </span>
+                      </div>
+                      <h3
+                        id={`cat-${catSlug}-summary`}
+                        className="mt-4 text-lg font-semibold tracking-[-0.02em] text-slate-950 sm:mt-5"
+                      >
+                        {cat.name}
+                      </h3>
+                      <ul className="mt-5 space-y-3 text-sm leading-7 text-slate-700 sm:text-[15px]">
+                        {items.map((item) => (
+                          <li key={item.slug}>
+                            <CardCtaLink
+                              href={`${keywordIndexHref}/${item.slug}`}
+                              variant="text"
+                            >
+                              {item.title}
+                            </CardCtaLink>
+                          </li>
+                        ))}
+                      </ul>
+                      <div className="card-footer mt-7 pt-6 border-t border-slate-100/80">
+                        <CardCtaLink href={`${keywordIndexHref}#cat-${catSlug}`} variant="outlined">
+                          {copy.scenarios.categoryCardPrimaryLabel}
+                        </CardCtaLink>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            )}
+          </section>
+        )}
 
         {relatedGuides && relatedGuides.length > 0 && (
           <section className="page-section">

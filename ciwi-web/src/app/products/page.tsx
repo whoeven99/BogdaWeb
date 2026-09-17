@@ -6,6 +6,8 @@ import {getProducts} from "@/content/products";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata} from "@/lib/seo/metadata";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata() {
   const locale = await getRequestLocale();
 

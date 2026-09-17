@@ -8,6 +8,8 @@ import {demoPageMediaBriefs} from "@/content/media-briefs";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata} from "@/lib/seo/metadata";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata() {
   const locale = await getRequestLocale();
 

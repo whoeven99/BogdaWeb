@@ -30,6 +30,13 @@ type RawKeywordUseCaseRecord = KeywordUseCaseItem & {
 
 const rawRecords = importedKeywordUseCases as RawKeywordUseCaseRecord[];
 
+function slugifyCategoryLabel(value: string): string {
+  return String(value ?? "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 function toLocaleItem(locale: Locale, raw: RawKeywordUseCaseRecord): KeywordUseCaseItem {
   if (locale === "zh-cn") {
     return {
@@ -58,6 +65,15 @@ function toLocaleItem(locale: Locale, raw: RawKeywordUseCaseRecord): KeywordUseC
 const allKeywordUseCasesEn: KeywordUseCaseItem[] = rawRecords.map((r) => toLocaleItem("en", r));
 const allKeywordUseCasesZh: KeywordUseCaseItem[] = rawRecords.map((r) => toLocaleItem("zh-cn", r));
 
+const categorySlugMapEn = new Map<string, string>();
+const categorySlugMapZh = new Map<string, string>();
+
+for (const record of rawRecords) {
+  const stableSlug = slugifyCategoryLabel(record.category);
+  categorySlugMapEn.set(record.category, stableSlug);
+  categorySlugMapZh.set(record.zh_category || record.category, stableSlug);
+}
+
 const EMPTY: KeywordUseCaseItem[] = [];
 
 export function getKeywordUseCases(locale: Locale): KeywordUseCaseItem[] {
@@ -83,6 +99,11 @@ export function getKeywordUseCaseCategories(locale: Locale): {name: string; coun
   return [...counts.entries()]
     .map(([name, count]) => ({name, count}))
     .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
+}
+
+export function getKeywordUseCaseCategorySlug(locale: Locale, categoryName: string): string {
+  const map = locale === "zh-cn" ? categorySlugMapZh : categorySlugMapEn;
+  return map.get(categoryName) ?? slugifyCategoryLabel(categoryName);
 }
 
 export function getKeywordUseCaseBySlug(locale: Locale, slug: string): KeywordUseCaseItem | undefined {
@@ -144,4 +165,3 @@ export function getRelatedKeywordUseCases(
 
   return [...sameCategory, ...others.slice(0, remain)].slice(0, limit);
 }
-

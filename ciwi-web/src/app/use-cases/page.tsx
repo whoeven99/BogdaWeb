@@ -9,6 +9,8 @@ import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata} from "@/lib/seo/metadata";
 import {Button} from "@/components/ui/Button";
 
+export const dynamic = "force-dynamic";
+
 function getPageCopy(locale: "en" | "zh-cn") {
   if (locale === "zh-cn") {
     return {

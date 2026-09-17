@@ -1,10 +1,10 @@
 import {FinalCtaSection} from "@/components/sections/FinalCtaSection";
 import {BackLink} from "@/components/ui/BackLink";
-import {Button} from "@/components/ui/Button";
 import {CardCtaLink} from "@/components/ui/CardCtaLink";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {
   getKeywordUseCaseCategories,
+  getKeywordUseCaseCategorySlug,
   getKeywordUseCasesByCategory,
 } from "@/content/shopify-keyword-use-cases";
 import {getProductMap, products} from "@/content/products";
@@ -27,23 +27,13 @@ function keywordIndexHref(productSlug: string) {
   return `${getProductPlaybookHref(productSlug)}/keyword`;
 }
 
-function keywordCategoryHref(productSlug: string, categoryName: string) {
-  const slug = categoryName
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
+function keywordCategoryHref(productSlug: string, locale: "en" | "zh-cn", categoryName: string) {
+  const slug = getKeywordUseCaseCategorySlug(locale, categoryName);
   return `${keywordIndexHref(productSlug)}/category/${slug}`;
 }
 
 function keywordDetailHref(productSlug: string, slug: string) {
   return `${keywordIndexHref(productSlug)}/${slug}`;
-}
-
-function catSlugify(name: string) {
-  return name
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
 }
 
 const copyByLocale: Record<
@@ -120,11 +110,13 @@ const copyByLocale: Record<
 
 export function generateStaticParams() {
   const combos: {slug: string; catSlug: string}[] = [];
-  const productSlugs = products.map((product) => product.slug);
+  const productSlugs = products
+    .filter((product) => product.slug === "spark-analytics-agent")
+    .map((product) => product.slug);
   const cats = getKeywordUseCaseCategories("en");
   for (const slug of productSlugs) {
     for (const c of cats) {
-      combos.push({slug, catSlug: catSlugify(c.name)});
+      combos.push({slug, catSlug: getKeywordUseCaseCategorySlug("en", c.name)});
     }
   }
   return combos;
@@ -137,7 +129,9 @@ export async function generateMetadata(props: CategoryPageProps) {
   const product = productMap[params.slug];
   if (!product) return {};
   const cats = getKeywordUseCaseCategories(locale as "en" | "zh-cn");
-  const match = cats.find((c) => catSlugify(c.name) === params.catSlug);
+  const match = cats.find(
+    (c) => getKeywordUseCaseCategorySlug(locale as "en" | "zh-cn", c.name) === params.catSlug,
+  );
   if (!match) return {};
   const copy = copyByLocale[locale as "en" | "zh-cn"];
   const heroTitle =
@@ -145,7 +139,7 @@ export async function generateMetadata(props: CategoryPageProps) {
       ? `${match.name} (${match.count.toLocaleString()} 条)`
       : `${match.name} · ${match.count.toLocaleString()}`;
   const description = copy.hero.description(match.name, match.count);
-  const pagePath = keywordCategoryHref(product.slug, match.name);
+  const pagePath = keywordCategoryHref(product.slug, locale as "en" | "zh-cn", match.name);
   const keywords = [
     match.name,
     `${match.count} ${locale === "zh-cn" ? "条" : ""} Shopify AI`,
@@ -168,9 +162,12 @@ export default async function CategoryPage(props: CategoryPageProps) {
   const productMap = getProductMap(locale);
   const product = productMap[params.slug];
   if (!product) notFound();
+  if (product.slug !== "spark-analytics-agent") notFound();
   const copy = copyByLocale[locale];
   const allCats = getKeywordUseCaseCategories(locale);
-  const match = allCats.find((c) => catSlugify(c.name) === params.catSlug);
+  const match = allCats.find(
+    (c) => getKeywordUseCaseCategorySlug(locale, c.name) === params.catSlug,
+  );
   if (!match) notFound();
 
   const items = getKeywordUseCasesByCategory(locale, match.name);
@@ -187,7 +184,7 @@ export default async function CategoryPage(props: CategoryPageProps) {
     );
   }
 
-  const categoryPageHref = keywordCategoryHref(product.slug, match.name);
+  const categoryPageHref = keywordCategoryHref(product.slug, locale, match.name);
   const scenarioLibraryHref = keywordIndexHref(product.slug);
   const playbookHref = getProductPlaybookHref(product.slug);
 
@@ -265,36 +262,28 @@ export default async function CategoryPage(props: CategoryPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}}
       />
-      <section className="py-10 sm:py-12 lg:py-16">
-        <div className="mx-auto max-w-6xl">
+      <section className="py-8 sm:py-10 lg:py-12">
+        <div className="mx-auto max-w-5xl">
           <BackLink href={scenarioLibraryHref} label={copy.hero.backLabel} />
-          <div className="mt-6 grid gap-8 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] lg:items-end sm:mt-8 lg:gap-10">
-            <div>
-              <div className="text-xs font-medium uppercase tracking-[0.2em] text-emerald-700/90">
-                {copy.hero.eyebrow}
-                <span className="ml-3 rounded-full bg-slate-100 px-2.5 py-0.5 text-[11px] font-semibold tracking-[0.12em] text-slate-500">
-                  {copy.hero.eyebrowSuffix(match.count)}
-                </span>
-              </div>
-              <h1 className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-slate-950 sm:mt-5 sm:text-4xl lg:text-5xl">
-                {heroTitle}
-              </h1>
-              <p className="mt-4 max-w-2xl text-[15px] leading-8 text-slate-600 sm:mt-5 sm:text-base">
-                {description}
-              </p>
-              <div className="mt-6 flex flex-wrap gap-3 sm:mt-8">
-                <Button href={scenarioLibraryHref}>{copy.hero.primaryLabel}</Button>
-                <Button href={playbookHref} variant="secondary">
-                  {copy.hero.secondaryLabel}
-                </Button>
-              </div>
+          <div className="mt-5 max-w-3xl sm:mt-6">
+            <div className="flex flex-wrap items-center gap-2.5 text-[11px] font-medium uppercase tracking-[0.18em] text-emerald-700/90">
+              <span>{copy.hero.eyebrow}</span>
+              <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-[11px] font-semibold tracking-[0.12em] text-slate-500">
+                {copy.hero.eyebrowSuffix(match.count)}
+              </span>
             </div>
+            <h1 className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-[42px] lg:leading-[1.08]">
+              {heroTitle}
+            </h1>
+            <p className="mt-4 max-w-2xl text-[15px] leading-7 text-slate-600 sm:text-base">
+              {description}
+            </p>
           </div>
         </div>
       </section>
 
       <section className="pb-14 pt-4 sm:pb-16 sm:pt-6 lg:pb-20 lg:pt-8">
-        <div className="mx-auto max-w-6xl space-y-8 sm:space-y-10 lg:space-y-12">
+        <div className="mx-auto max-w-5xl space-y-8 sm:space-y-10 lg:space-y-12">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div className="max-w-2xl space-y-2.5">
               <div className="text-[11.5px] font-medium uppercase tracking-[0.18em] text-slate-400">
@@ -303,23 +292,23 @@ export default async function CategoryPage(props: CategoryPageProps) {
             </div>
           </div>
 
-          <ul className="grid gap-2.5 sm:grid-cols-2 sm:gap-3 lg:grid-cols-3 xl:grid-cols-3">
+          <ul className="grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-2">
             {items.map((item) => {
               const href = keywordDetailHref(product.slug, item.slug);
               return (
                 <li key={item.slug}>
-                  <article className="group flex h-full flex-col rounded-2xl border border-slate-200/75 bg-white/85 p-4 transition-colors hover:border-emerald-200 hover:bg-emerald-50/40 sm:p-4.5">
+                  <article className="group flex h-full flex-col rounded-2xl border border-slate-200/75 bg-white/85 p-5 transition-colors hover:border-emerald-200 hover:bg-emerald-50/40 sm:p-5.5">
                     <div className="flex flex-wrap items-center gap-2 text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">
                       <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-slate-500 line-clamp-1">
                         {item.keyword}
                       </span>
                     </div>
-                    <h3 className="mt-2.5 line-clamp-3 text-[14.5px] font-semibold leading-6 text-slate-900 sm:mt-3 sm:text-base">
+                    <h3 className="mt-3 line-clamp-3 text-[15px] font-semibold leading-7 text-slate-900 sm:text-[16px]">
                       <CardCtaLink href={href} variant="text">
                         {item.title}
                       </CardCtaLink>
                     </h3>
-                    <p className="mt-2 line-clamp-3 text-[13px] leading-6 text-slate-500 sm:mt-2.5 sm:text-[13.5px]">
+                    <p className="mt-2.5 line-clamp-4 text-[13.5px] leading-6 text-slate-500 sm:text-[14px]">
                       {item.scenarioDescription}
                     </p>
                   </article>
@@ -342,4 +331,4 @@ export default async function CategoryPage(props: CategoryPageProps) {
   );
 }
 
-export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
