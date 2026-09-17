@@ -5,6 +5,7 @@ import {BackLink} from "@/components/ui/BackLink";
 import {LocalizedLink} from "@/components/ui/LocalizedLink";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {AuthorByline} from "@/components/content/AuthorByline";
+import {FinalCtaSection} from "@/components/sections/FinalCtaSection";
 import {getAuthorBySlug} from "@/content/authors";
 import {getAllBlogPosts, getBlogPostMap, getBlogPosts} from "@/content/blog";
 import {getUiCopy} from "@/content/ui-copy";
@@ -29,6 +30,16 @@ function getBlogDetailCopy(locale: "en" | "zh-cn") {
           backToBlogLabel: "返回博客",
           backToBlogHref: "/blog",
         },
+        finalCta: {
+          eyebrow: "继续往下",
+          title: "从内容理解问题，再回到产品和配置",
+          description:
+            "如果你已经知道自己要解决什么问题，就该进入产品页或帮助文档，看看多语言内容同步、自动翻译和 Shopify 适配的具体做法。",
+          primaryLabel: "打开 Translator 产品页",
+          primaryHref: "/products/translator",
+          secondaryLabel: "查看帮助中心",
+          secondaryHref: "/help-center",
+        },
       }
     : {
         notFound: {
@@ -40,6 +51,16 @@ function getBlogDetailCopy(locale: "en" | "zh-cn") {
           eyebrow: "Blog",
           backToBlogLabel: "Back to blog",
           backToBlogHref: "/blog",
+        },
+        finalCta: {
+          eyebrow: "Keep going",
+          title: "From insights to products",
+          description:
+            "If this article clarified the problem you're solving, jump into the product page or help center to review localization workflows, Shopify adapters, and automation details.",
+          primaryLabel: "Open Translator",
+          primaryHref: "/products/translator",
+          secondaryLabel: "Browse help docs",
+          secondaryHref: "/help-center",
         },
       };
 }
@@ -85,9 +106,9 @@ export default async function BlogDetailPage({params}: BlogDetailPageProps) {
 
   const pageUrl = toAbsoluteLocalizedUrl(locale, post.href);
   const author = getAuthorBySlug(post.slug);
-  const currentIndex = posts.findIndex((item) => item.slug === post.slug);
-  const previousPost = currentIndex > 0 ? posts[currentIndex - 1] : null;
-  const nextPost = currentIndex >= 0 && currentIndex < posts.length - 1 ? posts[currentIndex + 1] : null;
+  const relatedPosts = posts
+    .filter((item) => item.slug !== post.slug)
+    .slice(0, 2);
   const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
       {name: "Home", item: siteUrl},
@@ -118,44 +139,85 @@ export default async function BlogDetailPage({params}: BlogDetailPageProps) {
               <BackLink href={copy.hero.backToBlogHref} label={copy.hero.backToBlogLabel} />
             </div>
 
-            <div className="article-meta">
-              <span>{post.publishedAt}</span>
-              <span>{post.readingTime}</span>
-              {post.tags.map((tag) => (
-                <span key={tag}>{tag}</span>
-              ))}
-            </div>
-
             <header className="blog-article-single__header">
               <span className="section-heading__eyebrow">{copy.hero.eyebrow}</span>
               <h1>{post.title}</h1>
-              <p>{post.description}</p>
+              <p className="blog-article-single__lede">{post.description}</p>
             </header>
 
-            <AuthorByline author={author} />
+            <div className="blog-article-single__meta-row">
+              <div className="blog-article-single__meta-info">
+                <span>{post.publishedAt}</span>
+                <span className="blog-article-single__meta-dot" aria-hidden="true" />
+                <span>{post.readingTime}</span>
+              </div>
+              <div className="blog-article-single__tag-list">
+                {post.tags.map((tag) => (
+                  <span key={tag} className="blog-tag-pill">{tag}</span>
+                ))}
+              </div>
+            </div>
+
+            <AuthorByline author={author} className="blog-article-single__byline" />
 
             <MdxContent source={post.content} className="article-prose blog-article-single__prose" />
-
-            <nav className="blog-article-single__pagination" aria-label={uiCopy.blog.paginationLabel}>
-              {previousPost ? (
-                <LocalizedLink href={previousPost.href} className="blog-article-single__pagination-link">
-                  <span className="blog-article-single__pagination-label">{uiCopy.blog.previousLabel}</span>
-                  <strong>{previousPost.title}</strong>
-                </LocalizedLink>
-              ) : <div />}
-
-              {nextPost ? (
-                <LocalizedLink
-                  href={nextPost.href}
-                  className="blog-article-single__pagination-link blog-article-single__pagination-link--next"
-                >
-                  <span className="blog-article-single__pagination-label">{uiCopy.blog.nextLabel}</span>
-                  <strong>{nextPost.title}</strong>
-                </LocalizedLink>
-              ) : <div />}
-            </nav>
           </article>
         </section>
+
+        <section className="blog-related-section" aria-labelledby="blog-related-title">
+          <div className="blog-related-section__header">
+            <span className="section-heading__eyebrow">{uiCopy.blog.relatedEyebrow}</span>
+            <div className="blog-related-section__header-copy">
+              <h2 id="blog-related-title" className="blog-related-section__title">{uiCopy.blog.relatedTitle}</h2>
+              <p className="blog-related-section__description">{uiCopy.blog.relatedDescription}</p>
+            </div>
+          </div>
+
+          <div className="blog-related-section__grid">
+            {relatedPosts.map((item) => (
+              <LocalizedLink
+                key={item.slug}
+                href={item.href}
+                className="blog-related-card"
+              >
+                <div className="blog-related-card__meta">
+                  <span>{item.publishedAt}</span>
+                  <span className="blog-related-card__meta-dot" aria-hidden="true" />
+                  <span>{item.readingTime}</span>
+                </div>
+                <h3 className="blog-related-card__title">{item.title}</h3>
+                <p className="blog-related-card__description">{item.description}</p>
+                <div className="blog-related-card__tags">
+                  {item.tags.slice(0, 2).map((tag) => (
+                    <span key={tag} className="blog-related-card__tag">{tag}</span>
+                  ))}
+                </div>
+                <span className="blog-related-card__cta">
+                  <span>{uiCopy.blog.readNextLabel}</span>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </span>
+              </LocalizedLink>
+            ))}
+          </div>
+
+          <div className="blog-related-section__footer">
+            <LocalizedLink href="/blog" className="button button--primary">
+              {uiCopy.blog.exploreLabel}
+            </LocalizedLink>
+          </div>
+        </section>
+
+        <FinalCtaSection
+          eyebrow={copy.finalCta.eyebrow}
+          title={copy.finalCta.title}
+          description={copy.finalCta.description}
+          primaryLabel={copy.finalCta.primaryLabel}
+          primaryHref={copy.finalCta.primaryHref}
+          secondaryLabel={copy.finalCta.secondaryLabel}
+          secondaryHref={copy.finalCta.secondaryHref}
+        />
       </PageContainer>
     </main>
   );

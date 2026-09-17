@@ -22,6 +22,11 @@ type UiCopy = {
     previousLabel: string;
     nextLabel: string;
     paginationLabel: string;
+    relatedTitle: string;
+    relatedEyebrow: string;
+    relatedDescription: string;
+    readNextLabel: string;
+    exploreLabel: string;
   };
   docs: {
     landingTitle: string;
@@ -81,6 +86,11 @@ const uiCopyByLocale = {
       previousLabel: "Previous",
       nextLabel: "Next",
       paginationLabel: "Blog pagination",
+      relatedTitle: "Continue exploring",
+      relatedEyebrow: "Recommended reads",
+      relatedDescription: "More deep dives on localization, Shopify multilingual workflows, and cross-border growth.",
+      readNextLabel: "Read article",
+      exploreLabel: "See all posts",
     },
     docs: {
       landingTitle: "Find answers without digging through every article",
@@ -138,6 +148,11 @@ const uiCopyByLocale = {
       previousLabel: "上一页",
       nextLabel: "下一页",
       paginationLabel: "博客分页",
+      relatedTitle: "继续阅读",
+      relatedEyebrow: "推荐文章",
+      relatedDescription: "更多关于本地化、Shopify 多语言工作流与跨境增长的实战内容。",
+      readNextLabel: "阅读全文",
+      exploreLabel: "查看全部文章",
     },
     docs: {
       landingTitle: "更快找到你真正需要的帮助文档",

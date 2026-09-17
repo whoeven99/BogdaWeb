@@ -14,6 +14,7 @@ type FinalCtaSectionProps = {
   body?: ReactNode;
   panelClassName?: string;
   actionsClassName?: string;
+  variant?: "default" | "inverted";
 };
 
 export function FinalCtaSection({
@@ -27,19 +28,56 @@ export function FinalCtaSection({
   body,
   panelClassName,
   actionsClassName,
+  variant = "default",
 }: FinalCtaSectionProps) {
+  const panelClass =
+    variant === "inverted"
+      ? `final-cta-panel final-cta-panel--inverted ${panelClassName ?? ""}`.trim()
+      : panelClassName
+        ? `final-cta-panel ${panelClassName}`
+        : "final-cta-panel";
+
   return (
     <section className="py-12 sm:py-14 lg:py-16">
-      <div className={panelClassName ? `final-cta-panel ${panelClassName}` : "final-cta-panel"}>
+      <div className={panelClass}>
         <div className="final-cta-content max-w-3xl space-y-3">
-          {eyebrow ? <div className="ui-final-cta__eyebrow">{eyebrow}</div> : null}
-          <h2 className="ui-final-cta__title">{title}</h2>
-          {body ?? (description ? <p className="ui-final-cta__text">{description}</p> : null)}
+          {eyebrow ? (
+            <div
+              className={
+                variant === "inverted" ? "ui-final-cta__eyebrow ui-final-cta__eyebrow--inverted" : "ui-final-cta__eyebrow"
+              }
+            >
+              {eyebrow}
+            </div>
+          ) : null}
+          <h2
+            className={
+              variant === "inverted" ? "ui-final-cta__title ui-final-cta__title--inverted" : "ui-final-cta__title"
+            }
+          >
+            {title}
+          </h2>
+          {body ??
+            (description ? (
+              <p
+                className={
+                  variant === "inverted" ? "ui-final-cta__text ui-final-cta__text--inverted" : "ui-final-cta__text"
+                }
+              >
+                {description}
+              </p>
+            ) : null)}
         </div>
-        <div className={actionsClassName ? `final-cta-actions mt-8 ${actionsClassName}` : "final-cta-actions mt-8 flex flex-wrap items-center gap-3"}>
-          <Button href={primaryHref}>{primaryLabel}</Button>
+        <div
+          className={
+            actionsClassName ? `final-cta-actions mt-8 ${actionsClassName}` : "final-cta-actions mt-8 flex flex-wrap items-center gap-3"
+          }
+        >
+          <Button href={primaryHref} variant={variant === "inverted" ? "inverted" : "primary"}>
+            {primaryLabel}
+          </Button>
           {secondaryLabel && secondaryHref ? (
-            <Button href={secondaryHref} variant="secondary">
+            <Button href={secondaryHref} variant={variant === "inverted" ? "inverted-secondary" : "secondary"}>
               {secondaryLabel}
             </Button>
           ) : null}
