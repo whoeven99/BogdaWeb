@@ -1,12 +1,16 @@
 import {FaqSection} from "@/components/sections/FaqSection";
-import {UseCaseHero} from "@/components/sections/UseCaseHero";
+import {BackLink} from "@/components/ui/BackLink";
+import {Button} from "@/components/ui/Button";
 import {PageContainer} from "@/components/ui/PageContainer";
+import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getProductMap} from "@/content/products";
 import {getProductPlaybookHref, getUseCaseMap, useCases} from "@/content/use-cases";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildFaqSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 import {notFound} from "next/navigation";
+
+export const dynamic = "force-dynamic";
 
 type UseCaseDetailPageProps = {
   params: Promise<{slug: string}>;
@@ -120,31 +124,47 @@ export default async function UseCaseDetailPage({params}: UseCaseDetailPageProps
           dangerouslySetInnerHTML={{__html: JSON.stringify(structuredData)}}
         />
 
-        <UseCaseHero
-          backHref={playbookHref}
-          backLabel={copy.hero.backToPlaybook}
-          title={useCase.title}
-          description={useCase.heroDescription}
-          primaryLabel={useCase.ctaLabel || copy.hero.primaryLabel}
-          primaryHref={useCase.ctaHref}
-          metaItems={[
-            {label: copy.hero.productLabel, value: productName},
-            {label: copy.hero.categoryLabel, value: useCase.category},
-          ]}
-        />
+        <section className="py-8 sm:py-10 lg:py-12">
+          <div className="mx-auto max-w-5xl">
+            <BackLink href={playbookHref} label={copy.hero.backToPlaybook} />
+            <div className="mt-5 sm:mt-6">
+              <SectionHeading
+                title={useCase.title}
+                description={useCase.heroDescription}
+                as="h1"
+              />
+            </div>
+            <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:max-w-2xl">
+              {[
+                {label: copy.hero.productLabel, value: productName},
+                {label: copy.hero.categoryLabel, value: useCase.category},
+              ].map((item) => (
+                <div key={item.label} className="rounded-2xl border border-slate-200/80 bg-white/90 p-4">
+                  <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+                    {item.label}
+                  </div>
+                  <div className="mt-2 text-sm font-semibold text-slate-900">{item.value}</div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Button href={useCase.ctaHref}>{useCase.ctaLabel || copy.hero.primaryLabel}</Button>
+            </div>
+          </div>
+        </section>
 
         <section className="py-12 sm:py-14 lg:py-16">
           <div className="mx-auto max-w-6xl">
             <h2 className="text-3xl font-semibold tracking-[-0.04em] text-slate-950 sm:text-4xl">{copy.sections.howItWorksTitle}</h2>
             <p className="mt-4 max-w-3xl text-[15px] leading-7 text-slate-600">{copy.sections.howItWorksDescription}</p>
-            <div className="mt-8 grid gap-6">
+            <div className="mt-10 grid gap-6 sm:mt-12">
               {useCase.workflow.map((step, index) => (
                 <article
                   key={step.title}
-                  className="grid gap-6 overflow-hidden rounded-[24px] border border-slate-200/80 bg-white/94 p-5 shadow-[0_14px_34px_-26px_rgba(15,23,42,0.2)] md:grid-cols-[minmax(0,360px)_minmax(0,1fr)] md:p-6"
+                  className="grid gap-5 overflow-hidden rounded-[24px] border border-slate-200/80 bg-white/94 p-5 shadow-[0_14px_34px_-26px_rgba(15,23,42,0.2)] md:grid-cols-[minmax(0,280px)_minmax(0,1fr)] md:gap-7 md:p-6 lg:grid-cols-[minmax(0,320px)_minmax(0,1fr)]"
                 >
                   <div
-                    className="aspect-[4/3] rounded-[18px] bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.14),transparent_34%),linear-gradient(135deg,rgba(241,245,249,0.95),rgba(255,255,255,0.98))]"
+                    className="mx-auto aspect-[5/4] w-full max-w-[280px] rounded-[18px] bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.14),transparent_34%),linear-gradient(135deg,rgba(241,245,249,0.95),rgba(255,255,255,0.98))] lg:max-w-[320px]"
                     aria-hidden="true"
                   />
                   <div className="flex flex-col justify-center">

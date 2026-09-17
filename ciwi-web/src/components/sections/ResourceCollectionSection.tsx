@@ -1,6 +1,7 @@
 import {ArticleCard} from "@/components/cards/ArticleCard";
 import {Button} from "@/components/ui/Button";
 import {SectionHeading} from "@/components/ui/SectionHeading";
+import type {ReactNode} from "react";
 
 type ResourceCollectionItem = {
   title: string;
@@ -10,9 +11,11 @@ type ResourceCollectionItem = {
 };
 
 type ResourceCollectionSectionProps = {
+  id?: string;
   eyebrow?: string;
   title?: string;
   description?: string;
+  headingAction?: ReactNode;
   items: ResourceCollectionItem[];
   ctaLabel?: string;
   ctaHref?: string;
@@ -24,9 +27,11 @@ type ResourceCollectionSectionProps = {
 };
 
 export function ResourceCollectionSection({
+  id,
   eyebrow,
   title,
   description,
+  headingAction,
   items,
   ctaLabel,
   ctaHref,
@@ -34,8 +39,8 @@ export function ResourceCollectionSection({
   className = "py-12 sm:py-14 lg:py-16",
 }: ResourceCollectionSectionProps) {
   return (
-    <section className={className}>
-      {title ? <SectionHeading eyebrow={eyebrow} title={title} description={description} /> : null}
+    <section id={id} className={className}>
+      {title ? <SectionHeading eyebrow={eyebrow} title={title} description={description} action={headingAction} /> : null}
       {items.length > 0 ? (
         <div className={title ? "mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3" : "grid gap-5 md:grid-cols-2 xl:grid-cols-3"}>
           {items.map((item) => (

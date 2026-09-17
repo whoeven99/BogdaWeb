@@ -249,6 +249,55 @@ export function buildReviewSchema({
   };
 }
 
+type HowToSchemaInput = {
+  url: string;
+  name: string;
+  description?: string;
+  steps: {name: string; text: string; url?: string}[];
+};
+
+export function buildHowToSchema({url, name, description, steps}: HowToSchemaInput) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name,
+    ...(description ? {description} : undefined),
+    ...(url ? {mainEntityOfPage: url} : undefined),
+    step: steps.map((step, index) => ({
+      "@type": "HowToStep",
+      position: index + 1,
+      name: step.name,
+      text: step.text,
+      ...(step.url ? {url: step.url} : undefined),
+    })),
+  };
+}
+
+type ItemListSchemaInput = {
+  url: string;
+  name: string;
+  description?: string;
+  items: {position: number; name: string; url: string; description?: string}[];
+};
+
+export function buildItemListSchema({url, name, description, items}: ItemListSchemaInput) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name,
+    ...(description ? {description} : undefined),
+    mainEntityOfPage: url,
+    numberOfItems: items.length,
+    itemListElement: items.map((it) => ({
+      "@type": "ListItem",
+      position: it.position,
+      name: it.name,
+      item: it.url,
+      ...(it.description ? {description: it.description} : undefined),
+    })),
+  };
+}
+
 export function buildWebPageSchema({
   url,
   name,

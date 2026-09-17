@@ -6,6 +6,8 @@ import {localizeHref} from "@/lib/i18n";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata} from "@/lib/seo/metadata";
 
+export const dynamic = "force-dynamic";
+
 type LegacyPageProps = {
   params: Promise<{slug: string}>;
 };

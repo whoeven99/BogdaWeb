@@ -10,6 +10,8 @@ import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 
+export const dynamic = "force-dynamic";
+
 type StructureGroup = {
   id: string;
   topics: string[];

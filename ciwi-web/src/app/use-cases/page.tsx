@@ -1,13 +1,15 @@
 import {UseCasePlaybookCard} from "@/components/cards/UseCasePlaybookCard";
 import {ContentIndexHero} from "@/components/sections/ContentIndexHero";
 import {FinalCtaSection} from "@/components/sections/FinalCtaSection";
-import {Button} from "@/components/ui/Button";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getProductPlaybookHref, getUseCasesByProduct} from "@/content/use-cases";
 import {getProducts} from "@/content/products";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata} from "@/lib/seo/metadata";
+import {Button} from "@/components/ui/Button";
+
+export const dynamic = "force-dynamic";
 
 function getPageCopy(locale: "en" | "zh-cn") {
   if (locale === "zh-cn") {
@@ -20,10 +22,6 @@ function getPageCopy(locale: "en" | "zh-cn") {
         eyebrow: "应用场景",
         title: "按产品浏览 Ciwi 场景方案",
         description: "围绕真实经营问题整理各产品的代表性场景，先快速判断方向，再进入更完整的产品方案集或具体场景页。",
-        primaryLabel: "查看 Spark 方案集",
-        primaryHref: "/products/spark-analytics-agent/playbook",
-        secondaryLabel: "浏览产品列表",
-        secondaryHref: "/products",
       },
       modules: {
         eyebrow: "按产品展开",
@@ -53,10 +51,6 @@ function getPageCopy(locale: "en" | "zh-cn") {
       eyebrow: "Use Cases",
       title: "Browse Ciwi through product playbooks",
       description: "Instead of stacking several similar aggregation blocks, this page now opens one module per product and shows a few concrete use cases before you jump into the full playbook.",
-      primaryLabel: "Open Spark playbook",
-      primaryHref: "/products/spark-analytics-agent/playbook",
-      secondaryLabel: "Browse products",
-      secondaryHref: "/products",
     },
     modules: {
       eyebrow: "Browse by product",
@@ -109,14 +103,6 @@ export default async function UseCasesPage() {
             title={copy.hero.title}
             description={copy.hero.description}
             className="overflow-hidden lg:py-4"
-            actions={
-              <>
-                <Button href={copy.hero.primaryHref}>{copy.hero.primaryLabel}</Button>
-                <Button href={copy.hero.secondaryHref} variant="secondary">
-                  {copy.hero.secondaryLabel}
-                </Button>
-              </>
-            }
           />
         </section>
 

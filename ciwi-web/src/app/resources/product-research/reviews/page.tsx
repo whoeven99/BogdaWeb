@@ -6,6 +6,8 @@ import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 
+export const dynamic = "force-dynamic";
+
 function formatRating(value: number) {
   return Number.isInteger(value) ? value.toString() : value.toFixed(1);
 }

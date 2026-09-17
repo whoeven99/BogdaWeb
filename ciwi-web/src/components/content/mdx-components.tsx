@@ -100,10 +100,10 @@ function Callout({title, tone = "default", children}: CalloutProps) {
   );
 }
 
-function CtaCard({eyebrow, title, description, href, buttonLabel, variant = "primary"}: CtaCardProps) {
+function CtaCard({eyebrow, title, description, href, buttonLabel, variant = "secondary"}: CtaCardProps) {
   return (
     <section className="mdx-cta-card">
-      {eyebrow ? <span className="section-heading__eyebrow">{eyebrow}</span> : null}
+      {eyebrow ? <span className="mdx-cta-card__eyebrow">{eyebrow}</span> : null}
       <h3>{title}</h3>
       <p>{description}</p>
       <div className="mdx-cta-card__actions">

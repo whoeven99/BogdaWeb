@@ -8,6 +8,7 @@ type MetadataInput = {
   path?: string;
   locale?: Locale;
   supportedLocales?: Locale[];
+  keywords?: string[];
 };
 
 export const siteName = "Ciwi";
@@ -52,7 +53,7 @@ function truncateTitleToSERPWidth(title: string, targetPxWidth = 480): string {
   return result + ellipsis;
 }
 
-export function buildPageMetadata({title, description, path = "/", locale = "en", supportedLocales}: MetadataInput): Metadata {
+export function buildPageMetadata({title, description, path = "/", locale = "en", supportedLocales, keywords}: MetadataInput): Metadata {
   const brandSuffix = ` | ${siteName}`;
   const safeTitle = truncateTitleToSERPWidth(title, 480 - estimateSERPWidth(brandSuffix));
   const fullTitle = safeTitle + brandSuffix;
@@ -69,9 +70,12 @@ export function buildPageMetadata({title, description, path = "/", locale = "en"
 
   languageAlternates["x-default"] = toAbsoluteSiteUrl(alternates.languages["x-default"]);
 
+  const keywordString = keywords?.length ? keywords.join(", ") : undefined;
+
   return {
     title: fullTitle,
     description,
+    ...(keywordString ? {keywords: keywordString} : undefined),
     alternates: {
       canonical,
       languages: languageAlternates,
@@ -82,6 +86,7 @@ export function buildPageMetadata({title, description, path = "/", locale = "en"
       url: canonical,
       siteName,
       type: "website",
+      ...(keywordString ? {tags: keywords} : undefined),
       images: [
         {
           url: siteDefaultOgImage,

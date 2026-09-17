@@ -1,17 +1,31 @@
 import {UseCasePlaybookCard} from "@/components/cards/UseCasePlaybookCard";
 import {ContentIndexCard} from "@/components/cards/ContentIndexCard";
 import {FinalCtaSection} from "@/components/sections/FinalCtaSection";
+import {BackLink} from "@/components/ui/BackLink";
 import {Button} from "@/components/ui/Button";
+import {CardCtaLink} from "@/components/ui/CardCtaLink";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getFunctionScenarioGuides} from "@/content/function-scenario-guides";
 import {getLocalizationGuides} from "@/content/localization-guides";
 import {getProductMap, products} from "@/content/products";
-import {getFeaturedUseCasesByProduct, getProductPlaybookHref, getUseCasesByProduct} from "@/content/use-cases";
+import {
+  getFeaturedUseCasesByProduct,
+  getProductPlaybookHref,
+  getUseCasesByProduct,
+} from "@/content/use-cases";
+import {
+  getKeywordUseCaseCategories,
+  getKeywordUseCaseCategorySlug,
+  getKeywordUseCases,
+  getKeywordUseCasesByCategory,
+} from "@/content/shopify-keyword-use-cases";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 import {notFound} from "next/navigation";
+
+export const dynamic = "force-dynamic";
 
 type ProductPlaybookPageProps = {
   params: Promise<{slug: string}>;
@@ -37,9 +51,26 @@ function getPlaybookCopy(locale: "en" | "zh-cn") {
         description: "先从最常见、最容易承接搜索和销售语境的场景开始看。",
       },
       all: {
-        eyebrow: "全部场景",
-        title: "这个产品下的全部场景",
-        description: "每个卡片都可以继续扩成更完整的落地页，但聚合页本身先承担总入口。",
+        eyebrow: "精选 Playbook",
+        title: "先看精选业务场景",
+        description: "这些是与产品能力直接耦合的代表性落地页；后续还可以进入 500+ 条运营场景库继续按主题深挖。",
+      },
+      scenarios: {
+        eyebrow: "运营场景库",
+        title: "500+ 条按主题组织的完整运营场景",
+        description: "围绕产品研究、竞品监控、库存管理、投放优化、客户支持、SEO 等 100+ 主题，提供结构化场景描述、解决步骤、可复制提示词与 FAQ 问答组合。",
+        primaryLabel: "打开运营场景库",
+        categoryTitleLabel: "主题",
+        countLabel: "条",
+        emptyLabel: "暂无运营场景",
+        categoryCardPrimaryLabel: "查看该主题全部场景",
+      },
+      stats: {
+        productLabel: "产品",
+        coreLabel: "精选场景",
+        scenariosLabel: "运营场景",
+        scenarioCatsLabel: "主题分类",
+        focusLabel: "重点方向",
       },
       card: {
         linkLabel: "打开场景",
@@ -78,9 +109,28 @@ function getPlaybookCopy(locale: "en" | "zh-cn") {
       description: "Begin with the highest-signal use cases that are easiest to expand into stronger landing pages.",
     },
     all: {
-      eyebrow: "All use cases",
-      title: "All workflows for this product",
-      description: "Each card can still expand into a deeper landing page later, but the playbook acts as the first product-level hub.",
+      eyebrow: "Featured playbooks",
+      title: "Start with curated, product-tied workflows",
+      description:
+        "These are tightly-coupled, product-specific landing pages. For a broader library of 500+ operational Shopify AI scenarios organized by topic, open the scenario library.",
+    },
+    scenarios: {
+      eyebrow: "Operational scenario library",
+      title: "500+ operational scenarios organized by topic",
+      description:
+        "100+ topics: product research, competitor monitoring, inventory, ad optimization, support, SEO, and more. Each page ships with a scenario overview, a structured workflow, a copyable AI prompt, and 3 FAQs.",
+      primaryLabel: "Open scenario library",
+      categoryTitleLabel: "Topic",
+      countLabel: "scenarios",
+      emptyLabel: "No operational scenarios yet",
+      categoryCardPrimaryLabel: "See all scenarios in this topic",
+    },
+    stats: {
+      productLabel: "Product",
+      coreLabel: "Featured playbooks",
+      scenariosLabel: "Operational scenarios",
+      scenarioCatsLabel: "Topics",
+      focusLabel: "Focus",
     },
     card: {
       linkLabel: "Open use case",
@@ -142,6 +192,10 @@ export default async function ProductPlaybookPage({params}: ProductPlaybookPageP
   const featuredUseCases = getFeaturedUseCasesByProduct(locale, product.slug);
   const localizationGuides = getLocalizationGuides(locale);
   const functionScenarioGuides = getFunctionScenarioGuides(locale);
+  const isSpark = product.slug === "spark-analytics-agent";
+  const keywordUseCases = isSpark ? getKeywordUseCases(locale) : [];
+  const keywordCategories = isSpark ? getKeywordUseCaseCategories(locale).slice(0, 6) : [];
+  const keywordIndexHref = isSpark ? `${getProductPlaybookHref(product.slug)}/keyword` : null;
   const pagePath = getProductPlaybookHref(product.slug);
 
   let relatedGuides: Array<{href: string; title: string; description: string; meta: string[]; ctaLabel: string}> | null = null;
@@ -202,59 +256,69 @@ export default async function ProductPlaybookPage({params}: ProductPlaybookPageP
       url: pageUrl,
       name: locale === "zh-cn" ? `${product.name} 方案集` : `${product.name} Playbook`,
       description: `${product.shortDescription} ${copy.hero.description}`,
-      keywords: [product.name, ...useCases.map((item) => item.category)],
+      keywords: [
+        product.name,
+        ...useCases.map((item) => item.category),
+        ...(isSpark ? keywordCategories.map((c) => c.name) : []),
+        "Shopify AI",
+        ...(isSpark ? [`${keywordUseCases.length} operational scenarios`] : []),
+      ],
       type: "CollectionPage",
     }),
   ]);
 
   return (
-    <main>
+    <main className="product-playbook-page">
       <PageContainer>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{__html: JSON.stringify(structuredData)}}
         />
 
-        <section className="py-12 sm:py-16 lg:py-20">
-          <div className="content-hero-shell">
-            <SectionHeading
-              eyebrow={copy.hero.eyebrow}
-              title={`${product.name} ${copy.hero.titleSuffix}`}
-              description={copy.hero.description}
-              as="h1"
-            />
-            <div className="mt-8 grid gap-4 md:grid-cols-3">
-              <article className="rounded-[24px] border border-slate-200/80 bg-white/90 p-5 shadow-sm">
-                <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">
-                  {locale === "zh-cn" ? "产品" : "Product"}
-                </span>
-                <strong className="mt-3 block text-lg font-semibold text-slate-950">{product.name}</strong>
-              </article>
-              <article className="rounded-[24px] border border-slate-200/80 bg-white/90 p-5 shadow-sm">
-                <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">
-                  {locale === "zh-cn" ? "应用场景" : "Use cases"}
-                </span>
-                <strong className="mt-3 block text-lg font-semibold text-slate-950">{useCases.length}</strong>
-              </article>
-              <article className="rounded-[24px] border border-slate-200/80 bg-white/90 p-5 shadow-sm">
-                <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">
-                  {locale === "zh-cn" ? "重点方向" : "Focus"}
-                </span>
-                <strong className="mt-3 block text-lg font-semibold text-slate-950">{product.metrics[0]}</strong>
-              </article>
+        <section className="py-8 sm:py-10 lg:py-12">
+          <div className="mx-auto max-w-5xl">
+            <BackLink href={`/products/${product.slug}`} label={copy.finalCta.primaryLabel} />
+            <div className="mt-5 sm:mt-6">
+              <SectionHeading
+                eyebrow={copy.hero.eyebrow}
+                title={`${product.name} ${copy.hero.titleSuffix}`}
+                description={copy.hero.description}
+                as="h1"
+              />
             </div>
-            <div className="mt-6 flex flex-wrap gap-2">
-              {product.metrics.map((metric) => (
-                <span key={metric} className="pill">
-                  {metric}
+            <div className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+              <article className="rounded-2xl border border-slate-200/80 bg-white/90 p-4">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+                  {copy.stats.productLabel}
                 </span>
-              ))}
-            </div>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <Button href={`/products/${product.slug}`}>{copy.hero.primaryLabel}</Button>
-              <Button href="/use-cases" variant="secondary">
-                {copy.hero.secondaryLabel}
-              </Button>
+                <strong className="mt-2 block text-base font-semibold text-slate-950">{product.name}</strong>
+              </article>
+              <article className="rounded-2xl border border-slate-200/80 bg-white/90 p-4">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+                  {copy.stats.coreLabel}
+                </span>
+                <strong className="mt-2 block text-base font-semibold text-slate-950">{useCases.length}</strong>
+              </article>
+              {isSpark && (
+                <>
+                  <article className="rounded-2xl border border-emerald-200/70 bg-emerald-50/55 p-4">
+                    <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-700">
+                      {copy.stats.scenariosLabel}
+                    </span>
+                    <strong className="mt-2 block text-base font-semibold text-slate-950">
+                      {keywordUseCases.length.toLocaleString()}
+                    </strong>
+                  </article>
+                  <article className="rounded-2xl border border-slate-200/80 bg-white/90 p-4">
+                    <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+                      {copy.stats.scenarioCatsLabel}
+                    </span>
+                    <strong className="mt-2 block text-base font-semibold text-slate-950">
+                      {getKeywordUseCaseCategories(locale).length}
+                    </strong>
+                  </article>
+                </>
+              )}
             </div>
           </div>
         </section>
@@ -304,6 +368,83 @@ export default async function ProductPlaybookPage({params}: ProductPlaybookPageP
             ))}
           </div>
         </section>
+
+        {isSpark && keywordIndexHref && (
+          <section className="page-section">
+            <div className="scenario-library-header flex flex-wrap items-start justify-between gap-6 md:items-end">
+              <div>
+                <div className="text-xs font-medium uppercase tracking-[0.2em] text-emerald-700/90">
+                  {copy.scenarios.eyebrow}
+                  <span className="ml-3 rounded-full bg-slate-100 px-2.5 py-0.5 text-[11px] font-semibold tracking-[0.12em] text-slate-500">
+                    {keywordUseCases.length.toLocaleString()} {copy.scenarios.countLabel} ·{" "}
+                    {getKeywordUseCaseCategories(locale).length}{" "}
+                    {locale === "zh-cn" ? "主题" : "topics"}
+                  </span>
+                </div>
+                <h2 className="mt-4 text-[28px] font-semibold leading-[1.15] tracking-[-0.03em] text-slate-950 sm:text-[32px]">
+                  {copy.scenarios.title}
+                </h2>
+                <p className="mt-4 max-w-3xl text-base leading-8 text-slate-600 sm:text-[17px]">
+                  {copy.scenarios.description}
+                </p>
+              </div>
+              <div className="shrink-0">
+                <Button href={keywordIndexHref}>{copy.scenarios.primaryLabel}</Button>
+              </div>
+            </div>
+
+            {keywordUseCases.length === 0 ? (
+              <div className="empty mt-10 rounded-[28px] border border-dashed border-slate-200/80 bg-white/60 px-6 py-14 text-center text-sm text-slate-500 sm:mt-12 lg:mt-14">
+                {copy.scenarios.emptyLabel}
+              </div>
+            ) : (
+              <div className="grid mt-10 gap-6 sm:grid-cols-2 sm:mt-12 lg:grid-cols-3 lg:mt-14 lg:gap-7">
+                {keywordCategories.map((cat) => {
+                  const items = getKeywordUseCasesByCategory(locale, cat.name).slice(0, 3);
+                    const catSlug = getKeywordUseCaseCategorySlug(locale, cat.name);
+                  return (
+                    <article
+                      key={cat.name}
+                      className="scenario-library-card flex h-full flex-col rounded-[26px] border border-slate-200/80 bg-white/90 p-6 sm:p-7 shadow-[0_18px_48px_-32px_rgba(15,23,42,0.18)] transition-colors hover:border-emerald-200 hover:bg-emerald-50/40"
+                    >
+                      <div className="flex flex-wrap items-center justify-between gap-3">
+                        <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+                          {copy.scenarios.categoryTitleLabel}
+                        </div>
+                        <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-[11px] font-semibold tracking-[0.12em] text-slate-500">
+                          {cat.count} {copy.scenarios.countLabel}
+                        </span>
+                      </div>
+                      <h3
+                        id={`cat-${catSlug}-summary`}
+                        className="mt-4 text-lg font-semibold tracking-[-0.02em] text-slate-950 sm:mt-5"
+                      >
+                        {cat.name}
+                      </h3>
+                      <ul className="mt-5 space-y-3 text-sm leading-7 text-slate-700 sm:text-[15px]">
+                        {items.map((item) => (
+                          <li key={item.slug}>
+                            <CardCtaLink
+                              href={`${keywordIndexHref}/${item.slug}`}
+                              variant="text"
+                            >
+                              {item.title}
+                            </CardCtaLink>
+                          </li>
+                        ))}
+                      </ul>
+                      <div className="card-footer mt-7 pt-6 border-t border-slate-100/80">
+                        <CardCtaLink href={`${keywordIndexHref}#cat-${catSlug}`} variant="outlined">
+                          {copy.scenarios.categoryCardPrimaryLabel}
+                        </CardCtaLink>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            )}
+          </section>
+        )}
 
         {relatedGuides && relatedGuides.length > 0 && (
           <section className="page-section">

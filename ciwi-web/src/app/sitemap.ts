@@ -14,8 +14,15 @@ import {getProducts} from "@/content/products";
 import {getSolutions} from "@/content/solutions";
 import {getToolReviews} from "@/content/tool-reviews";
 import {getProductPlaybookHref, getUseCases} from "@/content/use-cases";
+import {
+  getKeywordUseCaseCategories,
+  getKeywordUseCaseCategorySlug,
+  getKeywordUseCases,
+} from "@/content/shopify-keyword-use-cases";
 import type {Locale} from "@/lib/i18n";
 import {toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
+
+const CATEGORIES_PER_PAGE = 25;
 
 const staticRoutes = [
   "/",
@@ -26,6 +33,8 @@ const staticRoutes = [
   "/contact",
   "/demo",
   "/guides",
+  "/guides/function-scenarios",
+  "/guides/localization",
   "/guides/shopify-translation",
   "/guides/shopify-translation/prompts",
   "/help-center",
@@ -71,6 +80,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const product of getProducts(locale)) {
       addEntry(`/products/${product.slug}`, locale);
       addEntry(getProductPlaybookHref(product.slug), locale);
+
+      if (product.slug === "spark-analytics-agent") {
+        const keywordRoot = `${getProductPlaybookHref(product.slug)}/keyword`;
+        addEntry(keywordRoot, locale);
+
+        const totalCats = getKeywordUseCaseCategories(locale).length;
+        const totalPages = Math.max(1, Math.ceil(totalCats / CATEGORIES_PER_PAGE));
+        for (let p = 2; p <= totalPages; p++) {
+          addEntry(`${keywordRoot}/page/${p}`, locale);
+        }
+
+        for (const category of getKeywordUseCaseCategories(locale)) {
+          const catSlug = getKeywordUseCaseCategorySlug(locale, category.name);
+          addEntry(`${keywordRoot}/category/${catSlug}`, locale);
+        }
+
+        for (const keywordUseCase of getKeywordUseCases(locale)) {
+          addEntry(`${keywordRoot}/${keywordUseCase.slug}`, locale);
+        }
+      }
     }
 
     for (const useCase of getUseCases(locale)) {

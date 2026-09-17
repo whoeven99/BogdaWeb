@@ -7,6 +7,8 @@ import {getRequestLocale} from "@/lib/i18n-server";
 import {ciwiShopifyInstallUrl} from "@/lib/marketing-links";
 import {buildPageMetadata} from "@/lib/seo/metadata";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata() {
   const locale = await getRequestLocale();
   const page = getSitePages(locale).contact;
