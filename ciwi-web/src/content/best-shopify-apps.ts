@@ -61,7 +61,7 @@ const collectionsEn: BestShopifyAppCollection[] = [
     updatedLabel: "Updated August 2026",
     title: "Best Shopify Translation Apps (2026)",
     description:
-      "A year-based roundup of Shopify translation apps, focused on structured localization coverage, workflow depth, and long-term maintenance fit.",
+      "Compare Shopify translation apps for AI translation, glossary control, multilingual SEO, and ongoing content updates to find the right workflow.",
     heroEyebrow: "最佳 Shopify 应用",
     summary:
       "If your store needs more than quick text translation, the best option in 2026 is usually the app that handles Shopify structure, repeated updates, and long-term terminology control with the least operational friction.",

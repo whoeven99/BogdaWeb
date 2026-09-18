@@ -36,7 +36,7 @@ function buildGuidesHubNarrative({
 
   return [
     `The guides hub currently brings together ${localizationCount} localization guides and ${scenarioCount} function scenario guides.`,
-    merchantGuideCount > 0 ? `It also includes ${merchantGuideCount} task-style workflow entries.` : "It works best as a routing page before you open a specific article.",
+    merchantGuideCount > 0 ? `It also includes ${merchantGuideCount} Shopify automation and task guides.` : "Choose a guide based on the store task you want to complete.",
     "Use the localization collection when the job is market expansion, brand localization, or B2B multilingual planning.",
     "Use the function scenario collection when the problem is tied to a specific Shopify surface, translation task, or execution workflow.",
   ];
@@ -50,7 +50,7 @@ export async function generateMetadata() {
     description:
       locale === "zh-cn"
         ? "学习如何完成 Shopify 店铺任务、规划自动化工作流，以及开展本地化与翻译。"
-        : "Practical Shopify how-to guides, automation workflows, and localization advice to help you complete store tasks.",
+        : "Learn Shopify store management through practical how-to guides, automation workflows, and localization tutorials for everyday merchant tasks.",
     path: "/guides",
     locale,
   });

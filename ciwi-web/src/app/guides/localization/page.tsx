@@ -41,12 +41,12 @@ export async function generateMetadata() {
     locale === "zh-cn"
       ? {
           title: "Shopify 本地化指南",
-          description: "集中浏览行业、品牌与 B2B 本地化指南，承接类目型搜索需求并覆盖多市场语言策略。",
+          description: "参考行业、品牌与 B2B 本地化指南，规划目标市场、语言策略和多语言内容。",
         }
       : {
           title: "Shopify Localization Guides",
           description:
-            "Browse industry, brand, and B2B localization guides built for category-led search demand and international growth planning.",
+            "Plan your Shopify localization strategy with industry and B2B guides covering target markets, product terminology, and multilingual content.",
         };
 
   return buildPageMetadata({
@@ -77,12 +77,12 @@ export default async function LocalizationGuidesPage() {
           hero: {
             eyebrow: "本地化指南",
             title: "行业、品牌与 B2B 本地化指南",
-            description: "集中浏览更适合承接类目型搜索需求的本地化指南，覆盖市场差异、语言策略、内容范围与常见错误。",
+            description: "按行业和 B2B 场景选择本地化策略，了解市场差异、内容优先级、术语要求与常见翻译错误。",
           },
           stats: {
             pages: "指南页面",
             scope: "覆盖范围",
-            focus: "搜索意图",
+            focus: "指南形式",
             scopeValue: "行业 / 品牌 / B2B",
             focusValue: "类目型 / 策略型",
           },
@@ -106,12 +106,12 @@ export default async function LocalizationGuidesPage() {
             eyebrow: "Localization guides",
             title: "Industry, brand, and B2B localization guides",
             description:
-              "Browse the guide collection built for category-led localization search demand, market planning, and multilingual content strategy.",
+              "Choose a localization strategy for your industry or B2B store. Review market differences, content priorities, terminology, and common translation mistakes.",
           },
           stats: {
             pages: "Guide pages",
             scope: "Coverage",
-            focus: "Search intent",
+            focus: "Guide format",
             scopeValue: "Industry / Brand / B2B",
             focusValue: "Category-led / Strategic",
           },

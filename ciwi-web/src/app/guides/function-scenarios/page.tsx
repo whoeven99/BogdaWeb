@@ -41,12 +41,12 @@ export async function generateMetadata() {
     locale === "zh-cn"
       ? {
           title: "Shopify 功能场景指南",
-          description: "集中浏览 Shopify 功能点、翻译范围与执行流程相关的功能场景指南，适合承接 how-to 搜索需求。",
+          description: "按 Shopify 功能查找翻译范围与操作流程，覆盖商品、集合、结账、导航和客户沟通等场景。",
         }
       : {
-          title: "Shopify Function Scenario Guides",
+          title: "Shopify Translation Workflows by Feature",
           description:
-            "Browse Shopify function scenario guides focused on surfaces, translation scope, and execution workflows for how-to search intent.",
+            "Find Shopify translation workflows by feature, from product and collection pages to checkout, navigation, and customer communications.",
         };
 
   return buildPageMetadata({
@@ -77,12 +77,12 @@ export default async function FunctionScenarioGuidesPage() {
           hero: {
             eyebrow: "功能场景指南",
             title: "Shopify 功能场景翻译指南",
-            description: "集中浏览更适合承接 how-to 搜索需求的 Shopify 功能场景指南，覆盖翻译范围、执行步骤与常见错误。",
+            description: "找到需要翻译的 Shopify 功能，逐步检查内容范围、操作流程与上线前注意事项。",
           },
           stats: {
             pages: "指南页面",
             scope: "覆盖范围",
-            focus: "搜索意图",
+            focus: "指南形式",
             scopeValue: "Shopify 功能点 / 执行流程",
             focusValue: "How-to / 操作型",
           },
@@ -97,21 +97,21 @@ export default async function FunctionScenarioGuidesPage() {
         }
       : {
           structuredData: {
-            name: "Shopify Function Scenario Guides",
-            description: "Collection page for Shopify function scenario guides.",
+            name: "Shopify Translation Workflows by Feature",
+            description: "Collection page for Shopify translation workflows by feature.",
             keywords: ["shopify function guides", "shopify translation workflows", "how-to guides", "shopify execution guides"],
           },
           backLabel: "Back to guides",
           hero: {
             eyebrow: "Function scenario guides",
-            title: "Shopify function scenario guides",
+            title: "Shopify translation workflows by feature",
             description:
-              "Browse the guide collection built for how-to search intent around Shopify surfaces, translation scope, and rollout workflows.",
+              "Choose the Shopify feature you need to translate, then follow its content checklist, workflow, and pre-launch checks.",
           },
           stats: {
             pages: "Guide pages",
             scope: "Coverage",
-            focus: "Search intent",
+            focus: "Guide format",
             scopeValue: "Shopify surfaces / Execution",
             focusValue: "How-to / Operational",
           },

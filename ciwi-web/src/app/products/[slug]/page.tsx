@@ -227,8 +227,8 @@ export async function generateMetadata({params}: ProductDetailPageProps) {
   }
 
   return buildPageMetadata({
-    title: product.name,
-    description: product.heroDescription,
+    title: product.seoTitle ?? product.name,
+    description: product.seoDescription ?? product.heroDescription,
     path: `/products/${product.slug}`,
     locale,
   });

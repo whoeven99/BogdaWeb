@@ -25,6 +25,11 @@ import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/meta
 import {buildBreadcrumbSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 import {notFound} from "next/navigation";
 
+const translatorPlaybookCopy = {
+  title: "AI Translator Playbook for Ecommerce",
+  description: "Explore multilingual storefront workflows for Shopify: launch a market, manage terminology, review translations, and keep store content in sync.",
+};
+
 export const dynamic = "force-dynamic";
 
 type ProductPlaybookPageProps = {
@@ -203,8 +208,8 @@ export async function generateMetadata({params}: ProductPlaybookPageProps) {
   }
 
   return buildPageMetadata({
-    title: locale === "zh-cn" ? `${product.name} 方案集` : `${product.name} Playbook`,
-    description: `${product.shortDescription} ${copy.hero.description}`,
+    title: locale === "zh-cn" ? `${product.name} 方案集` : product.slug === "translator" ? translatorPlaybookCopy.title : `${product.name} Playbook`,
+    description: locale === "en" && product.slug === "translator" ? translatorPlaybookCopy.description : `${product.shortDescription} ${copy.hero.description}`,
     path: getProductPlaybookHref(product.slug),
     locale,
   });
@@ -295,8 +300,8 @@ export default async function ProductPlaybookPage({params}: ProductPlaybookPageP
     ]),
     buildWebPageSchema({
       url: pageUrl,
-      name: locale === "zh-cn" ? `${product.name} 方案集` : `${product.name} Playbook`,
-      description: `${product.shortDescription} ${copy.hero.description}`,
+      name: locale === "zh-cn" ? `${product.name} 方案集` : product.slug === "translator" ? translatorPlaybookCopy.title : `${product.name} Playbook`,
+      description: locale === "en" && product.slug === "translator" ? translatorPlaybookCopy.description : `${product.shortDescription} ${copy.hero.description}`,
       keywords: [
         product.name,
         ...useCases.map((item) => item.category),
@@ -322,8 +327,8 @@ export default async function ProductPlaybookPage({params}: ProductPlaybookPageP
             <div className="mt-5 sm:mt-6">
               <SectionHeading
                 eyebrow={copy.hero.eyebrow}
-                title={`${product.name} ${copy.hero.titleSuffix}`}
-                description={copy.hero.description}
+                title={locale === "en" && product.slug === "translator" ? translatorPlaybookCopy.title : `${product.name} ${copy.hero.titleSuffix}`}
+                description={locale === "en" && product.slug === "translator" ? translatorPlaybookCopy.description : copy.hero.description}
                 as="h1"
               />
             </div>

@@ -207,9 +207,9 @@ const ciwiPricingPlansZh: ComparePricingPlan[] = [
 const comparesEn: CompareItem[] = [
   {
     slug: "transcy-alternative",
-    title: "Transcy Alternative",
+    title: "Transcy Alternative for Shopify Translation",
     alternativeName: "Transcy",
-    description: "Compare both paths across Shopify structure coverage, terminology control, and long-term maintenance cost.",
+    description: "Compare Ciwi as a Transcy alternative for Shopify, covering storefront content, glossary control, review workflows, and translation maintenance.",
     summary: "If you care about more than turning source text into another language, and you want a workflow for products, themes, FAQs, and long-term consistency, Ciwi is more focused on structured governance and localization quality.",
     appComparison:
       "Transcy's public pricing structure presents the app as a combined translation, currency, and market-localization tool. Even the Free plan already bundles one language, one currency, a basic switcher, third-party app translation, and Shopify Payments integration. Higher tiers then scale by editable languages, currencies, AI credits, multilingual SEO, automation, and API-key level integrations such as DeepL, OpenAI, and Gemini. Ciwi's public packaging reads differently. Its plans emphasize broad Shopify content coverage, glossary control, custom AI prompts, image and alt-text localization, IP-based language and currency switching, and higher-touch support at upper tiers. In practice, Transcy looks more like an all-in-one multilingual storefront operations suite, while Ciwi is positioned more around translation governance and structured localization workflow.",
@@ -287,9 +287,9 @@ const comparesEn: CompareItem[] = [
   },
   {
     slug: "langwill-alternative",
-    title: "Langwill Alternative",
+    title: "Langwill Alternative for Shopify Localization",
     alternativeName: "Langwill",
-    description: "Useful when comparing translation capability, content workflows, and how unified the website front end feels.",
+    description: "Compare Ciwi as a Langwill alternative for multilingual Shopify workflows, from content coverage and terminology to ongoing translation management.",
     summary: "If you are not just comparing translation tools but comparing whole multilingual growth systems, Ciwi places more weight on front-end consistency, content routing, and long-term governance.",
     appComparison:
       "Langwill's public description positions it as a multilingual storefront growth tool that combines 138-language translation, auto currency conversion, geolocation, multilingual SEO, image translation, and selector customization. Its feature list emphasizes GPT-4, DeepL, or Google-based AI translation with full editing control, plus translated meta tags and URL handles for SEO-friendly rollout. Ciwi's public positioning is narrower but deeper on Shopify localization workflow: it emphasizes structured content coverage across products, themes, navigation, FAQs, images, and metafields, along with glossary control, custom prompts, and ongoing sync. In practice, Langwill reads more like an all-in-one translation plus currency-growth app, while Ciwi is positioned more around translation governance and Shopify-aware localization depth.",
@@ -368,7 +368,7 @@ const comparesEn: CompareItem[] = [
     slug: "shopify-translate-adapt-alternative",
     title: "Shopify Translate & Adapt Alternative",
     alternativeName: "Shopify Translate & Adapt",
-    description: "Useful when comparing Shopify native localization with a more complete localization workflow.",
+    description: "Compare Ciwi with Shopify Translate & Adapt for glossary control, content coverage, ongoing translation updates, and your store's review workflow.",
     summary: "If you have already moved beyond simply publishing multilingual pages and now care about glossary, structured content coverage, continuous sync, and brand consistency, Ciwi offers a deeper path.",
     appComparison:
       "Shopify Translate & Adapt's public description positions it as Shopify's native localization starting point for merchants who want to translate and adapt store content for different markets directly inside Shopify admin. Its message is centered on simplicity and native workflow: manually add, edit, and review translations in a side-by-side editor, auto-translate up to two languages for free with Google Translate, adapt copy for regional spelling or messaging differences, localize directly from the theme editor or resource pages, and manage localized store content without leaving Shopify admin. Ciwi's public positioning is less about being the native default and more about offering deeper Shopify localization workflow across structured content types such as products, themes, navigation, FAQs, images, and metafields, together with glossary control, custom prompts, image localization, and ongoing sync. In practice, Translate & Adapt reads more like the cleanest native entry point for basic multilingual operations, while Ciwi is positioned more around deeper workflow control and structured localization governance.",
@@ -436,9 +436,9 @@ const comparesEn: CompareItem[] = [
   },
   {
     slug: "weglot-alternative",
-    title: "Weglot Alternative",
+    title: "Weglot Alternative for Shopify",
     alternativeName: "Weglot",
-    description: "Useful when comparing a quick-coverage translation path with a Shopify-specific content governance path.",
+    description: "Compare Ciwi as a Weglot alternative for Shopify, with attention to structured storefront content, brand terminology, and translation maintenance.",
     summary: "If your priority is fast multilingual coverage, a Weglot-like path is often easier to understand. If you care more about Shopify structure, brand terminology, and long-term governance, Ciwi stays more focused there.",
     bestFor: [
       "Teams with existing multilingual traffic who now want better governance",
@@ -501,9 +501,9 @@ const comparesEn: CompareItem[] = [
   },
   {
     slug: "langify-alternative",
-    title: "Langify Alternative",
+    title: "Langify Alternative for Shopify",
     alternativeName: "Langify",
-    description: "Useful when comparing translation workflow, human control, and long-term synchronization strategy.",
+    description: "Compare Ciwi as a Langify alternative for Shopify, focusing on human review, terminology control, translation workflow, and ongoing content updates.",
     summary: "If you care more about human review, terminology consistency, and ongoing update governance, Ciwi is easier to combine with glossary, help docs, and resource routing. If the need is more basic translation organization, a Langify-like path is usually easier to understand.",
     bestFor: [
       "Brands with high requirements for human review and terminology consistency",
@@ -565,9 +565,9 @@ const comparesEn: CompareItem[] = [
   },
   {
     slug: "transtore-alternative",
-    title: "Transtore Alternative",
+    title: "Transtore Alternative for Shopify",
     alternativeName: "Transtore",
-    description: "Useful when comparing pricing transparency, AI translation quality, and how safely existing manual translations are handled.",
+    description: "Compare Ciwi as a Transtore alternative for Shopify, including translation workflow, pricing considerations, and the handling of approved translations.",
     summary:
       "If you care about predictable multilingual cost, preserving manual work, and avoiding confusion between free install and real publishing capability, Ciwi is the steadier path.",
     appComparison:
@@ -711,9 +711,9 @@ const comparesEn: CompareItem[] = [
   },
   {
     slug: "langshop-alternative",
-    title: "LangShop Alternative",
+    title: "LangShop Alternative for Shopify Translation",
     alternativeName: "LangShop",
-    description: "Useful when comparing glossary cost, storefront switcher fit, day-to-day stability, and multilingual governance.",
+    description: "Compare Ciwi as a LangShop alternative for Shopify, including glossary needs, language-switcher fit, pricing considerations, and translation workflow.",
     summary:
       "If you need stronger terminology control without enterprise-style glossary pricing, and you want a cleaner ongoing workflow for storefront updates, Ciwi is the more balanced path.",
     appComparison:
@@ -790,9 +790,9 @@ const comparesEn: CompareItem[] = [
   },
   {
     slug: "gtranslate-alternative",
-    title: "GTranslate Alternative",
+    title: "GTranslate Alternative for Shopify",
     alternativeName: "GTranslate",
-    description: "Useful when comparing SEO safety, pricing pressure, uninstall risk, and storefront stability during multilingual growth.",
+    description: "Compare Ciwi as a GTranslate alternative for Shopify, focusing on translation coverage, SEO checks, pricing structure, and ongoing store updates.",
     summary:
       "If you care about predictable SEO structure, safer storefront behavior, and avoiding upgrade pressure when traffic grows, Ciwi is the steadier long-term path.",
     appComparison:
@@ -948,9 +948,9 @@ const comparesEn: CompareItem[] = [
   },
   {
     slug: "locales-ai-alternative",
-    title: "Locales.ai Alternative",
+    title: "Locales.ai Alternative for Shopify Translation",
     alternativeName: "Locales.ai",
-    description: "Useful when comparing billing predictability, credit controls, support responsiveness, and multilingual operating cost.",
+    description: "Compare Ciwi as a Locales.ai alternative, with a focus on translation credits, cost visibility, workflow fit, and ongoing multilingual store management.",
     summary:
       "If you want multilingual growth without unclear credit burn or surprise billing behavior, Ciwi is the safer path for budget control and day-to-day operations.",
     appComparison:
@@ -1092,9 +1092,9 @@ const comparesEn: CompareItem[] = [
   },
   {
     slug: "orbe-geolocation-alternative",
-    title: "Orbe Geolocation Alternative",
+    title: "Orbe Alternative: Shopify Localization & Geolocation",
     alternativeName: "Orbe Geolocation",
-    description: "Useful when comparing a translation workflow with a geolocation and market redirection tool.",
+    description: "Compare Shopify geolocation and localization needs when considering an Orbe alternative. Separate visitor redirection from storefront translation requirements.",
     summary:
       "Ciwi and Orbe solve different problems. Ciwi is for multilingual translation and localization governance, while Orbe is primarily for geolocation, market routing, and country-based storefront logic.",
     bestFor: [
@@ -1120,9 +1120,9 @@ const comparesEn: CompareItem[] = [
   },
   {
     slug: "ez-product-image-translate-alternative",
-    title: "EZ Product Image Translate Alternative",
+    title: "EZ Product Image Translate Alternative for Shopify",
     alternativeName: "EZ Product Image Translate",
-    description: "Useful when comparing a full translation workflow with an image-focused translation utility.",
+    description: "Compare visual content translation needs when choosing an EZ Product Image Translate alternative, including image text, banners, and wider store localization.",
     summary:
       "Ciwi and EZ Product Image Translate overlap only partially. Ciwi handles broader storefront translation and localization governance, while EZ is much closer to an image-specific workflow.",
     bestFor: [
@@ -1148,9 +1148,9 @@ const comparesEn: CompareItem[] = [
   },
   {
     slug: "selecty-alternative",
-    title: "Geolocation & Markets Selecty Alternative",
+    title: "Selecty Alternative: Shopify Language & Market Selection",
     alternativeName: "Geolocation & Markets Selecty",
-    description: "Useful when comparing translation and localization workflow with a geolocation selector and market-detection tool.",
+    description: "Compare Shopify language and market selection needs when considering a Selecty alternative, including storefront localization and geolocation requirements.",
     summary:
       "Ciwi and Selecty focus on different layers. Ciwi is for translating and governing multilingual content, while Selecty is closer to country detection, market selection, and storefront routing.",
     bestFor: [

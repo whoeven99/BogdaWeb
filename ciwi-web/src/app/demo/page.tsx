@@ -14,11 +14,11 @@ export async function generateMetadata() {
   const locale = await getRequestLocale();
 
   return buildPageMetadata({
-    title: locale === "zh-cn" ? "演示中心" : "Demo Center",
+    title: locale === "zh-cn" ? "演示中心" : "Shopify Translation App Demo",
     description:
       locale === "zh-cn"
         ? "通过前后对比和术语控制，快速判断产品价值。"
-        : "Use focused before-and-after demos and terminology control examples to understand product value faster.",
+        : "Watch the Ciwi Shopify translation app demo to compare storefront translations and see how glossary control shapes brand and product terminology.",
     path: "/demo",
     locale,
   });
@@ -71,8 +71,8 @@ export default async function DemoPage() {
       : {
           hero: {
             eyebrow: "Demo",
-            title: "Understand the product through the shortest path",
-            description: "This page focuses on before-and-after comparisons and glossary control.",
+            title: "See the Shopify translation app in action",
+            description: "Watch the Shopify translation app demo to compare translated storefront copy and see how glossary choices affect brand and product terminology.",
             cards: [
               {
                 eyebrow: "Translation demo",
