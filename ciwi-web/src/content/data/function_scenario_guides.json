@@ -163,16 +163,16 @@
     ],
     "faq": [
       {
-        "question": "Does Shopify convert currency automatically?",
-        "answer": "Shopify Markets can convert and display local currencies, but you still need to configure rounding and presentation so prices feel native."
+        "question": "How do Shopify Markets and currency localization work together?",
+        "answer": "Shopify Markets can convert and display local currencies, but that is only the starting layer. Real currency localization also needs market-level rounding, local price formatting, tax expectations, and checkout consistency so the converted number feels native rather than mechanically exchanged."
       },
       {
-        "question": "How should I round prices in different currencies?",
-        "answer": "Match local convention: round to whole units for JPY and SEK, two decimals for USD and EUR, and so on."
+        "question": "What makes multi-currency pricing feel local instead of auto-converted?",
+        "answer": "Localized pricing feels local when the number is rounded to native price points, the symbol and separators follow local convention, and the price stays coherent from product page to cart and checkout. Raw exchange-rate math alone usually produces awkward prices that look imported."
       },
       {
-        "question": "Should prices include tax?",
-        "answer": "Yes, where the market expects it (e.g., EU VAT-inclusive). Showing the final price upfront reduces checkout abandonment."
+        "question": "Should local-currency prices be auto-converted or manually adjusted for key markets?",
+        "answer": "Auto-conversion is fine for lighter expansion or long-tail markets, but important markets often deserve manual price review or overrides. If the market drives real revenue, you usually want tighter control over price psychology, margins, and tax-inclusive expectations than simple conversion can provide."
       }
     ]
   },
@@ -342,16 +342,16 @@
     ],
     "faq": [
       {
-        "question": "Should I translate my whole blog or just some posts?",
-        "answer": "Start with posts that already drive traffic or target high-intent keywords. Translate those first, measure, then expand. Translating the entire archive at once usually wastes budget on thin or dated content."
+        "question": "Which Shopify blog posts should be translated first for multilingual SEO?",
+        "answer": "Start with posts that already rank, drive qualified traffic, or target high-intent keywords in the target market. Translating the whole archive at once usually spreads budget across weak posts, while a search-led shortlist gives you faster SEO feedback and clearer content priorities."
       },
       {
-        "question": "Does Google penalize translated blog posts as duplicate content?",
-        "answer": "Not if you use hreflang tags to map each post to its language version. Hreflang tells search engines these are localized equivalents, not copies — skipping it is what triggers duplicate-content issues."
+        "question": "Will translated Shopify blog posts create duplicate-content problems in Google?",
+        "answer": "Not when they are published as legitimate language variants with the right hreflang, internal linking, and market signals. Google treats localized equivalents differently from copied content. The real problem is usually weak localization or missing language signals, not translation itself."
       },
       {
-        "question": "Is machine translation good enough for blog posts?",
-        "answer": "It's a solid first draft for volume, but blog posts need a human edit pass for voice, idioms, and cultural examples. Publish raw machine output and you'll get content that reads stiff and won't rank."
+        "question": "Is machine translation enough for Shopify blog localization, or do posts need human editing?",
+        "answer": "Machine translation is useful as a first draft, especially at scale, but blog posts usually still need human editing for search phrasing, examples, tone, and internal-link logic. Raw machine output may be readable, yet still miss the keyword intent and local nuance that help the post rank."
       }
     ]
   },
@@ -519,16 +519,16 @@
     ],
     "faq": [
       {
-        "question": "Why is my mini-cart still in English after translating the cart page?",
-        "answer": "Most mini-carts are theme components with hardcoded strings that sit outside Shopify's standard translation list. Audit the cart-drawer section or use a translation app that scans theme strings."
+        "question": "Why is my Shopify mini-cart still untranslated after I localized the cart page?",
+        "answer": "Because mini-cart strings often live inside theme components or cart-drawer code instead of Shopify's main translation layer. Localizing the cart page alone does not always touch those strings, so the drawer, empty state, or action buttons can stay in the source language until the theme layer is translated too."
       },
       {
-        "question": "Should cart button labels match checkout exactly?",
-        "answer": "Yes. Consistent calls-to-action across the cart and checkout reduce friction and make the store feel deliberate. Use one glossary for the whole funnel."
+        "question": "Do cart and checkout button labels need to match across languages?",
+        "answer": "They do not have to be word-for-word identical, but they should feel like one continuous flow. If the cart says one thing and checkout suddenly switches tone or meaning, the store feels less polished and the customer may hesitate right before payment."
       },
       {
-        "question": "How do I keep cart translations updated when I change themes?",
-        "answer": "Re-scan and re-verify after any theme update, or use an app with auto-sync so theme changes don't silently revert your translations."
+        "question": "How do I keep cart and mini-cart translations updated after a Shopify theme change?",
+        "answer": "Re-audit the cart drawer and related theme strings after every theme update, because new components often reintroduce untranslated labels. A glossary for cart CTAs, subtotal language, and empty-state copy makes it much easier to restore consistency after the theme changes."
       }
     ]
   },
@@ -1758,16 +1758,16 @@
     ],
     "faq": [
       {
-        "question": "Do I need to translate FAQ questions or just the answers?",
-        "answer": "Both. The question is what shoppers scan for, and it also drives long-tail search traffic. Leaving questions in the source language makes the whole section hard to use and weakens SEO."
+        "question": "For Shopify FAQ SEO, do I need to translate both the questions and the answers?",
+        "answer": "Yes. Questions are often the search-facing entry point, while answers resolve the objection that blocks conversion. If only the answers are translated, the FAQ loses both clarity for users and much of its long-tail search value."
       },
       {
-        "question": "Should I translate the FAQPage structured data too?",
-        "answer": "Yes. Google reads the FAQPage schema for rich results, so the questions and answers in the JSON-LD must match the translated visible content or your snippets will show the wrong language."
+        "question": "Does Shopify FAQPage schema need to match the translated visible FAQ content?",
+        "answer": "Absolutely. FAQ rich results read the structured data, not just the page copy. If the visible FAQ is translated but the schema stays in the source language, the page can send mixed signals to search engines and users."
       },
       {
-        "question": "How do I keep FAQ translations accurate over time?",
-        "answer": "Use a translation app with auto-sync so updated answers are re-translated, or set a review schedule. Manual translations drift the fastest as shipping and return policies change."
+        "question": "How do I keep multilingual Shopify FAQs accurate when policies or shipping rules change?",
+        "answer": "Treat FAQ copy like operational content, not decorative content. Every change to shipping, returns, sizing, subscriptions, or support policy should trigger an update to both the visible answer and the FAQ schema in every active language."
       }
     ]
   },

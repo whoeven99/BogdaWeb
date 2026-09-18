@@ -160,16 +160,16 @@ SEO 问题不只是偏好差异。一个泛西语页面，发出的地区信号�
 <FaqAccordion
   items={[
     {
-      question: "为什么一个泛 `/es/` 路径不足以同时承载 Spain 和 Argentina？",
-      answer: "因为一个泛西语层一旦同时承担两个重要市场，通常就会让地区 storefront 逻辑、SEO 定位和发布控制都变得不够清楚。",
+      question: "为什么一个 `/es/` 路径，没法在 Shopify 里同时把 Spain 和 Argentina 都做好？",
+      answer: "因为一个泛西语层一旦同时承担 Spain 和 Argentina，就会让地区 storefront 信号变得过宽。页面也许还是西语，但在 market targeting、地区 SEO 和发布控制上，Argentina 往往已经需要更明确的独立层。"
     },
     {
-      question: "正确实现 es-AR 隔离的方式是什么？",
-      answer: "先用 Shopify Markets 把 Argentina 设成独立 market，再让 storefront 以 es-AR 这种地区西语形式被暴露，而不是继续依赖一个泛化 Spanish 路径。",
+      question: "在 Shopify Markets 和域名结构里，es-AR 应该怎么正确配置？",
+      answer: "先在 Shopify Markets 里把 Argentina 设成独立 market，再通过语言和域名层把 storefront 暴露成 es-AR 这样的地区西语形式，而不是继续依赖一个泛化 Spanish 路径。"
     },
     {
-      question: "Ciwi AI Translator 在这里负责什么？",
-      answer: "当前台结构已经正确后，Ciwi 负责 es-AR 这一层的语言发布与兼容管理。",
+      question: "es-AR 是 Ciwi AI Translator 自己生成的，还是要先把 Shopify 结构配好？",
+      answer: "不是 Ciwi 先生成 es-AR，而是先把 Shopify 的 market 与域名结构理顺。等 Argentina 已经被正确暴露成地区西语层后，Ciwi 才负责这层语言的发布和兼容管理。"
     },
   ]}
 />

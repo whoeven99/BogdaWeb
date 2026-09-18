@@ -160,16 +160,16 @@ That is the sequence that creates real language isolation.
 <FaqAccordion
   items={[
     {
-      question: "Why is `/es/` not enough for both Spain and Mexico?",
-      answer: "Because Shopify's generic Spanish layer is not the same as having distinct regional Spanish storefronts. If both markets matter separately, one broad `/es/` assumption is usually too weak.",
+      question: "Why can't one `/es/` path target both Spain and Mexico well in Shopify?",
+      answer: "Because a generic Spanish layer is not the same as operating distinct regional Spanish storefronts. Once Spain and Mexico matter separately, one shared `/es/` path usually becomes too weak for market targeting, regional SEO, and publishing control.",
     },
     {
-      question: "What is the correct way to isolate es-MX?",
-      answer: "Define Mexico as its own market in Shopify Markets, then configure the language and domain layer so Mexico is exposed as a regional Spanish variant such as es-MX rather than sharing one generic Spanish storefront.",
+      question: "How do I set up es-MX correctly in Shopify Markets and domains?",
+      answer: "Start by defining Mexico as its own market in Shopify Markets. Then configure the language and domain layer so Mexico is exposed as a regional Spanish variant such as es-MX instead of being absorbed into one generic Spanish storefront shared with Spain or other markets.",
     },
     {
-      question: "What does Ciwi AI Translator do in this setup?",
-      answer: "After the regional storefront structure is correct, Ciwi helps manage the language publishing and compatibility layer so the es-MX storefront can be operated cleanly.",
+      question: "Does Ciwi AI Translator create es-MX on its own, or after the Shopify structure is set?",
+      answer: "Ciwi works after the regional storefront structure is correct. It does not replace the market split itself. Once Mexico is exposed as the right Spanish layer, Ciwi helps manage publishing and compatibility so the es-MX storefront can be operated cleanly."
     },
   ]}
 />

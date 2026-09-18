@@ -166,16 +166,16 @@ That is the sequence that actually creates language isolation.
 <FaqAccordion
   items={[
     {
-      question: "Why is `/pt/` not enough for both Portugal and Brazil?",
-      answer: "Because Shopify's default Portuguese handle logic usually gives you one generic Portuguese layer. That is not the same as having separate regional Portuguese storefronts for Portugal and Brazil.",
+      question: "Why can't one `/pt/` path target both Portugal and Brazil well in Shopify?",
+      answer: "Because Shopify's default Portuguese setup usually creates one broad Portuguese layer, not two regionally distinct storefronts. That becomes weak once Brazil needs its own market signal, SEO targeting, domain exposure, and trust-sensitive customer path instead of sharing one generic `/pt/` experience with Portugal.",
     },
     {
-      question: "What is the correct way to isolate pt-BR?",
-      answer: "Define Brazil as its own market in Shopify Markets, then use the language and domain setup with subdomain logic so Brazil is exposed as a regional Portuguese variant such as pt-BR rather than sharing one generic `/pt/` path.",
+      question: "How do I configure pt-BR correctly in Shopify Markets and domains?",
+      answer: "Start by defining Brazil as its own market in Shopify Markets. Then expose the Brazilian storefront through the language and domain setup, typically with subdomain logic, so Brazil is published as a regional Portuguese layer such as pt-BR instead of reusing one generic `/pt/` path for every Portuguese-speaking market.",
     },
     {
-      question: "What does Ciwi AI Translator do in this setup?",
-      answer: "After the Shopify market structure is correct, Ciwi's Language list helps with the language publishing and compatibility layer so the regional Portuguese storefront can be managed cleanly.",
+      question: "Does Ciwi AI Translator create pt-BR by itself, or only after Shopify Markets is configured?",
+      answer: "Ciwi does not replace the Shopify Markets and domain architecture. Its role starts after the correct regional layer exists. Once Brazil is exposed properly, Ciwi's Language list helps manage publishing and compatibility so the pt-BR storefront can be maintained cleanly."
     },
   ]}
 />

@@ -11017,16 +11017,16 @@
     ],
     "faq": [
       {
-        "question": "Do US Shopify stores always need Spanish?",
-        "answer": "Not always, but many stores should evaluate Spanish seriously when customer support, search demand, or conversion evidence shows a meaningful bilingual audience."
+        "question": "How do I know whether a US Shopify store needs Spanish or can stay English-only?",
+        "answer": "English-only can still be fine when discovery, support, and conversion are overwhelmingly English. Spanish usually becomes worth formal storefront coverage once you see meaningful Spanish-language search demand, customer questions, or friction on product, collection, shipping, and trust-sensitive pages."
       },
       {
-        "question": "Should English and Spanish in the US use separate Shopify markets?",
-        "answer": "Not necessarily. Many teams can start with one US market and strong language-layer governance, then add more structural separation only if operations require it."
+        "question": "Do English and Spanish in the US usually require separate Shopify markets?",
+        "answer": "Not usually. Many stores can keep one US market and run English plus Spanish as language layers first. Separate structures become more useful when merchandising rules, regional domains, compliance needs, or publishing ownership are no longer manageable inside one shared US storefront."
       },
       {
-        "question": "What should US stores translate into Spanish first?",
-        "answer": "Usually the pages closest to discovery and purchase: collections, product pages, trust copy, navigation, and metadata."
+        "question": "What should US stores localize first for Spanish ecommerce SEO?",
+        "answer": "Start with the high-intent path: collection pages, product pages, titles, meta descriptions, navigation, and shipping or returns copy. Translating only the page body is usually too shallow if the goal is stronger Spanish discovery and conversion in the US market."
       }
     ]
   },
@@ -11353,16 +11353,16 @@
     ],
     "faq": [
       {
-        "question": "Do Canadian Shopify stores always need French?",
-        "answer": "Not every store needs full French coverage immediately, but any store seriously targeting Canada should evaluate where French affects trust, SEO, and conversion."
+        "question": "When does fr-CA become a real storefront requirement instead of optional French support?",
+        "answer": "fr-CA becomes a storefront requirement once French affects how Canadian shoppers discover products, evaluate trust, or understand policy-sensitive pages, especially in Quebec-facing journeys. If French only lives in support corners while commercial pages stay English-first, the storefront usually feels incomplete."
       },
       {
-        "question": "Should Canada use generic French or fr-CA?",
-        "answer": "Customer-facing storefront content should usually be reviewed as fr-CA so terminology and tone fit the Canadian market more naturally."
+        "question": "Should Canadian stores use generic French or review everything as fr-CA?",
+        "answer": "Generic French can be acceptable as a drafting layer, but customer-facing storefront content should usually be reviewed as fr-CA before publishing. That matters most on products, offers, shipping, returns, and support wording where Canadian market context changes how the copy is perceived."
       },
       {
-        "question": "What should Canadian stores localize into French first?",
-        "answer": "Usually the same high-intent path that drives buying decisions: collection pages, product pages, navigation, metadata, and trust-sensitive copy."
+        "question": "Which Canadian pages matter first for fr-CA SEO and conversion?",
+        "answer": "Usually the same high-intent path that drives buying decisions: collection pages, product pages, metadata, menus, shipping and returns copy, and help-center entry points. Those pages do more for fr-CA trust and search visibility than translating a broad archive first."
       }
     ]
   },
@@ -11689,16 +11689,16 @@
     ],
     "faq": [
       {
-        "question": "Should population share be the main way to choose Shopify languages?",
-        "answer": "It is a useful starting signal, but it should be combined with search demand, revenue potential, and the cost of maintaining another language layer."
+        "question": "How should Shopify merchants rank languages beyond raw population share?",
+        "answer": "Use a weighted model instead of a single metric. Population share is a useful first filter, but the real ranking should also include search demand, revenue potential, support load, and the ongoing cost of maintaining another storefront language."
       },
       {
-        "question": "Can a smaller language be more important than a larger one?",
-        "answer": "Yes. A smaller language can still deserve priority if it has stronger buying intent, search demand, or support relevance for your store."
+        "question": "When can a smaller language outrank a larger one in Shopify localization?",
+        "answer": "A smaller language can outrank a larger one when it has stronger buying intent, cleaner category search demand, more visible support friction, or a clearer rollout path for your store. Demographic size matters, but a smaller language with better product fit can still be the better next launch."
       },
       {
-        "question": "What should teams localize first after choosing a new language?",
-        "answer": "Usually the high-intent buying path: product pages, collection pages, metadata, navigation, and trust-sensitive content."
+        "question": "What data should go into a Shopify language-priority scorecard before launch?",
+        "answer": "Include at least traffic by language or market, search terms, revenue and conversion signals, support tickets, the page coverage needed for a credible storefront, and the team's publishing capacity after launch. Without those inputs, language priority stays too theoretical."
       }
     ]
   },
@@ -12025,16 +12025,16 @@
     ],
     "faq": [
       {
-        "question": "Does one country always need only one locale in Shopify Markets?",
-        "answer": "No. Some countries need more than one meaningful language layer when different language groups require distinct SEO, trust, or publishing coverage."
+        "question": "When should one country use multiple locales in Shopify Markets instead of one generic language layer?",
+        "answer": "Use multiple locales when different language groups inside the same country need clearly different SEO, trust, policy, or publishing coverage, and the fallback language is already weakening high-intent customer journeys. If those differences are still minor, one broader locale can remain enough for now."
       },
       {
-        "question": "When should a second locale be added inside one country?",
-        "answer": "Add it when fallback language starts harming search visibility, customer trust, or the buying journey enough to justify a full storefront layer."
+        "question": "Is SEO alone enough reason to add a second locale inside one country?",
+        "answer": "SEO can be the signal that exposes the problem, but it is rarely the only reason. A second locale is most defensible when SEO need is reinforced by real storefront requirements such as product understanding, policy clarity, support expectations, or publishing control."
       },
       {
-        "question": "What is the biggest mistake when splitting locales inside one country?",
-        "answer": "Creating more locale layers than the team can actually maintain across products, metadata, support content, and release workflows."
+        "question": "What has to be ready before adding another locale in the same country?",
+        "answer": "The second locale should be able to support a complete high-intent path, including products, collections, metadata, navigation, trust pages, glossary rules, release ownership, and ongoing support updates. Otherwise the store creates a technical locale without a reliable customer experience behind it."
       }
     ]
   },
@@ -12361,16 +12361,16 @@
     ],
     "faq": [
       {
-        "question": "Do Swiss Shopify stores always need German, French, and Italian?",
-        "answer": "Not always. Many stores may start with German and French, then add Italian only when demand and maintenance capacity justify it."
+        "question": "Do most Swiss Shopify stores need both German and French before thinking about Italian?",
+        "answer": "For many stores, yes. German plus French is often the most practical first complete Swiss structure because it covers the stronger same-country demand before the team takes on a third language. Italian can still matter later, but it usually needs clearer evidence and a stronger maintenance model."
       },
       {
-        "question": "Is French usually more important than Italian for Swiss stores?",
-        "answer": "Often yes, but the right priority depends on your category, traffic, support load, and regional customer behavior."
+        "question": "When is Italian worth adding to a Swiss Shopify store?",
+        "answer": "Italian becomes worth adding when Italian-speaking traffic, support needs, regional demand, or broader Swiss trust goals justify a real storefront path. It should not be added just because it appears on the official language list if the team cannot support meaningful product, metadata, and trust coverage."
       },
       {
-        "question": "What should Swiss stores localize first in each language?",
-        "answer": "Usually the high-intent path: product pages, collection pages, metadata, navigation, and trust-sensitive content."
+        "question": "What should Swiss stores localize before adding a third language?",
+        "answer": "Before adding a third Swiss language, the first two should already have stable product pages, collection pages, metadata, navigation, shipping and returns copy, and support-sensitive content. A third layer works much better when the existing multilingual workflow is already disciplined and repeatable."
       }
     ]
   },
@@ -12697,16 +12697,16 @@
     ],
     "faq": [
       {
-        "question": "Do Belgian Shopify stores usually need both Dutch and French?",
-        "answer": "Often yes. Many Belgium-focused stores should evaluate both as real storefront languages instead of choosing only one."
+        "question": "Do Belgian Shopify stores usually need both Dutch and French as real storefront languages?",
+        "answer": "Often yes, especially when Belgium is more than a side market. If Dutch and French both matter for discovery, trust, and conversion, treating one as primary and the other as a thin fallback usually leaves part of the same-country customer journey under-served."
       },
       {
-        "question": "Should Belgian stores always add German too?",
-        "answer": "Not always. German should be added when there is a real commercial, support, or policy reason to maintain it properly."
+        "question": "When does German in Belgium deserve more than a narrow fallback layer?",
+        "answer": "German deserves more than symbolic coverage when there is real traffic, support demand, regional commercial importance, or a policy reason strong enough to justify a meaningful storefront path. Without that evidence, it is often better to keep German narrowly scoped than to launch a weak full layer."
       },
       {
-        "question": "What should Belgian stores localize first?",
-        "answer": "Usually the same high-intent path: product pages, collection pages, metadata, navigation, and trust-sensitive content."
+        "question": "What breaks when Dutch and French do not ship with release parity?",
+        "answer": "When one language updates faster than the other, metadata drifts, product coverage becomes uneven, and shipping, returns, or support pages start falling back into the wrong language. That is usually when a Belgian storefront stops feeling intentionally multilingual and starts feeling unreliable."
       }
     ]
   }

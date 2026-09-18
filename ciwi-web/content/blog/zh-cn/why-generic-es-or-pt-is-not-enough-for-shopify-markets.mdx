@@ -149,16 +149,16 @@ Ciwi 不是 Shopify Markets 的替代品。它是在 market 结构已经正确�
 <FaqAccordion
   items={[
     {
-      question: "一个 generic Spanish locale，足够覆盖所有西语市场吗？",
-      answer: "不一定。对轻量上线可能够用，但如果 Spain 和 Mexico 都是独立重要市场，一个泛化西语层通常不足以承载独立 SEO 信号、前台行为和发布控制。",
+      question: "在 Shopify Markets 里，generic `/es/` 或 `/pt/` 什么时候会变得过宽？",
+      answer: "当不同国家已经分别需要自己的搜索定位、发布控制或 trust-sensitive storefront 行为时，一个共享语言层就会开始显得过宽。那时问题已经不再是“翻译一下就好”，而是语言路径本身没有把真实市场差异暴露出来。"
     },
     {
-      question: "葡语也有同样的问题吗？",
-      answer: "有。Portugal 和 Brazil 很容易暴露同一个结构问题：一个泛化 Portuguese 层，并不等于你已经拥有两个独立地区 storefront。",
+      question: "这主要是 SEO 问题，还是 storefront 架构问题？",
+      answer: "它通常首先是 storefront 架构问题，SEO 只是最容易被看到的症状之一。只要底层 market 和语言结构过于泛化，hreflang、metadata 和地区搜索信号都会跟着变弱。"
     },
     {
-      question: "Ciwi AI Translator 在这个模型里负责什么？",
-      answer: "当 market 拆分和地区语言暴露方式已经正确后，Ciwi 负责语言的发布与兼容管理，让这层结构可以被稳定运营。",
+      question: "正确顺序应该是先配 Markets、域名，还是先上翻译 app？",
+      answer: "应该先把 Shopify Markets 和地区语言/域名暴露方式配清楚，再让翻译 app 进入。像 Ciwi 这样的工具，更适合接在一个已经明确的地区 storefront 层后面，而不是反过来替 generic locale 发明结构。"
     },
   ]}
 />

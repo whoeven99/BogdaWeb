@@ -160,16 +160,16 @@ SEO 问题不只是措辞差异，而是一个泛化西语路径会让地区信�
 <FaqAccordion
   items={[
     {
-      question: "为什么 `/es/` 不足以同时代表 Spain 和 Mexico？",
-      answer: "因为 Shopify 的泛西语层不等于已经有了两个独立地区 storefront。如果两个市场都重要，一个笼统的 `/es/` 假设通常太弱。",
+      question: "为什么一个 `/es/` 路径，没法在 Shopify 里同时把 Spain 和 Mexico 都做好？",
+      answer: "因为泛西语层并不等于两个真正独立的地区 storefront。只要 Spain 和 Mexico 都已经重要，一个共享 `/es/` 路径通常就无法清楚承接 market targeting、地区 SEO 和发布控制。"
     },
     {
-      question: "正确实现 es-MX 隔离的方式是什么？",
-      answer: "先在 Shopify Markets 中把 Mexico 设成独立 market，再配置语言和域名层，让 Mexico 以 es-MX 这种地区西语形式暴露，而不是继续共享一个泛化西语 storefront。",
+      question: "在 Shopify Markets 和域名结构里，es-MX 应该怎么正确配置？",
+      answer: "先在 Shopify Markets 里把 Mexico 设成独立 market，再配置语言和域名层，让 Mexico 以 es-MX 这样的地区西语形式被暴露出来，而不是继续和 Spain 共用一个泛化西语 storefront。"
     },
     {
-      question: "Ciwi AI Translator 在这个结构里负责什么？",
-      answer: "当地区 storefront 结构已经正确后，Ciwi 负责语言发布与兼容层，让 es-MX 这个地区西语版本能够被稳定管理。",
+      question: "es-MX 是 Ciwi AI Translator 自己生成的，还是要先把 Shopify 结构配好？",
+      answer: "不是 Ciwi 先生成 es-MX，而是先把 market 和域名结构配对。等 Mexico 已经被正确暴露成地区西语层后，Ciwi 才负责这层语言的发布和兼容管理。"
     },
   ]}
 />
