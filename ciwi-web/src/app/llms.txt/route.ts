@@ -58,7 +58,7 @@ function buildBody() {
 
   lines.push("# llms.txt");
   lines.push(`# Generated at: ${today}`);
-  lines.push("# Scope: Main public site and documentation (no tooling, no paid-only pages)");
+  lines.push("Scope: Main public site and documentation (no tooling, no paid-only pages)");
   lines.push("");
   lines.push("## Ciwi - Shopify localization, translation, and store-growth tools");
   lines.push("");
@@ -203,8 +203,6 @@ function buildBody() {
     }
     lines.push("");
   }
-  lines.push("# EOF");
-
   return lines.join("\n");
 }
 

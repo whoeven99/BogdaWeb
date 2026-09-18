@@ -7,58 +7,15 @@ import {Button} from "@/components/ui/Button";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getBestShopifyAppCollectionMap, getBestShopifyAppCollections} from "@/content/best-shopify-apps";
-import appRatings from "@/content/data/app_ratings.json";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
-import {buildBreadcrumbSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
+import {buildBreadcrumbSchema, buildGraphSchema, buildItemListSchema, buildWebPageSchema} from "@/lib/seo/schema";
 
 export const dynamic = "force-dynamic";
 
 type BestShopifyAppCollectionPageProps = {
   params: Promise<{slug: string}>;
 };
-
-function extractAppSlug(href?: string): string | undefined {
-  if (!href) return undefined;
-  const match = href.match(/apps\.shopify\.com\/([^/?#]+)/);
-  return match?.[1];
-}
-
-function buildItemListSchema(
-  url: string,
-  locale: "en" | "zh-cn",
-  collection: ReturnType<typeof getBestShopifyAppCollectionMap>[string],
-) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: collection.title,
-    description: collection.description,
-    url,
-    itemListElement: collection.picks.map((item) => {
-      const appSlug = extractAppSlug(item.href);
-      const rating = appSlug ? (appRatings as Record<string, {rating: number; reviewCount: number}>)[appSlug] : undefined;
-
-      return {
-        "@type": "Product",
-        position: item.rank,
-        name: item.name,
-        description: item.summary,
-        url: item.href ? toAbsoluteLocalizedUrl(locale, item.href) : undefined,
-        ...(rating
-          ? {
-              aggregateRating: {
-                "@type": "AggregateRating",
-                ratingValue: rating.rating,
-                reviewCount: rating.reviewCount,
-                bestRating: 5,
-              },
-            }
-          : {}),
-      };
-    }),
-  };
-}
 
 export function generateStaticParams() {
   return [...new Set([...getBestShopifyAppCollections("en"), ...getBestShopifyAppCollections("zh-cn")].map((item) => item.slug))].map(
@@ -202,7 +159,19 @@ export default async function BestShopifyAppCollectionPage({params}: BestShopify
       keywords: [...collection.keywords],
       type: "CollectionPage",
     }),
-    buildItemListSchema(pageUrl, locale, collection),
+    buildItemListSchema({
+      url: pageUrl,
+      name: collection.title,
+      description: collection.description,
+      items: collection.picks
+        .filter((item) => Boolean(item.href))
+        .map((item) => ({
+          position: item.rank,
+          name: item.name,
+          url: toAbsoluteLocalizedUrl(locale, item.href!),
+          description: item.summary,
+        })),
+    }),
   ]);
 
   return (
