@@ -1,0 +1,183 @@
+---
+entryId: blog-how-to-set-up-es-es-and-es-mx-shopify-ciwi-ai-translator
+locale: en
+slug: how-to-set-up-es-es-and-es-mx-shopify-ciwi-ai-translator
+title: "How to Set Up es-ES and es-MX on Shopify with Ciwi AI Translator"
+description: "Set up es-ES and es-MX correctly on Shopify by using Markets and regional domain logic first, then manage language publishing and compatibility with Ciwi AI Translator."
+publishedAt: 2026-09-18
+status: published
+readingTime: 8 min read
+tags:
+  - Spanish
+  - Shopify Markets
+  - Localization
+  - Ciwi Translator
+sourceLocale: en
+translationStatus: manual
+---
+
+If your store sells into both Spain and Mexico, one generic Spanish layer is often too blunt. The real limitation is not only translation nuance. It is that Shopify's default language structure tends to collapse Spanish into one broad storefront assumption.
+
+In practice, a generic `/es/` path is usually not the same as having clean regional Spanish experiences for Spain and Mexico.
+
+<Callout title="The core rule">
+  <p>If you want real es-ES and es-MX separation, start with Shopify Markets and regional URL exposure first. Then use Ciwi AI Translator for language publishing and compatibility management.</p>
+</Callout>
+
+## Why `/es/` is usually not enough
+
+Many teams try to solve Spain-versus-Mexico differences entirely inside the translation app. That only fixes part of the problem.
+
+If the storefront still resolves through one generic Spanish layer, three problems remain:
+
+- one `/es/` path is asked to represent multiple Spanish-speaking markets
+- regional SEO targeting stays weaker than it should be
+- Spain and Mexico cannot be governed as clearly separate storefront languages
+
+That is why this is a market-architecture issue before it is a copy-editing issue.
+
+## What the correct Shopify setup looks like
+
+The better approach is to define the regional separation in **Shopify Markets** first.
+
+In practice, that means:
+
+1. Keep **Spain** and **Mexico** as distinct market targets.
+2. Do not rely on one generic Spanish layer to represent both markets.
+3. In the language and domain configuration, use a regional URL exposure model such as **subdomain** logic when appropriate.
+4. Expose Mexico as **es-MX** instead of assuming a single `/es/` storefront can cover every Spanish-speaking region.
+
+That is what creates real language isolation.
+
+## Why market-level separation matters more than translation-task separation
+
+If Shopify still treats Spanish as one broad storefront layer, the app can only organize the workflow around that limitation. You may have different wording internally, but the public architecture is still too flat.
+
+Once Mexico is exposed as its own regional Spanish storefront, the site gains a cleaner structure:
+
+- the Mexico version can be reviewed and published separately
+- URLs align better with the intended market
+- hreflang relationships become easier to reason about
+- es-MX stops inheriting a generic Spain-or-global Spanish assumption
+
+## Step 1: Define the market split first
+
+Start in **Shopify Markets**, not in the translation queue.
+
+If Mexico is a distinct commercial market, configure it that way first. This is the foundation for regional Spanish isolation. Without it, the rest of the workflow remains partial.
+
+## Step 2: Use regional domain logic
+
+After the market split exists, configure the language and domain layer so the regional storefront can be expressed clearly.
+
+The goal is to expose a regional Spanish form such as **es-MX**, rather than asking one generic `/es/` path to carry both Spain and Mexico.
+
+This is the structural change that actually makes the language split visible to shoppers and search engines.
+
+## Step 3: Use Ciwi for language publishing and compatibility
+
+Once Shopify's regional structure is correct, **Ciwi AI Translator** becomes the operational layer that helps you manage it.
+
+In Ciwi's **Language** list, you can use the language publishing and compatibility layer to support the regional setup. That matters because once Mexico exists as its own Spanish variant, you still need a clean way to manage whether that language is available and publishable.
+
+In other words:
+
+- Shopify Markets creates the regional storefront split
+- regional domain logic creates the visible language separation
+- Ciwi manages publishing and compatibility for that language layer
+
+## Step 4: Review es-MX as a real regional storefront
+
+After the market split exists, review becomes much more meaningful. At that point, checking es-MX is not only language QA. It is storefront QA for a distinct regional experience.
+
+Review at least:
+
+- product terminology
+- navigation wording
+- promotional language
+- metadata
+- blog titles and handles where relevant
+
+## Why this is better for SEO
+
+The SEO problem is not just wording. It is that a single generic Spanish path sends a weaker regional signal.
+
+When Mexico is separated through market and regional domain logic, the storefront can more clearly express:
+
+- the intended regional Spanish target
+- cleaner locale isolation
+- stronger hreflang clarity
+- less ambiguity around whether the Spanish page is for Spain, Mexico, or a generic fallback
+
+<ComparisonTable
+  columns={["Generic `/es/` approach", "Markets + regional Spanish approach"]}
+  rows={[
+    {
+      label: "Language targeting",
+      values: ["One Spanish layer carries too much", "Mexico can be isolated as es-MX"],
+    },
+    {
+      label: "Storefront structure",
+      values: ["Weak regional separation", "Clearer market-level split"],
+    },
+    {
+      label: "SEO signal",
+      values: ["More ambiguous", "Cleaner regional signal"],
+    },
+    {
+      label: "Ciwi usage",
+      values: ["App is asked to fix structure alone", "App supports publishing after structure is correct"],
+    },
+  ]}
+/>
+
+## The mistakes to avoid
+
+### Assuming one Spanish locale is enough
+
+That may be acceptable for a lightweight rollout. It is usually not enough when Spain and Mexico matter as separate commercial markets.
+
+### Treating this as only a translation problem
+
+If the structure stays generic, the language workflow stays constrained.
+
+### Configuring languages before configuring markets
+
+The order matters. Market structure comes first. Language publishing comes after.
+
+## A better rollout order
+
+Use this order instead:
+
+1. In **Shopify Markets**, define Mexico as its own market if it needs to operate separately from Spain.
+2. In the language and domain setup, choose the regional URL exposure model that supports that split.
+3. Expose the Mexico storefront as **es-MX** instead of relying on one generic `/es/`.
+4. In **Ciwi AI Translator**, use the **Language** list to manage publishing and compatibility.
+5. Review the Mexico storefront as its own regional Spanish experience.
+
+That is the sequence that creates real language isolation.
+
+<FaqAccordion
+  items={[
+    {
+      question: "Why is `/es/` not enough for both Spain and Mexico?",
+      answer: "Because Shopify's generic Spanish layer is not the same as having distinct regional Spanish storefronts. If both markets matter separately, one broad `/es/` assumption is usually too weak.",
+    },
+    {
+      question: "What is the correct way to isolate es-MX?",
+      answer: "Define Mexico as its own market in Shopify Markets, then configure the language and domain layer so Mexico is exposed as a regional Spanish variant such as es-MX rather than sharing one generic Spanish storefront.",
+    },
+    {
+      question: "What does Ciwi AI Translator do in this setup?",
+      answer: "After the regional storefront structure is correct, Ciwi helps manage the language publishing and compatibility layer so the es-MX storefront can be operated cleanly.",
+    },
+  ]}
+/>
+
+<CtaCard
+  eyebrow="Related docs"
+  title="Set the market structure first, then publish the language"
+  description="Once Shopify Markets and the regional domain logic are in place, use the Ciwi language docs to manage publishing and compatibility."
+  href="/help-center/ShopifyApp/does-translate-language-ai-adapt-support-multiple-languages"
+  buttonLabel="Open the language guide"
+/>

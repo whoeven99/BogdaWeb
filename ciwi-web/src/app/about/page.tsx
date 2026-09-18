@@ -66,7 +66,7 @@ export default async function AboutPage() {
 
         <section className="page-section page-section--compact about-prose-section">
           <div className="about-prose-card">
-            <div className="article-prose about-prose">
+            <div className="content-prose article-prose about-prose">
               <div dangerouslySetInnerHTML={{__html: page.contentHtml}} />
             </div>
           </div>
