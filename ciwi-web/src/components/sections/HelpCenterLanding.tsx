@@ -32,6 +32,43 @@ function getTopicLabel(doc: HelpCenterDoc) {
   return doc.meta[1] ?? doc.category;
 }
 
+function buildHelpCenterLandingNarrative({
+  locale,
+  docs,
+  topicGroups,
+  featuredDocs,
+}: {
+  locale: Locale;
+  docs: HelpCenterDoc[];
+  topicGroups: TopicGroup[];
+  featuredDocs: HelpCenterDoc[];
+}) {
+  const topicLabels = topicGroups.slice(0, 4).map((group) => group.label);
+  const featuredTitles = featuredDocs.slice(0, 3).map((doc) => doc.title);
+
+  if (locale === "zh-cn") {
+    return [
+      `帮助中心当前收录 ${docs.length} 篇文档，按 ${topicGroups.length} 个主题组织，适合先按问题类型缩小范围，再进入具体操作文章。`,
+      topicLabels.length > 0
+        ? `当前主要覆盖 ${topicLabels.join("、")} 等主题。每个主题下的文档会继续细分安装、配置、翻译流程、积分与模型等具体问题。`
+        : "当前文档会继续细分安装、配置、翻译流程、积分与模型等具体问题。",
+      featuredTitles.length > 0
+        ? `如果你刚开始使用，可以先看 ${featuredTitles.join("、")} 这些高频入口，再回到目录继续深入。`
+        : "如果你刚开始使用，可以先从精选入口开始，再回到目录继续深入。",
+    ];
+  }
+
+  return [
+    `The help center currently groups ${docs.length} documents under ${topicGroups.length} topics so visitors can narrow by problem type before opening a specific how-to article.`,
+    topicLabels.length > 0
+      ? `It mainly covers topics such as ${topicLabels.join(", ")}. Inside each topic, the docs break further into installation, setup, translation flow, credits, and model-selection questions.`
+      : "Inside each topic, the docs break further into installation, setup, translation flow, credits, and model-selection questions.",
+    featuredTitles.length > 0
+      ? `If you are just getting started, begin with entries such as ${featuredTitles.join(", ")}, then come back to the directory for the deeper edge cases.`
+      : "If you are just getting started, begin with the featured entries, then come back to the directory for deeper edge cases.",
+  ];
+}
+
 export function HelpCenterLanding({docs, featuredDocs, locale, eyebrow}: HelpCenterLandingProps) {
   const uiCopy = getUiCopy(locale);
   const [activeTopic, setActiveTopic] = useState("all");
@@ -88,10 +125,23 @@ export function HelpCenterLanding({docs, featuredDocs, locale, eyebrow}: HelpCen
   }, [activeTopic, normalizedQuery, topicGroups]);
 
   const filteredDocCount = filteredGroups.reduce((count, group) => count + group.docs.length, 0);
+  const narrative = buildHelpCenterLandingNarrative({
+    locale,
+    docs,
+    topicGroups,
+    featuredDocs,
+  });
 
   return (
     <section className="py-12 sm:py-16 lg:py-20">
       <ContentIndexHero eyebrow={eyebrow} title={uiCopy.docs.landingTitle} description={uiCopy.docs.landingDescription} />
+      <div className="mx-auto mt-6 max-w-4xl rounded-[24px] border border-slate-200/80 bg-white/90 p-5 sm:p-6">
+        <div className="space-y-4 text-[15px] leading-7 text-slate-600 sm:text-base">
+          {narrative.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+        </div>
+      </div>
 
       <div className="mt-12 space-y-10">
         <section className="rounded-[32px] bg-white/90 p-7 shadow-[0_16px_48px_-24px_rgba(15,23,42,0.14)] sm:p-9">

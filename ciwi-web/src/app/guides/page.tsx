@@ -14,6 +14,34 @@ import {buildBreadcrumbSchema, buildWebPageSchema, buildGraphSchema} from "@/lib
 
 export const dynamic = "force-dynamic";
 
+function buildGuidesHubNarrative({
+  locale,
+  localizationCount,
+  scenarioCount,
+  merchantGuideCount,
+}: {
+  locale: "en" | "zh-cn";
+  localizationCount: number;
+  scenarioCount: number;
+  merchantGuideCount: number;
+}) {
+  if (locale === "zh-cn") {
+    return [
+      `指南中心当前汇总了 ${localizationCount} 篇本地化指南和 ${scenarioCount} 篇功能场景指南。`,
+      merchantGuideCount > 0 ? `另外还有 ${merchantGuideCount} 篇任务型工作流内容。` : "这里更适合先按内容类型判断入口。",
+      "如果你在做市场扩张、品牌本地化或 B2B 多语言策略，可以先看本地化专题。",
+      "如果你正在解决某个 Shopify 功能点的翻译与执行问题，更适合直接进入功能场景专题。",
+    ];
+  }
+
+  return [
+    `The guides hub currently brings together ${localizationCount} localization guides and ${scenarioCount} function scenario guides.`,
+    merchantGuideCount > 0 ? `It also includes ${merchantGuideCount} task-style workflow entries.` : "It works best as a routing page before you open a specific article.",
+    "Use the localization collection when the job is market expansion, brand localization, or B2B multilingual planning.",
+    "Use the function scenario collection when the problem is tied to a specific Shopify surface, translation task, or execution workflow.",
+  ];
+}
+
 export async function generateMetadata() {
   const locale = await getRequestLocale();
 
@@ -33,6 +61,12 @@ export default async function GuidesHubPage() {
   const localizationGuides = getLocalizationGuides(locale);
   const functionScenarioGuides = getFunctionScenarioGuides(locale);
   const merchantGuides = locale === "en" ? getPublishedProblems() : [];
+  const narrative = buildGuidesHubNarrative({
+    locale,
+    localizationCount: localizationGuides.length,
+    scenarioCount: functionScenarioGuides.length,
+    merchantGuideCount: merchantGuides.length,
+  });
   const copy =
     locale === "zh-cn"
       ? {
@@ -158,6 +192,13 @@ export default async function GuidesHubPage() {
                 </nav>
               ) : null}
           </ContentIndexHero>
+          <div className="mx-auto mt-6 max-w-4xl rounded-[24px] border border-slate-200/80 bg-white/90 p-5 sm:p-6">
+            <div className="space-y-4 text-[15px] leading-7 text-slate-600 sm:text-base">
+              {narrative.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+          </div>
         </section>
 
         <section className="pb-8 sm:pb-10 lg:pb-10">

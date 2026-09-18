@@ -1,4 +1,5 @@
 import type {Locale} from "@/lib/i18n";
+import {ciwiShopifyInstallUrl} from "@/lib/marketing-links";
 
 export type UseCaseItem = {
   slug: string;
@@ -475,7 +476,7 @@ const useCasesEn: UseCaseItem[] = [
       },
     ],
     ctaLabel: "Install on Shopify",
-    ctaHref: "https://apps.shopify.com/ciwi",
+    ctaHref: ciwiShopifyInstallUrl,
     featured: true,
   },
   {
@@ -562,7 +563,7 @@ const useCasesEn: UseCaseItem[] = [
       },
     ],
     ctaLabel: "Install on Shopify",
-    ctaHref: "https://apps.shopify.com/ciwi",
+    ctaHref: ciwiShopifyInstallUrl,
     featured: true,
   },
   {
@@ -649,7 +650,7 @@ const useCasesEn: UseCaseItem[] = [
       },
     ],
     ctaLabel: "Install on Shopify",
-    ctaHref: "https://apps.shopify.com/ciwi",
+    ctaHref: ciwiShopifyInstallUrl,
     featured: true,
   },
   {
@@ -736,7 +737,7 @@ const useCasesEn: UseCaseItem[] = [
       },
     ],
     ctaLabel: "Install on Shopify",
-    ctaHref: "https://apps.shopify.com/ciwi",
+    ctaHref: ciwiShopifyInstallUrl,
   },
   {
     slug: "translator-scope-based-translation",
@@ -822,7 +823,7 @@ const useCasesEn: UseCaseItem[] = [
       },
     ],
     ctaLabel: "Install on Shopify",
-    ctaHref: "https://apps.shopify.com/ciwi",
+    ctaHref: ciwiShopifyInstallUrl,
   },
   {
     slug: "translator-visual-localization",
@@ -908,7 +909,7 @@ const useCasesEn: UseCaseItem[] = [
       },
     ],
     ctaLabel: "Install on Shopify",
-    ctaHref: "https://apps.shopify.com/ciwi",
+    ctaHref: ciwiShopifyInstallUrl,
   },
   {
     slug: "translator-seo-coverage-localization",
@@ -994,7 +995,7 @@ const useCasesEn: UseCaseItem[] = [
       },
     ],
     ctaLabel: "Install on Shopify",
-    ctaHref: "https://apps.shopify.com/ciwi",
+    ctaHref: ciwiShopifyInstallUrl,
   },
   {
     slug: "translator-quality-recovery",
@@ -1080,7 +1081,7 @@ const useCasesEn: UseCaseItem[] = [
       },
     ],
     ctaLabel: "Install on Shopify",
-    ctaHref: "https://apps.shopify.com/ciwi",
+    ctaHref: ciwiShopifyInstallUrl,
   },
   {
     slug: "translator-ai-human-review-workflow",
@@ -1166,7 +1167,7 @@ const useCasesEn: UseCaseItem[] = [
       },
     ],
     ctaLabel: "Install on Shopify",
-    ctaHref: "https://apps.shopify.com/ciwi",
+    ctaHref: ciwiShopifyInstallUrl,
   },
   {
     slug: "translator-localization-gap-audit",
@@ -1252,7 +1253,7 @@ const useCasesEn: UseCaseItem[] = [
       },
     ],
     ctaLabel: "Install on Shopify",
-    ctaHref: "https://apps.shopify.com/ciwi",
+    ctaHref: ciwiShopifyInstallUrl,
   },
   {
     slug: "translator-small-team-multi-market",
@@ -1338,7 +1339,7 @@ const useCasesEn: UseCaseItem[] = [
       },
     ],
     ctaLabel: "Install on Shopify",
-    ctaHref: "https://apps.shopify.com/ciwi",
+    ctaHref: ciwiShopifyInstallUrl,
   },
   {
     slug: "translator-consistency-at-scale",
@@ -1424,7 +1425,7 @@ const useCasesEn: UseCaseItem[] = [
       },
     ],
     ctaLabel: "Install on Shopify",
-    ctaHref: "https://apps.shopify.com/ciwi",
+    ctaHref: ciwiShopifyInstallUrl,
   },
 ];
 
@@ -1860,7 +1861,7 @@ const useCasesZh: UseCaseItem[] = [
       },
     ],
     ctaLabel: "安装到 Shopify",
-    ctaHref: "https://apps.shopify.com/ciwi",
+    ctaHref: ciwiShopifyInstallUrl,
     featured: true,
   },
   {
@@ -1947,7 +1948,7 @@ const useCasesZh: UseCaseItem[] = [
       },
     ],
     ctaLabel: "安装到 Shopify",
-    ctaHref: "https://apps.shopify.com/ciwi",
+    ctaHref: ciwiShopifyInstallUrl,
     featured: true,
   },
   {
@@ -2034,7 +2035,7 @@ const useCasesZh: UseCaseItem[] = [
       },
     ],
     ctaLabel: "安装到 Shopify",
-    ctaHref: "https://apps.shopify.com/ciwi",
+    ctaHref: ciwiShopifyInstallUrl,
     featured: true,
   },
   {
@@ -2121,7 +2122,7 @@ const useCasesZh: UseCaseItem[] = [
       },
     ],
     ctaLabel: "安装到 Shopify",
-    ctaHref: "https://apps.shopify.com/ciwi",
+    ctaHref: ciwiShopifyInstallUrl,
   },
   {
     slug: "translator-scope-based-translation",
@@ -2207,7 +2208,7 @@ const useCasesZh: UseCaseItem[] = [
       },
     ],
     ctaLabel: "安装到 Shopify",
-    ctaHref: "https://apps.shopify.com/ciwi",
+    ctaHref: ciwiShopifyInstallUrl,
   },
   {
     slug: "translator-visual-localization",
@@ -2293,7 +2294,7 @@ const useCasesZh: UseCaseItem[] = [
       },
     ],
     ctaLabel: "安装到 Shopify",
-    ctaHref: "https://apps.shopify.com/ciwi",
+    ctaHref: ciwiShopifyInstallUrl,
   },
   {
     slug: "translator-seo-coverage-localization",
@@ -2379,7 +2380,7 @@ const useCasesZh: UseCaseItem[] = [
       },
     ],
     ctaLabel: "安装到 Shopify",
-    ctaHref: "https://apps.shopify.com/ciwi",
+    ctaHref: ciwiShopifyInstallUrl,
   },
   {
     slug: "translator-quality-recovery",
@@ -2465,7 +2466,7 @@ const useCasesZh: UseCaseItem[] = [
       },
     ],
     ctaLabel: "安装到 Shopify",
-    ctaHref: "https://apps.shopify.com/ciwi",
+    ctaHref: ciwiShopifyInstallUrl,
   },
   {
     slug: "translator-ai-human-review-workflow",
@@ -2551,7 +2552,7 @@ const useCasesZh: UseCaseItem[] = [
       },
     ],
     ctaLabel: "安装到 Shopify",
-    ctaHref: "https://apps.shopify.com/ciwi",
+    ctaHref: ciwiShopifyInstallUrl,
   },
   {
     slug: "translator-localization-gap-audit",
@@ -2637,7 +2638,7 @@ const useCasesZh: UseCaseItem[] = [
       },
     ],
     ctaLabel: "安装到 Shopify",
-    ctaHref: "https://apps.shopify.com/ciwi",
+    ctaHref: ciwiShopifyInstallUrl,
   },
   {
     slug: "translator-small-team-multi-market",
@@ -2723,7 +2724,7 @@ const useCasesZh: UseCaseItem[] = [
       },
     ],
     ctaLabel: "安装到 Shopify",
-    ctaHref: "https://apps.shopify.com/ciwi",
+    ctaHref: ciwiShopifyInstallUrl,
   },
   {
     slug: "translator-consistency-at-scale",
@@ -2809,7 +2810,7 @@ const useCasesZh: UseCaseItem[] = [
       },
     ],
     ctaLabel: "安装到 Shopify",
-    ctaHref: "https://apps.shopify.com/ciwi",
+    ctaHref: ciwiShopifyInstallUrl,
   },
 ];
 

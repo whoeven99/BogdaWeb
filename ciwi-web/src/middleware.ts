@@ -4,8 +4,18 @@ import {NextResponse} from "next/server";
 import {compareLegacyRootRouteMap, compareSlugRedirectMap} from "@/content/compare-slugs";
 import {chineseLocale, defaultLocale, getLocaleFromPathname, localizeHref, stripLocalePrefix} from "@/lib/i18n";
 
+const localeQueryKey = "__ciwi_locale";
+
 export function middleware(request: NextRequest) {
-  const locale = getLocaleFromPathname(request.nextUrl.pathname);
+  const inheritedLocale = request.headers.get("x-ciwi-locale");
+  const queryLocale = request.nextUrl.searchParams.get(localeQueryKey);
+  const locale =
+    queryLocale === chineseLocale || queryLocale === defaultLocale
+      ? queryLocale
+      : inheritedLocale === chineseLocale || inheritedLocale === defaultLocale
+      ? inheritedLocale
+      : getLocaleFromPathname(request.nextUrl.pathname);
+  const hasLocalePrefix = request.nextUrl.pathname === `/${chineseLocale}` || request.nextUrl.pathname.startsWith(`/${chineseLocale}/`);
   const strippedPathname = stripLocalePrefix(request.nextUrl.pathname);
   const normalizedPathname =
     strippedPathname.length > 1 && strippedPathname.endsWith("/") ? strippedPathname.slice(0, -1) : strippedPathname;
@@ -28,9 +38,10 @@ export function middleware(request: NextRequest) {
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-ciwi-locale", locale);
 
-  if (locale === chineseLocale) {
+  if (locale === chineseLocale && hasLocalePrefix) {
     const rewriteUrl = request.nextUrl.clone();
     rewriteUrl.pathname = stripLocalePrefix(request.nextUrl.pathname);
+    rewriteUrl.searchParams.set(localeQueryKey, chineseLocale);
 
     return NextResponse.rewrite(rewriteUrl, {
       request: {
@@ -39,7 +50,18 @@ export function middleware(request: NextRequest) {
     });
   }
 
-  requestHeaders.set("x-ciwi-locale", defaultLocale);
+  if (request.nextUrl.searchParams.has(localeQueryKey)) {
+    const rewriteUrl = request.nextUrl.clone();
+    rewriteUrl.searchParams.delete(localeQueryKey);
+
+    return NextResponse.rewrite(rewriteUrl, {
+      request: {
+        headers: requestHeaders,
+      },
+    });
+  }
+
+  requestHeaders.set("x-ciwi-locale", locale);
 
   return NextResponse.next({
     request: {

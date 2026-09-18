@@ -47,6 +47,88 @@ function keywordCategoryHref(productSlug: string, locale: "en" | "zh-cn", catego
   return `${base}/category/${getKeywordUseCaseCategorySlug(locale, categoryName)}`;
 }
 
+function buildKeywordPageDescription({
+  locale,
+  productShortDescription,
+  baseDescription,
+  page,
+  totalPages,
+  categories,
+}: {
+  locale: "en" | "zh-cn";
+  productShortDescription: string;
+  baseDescription: string;
+  page: number;
+  totalPages: number;
+  categories: Array<{name: string}>;
+}) {
+  const startIdx = (page - 1) * CATEGORIES_PER_PAGE;
+  const endIdx = Math.min(categories.length, startIdx + CATEGORIES_PER_PAGE);
+  const firstTopic = categories[startIdx]?.name;
+  const lastTopic = categories[endIdx - 1]?.name;
+  const topicRange =
+    firstTopic && lastTopic
+      ? locale === "zh-cn"
+        ? `本页覆盖主题从「${firstTopic}」到「${lastTopic}」。`
+        : `This page covers topics from ${firstTopic} to ${lastTopic}.`
+      : "";
+
+  if (locale === "zh-cn") {
+    return `${productShortDescription} ${baseDescription} 第 ${page}/${totalPages} 页，展示第 ${startIdx + 1}-${endIdx} 个主题。${topicRange}`.trim();
+  }
+
+  return `${productShortDescription} ${baseDescription} Page ${page} of ${totalPages}, covering topics ${startIdx + 1}-${endIdx}. ${topicRange}`.trim();
+}
+
+function buildKeywordIndexNarrative({
+  locale,
+  productName,
+  categories,
+  totalScenarios,
+  resolvedPage,
+  totalPages,
+}: {
+  locale: "en" | "zh-cn";
+  productName: string;
+  categories: Array<{name: string; count: number}>;
+  totalScenarios: number;
+  resolvedPage: number;
+  totalPages: number;
+}) {
+  const startIdx = (resolvedPage - 1) * CATEGORIES_PER_PAGE;
+  const visible = categories.slice(startIdx, startIdx + CATEGORIES_PER_PAGE);
+  const firstTopic = visible[0];
+  const lastTopic = visible[visible.length - 1];
+  const sampledTopics = visible
+    .slice(0, 4)
+    .map((item) => item.name)
+    .join(locale === "zh-cn" ? "、" : ", ");
+
+  if (locale === "zh-cn") {
+    return [
+      `${productName} 运营场景库当前收录 ${categories.length} 个主题和 ${totalScenarios.toLocaleString()} 条具体场景页。`,
+      `当前第 ${resolvedPage}/${totalPages} 页覆盖从「${firstTopic?.name ?? ""}」到「${lastTopic?.name ?? ""}」的主题范围。`,
+      sampledTopics
+        ? `这一页优先展示 ${sampledTopics} 等主题。`
+        : `这一页会把当前页可见主题直接展开，便于继续进入具体场景、Prompt 和 FAQ。`,
+      sampledTopics
+        ? "进入任一主题后，你会看到对应的关键词场景、可复制 Prompt、FAQ 和步骤说明。"
+        : "你可以直接继续进入具体场景、Prompt 和 FAQ。",
+    ];
+  }
+
+  return [
+    `${productName} currently groups ${totalScenarios.toLocaleString()} scenario pages under ${categories.length} topics.`,
+    `Page ${resolvedPage} of ${totalPages} covers topics from ${firstTopic?.name ?? ""} to ${lastTopic?.name ?? ""}.`,
+    sampledTopics
+      ? `This page starts with topics such as ${sampledTopics}.`
+      : `This page expands the topics visible in the current slice so you can move directly into scenario pages, prompts, and FAQs.`,
+    sampledTopics
+      ? "Once you open a topic, you can move directly into the related scenario pages, copyable prompts, FAQs, and execution steps."
+      : "From here, you can move directly into scenario pages, prompts, and FAQs.",
+  ];
+}
+
 function buildPagination(
   current: number,
   total: number,
@@ -180,6 +262,7 @@ export async function generateMetadata({params}: SparkPlaybookKeywordIndexPagePr
   const pageNum = page ? Number(page) : 1;
   const copy = getUiCopy(locale);
   const product = getProductMap(locale)[slug];
+  const categories = getKeywordUseCaseCategories(locale);
 
   if (!product) {
     return buildPageMetadata({
@@ -194,14 +277,20 @@ export async function generateMetadata({params}: SparkPlaybookKeywordIndexPagePr
     // canonical 指向 keyword/（无 page）
     return buildPageMetadata({
       title: locale === "zh-cn" ? `${product.name} ${copy.metadata.titleSuffix}` : `${product.name} ${copy.metadata.titleSuffix}`,
-      description: product.shortDescription + " " + copy.metadata.description,
+      description: buildKeywordPageDescription({
+        locale,
+        productShortDescription: product.shortDescription,
+        baseDescription: copy.metadata.description,
+        page: 1,
+        totalPages: Math.max(1, Math.ceil(categories.length / CATEGORIES_PER_PAGE)),
+        categories,
+      }),
       path: keywordIndexHref(slug),
       locale,
       keywords: ["Shopify AI", "Shopify automation", "Spark playbook", `${product.name} AI prompts`],
     });
   }
 
-  const categories = getKeywordUseCaseCategories(locale);
   const totalPages = Math.max(1, Math.ceil(categories.length / CATEGORIES_PER_PAGE));
   const safePage = Math.min(totalPages, Math.max(1, Number.isFinite(pageNum) ? pageNum : 1));
   const pageTitle =
@@ -210,7 +299,14 @@ export async function generateMetadata({params}: SparkPlaybookKeywordIndexPagePr
       : `${product.name} ${copy.metadata.titleSuffix} (page ${safePage}/${totalPages})`;
   return buildPageMetadata({
     title: pageTitle,
-    description: product.shortDescription + " " + copy.metadata.description,
+    description: buildKeywordPageDescription({
+      locale,
+      productShortDescription: product.shortDescription,
+      baseDescription: copy.metadata.description,
+      page: safePage,
+      totalPages,
+      categories,
+    }),
     path: keywordPageHref(slug, safePage),
     locale,
     keywords: [
@@ -266,6 +362,22 @@ export default async function SparkPlaybookKeywordIndexPage({params}: SparkPlayb
 
   const pageUrl = toAbsoluteLocalizedUrl(locale, keywordPageHref(productSlug, resolvedPage));
   const playbookUrl = toAbsoluteLocalizedUrl(locale, playbookHref);
+  const pageDescription = buildKeywordPageDescription({
+    locale,
+    productShortDescription: product.shortDescription,
+    baseDescription: copy.metadata.description,
+    page: resolvedPage,
+    totalPages,
+    categories,
+  });
+  const pageNarrative = buildKeywordIndexNarrative({
+    locale,
+    productName: product.name,
+    categories,
+    totalScenarios: total,
+    resolvedPage,
+    totalPages,
+  });
 
   const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
@@ -303,7 +415,7 @@ export default async function SparkPlaybookKeywordIndexPage({params}: SparkPlayb
             (resolvedPage > 1 ? ` (第 ${resolvedPage}/${totalPages} 页)` : "")
           : `${product.name} ${copy.metadata.titleSuffix}` +
             (resolvedPage > 1 ? ` (page ${resolvedPage}/${totalPages})` : ""),
-      description: product.shortDescription + " " + copy.metadata.description,
+      description: pageDescription,
       keywords: [
         "Shopify AI",
         "Shopify automation",
@@ -381,12 +493,18 @@ export default async function SparkPlaybookKeywordIndexPage({params}: SparkPlayb
                     {copy.hero.secondaryLabel}
                   </Button>
                 </div>
+                <div className="mt-6 rounded-[24px] border border-slate-200/80 bg-white/90 p-5 sm:p-6">
+                  <div className="space-y-4 text-[15px] leading-7 text-slate-600 sm:text-base">
+                    {pageNarrative.map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
 
           </div>
-        </section>
-
+          </section>
         <section className="pb-14 pt-6 sm:pb-16 sm:pt-8 lg:pb-20 lg:pt-10">
           <div className="mx-auto max-w-6xl space-y-10 sm:space-y-12 lg:space-y-14">
             <SectionHeading

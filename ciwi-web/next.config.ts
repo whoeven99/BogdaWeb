@@ -1,5 +1,12 @@
 import type { NextConfig } from "next";
 
+const securityHeaders = [
+  {
+    key: "Strict-Transport-Security",
+    value: "max-age=31536000; includeSubDomains",
+  },
+];
+
 const legacyMarketingRedirectTargets = {
   "product-title-generation": "/products/content-ai/#features",
   "product-description-generation": "/products/content-ai/#features",
@@ -28,6 +35,14 @@ const nextConfig: NextConfig = {
   output: "standalone",
   trailingSlash: true,
   serverExternalPackages: ["@libsql/client", "@prisma/adapter-libsql"],
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: securityHeaders,
+      },
+    ];
+  },
   async redirects() {
     return [
       ...legacyMarketingRedirects,

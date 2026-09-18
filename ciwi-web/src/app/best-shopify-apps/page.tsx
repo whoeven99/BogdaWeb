@@ -8,6 +8,33 @@ import {buildBreadcrumbSchema, buildWebPageSchema, buildGraphSchema} from "@/lib
 
 export const dynamic = "force-dynamic";
 
+function buildBestAppsHubNarrative({
+  locale,
+  collections,
+}: {
+  locale: "en" | "zh-cn";
+  collections: Array<{title: string; categoryLabel: string; year: number}>;
+}) {
+  const sampledTitles = collections.slice(0, 3).map((item) => item.title);
+  const sampledCategories = [...new Set(collections.slice(0, 6).map((item) => item.categoryLabel))];
+
+  if (locale === "zh-cn") {
+    return [
+      `这个入口页把不同年份、不同类目的 Shopify App 榜单集中在一起，适合先判断“应该看哪类工具”，再进入具体榜单逐个比较。`,
+      sampledTitles.length > 0
+        ? `当前已经覆盖 ${sampledCategories.join("、")} 等类目，包含 ${sampledTitles.join("、")} 等榜单。每个榜单页都会继续拆解推荐理由、适合对象、价格信息和注意点。`
+        : "每个榜单页都会继续拆解推荐理由、适合对象、价格信息和注意点。",
+    ];
+  }
+
+  return [
+    "This hub groups Shopify app roundups by year and category so visitors can decide which tool family to inspect before opening a specific ranking page.",
+    sampledTitles.length > 0
+      ? `It already covers categories such as ${sampledCategories.join(", ")} through collections like ${sampledTitles.join(", ")}. Each roundup then breaks the shortlist into fit, pricing, strengths, and watchouts.`
+      : "Each roundup page then breaks the shortlist into fit, pricing, strengths, and watchouts.",
+  ];
+}
+
 export async function generateMetadata() {
   const locale = await getRequestLocale();
 
@@ -25,6 +52,7 @@ export async function generateMetadata() {
 export default async function BestShopifyAppsHubPage() {
   const locale = await getRequestLocale();
   const collections = getBestShopifyAppCollections(locale);
+  const narrative = buildBestAppsHubNarrative({locale, collections});
   const copy =
     locale === "zh-cn"
       ? {
@@ -77,6 +105,13 @@ export default async function BestShopifyAppsHubPage() {
 
         <section className="page-section page-hero">
           <ContentIndexHero eyebrow={copy.hero.eyebrow} title={copy.hero.title} description={copy.hero.description} />
+          <div className="mx-auto mt-6 max-w-4xl rounded-[24px] border border-slate-200/80 bg-white/90 p-5 sm:p-6">
+            <div className="space-y-4 text-[15px] leading-7 text-slate-600 sm:text-base">
+              {narrative.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+          </div>
           <ResourceCollectionSection
             items={collections.map((item) => ({
               title: item.title,

@@ -11,6 +11,34 @@ import {Button} from "@/components/ui/Button";
 
 export const dynamic = "force-dynamic";
 
+function buildUseCaseIndexNarrative({
+  locale,
+  productGroups,
+}: {
+  locale: "en" | "zh-cn";
+  productGroups: Array<{product: {name: string}; items: Array<{title: string}>}>;
+}) {
+  const totalUseCases = productGroups.reduce((sum, group) => sum + group.items.length, 0);
+  const productNames = productGroups.map((group) => group.product.name).join(locale === "zh-cn" ? "、" : ", ");
+  const sampledTitles = productGroups.flatMap((group) => group.items.slice(0, 1).map((item) => item.title)).slice(0, 3);
+
+  if (locale === "zh-cn") {
+    return [
+      `这组索引页按产品组织 ${totalUseCases} 条应用场景，适合先判断“应该进哪个产品方案集”，再决定是否进入更具体的详情页。当前已覆盖 ${productNames || "多个 Ciwi 产品"}。`,
+      sampledTitles.length > 0
+        ? `例如 ${sampledTitles.join("、")} 这类页面，会把真实经营问题拆成可执行的流程，而不是只给一个抽象功能介绍。`
+        : "每个产品模块都会先展示几条代表性场景，帮助你更快判断方向。",
+    ];
+  }
+
+  return [
+    `This index groups ${totalUseCases} use cases by product so visitors can decide which product playbook to open before drilling into a specific scenario. It currently covers ${productNames || "multiple Ciwi products"}.`,
+    sampledTitles.length > 0
+      ? `Pages such as ${sampledTitles.join(", ")} turn real operating problems into executable workflows rather than stopping at a generic feature pitch.`
+      : "Each product block starts with a few representative scenarios so you can judge fit faster.",
+  ];
+}
+
 function getPageCopy(locale: "en" | "zh-cn") {
   if (locale === "zh-cn") {
     return {
@@ -93,6 +121,7 @@ export default async function UseCasesPage() {
       items: getUseCasesByProduct(locale, product.slug),
     }))
     .filter((group) => group.items.length > 0);
+  const narrative = buildUseCaseIndexNarrative({locale, productGroups});
 
   return (
     <main>
@@ -104,6 +133,13 @@ export default async function UseCasesPage() {
             description={copy.hero.description}
             className="overflow-hidden lg:py-4"
           />
+          <div className="mx-auto mt-6 max-w-4xl rounded-[24px] border border-slate-200/80 bg-white/90 p-5 sm:p-6">
+            <div className="space-y-4 text-[15px] leading-7 text-slate-600 sm:text-base">
+              {narrative.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+          </div>
         </section>
 
         <section className="py-8 sm:py-10 lg:py-12">

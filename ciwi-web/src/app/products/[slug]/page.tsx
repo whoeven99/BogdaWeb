@@ -27,6 +27,34 @@ type ProductDetailPageProps = {
   params: Promise<{slug: string}>;
 };
 
+function buildProductNarrative(product: NonNullable<ReturnType<typeof getProductMap>["translator"]>, locale: "en" | "zh-cn") {
+  const targetUsers = product.targetUsers.slice(0, 2).join(locale === "zh-cn" ? "、" : ", ");
+  const benefits = product.benefits.slice(0, 2).join(locale === "zh-cn" ? "、" : ", ");
+  const featureTitles = product.features.slice(0, 3).map((item) => item.title).join(locale === "zh-cn" ? "、" : ", ");
+
+  if (locale === "zh-cn") {
+    return [
+      `${product.heroDescription} 这类产品页的作用不是只展示功能名，而是帮助你判断它是否真的适合当前店铺阶段、运营复杂度和团队能力。`,
+      targetUsers
+        ? `如果你的使用场景更接近 ${targetUsers}，那这个页面里的功能、流程和资源模块会更有参考价值。重点收益通常落在 ${benefits || "效率和结果稳定性"} 这些直接影响经营结果的地方。`
+        : `这个页面会把功能、流程和资源模块放在一起，帮助判断是否适合当前店铺阶段。`,
+      featureTitles
+        ? `建议先看 ${featureTitles} 这些核心能力，再进入应用场景、演示和相关资源，这样会比从零散功能点倒推更容易判断落地价值。`
+        : `建议先看核心能力，再进入应用场景、演示和相关资源，这样更容易判断落地价值。`,
+    ];
+  }
+
+  return [
+    `${product.heroDescription} The point of a page like this is not just to list features, but to help you judge whether the product fits your current store stage, operating complexity, and team bandwidth.`,
+    targetUsers
+      ? `If your situation looks closer to ${targetUsers}, the feature, workflow, and resource modules on this page should be the most relevant. The practical upside usually shows up in ${benefits || "faster execution and steadier outcomes"}.`
+      : "This page keeps product capabilities, workflow, and resources in one place so fit is easier to judge.",
+    featureTitles
+      ? `Start with capabilities such as ${featureTitles}, then move into use cases, demos, and supporting resources. That usually gives a clearer judgment than trying to infer value from a flat feature list alone.`
+      : "Start with the core capabilities, then move into use cases, demos, and supporting resources for a clearer fit check.",
+  ];
+}
+
 function getProductDetailCopy(locale: "en" | "zh-cn") {
   if (locale === "zh-cn") {
     return {
@@ -253,6 +281,7 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
   const linkedUseCases = getUseCasesByProduct(locale, product.slug);
   const hasLinkedUseCases = linkedUseCases.length > 0;
   const hasVideo = Boolean(product.videoUrl);
+  const narrative = buildProductNarrative(product, locale);
   let anchorItems = (isTranslator ? translatorCopy?.anchors : copy.anchors)?.map((item) => ({...item})) ?? [];
   if (hasVideo && !isTranslator) {
     anchorItems = [
@@ -301,6 +330,13 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
                 <Button href={copy.hero.viewDemoHref} variant="ghost">
                   {copy.hero.viewDemoLabel}
                 </Button>
+              </div>
+              <div className="mt-6 rounded-[24px] border border-slate-200/80 bg-white/90 p-5 sm:p-6">
+                <div className="space-y-4 text-[15px] leading-7 text-slate-600 sm:text-base">
+                  {narrative.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                </div>
               </div>
               </div>
               {!isTranslator ? (

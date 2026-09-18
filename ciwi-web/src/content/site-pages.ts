@@ -162,10 +162,12 @@ const sitePagesZh = {
     effectiveDate,
     contentHtml: `
       <p><strong>Effective date:</strong> ${effectiveDate}</p>
-      <p>These Terms & Conditions (“Terms”) govern your access to and use of the Ciwi website, Shopify applications, software, APIs, content, and related services provided by ${legalEntity} (“Ciwi”, “we”, “our”, or “us”). By accessing or using the Services, you agree to these Terms. If you are using the Services on behalf of a company or other entity, you represent that you have authority to bind that entity to these Terms.</p>
+      <p>These Terms & Conditions (“Terms”) govern your access to and use of the Ciwi website, Shopify applications, software, APIs, content, and related services provided by ${legalEntity} (“Ciwi”, “we”, “our”, or “us”).</p>
+      <p>By accessing or using the Services, you agree to these Terms. If you are using the Services on behalf of a company or other entity, you represent that you have authority to bind that entity to these Terms.</p>
 
       <h2>1. The Services</h2>
-      <p>Ciwi provides software and AI-enabled tools for Shopify merchants and ecommerce teams, including localization, translation, content operations, and related workflow capabilities. Some features may be available through the Ciwi website, embedded Shopify apps, custom implementations, APIs, support channels, or separately agreed commercial arrangements.</p>
+      <p>Ciwi provides software and AI-enabled tools for Shopify merchants and ecommerce teams, including localization, translation, content operations, and related workflow capabilities.</p>
+      <p>Some features may be available through the Ciwi website, embedded Shopify apps, custom implementations, APIs, support channels, or separately agreed commercial arrangements.</p>
 
       <h2>2. Eligibility and accounts</h2>
       <ul>
@@ -176,7 +178,8 @@ const sitePagesZh = {
       </ul>
 
       <h2>3. Shopify platform relationship</h2>
-      <p>If you use a Ciwi Shopify app, you remain responsible for complying with your agreements with Shopify, including any Shopify merchant terms, platform rules, API restrictions, app billing requirements, and applicable store obligations. Shopify may independently enforce its own rules, review our app, or limit access to Shopify data or platform features.</p>
+      <p>If you use a Ciwi Shopify app, you remain responsible for complying with your agreements with Shopify, including any Shopify merchant terms, platform rules, API restrictions, app billing requirements, and applicable store obligations.</p>
+      <p>Shopify may independently enforce its own rules, review our app, or limit access to Shopify data or platform features.</p>
       <p>Nothing in these Terms modifies Shopify’s rights or obligations. If a Shopify rule or platform requirement requires us to change part of the Services, we may do so as needed to remain compliant.</p>
 
       <h2>4. Merchant responsibilities</h2>
@@ -194,7 +197,8 @@ const sitePagesZh = {
 
       <h2>6. Data use restrictions</h2>
       <p>You grant Ciwi a limited right to host, copy, transmit, process, and otherwise use data you submit to the Services only as necessary to provide, secure, maintain, and improve the Services, comply with law, and enforce these Terms.</p>
-      <p>Where Services connect to Shopify, both parties acknowledge the sensitivity of Merchant Data and Customer Data. We aim to access only the minimum information needed for the requested functionality. Access to shop data, product data, and relevant store activity depends on merchant authorization and Shopify-approved permissions. We do not access protected customer data unless the merchant authorizes it and the applicable Shopify requirements are satisfied.</p>
+      <p>Where Services connect to Shopify, both parties acknowledge the sensitivity of Merchant Data and Customer Data. We aim to access only the minimum information needed for the requested functionality.</p>
+      <p>Access to shop data, product data, and relevant store activity depends on merchant authorization and Shopify-approved permissions. We do not access protected customer data unless the merchant authorizes it and the applicable Shopify requirements are satisfied.</p>
       <p>Unless expressly agreed in writing and permitted by Shopify rules and applicable law, Ciwi will not use Merchant Data or Customer Data obtained through Shopify to train general-purpose AI or machine-learning models.</p>
 
       <h2>7. Fees, billing, and subscriptions</h2>
@@ -226,11 +230,14 @@ const sitePagesZh = {
       <p>As between the parties, you retain your rights in your underlying content and store data. To the extent permitted by law and third-party terms, you may use outputs generated for you through the Services, but your rights in those outputs may be limited by the nature of third-party inputs, model behavior, or applicable law.</p>
 
       <h2>10. Confidentiality</h2>
-      <p>Each party may receive confidential information from the other. The receiving party will use the other party’s confidential information only as needed to perform under these Terms and will protect it using reasonable safeguards. This section does not apply to information that is public without breach, independently developed, or rightfully received from another source without confidentiality obligations.</p>
+      <p>Each party may receive confidential information from the other. The receiving party will use the other party’s confidential information only as needed to perform under these Terms and will protect it using reasonable safeguards.</p>
+      <p>This section does not apply to information that is public without breach, independently developed, or rightfully received from another source without confidentiality obligations.</p>
 
       <h2>11. Termination and suspension</h2>
-      <p>You may stop using the Services at any time, subject to any outstanding fees or plan commitments. We may suspend or terminate access immediately if we reasonably believe you have violated these Terms, created security or legal risk, failed to pay fees, or if continued provision would conflict with law, third-party obligations, or Shopify platform requirements.</p>
-      <p>If the Services are uninstalled or terminated, merchant-related data is generally deleted within 60 days, subject to lawful retention obligations, dispute resolution needs, or valid security requirements. Upon termination, your right to use the Services ends, but provisions that by their nature should survive termination will remain in effect, including payment obligations, disclaimers, limitations of liability, indemnities, and intellectual property provisions.</p>
+      <p>You may stop using the Services at any time, subject to any outstanding fees or plan commitments.</p>
+      <p>We may suspend or terminate access immediately if we reasonably believe you have violated these Terms, created security or legal risk, failed to pay fees, or if continued provision would conflict with law, third-party obligations, or Shopify platform requirements.</p>
+      <p>If the Services are uninstalled or terminated, merchant-related data is generally deleted within 60 days, subject to lawful retention obligations, dispute resolution needs, or valid security requirements.</p>
+      <p>Upon termination, your right to use the Services ends, but provisions that by their nature should survive termination will remain in effect, including payment obligations, disclaimers, limitations of liability, indemnities, and intellectual property provisions.</p>
 
       <h2>12. Disclaimers</h2>
       <p>To the maximum extent permitted by law, the Services are provided “as is” and “as available.” Ciwi disclaims all warranties, whether express, implied, statutory, or otherwise, including warranties of merchantability, fitness for a particular purpose, non-infringement, uninterrupted availability, accuracy, or error-free operation.</p>
@@ -249,7 +256,8 @@ const sitePagesZh = {
       <p>Where required, we can provide a Data Processing Addendum describing relevant processing terms, subprocessors, and responsibilities for merchant data.</p>
 
       <h2>17. Changes to the Services or Terms</h2>
-      <p>We may update the Services or these Terms from time to time to reflect new features, security needs, legal requirements, or Shopify platform changes. If we make a material change, we may provide notice by posting an updated version on our website, through the app, or by email where appropriate. Your continued use of the Services after the updated Terms become effective constitutes acceptance of the revised Terms.</p>
+      <p>We may update the Services or these Terms from time to time to reflect new features, security needs, legal requirements, or Shopify platform changes.</p>
+      <p>If we make a material change, we may provide notice by posting an updated version on our website, through the app, or by email where appropriate. Your continued use of the Services after the updated Terms become effective constitutes acceptance of the revised Terms.</p>
 
       <h2>18. Contact us</h2>
       <p>${legalEntity}<br />${legalAddress}</p>

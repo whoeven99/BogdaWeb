@@ -9,6 +9,32 @@ import {buildBreadcrumbSchema, buildGraphSchema, buildWebPageSchema} from "@/lib
 
 export const dynamic = "force-dynamic";
 
+function buildLocalizationCollectionNarrative({
+  locale,
+  count,
+  titles,
+}: {
+  locale: "en" | "zh-cn";
+  count: number;
+  titles: string[];
+}) {
+  if (locale === "zh-cn") {
+    return [
+      `这个专题页当前收录 ${count} 篇本地化指南，重点不是讲单个 Shopify 功能按钮，而是帮助你理解某个类目、品牌或 B2B 场景在不同市场下应该如何调整语言与内容策略。`,
+      titles.length > 0
+        ? `如果你还不确定该从哪篇开始，可以先看 ${titles.join("、")} 这些更典型的入口，再沿着相关主题继续扩展。`
+        : "如果你还不确定该从哪篇开始，可以先从列表前几篇更典型的入口开始。",
+    ];
+  }
+
+  return [
+    `This collection currently includes ${count} localization guides. The goal is not to explain one Shopify button in isolation, but to show how category, brand, and B2B content strategies should shift across markets.`,
+    titles.length > 0
+      ? `If you are not sure where to start, begin with entries such as ${titles.join(", ")}, then expand into the adjacent topics from there.`
+      : "If you are not sure where to start, begin with the most representative entries at the top of the list.",
+  ];
+}
+
 export async function generateMetadata() {
   const locale = await getRequestLocale();
   const copy =
@@ -34,6 +60,11 @@ export async function generateMetadata() {
 export default async function LocalizationGuidesPage() {
   const locale = await getRequestLocale();
   const guides = getLocalizationGuides(locale);
+  const narrative = buildLocalizationCollectionNarrative({
+    locale,
+    count: guides.length,
+    titles: guides.slice(0, 3).map((guide) => guide.title),
+  });
   const copy =
     locale === "zh-cn"
       ? {
@@ -147,6 +178,13 @@ export default async function LocalizationGuidesPage() {
                   {copy.stats.focus}
                 </div>
                 <div className="mt-2 text-sm font-semibold text-slate-900">{copy.stats.focusValue}</div>
+              </div>
+            </div>
+            <div className="mt-6 rounded-[24px] border border-slate-200/80 bg-white/90 p-5 sm:p-6">
+              <div className="space-y-4 text-[15px] leading-7 text-slate-600 sm:text-base">
+                {narrative.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
               </div>
             </div>
           </div>

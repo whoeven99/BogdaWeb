@@ -53,6 +53,24 @@ export function HelpCenterDocsLayout({
     return doc.slug === defaultDocSlug ? "/help-center" : doc.href;
   }
 
+  const articleNarrative = (() => {
+    const topicCount = topicDocs.length;
+    const relatedResourceCount = currentDoc.relatedResources.length;
+    const sectionCount = sections.length;
+
+    if (locale === "zh-cn") {
+      return [
+        `这篇帮助文档属于「${currentTopic}」主题，当前主题下共收录 ${topicCount} 篇相关文档。它更适合作为具体操作入口，用来解决一个明确问题，而不是浏览式阅读。`,
+        `本文包含 ${sectionCount} 个正文小节${relatedResourceCount > 0 ? `，并附带 ${relatedResourceCount} 个相关资源入口` : ""}。如果你是从搜索进入，先读完本页的步骤和限制条件，再根据左侧目录继续扩展到同主题文章会更高效。`,
+      ];
+    }
+
+    return [
+      `This article sits under the "${currentTopic}" topic, which currently includes ${topicCount} related documents. It works best as a task-specific entry point for solving one concrete problem rather than as browse-only reading.`,
+      `The page includes ${sectionCount} main sections${relatedResourceCount > 0 ? ` and ${relatedResourceCount} related resource links` : ""}. If you arrived from search, the fastest path is usually to finish the steps and constraints on this page first, then use the left directory to expand into the adjacent docs under the same topic.`,
+    ];
+  })();
+
   return (
     <section className="docs-page">
       <div className="docs-layout">
@@ -181,6 +199,14 @@ export function HelpCenterDocsLayout({
             <h1>{currentDoc.title}</h1>
             <p className="quote">{currentDoc.description}</p>
           </header>
+
+          <div className="mt-6 rounded-[24px] border border-slate-200/80 bg-slate-50/80 px-5 py-5 sm:px-6">
+            <div className="space-y-4 text-[15px] leading-7 text-slate-600">
+              {articleNarrative.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+          </div>
 
           <MdxContent source={addSectionAnchors(currentDoc.contentHtml)} className="article-prose docs-article__prose" />
 
