@@ -1,0 +1,202 @@
+---
+entryId: blog-how-to-set-up-pt-pt-and-pt-br-shopify-ciwi-ai-translator
+locale: en
+slug: how-to-set-up-pt-pt-and-pt-br-shopify-ciwi-ai-translator
+title: "How to Set Up pt-PT and pt-BR on Shopify with Ciwi AI Translator"
+description: "Configure pt-PT and pt-BR in Shopify with Ciwi AI Translator, keep the two Portuguese variants operationally separate, and avoid multilingual SEO and wording drift."
+publishedAt: 2026-09-18
+status: published
+readingTime: 9 min read
+tags:
+  - Portuguese
+  - Shopify
+  - Localization
+  - Ciwi Translator
+sourceLocale: en
+translationStatus: manual
+---
+
+If your store wants to serve both Portugal and Brazil, adding "Portuguese" once is usually not enough. pt-PT and pt-BR may be close linguistically, but they diverge in wording, tone, product expectations, and search behavior often enough to justify separate handling.
+
+That is true for storefront copy, and it is just as true for SEO.
+
+<Callout title="The core rule">
+  <p>Treat pt-PT and pt-BR as two operating locales. They can share a base language, but they should not share one final review standard, one glossary, or one SEO assumption.</p>
+</Callout>
+
+## Why the two variants should stay separate
+
+At first glance, it is tempting to translate one Portuguese version and reuse it everywhere. That usually creates friction in three places:
+
+- wording that sounds off to one market
+- market-specific search phrasing
+- localized URLs, metadata, and hreflang signals
+
+Even when the difference looks small sentence by sentence, the storefront can still feel less native once a shopper moves through product pages, navigation, blog content, and checkout-related copy.
+
+## What to configure in Shopify first
+
+Before running translation jobs, make sure the market and language layer is clear inside Shopify.
+
+In practice, that means:
+
+1. Confirm that Portugal and Brazil are treated as separate market targets in your broader localization plan.
+2. Decide how localized URLs will be exposed for each market.
+3. Keep your publishing flow separate so one Portuguese variant can be reviewed or released without forcing the other one live.
+
+The URL pattern depends on your Shopify Markets setup, but the governance principle stays the same: each locale should have its own discoverable path and its own language targeting signal.
+
+## Step 1: Add both target languages in Ciwi
+
+Open the **Language** page in Ciwi and add both Portuguese targets to your language configuration. Ciwi's language setup is the place where translation coverage and publish status are managed at the language level.
+
+That matters because you do not want pt-BR publishing rules to be tied to pt-PT readiness, or the other way around.
+
+## Step 2: Build glossary before the first large run
+
+Glossary matters even more when the languages are close.
+
+Why? Because the model may otherwise smooth over the differences and produce wording that is technically understandable but locally weak.
+
+Start by locking:
+
+- brand names
+- product line names
+- recurring promotional phrases
+- market-sensitive retail wording
+- words that should differ between Portugal and Brazil
+
+The goal is not to create a giant dictionary. The goal is to stop the high-value terms from drifting between the two Portuguese variants.
+
+## Step 3: Create separate jobs in Translate v4
+
+Ciwi supports multiple target languages in one setup, but each selected language becomes its own job. That is the right behavior for pt-PT and pt-BR.
+
+It lets you:
+
+- monitor each locale separately
+- retry one Portuguese variant without rerunning the other
+- compare output side by side
+- publish one locale later if review is not finished
+
+Operationally, that is much cleaner than forcing both markets through one opaque translation step.
+
+## Step 4: Review the markets differently
+
+This is where many teams lose the benefit of separating the locales.
+
+If the reviewer only checks whether the text is "understandable Portuguese," the two variants start collapsing back into one generic version. Review should explicitly look for:
+
+- vocabulary differences
+- promotional phrasing differences
+- currency and market context
+- navigation wording
+- high-traffic SEO pages and blog titles
+
+That review is especially important on collection pages, flagship product pages, help content, and blog articles.
+
+## Step 5: Keep SEO layers separate too
+
+A frequent mistake is separating the storefront copy, but keeping the SEO layer shared.
+
+For pt-PT and pt-BR, review these as separate assets:
+
+- meta title
+- meta description
+- page or article handle
+- canonical target
+- hreflang annotations
+- sitemap discoverability
+
+If the two locales end up sharing the same metadata logic and URL assumptions, search engines may get a weaker market signal and shoppers may see phrasing that feels imported from the other region.
+
+## URL strategy for pt-PT and pt-BR
+
+You do not need to translate every handle differently just because the locales are separate. But you do need a policy.
+
+A practical policy is:
+
+- keep shared handles only when the keyword behavior is effectively the same
+- localize handles when market phrasing clearly differs
+- keep redirect mapping ready before changing existing indexed URLs
+- align handle, title, and meta description at the locale level
+
+That keeps SEO work focused where it matters instead of creating busywork.
+
+<ComparisonTable
+  columns={["Shared Portuguese layer", "Separate pt-PT / pt-BR layer"]}
+  rows={[
+    {
+      label: "Glossary",
+      values: ["Drift is more likely", "Market wording stays easier to control"],
+    },
+    {
+      label: "Review workflow",
+      values: ["One generic review standard", "Each locale can be checked on its own terms"],
+    },
+    {
+      label: "SEO signals",
+      values: ["Weaker market targeting", "Cleaner metadata and locale mapping"],
+    },
+    {
+      label: "Publishing",
+      values: ["Both move together", "Each locale can ship when ready"],
+    },
+  ]}
+/>
+
+## The easiest mistakes to avoid
+
+### Treating both as one Portuguese job
+
+That removes the operational clarity you actually need. Separate jobs are easier to retry, review, and publish.
+
+### Reusing one glossary blindly
+
+A shared base glossary is fine. A shared final wording policy is usually not.
+
+### Forgetting blog and SEO layers
+
+Teams often review product text but forget blog titles, article handles, and metadata. That weakens local search fit even when the storefront copy looks acceptable.
+
+### Publishing before locale QA is complete
+
+Because the languages are close, weak differences are easy to miss. That is exactly why explicit market QA matters.
+
+## A practical rollout order
+
+If you want the cleanest launch sequence, use this order:
+
+1. Add pt-PT and pt-BR on the **Language** page.
+2. Define glossary entries that should stay shared and terms that should differ.
+3. Create translation jobs in **Translate v4**.
+4. Review the two outputs separately in **Manage Translation**.
+5. Publish one or both languages only after market-level QA.
+6. Review localized URLs, metadata, hreflang, and sitemap coverage.
+
+That flow keeps the two Portuguese variants distinct without turning the workflow into a heavy manual process.
+
+<FaqAccordion
+  items={[
+    {
+      question: "Can I create pt-PT and pt-BR in one Ciwi setup?",
+      answer: "Yes. Ciwi supports multiple target languages in one setup, and each language becomes a separate job. That is the cleanest way to keep pt-PT and pt-BR operationally distinct.",
+    },
+    {
+      question: "Should pt-PT and pt-BR share one glossary?",
+      answer: "They can share a base glossary for brand terms, but market-sensitive wording should still be reviewed and controlled separately so the two variants do not collapse into generic Portuguese.",
+    },
+    {
+      question: "Do pt-PT and pt-BR need separate SEO review?",
+      answer: "Yes. Titles, descriptions, handles, hreflang, and localized URL assumptions should be reviewed per locale, not copied forward automatically.",
+    },
+  ]}
+/>
+
+<CtaCard
+  eyebrow="Related docs"
+  title="Use the Ciwi setup guides as your checklist"
+  description="If you are actively configuring the two Portuguese variants, the Language, Translate v4, and glossary docs are the best next stop."
+  href="/help-center/ShopifyApp/does-translate-language-ai-adapt-support-multiple-languages"
+  buttonLabel="Open the language guide"
+/>
