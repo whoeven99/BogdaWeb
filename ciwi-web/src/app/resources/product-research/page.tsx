@@ -13,6 +13,30 @@ import {buildBreadcrumbSchema, buildFaqSchema, buildWebPageSchema, buildGraphSch
 
 export const dynamic = "force-dynamic";
 
+function buildProductResearchHubNarrative({
+  locale,
+  stageCount,
+  toolCount,
+  reviewCount,
+}: {
+  locale: "en" | "zh-cn";
+  stageCount: number;
+  toolCount: number;
+  reviewCount: number;
+}) {
+  if (locale === "zh-cn") {
+    return [
+      `这个专题页把 Shopify 选品拆成 ${stageCount} 个阶段来处理，而不是把“选品工具”当成一个单独关键词页面。这样更容易判断当前卡在需求发现、竞品验证、利润测算还是供货履约。`,
+      `页面里同时提供 ${toolCount} 个工具入口和 ${reviewCount} 篇独立测评，方便先看阶段方法，再回头验证某个具体工具是否值得付费。`,
+    ];
+  }
+
+  return [
+    `This hub breaks Shopify product research into ${stageCount} stages instead of treating "product research tools" as one flat keyword. That makes it easier to see whether the current bottleneck is discovery, competitor validation, profit checking, or sourcing.`,
+    `It also surfaces ${toolCount} tool entries and ${reviewCount} standalone reviews so readers can understand the workflow first, then decide whether a specific tool deserves deeper evaluation or paid adoption.`,
+  ];
+}
+
 function getHubCopy(locale: "en" | "zh-cn") {
   return locale === "zh-cn"
     ? {
@@ -149,6 +173,13 @@ export default async function ProductResearchHubPage() {
     return null;
   }
 
+  const narrative = buildProductResearchHubNarrative({
+    locale,
+    stageCount: articles.length,
+    toolCount: hub.tools.length,
+    reviewCount: reviews.length,
+  });
+
   const pageUrl = toAbsoluteLocalizedUrl(locale, "/resources/product-research");
   const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
@@ -220,6 +251,13 @@ export default async function ProductResearchHubPage() {
                   ))}
                 </ul>
               </nav>
+            </div>
+            <div className="mt-6 rounded-[24px] border border-slate-200/80 bg-white/90 p-5 sm:p-6">
+              <div className="space-y-4 text-[15px] leading-7 text-slate-600 sm:text-base">
+                {narrative.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
             </div>
           </ContentIndexHero>
         </section>

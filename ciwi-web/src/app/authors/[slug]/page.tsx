@@ -17,6 +17,34 @@ type AuthorPageProps = {
   params: Promise<{slug: string}>;
 };
 
+function buildAuthorNarrative({
+  locale,
+  authorName,
+  role,
+  totalCount,
+  guidesCount,
+  postsCount,
+}: {
+  locale: "en" | "zh-cn";
+  authorName: string;
+  role: string;
+  totalCount: number;
+  guidesCount: number;
+  postsCount: number;
+}) {
+  if (locale === "zh-cn") {
+    return [
+      `${authorName} 当前以 ${role} 的身份参与 Ciwi 内容体系，页面聚合了该作者公开署名的 ${totalCount} 篇内容，方便从作者视角连续阅读相关主题。`,
+      `其中包括 ${guidesCount} 篇指南类内容和 ${postsCount} 篇博客内容。相比单篇文章页，这里更适合作为作者专题入口，快速理解该作者更常覆盖的问题范围和写作方向。`,
+    ];
+  }
+
+  return [
+    `${authorName} contributes to the Ciwi content system as ${role}, and this page aggregates ${totalCount} published items under that byline so readers can move through related topics from one author perspective.`,
+    `That includes ${guidesCount} guide-type entries and ${postsCount} blog posts. Compared with a single article page, this author page works better as an editorial entry point for understanding what this author tends to cover.`,
+  ];
+}
+
 export function generateStaticParams() {
   return authors.map((author) => ({slug: author.id}));
 }
@@ -58,6 +86,14 @@ export default async function AuthorDetailPage({params}: AuthorPageProps) {
 
   const allGuides = [...localizationGuides, ...functionScenarioGuides];
   const totalCount = allGuides.length + posts.length;
+  const narrative = buildAuthorNarrative({
+    locale,
+    authorName: author.name,
+    role: author.role[locale],
+    totalCount,
+    guidesCount: allGuides.length,
+    postsCount: posts.length,
+  });
 
   const copy =
     locale === "zh-cn"
@@ -137,6 +173,13 @@ export default async function AuthorDetailPage({params}: AuthorPageProps) {
               <div className="mt-2 text-sm font-medium text-slate-600">{author.role[locale]}</div>
               <p className="mt-2 max-w-2xl text-[15px] leading-7 text-slate-600">{author.bio[locale]}</p>
               <div className="mt-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-slate-400">{copy.hero.contentCount}</div>
+            </div>
+          </div>
+          <div className="mt-6 max-w-4xl rounded-[24px] border border-slate-200/80 bg-white/90 p-5 sm:p-6">
+            <div className="space-y-4 text-[15px] leading-7 text-slate-600 sm:text-base">
+              {narrative.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
             </div>
           </div>
         </section>

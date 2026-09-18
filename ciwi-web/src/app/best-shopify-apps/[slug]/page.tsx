@@ -7,10 +7,9 @@ import {Button} from "@/components/ui/Button";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getBestShopifyAppCollectionMap, getBestShopifyAppCollections} from "@/content/best-shopify-apps";
-import appRatings from "@/content/data/app_ratings.json";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
-import {buildBreadcrumbSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
+import {buildBreadcrumbSchema, buildGraphSchema, buildItemListSchema, buildWebPageSchema} from "@/lib/seo/schema";
 
 export const dynamic = "force-dynamic";
 
@@ -18,46 +17,33 @@ type BestShopifyAppCollectionPageProps = {
   params: Promise<{slug: string}>;
 };
 
-function extractAppSlug(href?: string): string | undefined {
-  if (!href) return undefined;
-  const match = href.match(/apps\.shopify\.com\/([^/?#]+)/);
-  return match?.[1];
-}
+function buildCollectionNarrative({
+  locale,
+  collection,
+}: {
+  locale: "en" | "zh-cn";
+  collection: ReturnType<typeof getBestShopifyAppCollectionMap>[string];
+}) {
+  const methodologyTitles = collection.methodology.slice(0, 3).map((item) => item.title);
+  const pickNames = collection.picks.slice(0, 3).map((item) => item.name);
 
-function buildItemListSchema(
-  url: string,
-  locale: "en" | "zh-cn",
-  collection: ReturnType<typeof getBestShopifyAppCollectionMap>[string],
-) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: collection.title,
-    description: collection.description,
-    url,
-    itemListElement: collection.picks.map((item) => {
-      const appSlug = extractAppSlug(item.href);
-      const rating = appSlug ? (appRatings as Record<string, {rating: number; reviewCount: number}>)[appSlug] : undefined;
+  if (locale === "zh-cn") {
+    return [
+      `${collection.summary} 这类榜单页更适合用来完成第一轮筛选：先确定当前业务更需要哪类 Shopify App，再深入到具体产品页或对比页做最终判断。`,
+      `本页的筛选逻辑主要围绕 ${methodologyTitles.join("、")} 展开，因此排序更偏向长期适配度，而不只是首次上手速度。`,
+      pickNames.length > 0
+        ? `如果你只想快速缩小范围，可以先看 ${pickNames.join("、")} 这些排在前面的候选项，再根据“适合谁”“价格”和“注意点”继续判断。`
+        : "如果你只想快速缩小范围，可以先看榜单前几名，再根据“适合谁”“价格”和“注意点”继续判断。",
+    ];
+  }
 
-      return {
-        "@type": "Product",
-        position: item.rank,
-        name: item.name,
-        description: item.summary,
-        url: item.href ? toAbsoluteLocalizedUrl(locale, item.href) : undefined,
-        ...(rating
-          ? {
-              aggregateRating: {
-                "@type": "AggregateRating",
-                ratingValue: rating.rating,
-                reviewCount: rating.reviewCount,
-                bestRating: 5,
-              },
-            }
-          : {}),
-      };
-    }),
-  };
+  return [
+    `${collection.summary} Pages like this work best as a first-pass shortlist: decide which Shopify app profile fits the business now, then open the specific product or comparison page only after the candidate set is smaller.`,
+    `The shortlist is organized around ${methodologyTitles.join(", ")}, so the ranking leans toward long-term fit rather than first-demo speed alone.`,
+    pickNames.length > 0
+      ? `If you only need to narrow the field quickly, start with ${pickNames.join(", ")} near the top, then use the best-for, pricing, and watchout notes to keep filtering.`
+      : "If you only need to narrow the field quickly, start with the higher-ranked picks, then use the best-for, pricing, and watchout notes to keep filtering.",
+  ];
 }
 
 export function generateStaticParams() {
@@ -189,6 +175,7 @@ export default async function BestShopifyAppCollectionPage({params}: BestShopify
         };
 
   const pageUrl = toAbsoluteLocalizedUrl(locale, collection.href);
+  const narrative = buildCollectionNarrative({locale, collection});
   const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
       {name: "Home", item: siteUrl},
@@ -202,7 +189,19 @@ export default async function BestShopifyAppCollectionPage({params}: BestShopify
       keywords: [...collection.keywords],
       type: "CollectionPage",
     }),
-    buildItemListSchema(pageUrl, locale, collection),
+    buildItemListSchema({
+      url: pageUrl,
+      name: collection.title,
+      description: collection.description,
+      items: collection.picks
+        .filter((item) => Boolean(item.href))
+        .map((item) => ({
+          position: item.rank,
+          name: item.name,
+          url: toAbsoluteLocalizedUrl(locale, item.href!),
+          description: item.summary,
+        })),
+    }),
   ]);
 
   return (
@@ -244,11 +243,8 @@ export default async function BestShopifyAppCollectionPage({params}: BestShopify
               <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
                 {copy.hero.summaryLabel}
               </div>
-              <p className="mt-3 text-[15px] leading-7 text-slate-700 sm:text-base">
-                {collection.summary}
-              </p>
-              <div className="mt-4 space-y-3 text-[15px] leading-7 text-slate-600 sm:text-base">
-                {collection.intro.map((paragraph) => (
+              <div className="mt-3 space-y-4 text-[15px] leading-7 text-slate-600 sm:text-base">
+                {narrative.concat(collection.intro).map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
               </div>

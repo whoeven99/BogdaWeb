@@ -25,7 +25,7 @@ export default async function TermsPage() {
   return (
     <main>
       <PageContainer>
-        <section className="page-section page-hero page-copy article-prose legal-page">
+        <section className="page-section page-hero page-copy content-prose article-prose legal-page">
           <SectionHeading eyebrow={locale === "zh-cn" ? "法务" : "Legal"} title={page.title} description={page.description} as="h1" />
           <div className="legal-page__content" dangerouslySetInnerHTML={{__html: page.contentHtml}} />
         </section>

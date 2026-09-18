@@ -12,11 +12,11 @@ export async function generateMetadata() {
   const locale = await getRequestLocale();
 
   return buildPageMetadata({
-    title: locale === "zh-cn" ? "Ciwi 产品" : "Ciwi Products",
+    title: locale === "zh-cn" ? "Ciwi 产品" : "Shopify Merchant Tools for Translation & AI Tasks",
     description:
       locale === "zh-cn"
         ? "围绕 Shopify 商家真实经营问题打造的 AI 产品组合。"
-        : "An AI product lineup built around real operating problems for Shopify merchants.",
+        : "Explore Ciwi Shopify merchant tools for AI translation, multilingual storefront management, and supported store-task automation with Spark.",
     path: "/products",
     locale,
   });
@@ -49,8 +49,8 @@ export default async function ProductsPage() {
         }
       : {
           hero: {
-            title: "Ciwi AI products for Shopify growth",
-            description: "Built around real Shopify operating problems, with products aimed at conversion, content efficiency, and global expansion.",
+            title: "Shopify merchant tools for translation and AI tasks",
+            description: "Choose tools for the work your Shopify store needs: translate storefront content, manage multilingual updates, or use Spark to plan and execute supported tasks.",
           },
           matrix: {
             eyebrow: "Products",

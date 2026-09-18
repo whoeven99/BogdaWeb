@@ -619,6 +619,50 @@ function getPricingFactRows(
   ];
 }
 
+function buildCompareNarrative({
+  locale,
+  alternativeName,
+  overallReview,
+  scoreSummary,
+  appSummary,
+  pricingSummary,
+}: {
+  locale: "en" | "zh-cn";
+  alternativeName: string;
+  overallReview: string;
+  scoreSummary: string;
+  appSummary: string;
+  pricingSummary: string;
+}) {
+  const splitNarrative = (text: string) =>
+    text
+      .split(/(?<=[.!?。！？])\s+/)
+      .map((segment) => segment.trim())
+      .filter(Boolean);
+
+  if (locale === "zh-cn") {
+    return [
+      ...splitNarrative(overallReview),
+      `这页的重点不是给出抽象的“谁更好”。`,
+      `${primaryProductName} 和 ${alternativeName} 适合的经营阶段，本来就不完全一样。`,
+      ...splitNarrative(scoreSummary),
+      "如果你更在意长期治理、覆盖范围和持续更新，这些评分会更有参考价值。",
+      ...splitNarrative(appSummary),
+      ...splitNarrative(pricingSummary),
+    ];
+  }
+
+  return [
+    ...splitNarrative(overallReview),
+    "The point of this page is not to force one abstract winner.",
+    `It is to show which operating context fits ${primaryProductName} versus ${alternativeName} more cleanly.`,
+    ...splitNarrative(scoreSummary),
+    "If long-term governance, coverage, and repeat maintenance matter more than first-day setup speed, these signals usually matter more than a shallow launch demo.",
+    ...splitNarrative(appSummary),
+    ...splitNarrative(pricingSummary),
+  ];
+}
+
 function hashString(value: string) {
   let hash = 0;
 
@@ -1172,6 +1216,14 @@ export default async function CompareDetailPage({params}: CompareDetailPageProps
   const bestFitItems = getBestFitItems(data, locale);
   const renderedFaqItems = getRenderedFaqItems(data, locale);
   const hasFaq = renderedFaqItems.length > 0;
+  const narrative = buildCompareNarrative({
+    locale,
+    alternativeName: data.alternativeName,
+    overallReview,
+    scoreSummary,
+    appSummary: appInsightCard.summary,
+    pricingSummary: pricingInsightCard.summary,
+  });
   const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
       {name: "Home", item: siteUrl},
@@ -1228,6 +1280,13 @@ export default async function CompareDetailPage({params}: CompareDetailPageProps
                 <div className="mt-2 text-sm font-semibold text-slate-900">
                   {locale === "zh-cn" ? "10 分制 / 弱中强" : "10-point / weak-medium-strong"}
                 </div>
+              </div>
+            </div>
+            <div className="mt-6 rounded-[24px] border border-slate-200/80 bg-white/92 p-5 sm:p-6">
+              <div className="space-y-4 text-[15px] leading-7 text-slate-600 sm:text-base">
+                {narrative.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
               </div>
             </div>
           </div>

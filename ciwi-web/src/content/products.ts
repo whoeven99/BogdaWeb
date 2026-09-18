@@ -4,6 +4,8 @@ import {ciwiShopifyInstallUrl, sparkShopifyInstallUrl} from "@/lib/marketing-lin
 export type ProductItem = {
   slug: string;
   name: string;
+  seoTitle?: string;
+  seoDescription?: string;
   shortDescription: string;
   heroTitle: string;
   heroDescription: string;
@@ -55,10 +57,12 @@ const productsEn: ProductItem[] = [
   {
     slug: "translator",
     name: "AI Translator",
-    shortDescription: "Launch multilingual storefront content faster, keep terminology steady, and stay in sync as the store changes.",
-    heroTitle: "Turn Shopify localization into a sustainable growth workflow",
+    seoDescription: "Ciwi is an AI translation tool for Shopify ecommerce websites. Translate storefront content, manage brand terminology, and keep language versions in sync.",
+    seoTitle: "AI Translation Tool for Shopify Ecommerce",
+    shortDescription: "An AI translation tool for Shopify ecommerce websites, with glossary control and workflows for keeping multilingual storefront content up to date.",
+    heroTitle: "AI-powered translation for your Shopify store",
     heroDescription:
-      "Ciwi AI Translator covers products, themes, navigation, FAQs, images, and metafields so multilingual rollout gets faster and ongoing updates stay under better control.",
+      "Use Ciwi AI Translator to translate Shopify products, themes, navigation, FAQs, images, and metafields. Manage brand terminology and keep multilingual storefront content aligned as your store changes.",
     videoUrl: "https://www.youtube.com/embed/rAFB3AuXuH0?si=6v-NjiENBOqvREy-",
     icon: "/translate.svg",
     metrics: ["100+ languages", "Shopify-aware workflow", "Glossary and model control"],
@@ -248,11 +252,13 @@ const productsEn: ProductItem[] = [
   {
     slug: "spark-analytics-agent",
     name: "Spark: AI Store Assistant",
+    seoDescription: "Spark is a Shopify AI agent that plans and executes supported store tasks. Connect your data, describe a goal, and review the results.",
+    seoTitle: "Shopify AI Agent for Store Tasks & Automation",
     shortDescription:
-      "An AI agent for Shopify merchants that turns goals into plans and executes supported store tasks using connected data and tools.",
-    heroTitle: "Give Spark a goal. Let it plan and execute.",
+      "A Shopify AI agent and ecommerce assistant that plans and executes supported store tasks using connected data and tools.",
+    heroTitle: "A Shopify AI agent that plans and executes store tasks",
     heroDescription:
-      "Spark is an AI agent built for Shopify merchants. Describe the outcome you want, and Spark plans the steps and executes supported tasks using your connected store data and tools. Set the scope and permissions for each task, then review the results.",
+      "Describe the outcome you want, and Spark uses connected Shopify data and tools to plan and execute supported tasks. Use this AI assistant for ecommerce to turn store questions into scoped actions and reviewable results.",
     videoUrl: "https://www.youtube.com/embed/UO8Hz0fCMJw?si=eBaqLeLxbLjxjKzw",
     icon: "/ai-generate-landscape-image-spark.svg",
     metrics: ["Goal-driven AI agent", "Autonomous planning & execution", "Connected store data & tools"],

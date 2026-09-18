@@ -6,7 +6,7 @@ import {BackLink} from "@/components/ui/BackLink";
 import {CardCtaLink} from "@/components/ui/CardCtaLink";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
-import {getAvailableProductResearchLocales, getProductResearchArticleMap, getProductResearchWorkflowArticles} from "@/content/product-research";
+import {getAvailableProductResearchLocales, getProductResearchArticleMap, getProductResearchWorkflowArticles, type ProductResearchArticle} from "@/content/product-research";
 import {getToolReviewHrefMap} from "@/content/tool-reviews";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
@@ -17,6 +17,44 @@ export const dynamic = "force-dynamic";
 type ProductResearchArticlePageProps = {
   params: Promise<{slug: string}>;
 };
+
+type LinkedProductResearchRecommendation = ProductResearchArticle["recommendations"][number] & {
+  href: string;
+};
+
+function buildProductResearchNarrative({
+  locale,
+  article,
+}: {
+  locale: "en" | "zh-cn";
+  article: ProductResearchArticle;
+}) {
+  const toolNames = article.tools.slice(0, 3).map((item) => item.name).join(locale === "zh-cn" ? "、" : ", ");
+  const methodTitles = article.methods.slice(0, 2).map((item) => item.title).join(locale === "zh-cn" ? "、" : ", ");
+  const recommendationTitles = article.recommendations.slice(0, 2).map((item) => item.title).join(locale === "zh-cn" ? "、" : ", ");
+
+  if (locale === "zh-cn") {
+    return [
+      `${article.mainValue} 这个阶段页的重点，是把一个容易被笼统讨论的选品问题拆成具体动作，帮助你判断当前到底该先看工具、先看方法，还是先排除明显错误。`,
+      toolNames
+        ? `在这个阶段里，像 ${toolNames} 这样的工具只是辅助手段，真正关键的是按 ${methodTitles || "阶段方法"} 这样的顺序推进，否则很容易在数据很多时依然无法做决定。`
+        : `这个阶段里，工具只是辅助手段，真正关键的是按阶段方法顺序推进。`,
+      recommendationTitles
+        ? `如果你读完本页还没拿准下一步，通常可以继续看 ${recommendationTitles} 这些相邻阶段，把单点判断连成完整选品流程。`
+        : "如果你读完本页还没拿准下一步，通常需要继续看相邻阶段，把单点判断连成完整选品流程。",
+    ];
+  }
+
+  return [
+    `${article.mainValue} The point of a stage page like this is to turn a broad product-research problem into concrete actions so you can see whether the next move is a tool check, a method step, or a mistake to avoid first.`,
+    toolNames
+      ? `Tools such as ${toolNames} are useful in this stage, but they are still supporting layers. The harder part is moving through steps such as ${methodTitles || "the core stage methods"} in the right order so more data actually leads to a decision.`
+      : "Tools in this stage are supporting layers. The harder part is moving through the stage methods in the right order so more data actually leads to a decision.",
+    recommendationTitles
+      ? `If this page still leaves the next move unclear, the usual follow-up is to continue into adjacent stages such as ${recommendationTitles} so one decision point becomes a fuller product research workflow.`
+      : "If this page still leaves the next move unclear, the usual follow-up is to continue into the adjacent stages so one decision point becomes a fuller product research workflow.",
+  ];
+}
 
 function getPageCopy(locale: "en" | "zh-cn") {
   return locale === "zh-cn"
@@ -72,6 +110,7 @@ function getPageCopy(locale: "en" | "zh-cn") {
             eyebrow: "延伸阅读",
             title: "接下来还应该看哪些阶段？",
             description: "这些相邻阶段一起看，能形成更完整的选品工作流。",
+            ctaLabel: "打开这篇文章",
           },
           faq: {
             eyebrow: "FAQ",
@@ -132,6 +171,7 @@ function getPageCopy(locale: "en" | "zh-cn") {
             eyebrow: "Next stages",
             title: "What should you read next?",
             description: "These adjacent stages build a more complete product research workflow.",
+            ctaLabel: "Open this article",
           },
           faq: {
             eyebrow: "FAQ",
@@ -166,6 +206,48 @@ function buildStructuredData(locale: "en" | "zh-cn", article: {title: string; de
     }),
     buildFaqSchema(article.faq),
   ]);
+}
+
+function resolveProductResearchRecommendationHref(locale: "en" | "zh-cn", title: string) {
+  const normalizedTitle = title.trim().toLowerCase();
+
+  if (locale === "zh-cn") {
+    if (normalizedTitle.includes("shopify 选品工具推荐")) {
+      return "/resources/product-research";
+    }
+    if (normalizedTitle.includes("免费和 ai 选品工具")) {
+      return "/resources/product-research/product-research-tools-free";
+    }
+    if (normalizedTitle.includes("reddit 推荐的 shopify 选品工具")) {
+      return "/resources/product-research/shopify-product-research-tool-reddit";
+    }
+    if (normalizedTitle.includes("代发货利润选品工具")) {
+      return "/resources/product-research/best-product-research-tools-for-dropshipping";
+    }
+    if (normalizedTitle.includes("etsy 选品")) {
+      return "/resources/product-research/product-research-etsy";
+    }
+
+    return undefined;
+  }
+
+  if (normalizedTitle.includes("best shopify product research tools")) {
+    return "/resources/product-research";
+  }
+  if (normalizedTitle.includes("free and ai product research tools")) {
+    return "/resources/product-research/product-research-tools-free";
+  }
+  if (normalizedTitle.includes("reddit recommends for shopify research")) {
+    return "/resources/product-research/shopify-product-research-tool-reddit";
+  }
+  if (normalizedTitle.includes("product research tools for dropshipping profit")) {
+    return "/resources/product-research/best-product-research-tools-for-dropshipping";
+  }
+  if (normalizedTitle.includes("etsy product research")) {
+    return "/resources/product-research/product-research-etsy";
+  }
+
+  return undefined;
 }
 
 export function generateStaticParams() {
@@ -211,6 +293,13 @@ export default async function ProductResearchArticlePage({params}: ProductResear
   const copy = getPageCopy(locale);
   const reviewHrefMap = getToolReviewHrefMap(locale);
   const structuredData = buildStructuredData(locale, article);
+  const narrative = buildProductResearchNarrative({locale, article});
+  const linkedRecommendations = article.recommendations
+    .map((item) => ({
+      ...item,
+      href: resolveProductResearchRecommendationHref(locale, item.title),
+    }))
+    .filter((item): item is LinkedProductResearchRecommendation => Boolean(item.href) && item.href !== article.href);
   const tocItems = [
     {href: "#overview", label: copy.sections.overview.title},
     {href: "#tools", label: copy.sections.tools.title},
@@ -255,9 +344,11 @@ export default async function ProductResearchArticlePage({params}: ProductResear
               <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
                 {copy.hero.summaryLabel}
               </div>
-              <p className="mt-3 text-[15px] leading-7 text-slate-700 sm:text-base">
-                {article.mainValue}
-              </p>
+              <div className="mt-3 space-y-4 text-[15px] leading-7 text-slate-700 sm:text-base">
+                {narrative.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
             </div>
 
             <nav
@@ -401,10 +492,13 @@ export default async function ProductResearchArticlePage({params}: ProductResear
             description={copy.sections.recommendations.description}
           />
           <div className="guide-narrative-stack">
-            {article.recommendations.map((item) => (
+            {linkedRecommendations.map((item) => (
               <article key={item.title} className="surface-card guide-narrative-card">
                 <h3>{item.title}</h3>
                 <p>{item.description}</p>
+                <div className="mt-4">
+                  <CardCtaLink href={item.href}>{copy.sections.recommendations.ctaLabel}</CardCtaLink>
+                </div>
               </article>
             ))}
           </div>

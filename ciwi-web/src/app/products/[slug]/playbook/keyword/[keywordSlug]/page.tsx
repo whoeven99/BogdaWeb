@@ -267,6 +267,34 @@ function formatAiPrompt(text: string): string {
   return sentenceBreak.trim();
 }
 
+function buildNarrativeParagraphs(
+  item: NonNullable<ReturnType<typeof getKeywordUseCaseBySlug>>,
+  steps: string[],
+  locale: "en" | "zh-cn",
+) {
+  const firstStep = steps[0];
+  const lastStep = steps[steps.length - 1];
+  const faqCount = item.faqs.length;
+
+  if (locale === "zh-cn") {
+    return [
+      `${item.scenarioDescription} 这类需求通常不是单纯“问一个问题”就能解决，而是要把店铺现状、判断口径和最终交付结果一次性讲清楚，Spark 或其他 AI 助手才更容易给出可执行的方案。`,
+      firstStep && lastStep
+        ? `本页给出的流程，会从「${firstStep}」一路推进到「${lastStep}」，核心目的是把 ${item.category} 主题下的常见判断步骤拆成可复用的执行顺序，而不是让团队每次从空白提示词重新开始。`
+        : `本页给出的流程会把 ${item.category} 主题下的常见判断步骤拆成可复用的执行顺序，减少团队每次从空白提示词重新开始的成本。`,
+      `除了流程，本页还附带一段可直接复制的 AI Prompt，以及 ${faqCount} 个围绕输入准备、判断边界和常见误解的 FAQ，更适合在真正开始执行前先对齐前提。`,
+    ];
+  }
+
+  return [
+    `${item.scenarioDescription} In practice, this kind of request is rarely solved by a single question. Teams usually need the business context, decision rules, and expected output clarified together before Spark or another AI assistant can return something operational.`,
+    firstStep && lastStep
+      ? `The workflow on this page moves from "${firstStep}" to "${lastStep}" so the ${item.category} job becomes a reusable operating sequence instead of a blank-prompt exercise every time.`
+      : `The workflow on this page turns the ${item.category} job into a reusable operating sequence instead of a blank-prompt exercise every time.`,
+    `Alongside the workflow, the page includes a copyable AI prompt and ${faqCount} FAQs covering input prep, decision boundaries, and common misunderstandings before the team actually runs the task.`,
+  ];
+}
+
 export async function generateStaticParams() {
   const keywords = getKeywordUseCases("en").map((item) => ({slug: item.slug}));
   const productSlugs = products
@@ -332,6 +360,7 @@ export default async function SparkPlaybookKeywordDetailPage({params}: SparkPlay
   }));
   const related = getRelatedKeywordUseCases(locale, keywordSlug, 6);
   const formattedAiPrompt = formatAiPrompt(item.aiPrompt);
+  const narrativeParagraphs = buildNarrativeParagraphs(item, steps, locale);
 
   const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
@@ -463,9 +492,11 @@ export default async function SparkPlaybookKeywordDetailPage({params}: SparkPlay
               description={copy.sections.scenario.description}
             />
             <div className="mt-8 rounded-[26px] border border-slate-200/80 bg-white/94 p-6 shadow-[0_18px_48px_-32px_rgba(15,23,42,0.2)] sm:p-8">
-              <p className="text-[15px] leading-8 text-slate-700 sm:text-base">
-                {item.scenarioDescription}
-              </p>
+              <div className="space-y-4 text-[15px] leading-8 text-slate-700 sm:text-base">
+                {narrativeParagraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
             </div>
           </div>
         </section>

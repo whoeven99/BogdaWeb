@@ -20,6 +20,36 @@ import {buildPageMetadata} from "@/lib/seo/metadata";
 
 export const dynamic = "force-dynamic";
 
+function buildResourcesNarrative({
+  locale,
+  guideCount,
+  helpCenterCount,
+  blogCount,
+  compareCount,
+  bestAppsCount,
+  productResearchCount,
+}: {
+  locale: "en" | "zh-cn";
+  guideCount: number;
+  helpCenterCount: number;
+  blogCount: number;
+  compareCount: number;
+  bestAppsCount: number;
+  productResearchCount: number;
+}) {
+  if (locale === "zh-cn") {
+    return [
+      `资源中心把指南、帮助文档、博客、对比页、榜单页和选品专题放在同一个入口里，适合先判断应该看“知识型内容”还是“操作型内容”。当前已聚合 ${guideCount} 条指南入口、${helpCenterCount} 条帮助文档、${blogCount} 篇博客、${compareCount} 条对比页、${bestAppsCount} 条榜单入口和 ${productResearchCount} 条选品内容。`,
+      `如果你要解决具体配置问题，更适合进帮助中心；如果你在做选型、调研或 SEO 内容扩展，对比页、榜单页和选品专题会更直接。博客和应用场景页则更适合补上下文与案例。`,
+    ];
+  }
+
+  return [
+    `The resource center puts guides, help docs, blog posts, comparison pages, roundup pages, and product research content into one routing layer so visitors can decide whether the next step is educational reading or task-specific documentation. It currently surfaces ${guideCount} guide entries, ${helpCenterCount} help docs, ${blogCount} blog posts, ${compareCount} comparison pages, ${bestAppsCount} roundup entries, and ${productResearchCount} product research resources.`,
+    `Use the help center for concrete setup questions. Use comparison pages, roundup pages, and product research when the job is tool selection, research, or SEO content expansion. Blog posts and use-case pages are better for added context and examples.`,
+  ];
+}
+
 export async function generateMetadata() {
   const locale = await getRequestLocale();
   const copy = getResourcesPageCopy(locale);
@@ -61,6 +91,15 @@ export default async function ResourcesPage() {
   const featuredUseCaseResources = useCaseResources.slice(0, 3);
   const productResearchResources = getProductResearchResources(locale);
   const featuredProductResearchResources = productResearchResources.slice(0, 3);
+  const narrative = buildResourcesNarrative({
+    locale,
+    guideCount: localizationGuideResources.length + functionScenarioGuideResources.length,
+    helpCenterCount: helpCenterResources.length,
+    blogCount: blogResources.length,
+    compareCount: compareResources.length,
+    bestAppsCount: bestShopifyAppsResources.length,
+    productResearchCount: productResearchResources.length,
+  });
   const guideModuleResources = [
     {
       title: copy.sections.guides.categoryTitle,
@@ -87,6 +126,13 @@ export default async function ResourcesPage() {
       <PageContainer>
         <section className="py-12 sm:py-16 lg:py-20">
           <ContentIndexHero eyebrow={copy.hero.eyebrow} title={copy.hero.title} description={copy.hero.description} />
+          <div className="mx-auto mt-6 max-w-4xl rounded-[24px] border border-slate-200/80 bg-white/90 p-5 sm:p-6">
+            <div className="space-y-4 text-[15px] leading-7 text-slate-600 sm:text-base">
+              {narrative.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+          </div>
         </section>
 
         <section className="py-8 sm:py-10 lg:py-12">

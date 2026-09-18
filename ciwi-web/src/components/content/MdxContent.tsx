@@ -9,7 +9,7 @@ type MdxContentProps = {
 
 export function MdxContent({source, className}: MdxContentProps) {
   return (
-    <div className={className}>
+    <div className={["content-prose", className].filter(Boolean).join(" ")}>
       <MDXRemote source={source} components={mdxComponents} />
     </div>
   );

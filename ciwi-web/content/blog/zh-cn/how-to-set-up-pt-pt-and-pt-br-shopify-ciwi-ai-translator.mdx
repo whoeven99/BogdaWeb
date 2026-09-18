@@ -1,0 +1,189 @@
+---
+entryId: blog-how-to-set-up-pt-pt-and-pt-br-shopify-ciwi-ai-translator
+locale: zh-cn
+slug: how-to-set-up-pt-pt-and-pt-br-shopify-ciwi-ai-translator
+title: "如何通过 Ciwi AI Translator 同时配置 pt-PT 和 pt-BR"
+description: "一篇围绕 Shopify 葡语双区域配置的实操文章：如何通过 Ciwi AI Translator 同时配置 pt-PT 和 pt-BR，并把文案、URL 与 SEO 口径分开管理。"
+publishedAt: 2026-09-18
+status: published
+readingTime: 9 min read
+tags:
+  - Portuguese
+  - Shopify
+  - 本地化
+  - Ciwi Translator
+sourceLocale: en
+translationStatus: reviewed
+---
+
+如果你的店铺同时覆盖葡萄牙和巴西，只添加一个 “Portuguese” 通常是不够的。真正的限制不只是翻译质量，而是 Shopify 默认的语言 handle 逻辑。
+
+在标准多语言结构里，`/pt/` 往往只能代表一种泛葡语页面，而不是天然支持葡萄牙葡语和巴西葡语两个地区版本。
+
+<Callout title="核心原则">
+  <p>如果你想真正实现 pt-PT 和 pt-BR 的隔离，不能只把它当成翻译任务问题，而要先把它当成 Shopify Markets 和域名结构问题，再由 Ciwi 负责语言发布与兼容层。</p>
+</Callout>
+
+## 真正的问题是 `/pt/` 不够用
+
+很多团队会以为，只要在翻译工具里把葡语拆成两个流程，就已经解决了问题。实际上并没有。如果 storefront 仍然是一个泛化的葡语入口，那市场隔离还是不够清楚。
+
+这通常会带来三个问题：
+
+- 一个 `/pt/` 入口被迫代表多个葡语市场
+- SEO 的地区信号不够明确
+- 巴西和葡萄牙无法形成真正独立的语言发布逻辑
+
+## 正确的做法是先在 Shopify 里把市场拆开
+
+更稳的做法，是先在 **Shopify Markets** 里完成地区级拆分。
+
+实际操作上，应该这样理解：
+
+1. 先为 **Brazil** 建立对应市场，或确认它已经是独立 market。
+2. 不要让 Portugal 和 Brazil 一起共用同一个泛葡语入口。
+3. 在语言与域名配置里，使用 **subdomain** 的逻辑来暴露地区语言。
+4. 让巴西版本以 **pt-BR** 这种地区葡语形式存在，而不是继续被一个 `/pt/` 吞掉。
+
+这一步才是真正的语言隔离。
+
+## 为什么 market 层比 app 层更重要
+
+如果 Shopify 仍然只把葡语暴露成一个泛语言层，那翻译工具再怎么拆任务，也只能部分解决问题。你可能内部区分了两种葡语，但前台结构仍然是扁平的。
+
+当 Brazil 被明确成独立 market，并通过正确的 subdomain 逻辑暴露后，店铺才真正获得更清楚的地区信号：
+
+- 巴西版本可以单独发布
+- 本地化 URL 更容易和目标市场对齐
+- hreflang 和地区定位更容易讲清楚
+- pt-BR 不再被一个泛 `/pt/` 假设覆盖掉
+
+## 第一步：先设市场，不要先设翻译任务
+
+第一步应该在 **Shopify Markets**，而不是在翻译队列里。
+
+关键不是先生成两个语言任务，而是先把真实的业务目标变成真实的市场结构。如果巴西是独立商业市场，它就应该先是独立 market。
+
+这是后续 pt-BR 隔离的基础。没有这一步，后面的语言工作都只是半完成。
+
+## 第二步：在语言/域名层选择 subdomain 逻辑
+
+market 建好之后，再在语言和域名配置里选择 **subdomain** 的逻辑，而不是继续依赖一个泛葡语 handle。
+
+这里的目标，是让 Brazil 以 **pt-BR** 这样的地区葡语形式出现，而不是继续让 `/pt/` 同时承担 Portugal 和 Brazil 两个区域。
+
+这才是结构上的修正。它把“地区葡语”变成真正的前台结构，而不是翻译备注。
+
+## 第三步：再让 Ciwi 管理发布和兼容
+
+当 Shopify 的 market 和域名结构已经正确后，**Ciwi AI Translator** 才是在这个体系里发挥作用的那一层。
+
+在 Ciwi 的 **Language** 列表里，产品提供了对应语言的发布与兼容管理。这个点很重要，因为当 Brazil 已经被暴露成独立的地区葡语后，你仍然需要一个地方去控制这个语言是否发布、是否兼容当前翻译工作流。
+
+换句话说：
+
+- Shopify Markets 负责市场拆分
+- subdomain 逻辑负责语言暴露方式
+- Ciwi 负责语言发布和兼容层
+
+## 第四步：再把 pt-BR 当成真正的地区 locale 去审核
+
+只有在 market 层真正分开之后，审核才有意义。这个时候检查 pt-BR 和葡萄牙葡语的差异，不再只是语言 QA，而是独立地区 storefront 的 QA。
+
+至少应该检查：
+
+- 商品文案
+- 导航和菜单
+- 地区敏感的促销表达
+- metadata
+- 必要时的 blog 标题和 handle
+
+## 为什么这对 SEO 更合理
+
+SEO 问题不只是翻译细节，而是一个泛葡语路径会让地区信号变弱。
+
+当 Brazil 通过 market 和 subdomain 逻辑被拆出来后，店铺才更有机会明确表达：
+
+- 正确的地区语言目标
+- 更清晰的 locale 隔离
+- 更合理的 hreflang 关系
+- 更少的“到底哪种葡语属于哪个市场”的歧义
+
+这比单纯在文案审核里解决问题要强得多。
+
+<ComparisonTable
+  columns={["泛 `/pt/` 方案", "Markets + 地区葡语方案"]}
+  rows={[
+    {
+      label: "语言定位",
+      values: ["一个葡语层承担过多", "Brazil 可以明确为 pt-BR"],
+    },
+    {
+      label: "前台结构",
+      values: ["地区隔离偏弱", "市场级拆分更清楚"],
+    },
+    {
+      label: "SEO 信号",
+      values: ["更模糊", "地区信号更清晰"],
+    },
+    {
+      label: "Ciwi 的角色",
+      values: ["让 app 独自补结构缺口", "在结构正确后负责发布与兼容"],
+    },
+  ]}
+/>
+
+## 最需要避免的错误
+
+### 以为只靠 app 就能完成地区隔离
+
+如果 Shopify 前台仍然只暴露一个泛葡语入口，app 其实无法替你彻底完成地区级 storefront 架构。
+
+### 让 `/pt/` 代表所有葡语市场
+
+这正是这类配置最根本的结构问题。
+
+### 先配语言，再配 market
+
+顺序不能反。应该先有市场结构，再有语言发布。
+
+### 忘了 Ciwi 在这里的真实职责
+
+Ciwi 在这个场景里很重要，但它的作用是建立在 Shopify 地区结构已经明确之后的发布与兼容层，而不是替代 Shopify 去做市场结构本身。
+
+## 一套更正确的上线顺序
+
+建议按这个顺序来：
+
+1. 在 **Shopify Markets** 里先把 Brazil 设成独立 market。
+2. 在语言/域名设置中选择 **subdomain** 的逻辑。
+3. 让巴西版本以 **pt-BR** 形式存在，而不是继续依赖一个泛 `/pt/`。
+4. 在 **Ciwi AI Translator** 的 **Language** 列表里管理对应语言的发布和兼容。
+5. 最后再把 Brazil 当成独立地区 storefront 去做检查和发布。
+
+这才是真正能形成语言隔离的顺序。
+
+<FaqAccordion
+  items={[
+    {
+      question: "为什么一个 `/pt/` 路径，没法在 Shopify 里同时把葡萄牙和巴西都做好？",
+      answer: "因为 Shopify 默认的葡语结构通常只会形成一个泛化 Portuguese 层，而不是两个真正独立的地区 storefront。只要巴西已经需要自己的 market 信号、SEO 定位、域名暴露方式和 trust 路径，一个共享 `/pt/` 就会显得过宽。",
+    },
+    {
+      question: "在 Shopify Markets 和域名结构里，pt-BR 应该怎么正确配置？",
+      answer: "先在 Shopify Markets 里把 Brazil 设成独立 market，再通过语言和域名层把 Brazil 暴露成 pt-BR 这样的地区葡语形式，通常会配合 subdomain 逻辑，而不是继续和 Portugal 共用一个泛化 `/pt/` 路径。"
+    },
+    {
+      question: "pt-BR 是 Ciwi AI Translator 自己生成的，还是要先把 Shopify 结构配好？",
+      answer: "不是 Ciwi 先生成 pt-BR，而是要先把 Shopify Markets 和域名结构配对。等 Brazil 已经被正确暴露成地区葡语层后，Ciwi 才负责这层语言的发布和兼容管理。"
+    },
+  ]}
+/>
+
+<CtaCard
+  eyebrow="相关文档"
+  title="先把 market 结构配对，再用语言文档做发布"
+  description="当 Shopify Markets 和地区 subdomain 逻辑已经理顺后，再回到 Ciwi 的语言文档处理发布与兼容，会更符合真实工作流。"
+  href="/help-center/ShopifyApp/is-it-possible-to-translate-multiple-languages-at-the-same-time"
+  buttonLabel="打开多语言任务文档"
+/>

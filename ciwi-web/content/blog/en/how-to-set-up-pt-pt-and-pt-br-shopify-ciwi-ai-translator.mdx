@@ -1,0 +1,189 @@
+---
+entryId: blog-how-to-set-up-pt-pt-and-pt-br-shopify-ciwi-ai-translator
+locale: en
+slug: how-to-set-up-pt-pt-and-pt-br-shopify-ciwi-ai-translator
+title: "How to Set Up pt-PT and pt-BR on Shopify with Ciwi AI Translator"
+description: "Configure pt-PT and pt-BR in Shopify with Ciwi AI Translator, keep the two Portuguese variants operationally separate, and avoid multilingual SEO and wording drift."
+publishedAt: 2026-09-18
+status: published
+readingTime: 9 min read
+tags:
+  - Portuguese
+  - Shopify
+  - Localization
+  - Ciwi Translator
+sourceLocale: en
+translationStatus: manual
+---
+
+If your store wants to serve both Portugal and Brazil, adding one generic Portuguese language is usually not enough. The real limitation is not just translation quality. It is Shopify's default language-handle behavior.
+
+In a standard multilingual setup, `/pt/` usually represents only one Portuguese layer. It does not naturally expand into separate regional Portuguese experiences for Portugal and Brazil.
+
+<Callout title="The core rule">
+  <p>If you want real pt-PT and pt-BR separation, do not treat this as only a translation-task problem. Treat it as a Shopify Markets and domain-structure problem first, then use Ciwi for language publishing and compatibility management.</p>
+</Callout>
+
+## Why `/pt/` is the actual problem
+
+Many teams assume they can solve Portuguese regional differences by creating two review flows inside the translation app. That is incomplete. If the storefront still resolves through one generic Portuguese path, the market separation remains weak.
+
+That creates friction in three places:
+
+- one `/pt/` path ends up standing in for multiple Portuguese-speaking markets
+- regional language targeting stays ambiguous for SEO
+- the storefront cannot cleanly isolate Brazil-specific versus Portugal-specific publishing logic
+
+## What the correct Shopify setup looks like
+
+The stronger approach is to configure the regional split in **Shopify Markets** first.
+
+In practice, that means:
+
+1. Create or confirm a dedicated market for **Brazil**.
+2. Keep Portugal on its own market logic instead of letting both share one generic Portuguese layer.
+3. In the language and domain setup, use the **subdomain** approach for the regional language exposure.
+4. Expose the Brazil storefront as a regional Portuguese variant such as **pt-BR**, instead of expecting `/pt/` to cover every Portuguese-speaking region.
+
+That is what actually creates language isolation.
+
+## Why market-level separation matters more than app-level separation
+
+If Shopify still treats Portuguese as one generic language layer, the translation workflow can only do so much. You may have different wording internally, but the storefront architecture remains too flat.
+
+When Brazil is defined as its own market and exposed through the right subdomain logic, the store gains a cleaner regional signal:
+
+- the Brazil version can be published separately
+- localized URLs align better with the intended market
+- hreflang and market targeting become easier to reason about
+- pt-BR stops competing with a generic `/pt/` assumption
+
+## Step 1: Set up the market first
+
+Start in **Shopify Markets**, not in the translation queue.
+
+The key step is to create the regional market structure that reflects the business reality. If Brazil is a separate commercial target, it should be configured as a separate market target too.
+
+This is the foundation for regional Portuguese isolation. Without it, the rest of the workflow stays partial.
+
+## Step 2: Use subdomain logic in the language/domain layer
+
+After the market exists, configure the language exposure with the **subdomain** logic rather than relying on one generic Portuguese handle.
+
+The goal here is to create a regionalized Portuguese form such as **pt-BR** for Brazil, instead of asking `/pt/` to represent both Portugal and Brazil at the same time.
+
+This is the structural fix. It turns regional Portuguese into a real storefront distinction rather than just a translation note.
+
+## Step 3: Use Ciwi for publishing and compatibility
+
+Once Shopify's market and domain structure is correct, **Ciwi AI Translator** becomes the layer that helps you operate it cleanly.
+
+In Ciwi's **Language** list, the product provides the language publishing and compatibility handling that supports this setup. That matters because once Brazil is exposed as its own regional Portuguese form, you still need a place to manage whether that language is available, publishable, and compatible with the rest of the translation workflow.
+
+In other words:
+
+- Shopify Markets creates the regional storefront split
+- subdomain logic creates the regional language exposure
+- Ciwi manages the publishing and compatibility layer for that language
+
+## Step 4: Then review pt-BR as a real regional locale
+
+After the market split exists, review becomes much more meaningful. At that point, checking pt-BR versus Portuguese-for-Portugal is not just language QA. It is a storefront QA pass for a distinct regional version.
+
+Review at least:
+
+- product wording
+- navigation and menu labels
+- market-sensitive promotional language
+- metadata
+- blog titles and handles where relevant
+
+## Why this is better for SEO
+
+The SEO problem is not only translation nuance. It is that one generic Portuguese path creates a weaker regional signal.
+
+When Brazil is broken out through market and subdomain logic, the storefront has a cleaner chance to express:
+
+- the right regional language target
+- cleaner locale isolation
+- more coherent hreflang relationships
+- less ambiguity around which Portuguese version belongs to which market
+
+That is far stronger than trying to solve the entire problem inside copy review alone.
+
+<ComparisonTable
+  columns={["Generic `/pt/` approach", "Markets + regional Portuguese approach"]}
+  rows={[
+    {
+      label: "Language targeting",
+      values: ["One Portuguese layer carries too much", "Brazil can be isolated as pt-BR"],
+    },
+    {
+      label: "Storefront structure",
+      values: ["Weak regional separation", "Clearer market-level split"],
+    },
+    {
+      label: "SEO signal",
+      values: ["More ambiguous", "Cleaner regional signal"],
+    },
+    {
+      label: "Ciwi usage",
+      values: ["App is asked to fix structure alone", "App supports publishing after structure is correct"],
+    },
+  ]}
+/>
+
+## The mistakes to avoid
+
+### Assuming the app alone can create regional isolation
+
+If Shopify is still exposing only one generic Portuguese handle path, the app cannot fully solve the regional storefront architecture for you.
+
+### Letting `/pt/` stand in for every Portuguese-speaking market
+
+That is the main structural limitation this article is trying to fix.
+
+### Configuring languages before configuring markets
+
+The order matters. Market logic should come first. Language publishing comes after.
+
+### Forgetting that Ciwi's role here is operational
+
+Ciwi is important in this setup, but as the publishing and compatibility layer after Shopify's regional structure is made explicit.
+
+## A better rollout order
+
+Use this order instead:
+
+1. In **Shopify Markets**, define Brazil as its own market.
+2. In the language/domain setup, choose the **subdomain** logic for the regional exposure.
+3. Create the regional Portuguese form as **pt-BR** instead of relying on one `/pt/`.
+4. In **Ciwi AI Translator**, use the **Language** list to manage publishing and compatibility.
+5. Review the Brazil storefront as its own regional Portuguese experience.
+
+That is the sequence that actually creates language isolation.
+
+<FaqAccordion
+  items={[
+    {
+      question: "Why can't one `/pt/` path target both Portugal and Brazil well in Shopify?",
+      answer: "Because Shopify's default Portuguese setup usually creates one broad Portuguese layer, not two regionally distinct storefronts. That becomes weak once Brazil needs its own market signal, SEO targeting, domain exposure, and trust-sensitive customer path instead of sharing one generic `/pt/` experience with Portugal.",
+    },
+    {
+      question: "How do I configure pt-BR correctly in Shopify Markets and domains?",
+      answer: "Start by defining Brazil as its own market in Shopify Markets. Then expose the Brazilian storefront through the language and domain setup, typically with subdomain logic, so Brazil is published as a regional Portuguese layer such as pt-BR instead of reusing one generic `/pt/` path for every Portuguese-speaking market.",
+    },
+    {
+      question: "Does Ciwi AI Translator create pt-BR by itself, or only after Shopify Markets is configured?",
+      answer: "Ciwi does not replace the Shopify Markets and domain architecture. Its role starts after the correct regional layer exists. Once Brazil is exposed properly, Ciwi's Language list helps manage publishing and compatibility so the pt-BR storefront can be maintained cleanly."
+    },
+  ]}
+/>
+
+<CtaCard
+  eyebrow="Related docs"
+  title="Use the language guide after the market structure is right"
+  description="Once Shopify Markets and the regional subdomain logic are in place, use the Ciwi language docs to manage publishing and compatibility."
+  href="/help-center/ShopifyApp/does-translate-language-ai-adapt-support-multiple-languages"
+  buttonLabel="Open the language guide"
+/>

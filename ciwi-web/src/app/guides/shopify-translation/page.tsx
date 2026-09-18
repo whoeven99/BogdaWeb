@@ -117,11 +117,11 @@ export async function generateMetadata() {
   const locale = await getRequestLocale();
 
   return buildPageMetadata({
-    title: locale === "zh-cn" ? "Shopify 翻译：完整翻译地图" : "Shopify Translation: The Complete Map of What to Translate",
+    title: locale === "zh-cn" ? "Shopify 翻译：完整翻译地图" : "Shopify Translation Checklist: What to Localize",
     description:
       locale === "zh-cn"
         ? "一份结构化的 Shopify 翻译地图，覆盖结账、商品、SEO、导航、支持等 31 个需要翻译的页面结构，按对营收、SEO 和信任的影响分组。"
-        : "A structured map of every Shopify surface that needs translation — checkout, products, SEO metadata, navigation, support, and more — grouped by how each affects revenue, SEO, and trust.",
+        : "Use this Shopify translation checklist to review storefront content, SEO metadata, checkout, navigation, and support before publishing a new language.",
     path: "/guides/shopify-translation",
     locale,
   });
@@ -160,8 +160,8 @@ export default async function ShopifyTranslationMapPage() {
           },
           hero: {
             eyebrow: "Shopify Translation",
-            title: "Everything your Shopify store needs to translate",
-            description: "Your store has more translatable surfaces than you think. This map groups all 31 of them by how they affect revenue, SEO, and trust — so you know what to translate first and what's easy to miss.",
+            title: "Shopify translation checklist: what to localize",
+            description: "Use this Shopify translation checklist to review 31 storefront content areas, from products and checkout to support and SEO. Choose what to translate first and check for missing language coverage.",
           },
           blindspotLabel: "Most commonly missed",
           cta: {

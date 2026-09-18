@@ -25,11 +25,48 @@ import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/meta
 import {buildBreadcrumbSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 import {notFound} from "next/navigation";
 
+const translatorPlaybookCopy = {
+  title: "AI Translator Playbook for Ecommerce",
+  description: "Explore multilingual storefront workflows for Shopify: launch a market, manage terminology, review translations, and keep store content in sync.",
+};
+
 export const dynamic = "force-dynamic";
 
 type ProductPlaybookPageProps = {
   params: Promise<{slug: string}>;
 };
+
+function buildPlaybookNarrative({
+  locale,
+  productName,
+  featuredCount,
+  useCaseCount,
+  keywordScenarioCount,
+  topicCount,
+}: {
+  locale: "en" | "zh-cn";
+  productName: string;
+  featuredCount: number;
+  useCaseCount: number;
+  keywordScenarioCount: number;
+  topicCount: number;
+}) {
+  if (locale === "zh-cn") {
+    return [
+      `${productName} 方案集会先把最值得展开的业务场景聚到一起，方便先判断这个产品主要解决哪类问题，再进入更细的详情页。当前包含 ${featuredCount} 条精选场景、${useCaseCount} 条产品级场景。`,
+      keywordScenarioCount > 0
+        ? `如果你需要更大规模的长尾场景覆盖，还可以继续进入运营场景库，那里按 ${topicCount} 个主题组织了 ${keywordScenarioCount.toLocaleString()} 条场景页，更适合按问题目录持续往下钻。`
+        : "这个页面更适合作为产品级入口，先用代表性场景判断方向，再决定是否深入到某一条具体工作流。",
+    ];
+  }
+
+  return [
+    `${productName} Playbook groups the highest-signal workflows first so you can judge what this product is really for before opening a deeper landing page. It currently includes ${featuredCount} featured workflows and ${useCaseCount} product-level use cases.`,
+    keywordScenarioCount > 0
+      ? `If you need broader long-tail coverage, the operational scenario library expands that into ${keywordScenarioCount.toLocaleString()} scenario pages across ${topicCount} topics, which is better for drilling down by problem cluster.`
+      : "This page works best as the product-level entry point: use representative workflows to judge fit, then decide whether a deeper page is worth opening.",
+  ];
+}
 
 function getPlaybookCopy(locale: "en" | "zh-cn") {
   if (locale === "zh-cn") {
@@ -171,8 +208,8 @@ export async function generateMetadata({params}: ProductPlaybookPageProps) {
   }
 
   return buildPageMetadata({
-    title: locale === "zh-cn" ? `${product.name} 方案集` : `${product.name} Playbook`,
-    description: `${product.shortDescription} ${copy.hero.description}`,
+    title: locale === "zh-cn" ? `${product.name} 方案集` : product.slug === "translator" ? translatorPlaybookCopy.title : `${product.name} Playbook`,
+    description: locale === "en" && product.slug === "translator" ? translatorPlaybookCopy.description : `${product.shortDescription} ${copy.hero.description}`,
     path: getProductPlaybookHref(product.slug),
     locale,
   });
@@ -195,8 +232,17 @@ export default async function ProductPlaybookPage({params}: ProductPlaybookPageP
   const isSpark = product.slug === "spark-analytics-agent";
   const keywordUseCases = isSpark ? getKeywordUseCases(locale) : [];
   const keywordCategories = isSpark ? getKeywordUseCaseCategories(locale).slice(0, 6) : [];
+  const allKeywordCategories = isSpark ? getKeywordUseCaseCategories(locale) : [];
   const keywordIndexHref = isSpark ? `${getProductPlaybookHref(product.slug)}/keyword` : null;
   const pagePath = getProductPlaybookHref(product.slug);
+  const narrative = buildPlaybookNarrative({
+    locale,
+    productName: product.name,
+    featuredCount: featuredUseCases.length,
+    useCaseCount: useCases.length,
+    keywordScenarioCount: keywordUseCases.length,
+    topicCount: allKeywordCategories.length,
+  });
 
   let relatedGuides: Array<{href: string; title: string; description: string; meta: string[]; ctaLabel: string}> | null = null;
   if (product.slug === "translator") {
@@ -254,8 +300,8 @@ export default async function ProductPlaybookPage({params}: ProductPlaybookPageP
     ]),
     buildWebPageSchema({
       url: pageUrl,
-      name: locale === "zh-cn" ? `${product.name} 方案集` : `${product.name} Playbook`,
-      description: `${product.shortDescription} ${copy.hero.description}`,
+      name: locale === "zh-cn" ? `${product.name} 方案集` : product.slug === "translator" ? translatorPlaybookCopy.title : `${product.name} Playbook`,
+      description: locale === "en" && product.slug === "translator" ? translatorPlaybookCopy.description : `${product.shortDescription} ${copy.hero.description}`,
       keywords: [
         product.name,
         ...useCases.map((item) => item.category),
@@ -281,8 +327,8 @@ export default async function ProductPlaybookPage({params}: ProductPlaybookPageP
             <div className="mt-5 sm:mt-6">
               <SectionHeading
                 eyebrow={copy.hero.eyebrow}
-                title={`${product.name} ${copy.hero.titleSuffix}`}
-                description={copy.hero.description}
+                title={locale === "en" && product.slug === "translator" ? translatorPlaybookCopy.title : `${product.name} ${copy.hero.titleSuffix}`}
+                description={locale === "en" && product.slug === "translator" ? translatorPlaybookCopy.description : copy.hero.description}
                 as="h1"
               />
             </div>
@@ -319,6 +365,13 @@ export default async function ProductPlaybookPage({params}: ProductPlaybookPageP
                   </article>
                 </>
               )}
+            </div>
+            <div className="mt-6 rounded-[24px] border border-slate-200/80 bg-white/90 p-5 sm:p-6">
+              <div className="space-y-4 text-[15px] leading-7 text-slate-600 sm:text-base">
+                {narrative.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
             </div>
           </div>
         </section>

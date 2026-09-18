@@ -99,6 +99,27 @@
         "shopify reorder reports",
         "how much inventory should i reorder"
       ]
+    },
+    {
+      "id": "keyword-strategy-marketing-reporting",
+      "canonicalId": "how-to-automate-ecommerce-marketing-reports",
+      "canonicalProblem": "Automate ecommerce marketing reports",
+      "originalQuery": "automate marketing performance reports",
+      "category": "marketing",
+      "topic": "marketing-reporting",
+      "merchantGoal": "Build a repeatable marketing report with clear data definitions and verifiable findings",
+      "intent": "how-to",
+      "source": "manual",
+      "sourceUrl": null,
+      "sourceDate": null,
+      "observedAt": "2026-09-18",
+      "evidence": "user-provided",
+      "keywordVariants": [
+        "automate marketing performance reports",
+        "automate reporting in performance marketing solutions",
+        "automated marketing reports",
+        "marketing analytics reporting"
+      ]
     }
   ],
   "problems": [
@@ -276,6 +297,76 @@
             "body": "[PLACEHOLDER] Write an original, evidence-backed answer."
           }
         ]
+      }
+    },
+    {
+      "id": "how-to-automate-ecommerce-marketing-reports",
+      "canonicalProblem": "Automate ecommerce marketing reports",
+      "category": "marketing",
+      "topic": "marketing-reporting",
+      "merchantGoal": "Build a repeatable marketing report with clear data definitions and verifiable findings",
+      "contentType": "guide",
+      "status": "queued",
+      "keywordVariants": [
+        "automate marketing performance reports",
+        "automate reporting in performance marketing solutions",
+        "automated marketing reports",
+        "marketing analytics reporting"
+      ],
+      "signalIds": [
+        "keyword-strategy-marketing-reporting"
+      ],
+      "assessment": {
+        "searchIntent": null,
+        "commercialRelevance": null,
+        "capabilityMatch": null,
+        "serpWeakness": null,
+        "evidenceNotes": "Editorial candidate from the user-provided keyword strategy CSV (unassigned keywords); volumes and demand not independently verified. Public Spark listing checked on 2026-09-18 supports store signal review and reliability checks, not full scheduled multi-platform reporting. No hands-on capability verification performed."
+      },
+      "capability": {
+        "name": "Review available store signals and data reliability",
+        "evidenceUrl": "https://apps.shopify.com/spark-1"
+      },
+      "page": {
+        "title": "How to Automate Ecommerce Marketing Reports",
+        "description": "Build a repeatable ecommerce marketing reporting workflow: align data, calculate metrics, verify results, and use Spark to review available store signals.",
+        "sections": [
+          {
+            "heading": "What you will achieve",
+            "body": "Build a repeatable ecommerce marketing report that answers three questions: what changed, whether the data is complete, and what the team should investigate next. Start with one checked reporting cycle, then automate the repeatable collection and calculation steps with tools that support your accounts.\n\nThe output is a channel summary, a separate store-performance summary, a list of data exceptions, and a short action list with an owner for each follow-up. Keep the reporting recipe so the next cycle uses the same definitions. Automation should remove repetitive preparation without hiding missing data or turning a reporting observation into an unreviewed budget change."
+          },
+          {
+            "heading": "Before you start",
+            "body": "Choose a completed reporting period and a comparable previous period. Record the date boundaries, reporting timezone, currency, included accounts, and the time each source was refreshed. Use a single reporting grain, such as account, campaign and day; keep ad-level data in a separate drill-down.\n\nGather authorized reports from your advertising platforms and Shopify. For each advertising source, request account and campaign identifiers, date, spend, impressions, clicks, purchase conversions and attributed purchase value where available. Keep each platform's attribution model, window and conversion definition beside its numbers. Record the sales definition used for the Shopify summary, including treatment of discounts, returns, tax and shipping.\n\nUse aggregate reporting fields rather than customer names or email addresses. Keep original exports unchanged. If a source or field is unavailable, record it as unavailable; a missing spend value is not zero spend. A campaign name helps readers, but a stable account and campaign ID should identify the record."
+          },
+          {
+            "heading": "Steps",
+            "body": "1. Write the reporting brief.\nSpecify the decision the report supports, such as a weekly acquisition review. Define the period, comparison period, sources, breakdown and intended readers. Separate channel-reported results from Shopify store results in the brief.\n\n2. Collect and label each source.\nExport the chosen period or use a supported reporting connection. Record the source, account, refresh time, row count, currency and attribution settings. If a connection fails or returns an incomplete period, stop that part of the report and label the exception. Do not silently reuse last week's data.\n\n3. Align the fields before combining rows.\nMap equivalent fields to consistent names. Preserve the original values and definitions. Use source, account ID, campaign ID and date to detect duplicate records at the chosen grain. Do not combine campaign totals with their ad-level detail, which would count the same spend twice. Keep currencies separate unless an explicit, documented conversion method is available.\n\n4. Calculate metrics from totals.\nFor a channel, calculate purchase ROAS as attributed purchase value divided by spend, purchase CPA as spend divided by attributed purchases, and CPC as spend divided by clicks. Only compare these metrics when their definitions are compatible. Sum the underlying values before calculating a period-level ratio; do not average row-level ROAS values. Show a ratio as unavailable when its denominator is zero or missing.\n\nIllustrative example, not actual store performance: campaign A spends $100 and reports $300 in attributed purchase value; campaign B spends $300 and reports $600. Their combined ROAS is $900 / $400 = 2.25, not the simple average of 3 and 2. These campaign rows must be from a compatible reporting basis, currency and non-overlapping grain.\n\n5. Separate channel attribution from store totals.\nShow each platform's attributed value in its own column or section. Do not add platform-attributed sales together and present the result as unique Shopify revenue: the same purchase can receive credit in more than one system. Use the Shopify summary for store-side performance and label its sales basis. Investigate discrepancies rather than forcing the numbers to match. Shopify documents that attribution and synchronization differences can affect marketing comparisons.\n\n6. Write a reviewable summary.\nInclude the current and comparison periods, spend, channel-attributed purchases and value, calculated ratios, and any excluded sources. Add a separate store summary. For each observation, state the supporting number, a possible explanation, what remains unknown, and the next check. A rise in spend without a comparable rise in attributed purchases is a reason to investigate; it is not proof that an ad should be paused.\n\n7. Automate the checked recipe.\nOnce a manual run reconciles, save the field mapping, formulas, validation rules and reporting brief. Use scheduling only in a tool that demonstrably supports the required sources and cadence. Refresh first, validate second, and generate the summary only when those checks pass. For partial runs, make the missing sources visible. Keep delivery recipients and any account changes outside the default reporting action until explicitly configured and authorized.\n\n8. Keep a recoverable history.\nSave the input snapshot, reporting settings and output for each run. If a source later revises its data, issue a dated revision with the reason for the change rather than silently replacing a previously shared result. Keep the prior output available for comparison."
+          },
+          {
+            "heading": "Verify the result",
+            "body": "Before sharing, check one campaign against its original platform report using identical dates, filters, currency and attribution settings. Reconcile total spend to each included source. Check the Shopify summary against the same Shopify report and sales definition used for the input.\n\nConfirm that duplicate rows were handled at the chosen grain, missing values remain visible, and ratios were recomputed from totals. Test one zero-denominator case and one missing-source case: neither should produce an apparently complete report with invented values.\n\nRun the same saved inputs through the recipe again. The numeric outputs should remain the same, even if the wording of an AI-generated summary changes. Every claimed change should be traceable to a source value. Keep recommendations separate from completed actions, and record who will handle each unresolved issue."
+          },
+          {
+            "heading": "Related questions",
+            "body": "Can I automate marketing performance reports without connecting every advertising account?\nYou can start with authorized exports and a repeatable preparation process. Label the report's coverage. Unattended collection requires a verified connection for every source you expect to refresh automatically.\n\nWhy do platform revenue totals differ from Shopify?\nAttribution rules, reporting periods, synchronization and sales definitions can differ. Compare the settings before treating a discrepancy as a tracking failure. Preserve both views with their definitions rather than overwriting one to match the other.\n\nWhat should I ask Spark to do?\nStart with the store-performance and data-reliability questions supported by your available connections. Ask it to identify missing evidence and propose the next checks. The task below is scoped to that review; this guide does not establish that Spark can schedule complete cross-platform exports or email a finished report.\n\nShould an automated report change my advertising budget?\nKeep reporting and account changes as separate tasks. Investigate the evidence first, then authorize a specific change through a supported tool. A report recommendation is not evidence that a budget change has been executed."
+          }
+        ],
+        "reviewedBy": null,
+        "reviewedAt": null,
+        "references": [
+          "https://help.shopify.com/en/manual/promoting-marketing/analyze-marketing/marketing-performance",
+          "https://help.shopify.com/en/manual/reports-and-analytics/shopify-reports/report-types/default-reports/marketing-reports",
+          "https://apps.shopify.com/spark-1"
+        ],
+        "sparkTask": {
+          "prompt": "Review the store signals available in Spark for [current period] compared with [comparison period]. My goal is to prepare the store-performance section of a weekly marketing review. First identify the available data, its date coverage and any missing evidence. Examine sales, conversion, traffic and data-reliability signals that you can actually access. Explain material changes using source values, separate observations from hypotheses, and list the next checks with suggested owners. If the requested period or metric is unavailable, say so. Do not infer total store revenue by adding advertising platforms' attributed sales. Do not change campaigns, budgets, tracking settings or store content, and do not send the report. End with what was checked, what remains unknown, and how I can verify the findings.",
+          "prerequisites": "A connected Shopify store, the reporting and comparison periods, and access to the relevant store signals in Spark. Confirm the available history and metrics before starting.",
+          "executionScope": "Review available store-performance signals, identify potential data-reliability issues, explain findings and propose follow-up checks. Cross-platform scheduled extraction, file export and email delivery are not established by this task.",
+          "confirmationPoints": "Confirm the dates and available data before analysis. Treat changes to accounts, tracking or store content, and any report delivery, as separate authorized tasks.",
+          "successCriteria": "A store-performance review tied to available evidence, an explicit list of missing data, and follow-up checks. Unsupported metrics and unperformed actions are clearly identified.",
+          "ctaLabel": "Review store performance with Spark"
+        }
       }
     }
   ]

@@ -4,7 +4,7 @@ import {Button} from "@/components/ui/Button";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getProductMap} from "@/content/products";
-import {getProductPlaybookHref, getUseCaseMap, useCases} from "@/content/use-cases";
+import {getProductPlaybookHref, getUseCaseMap, useCases, type UseCaseItem} from "@/content/use-cases";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildFaqSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
@@ -15,6 +15,31 @@ export const dynamic = "force-dynamic";
 type UseCaseDetailPageProps = {
   params: Promise<{slug: string}>;
 };
+
+function buildUseCaseNarrative(useCase: UseCaseItem, locale: "en" | "zh-cn") {
+  const signalSummary = useCase.signals.slice(0, 2).join(locale === "zh-cn" ? "；" : "; ");
+  const deliverableSummary = useCase.deliverables.slice(0, 2).map((item) => item.title).join(locale === "zh-cn" ? "、" : ", ");
+  const outcomeSummary = useCase.outcomes.slice(0, 3).join(locale === "zh-cn" ? "、" : ", ");
+  const workflowTitles = useCase.workflow.map((step) => step.title).join(locale === "zh-cn" ? " -> " : " -> ");
+
+  if (locale === "zh-cn") {
+    return [
+      `${useCase.heroDescription} 这类场景通常出现在团队已经感受到明显运营摩擦，但还没有把输入、判断和执行顺序沉淀成固定流程的时候。`,
+      signalSummary
+        ? `如果你现在遇到的问题更接近「${signalSummary}」，那这条工作流就是在把零散信号整理成一个可重复执行的流程。它会沿着 ${workflowTitles} 这样的顺序推进，避免不同成员各自用不同方法处理同一问题。`
+        : `这条工作流会把零散信号整理成一个可重复执行的流程，避免不同成员各自用不同方法处理同一问题。`,
+      `执行完成后，团队通常会拿到 ${deliverableSummary || "更清晰的执行输出"} 等可直接复用的交付物，并最终帮助业务实现 ${outcomeSummary || "更稳定的运营结果"}。`,
+    ];
+  }
+
+  return [
+    `${useCase.heroDescription} This kind of page is most useful when the team already feels the operating friction but has not yet turned the inputs, decisions, and handoff into a stable workflow.`,
+    signalSummary
+      ? `If the current pain looks more like "${signalSummary}", this workflow is designed to turn those scattered signals into one repeatable operating sequence. It moves through ${workflowTitles} so different team members are not improvising the same job in different ways.`
+      : `This workflow turns scattered signals into one repeatable operating sequence so different team members are not improvising the same job in different ways.`,
+    `By the end, the team should have deliverables such as ${deliverableSummary || "clearer operating outputs"} and use them to drive outcomes like ${outcomeSummary || "more stable operating results"}.`,
+  ];
+}
 
 function getPageCopy(locale: "en" | "zh-cn") {
   if (locale === "zh-cn") {
@@ -101,6 +126,7 @@ export default async function UseCaseDetailPage({params}: UseCaseDetailPageProps
   const playbookHref = getProductPlaybookHref(useCase.productSlug);
   const pageUrl = toAbsoluteLocalizedUrl(locale, `/use-cases/${useCase.slug}`);
   const productName = product?.name ?? useCase.productSlug;
+  const narrative = buildUseCaseNarrative(useCase, locale);
   const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
       {name: "Home", item: siteUrl},
@@ -149,6 +175,13 @@ export default async function UseCaseDetailPage({params}: UseCaseDetailPageProps
             </div>
             <div className="mt-6 flex flex-wrap gap-3">
               <Button href={useCase.ctaHref}>{useCase.ctaLabel || copy.hero.primaryLabel}</Button>
+            </div>
+            <div className="mt-6 rounded-[24px] border border-slate-200/80 bg-white/92 p-5 sm:p-6">
+              <div className="space-y-4 text-[15px] leading-7 text-slate-600 sm:text-base">
+                {narrative.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
             </div>
           </div>
         </section>

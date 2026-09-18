@@ -11,6 +11,32 @@ import {buildBreadcrumbSchema, buildWebPageSchema, buildGraphSchema} from "@/lib
 
 export const dynamic = "force-dynamic";
 
+function buildCompareIndexNarrative({
+  locale,
+  compareTitles,
+}: {
+  locale: "en" | "zh-cn";
+  compareTitles: string[];
+}) {
+  const sampled = compareTitles.slice(0, 3).join(locale === "zh-cn" ? "、" : ", ");
+
+  if (locale === "zh-cn") {
+    return [
+      `这个目录页把 Shopify 翻译与本地化相关的对比页集中在一起，方便先判断“应该看哪一类对手”，再进入具体评分维度、定价和适配场景。`,
+      sampled
+        ? `当前入口包括 ${sampled} 等页面。每一页都会把工作流深度、覆盖范围、定价结构和长期维护成本拆开，而不是只停留在功能点罗列。`
+        : "每个对比页都会把工作流深度、覆盖范围、定价结构和长期维护成本拆开呈现。",
+    ];
+  }
+
+  return [
+    "This directory groups the Shopify translation and localization comparison pages so visitors can decide which competitor set to inspect before going into the full scoring breakdown.",
+    sampled
+      ? `It currently includes pages such as ${sampled}. Each page separates workflow depth, coverage, pricing structure, and long-term maintenance cost instead of stopping at a flat feature list.`
+      : "Each comparison page separates workflow depth, coverage, pricing structure, and long-term maintenance cost instead of stopping at a flat feature list.",
+  ];
+}
+
 export async function generateMetadata() {
   const locale = await getRequestLocale();
 
@@ -28,6 +54,10 @@ export async function generateMetadata() {
 export default async function ComparePage() {
   const locale = await getRequestLocale();
   const compares = getCompares(locale);
+  const narrative = buildCompareIndexNarrative({
+    locale,
+    compareTitles: compares.map((item) => item.title),
+  });
   const copy =
     locale === "zh-cn"
       ? {
@@ -108,6 +138,13 @@ export default async function ComparePage() {
         />
         <section className="py-12 sm:py-16 lg:py-20">
           <ContentIndexHero eyebrow={copy.hero.eyebrow} title={copy.hero.title} description={copy.hero.description} />
+          <div className="mx-auto mt-6 max-w-4xl rounded-[24px] border border-slate-200/80 bg-white/90 p-5 sm:p-6">
+            <div className="space-y-4 text-[15px] leading-7 text-slate-600 sm:text-base">
+              {narrative.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+          </div>
           <ResourceCollectionSection
             items={compares.map((item) => ({
               title: item.title,

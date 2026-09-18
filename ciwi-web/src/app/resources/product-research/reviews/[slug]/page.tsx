@@ -7,7 +7,7 @@ import {BackLink} from "@/components/ui/BackLink";
 import {CardCtaLink} from "@/components/ui/CardCtaLink";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
-import {getAvailableToolReviewLocales, getToolReviewMap, getToolReviews} from "@/content/tool-reviews";
+import {getAvailableToolReviewLocales, getToolReviewMap, getToolReviews, type ToolReview} from "@/content/tool-reviews";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildFaqSchema, buildReviewSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
@@ -17,6 +17,40 @@ export const dynamic = "force-dynamic";
 type ToolReviewDetailPageProps = {
   params: Promise<{slug: string}>;
 };
+
+function buildReviewNarrative({
+  locale,
+  review,
+}: {
+  locale: "en" | "zh-cn";
+  review: ToolReview;
+}) {
+  const featureLabels = review.features.slice(0, 3).map((item) => item.title).join(locale === "zh-cn" ? "、" : ", ");
+  const bestFor = review.bestFor.slice(0, 2).join(locale === "zh-cn" ? "、" : ", ");
+  const alternativeNames = review.alternatives.slice(0, 3).map((item) => item.name).join(locale === "zh-cn" ? "、" : ", ");
+
+  if (locale === "zh-cn") {
+    return [
+      `${review.verdict} 这类测评页的作用不是替你做最终决定，而是先帮你判断这个工具更像“当前就该试”的候选项，还是只适合在某些特殊场景里再比较。`,
+      featureLabels
+        ? `像 ${featureLabels} 这些能力会直接影响它在 ${review.categoryLabel} 阶段的实用性；如果你的真实需求更接近 ${bestFor || "特定场景"}，那么本页的评分会更有参考价值。`
+        : `本页会把核心能力、适用场景和评分维度放在一起，帮助判断是否值得继续试用或付费。`,
+      alternativeNames
+        ? `如果读完后仍拿不准，最有效的做法通常不是回到搜索结果重新找，而是直接和 ${alternativeNames} 这些替代工具交叉比较。`
+        : "如果读完后仍拿不准，最有效的做法通常是直接和同阶段替代工具交叉比较。",
+    ];
+  }
+
+  return [
+    `${review.verdict} The job of a review page like this is not to make the final decision for you, but to show whether this tool looks like an immediate candidate or only fits a narrower edge case.`,
+    featureLabels
+      ? `Capabilities such as ${featureLabels} shape how useful it is in the ${review.categoryLabel} stage. If your real need is closer to ${bestFor || "the specific fit cases on this page"}, the score breakdown becomes much more relevant.`
+      : "This page keeps capability, fit, and scoring in one place so it is easier to judge whether a trial or paid plan is worth the next step.",
+    alternativeNames
+      ? `If the fit is still unclear after reading, the fastest move is usually not another broad search but a direct comparison against alternatives such as ${alternativeNames}.`
+      : "If the fit is still unclear after reading, the fastest move is usually a direct comparison against other tools in the same stage.",
+  ];
+}
 
 function formatRating(value: number) {
   return Number.isInteger(value) ? value.toString() : value.toFixed(1);
@@ -212,6 +246,7 @@ export default async function ToolReviewDetailPage({params}: ToolReviewDetailPag
 
   const copy = getPageCopy(locale);
   const structuredData = buildStructuredData(locale, review);
+  const narrative = buildReviewNarrative({locale, review});
   const tocItems = [
     {href: "#score", label: copy.sections.score.title},
     {href: "#pros-cons", label: copy.sections.prosCons.title},
@@ -256,9 +291,11 @@ export default async function ToolReviewDetailPage({params}: ToolReviewDetailPag
               <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
                 {copy.hero.summaryLabel}
               </div>
-              <p className="mt-3 text-[15px] leading-7 text-slate-700 sm:text-base">
-                {review.verdict}
-              </p>
+              <div className="mt-3 space-y-4 text-[15px] leading-7 text-slate-700 sm:text-base">
+                {narrative.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
             </div>
 
             <nav

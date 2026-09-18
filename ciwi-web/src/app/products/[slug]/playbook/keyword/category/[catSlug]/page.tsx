@@ -36,6 +36,55 @@ function keywordDetailHref(productSlug: string, slug: string) {
   return `${keywordIndexHref(productSlug)}/${slug}`;
 }
 
+function buildCategoryNarrative({
+  locale,
+  categoryName,
+  items,
+}: {
+  locale: "en" | "zh-cn";
+  categoryName: string;
+  items: Array<{title: string; keyword: string}>;
+}) {
+  const sampledTitles = items.slice(0, 3).map((item) => item.title);
+  const sampledKeywords = items.slice(0, 4).map((item) => item.keyword);
+
+  if (locale === "zh-cn") {
+    return [
+      `这个主题页把所有与「${categoryName}」相关的 Spark 运营场景集中到一起。`,
+      "适合已经知道问题方向、只想在同一主题下快速比较不同工作流的人。",
+      sampledTitles.length > 0
+        ? `当前主题下会优先出现像「${sampledTitles.join("」、「")}」这样的场景。`
+        : `当前主题页会优先列出最相关的 Spark 场景，方便继续进入具体执行页。`,
+      sampledTitles.length > 0
+        ? "这些场景通常共享相近的数据输入、判断口径和交付目标。"
+        : "你可以继续进入更具体的执行页。",
+      sampledKeywords.length > 0
+        ? `如果你是从搜索进入，这一页也相当于一个主题目录。`
+        : `如果你是从搜索进入，这一页也可以继续扩展到更具体的操作页面。`,
+      sampledKeywords.length > 0
+        ? `你可以继续沿着 ${sampledKeywords.join("、")} 等关键词扩展到更具体的操作页面。`
+        : null,
+    ].filter((paragraph): paragraph is string => Boolean(paragraph));
+  }
+
+  return [
+    `This topic page groups every Spark scenario related to "${categoryName}".`,
+    "It is built for visitors who already know the operating problem and want to compare nearby workflows quickly.",
+      sampledTitles.length > 0
+        ? `Within this topic, pages such as "${sampledTitles.join('", "')}" show the most relevant scenarios first.`
+      : `This topic page surfaces the most relevant Spark scenarios first so you can keep moving into execution pages.`,
+    sampledTitles.length > 0
+      ? "Those jobs usually share similar inputs, decision rules, and deliverables."
+      : "From here, you can keep moving into the execution pages.",
+    sampledKeywords.length > 0
+      ? "If you arrived from search, this page also works like a topic directory."
+      : `If you arrived from search, this page also works like a topic directory for more specific task pages.`,
+    sampledKeywords.length > 0
+      ? `You can expand into more specific tasks through keywords such as ${sampledKeywords.join(", ")}.`
+      : null,
+  ].filter((paragraph): paragraph is string => Boolean(paragraph));
+}
+
 const copyByLocale: Record<
   "en" | "zh-cn",
   {
@@ -193,6 +242,11 @@ export default async function CategoryPage(props: CategoryPageProps) {
       ? `${match.name} (${match.count.toLocaleString()} 条)`
       : `${match.name} · ${match.count.toLocaleString()}`;
   const description = copy.hero.description(match.name, match.count);
+  const narrative = buildCategoryNarrative({
+    locale,
+    categoryName: match.name,
+    items,
+  });
 
   const pageUrl = toAbsoluteLocalizedUrl(locale, categoryPageHref);
 
@@ -278,6 +332,13 @@ export default async function CategoryPage(props: CategoryPageProps) {
             <p className="mt-4 max-w-2xl text-[15px] leading-7 text-slate-600 sm:text-base">
               {description}
             </p>
+            <div className="mt-6 rounded-[24px] border border-slate-200/80 bg-white/90 p-5 sm:p-6">
+              <div className="space-y-4 text-[15px] leading-7 text-slate-600 sm:text-base">
+                {narrative.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
