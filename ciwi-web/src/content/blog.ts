@@ -4,6 +4,7 @@ import {z} from "zod";
 
 import {getContentDirectory, listMdxFiles, readMdxDocument} from "@/lib/content/files";
 import type {Locale} from "@/lib/i18n";
+import {normalizeInternalHref} from "@/lib/i18n";
 
 const dateStringSchema = z.preprocess((value) => {
   if (value instanceof Date) {
@@ -48,7 +49,7 @@ const loadBlogPosts = cache((locale: Locale): BlogPost[] => {
       return {
         ...frontmatter,
         content,
-        href: `/blog/${frontmatter.slug}`,
+        href: normalizeInternalHref(`/blog/${frontmatter.slug}`),
       };
     })
     .filter((post) => post.locale === locale && post.status === "published")

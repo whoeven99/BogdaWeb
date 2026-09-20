@@ -1,4 +1,5 @@
 import type {Locale} from "@/lib/i18n";
+import {normalizeInternalHrefFields} from "@/lib/i18n-content";
 import {ciwiShopifyInstallUrl} from "@/lib/marketing-links";
 
 export type UseCaseItem = {
@@ -2814,10 +2815,10 @@ const useCasesZh: UseCaseItem[] = [
   },
 ];
 
-export const useCases = useCasesEn;
+export const useCases = normalizeInternalHrefFields(useCasesEn);
 
 export function getUseCases(locale: Locale) {
-  return locale === "zh-cn" ? useCasesZh : useCasesEn;
+  return normalizeInternalHrefFields(locale === "zh-cn" ? useCasesZh : useCasesEn);
 }
 
 export function getUseCaseMap(locale: Locale) {
@@ -2839,7 +2840,7 @@ export function getFeaturedUseCases(locale: Locale) {
 }
 
 export function getProductPlaybookHref(productSlug: string) {
-  return `/products/${productSlug}/playbook`;
+  return `/products/${productSlug}/playbook/`;
 }
 
 export function getRelatedUseCases(locale: Locale, slug: string, limit = 3) {

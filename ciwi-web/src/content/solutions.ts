@@ -1,4 +1,5 @@
 import type {Locale} from "@/lib/i18n";
+import {normalizeInternalHrefFields} from "@/lib/i18n-content";
 
 export type SolutionItem = {
   slug: string;
@@ -395,11 +396,11 @@ const solutionsZh: SolutionItem[] = [
   },
 ];
 
-export const solutions = solutionsEn;
+export const solutions = normalizeInternalHrefFields(solutionsEn);
 export const solutionMap = Object.fromEntries(solutions.map((solution) => [solution.slug, solution]));
 
 export function getSolutions(locale: Locale) {
-  return locale === "zh-cn" ? solutionsZh : solutionsEn;
+  return normalizeInternalHrefFields(locale === "zh-cn" ? solutionsZh : solutionsEn);
 }
 
 export function getSolutionMap(locale: Locale) {

@@ -1,4 +1,5 @@
 import {defaultLocale, locales, type Locale} from "@/lib/i18n";
+import {normalizeInternalHrefFields} from "@/lib/i18n-content";
 
 type SluggedContent = {
   slug: string;
@@ -37,7 +38,12 @@ export function createLocalizedGuideContent<T extends SluggedContent>(collection
   }
 
   const publishedCollectionsByLocale = Object.fromEntries(
-    locales.map((locale) => [locale, collectionsByLocale[locale].filter((item) => isIndexable(item, locale))])
+    locales.map((locale) => [
+      locale,
+      collectionsByLocale[locale]
+        .filter((item) => isIndexable(item, locale))
+        .map((item) => normalizeInternalHrefFields(item)),
+    ])
   ) as Record<Locale, T[]>;
 
   const mapsByLocale = Object.fromEntries(
