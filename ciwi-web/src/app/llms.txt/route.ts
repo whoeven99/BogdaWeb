@@ -17,7 +17,7 @@ import {
   getKeywordUseCaseCategorySlug,
 } from "@/content/shopify-keyword-use-cases";
 import type {Locale} from "@/lib/i18n";
-import {toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
+import {toAbsoluteFileUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 import {getPublishedProblems} from "@/lib/merchant-intelligence/content";
 import {targetUrl} from "@/lib/merchant-intelligence/core.mjs";
 
@@ -65,8 +65,8 @@ function buildBody() {
   lines.push("## Ciwi - Shopify localization, translation, and store-growth tools");
   lines.push("");
   lines.push("Official website  : https://ciwi.ai");
-  lines.push("Robots file       : " + absolute("en", "/robots.txt"));
-  lines.push("Sitemap file      : " + absolute("en", "/sitemap.xml"));
+  lines.push("Robots file       : " + toAbsoluteFileUrl("/robots.txt"));
+  lines.push("Sitemap file      : " + toAbsoluteFileUrl("/sitemap.xml"));
   lines.push("Crawl policy      : Public pages and discovery files are open to search and AI crawlers under robots.txt. API endpoints are excluded.");
   lines.push("This file is a content directory, not an access-control or indexing directive.");
   lines.push("");

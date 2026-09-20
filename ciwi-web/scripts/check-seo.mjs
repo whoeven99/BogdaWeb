@@ -5,11 +5,17 @@ const projectRoot = path.resolve(".");
 const appRoot = path.join(projectRoot, "src", "app");
 const srcRoot = path.join(projectRoot, "src");
 const nextConfigPath = path.join(projectRoot, "next.config.ts");
+const robotsRoutePath = path.join(appRoot, "robots.ts");
+const llmsRoutePath = path.join(appRoot, "llms.txt", "route.ts");
 
 const allowedNextLinkFiles = new Set([
   "src/components/ui/ContentToc.tsx",
   "src/components/ui/LocaleSwitcher.tsx",
   "src/components/ui/LocalizedLink.tsx",
+]);
+
+const allowedRawSiteUrlConstructionFiles = new Set([
+  "src/lib/seo/metadata.ts",
 ]);
 
 const errors = [];
@@ -131,12 +137,63 @@ function checkRawAbsoluteUrlConstruction() {
     const source = fs.readFileSync(filePath, "utf8");
     const relativePath = toRelativePath(filePath);
 
+    if (allowedRawSiteUrlConstructionFiles.has(relativePath)) {
+      continue;
+    }
+
     for (const match of source.matchAll(rawUrlPattern)) {
       const line = getLineNumber(source, match.index ?? 0);
       pushError(
         `${relativePath}:${line}: raw siteUrl URL construction detected. Prefer toAbsoluteLocalizedUrl/toAbsoluteSiteUrl or localizeHref.`,
       );
     }
+  }
+}
+
+function checkRequestLocaleForceDynamic() {
+  const appFiles = walkFiles(appRoot, (filePath) => /\.(ts|tsx)$/.test(filePath));
+
+  for (const filePath of appFiles) {
+    const source = fs.readFileSync(filePath, "utf8");
+    const relativePath = toRelativePath(filePath);
+    const usesRequestLocale = source.includes("getRequestLocale(") || /\bheaders\(/.test(source);
+
+    if (!usesRequestLocale) {
+      continue;
+    }
+
+    if (!/export const dynamic\s*=\s*["']force-dynamic["']/.test(source)) {
+      pushError(`${relativePath}: uses request locale or headers without \`export const dynamic = "force-dynamic"\`.`);
+    }
+  }
+}
+
+function checkDiscoverySourceFiles() {
+  const robotsSource = fs.readFileSync(robotsRoutePath, "utf8");
+  const llmsSource = fs.readFileSync(llmsRoutePath, "utf8");
+
+  if (!robotsSource.includes("sitemap: `${siteUrl}/sitemap.xml`")) {
+    pushError("src/app/robots.ts: robots route should expose the canonical sitemap URL via siteUrl.");
+  }
+
+  if (!robotsSource.includes("host: siteUrl")) {
+    pushError("src/app/robots.ts: robots route should expose host: siteUrl.");
+  }
+
+  if (!robotsSource.includes('disallow: "/api/"')) {
+    pushError('src/app/robots.ts: robots route should explicitly disallow "/api/".');
+  }
+
+  if (!/export const dynamic\s*=\s*["']force-static["']/.test(llmsSource)) {
+    pushError('src/app/llms.txt/route.ts: llms.txt route should stay force-static.');
+  }
+
+  if (!llmsSource.includes('toAbsoluteFileUrl("/robots.txt")')) {
+    pushError('src/app/llms.txt/route.ts: llms.txt should reference robots.txt via toAbsoluteFileUrl("/robots.txt").');
+  }
+
+  if (!llmsSource.includes('toAbsoluteFileUrl("/sitemap.xml")')) {
+    pushError('src/app/llms.txt/route.ts: llms.txt should reference sitemap.xml via toAbsoluteFileUrl("/sitemap.xml").');
   }
 }
 
@@ -155,6 +212,8 @@ checkNextLinkUsage();
 checkRawInternalAnchors();
 checkHardcodedLocaleHrefs();
 checkRawAbsoluteUrlConstruction();
+checkRequestLocaleForceDynamic();
+checkDiscoverySourceFiles();
 
 if (warnings.length > 0) {
   console.warn("SEO check warnings:\n");

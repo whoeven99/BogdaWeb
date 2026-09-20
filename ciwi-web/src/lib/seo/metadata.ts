@@ -15,6 +15,10 @@ export const siteName = "Ciwi";
 export const siteUrl = "https://ciwi.ai";
 export const siteDefaultOgImage = new URL("/logo-150.png", siteUrl).toString();
 
+export function toAbsoluteFileUrl(href: string) {
+  return new URL(href, siteUrl).toString();
+}
+
 export function toAbsoluteSiteUrl(href: string) {
   return new URL(normalizeInternalHref(href), siteUrl).toString();
 }

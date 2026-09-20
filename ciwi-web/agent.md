@@ -84,6 +84,12 @@ npm run seo:check
 npm run build
 ```
 
+说明：
+
+- `npm run seo:check` 用于源码级守门，重点拦截 metadata、多语言、内部链接、`force-dynamic`、`robots/llms` 源码回归
+- `npm run build` 现在会在构建结束后自动执行 `npm run seo:artifacts`
+- `npm run seo:artifacts` 用于校验构建产物里的 `sitemap.xml`、`robots.txt`、`llms.txt` 是否仍然输出规范 URL
+
 如果修改了内容数据、MDX、guide/blog/help-center 内容，还要额外确认：
 
 ```bash
@@ -117,7 +123,11 @@ AI 完成任务后的回复，至少应包含：
 - 是否出现新的绕过本地化的 `next/link`
 - 是否出现新的硬编码 locale 路径
 - 是否出现新的直接拼接 `siteUrl` 的实现，绕开已有 helper
+- 使用 `getRequestLocale()` 或 `headers()` 的页面是否显式声明 `export const dynamic = "force-dynamic"`
+- `robots.txt` 是否仍然保留 `Host`、`Sitemap` 与 `/api/` 禁抓规则
+- `llms.txt` 中的 `robots.txt` / `sitemap.xml` 链接是否保持无尾斜杠文件 URL
 - 新路由是否进入 sitemap
+- sitemap 是否仍然只输出 canonical URL，而不是 `www/http/旧 slug` 这类 redirect 源地址
 - 英文与中文页面是否都能落到正确路径
 
 ## 8. 结论

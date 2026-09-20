@@ -10,7 +10,7 @@ export default function robots(): MetadataRoute.Robots {
         // the exclusions through a more-specific user-agent group.
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/"],
+        disallow: "/api/",
       },
     ],
     sitemap: `${siteUrl}/sitemap.xml`,
