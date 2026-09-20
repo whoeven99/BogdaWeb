@@ -1,4 +1,5 @@
-import {siteName, siteUrl} from "@/lib/seo/metadata";
+import {normalizeInternalHref} from "@/lib/i18n";
+import {siteName, siteUrl, toAbsoluteSiteUrl} from "@/lib/seo/metadata";
 import type {FaqEntry} from "@/lib/content/sections";
 
 type BreadcrumbItem = {
@@ -149,6 +150,9 @@ export function buildProductSchema({
   reviews = [],
   offers,
 }: ProductSchemaInput) {
+  const resolvedOfferUrl = offers?.url
+    ? (offers.url.startsWith("/") ? toAbsoluteSiteUrl(normalizeInternalHref(offers.url)) : offers.url)
+    : url;
   const aggregateRating =
     typeof rating === "number" && typeof reviewCount === "number"
       ? {
@@ -177,7 +181,7 @@ export function buildProductSchema({
     !aggregateRating && reviewItems.length === 0
       ? {
           "@type": "Offer",
-          url: offers?.url ?? url,
+          url: resolvedOfferUrl,
           price: offers?.price ?? "0",
           priceCurrency: offers?.priceCurrency ?? "USD",
           availability: offers?.availability ?? "https://schema.org/InStock",
@@ -185,7 +189,7 @@ export function buildProductSchema({
       : offers
         ? {
             "@type": "Offer",
-            url: offers.url ?? url,
+            url: resolvedOfferUrl,
             price: offers.price,
             priceCurrency: offers.priceCurrency,
             availability: offers.availability ?? "https://schema.org/InStock",

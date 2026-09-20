@@ -1,4 +1,5 @@
 import type {Locale} from "@/lib/i18n";
+import {normalizeInternalHrefFields} from "@/lib/i18n-content";
 import generatedCollections from "@/content/best-shopify-apps.generated.json";
 import importedCollections from "@/content/data/best_shopify_app_collections.json";
 
@@ -900,7 +901,7 @@ const mergedCollectionsZh = mergeCollections(
 ).map(normalizeZhBestShopifyAppCollection);
 
 export function getBestShopifyAppCollections(locale: Locale) {
-  return locale === "zh-cn" ? mergedCollectionsZh : mergedCollectionsEn;
+  return normalizeInternalHrefFields(locale === "zh-cn" ? mergedCollectionsZh : mergedCollectionsEn);
 }
 
 export function getBestShopifyAppCollectionMap(locale: Locale) {

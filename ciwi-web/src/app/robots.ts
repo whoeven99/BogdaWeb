@@ -6,8 +6,11 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
+        // One shared policy includes search and AI crawlers without overriding
+        // the exclusions through a more-specific user-agent group.
         userAgent: "*",
         allow: "/",
+        disallow: ["/api/"],
       },
     ],
     sitemap: `${siteUrl}/sitemap.xml`,

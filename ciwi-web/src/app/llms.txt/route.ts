@@ -18,6 +18,8 @@ import {
 } from "@/content/shopify-keyword-use-cases";
 import type {Locale} from "@/lib/i18n";
 import {toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
+import {getPublishedProblems} from "@/lib/merchant-intelligence/content";
+import {targetUrl} from "@/lib/merchant-intelligence/core.mjs";
 
 const llmsConfig = {
   contact: {
@@ -65,6 +67,8 @@ function buildBody() {
   lines.push("Official website  : https://ciwi.ai");
   lines.push("Robots file       : " + absolute("en", "/robots.txt"));
   lines.push("Sitemap file      : " + absolute("en", "/sitemap.xml"));
+  lines.push("Crawl policy      : Public pages and discovery files are open to search and AI crawlers under robots.txt. API endpoints are excluded.");
+  lines.push("This file is a content directory, not an access-control or indexing directive.");
   lines.push("");
   lines.push("## Primary contact");
   lines.push("");
@@ -93,6 +97,15 @@ function buildBody() {
       const tag = (guide.guideLabel ?? "Guide").replace(/\s+/g, "-").toLowerCase();
       const date = guide.publishedAt?.slice(0, 10) ?? today;
       lines.push(`[${tag}] ${date}  ${absolute(locale, guide.href)}  ${guide.title}`);
+    }
+    lines.push("");
+  }
+  const taskGuides = getPublishedProblems().sort((a, b) => a.id.localeCompare(b.id));
+  if (taskGuides.length > 0) {
+    lines.push("## Task guides (English)");
+    lines.push("");
+    for (const problem of taskGuides) {
+      lines.push(`${absolute("en", targetUrl(problem))}  ${problem.page?.title ?? problem.canonicalProblem}`);
     }
     lines.push("");
   }

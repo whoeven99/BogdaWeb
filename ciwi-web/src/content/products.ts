@@ -1,4 +1,5 @@
 import type {Locale} from "@/lib/i18n";
+import {normalizeInternalHrefFields} from "@/lib/i18n-content";
 import {ciwiShopifyInstallUrl, sparkShopifyInstallUrl} from "@/lib/marketing-links";
 
 export type ProductItem = {
@@ -670,11 +671,11 @@ const productsZh: ProductItem[] = [
   },
 ];
 
-export const products = productsEn;
+export const products = normalizeInternalHrefFields(productsEn);
 export const productMap = Object.fromEntries(products.map((product) => [product.slug, product]));
 
 export function getProducts(locale: Locale) {
-  return locale === "zh-cn" ? productsZh : productsEn;
+  return normalizeInternalHrefFields(locale === "zh-cn" ? productsZh : productsEn);
 }
 
 export function getProductMap(locale: Locale) {
