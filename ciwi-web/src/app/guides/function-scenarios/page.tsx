@@ -128,7 +128,7 @@ export default async function FunctionScenarioGuidesPage() {
   const pageUrl = toAbsoluteLocalizedUrl(locale, "/guides/function-scenarios");
   const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
-      {name: "Home", item: siteUrl},
+      {name: locale === "zh-cn" ? "首页" : "Home", item: siteUrl},
       {name: locale === "zh-cn" ? "指南" : "Guides", item: toAbsoluteLocalizedUrl(locale, "/guides")},
       {name: copy.structuredData.name, item: pageUrl},
     ]),

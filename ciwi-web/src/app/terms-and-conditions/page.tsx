@@ -15,6 +15,7 @@ export async function generateMetadata() {
     description: page.description,
     path: "/terms-and-conditions",
     locale,
+    noIndex: locale === "zh-cn",
   });
 }
 

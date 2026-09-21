@@ -29,11 +29,17 @@ export function SiteHeader() {
           openMenu: "打开菜单",
           closeMenu: "关闭菜单",
           menuLabel: "主菜单",
+          menuButton: "菜单",
+          closeButton: "关闭",
+          brandTagline: "为 Shopify 打造的 AI 产品",
         }
       : {
           openMenu: "Open menu",
           closeMenu: "Close menu",
           menuLabel: "Main menu",
+          menuButton: "Menu",
+          closeButton: "Close",
+          brandTagline: "AI PRODUCTS FOR SHOPIFY",
         };
 
   function handleToggleSubmenu(label: string) {
@@ -106,7 +112,7 @@ export function SiteHeader() {
             <span className="grid gap-0.5 leading-none" aria-hidden="true">
               <span className="text-base font-semibold tracking-[-0.04em] text-slate-950">Ciwi.ai</span>
               <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
-                AI PRODUCTS FOR SHOPIFY
+                {mobileCopy.brandTagline}
               </span>
             </span>
           </LocalizedLink>
@@ -118,7 +124,7 @@ export function SiteHeader() {
             aria-label={mobileMenuOpen ? mobileCopy.closeMenu : mobileCopy.openMenu}
             onClick={() => setMobileMenuOpen((current) => !current)}
           >
-            {mobileMenuOpen ? "Close" : "Menu"}
+            {mobileMenuOpen ? mobileCopy.closeButton : mobileCopy.menuButton}
           </button>
           <nav className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-2 lg:flex" aria-label="Primary">
             {navigation.primaryNavigation.map((item) => {

@@ -1,4 +1,5 @@
 import type {Locale} from "@/lib/i18n";
+import {localizeLanguageSignalFields} from "@/lib/localized-language-signal";
 
 const resourcesPageCopyByLocale = {
   en: {
@@ -176,5 +177,5 @@ const resourcesPageCopyByLocale = {
 } as const;
 
 export function getResourcesPageCopy(locale: Locale) {
-  return resourcesPageCopyByLocale[locale];
+  return localizeLanguageSignalFields(locale, resourcesPageCopyByLocale[locale]);
 }

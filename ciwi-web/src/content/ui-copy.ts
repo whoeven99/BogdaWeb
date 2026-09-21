@@ -1,5 +1,6 @@
 import type {Locale} from "@/lib/i18n";
 import {getLocalizedValue} from "@/lib/i18n-content";
+import {localizeLanguageSignalFields} from "@/lib/localized-language-signal";
 import {ciwiShopifyInstallUrl} from "@/lib/marketing-links";
 
 type UiCopy = {
@@ -193,5 +194,5 @@ const uiCopyByLocale = {
 } satisfies Record<Locale, UiCopy>;
 
 export function getUiCopy(locale: Locale) {
-  return getLocalizedValue(locale, uiCopyByLocale);
+  return localizeLanguageSignalFields(locale, getLocalizedValue(locale, uiCopyByLocale));
 }

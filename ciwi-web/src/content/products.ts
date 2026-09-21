@@ -1,5 +1,6 @@
 import type {Locale} from "@/lib/i18n";
 import {normalizeInternalHrefFields} from "@/lib/i18n-content";
+import {localizeLanguageSignalFields} from "@/lib/localized-language-signal";
 import {ciwiShopifyInstallUrl, sparkShopifyInstallUrl} from "@/lib/marketing-links";
 
 export type ProductItem = {
@@ -46,6 +47,11 @@ export type ProductItem = {
     secondaryText: string;
     note: string;
     previewLabels?: string[];
+  }[];
+  differentiators?: {
+    title: string;
+    description: string;
+    bullets?: string[];
   }[];
   compareLinks?: {title: string; description: string; href: string; meta: string[]}[];
   relatedResources: {title: string; href: string; meta: string[]}[];
@@ -217,6 +223,35 @@ const productsEn: ProductItem[] = [
         previewLabels: ["Theme blocks", "Metafields", "Image captions"],
       },
     ],
+    differentiators: [
+      {
+        title: "Built for Shopify content structure",
+        description: "Go beyond plain text so product copy, theme blocks, FAQs, navigation, image text, and metafields stay in the same localization flow.",
+        bullets: [
+          "Covers more of the storefront than generic text-only tools",
+          "Keeps structured content closer to the main product copy",
+          "Reduces the chance that important fields are missed in later updates",
+        ],
+      },
+      {
+        title: "Glossary keeps brand language steadier",
+        description: "Use glossary and model rules to protect brand terms, series names, and high-value terminology as content expands across languages.",
+        bullets: [
+          "Less terminology drift across pages and campaigns",
+          "Better control over ingredients, offers, and product naming",
+          "More reliable long-term consistency than one-off translation passes",
+        ],
+      },
+      {
+        title: "Better fit for ongoing multilingual operations",
+        description: "The value is not only the first translation, but how much easier it is to keep later product, campaign, and content changes synchronized.",
+        bullets: [
+          "Supports repeat updates instead of only initial launch coverage",
+          "Helps teams manage localization as the storefront changes",
+          "More useful when multilingual content is part of regular operations",
+        ],
+      },
+    ],
     compareLinks: [
       {
         title: "Shopify Translate & Adapt Alternative",
@@ -333,6 +368,35 @@ const productsEn: ProductItem[] = [
         secondaryText:
           "Turn the insight into an AI task, automation job, or operations action and manage it in the task center.",
         note: "Insights only create value when they become actions.",
+      },
+    ],
+    differentiators: [
+      {
+        title: "Moves from signals to supported actions",
+        description: "Spark is not limited to showing store data. It can turn a goal into a plan, execute supported tasks, and return a reviewable result.",
+        bullets: [
+          "Bridges the gap between store insight and follow-through",
+          "Supports goal-driven workflows instead of dashboard-only review",
+          "Keeps task planning and execution closer to the original signal",
+        ],
+      },
+      {
+        title: "Keeps daily store work in one workspace",
+        description: "Bring performance, issues, AI guidance, tasks, content, and tracking work into one place so teams switch tools less often.",
+        bullets: [
+          "Fewer context switches across analytics, tracking, and operations",
+          "Makes daily review easier for growing Shopify teams",
+          "Helps marketing, content, and operations stay closer together",
+        ],
+      },
+      {
+        title: "Designed around merchant goals, not just reports",
+        description: "Start with the outcome you want and let Spark scope the work around connected tools, permissions, and the current store context.",
+        bullets: [
+          "Closer to how operators actually work day to day",
+          "More useful when the next step matters more than the raw metric",
+          "Turns a store question into a more actionable path forward",
+        ],
       },
     ],
     relatedResources: [
@@ -523,6 +587,35 @@ const productsZh: ProductItem[] = [
         previewLabels: ["Theme blocks", "Metafields", "Image captions"],
       },
     ],
+    differentiators: [
+      {
+        title: "更适合 Shopify 结构化内容翻译",
+        description: "不只翻纯文本，也把商品文案、主题区块、FAQ、导航、图片文案和 metafields 放进同一套本地化流程。",
+        bullets: [
+          "覆盖范围比纯文本翻译工具更完整",
+          "让结构化内容尽量和商品正文一起维护",
+          "降低后续更新时遗漏关键字段的概率",
+        ],
+      },
+      {
+        title: "用 glossary 稳住品牌表达",
+        description: "通过 glossary 和模型策略，把品牌词、系列名和高价值术语稳定下来，减少不同页面翻法不一致的问题。",
+        bullets: [
+          "减少不同页面和活动中的术语漂移",
+          "更容易控制成分词、优惠表达和商品命名",
+          "比一次性翻译更适合长期内容治理",
+        ],
+      },
+      {
+        title: "更适合持续运营的多语言店铺",
+        description: "真正的价值不只是第一次上线，而是后续商品、活动和页面更新时，多语言内容也更容易保持同步。",
+        bullets: [
+          "适合需要持续更新的店铺，而不是一次性上线后长期不动",
+          "帮助团队在店铺变化时继续维护多语言一致性",
+          "更贴近多语言运营的真实工作方式",
+        ],
+      },
+    ],
     compareLinks: [
       {
         title: "Shopify Translate & Adapt Alternative",
@@ -635,6 +728,35 @@ const productsZh: ProductItem[] = [
         note: "洞察只有变成行动，才会产生价值。",
       },
     ],
+    differentiators: [
+      {
+        title: "从店铺信号走到支持的行动",
+        description: "Spark 不只是展示数据，而是可以把目标拆成计划，执行支持的任务，并返回可检查的结果。",
+        bullets: [
+          "把洞察和后续执行连接起来",
+          "更适合目标驱动的工作流，而不是只看仪表盘",
+          "让任务规划和执行更贴近最初发现的问题",
+        ],
+      },
+      {
+        title: "把日常店铺工作放进同一个工作台",
+        description: "把表现、问题、AI 指引、任务、内容和追踪统一在一个地方，让团队少切工具、少断上下文。",
+        bullets: [
+          "减少分析、追踪和运营之间的上下文切换",
+          "更适合需要每日复盘的成长型 Shopify 团队",
+          "让营销、内容和运营工作更容易放在一起推进",
+        ],
+      },
+      {
+        title: "围绕商家目标组织，而不是围绕报表组织",
+        description: "从你想达成的结果出发，再结合已连接的工具、权限和当前店铺上下文去规划执行路径。",
+        bullets: [
+          "更接近日常运营人员的真实工作方式",
+          "当下一步动作比原始指标更重要时更有价值",
+          "把一个店铺问题转成更可执行的推进路径",
+        ],
+      },
+    ],
     relatedResources: [
       {
         title: "Best Shopify Analytics Apps",
@@ -675,7 +797,7 @@ export const products = normalizeInternalHrefFields(productsEn);
 export const productMap = Object.fromEntries(products.map((product) => [product.slug, product]));
 
 export function getProducts(locale: Locale) {
-  return normalizeInternalHrefFields(locale === "zh-cn" ? productsZh : productsEn);
+  return normalizeInternalHrefFields(localizeLanguageSignalFields(locale, locale === "zh-cn" ? productsZh : productsEn));
 }
 
 export function getProductMap(locale: Locale) {

@@ -58,7 +58,7 @@ export default async function HomePage({searchParams}: HomePageProps) {
   const pageUrl = toAbsoluteLocalizedUrl(locale, "/");
   const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
-      {name: "Home", item: pageUrl},
+      {name: locale === "zh-cn" ? "首页" : "Home", item: pageUrl},
     ]),
     buildWebPageSchema({
       url: pageUrl,

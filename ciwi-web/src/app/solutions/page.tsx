@@ -87,7 +87,7 @@ export default async function SolutionsPage() {
   const pageUrl = toAbsoluteLocalizedUrl(locale, "/solutions");
   const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
-      {name: "Home", item: siteUrl},
+      {name: locale === "zh-cn" ? "首页" : "Home", item: siteUrl},
       {name: copy.structuredData.name, item: pageUrl},
     ]),
     buildWebPageSchema({

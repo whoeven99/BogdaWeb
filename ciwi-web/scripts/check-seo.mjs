@@ -7,6 +7,7 @@ const srcRoot = path.join(projectRoot, "src");
 const nextConfigPath = path.join(projectRoot, "next.config.ts");
 const robotsRoutePath = path.join(appRoot, "robots.ts");
 const llmsRoutePath = path.join(appRoot, "llms.txt", "route.ts");
+const toolReviewDetailPagePath = path.join(appRoot, "resources", "product-research", "reviews", "[slug]", "page.tsx");
 
 const allowedNextLinkFiles = new Set([
   "src/components/ui/ContentToc.tsx",
@@ -197,6 +198,16 @@ function checkDiscoverySourceFiles() {
   }
 }
 
+function checkKnownStructuredDataPatterns() {
+  const toolReviewDetailSource = fs.readFileSync(toolReviewDetailPagePath, "utf8");
+
+  if (!toolReviewDetailSource.includes('itemReviewedType: "SoftwareApplication"')) {
+    pushError(
+      'src/app/resources/product-research/reviews/[slug]/page.tsx: tool review detail pages should mark reviewed items as `SoftwareApplication`.',
+    );
+  }
+}
+
 function checkAgentGuidePresence() {
   const agentGuidePath = path.join(projectRoot, "agent.md");
 
@@ -214,6 +225,7 @@ checkHardcodedLocaleHrefs();
 checkRawAbsoluteUrlConstruction();
 checkRequestLocaleForceDynamic();
 checkDiscoverySourceFiles();
+checkKnownStructuredDataPatterns();
 
 if (warnings.length > 0) {
   console.warn("SEO check warnings:\n");

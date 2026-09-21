@@ -8,6 +8,7 @@ import {getLocalizationGuides} from "@/content/localization-guides";
 import {getProductResearchWorkflowArticles} from "@/content/product-research";
 import {getProductPlaybookHref} from "@/content/use-cases";
 import {getProducts} from "@/content/products";
+import {localizeLanguageSignalFields} from "@/lib/localized-language-signal";
 
 export type ResourceItem = {
   title: string;
@@ -17,12 +18,12 @@ export type ResourceItem = {
 };
 
 export function getBlogResources(locale: Locale): ResourceItem[] {
-  return getBlogPosts(locale).map((post) => ({
+  return localizeLanguageSignalFields(locale, getBlogPosts(locale).map((post) => ({
     title: post.title,
     description: post.description,
     href: post.href,
     meta: [locale === "zh-cn" ? "博客" : "Blog", post.publishedAt],
-  }));
+  })));
 }
 
 export function getHelpCenterResources(locale: Locale): ResourceItem[] {
@@ -34,64 +35,64 @@ export function getFeaturedHelpCenterResources(locale: Locale): ResourceItem[] {
 }
 
 export function getCompareResources(locale: Locale): ResourceItem[] {
-  return getCompares(locale).map((item) => ({
+  return localizeLanguageSignalFields(locale, getCompares(locale).map((item) => ({
     title: item.title,
     description: item.description,
     href: `/compare/${item.slug}`,
     meta: [locale === "zh-cn" ? "对比" : "Compare", locale === "zh-cn" ? "选型" : "Selection"],
-  }));
+  })));
 }
 
 export function getBestShopifyAppsResources(locale: Locale): ResourceItem[] {
-  return getBestShopifyAppCollections(locale).map((item) => ({
+  return localizeLanguageSignalFields(locale, getBestShopifyAppCollections(locale).map((item) => ({
     title: item.title,
     description: item.description,
     href: item.href,
     meta: [locale === "zh-cn" ? "合集" : "Collection", item.categoryLabel, String(item.year)],
-  }));
+  })));
 }
 
 export function getLocalizationGuideCategoryResources(locale: Locale): ResourceItem[] {
-  return getLocalizationGuides(locale).map((item) => ({
+  return localizeLanguageSignalFields(locale, getLocalizationGuides(locale).map((item) => ({
     title: item.title,
     description: item.description,
     href: item.href,
     meta: [locale === "zh-cn" ? "指南" : "Guide", item.segmentLabel, String(item.year)],
-  }));
+  })));
 }
 
 export function getFunctionScenarioGuideResources(locale: Locale): ResourceItem[] {
-  return getFunctionScenarioGuides(locale).map((item) => ({
+  return localizeLanguageSignalFields(locale, getFunctionScenarioGuides(locale).map((item) => ({
     title: item.title,
     description: item.description,
     href: item.href,
     meta: [locale === "zh-cn" ? "指南" : "Guide", item.segmentLabel, String(item.year)],
-  }));
+  })));
 }
 
 export function getLocalizationGuideResources(locale: Locale): ResourceItem[] {
-  return [...getLocalizationGuideCategoryResources(locale), ...getFunctionScenarioGuideResources(locale)].map((item) => ({
+  return localizeLanguageSignalFields(locale, [...getLocalizationGuideCategoryResources(locale), ...getFunctionScenarioGuideResources(locale)].map((item) => ({
     title: item.title,
     description: item.description,
     href: item.href,
     meta: item.meta,
-  }));
+  })));
 }
 
 export function getProductResearchResources(locale: Locale): ResourceItem[] {
-  return getProductResearchWorkflowArticles(locale).map((article) => ({
+  return localizeLanguageSignalFields(locale, getProductResearchWorkflowArticles(locale).map((article) => ({
     title: article.title,
     description: article.description,
     href: article.href,
     meta: [locale === "zh-cn" ? "选品" : "Product Research", article.stageLabel, String(article.year)],
-  }));
+  })));
 }
 
 export function getUseCaseResources(locale: Locale): ResourceItem[] {
-  return getProducts(locale).map((product) => ({
+  return localizeLanguageSignalFields(locale, getProducts(locale).map((product) => ({
     title: locale === "zh-cn" ? `${product.name} Playbook` : `${product.name} Playbook`,
     description: product.shortDescription,
     href: getProductPlaybookHref(product.slug),
     meta: [locale === "zh-cn" ? "Playbook" : "Playbook", product.metrics[0]],
-  }));
+  })));
 }

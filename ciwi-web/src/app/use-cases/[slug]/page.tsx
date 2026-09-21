@@ -6,6 +6,7 @@ import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getProductMap} from "@/content/products";
 import {getProductPlaybookHref, getUseCaseMap, useCases, type UseCaseItem} from "@/content/use-cases";
 import {getRequestLocale} from "@/lib/i18n-server";
+import {localizeLanguageSignalFields, localizeLanguageSignalText} from "@/lib/localized-language-signal";
 import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildFaqSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 import {notFound} from "next/navigation";
@@ -92,7 +93,8 @@ export async function generateStaticParams() {
 export async function generateMetadata({params}: UseCaseDetailPageProps) {
   const locale = await getRequestLocale();
   const {slug} = await params;
-  const useCase = getUseCaseMap(locale)[slug];
+  const rawUseCase = getUseCaseMap(locale)[slug];
+  const useCase = rawUseCase ? localizeLanguageSignalFields(locale, rawUseCase) : rawUseCase;
   const copy = getPageCopy(locale);
 
   if (!useCase) {
@@ -116,20 +118,22 @@ export default async function UseCaseDetailPage({params}: UseCaseDetailPageProps
   const locale = await getRequestLocale();
   const {slug} = await params;
   const copy = getPageCopy(locale);
-  const useCase = getUseCaseMap(locale)[slug];
+  const rawUseCase = getUseCaseMap(locale)[slug];
+  const useCase = rawUseCase ? localizeLanguageSignalFields(locale, rawUseCase) : rawUseCase;
 
   if (!useCase) {
     notFound();
   }
 
-  const product = getProductMap(locale)[useCase.productSlug];
+  const rawProduct = getProductMap(locale)[useCase.productSlug];
+  const product = rawProduct ? localizeLanguageSignalFields(locale, rawProduct) : rawProduct;
   const playbookHref = getProductPlaybookHref(useCase.productSlug);
   const pageUrl = toAbsoluteLocalizedUrl(locale, `/use-cases/${useCase.slug}`);
   const productName = product?.name ?? useCase.productSlug;
   const narrative = buildUseCaseNarrative(useCase, locale);
   const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
-      {name: "Home", item: siteUrl},
+      {name: locale === "zh-cn" ? "首页" : "Home", item: siteUrl},
       {name: locale === "zh-cn" ? "应用场景" : "Use Cases", item: toAbsoluteLocalizedUrl(locale, "/use-cases")},
       {name: useCase.title, item: pageUrl},
     ]),
@@ -174,7 +178,7 @@ export default async function UseCaseDetailPage({params}: UseCaseDetailPageProps
               ))}
             </div>
             <div className="mt-6 flex flex-wrap gap-3">
-              <Button href={useCase.ctaHref}>{useCase.ctaLabel || copy.hero.primaryLabel}</Button>
+              <Button href={useCase.ctaHref}>{localizeLanguageSignalText(locale, useCase.ctaLabel || copy.hero.primaryLabel)}</Button>
             </div>
             <div className="mt-6 rounded-[24px] border border-slate-200/80 bg-white/92 p-5 sm:p-6">
               <div className="space-y-4 text-[15px] leading-7 text-slate-600 sm:text-base">

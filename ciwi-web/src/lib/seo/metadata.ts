@@ -1,6 +1,7 @@
 import type {Metadata} from "next";
 
 import {buildAlternates, defaultLocale, type Locale, localizeHref, normalizeInternalHref} from "@/lib/i18n";
+import {localizeLanguageSignalText} from "@/lib/localized-language-signal";
 
 type MetadataInput = {
   title: string;
@@ -9,6 +10,7 @@ type MetadataInput = {
   locale?: Locale;
   supportedLocales?: Locale[];
   keywords?: string[];
+  noIndex?: boolean;
 };
 
 export const siteName = "Ciwi";
@@ -57,9 +59,12 @@ function truncateTitleToSERPWidth(title: string, targetPxWidth = 480): string {
   return result + ellipsis;
 }
 
-export function buildPageMetadata({title, description, path = "/", locale = "en", supportedLocales, keywords}: MetadataInput): Metadata {
+export function buildPageMetadata({title, description, path = "/", locale = "en", supportedLocales, keywords, noIndex = false}: MetadataInput): Metadata {
+  const localizedTitle = localizeLanguageSignalText(locale, title);
+  const localizedDescription = localizeLanguageSignalText(locale, description);
+  const localizedKeywords = keywords?.map((keyword) => localizeLanguageSignalText(locale, keyword));
   const brandSuffix = ` | ${siteName}`;
-  const safeTitle = truncateTitleToSERPWidth(title, 480 - estimateSERPWidth(brandSuffix));
+  const safeTitle = truncateTitleToSERPWidth(localizedTitle, 480 - estimateSERPWidth(brandSuffix));
   const fullTitle = safeTitle + brandSuffix;
   const alternates = buildAlternates(path);
   const enabledLocales = supportedLocales?.length ? supportedLocales : [defaultLocale, "zh-cn"];
@@ -74,11 +79,11 @@ export function buildPageMetadata({title, description, path = "/", locale = "en"
 
   languageAlternates["x-default"] = toAbsoluteSiteUrl(alternates.languages["x-default"]);
 
-  const keywordString = keywords?.length ? keywords.join(", ") : undefined;
+  const keywordString = localizedKeywords?.length ? localizedKeywords.join(", ") : undefined;
 
   return {
     title: fullTitle,
-    description,
+    description: localizedDescription,
     ...(keywordString ? {keywords: keywordString} : undefined),
     alternates: {
       canonical,
@@ -86,11 +91,11 @@ export function buildPageMetadata({title, description, path = "/", locale = "en"
     },
     openGraph: {
       title: fullTitle,
-      description,
+      description: localizedDescription,
       url: canonical,
       siteName,
       type: "website",
-      ...(keywordString ? {tags: keywords} : undefined),
+      ...(keywordString ? {tags: localizedKeywords} : undefined),
       images: [
         {
           url: siteDefaultOgImage,
@@ -101,8 +106,16 @@ export function buildPageMetadata({title, description, path = "/", locale = "en"
     twitter: {
       card: "summary_large_image",
       title: fullTitle,
-      description,
+      description: localizedDescription,
       images: [siteDefaultOgImage],
     },
+    ...(noIndex
+      ? {
+          robots: {
+            index: false,
+            follow: true,
+          },
+        }
+      : undefined),
   };
 }

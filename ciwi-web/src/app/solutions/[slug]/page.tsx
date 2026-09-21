@@ -148,7 +148,7 @@ export default async function SolutionDetailPage({params}: SolutionDetailPagePro
   const anchorItems = copy.anchors.map((item) => ({...item}));
   const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
-      {name: "Home", item: siteUrl},
+      {name: locale === "zh-cn" ? "首页" : "Home", item: siteUrl},
       {name: copy.breadcrumbLabel, item: toAbsoluteLocalizedUrl(locale, "/solutions")},
       {name: solution.title, item: pageUrl},
     ]),

@@ -1,5 +1,6 @@
 import type {Locale} from "@/lib/i18n";
 import {getLocalizedValue} from "@/lib/i18n-content";
+import {localizeLanguageSignalFields} from "@/lib/localized-language-signal";
 
 const homePageCopyEn = {
     outcomeItems: [
@@ -169,32 +170,32 @@ const homePageCopyZh: typeof homePageCopyEn = {
     testimonials: [
       {
         name: "21Collagen",
-        tag: "Beauty / Multi-language",
+        tag: "美妆 / 多语言",
         quote: "从商品页到主题内容，Ciwi 帮我们把多语言上线时间从按周计算，缩短到按小时计算。",
       },
       {
         name: "Orientaleaf",
-        tag: "Tea / Global Store",
+        tag: "茶饮 / 全球店铺",
         quote: "最重要的不是翻得快，而是翻出来真的像我们品牌会说的话，这一点对转化很关键。",
       },
       {
         name: "Cooviphair",
-        tag: "Fashion / Shopify",
+        tag: "时尚 / Shopify",
         quote: "我们需要的是能长期支撑多语言运营的方案，而不是只完成第一次翻译。Ciwi 在这点上更靠谱。",
       },
       {
         name: "Vivaia",
-        tag: "Footwear / Global Store",
+        tag: "鞋履 / 全球店铺",
         quote: "现在团队不用再靠人工逐个语言版本去追更新。Ciwi 让本地化真正进入了日常运营，而不是一次性项目。",
       },
       {
         name: "SURI",
-        tag: "Lifestyle / DTC",
+        tag: "生活方式 / DTC",
         quote: "最大的提升是表达更清楚了。不同市场的商品文案更一致，我们在放大广告投放时也更有把握。",
       },
       {
         name: "MoriMoss",
-        tag: "Home / Shopify Plus",
+        tag: "家居 / Shopify Plus",
         quote: "以前翻译页面总像独立项目，现在它终于能和 storefront 的日常更新保持同样的节奏了。",
       },
     ],
@@ -206,13 +207,13 @@ const homePageCopyZh: typeof homePageCopyEn = {
         meta: ["博客", "2025-07-31"],
       },
       {
-        title: "How to setup and use glossary?",
+        title: "如何设置并使用术语表？",
         description: "如果你担心品牌词翻乱、页面表达不一致，这篇文档最值得先看。",
         href: "/help-center/ShopifyApp/how-to-setup-and-use-glossary/",
-        meta: ["帮助中心", "Glossary"],
+        meta: ["帮助中心", "术语表"],
       },
       {
-        title: "Transcy Alternative",
+        title: "Transcy 替代方案",
         description: "适合正在选型的商家，快速看清长期维护成本和本地化控制差异。",
         href: "/compare/transcy-alternative",
         meta: ["对比", "SEO"],
@@ -243,15 +244,15 @@ const homePageCopyZh: typeof homePageCopyEn = {
       secondaryCtaLabel: "查看演示",
       secondaryCtaHref: "/demo",
       brandName: "Ciwi",
-      brandTagline: "Shopify AI Translator",
+      brandTagline: "Shopify AI 翻译",
       visualWindowTitle: "产品预览",
-      visualChips: ["Theme embed", "Language workflow", "Credits"],
+      visualChips: ["主题嵌入", "语言工作流", "积分"],
       visualAlt: {
         brandLogo: "Ciwi",
-        builtForShopify: "Built for Shopify",
-        mainImage: "Ciwi storefront theme embed preview",
-        secondaryTop: "Language management",
-        secondaryBottom: "Credits quota",
+        builtForShopify: "Built for Shopify 徽章",
+        mainImage: "Ciwi 店铺主题嵌入预览",
+        secondaryTop: "语言管理",
+        secondaryBottom: "积分额度",
       },
     },
     productMatrix: {
@@ -307,5 +308,5 @@ const homePageCopyByLocale: Record<Locale, typeof homePageCopyEn> = {
 };
 
 export function getHomePageCopy(locale: Locale) {
-  return getLocalizedValue(locale, homePageCopyByLocale);
+  return localizeLanguageSignalFields(locale, getLocalizedValue(locale, homePageCopyByLocale));
 }

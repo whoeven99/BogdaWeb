@@ -217,6 +217,7 @@ export function buildProductSchema({
 type ReviewSchemaInput = {
   url: string;
   itemName: string;
+  itemReviewedType?: "Product" | "SoftwareApplication" | "Organization";
   reviewBody?: string;
   ratingValue: number;
   bestRating: number;
@@ -226,6 +227,7 @@ type ReviewSchemaInput = {
 export function buildReviewSchema({
   url,
   itemName,
+  itemReviewedType = "Product",
   reviewBody,
   ratingValue,
   bestRating,
@@ -235,7 +237,7 @@ export function buildReviewSchema({
     "@context": "https://schema.org",
     "@type": "Review",
     itemReviewed: {
-      "@type": "Product",
+      "@type": itemReviewedType,
       name: itemName,
     },
     author: {

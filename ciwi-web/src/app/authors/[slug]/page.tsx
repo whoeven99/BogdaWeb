@@ -145,7 +145,7 @@ export default async function AuthorDetailPage({params}: AuthorPageProps) {
   const pageUrl = toAbsoluteLocalizedUrl(locale, `/authors/${author.id}`);
   const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
-      {name: "Home", item: siteUrl},
+      {name: locale === "zh-cn" ? "首页" : "Home", item: siteUrl},
       {name: copy.structuredData.name, item: pageUrl},
     ]),
     buildWebPageSchema({

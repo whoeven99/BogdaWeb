@@ -5,6 +5,7 @@ import {PageContainer} from "@/components/ui/PageContainer";
 import {getHelpCenterDocMap, getHelpCenterDocs, helpCenterDocs} from "@/content/help-center";
 import {extractFaqEntriesFromHtml} from "@/lib/content/sections";
 import {getRequestLocale} from "@/lib/i18n-server";
+import {localizeLanguageSignalList, localizeLanguageSignalText} from "@/lib/localized-language-signal";
 import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildFaqSchema, buildTechArticleSchema, buildGraphSchema} from "@/lib/seo/schema";
 
@@ -76,18 +77,20 @@ export default async function HelpCenterDetailPage({params}: HelpCenterDetailPag
 
   const faqEntries = extractFaqEntriesFromHtml(doc.contentHtml);
   const pageUrl = toAbsoluteLocalizedUrl(locale, doc.href);
+  const localizedTitle = localizeLanguageSignalText(locale, doc.title);
+  const localizedDescription = localizeLanguageSignalText(locale, doc.description);
   const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
-      {name: "Home", item: siteUrl},
+      {name: locale === "zh-cn" ? "首页" : "Home", item: siteUrl},
       {name: copy.breadcrumbLabel, item: toAbsoluteLocalizedUrl(locale, "/help-center")},
-      {name: doc.title, item: pageUrl},
+      {name: localizedTitle, item: pageUrl},
     ]),
     buildTechArticleSchema({
       url: pageUrl,
-      headline: doc.title,
-      description: doc.description,
+      headline: localizedTitle,
+      description: localizedDescription,
       datePublished: doc.publishedAt,
-      keywords: doc.meta,
+      keywords: localizeLanguageSignalList(locale, doc.meta),
     }),
     ...(faqEntries.length ? [buildFaqSchema(faqEntries)] : []),
   ]);

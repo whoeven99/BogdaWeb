@@ -5,6 +5,7 @@ import {InteractiveDemoExplorer} from "@/components/sections/InteractiveDemoExpl
 import {ChecklistCardGrid} from "@/components/sections/ChecklistCardGrid";
 import {NumberedCardGridSection} from "@/components/sections/NumberedCardGridSection";
 import {ProductAnchorNav} from "@/components/sections/ProductAnchorNav";
+import {ProductDifferentiatorsSection} from "@/components/sections/ProductDifferentiatorsSection";
 import {ProductFeatureSpotlightsSection} from "@/components/sections/ProductFeatureSpotlightsSection";
 import {SimpleCardGridSection} from "@/components/sections/SimpleCardGridSection";
 import {StackedInfoPanel} from "@/components/sections/StackedInfoPanel";
@@ -18,6 +19,7 @@ import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getProductMap, products} from "@/content/products";
 import {getProductPlaybookHref, getUseCasesByProduct} from "@/content/use-cases";
 import {getRequestLocale} from "@/lib/i18n-server";
+import {localizeLanguageSignalFields, localizeLanguageSignalText} from "@/lib/localized-language-signal";
 import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildFaqSchema, buildGraphSchema, buildProductSchema, buildWebPageSchema} from "@/lib/seo/schema";
 
@@ -75,11 +77,12 @@ function getProductDetailCopy(locale: "en" | "zh-cn") {
         },
       },
       anchors: [
-        {label: "典型场景", href: "#use-cases"},
-        {label: "演示", href: "#demo"},
-        {label: "适合谁", href: "#audience-fit"},
-        {label: "核心能力", href: "#features"},
         {label: "使用流程", href: "#workflow"},
+        {label: "适合谁", href: "#audience-fit"},
+        {label: "典型场景", href: "#use-cases"},
+        {label: "核心能力", href: "#features"},
+        {label: "演示", href: "#demo"},
+        {label: "为什么选它", href: "#compare"},
         {label: "相关资源", href: "#resources"},
         {label: "常见问题", href: "#faq"},
       ],
@@ -121,8 +124,9 @@ function getProductDetailCopy(locale: "en" | "zh-cn") {
           targetUsersTitle: "适用商家",
           benefitsTitle: "核心收益",
         },
-        features: {id: "features", eyebrow: "核心能力", title: "核心能力", description: "围绕商家最常用、最直接影响结果的部分展开。"},
         workflow: {id: "workflow", eyebrow: "使用流程", title: "使用流程", description: "按实际操作顺序理解产品，更容易判断落地成本和使用门槛。"},
+        features: {id: "features", eyebrow: "核心能力", title: "核心能力", description: "围绕商家最常用、最直接影响结果的部分展开。"},
+        compare: {id: "compare", eyebrow: "为什么选它", title: "为什么选择这款产品", description: "把产品定位、长期价值和常见比较路径放在一起看，会更容易判断它是否适合你的当前阶段。"},
         resources: {id: "resources", eyebrow: "相关资源", title: "相关资源", description: "从这里继续看文档、文章和对比内容。"},
       },
       finalCta: {
@@ -150,11 +154,12 @@ function getProductDetailCopy(locale: "en" | "zh-cn") {
       },
     },
     anchors: [
-      {label: "Use cases", href: "#use-cases"},
-      {label: "Demo", href: "#demo"},
-      {label: "Audience fit", href: "#audience-fit"},
-      {label: "Features", href: "#features"},
       {label: "Workflow", href: "#workflow"},
+      {label: "Audience fit", href: "#audience-fit"},
+      {label: "Use cases", href: "#use-cases"},
+      {label: "Features", href: "#features"},
+      {label: "Demo", href: "#demo"},
+      {label: "Compare", href: "#compare"},
       {label: "Resources", href: "#resources"},
       {label: "FAQ", href: "#faq"},
     ],
@@ -196,8 +201,9 @@ function getProductDetailCopy(locale: "en" | "zh-cn") {
         targetUsersTitle: "Target users",
         benefitsTitle: "Core benefits",
       },
+      workflow: {id: "workflow", eyebrow: "Workflow", title: "How it works", description: "Understand the product in the same order merchants actually use it."},
       features: {id: "features", eyebrow: "Features", title: "Core capabilities", description: "Focus on the parts merchants use most and that affect outcomes most directly."},
-      workflow: {id: "workflow", eyebrow: "Workflow", title: "Workflow", description: "Understand the product in the same order merchants actually use it."},
+      compare: {id: "compare", eyebrow: "Compare", title: "Why this product may fit better", description: "Look at the product's operating model, long-term value, and comparison paths in one place before going deeper."},
       resources: {id: "resources", eyebrow: "Related resources", title: "Related resources", description: "Continue into docs, articles, and comparison content from here."},
     },
     finalCta: {
@@ -214,7 +220,8 @@ export async function generateStaticParams() {
 export async function generateMetadata({params}: ProductDetailPageProps) {
   const locale = await getRequestLocale();
   const {slug} = await params;
-  const product = getProductMap(locale)[slug];
+  const rawProduct = getProductMap(locale)[slug];
+  const product = rawProduct ? localizeLanguageSignalFields(locale, rawProduct) : rawProduct;
   const copy = getProductDetailCopy(locale);
 
   if (!product) {
@@ -237,7 +244,8 @@ export async function generateMetadata({params}: ProductDetailPageProps) {
 export default async function ProductDetailPage({params}: ProductDetailPageProps) {
   const locale = await getRequestLocale();
   const {slug} = await params;
-  const product = getProductMap(locale)[slug];
+  const rawProduct = getProductMap(locale)[slug];
+  const product = rawProduct ? localizeLanguageSignalFields(locale, rawProduct) : rawProduct;
   const copy = getProductDetailCopy(locale);
 
   if (!product) {
@@ -248,7 +256,7 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
   const productsIndexUrl = toAbsoluteLocalizedUrl(locale, "/products");
   const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
-      {name: "Home", item: siteUrl},
+      {name: locale === "zh-cn" ? "首页" : "Home", item: siteUrl},
       {name: locale === "zh-cn" ? "产品" : "Products", item: productsIndexUrl},
       {name: product.name, item: pageUrl},
     ]),
@@ -278,17 +286,23 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
   ]);
   const isTranslator = product.slug === "translator";
   const translatorCopy = isTranslator ? copy.translator : null;
-  const linkedUseCases = getUseCasesByProduct(locale, product.slug);
+  const linkedUseCases = localizeLanguageSignalFields(locale, getUseCasesByProduct(locale, product.slug));
   const hasLinkedUseCases = linkedUseCases.length > 0;
   const hasVideo = Boolean(product.videoUrl);
+  const hasFeatureSpotlights = Boolean(product.featureModules?.length);
+  const hasCompareSection = Boolean(product.differentiators?.length || product.compareLinks?.length);
+  const compareCopy = isTranslator && translatorCopy ? translatorCopy.sections.comparisons : copy.sections.compare;
   const narrative = buildProductNarrative(product, locale);
-  let anchorItems = (isTranslator ? translatorCopy?.anchors : copy.anchors)?.map((item) => ({...item})) ?? [];
+  let anchorItems = copy.anchors.map((item) => ({...item}));
   if (hasVideo && !isTranslator) {
     anchorItems = [
       anchorItems[0],
       {label: copy.sections.video.eyebrow, href: `#${copy.sections.video.id}`},
       ...anchorItems.slice(1),
     ];
+  }
+  if (!hasCompareSection) {
+    anchorItems = anchorItems.filter((item) => item.href !== "#compare");
   }
 
   return (
@@ -365,6 +379,29 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
 
         <ProductAnchorNav items={anchorItems} />
 
+        <NumberedCardGridSection
+          id={copy.sections.workflow.id}
+          className="page-section anchor-offset"
+          eyebrow={copy.sections.workflow.eyebrow}
+          title={copy.sections.workflow.title}
+          description={copy.sections.workflow.description}
+          items={product.workflow.map((step) => ({description: step}))}
+        />
+
+        <section className="page-section anchor-offset" id={copy.sections.audienceFit.id}>
+          <SectionHeading
+            eyebrow={copy.sections.audienceFit.eyebrow}
+            title={copy.sections.audienceFit.title}
+            description={copy.sections.audienceFit.description}
+          />
+          <ChecklistCardGrid
+            cards={[
+              {title: copy.sections.audienceFit.targetUsersTitle, items: product.targetUsers},
+              {title: copy.sections.audienceFit.benefitsTitle, items: product.benefits},
+            ]}
+          />
+        </section>
+
         {hasLinkedUseCases ? (
           <section className="page-section anchor-offset" id={copy.sections.useCases.id}>
             <SectionHeading
@@ -407,6 +444,37 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
           />
         )}
 
+        <SimpleCardGridSection
+          id={copy.sections.features.id}
+          className="page-section anchor-offset"
+          eyebrow={copy.sections.features.eyebrow}
+          title={copy.sections.features.title}
+          description={copy.sections.features.description}
+          items={product.features.map((feature) => ({
+            title: feature.title,
+            description: feature.description,
+          }))}
+        />
+
+        {hasFeatureSpotlights && translatorCopy ? (
+          <ProductFeatureSpotlightsSection
+            id={translatorCopy.sections.featureSpotlights.id}
+            eyebrow={translatorCopy.sections.featureSpotlights.eyebrow}
+            title={translatorCopy.sections.featureSpotlights.title}
+            description={translatorCopy.sections.featureSpotlights.description}
+            items={product.featureModules ?? []}
+          />
+        ) : null}
+
+        <NumberedCardGridSection
+          id={copy.sections.demoFocus.id}
+          className="page-section anchor-offset"
+          eyebrow={copy.sections.demoFocus.eyebrow}
+          title={copy.sections.demoFocus.title}
+          description={copy.sections.demoFocus.description}
+          items={product.demoHighlights.map((item) => ({description: item}))}
+        />
+
         {hasVideo ? (
           <section className="page-section anchor-offset" id={copy.sections.video.id}>
             <SectionHeading
@@ -419,7 +487,7 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
                 <div className="mdx-video__frame">
                   <iframe
                     src={product.videoUrl}
-                    title={`${product.name} video demo`}
+                    title={localizeLanguageSignalText(locale, `${product.name} video demo`)}
                     loading="lazy"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerPolicy="strict-origin-when-cross-origin"
@@ -431,95 +499,30 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
           </section>
         ) : null}
 
-        {isTranslator && translatorCopy ? (
-          <>
-            <ProductFeatureSpotlightsSection
-              id={translatorCopy.sections.featureSpotlights.id}
-              eyebrow={translatorCopy.sections.featureSpotlights.eyebrow}
-              title={translatorCopy.sections.featureSpotlights.title}
-              description={translatorCopy.sections.featureSpotlights.description}
-              items={product.featureModules ?? []}
-            />
-            <section className="page-section anchor-offset" id={translatorCopy.sections.comparisons.id}>
-              <SectionHeading
-                eyebrow={translatorCopy.sections.comparisons.eyebrow}
-                title={translatorCopy.sections.comparisons.title}
-                description={translatorCopy.sections.comparisons.description}
-              />
-              <div className="resource-grid">
-                {product.compareLinks?.map((item) => (
-                  <ArticleCard
-                    key={item.href}
-                    title={item.title}
-                    description={item.description}
-                    href={item.href}
-                    meta={item.meta}
-                  />
-                ))}
-              </div>
-            </section>
-          </>
-        ) : (
-          <>
-            <NumberedCardGridSection
-              id={copy.sections.demoFocus.id}
-              className="page-section anchor-offset"
-              eyebrow={copy.sections.demoFocus.eyebrow}
-              title={copy.sections.demoFocus.title}
-              description={copy.sections.demoFocus.description}
-              items={product.demoHighlights.map((item) => ({description: item}))}
-            />
+        <InteractiveDemoExplorer
+          eyebrow={copy.sections.interactiveDemo.eyebrow}
+          title={copy.sections.interactiveDemo.title}
+          description={copy.sections.interactiveDemo.description}
+          items={product.demoScenarios}
+        />
 
-            <InteractiveDemoExplorer
-              eyebrow={copy.sections.interactiveDemo.eyebrow}
-              title={copy.sections.interactiveDemo.title}
-              description={copy.sections.interactiveDemo.description}
-              items={product.demoScenarios}
-            />
+        <DemoShowcaseSection
+          eyebrow={copy.sections.livePreview.eyebrow}
+          title={copy.sections.livePreview.title}
+          description={copy.sections.livePreview.description}
+          items={product.demoScenarios.slice(0, 2)}
+        />
 
-            <DemoShowcaseSection
-              eyebrow={copy.sections.livePreview.eyebrow}
-              title={copy.sections.livePreview.title}
-              description={copy.sections.livePreview.description}
-              items={product.demoScenarios.slice(0, 2)}
-            />
-
-            <section className="page-section anchor-offset" id={copy.sections.audienceFit.id}>
-              <SectionHeading
-                eyebrow={copy.sections.audienceFit.eyebrow}
-                title={copy.sections.audienceFit.title}
-                description={copy.sections.audienceFit.description}
-              />
-              <ChecklistCardGrid
-                cards={[
-                  {title: copy.sections.audienceFit.targetUsersTitle, items: product.targetUsers},
-                  {title: copy.sections.audienceFit.benefitsTitle, items: product.benefits},
-                ]}
-              />
-            </section>
-
-            <SimpleCardGridSection
-              id={copy.sections.features.id}
-              className="page-section anchor-offset"
-              eyebrow={copy.sections.features.eyebrow}
-              title={copy.sections.features.title}
-              description={copy.sections.features.description}
-              items={product.features.map((feature) => ({
-                title: feature.title,
-                description: feature.description,
-              }))}
-            />
-
-            <NumberedCardGridSection
-              id={copy.sections.workflow.id}
-              className="page-section anchor-offset"
-              eyebrow={copy.sections.workflow.eyebrow}
-              title={copy.sections.workflow.title}
-              description={copy.sections.workflow.description}
-              items={product.workflow.map((step) => ({description: step}))}
-            />
-          </>
-        )}
+        {hasCompareSection ? (
+          <ProductDifferentiatorsSection
+            id={compareCopy.id}
+            eyebrow={compareCopy.eyebrow}
+            title={compareCopy.title}
+            description={compareCopy.description}
+            items={product.differentiators}
+            compareLinks={product.compareLinks}
+          />
+        ) : null}
 
         <section className="page-section anchor-offset" id={copy.sections.resources.id}>
           <SectionHeading

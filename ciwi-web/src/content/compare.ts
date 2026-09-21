@@ -1,4 +1,5 @@
 import type {Locale} from "@/lib/i18n";
+import {localizeLanguageSignalText} from "@/lib/localized-language-signal";
 
 export type CompareMetric = {
   label: string;
@@ -186,6 +187,7 @@ function getAdditionalMetrics(slug: string, locale: Locale): CompareMetric[] {
 function withAdditionalScoreMetrics(items: CompareItem[], locale: Locale): CompareItem[] {
   return items.map((item) => ({
     ...item,
+    title: localizeLanguageSignalText(locale, item.title),
     scoreMatrix: [...item.scoreMatrix, ...getAdditionalMetrics(item.slug, locale)],
   }));
 }

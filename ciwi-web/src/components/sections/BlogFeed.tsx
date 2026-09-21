@@ -7,6 +7,7 @@ import {useLocale} from "@/components/providers/LocaleProvider";
 import type {BlogPost} from "@/content/blog";
 import {getUiCopy} from "@/content/ui-copy";
 import {ContentIndexHero} from "@/components/sections/ContentIndexHero";
+import {localizeLanguageSignalList, localizeLanguageSignalText} from "@/lib/localized-language-signal";
 
 const POSTS_PER_PAGE = 2;
 
@@ -36,9 +37,13 @@ export function BlogFeed({posts, title, description}: BlogFeedProps) {
           <ContentIndexCard
             key={post.slug}
             href={post.href}
-            title={post.title}
-            description={post.description}
-            meta={[post.publishedAt, post.readingTime, ...post.tags]}
+            title={localizeLanguageSignalText(locale, post.title)}
+            description={localizeLanguageSignalText(locale, post.description)}
+            meta={[
+              post.publishedAt,
+              localizeLanguageSignalText(locale, post.readingTime),
+              ...localizeLanguageSignalList(locale, post.tags),
+            ]}
             ctaLabel={uiCopy.blog.readArticleLabel}
             titleLevel="h2"
             variant="bordered"

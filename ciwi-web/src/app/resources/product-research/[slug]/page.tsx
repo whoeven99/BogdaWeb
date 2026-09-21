@@ -9,6 +9,7 @@ import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getAvailableProductResearchLocales, getProductResearchArticleMap, getProductResearchWorkflowArticles, type ProductResearchArticle} from "@/content/product-research";
 import {getToolReviewHrefMap} from "@/content/tool-reviews";
 import {getRequestLocale} from "@/lib/i18n-server";
+import {localizeLanguageSignalFields} from "@/lib/localized-language-signal";
 import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildFaqSchema, buildTechArticleSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 
@@ -183,28 +184,29 @@ function getPageCopy(locale: "en" | "zh-cn") {
 }
 
 function buildStructuredData(locale: "en" | "zh-cn", article: {title: string; description: string; href: string; publishedAt: string; keywords: string[]; faq: {question: string; answer: string}[]}) {
+  const localizedArticle = localizeLanguageSignalFields(locale, article);
   const pageUrl = toAbsoluteLocalizedUrl(locale, article.href);
 
   return buildGraphSchema([
     buildBreadcrumbSchema([
-      {name: "Home", item: siteUrl},
+      {name: locale === "zh-cn" ? "首页" : "Home", item: siteUrl},
       {name: locale === "zh-cn" ? "Shopify 选品" : "Product Research", item: toAbsoluteLocalizedUrl(locale, "/resources/product-research")},
-      {name: article.title, item: pageUrl},
+      {name: localizedArticle.title, item: pageUrl},
     ]),
     buildWebPageSchema({
       url: pageUrl,
-      name: article.title,
-      description: article.description,
-      keywords: article.keywords,
+      name: localizedArticle.title,
+      description: localizedArticle.description,
+      keywords: localizedArticle.keywords,
     }),
     buildTechArticleSchema({
       url: pageUrl,
-      headline: article.title,
-      description: article.description,
-      datePublished: article.publishedAt,
-      keywords: article.keywords,
+      headline: localizedArticle.title,
+      description: localizedArticle.description,
+      datePublished: localizedArticle.publishedAt,
+      keywords: localizedArticle.keywords,
     }),
-    buildFaqSchema(article.faq),
+    buildFaqSchema(localizedArticle.faq),
   ]);
 }
 
@@ -259,7 +261,8 @@ export function generateStaticParams() {
 export async function generateMetadata({params}: ProductResearchArticlePageProps) {
   const locale = await getRequestLocale();
   const {slug} = await params;
-  const article = getProductResearchArticleMap(locale)[slug];
+  const rawArticle = getProductResearchArticleMap(locale)[slug];
+  const article = rawArticle ? localizeLanguageSignalFields(locale, rawArticle) : rawArticle;
   const copy = getPageCopy(locale);
 
   if (!article || article.stage === "overview") {
@@ -284,7 +287,8 @@ export async function generateMetadata({params}: ProductResearchArticlePageProps
 export default async function ProductResearchArticlePage({params}: ProductResearchArticlePageProps) {
   const locale = await getRequestLocale();
   const {slug} = await params;
-  const article = getProductResearchArticleMap(locale)[slug];
+  const rawArticle = getProductResearchArticleMap(locale)[slug];
+  const article = rawArticle ? localizeLanguageSignalFields(locale, rawArticle) : rawArticle;
 
   if (!article || article.stage === "overview") {
     notFound();
@@ -294,12 +298,12 @@ export default async function ProductResearchArticlePage({params}: ProductResear
   const reviewHrefMap = getToolReviewHrefMap(locale);
   const structuredData = buildStructuredData(locale, article);
   const narrative = buildProductResearchNarrative({locale, article});
-  const linkedRecommendations = article.recommendations
+  const linkedRecommendations = localizeLanguageSignalFields(locale, article.recommendations
     .map((item) => ({
       ...item,
       href: resolveProductResearchRecommendationHref(locale, item.title),
     }))
-    .filter((item): item is LinkedProductResearchRecommendation => Boolean(item.href) && item.href !== article.href);
+    .filter((item): item is LinkedProductResearchRecommendation => Boolean(item.href) && item.href !== article.href));
   const tocItems = [
     {href: "#overview", label: copy.sections.overview.title},
     {href: "#tools", label: copy.sections.tools.title},

@@ -19,6 +19,7 @@ import {getAvailableLocalizationGuideLocales, getLocalizationGuideMap, getLocali
 import {getUiCopy} from "@/content/ui-copy";
 import {localizeHref} from "@/lib/i18n";
 import {getRequestLocale} from "@/lib/i18n-server";
+import {localizeLanguageSignalFields} from "@/lib/localized-language-signal";
 import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildFaqSchema, buildTechArticleSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 
@@ -506,6 +507,7 @@ function buildGuideStructuredData(
   locale: "en" | "zh-cn",
   guide: {title: string; description: string; href: string; publishedAt: string; keywords: string[]; faq: {question: string; answer: string}[]}
 ) {
+  const localizedGuide = localizeLanguageSignalFields(locale, guide);
   const pageUrl = toAbsoluteLocalizedUrl(locale, guide.href);
   const author = getAuthorBySlug(guide.href);
 
@@ -513,25 +515,25 @@ function buildGuideStructuredData(
     pageUrl,
     structuredData: buildGraphSchema([
       buildBreadcrumbSchema([
-        {name: "Home", item: siteUrl},
+        {name: locale === "zh-cn" ? "首页" : "Home", item: siteUrl},
         {name: locale === "zh-cn" ? "本地化与翻译指南" : "Localization Guides", item: toAbsoluteLocalizedUrl(locale, "/guides")},
-        {name: guide.title, item: pageUrl},
+        {name: localizedGuide.title, item: pageUrl},
       ]),
       buildWebPageSchema({
         url: pageUrl,
-        name: guide.title,
-        description: guide.description,
-        keywords: guide.keywords,
+        name: localizedGuide.title,
+        description: localizedGuide.description,
+        keywords: localizedGuide.keywords,
       }),
       buildTechArticleSchema({
         url: pageUrl,
-        headline: guide.title,
-        description: guide.description,
-        datePublished: guide.publishedAt,
-        keywords: guide.keywords,
+        headline: localizedGuide.title,
+        description: localizedGuide.description,
+        datePublished: localizedGuide.publishedAt,
+        keywords: localizedGuide.keywords,
         author: {name: author.name, jobTitle: author.role[locale], url: toAbsoluteLocalizedUrl(locale, `/authors/${author.id}`)},
       }),
-      buildFaqSchema(guide.faq),
+      buildFaqSchema(localizedGuide.faq),
     ]),
   };
 }
@@ -1384,13 +1386,14 @@ export async function generateMetadata({params}: GuideDetailPageProps) {
     return buildPageMetadata({title: merchantGuide.page.title, description: merchantGuide.page.description, path: targetUrl(merchantGuide), locale, supportedLocales: ["en"]});
   }
   const availableLocales = [...new Set([...getAvailableLocalizationGuideLocales(slug), ...getAvailableFunctionScenarioGuideLocales(slug)])];
-  const primaryLocale = availableLocales[0] ?? "en";
+  const primaryLocale = availableLocales.includes(locale) ? locale : (availableLocales[0] ?? "en");
   const localizationGuide = getLocalizationGuideMap(primaryLocale)[slug];
   const functionScenarioGuide = getFunctionScenarioGuideMap(primaryLocale)[slug];
   const localizationCopy = getLocalizationGuidePageCopy(locale);
   const guide = localizationGuide ?? functionScenarioGuide;
+  const localizedGuide = guide ? localizeLanguageSignalFields(locale, guide) : guide;
 
-  if (!guide) {
+  if (!localizedGuide) {
     return buildPageMetadata({
       title: localizationCopy.notFound.title,
       description: localizationCopy.notFound.description,
@@ -1401,9 +1404,9 @@ export async function generateMetadata({params}: GuideDetailPageProps) {
   }
 
   return buildPageMetadata({
-    title: guide.title,
-    description: guide.description,
-    path: guide.href,
+    title: localizedGuide.title,
+    description: localizedGuide.description,
+    path: localizedGuide.href,
     locale,
     supportedLocales: availableLocales,
   });
@@ -1432,15 +1435,17 @@ export default async function GuideDetailPage({params}: GuideDetailPageProps) {
   }
 
   const uiCopy = getUiCopy(locale);
-  const localizationPool = getLocalizationGuides(locale);
-  const functionScenarioPool = getFunctionScenarioGuides(locale);
+  const localizationPool = localizeLanguageSignalFields(locale, getLocalizationGuides(locale));
+  const functionScenarioPool = localizeLanguageSignalFields(locale, getFunctionScenarioGuides(locale));
+  const localizedLocalizationGuide = localizationGuide ? localizeLanguageSignalFields(locale, localizationGuide) : localizationGuide;
+  const localizedFunctionScenarioGuide = functionScenarioGuide ? localizeLanguageSignalFields(locale, functionScenarioGuide) : functionScenarioGuide;
 
-  if (localizationGuide) {
-    return renderLocalizationGuidePage(locale, localizationGuide, uiCopy, localizationPool, functionScenarioPool);
+  if (localizedLocalizationGuide) {
+    return renderLocalizationGuidePage(locale, localizedLocalizationGuide, uiCopy, localizationPool, functionScenarioPool);
   }
 
-  if (functionScenarioGuide) {
-    return renderFunctionScenarioGuidePage(locale, functionScenarioGuide, uiCopy, functionScenarioPool, localizationPool);
+  if (localizedFunctionScenarioGuide) {
+    return renderFunctionScenarioGuidePage(locale, localizedFunctionScenarioGuide, uiCopy, functionScenarioPool, localizationPool);
   }
 
   notFound();

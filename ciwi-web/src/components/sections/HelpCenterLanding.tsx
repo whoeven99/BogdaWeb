@@ -7,6 +7,7 @@ import {ContentIndexHero} from "@/components/sections/ContentIndexHero";
 import type {HelpCenterDoc} from "@/content/help-center";
 import {getUiCopy} from "@/content/ui-copy";
 import type {Locale} from "@/lib/i18n";
+import {localizeLanguageSignalList, localizeLanguageSignalText} from "@/lib/localized-language-signal";
 
 type HelpCenterLandingProps = {
   docs: HelpCenterDoc[];
@@ -43,8 +44,8 @@ function buildHelpCenterLandingNarrative({
   topicGroups: TopicGroup[];
   featuredDocs: HelpCenterDoc[];
 }) {
-  const topicLabels = topicGroups.slice(0, 4).map((group) => group.label);
-  const featuredTitles = featuredDocs.slice(0, 3).map((doc) => doc.title);
+  const topicLabels = topicGroups.slice(0, 4).map((group) => localizeLanguageSignalText(locale, group.label));
+  const featuredTitles = featuredDocs.slice(0, 3).map((doc) => localizeLanguageSignalText(locale, doc.title));
 
   if (locale === "zh-cn") {
     return [
@@ -160,9 +161,9 @@ export function HelpCenterLanding({docs, featuredDocs, locale, eyebrow}: HelpCen
               <ContentIndexCard
                 key={doc.entryId}
                 href={doc.href}
-                title={doc.title}
-                description={doc.description}
-                meta={doc.meta}
+                title={localizeLanguageSignalText(locale, doc.title)}
+                description={localizeLanguageSignalText(locale, doc.description)}
+                meta={localizeLanguageSignalList(locale, doc.meta)}
                 ctaLabel={uiCopy.docs.openArticleLabel}
               />
             ))}
@@ -218,7 +219,7 @@ export function HelpCenterLanding({docs, featuredDocs, locale, eyebrow}: HelpCen
                   ].join(" ")}
                   onClick={() => setActiveTopic(group.key)}
                 >
-                  {group.label}
+                  {localizeLanguageSignalText(locale, group.label)}
                 </button>
               ))}
             </div>
@@ -234,7 +235,9 @@ export function HelpCenterLanding({docs, featuredDocs, locale, eyebrow}: HelpCen
               {filteredGroups.map((group) => (
                 <section key={group.key} className="space-y-5">
                   <header className="flex flex-col gap-3 border-b border-slate-200 pb-5 sm:flex-row sm:items-center sm:justify-between">
-                    <h3 className="text-2xl font-semibold tracking-[-0.03em] text-slate-950">{group.label}</h3>
+                    <h3 className="text-2xl font-semibold tracking-[-0.03em] text-slate-950">
+                      {localizeLanguageSignalText(locale, group.label)}
+                    </h3>
                     <span className="text-sm text-slate-500">
                       {group.docs.length} {uiCopy.docs.articleCountLabel}
                     </span>
@@ -245,9 +248,9 @@ export function HelpCenterLanding({docs, featuredDocs, locale, eyebrow}: HelpCen
                       <ContentIndexCard
                         key={doc.entryId}
                         href={doc.href}
-                        title={doc.title}
-                        description={doc.description}
-                        meta={[...doc.meta, doc.readingTime]}
+                        title={localizeLanguageSignalText(locale, doc.title)}
+                        description={localizeLanguageSignalText(locale, doc.description)}
+                        meta={[...localizeLanguageSignalList(locale, doc.meta), localizeLanguageSignalText(locale, doc.readingTime)]}
                         ctaLabel={uiCopy.docs.openArticleLabel}
                         variant="bordered"
                       />
