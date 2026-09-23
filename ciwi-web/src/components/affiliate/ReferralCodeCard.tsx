@@ -6,12 +6,17 @@ import type {AffiliateCopy, AffiliateProduct} from "@/content/affiliate";
 import {buildReferralLink, formatPercent} from "@/lib/affiliate";
 
 type ReferralCodeCardProps = {
-  code: string;
+  translatorCode: string;
+  sparkCode: string;
   products: AffiliateProduct[];
   copy: AffiliateCopy["dashboard"]["referralCard"];
 };
 
-export function ReferralCodeCard({code, products, copy}: ReferralCodeCardProps) {
+function codeForProduct(productSlug: string, translatorCode: string, sparkCode: string) {
+  return productSlug === "spark-analytics-agent" ? sparkCode : translatorCode;
+}
+
+export function ReferralCodeCard({translatorCode, sparkCode, products, copy}: ReferralCodeCardProps) {
   const [copied, setCopied] = useState<string | null>(null);
   const [showUsage, setShowUsage] = useState(false);
 
@@ -25,8 +30,8 @@ export function ReferralCodeCard({code, products, copy}: ReferralCodeCardProps) 
     }
   }
 
-  function handleCopyCode() {
-    void copyText(code, "code");
+  function handleCopyCode(code: string) {
+    void copyText(code, code);
     setShowUsage(true);
   }
 
@@ -39,19 +44,10 @@ export function ReferralCodeCard({code, products, copy}: ReferralCodeCardProps) 
         </div>
 
         <div className="referral-code-card__field">
-          <span className="lead-form__label">{copy.codeLabel}</span>
-          <div className="referral-code-card__row">
-            <code className="referral-code-card__code">{code}</code>
-            <button type="button" className="button button--ghost" onClick={handleCopyCode}>
-              {copied === "code" ? copy.copiedLabel : copy.copyCodeLabel}
-            </button>
-          </div>
-        </div>
-
-        <div className="referral-code-card__field">
           <span className="lead-form__label">{copy.linkLabel}</span>
           <div className="referral-link-list">
             {products.map((product) => {
+              const code = codeForProduct(product.slug, translatorCode, sparkCode);
               const link = buildReferralLink(code, product.slug);
 
               return (
@@ -61,6 +57,12 @@ export function ReferralCodeCard({code, products, copy}: ReferralCodeCardProps) 
                     <span className="pill">
                       {copy.rateLabel}: {formatPercent(product.rate)}
                     </span>
+                  </div>
+                  <div className="referral-code-card__row">
+                    <code className="referral-code-card__code">{code}</code>
+                    <button type="button" className="button button--ghost" onClick={() => handleCopyCode(code)}>
+                      {copied === code ? copy.copiedLabel : copy.copyCodeLabel}
+                    </button>
                   </div>
                   <div className="referral-code-card__row">
                     <code className="referral-code-card__code referral-code-card__code--link">{link}</code>

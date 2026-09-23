@@ -1,10 +1,11 @@
-import type {AffiliateAccount, ProgressStats} from "@/content/affiliate";
+import type {AffiliateAccount, ProgressStats, ReferralRecord} from "@/content/affiliate";
 
 type AffiliateApiResponse = {
   ok?: boolean;
   message?: string;
   account?: AffiliateAccount;
   stats?: ProgressStats;
+  referrals?: ReferralRecord[];
 };
 
 export const emptyAffiliateStats: ProgressStats = {
@@ -83,6 +84,18 @@ export function logoutAffiliateAccount() {
 export function generateAffiliateReferral() {
   return requestAccount("/api/affiliate/referral/", {
     method: "POST",
+  });
+}
+
+export function fetchAffiliateReferrals() {
+  return fetch("/api/affiliate/referrals/", {credentials: "same-origin"}).then(async (response) => {
+    const payload = await parseResponse(response);
+
+    if (!response.ok || !payload.ok || !payload.referrals) {
+      return [] as ReferralRecord[];
+    }
+
+    return payload.referrals;
   });
 }
 

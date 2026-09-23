@@ -30,6 +30,7 @@ export type AffiliateAccount = {
   name: string;
   email: string;
   referralCode: string | null;
+  sparkReferralCode: string | null;
   status: "active" | "pending";
   joinedAt: string;
 };
@@ -311,7 +312,7 @@ const affiliateCopy = {
       logoutLabel: "Sign out",
       referralCard: {
         title: "Your referral code",
-        description: "One code, one link per product. Generate your code once, then share the matching link for the product you promote.",
+        description: "Generate once to get a CIWI- code for the translator and a SPARK- code for Spark. Share the matching product link.",
         emptyState: "You haven't generated your referral code yet.",
         generateLabel: "Generate referral code",
         codeLabel: "Referral code",
@@ -459,7 +460,7 @@ const affiliateCopy = {
       logoutLabel: "退出登录",
       referralCard: {
         title: "你的推广码",
-        description: "一个推广码，对应每个产品的推广链接。生成一次，即可分享对应产品的链接。",
+        description: "生成一次，即可得到翻译的 CIWI- 推广码和 Spark 的 SPARK- 推广码，再分享对应产品的链接。",
         emptyState: "你还没有生成推广码。",
         generateLabel: "生成推广码",
         codeLabel: "推广码",

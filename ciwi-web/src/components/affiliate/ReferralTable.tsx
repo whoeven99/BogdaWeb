@@ -36,7 +36,7 @@ export function ReferralTable({referrals, products, copy}: ReferralTableProps) {
             <tbody>
               {referrals.map((referral) => (
                 <tr key={referral.id}>
-                  <td>{referral.email}</td>
+                  <td>{referral.email || "—"}</td>
                   <td>{referral.storeId ?? "—"}</td>
                   <td>{productName(referral.productSlug)}</td>
                   <td>{referral.installed ? copy.yes : copy.no}</td>

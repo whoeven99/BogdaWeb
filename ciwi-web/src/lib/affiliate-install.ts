@@ -35,3 +35,38 @@ export function buildShopifyInstallUrl(handle: string, clientId: string) {
   target.searchParams.set("client_id", clientId);
   return target.toString();
 }
+
+const DEFAULT_TRANSLATOR_APP_URL = "https://typescriptfrontendprod.onrender.com";
+const DEFAULT_SPARK_APP_URL = "https://spark-prod.onrender.com";
+
+function readTranslatorAppUrl() {
+  return (
+    process.env.ENVIRONMENT_URL?.trim() ||
+    process.env.TRANSLATOR_APP_URL?.trim() ||
+    DEFAULT_TRANSLATOR_APP_URL
+  );
+}
+
+function readSparkAppUrl() {
+  return process.env.SPARK_APP_URL?.trim() || DEFAULT_SPARK_APP_URL;
+}
+
+export function buildAppReferralRedirect(product: string, code: string, handle: string) {
+  const configured =
+    product === "translator"
+      ? readTranslatorAppUrl()
+      : product === "spark-analytics-agent"
+        ? readSparkAppUrl()
+        : "";
+  const base = configured.trim().replace(/\/$/, "");
+
+  if (!base || !code.trim()) {
+    return "";
+  }
+
+  const target = new URL(base);
+  target.pathname = `/r/${encodeURIComponent(code.trim())}`;
+  target.search = "";
+  target.searchParams.set("shop", handle);
+  return target.toString();
+}
