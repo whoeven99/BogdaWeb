@@ -24,11 +24,11 @@ export function getAffiliateProductDb(product: AffiliateProductDb): Client {
 
   const credentials =
     product === "translator"
-      ? readCredentials("TURSO_ADMIN_DATABASE_URL", "TURSO_ADMIN_AUTH_TOKEN")
+      ? readCredentials("TURSO_TSF_DATABASE_URL", "TURSO_TSF_AUTH_TOKEN")
       : readCredentials("TURSO_SPARK_DATABASE_URL", "TURSO_SPARK_AUTH_TOKEN");
 
   if (!credentials) {
-    throw new Error(product === "translator" ? "TURSO_ADMIN 未配置" : "TURSO_SPARK 未配置");
+    throw new Error(product === "translator" ? "TURSO_TSF 未配置" : "TURSO_SPARK 未配置");
   }
 
   const client = createClient(credentials);
