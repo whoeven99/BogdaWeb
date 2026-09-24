@@ -161,15 +161,15 @@ async function main() {
     }
   }
 
-  const url = process.env.TURSO_DATABASE_URL;
-  const authToken = process.env.TURSO_AUTH_TOKEN;
+  const url = process.env.TURSO_ADMIN_DATABASE_URL;
+  const authToken = process.env.TURSO_ADMIN_AUTH_TOKEN;
 
   if (!url?.startsWith("libsql://")) {
-    throw new Error("请设置有效的 TURSO_DATABASE_URL，例如 libsql://xxx.turso.io");
+    throw new Error("请设置有效的 TURSO_ADMIN_DATABASE_URL，例如 libsql://xxx.turso.io");
   }
 
   if (!authToken) {
-    throw new Error("请设置 TURSO_AUTH_TOKEN");
+    throw new Error("请设置 TURSO_ADMIN_AUTH_TOKEN");
   }
 
   const client = createClient({url, authToken});

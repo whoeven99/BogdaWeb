@@ -146,8 +146,6 @@ Affiliate 账号存在独立的 Turso 库，运行时用 Prisma 6 + `@prisma/ada
 
 ```text
 DATABASE_URL="file:./dev.db"
-TURSO_DATABASE_URL="libsql://your-db.turso.io"
-TURSO_AUTH_TOKEN=""
 TURSO_ADMIN_DATABASE_URL="libsql://translator-db.turso.io"
 TURSO_ADMIN_AUTH_TOKEN=""
 TURSO_SPARK_DATABASE_URL="libsql://spark-db.turso.io"
@@ -160,7 +158,7 @@ SHOPIFY_TRANSLATOR_API_KEY="fb9fc15cbec02bd735e2a5b491cf8409"
 SHOPIFY_SPARK_API_KEY="d68a7533dbbe676af335f27d01d87a12"
 ```
 
-`DATABASE_URL` 只给 Prisma CLI 用。联盟账号运行时读 `TURSO_*`。翻译邀请码读 `TURSO_ADMIN_*`，Spark 推荐码读 `TURSO_SPARK_*`。翻译安装跳转先读 `ENVIRONMENT_URL`（测试 `https://typescriptfrontend.onrender.com`，正式 `https://typescriptfrontendprod.onrender.com`），没有再读 `TRANSLATOR_APP_URL`，都没有则用正式地址。Spark 安装跳转读 `SPARK_APP_URL`（测试 `https://aiassistant-wi7b.onrender.com`，正式 `https://spark-prod.onrender.com`），没有则用正式地址。
+`DATABASE_URL` 只给 Prisma CLI 用。联盟账号和翻译邀请码运行时都读 `TURSO_ADMIN_*`，Spark 推荐码读 `TURSO_SPARK_*`。翻译安装跳转先读 `ENVIRONMENT_URL`（测试 `https://typescriptfrontend.onrender.com`，正式 `https://typescriptfrontendprod.onrender.com`），没有再读 `TRANSLATOR_APP_URL`，都没有则用正式地址。Spark 安装跳转读 `SPARK_APP_URL`（测试 `https://aiassistant-wi7b.onrender.com`，正式 `https://spark-prod.onrender.com`），没有则用正式地址。
 
 ```bash
 npm run prisma:generate
@@ -199,8 +197,6 @@ docker run --rm -p 9000:9000 ciwi-web
 NODE_ENV=production
 PORT=9000
 HOSTNAME=0.0.0.0
-TURSO_DATABASE_URL=libsql://your-db.turso.io
-TURSO_AUTH_TOKEN=
 TURSO_ADMIN_DATABASE_URL=libsql://translator-db.turso.io
 TURSO_ADMIN_AUTH_TOKEN=
 TURSO_SPARK_DATABASE_URL=libsql://spark-db.turso.io
