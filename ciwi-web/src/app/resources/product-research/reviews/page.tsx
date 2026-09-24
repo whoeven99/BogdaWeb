@@ -59,7 +59,7 @@ export default async function ToolReviewsIndexPage() {
   const pageUrl = toAbsoluteLocalizedUrl(locale, "/resources/product-research/reviews");
   const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
-      {name: "Home", item: siteUrl},
+      {name: locale === "zh-cn" ? "首页" : "Home", item: siteUrl},
       {name: locale === "zh-cn" ? "Shopify 选品" : "Product Research", item: toAbsoluteLocalizedUrl(locale, "/resources/product-research")},
       {name: copy.structuredData.name, item: pageUrl},
     ]),

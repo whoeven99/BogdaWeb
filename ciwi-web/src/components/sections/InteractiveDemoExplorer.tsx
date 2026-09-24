@@ -1,6 +1,6 @@
 "use client";
 
-import {useEffect, useMemo, useState} from "react";
+import {useEffect, useMemo, useState, type ReactNode} from "react";
 
 import {SectionHeading} from "@/components/ui/SectionHeading";
 
@@ -22,8 +22,10 @@ type DemoScenario = {
 type InteractiveDemoExplorerProps = {
   eyebrow?: string;
   title: string;
-  description: string;
+  description?: string;
   items: DemoScenario[];
+  className?: string;
+  cta?: ReactNode;
 };
 
 export function InteractiveDemoExplorer({
@@ -31,6 +33,8 @@ export function InteractiveDemoExplorer({
   title,
   description,
   items,
+  className = "page-section",
+  cta,
 }: InteractiveDemoExplorerProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [activeVariantIndex, setActiveVariantIndex] = useState(0);
@@ -50,7 +54,7 @@ export function InteractiveDemoExplorer({
   const note = activeVariant?.note ?? activeItem.note;
 
   return (
-    <section className="page-section" id="demo">
+    <section className={className} id="demo">
       <SectionHeading eyebrow={eyebrow} title={title} description={description} />
       <div className="detail-grid">
         <div className="surface-card section-stack">
@@ -86,7 +90,6 @@ export function InteractiveDemoExplorer({
               </div>
             </div>
           ) : null}
-          <p className="quote">{note}</p>
         </div>
         <div className="surface-card section-stack">
           <div className="demo-stack">
@@ -99,8 +102,10 @@ export function InteractiveDemoExplorer({
               <p>{secondaryText}</p>
             </div>
           </div>
+          <p className="quote product-demo-explorer__note">{note}</p>
         </div>
       </div>
+      {cta}
     </section>
   );
 }

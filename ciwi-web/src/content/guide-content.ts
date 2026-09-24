@@ -16,6 +16,29 @@ export function createLocalizedGuideContent<T extends SluggedContent>(collection
     return typeof value === "string" && /\[TODO\b/i.test(value);
   }
 
+  function hasLocaleContentSignal(item: T, locale: Locale) {
+    if (locale !== "zh-cn") {
+      return true;
+    }
+
+    const combined = [item.title, item.description, item.mainValue]
+      .filter((value): value is string => typeof value === "string" && value.trim().length > 0)
+      .join(" ");
+
+    const hanCount = (combined.match(/[\u3400-\u9fff]/g) ?? []).length;
+    const latinWordCount = (combined.match(/[A-Za-z]{3,}/g) ?? []).length;
+
+    if (hanCount === 0) {
+      return false;
+    }
+
+    if (hanCount < 8 && latinWordCount > hanCount * 2) {
+      return false;
+    }
+
+    return true;
+  }
+
   function isIndexable(item: T, locale: Locale) {
     if (item.status === "draft") {
       return false;
@@ -31,6 +54,10 @@ export function createLocalizedGuideContent<T extends SluggedContent>(collection
     }
 
     if (locale !== defaultLocale && item.sourceLocale && item.sourceLocale !== locale && item.translationStatus !== "reviewed" && item.translationStatus !== "manual") {
+      return false;
+    }
+
+    if (!hasLocaleContentSignal(item, locale)) {
       return false;
     }
 

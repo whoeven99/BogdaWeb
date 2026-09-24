@@ -23,6 +23,7 @@ import {
   buildHowToSchema,
   buildGraphSchema,
 } from "@/lib/seo/schema";
+import {localizeLanguageSignalFields, localizeLanguageSignalText} from "@/lib/localized-language-signal";
 import {notFound} from "next/navigation";
 
 export const dynamic = "force-dynamic";
@@ -272,25 +273,27 @@ function buildNarrativeParagraphs(
   steps: string[],
   locale: "en" | "zh-cn",
 ) {
+  const localizedCategory = localizeLanguageSignalText(locale, item.category);
+  const localizedScenarioDescription = localizeLanguageSignalText(locale, item.scenarioDescription);
   const firstStep = steps[0];
   const lastStep = steps[steps.length - 1];
   const faqCount = item.faqs.length;
 
   if (locale === "zh-cn") {
     return [
-      `${item.scenarioDescription} 这类需求通常不是单纯“问一个问题”就能解决，而是要把店铺现状、判断口径和最终交付结果一次性讲清楚，Spark 或其他 AI 助手才更容易给出可执行的方案。`,
+      `${localizedScenarioDescription} 这类需求通常不是单纯“问一个问题”就能解决，而是要把店铺现状、判断口径和最终交付结果一次性讲清楚，Spark 或其他 AI 助手才更容易给出可执行的方案。`,
       firstStep && lastStep
-        ? `本页给出的流程，会从「${firstStep}」一路推进到「${lastStep}」，核心目的是把 ${item.category} 主题下的常见判断步骤拆成可复用的执行顺序，而不是让团队每次从空白提示词重新开始。`
-        : `本页给出的流程会把 ${item.category} 主题下的常见判断步骤拆成可复用的执行顺序，减少团队每次从空白提示词重新开始的成本。`,
+        ? `本页给出的流程，会从「${firstStep}」一路推进到「${lastStep}」，核心目的是把 ${localizedCategory} 主题下的常见判断步骤拆成可复用的执行顺序，而不是让团队每次从空白提示词重新开始。`
+        : `本页给出的流程会把 ${localizedCategory} 主题下的常见判断步骤拆成可复用的执行顺序，减少团队每次从空白提示词重新开始的成本。`,
       `除了流程，本页还附带一段可直接复制的 AI Prompt，以及 ${faqCount} 个围绕输入准备、判断边界和常见误解的 FAQ，更适合在真正开始执行前先对齐前提。`,
     ];
   }
 
   return [
-    `${item.scenarioDescription} In practice, this kind of request is rarely solved by a single question. Teams usually need the business context, decision rules, and expected output clarified together before Spark or another AI assistant can return something operational.`,
+    `${localizedScenarioDescription} In practice, this kind of request is rarely solved by a single question. Teams usually need the business context, decision rules, and expected output clarified together before Spark or another AI assistant can return something operational.`,
     firstStep && lastStep
-      ? `The workflow on this page moves from "${firstStep}" to "${lastStep}" so the ${item.category} job becomes a reusable operating sequence instead of a blank-prompt exercise every time.`
-      : `The workflow on this page turns the ${item.category} job into a reusable operating sequence instead of a blank-prompt exercise every time.`,
+      ? `The workflow on this page moves from "${firstStep}" to "${lastStep}" so the ${localizedCategory} job becomes a reusable operating sequence instead of a blank-prompt exercise every time.`
+      : `The workflow on this page turns the ${localizedCategory} job into a reusable operating sequence instead of a blank-prompt exercise every time.`,
     `Alongside the workflow, the page includes a copyable AI prompt and ${faqCount} FAQs covering input prep, decision boundaries, and common misunderstandings before the team actually runs the task.`,
   ];
 }
@@ -313,8 +316,10 @@ export async function generateMetadata({params}: SparkPlaybookKeywordDetailPageP
   const locale = await getRequestLocale();
   const {slug: productSlug, keywordSlug} = await params;
   const copy = getUiCopy(locale);
-  const product = getProductMap(locale)[productSlug];
-  const item = getKeywordUseCaseBySlug(locale, keywordSlug);
+  const rawProduct = getProductMap(locale)[productSlug];
+  const product = rawProduct ? localizeLanguageSignalFields(locale, rawProduct) : rawProduct;
+  const rawItem = getKeywordUseCaseBySlug(locale, keywordSlug);
+  const item = rawItem ? localizeLanguageSignalFields(locale, rawItem) : rawItem;
 
   if (!item || !product) {
     return buildPageMetadata({
@@ -338,8 +343,10 @@ export default async function SparkPlaybookKeywordDetailPage({params}: SparkPlay
   const locale = await getRequestLocale();
   const {slug: productSlug, keywordSlug} = await params;
   const copy = getUiCopy(locale);
-  const product = getProductMap(locale)[productSlug];
-  const item = getKeywordUseCaseBySlug(locale, keywordSlug);
+  const rawProduct = getProductMap(locale)[productSlug];
+  const product = rawProduct ? localizeLanguageSignalFields(locale, rawProduct) : rawProduct;
+  const rawItem = getKeywordUseCaseBySlug(locale, keywordSlug);
+  const item = rawItem ? localizeLanguageSignalFields(locale, rawItem) : rawItem;
 
   if (!product || !item) {
     notFound();
@@ -354,17 +361,20 @@ export default async function SparkPlaybookKeywordDetailPage({params}: SparkPlay
   const pageUrl = toAbsoluteLocalizedUrl(locale, keywordDetailHref(productSlug, keywordSlug));
   const playbookUrl = toAbsoluteLocalizedUrl(locale, playbookHref);
   const steps = splitHowToSteps(item.howToSolve);
+  const localizedTitle = localizeLanguageSignalText(locale, item.title);
+  const localizedScenarioDescription = localizeLanguageSignalText(locale, item.scenarioDescription);
+  const localizedCategory = localizeLanguageSignalText(locale, item.category);
   const howToSteps = steps.map((text, index) => ({
     name: `${copy.sections.workflow.stepLabel} ${index + 1}`,
     text,
   }));
-  const related = getRelatedKeywordUseCases(locale, keywordSlug, 6);
+  const related = localizeLanguageSignalFields(locale, getRelatedKeywordUseCases(locale, keywordSlug, 6));
   const formattedAiPrompt = formatAiPrompt(item.aiPrompt);
   const narrativeParagraphs = buildNarrativeParagraphs(item, steps, locale);
 
   const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
-      {name: "Home", item: toAbsoluteLocalizedUrl(locale, "/")},
+      {name: locale === "zh-cn" ? "首页" : "Home", item: toAbsoluteLocalizedUrl(locale, "/")},
       {
         name: locale === "zh-cn" ? "产品" : "Products",
         item: toAbsoluteLocalizedUrl(locale, "/products"),
@@ -382,23 +392,23 @@ export default async function SparkPlaybookKeywordDetailPage({params}: SparkPlay
         item: toAbsoluteLocalizedUrl(locale, INDEX_HREF),
       },
       {
-        name: item.category,
+        name: localizedCategory,
         item: toAbsoluteLocalizedUrl(
           locale,
           keywordCategoryHref(product.slug, locale, item.category),
         ),
       },
-      {name: item.title, item: pageUrl},
+      {name: localizedTitle, item: pageUrl},
     ]),
     buildWebPageSchema({
       url: pageUrl,
-      name: `${item.title} — ${item.keyword}`,
-      description: item.scenarioDescription || `${item.category}: ${item.title}`,
-      keywords: [item.keyword, item.category, "Shopify AI prompt", item.title, "Spark playbook"],
+      name: `${localizedTitle} — ${item.keyword}`,
+      description: localizedScenarioDescription || `${localizedCategory}: ${localizedTitle}`,
+      keywords: [item.keyword, localizedCategory, localizeLanguageSignalText(locale, "Shopify AI prompt"), localizedTitle, localizeLanguageSignalText(locale, "Spark playbook")],
     }),
     buildHowToSchema({
       url: pageUrl,
-      name: `${copy.sections.workflow.title}: ${item.title}`,
+      name: `${copy.sections.workflow.title}: ${localizedTitle}`,
       description: item.howToSolve,
       steps: howToSteps,
     }),
@@ -406,7 +416,7 @@ export default async function SparkPlaybookKeywordDetailPage({params}: SparkPlay
   ]);
 
   return (
-    <main>
+    <main className="keyword-detail-page">
       <PageContainer>
         <script
           type="application/ld+json"
@@ -421,17 +431,17 @@ export default async function SparkPlaybookKeywordDetailPage({params}: SparkPlay
                 {copy.hero.eyebrow} · {product.name}
               </div>
               <h1 className="mt-3 max-w-4xl text-3xl font-semibold tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-[42px] lg:leading-[1.08]">
-                {item.title}
+                {localizedTitle}
               </h1>
               <p className="mt-4 max-w-3xl text-[15px] leading-7 text-slate-600 sm:text-base">
-                {item.scenarioDescription}
+                {localizedScenarioDescription}
               </p>
               <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:max-w-2xl">
                 <div className="rounded-2xl border border-slate-200/80 bg-white/90 p-4">
                   <div className="text-xs font-medium uppercase tracking-[0.16em] text-slate-400">
                     {copy.hero.categoryLabel}
                   </div>
-                  <div className="mt-2 text-sm font-semibold text-slate-900">{item.category}</div>
+                  <div className="mt-2 text-sm font-semibold text-slate-900">{localizedCategory}</div>
                 </div>
                 <div className="rounded-2xl border border-slate-200/80 bg-white/90 p-4">
                   <div className="text-xs font-medium uppercase tracking-[0.16em] text-slate-400">
@@ -446,7 +456,7 @@ export default async function SparkPlaybookKeywordDetailPage({params}: SparkPlay
           </div>
         </section>
 
-        <section className="py-10 sm:py-12 lg:py-14" aria-label="Copyable AI prompt">
+        <section className="py-10 sm:py-12 lg:py-14" aria-label={locale === "zh-cn" ? "可复制的 AI 提示词" : "Copyable AI prompt"}>
           <div className="mx-auto max-w-5xl">
             <SectionHeading
               eyebrow={copy.sections.prompt.eyebrow}
@@ -512,12 +522,8 @@ export default async function SparkPlaybookKeywordDetailPage({params}: SparkPlay
               {howToSteps.map((step, index) => (
                 <article
                   key={index}
-                  className="grid gap-5 overflow-hidden rounded-[24px] border border-slate-200/80 bg-white/94 p-5 shadow-[0_14px_34px_-26px_rgba(15,23,42,0.2)] md:grid-cols-[minmax(0,280px)_minmax(0,1fr)] md:gap-7 md:p-6 lg:grid-cols-[minmax(0,320px)_minmax(0,1fr)]"
+                  className="rounded-xl border border-slate-200 bg-white p-5 md:p-6"
                 >
-                  <div
-                    className="mx-auto aspect-[5/4] w-full max-w-[280px] rounded-[18px] bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.14),transparent_34%),linear-gradient(135deg,rgba(241,245,249,0.95),rgba(255,255,255,0.98))] lg:max-w-[320px]"
-                    aria-hidden="true"
-                  />
                   <div className="flex flex-col justify-center">
                     <div className="text-sm font-medium text-slate-400">{`0${index + 1}`}</div>
                     <h3 className="mt-3 text-xl font-semibold tracking-[-0.03em] text-slate-950 sm:text-2xl">
@@ -551,9 +557,9 @@ export default async function SparkPlaybookKeywordDetailPage({params}: SparkPlay
                   <ContentIndexCard
                     key={candidate.slug}
                     href={keywordDetailHref(productSlug, candidate.slug)}
-                    title={candidate.title}
-                    description={candidate.scenarioDescription.slice(0, 140) + "…"}
-                    meta={[candidate.category, candidate.keyword]}
+                    title={localizeLanguageSignalText(locale, candidate.title)}
+                    description={localizeLanguageSignalText(locale, candidate.scenarioDescription).slice(0, 140) + "…"}
+                    meta={[localizeLanguageSignalText(locale, candidate.category), candidate.keyword]}
                     ctaLabel={copy.sections.related.ctaLabel}
                     titleLevel="h3"
                   />

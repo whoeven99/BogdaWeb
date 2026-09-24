@@ -41,7 +41,7 @@ export function ProductCard({
   const starsStyle = {width: ratingPercentage} as CSSProperties;
 
   return (
-    <article className="group flex h-full flex-col rounded-[24px] bg-white p-7 shadow-[0_18px_48px_-28px_rgba(15,23,42,0.16)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_24px_60px_-28px_rgba(15,23,42,0.2)] sm:p-8">
+    <article className="ui-editorial-card ui-editorial-card--product group">
       <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-100">
         <Image src={icon} alt={name} width={24} height={24} />
       </div>

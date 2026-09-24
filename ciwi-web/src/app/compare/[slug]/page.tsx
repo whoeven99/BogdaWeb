@@ -15,6 +15,7 @@ import {getBlogPosts} from "@/content/blog";
 import {getHelpCenterDocs} from "@/content/help-center";
 import {localizeHref} from "@/lib/i18n";
 import {getRequestLocale} from "@/lib/i18n-server";
+import {localizeLanguageSignalFields} from "@/lib/localized-language-signal";
 import {ciwiShopifyInstallUrl} from "@/lib/marketing-links";
 import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildFaqSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
@@ -1152,7 +1153,8 @@ export async function generateMetadata({params}: CompareDetailPageProps) {
   const locale = await getRequestLocale();
   const {slug} = await params;
   const canonicalSlug = getCanonicalCompareSlug(slug);
-  const data = getCompareMap(locale)[canonicalSlug];
+  const rawData = getCompareMap(locale)[canonicalSlug];
+  const data = rawData ? localizeLanguageSignalFields(locale, rawData) : rawData;
   const copy = getCompareDetailCopy(locale);
 
   if (!data) {
@@ -1176,7 +1178,8 @@ export default async function CompareDetailPage({params}: CompareDetailPageProps
   const locale = await getRequestLocale();
   const {slug} = await params;
   const canonicalSlug = getCanonicalCompareSlug(slug);
-  const data = getCompareMap(locale)[canonicalSlug];
+  const rawData = getCompareMap(locale)[canonicalSlug];
+  const data = rawData ? localizeLanguageSignalFields(locale, rawData) : rawData;
   const copy = getCompareDetailCopy(locale);
   const compares = getCompares(locale);
   const blogPosts = getBlogPosts(locale);
@@ -1191,7 +1194,10 @@ export default async function CompareDetailPage({params}: CompareDetailPageProps
   }
 
   const pageUrl = toAbsoluteLocalizedUrl(locale, `/compare/${data.slug}`);
-  const continueResourceItems = getContinueResourceItems(data, locale, compares, blogPosts, helpCenterDocs, copy);
+  const continueResourceItems = localizeLanguageSignalFields(
+    locale,
+    getContinueResourceItems(data, locale, compares, blogPosts, helpCenterDocs, copy),
+  );
   const allScores = [...data.summaryMetrics, ...data.scoreMatrix];
   const overallReview = buildOverallAssessment(data, locale);
   const scoreSummary = buildScoreSummary(data, locale);
@@ -1226,7 +1232,7 @@ export default async function CompareDetailPage({params}: CompareDetailPageProps
   });
   const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
-      {name: "Home", item: siteUrl},
+      {name: locale === "zh-cn" ? "首页" : "Home", item: siteUrl},
       {name: copy.breadcrumbLabel, item: toAbsoluteLocalizedUrl(locale, "/compare")},
       {name: data.title, item: pageUrl},
     ]),

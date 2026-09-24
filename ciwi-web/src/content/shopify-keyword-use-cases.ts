@@ -1,4 +1,5 @@
 import type {Locale} from "@/lib/i18n";
+import {localizeLanguageSignalFields} from "@/lib/localized-language-signal";
 
 import importedKeywordUseCases from "@/content/data/shopify_keyword_use_cases.json";
 
@@ -77,7 +78,7 @@ for (const record of rawRecords) {
 const EMPTY: KeywordUseCaseItem[] = [];
 
 export function getKeywordUseCases(locale: Locale): KeywordUseCaseItem[] {
-  return locale === "zh-cn" ? allKeywordUseCasesZh : allKeywordUseCasesEn;
+  return localizeLanguageSignalFields(locale, locale === "zh-cn" ? allKeywordUseCasesZh : allKeywordUseCasesEn);
 }
 
 export function getKeywordUseCaseMap(locale: Locale): Record<string, KeywordUseCaseItem> {

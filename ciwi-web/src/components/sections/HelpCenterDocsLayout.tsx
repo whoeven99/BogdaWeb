@@ -4,6 +4,7 @@ import type {HelpCenterDoc} from "@/content/help-center";
 import {getUiCopy} from "@/content/ui-copy";
 import type {Locale} from "@/lib/i18n";
 import {addSectionAnchors, extractSectionsFromHtml} from "@/lib/content/sections";
+import {localizeLanguageSignalList, localizeLanguageSignalText} from "@/lib/localized-language-signal";
 
 type HelpCenterDocsLayoutProps = {
   currentDoc: HelpCenterDoc;
@@ -21,6 +22,9 @@ export function HelpCenterDocsLayout({
   const uiCopy = getUiCopy(locale);
   const docsPerPage = 8;
   const currentTopic = currentDoc.meta[1] ?? currentDoc.category;
+  const localizedCurrentTopic = localizeLanguageSignalText(locale, currentTopic);
+  const localizedCurrentTitle = localizeLanguageSignalText(locale, currentDoc.title);
+  const localizedCurrentDescription = localizeLanguageSignalText(locale, currentDoc.description);
   const sections = extractSectionsFromHtml(currentDoc.contentHtml);
   const currentIndex = docs.findIndex((doc) => doc.slug === currentDoc.slug);
   const previousDoc = currentIndex > 0 ? docs[currentIndex - 1] : null;
@@ -60,13 +64,13 @@ export function HelpCenterDocsLayout({
 
     if (locale === "zh-cn") {
       return [
-        `这篇帮助文档属于「${currentTopic}」主题，当前主题下共收录 ${topicCount} 篇相关文档。它更适合作为具体操作入口，用来解决一个明确问题，而不是浏览式阅读。`,
+        `这篇帮助文档属于「${localizedCurrentTopic}」主题，当前主题下共收录 ${topicCount} 篇相关文档。它更适合作为具体操作入口，用来解决一个明确问题，而不是浏览式阅读。`,
         `本文包含 ${sectionCount} 个正文小节${relatedResourceCount > 0 ? `，并附带 ${relatedResourceCount} 个相关资源入口` : ""}。如果你是从搜索进入，先读完本页的步骤和限制条件，再根据左侧目录继续扩展到同主题文章会更高效。`,
       ];
     }
 
     return [
-      `This article sits under the "${currentTopic}" topic, which currently includes ${topicCount} related documents. It works best as a task-specific entry point for solving one concrete problem rather than as browse-only reading.`,
+      `This article sits under the "${localizedCurrentTopic}" topic, which currently includes ${topicCount} related documents. It works best as a task-specific entry point for solving one concrete problem rather than as browse-only reading.`,
       `The page includes ${sectionCount} main sections${relatedResourceCount > 0 ? ` and ${relatedResourceCount} related resource links` : ""}. If you arrived from search, the fastest path is usually to finish the steps and constraints on this page first, then use the left directory to expand into the adjacent docs under the same topic.`,
     ];
   })();
@@ -98,7 +102,7 @@ export function HelpCenterDocsLayout({
                       className={`tab-chip${isActive ? " tab-chip--active" : ""}`}
                       aria-current={isActive ? "true" : undefined}
                     >
-                      {topic}
+                      {localizeLanguageSignalText(locale, topic)}
                     </LocalizedLink>
                   );
                 })}
@@ -119,8 +123,8 @@ export function HelpCenterDocsLayout({
                         className={`docs-topic-link${isActive ? " docs-topic-link--active" : ""}`}
                         aria-current={isActive ? "page" : undefined}
                       >
-                        <span>{doc.title}</span>
-                        <small>{doc.readingTime}</small>
+                        <span>{localizeLanguageSignalText(locale, doc.title)}</span>
+                        <small>{localizeLanguageSignalText(locale, doc.readingTime)}</small>
                       </LocalizedLink>
                     );
                   })}
@@ -141,7 +145,7 @@ export function HelpCenterDocsLayout({
                     aria-current={isActive ? "page" : undefined}
                   >
                     <span className="docs-nav-link__index">{String(displayIndex + 1).padStart(2, "0")}</span>
-                    <span className="docs-nav-link__title">{doc.title}</span>
+                    <span className="docs-nav-link__title">{localizeLanguageSignalText(locale, doc.title)}</span>
                   </LocalizedLink>
                 );
               })}
@@ -188,16 +192,16 @@ export function HelpCenterDocsLayout({
 
         <article className="surface-card docs-article">
           <div className="article-meta">
-            {currentDoc.meta.map((item) => (
+            {localizeLanguageSignalList(locale, currentDoc.meta).map((item) => (
               <span key={item}>{item}</span>
             ))}
-            <span>{currentDoc.readingTime}</span>
+            <span>{localizeLanguageSignalText(locale, currentDoc.readingTime)}</span>
           </div>
 
           <header className="docs-article__header">
             <span className="section-heading__eyebrow">{eyebrow}</span>
-            <h1>{currentDoc.title}</h1>
-            <p className="quote">{currentDoc.description}</p>
+            <h1>{localizedCurrentTitle}</h1>
+            <p className="quote">{localizedCurrentDescription}</p>
           </header>
 
           <div className="mt-6 rounded-[24px] border border-slate-200/80 bg-slate-50/80 px-5 py-5 sm:px-6">
@@ -214,14 +218,14 @@ export function HelpCenterDocsLayout({
             {previousDoc ? (
               <LocalizedLink href={getDocHref(previousDoc)} className="docs-pagination__card">
                 <span className="docs-pagination__label">{uiCopy.docs.previousLabel}</span>
-                <strong>{previousDoc.title}</strong>
+                <strong>{localizeLanguageSignalText(locale, previousDoc.title)}</strong>
               </LocalizedLink>
             ) : <div />}
 
             {nextDoc ? (
               <LocalizedLink href={getDocHref(nextDoc)} className="docs-pagination__card docs-pagination__card--next">
                 <span className="docs-pagination__label">{uiCopy.docs.nextLabel}</span>
-                <strong>{nextDoc.title}</strong>
+                <strong>{localizeLanguageSignalText(locale, nextDoc.title)}</strong>
               </LocalizedLink>
             ) : <div />}
           </nav>

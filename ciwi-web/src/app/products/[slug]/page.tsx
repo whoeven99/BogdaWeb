@@ -1,13 +1,15 @@
 import {ArticleCard} from "@/components/cards/ArticleCard";
 import {UseCasePlaybookCard} from "@/components/cards/UseCasePlaybookCard";
-import {DemoShowcaseSection} from "@/components/sections/DemoShowcaseSection";
+import {ProductControlSection} from "@/components/sections/ProductControlSection";
+import {ProductDeepDiveSection} from "@/components/sections/ProductDeepDiveSection";
 import {InteractiveDemoExplorer} from "@/components/sections/InteractiveDemoExplorer";
-import {ChecklistCardGrid} from "@/components/sections/ChecklistCardGrid";
-import {NumberedCardGridSection} from "@/components/sections/NumberedCardGridSection";
-import {ProductAnchorNav} from "@/components/sections/ProductAnchorNav";
+import {ProductDifferentiatorsSection} from "@/components/sections/ProductDifferentiatorsSection";
 import {ProductFeatureSpotlightsSection} from "@/components/sections/ProductFeatureSpotlightsSection";
-import {SimpleCardGridSection} from "@/components/sections/SimpleCardGridSection";
-import {StackedInfoPanel} from "@/components/sections/StackedInfoPanel";
+import {ProductFeatureHubSection} from "@/components/sections/ProductFeatureHubSection";
+import {ProductHowItWorksSection} from "@/components/sections/ProductHowItWorksSection";
+import {ProductProofSection} from "@/components/sections/ProductProofSection";
+import {ProductSectionCta} from "@/components/sections/ProductSectionCta";
+import {ProductUseCasesSection} from "@/components/sections/ProductUseCasesSection";
 import {Button} from "@/components/ui/Button";
 import {notFound} from "next/navigation";
 
@@ -18,6 +20,7 @@ import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getProductMap, products} from "@/content/products";
 import {getProductPlaybookHref, getUseCasesByProduct} from "@/content/use-cases";
 import {getRequestLocale} from "@/lib/i18n-server";
+import {localizeLanguageSignalFields} from "@/lib/localized-language-signal";
 import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildFaqSchema, buildGraphSchema, buildProductSchema, buildWebPageSchema} from "@/lib/seo/schema";
 
@@ -26,34 +29,6 @@ export const dynamic = "force-dynamic";
 type ProductDetailPageProps = {
   params: Promise<{slug: string}>;
 };
-
-function buildProductNarrative(product: NonNullable<ReturnType<typeof getProductMap>["translator"]>, locale: "en" | "zh-cn") {
-  const targetUsers = product.targetUsers.slice(0, 2).join(locale === "zh-cn" ? "、" : ", ");
-  const benefits = product.benefits.slice(0, 2).join(locale === "zh-cn" ? "、" : ", ");
-  const featureTitles = product.features.slice(0, 3).map((item) => item.title).join(locale === "zh-cn" ? "、" : ", ");
-
-  if (locale === "zh-cn") {
-    return [
-      `${product.heroDescription} 这类产品页的作用不是只展示功能名，而是帮助你判断它是否真的适合当前店铺阶段、运营复杂度和团队能力。`,
-      targetUsers
-        ? `如果你的使用场景更接近 ${targetUsers}，那这个页面里的功能、流程和资源模块会更有参考价值。重点收益通常落在 ${benefits || "效率和结果稳定性"} 这些直接影响经营结果的地方。`
-        : `这个页面会把功能、流程和资源模块放在一起，帮助判断是否适合当前店铺阶段。`,
-      featureTitles
-        ? `建议先看 ${featureTitles} 这些核心能力，再进入应用场景、演示和相关资源，这样会比从零散功能点倒推更容易判断落地价值。`
-        : `建议先看核心能力，再进入应用场景、演示和相关资源，这样更容易判断落地价值。`,
-    ];
-  }
-
-  return [
-    `${product.heroDescription} The point of a page like this is not just to list features, but to help you judge whether the product fits your current store stage, operating complexity, and team bandwidth.`,
-    targetUsers
-      ? `If your situation looks closer to ${targetUsers}, the feature, workflow, and resource modules on this page should be the most relevant. The practical upside usually shows up in ${benefits || "faster execution and steadier outcomes"}.`
-      : "This page keeps product capabilities, workflow, and resources in one place so fit is easier to judge.",
-    featureTitles
-      ? `Start with capabilities such as ${featureTitles}, then move into use cases, demos, and supporting resources. That usually gives a clearer judgment than trying to infer value from a flat feature list alone.`
-      : "Start with the core capabilities, then move into use cases, demos, and supporting resources for a clearer fit check.",
-  ];
-}
 
 function getProductDetailCopy(locale: "en" | "zh-cn") {
   if (locale === "zh-cn") {
@@ -75,11 +50,12 @@ function getProductDetailCopy(locale: "en" | "zh-cn") {
         },
       },
       anchors: [
-        {label: "典型场景", href: "#use-cases"},
-        {label: "演示", href: "#demo"},
-        {label: "适合谁", href: "#audience-fit"},
-        {label: "核心能力", href: "#features"},
         {label: "使用流程", href: "#workflow"},
+        {label: "适合谁", href: "#audience-fit"},
+        {label: "典型场景", href: "#use-cases"},
+        {label: "核心能力", href: "#features"},
+        {label: "演示", href: "#demo"},
+        {label: "为什么选它", href: "#compare"},
         {label: "相关资源", href: "#resources"},
         {label: "常见问题", href: "#faq"},
       ],
@@ -108,7 +84,14 @@ function getProductDetailCopy(locale: "en" | "zh-cn") {
         },
       },
       sections: {
-        useCases: {id: "use-cases", eyebrow: "典型场景", title: "这款产品适合解决什么问题", description: "围绕获客、转化与效率提升，整理这款产品最常见的使用场景。"},
+        useCases: {
+          id: "use-cases",
+          eyebrow: "典型场景",
+          title: "这款产品适合解决什么问题",
+          description: "围绕获客、转化与效率提升，整理这款产品最常见的使用场景。",
+          audienceLabel: "适合对象",
+          outcomeLabel: "预期结果",
+        },
         video: {id: "video-demo", eyebrow: "视频演示", title: "先用视频快速看一遍产品体验", description: "通过一段真实演示，先快速理解产品界面、核心流程和关键能力。"},
         demoFocus: {id: "demo-focus", eyebrow: "演示重点", title: "先看关键演示点", description: "先看最容易影响判断的几个关键结果。"},
         interactiveDemo: {eyebrow: "交互演示", title: "交互演示", description: "通过场景切换快速看懂前后差异、术语控制和 Shopify 适配方式。"},
@@ -121,8 +104,12 @@ function getProductDetailCopy(locale: "en" | "zh-cn") {
           targetUsersTitle: "适用商家",
           benefitsTitle: "核心收益",
         },
-        features: {id: "features", eyebrow: "核心能力", title: "核心能力", description: "围绕商家最常用、最直接影响结果的部分展开。"},
         workflow: {id: "workflow", eyebrow: "使用流程", title: "使用流程", description: "按实际操作顺序理解产品，更容易判断落地成本和使用门槛。"},
+        proof: {id: "proof", eyebrow: "结果与证据", title: "先看这款产品最关键的结果信号", description: "先看覆盖范围、控制能力和持续运营层面的证据，再决定要不要继续深入。"},
+        features: {id: "features", eyebrow: "核心能力", title: "核心能力", description: "围绕商家最常用、最直接影响结果的部分展开。"},
+        control: {id: "control", eyebrow: "控制权", title: "自动化不是放手不管，你仍然保留关键控制权", description: "这块专门回答：哪些地方由系统推进，哪些地方仍然适合由团队确认和把关。"},
+        deepDive: {id: "deep-dive", eyebrow: "深入理解", title: "把最关键的差异点单独拆开讲", description: "这里不再平铺功能，而是把真正影响长期使用价值的那一层单独展开。"},
+        compare: {id: "compare", eyebrow: "为什么选它", title: "为什么选择这款产品", description: "把产品定位、长期价值和常见比较路径放在一起看，会更容易判断它是否适合你的当前阶段。"},
         resources: {id: "resources", eyebrow: "相关资源", title: "相关资源", description: "从这里继续看文档、文章和对比内容。"},
       },
       finalCta: {
@@ -150,11 +137,12 @@ function getProductDetailCopy(locale: "en" | "zh-cn") {
       },
     },
     anchors: [
-      {label: "Use cases", href: "#use-cases"},
-      {label: "Demo", href: "#demo"},
-      {label: "Audience fit", href: "#audience-fit"},
-      {label: "Features", href: "#features"},
       {label: "Workflow", href: "#workflow"},
+      {label: "Audience fit", href: "#audience-fit"},
+      {label: "Use cases", href: "#use-cases"},
+      {label: "Features", href: "#features"},
+      {label: "Demo", href: "#demo"},
+      {label: "Compare", href: "#compare"},
       {label: "Resources", href: "#resources"},
       {label: "FAQ", href: "#faq"},
     ],
@@ -183,7 +171,14 @@ function getProductDetailCopy(locale: "en" | "zh-cn") {
       },
     },
     sections: {
-      useCases: {id: "use-cases", eyebrow: "Use cases", title: "Typical scenarios", description: "Start with the problems this product fits best."},
+      useCases: {
+        id: "use-cases",
+        eyebrow: "Use cases",
+        title: "Typical scenarios",
+        description: "Start with the problems this product fits best.",
+        audienceLabel: "Best for",
+        outcomeLabel: "Expected outcome",
+      },
       video: {id: "video-demo", eyebrow: "Video demo", title: "See the product in action first", description: "Use a short walkthrough to understand the interface, core flow, and key capabilities faster."},
       demoFocus: {id: "demo-focus", eyebrow: "Demo focus", title: "Start with the key demo points", description: "Look at the outcome differences that influence evaluation first."},
       interactiveDemo: {eyebrow: "Interactive demo", title: "Interactive demo", description: "Switch between scenarios to understand before / after differences, glossary control, and Shopify fit."},
@@ -196,8 +191,12 @@ function getProductDetailCopy(locale: "en" | "zh-cn") {
         targetUsersTitle: "Target users",
         benefitsTitle: "Core benefits",
       },
+      workflow: {id: "workflow", eyebrow: "Workflow", title: "How it works", description: "Understand the product in the same order merchants actually use it."},
+      proof: {id: "proof", eyebrow: "Proof", title: "Start with the strongest outcome signals", description: "Look at the most important evidence around coverage, control, and ongoing operations before going deeper."},
       features: {id: "features", eyebrow: "Features", title: "Core capabilities", description: "Focus on the parts merchants use most and that affect outcomes most directly."},
-      workflow: {id: "workflow", eyebrow: "Workflow", title: "Workflow", description: "Understand the product in the same order merchants actually use it."},
+      control: {id: "control", eyebrow: "Control", title: "Automation still works better when you keep the key decisions", description: "This section answers where the product helps move work forward and where teams still keep review and approval."},
+      deepDive: {id: "deep-dive", eyebrow: "Deep dive", title: "Pull the most important difference out into its own section", description: "Instead of flattening everything into features, this section focuses on the layer that usually determines long-term fit."},
+      compare: {id: "compare", eyebrow: "Compare", title: "Why this product may fit better", description: "Look at the product's operating model, long-term value, and comparison paths in one place before going deeper."},
       resources: {id: "resources", eyebrow: "Related resources", title: "Related resources", description: "Continue into docs, articles, and comparison content from here."},
     },
     finalCta: {
@@ -214,7 +213,8 @@ export async function generateStaticParams() {
 export async function generateMetadata({params}: ProductDetailPageProps) {
   const locale = await getRequestLocale();
   const {slug} = await params;
-  const product = getProductMap(locale)[slug];
+  const rawProduct = getProductMap(locale)[slug];
+  const product = rawProduct ? localizeLanguageSignalFields(locale, rawProduct) : rawProduct;
   const copy = getProductDetailCopy(locale);
 
   if (!product) {
@@ -237,7 +237,8 @@ export async function generateMetadata({params}: ProductDetailPageProps) {
 export default async function ProductDetailPage({params}: ProductDetailPageProps) {
   const locale = await getRequestLocale();
   const {slug} = await params;
-  const product = getProductMap(locale)[slug];
+  const rawProduct = getProductMap(locale)[slug];
+  const product = rawProduct ? localizeLanguageSignalFields(locale, rawProduct) : rawProduct;
   const copy = getProductDetailCopy(locale);
 
   if (!product) {
@@ -248,7 +249,7 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
   const productsIndexUrl = toAbsoluteLocalizedUrl(locale, "/products");
   const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
-      {name: "Home", item: siteUrl},
+      {name: locale === "zh-cn" ? "首页" : "Home", item: siteUrl},
       {name: locale === "zh-cn" ? "产品" : "Products", item: productsIndexUrl},
       {name: product.name, item: pageUrl},
     ]),
@@ -278,99 +279,137 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
   ]);
   const isTranslator = product.slug === "translator";
   const translatorCopy = isTranslator ? copy.translator : null;
-  const linkedUseCases = getUseCasesByProduct(locale, product.slug);
+  const linkedUseCases = localizeLanguageSignalFields(locale, getUseCasesByProduct(locale, product.slug));
   const hasLinkedUseCases = linkedUseCases.length > 0;
   const hasVideo = Boolean(product.videoUrl);
-  const narrative = buildProductNarrative(product, locale);
-  let anchorItems = (isTranslator ? translatorCopy?.anchors : copy.anchors)?.map((item) => ({...item})) ?? [];
-  if (hasVideo && !isTranslator) {
-    anchorItems = [
-      anchorItems[0],
-      {label: copy.sections.video.eyebrow, href: `#${copy.sections.video.id}`},
-      ...anchorItems.slice(1),
-    ];
-  }
+  const showInteractiveDemo = !hasVideo;
+  const hasFeatureSpotlights = Boolean(product.featureModules?.length);
+  const useFeatureSpotlightsAsPrimary = Boolean(isTranslator && hasFeatureSpotlights);
+  const hasCompareSection = Boolean(product.differentiators?.length || product.compareLinks?.length);
+  const compareCopy = isTranslator && translatorCopy ? translatorCopy.sections.comparisons : copy.sections.compare;
+  const workflowSteps = product.howItWorks?.length
+    ? product.howItWorks
+    : product.workflow.map((step) => ({
+        title: step,
+        description: step,
+      }));
+  const featurePreviewItems = (product.featureModules?.length
+    ? product.featureModules.map((item) => ({
+        title: item.title,
+        primaryLabel: item.primaryLabel,
+        primaryText: item.primaryText,
+        secondaryLabel: item.secondaryLabel,
+        secondaryText: item.secondaryText,
+        note: item.note,
+        highlights: item.highlights,
+      }))
+    : product.demoScenarios.map((item) => ({
+        title: item.title,
+        primaryLabel: item.primaryLabel,
+        primaryText: item.primaryText,
+        secondaryLabel: item.secondaryLabel,
+        secondaryText: item.secondaryText,
+        note: item.note,
+      })));
+  const heroScenario = product.demoScenarios[0];
+  const heroDemoHref = hasVideo ? "#hero-demo" : "#demo";
+  const sectionCta = <ProductSectionCta href={product.ctaHref} label={product.ctaLabel} />;
 
   return (
-    <main>
+    <main className="product-detail-page">
       <PageContainer>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{__html: JSON.stringify(structuredData)}}
         />
         <section className="py-12 sm:py-16 lg:py-20">
-          <div
-            className={[
-              "content-hero-shell",
-              isTranslator ? "" : "",
-            ].join(" ")}
-          >
-            <div className={isTranslator ? "grid gap-8" : "grid gap-8 lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.92fr)] lg:items-start"}>
-              <div>
-              <SectionHeading
-                eyebrow={copy.hero.eyebrow}
-                title={product.heroTitle}
-                description={product.heroDescription}
-                as="h1"
-              />
-              <div className="mt-6 flex flex-wrap gap-2">
-                {product.metrics.map((metric) => (
-                  <span key={metric} className="pill">
-                    {metric}
-                  </span>
-                ))}
-              </div>
-              <div className="mt-8 flex flex-wrap items-center gap-3">
-                <Button href={product.ctaHref}>{product.ctaLabel}</Button>
-                {hasLinkedUseCases ? (
-                  <Button href={getProductPlaybookHref(product.slug)} variant="secondary">
-                    {copy.hero.playbookLabel}
+          <div className="content-hero-shell">
+            <div className="product-hero">
+              <div className="product-hero__copy">
+                <SectionHeading
+                  eyebrow={copy.hero.eyebrow}
+                  title={product.heroTitle}
+                  description={product.heroDescription}
+                  as="h1"
+                />
+                <div className="mt-8 flex flex-wrap items-center gap-3">
+                  <Button href={product.ctaHref}>{product.ctaLabel}</Button>
+                  <Button href={heroDemoHref} variant="ghost">
+                    {copy.hero.viewDemoLabel}
                   </Button>
-                ) : null}
-                <Button href={copy.hero.viewDemoHref} variant="ghost">
-                  {copy.hero.viewDemoLabel}
-                </Button>
+                </div>
+                <p className="product-hero__metrics">{product.metrics.join(" · ")}</p>
               </div>
-              <div className="mt-6 rounded-[24px] border border-slate-200/80 bg-white/90 p-5 sm:p-6">
-                <div className="space-y-4 text-[15px] leading-7 text-slate-600 sm:text-base">
-                  {narrative.map((paragraph) => (
-                    <p key={paragraph}>{paragraph}</p>
-                  ))}
+
+              <div className="hero-brand-visual product-hero__visual" id="hero-demo">
+                <div className="hero-brand-visual__device">
+                  <div className="hero-brand-visual__device-bar">
+                    <span className="hero-brand-visual__dot" />
+                    <span className="hero-brand-visual__dot" />
+                    <span className="hero-brand-visual__dot" />
+                    <span className="hero-brand-visual__device-title">{heroScenario?.title ?? product.name}</span>
+                  </div>
+                  <div className="product-hero__device-body">
+                    {hasVideo ? (
+                      <div className="mdx-video">
+                        <div className="mdx-video__frame">
+                          <iframe
+                            src={product.videoUrl}
+                            title={`${product.name} ${locale === "zh-cn" ? "演示" : "demo"}`}
+                            loading="lazy"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerPolicy="strict-origin-when-cross-origin"
+                            allowFullScreen
+                          />
+                        </div>
+                      </div>
+                    ) : heroScenario ? (
+                      <>
+                        <div className="demo-stack">
+                          <div className="demo-box">
+                            <strong>{heroScenario.primaryLabel}</strong>
+                            <p>{heroScenario.primaryText}</p>
+                          </div>
+                          <div className="demo-box demo-box--accent">
+                            <strong>{heroScenario.secondaryLabel}</strong>
+                            <p>{heroScenario.secondaryText}</p>
+                          </div>
+                        </div>
+                        <p className="product-hero__device-note">{heroScenario.note}</p>
+                      </>
+                    ) : null}
+                  </div>
                 </div>
               </div>
-              </div>
-              {!isTranslator ? (
-                <StackedInfoPanel
-                  sections={[
-                    {
-                      title: copy.hero.panels.targetUsersTitle,
-                      items: product.targetUsers,
-                      listVariant: "boxed",
-                    },
-                    {
-                      title: copy.hero.panels.benefitsTitle,
-                      items: product.benefits,
-                      listVariant: "boxed",
-                    },
-                    {
-                      title: copy.hero.panels.demoHighlightsTitle,
-                      chips: product.demoHighlights,
-                    },
-                  ]}
-                />
-              ) : null}
             </div>
           </div>
         </section>
 
-        <ProductAnchorNav items={anchorItems} />
+        {product.proofPoints?.length ? (
+          <ProductProofSection
+            id={copy.sections.proof.id}
+            eyebrow={copy.sections.proof.eyebrow}
+            title={copy.sections.proof.title}
+            description={undefined}
+            items={product.proofPoints}
+          />
+        ) : null}
+
+        <ProductHowItWorksSection
+          id={copy.sections.workflow.id}
+          eyebrow={copy.sections.workflow.eyebrow}
+          title={copy.sections.workflow.title}
+          description={copy.sections.workflow.description}
+          steps={workflowSteps}
+          cta={sectionCta}
+        />
 
         {hasLinkedUseCases ? (
           <section className="page-section anchor-offset" id={copy.sections.useCases.id}>
             <SectionHeading
               eyebrow={copy.sections.useCases.eyebrow}
               title={copy.sections.useCases.title}
-              description={copy.sections.useCases.description}
+              description={undefined}
               action={
                 <Button href={getProductPlaybookHref(product.slug)} variant="secondary">
                   {locale === "zh-cn" ? "打开产品方案集" : "Open product playbook"}
@@ -389,143 +428,98 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
                   eyebrow={useCase.category}
                   meta={[locale === "zh-cn" ? "应用场景" : "Use Case", useCase.category]}
                   linkLabel={locale === "zh-cn" ? "查看场景详情" : "Open use case"}
+                  variant="landing"
                 />
               ))}
             </div>
+            {sectionCta}
           </section>
         ) : (
-          <SimpleCardGridSection
+          <ProductUseCasesSection
             id={copy.sections.useCases.id}
-            className="page-section anchor-offset"
             eyebrow={copy.sections.useCases.eyebrow}
             title={copy.sections.useCases.title}
-            description={copy.sections.useCases.description}
-            items={product.useCases.map((useCase) => ({
-              title: useCase.title,
-              description: useCase.description,
-            }))}
+            description={undefined}
+            items={product.useCases}
+            audienceLabel={copy.sections.useCases.audienceLabel}
+            outcomeLabel={copy.sections.useCases.outcomeLabel}
+            cta={sectionCta}
           />
         )}
 
-        {hasVideo ? (
-          <section className="page-section anchor-offset" id={copy.sections.video.id}>
-            <SectionHeading
-              eyebrow={copy.sections.video.eyebrow}
-              title={copy.sections.video.title}
-              description={copy.sections.video.description}
-            />
-            <div className="surface-card section-stack">
-              <div className="mdx-video">
-                <div className="mdx-video__frame">
-                  <iframe
-                    src={product.videoUrl}
-                    title={`${product.name} video demo`}
-                    loading="lazy"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    allowFullScreen
-                  />
-                </div>
-              </div>
-            </div>
-          </section>
+        {useFeatureSpotlightsAsPrimary && translatorCopy ? (
+          <ProductFeatureSpotlightsSection
+            id={copy.sections.features.id}
+            eyebrow={translatorCopy.sections.featureSpotlights.eyebrow}
+            title={translatorCopy.sections.featureSpotlights.title}
+            description={translatorCopy.sections.featureSpotlights.description}
+            items={product.featureModules ?? []}
+            cta={sectionCta}
+          />
+        ) : (
+          <ProductFeatureHubSection
+            id={copy.sections.features.id}
+            eyebrow={copy.sections.features.eyebrow}
+            title={copy.sections.features.title}
+            description={undefined}
+            items={product.features}
+            previewItems={featurePreviewItems}
+            cta={sectionCta}
+          />
+        )}
+
+        {product.controlPoints?.length ? (
+          <ProductControlSection
+            id={copy.sections.control.id}
+            eyebrow={copy.sections.control.eyebrow}
+            title={copy.sections.control.title}
+            description={undefined}
+            items={product.controlPoints}
+            cta={sectionCta}
+          />
         ) : null}
 
-        {isTranslator && translatorCopy ? (
-          <>
-            <ProductFeatureSpotlightsSection
-              id={translatorCopy.sections.featureSpotlights.id}
-              eyebrow={translatorCopy.sections.featureSpotlights.eyebrow}
-              title={translatorCopy.sections.featureSpotlights.title}
-              description={translatorCopy.sections.featureSpotlights.description}
-              items={product.featureModules ?? []}
-            />
-            <section className="page-section anchor-offset" id={translatorCopy.sections.comparisons.id}>
-              <SectionHeading
-                eyebrow={translatorCopy.sections.comparisons.eyebrow}
-                title={translatorCopy.sections.comparisons.title}
-                description={translatorCopy.sections.comparisons.description}
-              />
-              <div className="resource-grid">
-                {product.compareLinks?.map((item) => (
-                  <ArticleCard
-                    key={item.href}
-                    title={item.title}
-                    description={item.description}
-                    href={item.href}
-                    meta={item.meta}
-                  />
-                ))}
-              </div>
-            </section>
-          </>
-        ) : (
-          <>
-            <NumberedCardGridSection
-              id={copy.sections.demoFocus.id}
-              className="page-section anchor-offset"
-              eyebrow={copy.sections.demoFocus.eyebrow}
-              title={copy.sections.demoFocus.title}
-              description={copy.sections.demoFocus.description}
-              items={product.demoHighlights.map((item) => ({description: item}))}
-            />
+        {showInteractiveDemo ? (
+          <InteractiveDemoExplorer
+            className="page-section product-demo-explorer"
+            eyebrow={copy.sections.interactiveDemo.eyebrow}
+            title={copy.sections.interactiveDemo.title}
+            description={undefined}
+            items={product.demoScenarios}
+            cta={sectionCta}
+          />
+        ) : null}
 
-            <InteractiveDemoExplorer
-              eyebrow={copy.sections.interactiveDemo.eyebrow}
-              title={copy.sections.interactiveDemo.title}
-              description={copy.sections.interactiveDemo.description}
-              items={product.demoScenarios}
-            />
+        {product.deepDive ? (
+          <ProductDeepDiveSection
+            id={copy.sections.deepDive.id}
+            eyebrow={product.deepDive.eyebrow ?? copy.sections.deepDive.eyebrow}
+            title={product.deepDive.title}
+            description={undefined}
+            steps={product.deepDive.steps}
+            outcomeTitle={product.deepDive.outcomeTitle}
+            outcomeText={product.deepDive.outcomeText}
+            cta={sectionCta}
+          />
+        ) : null}
 
-            <DemoShowcaseSection
-              eyebrow={copy.sections.livePreview.eyebrow}
-              title={copy.sections.livePreview.title}
-              description={copy.sections.livePreview.description}
-              items={product.demoScenarios.slice(0, 2)}
-            />
-
-            <section className="page-section anchor-offset" id={copy.sections.audienceFit.id}>
-              <SectionHeading
-                eyebrow={copy.sections.audienceFit.eyebrow}
-                title={copy.sections.audienceFit.title}
-                description={copy.sections.audienceFit.description}
-              />
-              <ChecklistCardGrid
-                cards={[
-                  {title: copy.sections.audienceFit.targetUsersTitle, items: product.targetUsers},
-                  {title: copy.sections.audienceFit.benefitsTitle, items: product.benefits},
-                ]}
-              />
-            </section>
-
-            <SimpleCardGridSection
-              id={copy.sections.features.id}
-              className="page-section anchor-offset"
-              eyebrow={copy.sections.features.eyebrow}
-              title={copy.sections.features.title}
-              description={copy.sections.features.description}
-              items={product.features.map((feature) => ({
-                title: feature.title,
-                description: feature.description,
-              }))}
-            />
-
-            <NumberedCardGridSection
-              id={copy.sections.workflow.id}
-              className="page-section anchor-offset"
-              eyebrow={copy.sections.workflow.eyebrow}
-              title={copy.sections.workflow.title}
-              description={copy.sections.workflow.description}
-              items={product.workflow.map((step) => ({description: step}))}
-            />
-          </>
-        )}
+        {hasCompareSection ? (
+          <ProductDifferentiatorsSection
+            id={compareCopy.id}
+            eyebrow={compareCopy.eyebrow}
+            title={compareCopy.title}
+            description={undefined}
+            items={product.differentiators}
+            compareLinks={product.compareLinks}
+            cta={sectionCta}
+          />
+        ) : null}
 
         <section className="page-section anchor-offset" id={copy.sections.resources.id}>
           <SectionHeading
             eyebrow={copy.sections.resources.eyebrow}
             title={copy.sections.resources.title}
-            description={copy.sections.resources.description}
+            description={undefined}
           />
           <div className="resource-grid">
             {product.relatedResources.map((resource) => (
@@ -535,6 +529,7 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
                 description={product.shortDescription}
                 href={resource.href}
                 meta={resource.meta}
+                variant="landing"
               />
             ))}
           </div>

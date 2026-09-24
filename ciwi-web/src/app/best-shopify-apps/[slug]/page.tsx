@@ -178,7 +178,7 @@ export default async function BestShopifyAppCollectionPage({params}: BestShopify
   const narrative = buildCollectionNarrative({locale, collection});
   const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
-      {name: "Home", item: siteUrl},
+      {name: locale === "zh-cn" ? "首页" : "Home", item: siteUrl},
       {name: locale === "zh-cn" ? "最佳 Shopify 应用合集" : "Best Shopify Apps", item: toAbsoluteLocalizedUrl(locale, "/best-shopify-apps")},
       {name: collection.title, item: pageUrl},
     ]),

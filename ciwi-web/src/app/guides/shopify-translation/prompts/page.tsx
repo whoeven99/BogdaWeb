@@ -2,6 +2,7 @@ import {ContentIndexHero} from "@/components/sections/ContentIndexHero";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {promptGroups, promptModels, translationPrompts} from "@/content/translation-prompts";
 import {getRequestLocale} from "@/lib/i18n-server";
+import {localizeLanguageSignalText} from "@/lib/localized-language-signal";
 import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 
@@ -74,9 +75,9 @@ export default async function ShopifyTranslationPromptsPage() {
   const pageUrl = toAbsoluteLocalizedUrl(locale, "/guides/shopify-translation/prompts");
   const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
-      {name: "Home", item: siteUrl},
+      {name: locale === "zh-cn" ? "首页" : "Home", item: siteUrl},
       {name: locale === "zh-cn" ? "指南" : "Guides", item: toAbsoluteLocalizedUrl(locale, "/guides")},
-      {name: locale === "zh-cn" ? "翻译地图" : "Translation map", item: toAbsoluteLocalizedUrl(locale, "/guides/shopify-translation")},
+      {name: localizeLanguageSignalText(locale, locale === "zh-cn" ? "翻译地图" : "Translation map"), item: toAbsoluteLocalizedUrl(locale, "/guides/shopify-translation")},
       {name: copy.structuredData.name, item: pageUrl},
     ]),
     buildWebPageSchema({

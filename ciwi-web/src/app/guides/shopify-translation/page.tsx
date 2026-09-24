@@ -7,6 +7,7 @@ import {getFunctionScenarioGuides} from "@/content/function-scenario-guides";
 import {getUiCopy} from "@/content/ui-copy";
 import type {Locale} from "@/lib/i18n";
 import {getRequestLocale} from "@/lib/i18n-server";
+import {localizeLanguageSignalFields} from "@/lib/localized-language-signal";
 import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 
@@ -102,15 +103,15 @@ const STRUCTURE_GROUPS: StructureGroup[] = [
 ];
 
 function buildStructureGroups(locale: Locale) {
-  const guides = getFunctionScenarioGuides(locale);
+  const guides = localizeLanguageSignalFields(locale, getFunctionScenarioGuides(locale));
 
-  return STRUCTURE_GROUPS.map((group) => ({
+  return localizeLanguageSignalFields(locale, STRUCTURE_GROUPS.map((group) => ({
     id: group.id,
     name: group.name[locale],
     description: group.description[locale],
     blindspot: group.blindspot[locale],
     items: group.topics.flatMap((topic) => guides.filter((guide) => guide.topic === topic)),
-  }));
+  })));
 }
 
 export async function generateMetadata() {
@@ -174,7 +175,7 @@ export default async function ShopifyTranslationMapPage() {
   const pageUrl = toAbsoluteLocalizedUrl(locale, "/guides/shopify-translation");
   const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
-      {name: "Home", item: siteUrl},
+      {name: locale === "zh-cn" ? "首页" : "Home", item: siteUrl},
       {name: locale === "zh-cn" ? "指南" : "Guides", item: toAbsoluteLocalizedUrl(locale, "/guides")},
       {name: copy.structuredData.name, item: pageUrl},
     ]),

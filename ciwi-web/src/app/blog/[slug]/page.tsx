@@ -10,6 +10,7 @@ import {getAuthorBySlug} from "@/content/authors";
 import {getAllBlogPosts, getBlogPostMap, getBlogPosts} from "@/content/blog";
 import {getUiCopy} from "@/content/ui-copy";
 import {getRequestLocale} from "@/lib/i18n-server";
+import {localizeLanguageSignalList, localizeLanguageSignalText} from "@/lib/localized-language-signal";
 import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 import {buildBlogPostingSchema, buildBreadcrumbSchema, buildGraphSchema} from "@/lib/seo/schema";
 
@@ -111,18 +112,20 @@ export default async function BlogDetailPage({params}: BlogDetailPageProps) {
   const relatedPosts = posts
     .filter((item) => item.slug !== post.slug)
     .slice(0, 2);
+  const localizedPostTitle = localizeLanguageSignalText(locale, post.title);
+  const localizedPostDescription = localizeLanguageSignalText(locale, post.description);
   const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
-      {name: "Home", item: siteUrl},
+      {name: locale === "zh-cn" ? "首页" : "Home", item: siteUrl},
       {name: locale === "zh-cn" ? "博客" : "Blog", item: toAbsoluteLocalizedUrl(locale, "/blog")},
-      {name: post.title, item: pageUrl},
+      {name: localizedPostTitle, item: pageUrl},
     ]),
     buildBlogPostingSchema({
       url: pageUrl,
-      headline: post.title,
-      description: post.description,
+      headline: localizedPostTitle,
+      description: localizedPostDescription,
       datePublished: post.publishedAt,
-      keywords: post.tags,
+      keywords: localizeLanguageSignalList(locale, post.tags),
       author: {name: author.name, jobTitle: author.role[locale], url: toAbsoluteLocalizedUrl(locale, `/authors/${author.id}`)},
     }),
   ]);
@@ -143,18 +146,18 @@ export default async function BlogDetailPage({params}: BlogDetailPageProps) {
 
             <header className="blog-article-single__header">
               <span className="section-heading__eyebrow">{copy.hero.eyebrow}</span>
-              <h1>{post.title}</h1>
-              <p className="blog-article-single__lede">{post.description}</p>
+              <h1>{localizedPostTitle}</h1>
+              <p className="blog-article-single__lede">{localizedPostDescription}</p>
             </header>
 
             <div className="blog-article-single__meta-row">
               <div className="blog-article-single__meta-info">
                 <span>{post.publishedAt}</span>
                 <span className="blog-article-single__meta-dot" aria-hidden="true" />
-                <span>{post.readingTime}</span>
+                <span>{localizeLanguageSignalText(locale, post.readingTime)}</span>
               </div>
               <div className="blog-article-single__tag-list">
-                {post.tags.map((tag) => (
+                {localizeLanguageSignalList(locale, post.tags).map((tag) => (
                   <span key={tag} className="blog-tag-pill">{tag}</span>
                 ))}
               </div>
@@ -185,12 +188,12 @@ export default async function BlogDetailPage({params}: BlogDetailPageProps) {
                 <div className="blog-related-card__meta">
                   <span>{item.publishedAt}</span>
                   <span className="blog-related-card__meta-dot" aria-hidden="true" />
-                  <span>{item.readingTime}</span>
+                  <span>{localizeLanguageSignalText(locale, item.readingTime)}</span>
                 </div>
-                <h3 className="blog-related-card__title">{item.title}</h3>
-                <p className="blog-related-card__description">{item.description}</p>
+                <h3 className="blog-related-card__title">{localizeLanguageSignalText(locale, item.title)}</h3>
+                <p className="blog-related-card__description">{localizeLanguageSignalText(locale, item.description)}</p>
                 <div className="blog-related-card__tags">
-                  {item.tags.slice(0, 2).map((tag) => (
+                  {localizeLanguageSignalList(locale, item.tags.slice(0, 2)).map((tag) => (
                     <span key={tag} className="blog-related-card__tag">{tag}</span>
                   ))}
                 </div>

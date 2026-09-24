@@ -83,7 +83,7 @@ export default async function BestShopifyAppsHubPage() {
   const pageUrl = toAbsoluteLocalizedUrl(locale, "/best-shopify-apps");
   const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
-      {name: "Home", item: siteUrl},
+      {name: locale === "zh-cn" ? "首页" : "Home", item: siteUrl},
       {name: copy.structuredData.name, item: pageUrl},
     ]),
     buildWebPageSchema({

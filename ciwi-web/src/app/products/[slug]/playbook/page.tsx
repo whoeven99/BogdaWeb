@@ -21,6 +21,7 @@ import {
   getKeywordUseCasesByCategory,
 } from "@/content/shopify-keyword-use-cases";
 import {getRequestLocale} from "@/lib/i18n-server";
+import {localizeLanguageSignalList, localizeLanguageSignalText} from "@/lib/localized-language-signal";
 import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 import {notFound} from "next/navigation";
@@ -291,9 +292,13 @@ export default async function ProductPlaybookPage({params}: ProductPlaybookPageP
     relatedGuides = [...fs, ...ls].slice(0, 8);
   }
   const pageUrl = toAbsoluteLocalizedUrl(locale, pagePath);
+  const localizedHeroDescription =
+    locale === "en" && product.slug === "translator"
+      ? translatorPlaybookCopy.description
+      : localizeLanguageSignalText(locale, copy.hero.description);
   const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
-      {name: "Home", item: siteUrl},
+      {name: locale === "zh-cn" ? "首页" : "Home", item: siteUrl},
       {name: locale === "zh-cn" ? "产品" : "Products", item: toAbsoluteLocalizedUrl(locale, "/products")},
       {name: product.name, item: toAbsoluteLocalizedUrl(locale, `/products/${product.slug}`)},
       {name: locale === "zh-cn" ? "方案集" : "Playbook", item: pageUrl},
@@ -301,11 +306,11 @@ export default async function ProductPlaybookPage({params}: ProductPlaybookPageP
     buildWebPageSchema({
       url: pageUrl,
       name: locale === "zh-cn" ? `${product.name} 方案集` : product.slug === "translator" ? translatorPlaybookCopy.title : `${product.name} Playbook`,
-      description: locale === "en" && product.slug === "translator" ? translatorPlaybookCopy.description : `${product.shortDescription} ${copy.hero.description}`,
+      description: locale === "en" && product.slug === "translator" ? translatorPlaybookCopy.description : localizeLanguageSignalText(locale, `${product.shortDescription} ${copy.hero.description}`),
       keywords: [
         product.name,
-        ...useCases.map((item) => item.category),
-        ...(isSpark ? keywordCategories.map((c) => c.name) : []),
+        ...useCases.map((item) => localizeLanguageSignalText(locale, item.category)),
+        ...(isSpark ? keywordCategories.map((c) => localizeLanguageSignalText(locale, c.name)) : []),
         "Shopify AI",
         ...(isSpark ? [`${keywordUseCases.length} operational scenarios`] : []),
       ],
@@ -328,7 +333,7 @@ export default async function ProductPlaybookPage({params}: ProductPlaybookPageP
               <SectionHeading
                 eyebrow={copy.hero.eyebrow}
                 title={locale === "en" && product.slug === "translator" ? translatorPlaybookCopy.title : `${product.name} ${copy.hero.titleSuffix}`}
-                description={locale === "en" && product.slug === "translator" ? translatorPlaybookCopy.description : copy.hero.description}
+                description={localizedHeroDescription}
                 as="h1"
               />
             </div>
@@ -386,13 +391,13 @@ export default async function ProductPlaybookPage({params}: ProductPlaybookPageP
             {featuredUseCases.map((item) => (
               <UseCasePlaybookCard
                 key={item.slug}
-                title={item.title}
-                description={item.description}
+                title={localizeLanguageSignalText(locale, item.title)}
+                description={localizeLanguageSignalText(locale, item.description)}
                 href={`/use-cases/${item.slug}`}
                 icon={product.icon}
                 productName={product.name}
-                eyebrow={item.category}
-                meta={[copy.card.metaLabel, item.category]}
+                eyebrow={localizeLanguageSignalText(locale, item.category)}
+                meta={[copy.card.metaLabel, localizeLanguageSignalText(locale, item.category)]}
                 linkLabel={copy.card.linkLabel}
               />
             ))}
@@ -409,13 +414,13 @@ export default async function ProductPlaybookPage({params}: ProductPlaybookPageP
             {useCases.map((item) => (
               <UseCasePlaybookCard
                 key={item.slug}
-                title={item.title}
-                description={item.description}
+                title={localizeLanguageSignalText(locale, item.title)}
+                description={localizeLanguageSignalText(locale, item.description)}
                 href={`/use-cases/${item.slug}`}
                 icon={product.icon}
                 productName={product.name}
-                eyebrow={item.category}
-                meta={[copy.card.metaLabel, item.category]}
+                eyebrow={localizeLanguageSignalText(locale, item.category)}
+                meta={[copy.card.metaLabel, localizeLanguageSignalText(locale, item.category)]}
                 linkLabel={copy.card.linkLabel}
               />
             ))}
@@ -472,7 +477,7 @@ export default async function ProductPlaybookPage({params}: ProductPlaybookPageP
                         id={`cat-${catSlug}-summary`}
                         className="mt-4 text-lg font-semibold tracking-[-0.02em] text-slate-950 sm:mt-5"
                       >
-                        {cat.name}
+                        {localizeLanguageSignalText(locale, cat.name)}
                       </h3>
                       <ul className="mt-5 space-y-3 text-sm leading-7 text-slate-700 sm:text-[15px]">
                         {items.map((item) => (
@@ -481,7 +486,7 @@ export default async function ProductPlaybookPage({params}: ProductPlaybookPageP
                               href={`${keywordIndexHref}/${item.slug}`}
                               variant="text"
                             >
-                              {item.title}
+                              {localizeLanguageSignalText(locale, item.title)}
                             </CardCtaLink>
                           </li>
                         ))}
@@ -507,9 +512,9 @@ export default async function ProductPlaybookPage({params}: ProductPlaybookPageP
                 <ContentIndexCard
                   key={item.href}
                   href={item.href}
-                  title={item.title}
-                  description={item.description}
-                  meta={item.meta}
+                  title={localizeLanguageSignalText(locale, item.title)}
+                  description={localizeLanguageSignalText(locale, item.description)}
+                  meta={localizeLanguageSignalList(locale, item.meta)}
                   ctaLabel={item.ctaLabel}
                 />
               ))}

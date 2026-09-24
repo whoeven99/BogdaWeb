@@ -3,6 +3,7 @@ import Image from "next/image";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import type {MediaAssetBrief} from "@/content/media-briefs";
 import type {Locale} from "@/lib/i18n";
+import {localizeLanguageSignalFields, localizeLanguageSignalText} from "@/lib/localized-language-signal";
 
 type MediaPlaceholderSectionProps = {
   eyebrow?: string;
@@ -340,19 +341,20 @@ export function MediaPlaceholderSection({
   return (
     <section className={compact ? "py-10 sm:py-12" : "py-12 sm:py-14 lg:py-16"}>
       <SectionHeading
-        eyebrow={eyebrow}
-        title={normalizeHeadingTitle(title, locale)}
-        description={normalizeHeadingDescription(description, locale)}
+        eyebrow={localizeLanguageSignalText(locale, eyebrow ?? "") || undefined}
+        title={localizeLanguageSignalText(locale, normalizeHeadingTitle(title, locale))}
+        description={localizeLanguageSignalText(locale, normalizeHeadingDescription(description, locale))}
       />
       <div className={compact ? "mt-8 grid gap-5 lg:grid-cols-2" : "mt-8 grid gap-6 xl:grid-cols-2"}>
         {items.map((item, index) => {
-          const preset = getShowcasePreset(item, index, locale);
+          const localizedItem = localizeLanguageSignalFields(locale, item);
+          const preset = localizeLanguageSignalFields(locale, getShowcasePreset(localizedItem, index, locale));
           const placementLabel = locale === "zh-cn" ? "位置" : "Placement";
-          const placementValue = locale === "zh-cn" ? item.placement : item.title;
+          const placementValue = locale === "zh-cn" ? localizedItem.placement : localizedItem.title;
           const itemDescription =
             locale === "zh-cn"
-              ? normalizeItemDescription(item.description, locale)
-              : item.description || preset.summary;
+              ? localizeLanguageSignalText(locale, normalizeItemDescription(localizedItem.description, locale))
+              : localizedItem.description || preset.summary;
           const watchLabel = locale === "zh-cn" ? "查看演示" : "Watch walkthrough";
 
           return (
@@ -409,7 +411,7 @@ export function MediaPlaceholderSection({
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-2xl font-semibold tracking-[-0.04em] text-slate-950">{item.title}</h3>
+                  <h3 className="text-2xl font-semibold tracking-[-0.04em] text-slate-950">{localizedItem.title}</h3>
                   <p className="mt-3 text-sm leading-7 text-slate-600">{itemDescription}</p>
                 </div>
                 <div className="flex flex-wrap gap-2">

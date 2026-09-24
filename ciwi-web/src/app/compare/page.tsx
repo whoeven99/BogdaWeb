@@ -117,7 +117,7 @@ export default async function ComparePage() {
   const pageUrl = toAbsoluteLocalizedUrl(locale, "/compare");
   const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
-      {name: "Home", item: siteUrl},
+      {name: locale === "zh-cn" ? "首页" : "Home", item: siteUrl},
       {name: copy.structuredData.name, item: pageUrl},
     ]),
     buildWebPageSchema({

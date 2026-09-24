@@ -20,7 +20,7 @@ export function LocaleSwitcher() {
 
   return (
     <div
-      className="inline-flex items-center rounded-full border border-slate-200 bg-white/90 p-1 shadow-sm"
+      className="ui-locale-switcher"
       aria-label={locale === "zh-cn" ? "切换语言" : "Switch language"}
     >
       {supportedLocales.map((targetLocale) => {
@@ -31,12 +31,6 @@ export function LocaleSwitcher() {
           <Link
             key={targetLocale}
             href={href}
-            className={[
-              "rounded-full px-3 py-1.5 text-xs font-semibold transition-colors duration-200",
-              isActive
-                ? "bg-slate-200 text-slate-700 shadow-sm hover:bg-slate-300"
-                : "text-slate-600 hover:bg-slate-100 hover:text-slate-950",
-            ].join(" ")}
             hrefLang={targetLocale === "zh-cn" ? "zh-CN" : "en"}
             aria-current={isActive ? "true" : undefined}
           >

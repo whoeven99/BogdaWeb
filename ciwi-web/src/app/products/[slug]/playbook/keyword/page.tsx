@@ -15,6 +15,7 @@ import {getProductMap, products} from "@/content/products";
 import {getProductPlaybookHref} from "@/content/use-cases";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {localizeHref} from "@/lib/i18n";
+import {localizeLanguageSignalText} from "@/lib/localized-language-signal";
 import {buildPageMetadata, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 import {notFound, permanentRedirect} from "next/navigation";
@@ -64,8 +65,8 @@ function buildKeywordPageDescription({
 }) {
   const startIdx = (page - 1) * CATEGORIES_PER_PAGE;
   const endIdx = Math.min(categories.length, startIdx + CATEGORIES_PER_PAGE);
-  const firstTopic = categories[startIdx]?.name;
-  const lastTopic = categories[endIdx - 1]?.name;
+  const firstTopic = localizeLanguageSignalText(locale, categories[startIdx]?.name ?? "");
+  const lastTopic = localizeLanguageSignalText(locale, categories[endIdx - 1]?.name ?? "");
   const topicRange =
     firstTopic && lastTopic
       ? locale === "zh-cn"
@@ -101,13 +102,15 @@ function buildKeywordIndexNarrative({
   const lastTopic = visible[visible.length - 1];
   const sampledTopics = visible
     .slice(0, 4)
-    .map((item) => item.name)
+    .map((item) => localizeLanguageSignalText(locale, item.name))
     .join(locale === "zh-cn" ? "、" : ", ");
+  const firstTopicName = localizeLanguageSignalText(locale, firstTopic?.name ?? "");
+  const lastTopicName = localizeLanguageSignalText(locale, lastTopic?.name ?? "");
 
   if (locale === "zh-cn") {
     return [
       `${productName} 运营场景库当前收录 ${categories.length} 个主题和 ${totalScenarios.toLocaleString()} 条具体场景页。`,
-      `当前第 ${resolvedPage}/${totalPages} 页覆盖从「${firstTopic?.name ?? ""}」到「${lastTopic?.name ?? ""}」的主题范围。`,
+      `当前第 ${resolvedPage}/${totalPages} 页覆盖从「${firstTopicName}」到「${lastTopicName}」的主题范围。`,
       sampledTopics
         ? `这一页优先展示 ${sampledTopics} 等主题。`
         : `这一页会把当前页可见主题直接展开，便于继续进入具体场景、Prompt 和 FAQ。`,
@@ -119,7 +122,7 @@ function buildKeywordIndexNarrative({
 
   return [
     `${productName} currently groups ${totalScenarios.toLocaleString()} scenario pages under ${categories.length} topics.`,
-    `Page ${resolvedPage} of ${totalPages} covers topics from ${firstTopic?.name ?? ""} to ${lastTopic?.name ?? ""}.`,
+    `Page ${resolvedPage} of ${totalPages} covers topics from ${firstTopicName} to ${lastTopicName}.`,
     sampledTopics
       ? `This page starts with topics such as ${sampledTopics}.`
       : `This page expands the topics visible in the current slice so you can move directly into scenario pages, prompts, and FAQs.`,
@@ -381,7 +384,7 @@ export default async function SparkPlaybookKeywordIndexPage({params}: SparkPlayb
 
   const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
-      {name: "Home", item: toAbsoluteLocalizedUrl(locale, "/")},
+      {name: locale === "zh-cn" ? "首页" : "Home", item: toAbsoluteLocalizedUrl(locale, "/")},
       {
         name: locale === "zh-cn" ? "产品" : "Products",
         item: toAbsoluteLocalizedUrl(locale, "/products"),
@@ -417,10 +420,10 @@ export default async function SparkPlaybookKeywordIndexPage({params}: SparkPlayb
             (resolvedPage > 1 ? ` (page ${resolvedPage}/${totalPages})` : ""),
       description: pageDescription,
       keywords: [
-        "Shopify AI",
-        "Shopify automation",
-        `${product.name} playbook`,
-        `${total} Shopify use cases`,
+        localizeLanguageSignalText(locale, "Shopify AI"),
+        localizeLanguageSignalText(locale, "Shopify automation"),
+        localizeLanguageSignalText(locale, `${product.name} playbook`),
+        localizeLanguageSignalText(locale, `${total} Shopify use cases`),
         ...(resolvedPage > 1
           ? [locale === "zh-cn" ? `第 ${resolvedPage} 页` : `page ${resolvedPage}`]
           : []),
@@ -438,10 +441,10 @@ export default async function SparkPlaybookKeywordIndexPage({params}: SparkPlayb
     const items = getKeywordUseCasesByCategory(locale, cat.name);
     return {
       slug: getKeywordUseCaseCategorySlug(locale, cat.name),
-      name: cat.name,
+      name: localizeLanguageSignalText(locale, cat.name),
       count: cat.count,
       sampleKeywords: items.slice(0, 8).map((i) => i.keyword),
-      sampleTitles: items.slice(0, 6).map((i) => i.title),
+      sampleTitles: items.slice(0, 6).map((i) => localizeLanguageSignalText(locale, i.title)),
     };
   });
 
@@ -520,7 +523,7 @@ export default async function SparkPlaybookKeywordIndexPage({params}: SparkPlayb
                   categories={categoriesForFilter}
                   chips={pagedCategories.map((c) => ({
                     slug: getKeywordUseCaseCategorySlug(locale, c.name),
-                    name: c.name,
+                    name: localizeLanguageSignalText(locale, c.name),
                     count: c.count,
                   }))}
                   currentPage={resolvedPage}
@@ -546,7 +549,7 @@ export default async function SparkPlaybookKeywordIndexPage({params}: SparkPlayb
                           {cat.count} {copy.categories.totalLabel}
                         </div>
                         <h2 className="mt-2 text-xl font-semibold tracking-[-0.03em] text-slate-950 sm:text-2xl lg:text-[26px]">
-                          {cat.name}
+                          {localizeLanguageSignalText(locale, cat.name)}
                         </h2>
                       </div>
                         {items.length > 3 ? (
@@ -574,11 +577,11 @@ export default async function SparkPlaybookKeywordIndexPage({params}: SparkPlayb
                                 href={keywordDetailHref(productSlug, item.slug)}
                                 variant="text"
                               >
-                                {item.title}
+                                {localizeLanguageSignalText(locale, item.title)}
                               </CardCtaLink>
                             </h3>
                             <p className="mt-2 line-clamp-3 text-[13px] leading-6 text-slate-500 sm:mt-2.5 sm:text-[13.5px]">
-                              {item.scenarioDescription}
+                              {localizeLanguageSignalText(locale, item.scenarioDescription)}
                             </p>
                           </article>
                         </li>

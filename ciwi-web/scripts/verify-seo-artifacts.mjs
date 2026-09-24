@@ -55,6 +55,11 @@ function checkSitemapArtifacts() {
       pushError(`Built sitemap contains a non-HTTPS URL: ${loc}`);
     }
 
+    const pathname = loc.replace(/^https:\/\/[^/]+/, "");
+    if (pathname.includes("//")) {
+      pushError(`Built sitemap contains a malformed URL with duplicate slashes: ${loc}`);
+    }
+
     if (loc.startsWith("https://ciwi.ai/") && loc !== "https://ciwi.ai/" && !loc.endsWith("/")) {
       pushError(`Built sitemap contains a non-canonical URL without trailing slash: ${loc}`);
     }
@@ -114,6 +119,24 @@ function checkLlmsArtifacts() {
 
   if (llmsBody.includes("/sitemap.xml/")) {
     pushError("Built llms.txt contains a malformed sitemap.xml URL with trailing slash.");
+  }
+
+  const urlMatches = [...llmsBody.matchAll(/https:\/\/[^\s]+/g)].map((match) => match[0]);
+  for (const url of urlMatches) {
+    const pathname = url.replace(/^https:\/\/[^/]+/, "");
+
+    if (pathname.includes("//")) {
+      pushError(`Built llms.txt contains a malformed URL with duplicate slashes: ${url}`);
+    }
+
+    if (
+      url.startsWith("https://ciwi.ai/") &&
+      !url.endsWith("/") &&
+      !url.endsWith(".txt") &&
+      !url.endsWith(".xml")
+    ) {
+      pushError(`Built llms.txt contains a non-canonical internal URL without trailing slash: ${url}`);
+    }
   }
 }
 

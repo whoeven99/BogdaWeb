@@ -163,7 +163,7 @@ export default async function GuidesHubPage() {
   const pageUrl = toAbsoluteLocalizedUrl(locale, "/guides");
   const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
-      {name: "Home", item: siteUrl},
+      {name: locale === "zh-cn" ? "首页" : "Home", item: siteUrl},
       {name: copy.structuredData.name, item: pageUrl},
     ]),
     buildWebPageSchema({

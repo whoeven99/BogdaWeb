@@ -7,6 +7,7 @@ import {ContentIndexHero} from "@/components/sections/ContentIndexHero";
 import type {HelpCenterDoc} from "@/content/help-center";
 import {getUiCopy} from "@/content/ui-copy";
 import type {Locale} from "@/lib/i18n";
+import {localizeLanguageSignalList, localizeLanguageSignalText} from "@/lib/localized-language-signal";
 
 type HelpCenterLandingProps = {
   docs: HelpCenterDoc[];
@@ -43,8 +44,8 @@ function buildHelpCenterLandingNarrative({
   topicGroups: TopicGroup[];
   featuredDocs: HelpCenterDoc[];
 }) {
-  const topicLabels = topicGroups.slice(0, 4).map((group) => group.label);
-  const featuredTitles = featuredDocs.slice(0, 3).map((doc) => doc.title);
+  const topicLabels = topicGroups.slice(0, 4).map((group) => localizeLanguageSignalText(locale, group.label));
+  const featuredTitles = featuredDocs.slice(0, 3).map((doc) => localizeLanguageSignalText(locale, doc.title));
 
   if (locale === "zh-cn") {
     return [
@@ -135,7 +136,7 @@ export function HelpCenterLanding({docs, featuredDocs, locale, eyebrow}: HelpCen
   return (
     <section className="py-12 sm:py-16 lg:py-20">
       <ContentIndexHero eyebrow={eyebrow} title={uiCopy.docs.landingTitle} description={uiCopy.docs.landingDescription} />
-      <div className="mx-auto mt-6 max-w-4xl rounded-[24px] border border-slate-200/80 bg-white/90 p-5 sm:p-6">
+      <div className="ui-reading-note mt-8 max-w-4xl">
         <div className="space-y-4 text-[15px] leading-7 text-slate-600 sm:text-base">
           {narrative.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
@@ -144,7 +145,7 @@ export function HelpCenterLanding({docs, featuredDocs, locale, eyebrow}: HelpCen
       </div>
 
       <div className="mt-12 space-y-10">
-        <section className="rounded-[32px] bg-white/90 p-7 shadow-[0_16px_48px_-24px_rgba(15,23,42,0.14)] sm:p-9">
+        <section className="ui-panel ui-panel--muted">
           <div className="max-w-3xl space-y-4">
             <div className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-700">
               {uiCopy.docs.featuredTitle}
@@ -160,16 +161,16 @@ export function HelpCenterLanding({docs, featuredDocs, locale, eyebrow}: HelpCen
               <ContentIndexCard
                 key={doc.entryId}
                 href={doc.href}
-                title={doc.title}
-                description={doc.description}
-                meta={doc.meta}
+                title={localizeLanguageSignalText(locale, doc.title)}
+                description={localizeLanguageSignalText(locale, doc.description)}
+                meta={localizeLanguageSignalList(locale, doc.meta)}
                 ctaLabel={uiCopy.docs.openArticleLabel}
               />
             ))}
           </div>
         </section>
 
-        <section className="rounded-[32px] bg-white/90 p-7 shadow-[0_16px_48px_-24px_rgba(15,23,42,0.14)] sm:p-9">
+        <section className="ui-panel">
           <div className="max-w-3xl space-y-4">
             <div className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-700">
               {uiCopy.docs.browseTopicLabel}
@@ -188,7 +189,7 @@ export function HelpCenterLanding({docs, featuredDocs, locale, eyebrow}: HelpCen
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
                 placeholder={uiCopy.docs.searchPlaceholder}
-                className="h-12 w-full rounded-2xl border border-slate-200 bg-slate-50/80 px-4 text-sm text-slate-900 outline-none transition-colors placeholder:text-slate-400 focus:border-emerald-300 focus:bg-white focus:ring-4 focus:ring-emerald-100"
+                className="ui-search-field"
               />
             </label>
 
@@ -196,7 +197,7 @@ export function HelpCenterLanding({docs, featuredDocs, locale, eyebrow}: HelpCen
               <button
                 type="button"
                 className={[
-                  "rounded-full border px-4 py-2 text-sm font-semibold transition-colors",
+                  "rounded-lg border px-4 py-2 text-sm font-semibold transition-colors",
                   activeTopic === "all"
                     ? "border-slate-950 bg-slate-950 text-white"
                     : "border-slate-200 bg-white text-slate-700 hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-700",
@@ -211,14 +212,14 @@ export function HelpCenterLanding({docs, featuredDocs, locale, eyebrow}: HelpCen
                   key={group.key}
                   type="button"
                   className={[
-                    "rounded-full border px-4 py-2 text-sm font-semibold transition-colors",
+                    "rounded-lg border px-4 py-2 text-sm font-semibold transition-colors",
                     activeTopic === group.key
                       ? "border-slate-950 bg-slate-950 text-white"
                       : "border-slate-200 bg-white text-slate-700 hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-700",
                   ].join(" ")}
                   onClick={() => setActiveTopic(group.key)}
                 >
-                  {group.label}
+                  {localizeLanguageSignalText(locale, group.label)}
                 </button>
               ))}
             </div>
@@ -234,7 +235,9 @@ export function HelpCenterLanding({docs, featuredDocs, locale, eyebrow}: HelpCen
               {filteredGroups.map((group) => (
                 <section key={group.key} className="space-y-5">
                   <header className="flex flex-col gap-3 border-b border-slate-200 pb-5 sm:flex-row sm:items-center sm:justify-between">
-                    <h3 className="text-2xl font-semibold tracking-[-0.03em] text-slate-950">{group.label}</h3>
+                    <h3 className="text-2xl font-semibold tracking-[-0.03em] text-slate-950">
+                      {localizeLanguageSignalText(locale, group.label)}
+                    </h3>
                     <span className="text-sm text-slate-500">
                       {group.docs.length} {uiCopy.docs.articleCountLabel}
                     </span>
@@ -245,9 +248,9 @@ export function HelpCenterLanding({docs, featuredDocs, locale, eyebrow}: HelpCen
                       <ContentIndexCard
                         key={doc.entryId}
                         href={doc.href}
-                        title={doc.title}
-                        description={doc.description}
-                        meta={[...doc.meta, doc.readingTime]}
+                        title={localizeLanguageSignalText(locale, doc.title)}
+                        description={localizeLanguageSignalText(locale, doc.description)}
+                        meta={[...localizeLanguageSignalList(locale, doc.meta), localizeLanguageSignalText(locale, doc.readingTime)]}
                         ctaLabel={uiCopy.docs.openArticleLabel}
                         variant="bordered"
                       />

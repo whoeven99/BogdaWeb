@@ -9,6 +9,7 @@ import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getAvailableToolReviewLocales, getToolReviewMap, getToolReviews, type ToolReview} from "@/content/tool-reviews";
 import {getRequestLocale} from "@/lib/i18n-server";
+import {localizeLanguageSignalFields} from "@/lib/localized-language-signal";
 import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildFaqSchema, buildReviewSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 
@@ -179,30 +180,32 @@ function buildStructuredData(
     faq: {question: string; answer: string}[];
   }
 ) {
+  const localizedReview = localizeLanguageSignalFields(locale, review);
   const pageUrl = toAbsoluteLocalizedUrl(locale, review.href);
 
   return buildGraphSchema([
     buildBreadcrumbSchema([
-      {name: "Home", item: siteUrl},
+      {name: locale === "zh-cn" ? "首页" : "Home", item: siteUrl},
       {name: locale === "zh-cn" ? "Shopify 选品" : "Product Research", item: toAbsoluteLocalizedUrl(locale, "/resources/product-research")},
       {name: locale === "zh-cn" ? "工具测评" : "Tool Reviews", item: toAbsoluteLocalizedUrl(locale, "/resources/product-research/reviews")},
-      {name: review.toolName, item: pageUrl},
+      {name: localizedReview.toolName, item: pageUrl},
     ]),
     buildWebPageSchema({
       url: pageUrl,
-      name: review.title,
-      description: review.description,
+      name: localizedReview.title,
+      description: localizedReview.description,
       type: "WebPage",
     }),
     buildReviewSchema({
       url: pageUrl,
-      itemName: review.toolName,
-      reviewBody: review.verdict,
-      ratingValue: review.rating,
+      itemName: localizedReview.toolName,
+      itemReviewedType: "SoftwareApplication",
+      reviewBody: localizedReview.verdict,
+      ratingValue: localizedReview.rating,
       bestRating: 10,
-      datePublished: review.publishedAt,
+      datePublished: localizedReview.publishedAt,
     }),
-    buildFaqSchema(review.faq),
+    buildFaqSchema(localizedReview.faq),
   ]);
 }
 
@@ -213,7 +216,8 @@ export function generateStaticParams() {
 export async function generateMetadata({params}: ToolReviewDetailPageProps) {
   const locale = await getRequestLocale();
   const {slug} = await params;
-  const review = getToolReviewMap(locale)[slug];
+  const rawReview = getToolReviewMap(locale)[slug];
+  const review = rawReview ? localizeLanguageSignalFields(locale, rawReview) : rawReview;
   const copy = getPageCopy(locale);
 
   if (!review) {
@@ -238,7 +242,8 @@ export async function generateMetadata({params}: ToolReviewDetailPageProps) {
 export default async function ToolReviewDetailPage({params}: ToolReviewDetailPageProps) {
   const locale = await getRequestLocale();
   const {slug} = await params;
-  const review = getToolReviewMap(locale)[slug];
+  const rawReview = getToolReviewMap(locale)[slug];
+  const review = rawReview ? localizeLanguageSignalFields(locale, rawReview) : rawReview;
 
   if (!review) {
     notFound();

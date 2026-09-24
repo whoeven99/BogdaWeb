@@ -15,6 +15,7 @@ export async function generateMetadata() {
     description: page.description,
     path: "/privacy-policy",
     locale,
+    noIndex: locale === "zh-cn",
   });
 }
 

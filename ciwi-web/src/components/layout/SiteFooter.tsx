@@ -44,7 +44,7 @@ export function SiteFooter() {
   ];
 
   return (
-    <footer className="border-t border-slate-200 bg-white/80">
+    <footer className="ui-site-footer">
       <PageContainer>
         <div className="grid gap-10 py-14 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,2fr)]">
           <div className="space-y-4">

@@ -13,6 +13,7 @@ type UseCasePlaybookCardProps = {
   eyebrow?: string;
   meta: string[];
   linkLabel: string;
+  variant?: "default" | "landing";
 };
 
 export function UseCasePlaybookCard({
@@ -24,9 +25,15 @@ export function UseCasePlaybookCard({
   eyebrow,
   meta,
   linkLabel,
+  variant = "default",
 }: UseCasePlaybookCardProps) {
+  const className =
+    variant === "landing"
+      ? "resource-card resource-card--landing group flex h-full flex-col"
+      : "ui-editorial-card group";
+
   return (
-    <article className="group flex h-full flex-col rounded-[24px] bg-white p-7 shadow-[0_18px_48px_-28px_rgba(15,23,42,0.16)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_24px_60px_-28px_rgba(15,23,42,0.18)] sm:p-8">
+    <article className={className}>
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0 space-y-2">
           {eyebrow ? (

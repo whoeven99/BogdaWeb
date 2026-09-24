@@ -1,3 +1,5 @@
+import type {ReactNode} from "react";
+
 import {SectionHeading} from "@/components/ui/SectionHeading";
 
 type FeatureModule = {
@@ -18,6 +20,7 @@ type ProductFeatureSpotlightsSectionProps = {
   title: string;
   description: string;
   items: FeatureModule[];
+  cta?: ReactNode;
 };
 
 export function ProductFeatureSpotlightsSection({
@@ -26,6 +29,7 @@ export function ProductFeatureSpotlightsSection({
   title,
   description,
   items,
+  cta,
 }: ProductFeatureSpotlightsSectionProps) {
   if (!items.length) {
     return null;
@@ -72,6 +76,7 @@ export function ProductFeatureSpotlightsSection({
           </article>
         ))}
       </div>
+      {cta}
     </section>
   );
 }

@@ -11,9 +11,10 @@ type ButtonProps = {
   href: string;
   children: ReactNode;
   variant?: ButtonVariant;
+  size?: "default" | "large";
 };
 
-export function Button({href, children, variant = "primary"}: ButtonProps) {
+export function Button({href, children, variant = "primary", size = "default"}: ButtonProps) {
   const variantClass =
     variant === "primary"
       ? "ui-btn--primary"
@@ -26,7 +27,7 @@ export function Button({href, children, variant = "primary"}: ButtonProps) {
             : variant === "inverted-secondary"
               ? "ui-btn--inverted-secondary"
               : "ui-btn--dark";
-  const className = `ui-btn ${variantClass}`;
+  const className = `ui-btn ${variantClass}${size === "large" ? " ui-btn--large" : ""}`;
 
   if (isExternalHref(href)) {
     return (

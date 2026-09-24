@@ -183,7 +183,7 @@ export default async function ProductResearchHubPage() {
   const pageUrl = toAbsoluteLocalizedUrl(locale, "/resources/product-research");
   const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
-      {name: "Home", item: siteUrl},
+      {name: locale === "zh-cn" ? "首页" : "Home", item: siteUrl},
       {name: copy.structuredData.name, item: pageUrl},
     ]),
     buildWebPageSchema({
