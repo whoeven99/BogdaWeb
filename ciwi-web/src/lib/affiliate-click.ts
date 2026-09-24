@@ -53,8 +53,10 @@ export async function recordAffiliateClick(input: {code?: string; product?: stri
     }
 
     const referralCode = normalizeReferralCode(rawCode);
-    const account = await prisma.affiliateAccount.findUnique({
-      where: {referralCode},
+    const account = await prisma.affiliateAccount.findFirst({
+      where: {
+        OR: [{referralCode}, {sparkReferralCode: referralCode}],
+      },
       select: {id: true},
     });
 

@@ -1,6 +1,7 @@
 import {NextResponse} from "next/server";
 
 import {countAffiliateClicks} from "@/lib/affiliate-click";
+import {countAffiliateFunnel} from "@/lib/affiliate-codes";
 import {getCurrentAffiliateAccount} from "@/lib/affiliate-session";
 
 export async function GET() {
@@ -12,13 +13,17 @@ export async function GET() {
     }
 
     const clicks = await countAffiliateClicks(account.id);
+    const funnel = await countAffiliateFunnel({
+      translatorCode: account.referralCode,
+      sparkCode: account.sparkReferralCode,
+    });
 
     return NextResponse.json({
       ok: true,
       stats: {
         clicks,
-        signups: 0,
-        activated: 0,
+        signups: funnel.signups,
+        activated: funnel.activated,
         conversionRate: 0,
         trackedRevenue: 0,
         commissionEarned: 0,

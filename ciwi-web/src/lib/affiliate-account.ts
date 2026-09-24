@@ -25,6 +25,7 @@ export function toPublicAffiliateAccount(account: AffiliateAccountRecord): Affil
     name: account.name,
     email: account.email,
     referralCode: account.referralCode,
+    sparkReferralCode: account.sparkReferralCode,
     status: account.status === "pending" ? "pending" : "active",
     joinedAt: account.createdAt.toISOString(),
   };

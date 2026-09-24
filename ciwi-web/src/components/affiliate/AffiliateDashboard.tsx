@@ -12,9 +12,9 @@ import {WithdrawCard} from "@/components/affiliate/WithdrawCard";
 import {useAffiliate} from "@/components/providers/AffiliateProvider";
 import {useLocale} from "@/components/providers/LocaleProvider";
 import {SectionHeading} from "@/components/ui/SectionHeading";
-import type {AffiliateCopy} from "@/content/affiliate";
+import type {AffiliateCopy, ReferralRecord} from "@/content/affiliate";
 import {getAffiliateProducts} from "@/content/affiliate";
-import {emptyAffiliateStats, fetchAffiliateStats} from "@/lib/affiliate-api";
+import {emptyAffiliateStats, fetchAffiliateReferrals, fetchAffiliateStats} from "@/lib/affiliate-api";
 import {localizeHref} from "@/lib/i18n";
 
 type AffiliateDashboardProps = {
@@ -37,20 +37,22 @@ function DashboardContent({copy}: AffiliateDashboardProps) {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState<TabKey>("overview");
   const [stats, setStats] = useState(emptyAffiliateStats);
+  const [referrals, setReferrals] = useState<ReferralRecord[]>([]);
 
   useEffect(() => {
     let cancelled = false;
 
-    fetchAffiliateStats().then((nextStats) => {
+    Promise.all([fetchAffiliateStats(), fetchAffiliateReferrals()]).then(([nextStats, nextReferrals]) => {
       if (!cancelled) {
         setStats(nextStats);
+        setReferrals(nextReferrals);
       }
     });
 
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [account?.referralCode, account?.sparkReferralCode]);
 
   if (!account) {
     return null;
@@ -101,8 +103,13 @@ function DashboardContent({copy}: AffiliateDashboardProps) {
       <div className="dashboard-panel">
         {activeTab === "overview" ? (
           <div className="section-stack">
-            {account.referralCode ? (
-              <ReferralCodeCard code={account.referralCode} products={products} copy={copy.referralCard} />
+            {account.referralCode && account.sparkReferralCode ? (
+              <ReferralCodeCard
+                translatorCode={account.referralCode}
+                sparkCode={account.sparkReferralCode}
+                products={products}
+                copy={copy.referralCard}
+              />
             ) : (
               <div className="surface-card affiliate-empty">
                 <div>
@@ -120,7 +127,7 @@ function DashboardContent({copy}: AffiliateDashboardProps) {
         ) : null}
 
         {activeTab === "progress" ? (
-          <ReferralTable referrals={[]} products={products} copy={copy.progress} />
+          <ReferralTable referrals={referrals} products={products} copy={copy.progress} />
         ) : null}
 
         {activeTab === "payouts" ? (

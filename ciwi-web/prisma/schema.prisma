@@ -10,16 +10,17 @@ datasource db {
 }
 
 model AffiliateAccount {
-  id           String              @id @default(cuid())
-  name         String
-  email        String              @unique
-  passwordHash String
-  referralCode String?             @unique
-  status       String              @default("active")
-  createdAt    DateTime            @default(now())
-  updatedAt    DateTime            @updatedAt
-  sessions     AffiliateSession[]
-  clicks       AffiliateClick[]
+  id                String             @id @default(cuid())
+  name              String
+  email             String             @unique
+  passwordHash      String
+  referralCode      String?            @unique
+  sparkReferralCode String?            @unique
+  status            String             @default("active")
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  sessions          AffiliateSession[]
+  clicks            AffiliateClick[]
 }
 
 model AffiliateSession {

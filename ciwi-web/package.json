@@ -16,6 +16,8 @@
     "guides:translate": "node ./scripts/create-guide-translation-draft.mjs",
     "prisma:generate": "prisma generate",
     "turso:migrate": "node ./scripts/turso-migrate.cjs",
+    "turso:migrate-referral": "node ./scripts/turso-migrate-referral.cjs",
+    "turso:copy-affiliate": "node ./scripts/turso-copy-affiliate-data.cjs",
     "intelligence": "node scripts/merchant-intelligence/run.mjs",
     "intelligence:test": "node --test scripts/merchant-intelligence/core.test.mjs"
   },

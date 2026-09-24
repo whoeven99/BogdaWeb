@@ -1,20 +1,4 @@
-const REFERRAL_CODE_PREFIX = "CIWI-";
-const REFERRAL_CODE_LENGTH = 6;
-const REFERRAL_CODE_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
 const REFERRAL_BASE_URL = "https://ciwi.ai";
-
-export function generateReferralCode(): string {
-  const values = new Uint32Array(REFERRAL_CODE_LENGTH);
-  crypto.getRandomValues(values);
-
-  let code = "";
-
-  for (const value of values) {
-    code += REFERRAL_CODE_ALPHABET[value % REFERRAL_CODE_ALPHABET.length];
-  }
-
-  return `${REFERRAL_CODE_PREFIX}${code}`;
-}
 
 export function buildReferralLink(code: string, productSlug: string): string {
   return `${REFERRAL_BASE_URL}/?ref=${code}&product=${productSlug}`;
