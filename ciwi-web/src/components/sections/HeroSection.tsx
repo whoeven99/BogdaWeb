@@ -58,13 +58,13 @@ export function HeroSection({
             ))}
           </div>
           <div className="mt-8 flex flex-wrap items-center gap-3">
-            <Button href={primaryCtaHref}>{primaryCtaLabel}</Button>
-            <Button href={secondaryCtaHref} variant="secondary">
+            <Button href={primaryCtaHref} size="large">{primaryCtaLabel}</Button>
+            <Button href={secondaryCtaHref} variant="secondary" size="large">
               {secondaryCtaLabel}
             </Button>
           </div>
         </div>
-        <div className="overflow-hidden rounded-[32px] bg-white/90 p-5 shadow-[0_24px_80px_-36px_rgba(15,23,42,0.18)] sm:p-6">
+        <div className="ui-home-hero__visual">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <Image
@@ -81,7 +81,7 @@ export function HeroSection({
             </div>
             <Image src="/20250813-132858.png" alt={visualAlt.builtForShopify} width={118} height={30} />
           </div>
-          <div className="mt-5 overflow-hidden rounded-[28px] border border-slate-200 bg-slate-950">
+          <div className="mt-5 overflow-hidden rounded-xl border border-slate-200 bg-slate-950">
             <div className="flex items-center gap-2 border-b border-white/10 px-4 py-3 text-white">
               <span className="h-2.5 w-2.5 rounded-full bg-rose-400" />
               <span className="h-2.5 w-2.5 rounded-full bg-amber-400" />
@@ -105,7 +105,7 @@ export function HeroSection({
             </div>
           </div>
           <div className="mt-4 grid gap-4 sm:grid-cols-2">
-            <div className="overflow-hidden rounded-[24px] bg-white shadow-sm">
+            <div className="overflow-hidden rounded-xl bg-white shadow-sm">
               <Image
                 src="https://img.bogdatech.com/ciwi-web/bundle.webp"
                 alt={visualAlt.secondaryTop}
@@ -114,7 +114,7 @@ export function HeroSection({
                 className="h-full w-full object-cover"
               />
             </div>
-            <div className="overflow-hidden rounded-[24px] bg-white shadow-sm">
+            <div className="overflow-hidden rounded-xl bg-white shadow-sm">
               <Image
                 src="https://img.bogdatech.com/ciwi-web/Spark03.png"
                 alt={visualAlt.secondaryBottom}

@@ -1,3 +1,5 @@
+import type {ReactNode} from "react";
+
 import {ArticleCard} from "@/components/cards/ArticleCard";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 
@@ -18,9 +20,10 @@ type ProductDifferentiatorsSectionProps = {
   id?: string;
   eyebrow: string;
   title: string;
-  description: string;
+  description?: string;
   items?: DifferentiatorItem[];
   compareLinks?: CompareLink[];
+  cta?: ReactNode;
 };
 
 export function ProductDifferentiatorsSection({
@@ -30,21 +33,25 @@ export function ProductDifferentiatorsSection({
   description,
   items = [],
   compareLinks = [],
+  cta,
 }: ProductDifferentiatorsSectionProps) {
   if (!items.length && !compareLinks.length) {
     return null;
   }
 
   return (
-    <section className="page-section anchor-offset" id={id}>
+    <section className="page-section anchor-offset product-differentiators" id={id}>
       <SectionHeading eyebrow={eyebrow} title={title} description={description} />
       <div className="section-stack">
         {items.length ? (
-          <div className="detail-grid">
-            {items.map((item) => (
-              <article key={`${item.title}-${item.description}`} className="surface-card section-stack">
+          <div className="product-differentiators__grid">
+            {items.map((item, index) => (
+              <article
+                key={`${item.title}-${item.description}`}
+                className={`product-differentiators__item section-stack ${index === 0 ? "product-differentiators__item--accent" : "surface-card"}`}
+              >
                 <h3>{item.title}</h3>
-                <p className="quote">{item.description}</p>
+                <p className="product-differentiators__description">{item.description}</p>
                 {item.bullets?.length ? (
                   <ul className="check-list">
                     {item.bullets.map((bullet) => (
@@ -65,11 +72,13 @@ export function ProductDifferentiatorsSection({
                 description={item.description}
                 href={item.href}
                 meta={item.meta}
+                variant="landing"
               />
             ))}
           </div>
         ) : null}
       </div>
+      {cta}
     </section>
   );
 }

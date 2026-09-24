@@ -73,11 +73,11 @@ export function FinalCtaSection({
             actionsClassName ? `final-cta-actions mt-8 ${actionsClassName}` : "final-cta-actions mt-8 flex flex-wrap items-center gap-3"
           }
         >
-          <Button href={primaryHref} variant={variant === "inverted" ? "inverted" : "primary"}>
+          <Button href={primaryHref} variant={variant === "inverted" ? "inverted" : "primary"} size="large">
             {primaryLabel}
           </Button>
           {secondaryLabel && secondaryHref ? (
-            <Button href={secondaryHref} variant={variant === "inverted" ? "inverted-secondary" : "secondary"}>
+            <Button href={secondaryHref} variant={variant === "inverted" ? "inverted-secondary" : "secondary"} size="large">
               {secondaryLabel}
             </Button>
           ) : null}

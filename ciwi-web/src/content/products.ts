@@ -19,9 +19,32 @@ export type ProductItem = {
   reviewSnippets?: string[];
   targetUsers: string[];
   benefits: string[];
+  proofPoints?: {label: string; value: string; description: string}[];
+  controlPoints?: {title: string; description: string}[];
+  deepDive?: {
+    eyebrow?: string;
+    title: string;
+    description: string;
+    steps: {title: string; description: string}[];
+    outcomeTitle?: string;
+    outcomeText?: string;
+  };
+  howItWorks?: {
+    title: string;
+    description: string;
+    bullets?: string[];
+    badge?: string;
+  }[];
   features: {title: string; description: string}[];
   workflow: string[];
-  useCases: {title: string; description: string}[];
+  useCases: {
+    title: string;
+    description: string;
+    audience?: string;
+    outcome?: string;
+    category?: string;
+    href?: string;
+  }[];
   demoHighlights: string[];
   demoScenarios: {
     title: string;
@@ -89,6 +112,90 @@ const productsEn: ProductItem[] = [
       "Reduce terminology drift and brand inconsistency",
       "Keep later content updates synchronized more easily",
     ],
+    proofPoints: [
+      {
+        label: "Coverage",
+        value: "Theme + metafields",
+        description: "Bring product copy, theme blocks, FAQs, navigation, image text, and metafields into one localization flow.",
+      },
+      {
+        label: "Control",
+        value: "Glossary locked",
+        description: "Protect brand terms, ingredients, and campaign language instead of leaving key wording to drift.",
+      },
+      {
+        label: "Operations",
+        value: "Sync later updates",
+        description: "Keep multilingual versions easier to maintain when products, offers, and storefront content change.",
+      },
+    ],
+    controlPoints: [
+      {
+        title: "Review before pushing changes live",
+        description: "Treat the translation result as a working layer you can inspect before it becomes part of the storefront experience.",
+      },
+      {
+        title: "Choose exactly what enters the workflow",
+        description: "Decide which languages, markets, and content blocks should be localized first instead of translating everything blindly.",
+      },
+      {
+        title: "Keep brand language under explicit rules",
+        description: "Use glossary and model controls so product naming, ingredient wording, and promotional framing stay steadier over time.",
+      },
+    ],
+    deepDive: {
+      eyebrow: "Deeper look",
+      title: "Localization works better when the whole storefront moves together",
+      description: "Many translation tools stop at the product description. Real multilingual storefront work usually breaks later, when FAQs, metafields, image copy, and theme blocks fall out of sync.",
+      steps: [
+        {
+          title: "Start with the visible selling layer",
+          description: "Translate the product copy, offers, and support language customers read first on the PDP.",
+        },
+        {
+          title: "Bring the structured layer into the same flow",
+          description: "Theme blocks, navigation, FAQs, metafields, and image text should follow the same terminology rules and update rhythm.",
+        },
+        {
+          title: "Keep later storefront changes synchronized",
+          description: "When promotions, product details, or page sections change, multilingual versions stay easier to maintain without reassembling the process from scratch.",
+        },
+      ],
+      outcomeTitle: "Why this matters",
+      outcomeText: "This is usually the difference between a store that merely launches in another language and one that can keep operating cleanly across markets.",
+    },
+    howItWorks: [
+      {
+        title: "Connect the storefront once",
+        description: "Start by linking the Shopify content that needs translation instead of exporting and reassembling content manually.",
+        bullets: [
+          "Identify products, theme blocks, FAQs, navigation, image text, and metafields",
+          "Choose the target markets and languages that matter first",
+          "Set the localization scope before content starts spreading across pages",
+        ],
+        badge: "Setup once",
+      },
+      {
+        title: "Apply translation rules and glossary",
+        description: "Run translation with glossary, model settings, and Shopify-aware coverage so the output stays closer to the intended brand language.",
+        bullets: [
+          "Protect brand terms, ingredients, and high-value phrases",
+          "Cover structured storefront content alongside the main product copy",
+          "Reduce the drift that appears when translation happens in disconnected tools",
+        ],
+        badge: "Controlled output",
+      },
+      {
+        title: "Review and keep later updates in sync",
+        description: "Use the translated result as a working layer you can continue maintaining as products, campaigns, and content evolve.",
+        bullets: [
+          "Check whether tone, offers, and terminology still read correctly",
+          "Update multilingual content as the storefront changes",
+          "Lower the long-term cost of running multilingual operations",
+        ],
+        badge: "Ongoing sync",
+      },
+    ],
     features: [
       {title: "Translate beyond plain text", description: "Cover product copy, theme blocks, FAQs, navigation, image text, and metafields in one broader workflow."},
       {title: "Control terminology and tone", description: "Use glossary and model settings to stabilize brand terms, ingredients, and promotional language."},
@@ -100,9 +207,27 @@ const productsEn: ProductItem[] = [
       "Review the output and keep future updates in sync",
     ],
     useCases: [
-      {title: "Multilingual product pages", description: "For brands maintaining product titles, selling points, FAQs, and image messaging across markets."},
-      {title: "Brand localization", description: "For teams that need glossary control over terminology, ingredients, and brand tone."},
-      {title: "New market validation", description: "For merchants launching into more countries or languages and wanting a faster path to first release."},
+      {
+        title: "Multilingual product pages",
+        description: "Keep product titles, selling points, FAQs, and image messaging more consistent across markets.",
+        audience: "Brands maintaining multiple language versions of the same storefront content",
+        outcome: "Lower effort to keep product messaging aligned across markets",
+        category: "Storefront localization",
+      },
+      {
+        title: "Brand localization",
+        description: "Use glossary control when ingredient terms, series names, and brand language need to stay stable.",
+        audience: "Teams that care about terminology consistency and higher-quality localization",
+        outcome: "Less terminology drift across pages, campaigns, and support content",
+        category: "Terminology control",
+      },
+      {
+        title: "New market validation",
+        description: "Launch into more languages faster, then improve the translated experience as the market proves out.",
+        audience: "Merchants testing expansion into new regions or languages",
+        outcome: "A faster path to release without losing the ability to refine later",
+        category: "Market expansion",
+      },
     ],
     demoHighlights: ["Before / after translation", "Glossary term locking", "Theme and structured content coverage"],
     demoScenarios: [
@@ -308,6 +433,90 @@ const productsEn: ProductItem[] = [
       "Turn a store goal into a plan and carry out supported tasks with Spark",
       "Keep marketing, tracking, content, and operations in one workspace",
     ],
+    proofPoints: [
+      {
+        label: "Context",
+        value: "Connected store signals",
+        description: "Bring Shopify, analytics, tracking, and channel data together so Spark can work with current store context.",
+      },
+      {
+        label: "Flow",
+        value: "Goal -> plan -> action",
+        description: "Spark starts from the outcome you want, scopes a supported path, and helps move the task forward.",
+      },
+      {
+        label: "Workspace",
+        value: "One task center",
+        description: "Keep issues, AI work, content jobs, and follow-up tasks closer together instead of bouncing across tools.",
+      },
+    ],
+    controlPoints: [
+      {
+        title: "Set the goal, scope, and permission boundary",
+        description: "Spark works inside the context and tool access you have already connected, so supported actions stay tied to real permissions.",
+      },
+      {
+        title: "Review what Spark is doing and why",
+        description: "Use AI guidance and task history to understand how Spark interpreted a store issue or goal before deciding the next move.",
+      },
+      {
+        title: "Keep human approval where it matters",
+        description: "Spark can help plan and execute supported work, but the workflow still lets operators check outcomes and continue with clear oversight.",
+      },
+    ],
+    deepDive: {
+      eyebrow: "Deeper look",
+      title: "The value is not another dashboard. It is a shorter path from signal to action.",
+      description: "Most store teams already have access to enough charts. The harder part is turning a store signal into a scoped plan, then into a supported action without losing context across tools.",
+      steps: [
+        {
+          title: "See the issue in operating context",
+          description: "Start with the current revenue, conversion, traffic, tracking, or content signal instead of opening five tools to piece the situation together.",
+        },
+        {
+          title: "Let Spark turn the goal into a path",
+          description: "Describe the outcome you want, and Spark can scope a supported route using connected tools, current data, and task context.",
+        },
+        {
+          title: "Keep execution and follow-up in one workspace",
+          description: "Move into supported tasks, inspect the result, and decide the next step without rebuilding the context from scratch.",
+        },
+      ],
+      outcomeTitle: "Why this matters",
+      outcomeText: "For growing Shopify teams, the biggest speed gain often comes from reducing tool switching and decision lag, not from adding one more reporting screen.",
+    },
+    howItWorks: [
+      {
+        title: "Connect your store signals and tools",
+        description: "Bring Shopify, marketing, and tracking sources together so Spark has the current store context needed for review and execution.",
+        bullets: [
+          "Connect store, ad, analytics, and tracking systems",
+          "Pull performance, health, and issue signals into one workspace",
+          "Reduce the scattered context that slows daily decisions",
+        ],
+        badge: "Connected context",
+      },
+      {
+        title: "Describe a goal and let Spark plan",
+        description: "Tell Spark what outcome you want and let it scope a supported path using the connected tools, permissions, and current store state.",
+        bullets: [
+          "Turn a question or goal into a clearer plan",
+          "Use AI guidance to understand what matters and why",
+          "Keep planning tied to the tools that can actually do the work",
+        ],
+        badge: "Goal driven",
+      },
+      {
+        title: "Execute supported tasks and review the result",
+        description: "Move from insight to supported action without leaving the workspace, then inspect the result and decide the next step.",
+        bullets: [
+          "Run supported tasks inside the connected environment",
+          "Keep task records, AI work, and operations in one task center",
+          "Shorten the gap between seeing an issue and acting on it",
+        ],
+        badge: "Action loop",
+      },
+    ],
     features: [
       {title: "AI store assistant", description: "Ask questions about store signals, business performance, and operations tasks."},
       {title: "Issue detection", description: "Find what needs attention across sales, conversion, traffic, tracking, content, and store health."},
@@ -329,15 +538,24 @@ const productsEn: ProductItem[] = [
     useCases: [
       {
         title: "Daily store review",
-        description: "For merchants who want a fast read on revenue, profit, conversion, traffic, and short-term ROI every day.",
+        description: "Review revenue, profit, conversion, traffic, and short-term ROI in one daily pass.",
+        audience: "Operators, founders, and growth teams doing a daily store check",
+        outcome: "A faster read on what changed and what needs attention today",
+        category: "Daily operations",
       },
       {
         title: "Marketing and tracking setup",
-        description: "For teams connecting Meta, Google, TikTok, GA4, Search Console, and PageSpeed, and validating pixels and tracking.",
+        description: "Connect Meta, Google, TikTok, GA4, Search Console, and PageSpeed while checking that tracking still works.",
+        audience: "Teams responsible for channel setup, pixels, and measurement reliability",
+        outcome: "Less guesswork when store data and tracking start drifting out of sync",
+        category: "Tracking and channels",
       },
       {
         title: "Content and operations workflows",
-        description: "For teams generating product and campaign content, then managing AI and operations tasks from one place.",
+        description: "Generate content, create follow-up tasks, and manage operations work from the same workspace.",
+        audience: "Teams handling content production and day-to-day store execution together",
+        outcome: "A shorter path from store insight to concrete next actions",
+        category: "Execution workflow",
       },
     ],
     demoHighlights: ["Today overview", "Issue detection & AI guidance", "Tasks in one workspace"],
@@ -457,6 +675,90 @@ const productsZh: ProductItem[] = [
     ],
     targetUsers: ["正在拓展海外市场的 Shopify 品牌", "需要长期维护多语言内容的运营团队", "重视品牌术语一致性和本地化质量的商家"],
     benefits: ["更快上线多语言版本", "减少术语漂移和品牌表达不一致", "让后续内容更新也能持续同步"],
+    proofPoints: [
+      {
+        label: "覆盖范围",
+        value: "主题 + metafields",
+        description: "把商品文案、主题区块、FAQ、导航、图片文案和 metafields 一起放进同一套本地化流程。",
+      },
+      {
+        label: "控制能力",
+        value: "glossary 锁词",
+        description: "把品牌词、成分词和促销表达固定下来，减少关键术语在不同页面里漂移。",
+      },
+      {
+        label: "持续运营",
+        value: "后续更新可同步",
+        description: "当商品、活动和页面变化时，多语言版本也更容易一起维护，不用反复拆流程。",
+      },
+    ],
+    controlPoints: [
+      {
+        title: "先审阅，再决定是否上线",
+        description: "把翻译结果当成一个可检查的工作层，而不是直接把输出无差别推到前台页面。",
+      },
+      {
+        title: "明确选择哪些语言和内容先进入流程",
+        description: "先按市场、语言和内容范围拆清楚优先级，而不是一次性把所有页面都推进去。",
+      },
+      {
+        title: "通过 glossary 和模型规则稳住品牌表达",
+        description: "让商品命名、成分词和活动表达尽量保持一致，而不是每轮更新都重新漂移。",
+      },
+    ],
+    deepDive: {
+      eyebrow: "深入理解",
+      title: "真正难的不是第一次翻译，而是让整站后续还能持续同步",
+      description: "很多翻译工具只覆盖商品正文，但多语言店铺真正开始出问题，通常发生在 FAQ、metafields、图片文案和主题区块没有一起跟上之后。",
+      steps: [
+        {
+          title: "先覆盖用户最先看到的商品卖点",
+          description: "把商品描述、优惠表达和基础说明翻译到位，让商品页先具备可读性和转化能力。",
+        },
+        {
+          title: "把结构化内容也纳入同一套规则",
+          description: "主题区块、导航、FAQ、metafields 和图片文案也需要跟随相同术语规则和更新节奏。",
+        },
+        {
+          title: "在店铺变化后继续保持同步",
+          description: "当活动、页面结构和商品信息继续变化时，多语言版本仍然更容易一起更新，而不是每次重新拼装流程。",
+        },
+      ],
+      outcomeTitle: "为什么重要",
+      outcomeText: "这通常决定了你做的是一次性多语言上线，还是一个真的能长期维护的多市场店铺。",
+    },
+    howItWorks: [
+      {
+        title: "先连接店铺和内容范围",
+        description: "先把 Shopify 店铺里需要翻译的内容接进来，而不是先做零散导出再手工整理。",
+        bullets: [
+          "识别商品、主题区块、FAQ、导航、图片文案和 metafields",
+          "优先选择当前最重要的目标市场和语言",
+          "在内容扩散到更多页面前先定义好本地化范围",
+        ],
+        badge: "一次接入",
+      },
+      {
+        title: "按 glossary 和规则执行翻译",
+        description: "结合 glossary、模型策略和 Shopify 场景覆盖去执行翻译，让结果更贴近品牌原本的表达方式。",
+        bullets: [
+          "锁定品牌词、成分词和高价值术语",
+          "让结构化内容和商品正文一起进入同一套流程",
+          "减少多工具切换时常见的表达漂移",
+        ],
+        badge: "受控输出",
+      },
+      {
+        title: "审阅结果并持续同步更新",
+        description: "把翻译结果当作一个可持续维护的工作层，在商品、活动和页面变化后继续保持同步。",
+        bullets: [
+          "检查语气、优惠表达和术语是否依然准确",
+          "在店铺变化时继续更新多语言内容",
+          "降低长期维护多语言站点的运营成本",
+        ],
+        badge: "持续同步",
+      },
+    ],
     features: [
       {title: "Translate beyond plain text", description: "不仅覆盖商品标题和描述，也覆盖主题区块、FAQ、导航、图片文案和 metafields。"},
       {title: "Control terminology and tone", description: "通过 glossary 和模型策略，尽量把品牌词、成分词和营销表达稳定下来。"},
@@ -464,9 +766,27 @@ const productsZh: ProductItem[] = [
     ],
     workflow: ["连接商店并识别可翻译内容", "按目标市场、语言和 glossary 执行翻译", "审阅结果并持续同步后续更新"],
     useCases: [
-      {title: "多语言商品页", description: "适合需要同时维护产品标题、卖点、FAQ 和图片表达的品牌。"},
-      {title: "品牌本地化", description: "适合对术语、成分词和品牌语气要求较高，需要 glossary 控制的团队。"},
-      {title: "新市场验证", description: "适合准备进入更多国家或语言市场，希望先快速上线再持续优化的 Shopify 商家。"},
+      {
+        title: "多语言商品页",
+        description: "帮助品牌在不同市场里更稳定地维护商品标题、卖点、FAQ 和图片文案。",
+        audience: "需要长期维护多语言商品页的品牌和运营团队",
+        outcome: "降低不同市场版本之间的表达断层和维护成本",
+        category: "店铺本地化",
+      },
+      {
+        title: "品牌本地化",
+        description: "当品牌词、成分词、系列名和品牌语气需要稳定下来时，用 glossary 做统一控制。",
+        audience: "重视术语一致性和本地化质量的团队",
+        outcome: "减少不同页面、不同批次翻译之间的表达漂移",
+        category: "术语治理",
+      },
+      {
+        title: "新市场验证",
+        description: "先更快上线新的语言市场，再在验证过程中逐步优化多语言体验。",
+        audience: "准备进入更多国家或语言市场的 Shopify 商家",
+        outcome: "更快完成首发，同时保留后续细化内容的空间",
+        category: "市场拓展",
+      },
     ],
     demoHighlights: ["翻译前后对比", "glossary 术语锁定", "主题与结构化内容覆盖"],
     demoScenarios: [
@@ -669,6 +989,90 @@ const productsZh: ProductItem[] = [
       "将店铺目标拆解为计划，由 Spark 执行支持的任务",
       "把营销、追踪、内容和运营统一放进一个工作台",
     ],
+    proofPoints: [
+      {
+        label: "上下文",
+        value: "连接店铺信号",
+        description: "先把 Shopify、分析、追踪和渠道数据汇到一起，让 Spark 基于当前店铺上下文工作。",
+      },
+      {
+        label: "工作流",
+        value: "目标 -> 计划 -> 动作",
+        description: "从你想达成的结果出发，让 Spark 去整理支持的路径并推进任务。",
+      },
+      {
+        label: "工作台",
+        value: "统一任务中心",
+        description: "把问题、AI 工作、内容任务和后续动作放在一个更连续的工作流里。",
+      },
+    ],
+    controlPoints: [
+      {
+        title: "先定义目标、范围和权限边界",
+        description: "Spark 只在你已经连接的数据和工具权限里工作，支持的动作始终贴着真实环境执行。",
+      },
+      {
+        title: "清楚看到 Spark 为什么这样规划",
+        description: "通过 AI 指引和任务记录理解 Spark 如何判断问题和拆解目标，而不是只接受一个黑盒结果。",
+      },
+      {
+        title: "把关键审批继续留在人工手里",
+        description: "Spark 可以帮助规划和执行支持的工作，但你仍然可以检查结果并决定下一步如何推进。",
+      },
+    ],
+    deepDive: {
+      eyebrow: "深入理解",
+      title: "真正的价值不是再多一个报表，而是把信号更快推进成动作",
+      description: "大多数店铺团队并不缺图表，真正拖慢节奏的是从一个信号走到计划，再到执行动作时不断断掉上下文和切换工具。",
+      steps: [
+        {
+          title: "先在经营上下文里看到问题",
+          description: "从收入、转化、流量、追踪或内容问题出发，而不是打开多个工具再自己拼接当前状态。",
+        },
+        {
+          title: "让 Spark 把目标整理成可执行路径",
+          description: "先告诉 Spark 你想达成什么，再结合已连接的数据、工具和任务环境整理支持的推进方式。",
+        },
+        {
+          title: "把执行和后续跟进留在同一个工作台",
+          description: "直接进入支持的动作执行，检查结果，再决定下一步，而不是每次都重新建立上下文。",
+        },
+      ],
+      outcomeTitle: "为什么重要",
+      outcomeText: "对成长型 Shopify 团队来说，最大的提效空间往往不是更多指标，而是更少工具切换和更短的决策延迟。",
+    },
+    howItWorks: [
+      {
+        title: "先连接店铺信号和工具",
+        description: "把 Shopify、营销和追踪数据接进来，让 Spark 具备理解问题和执行任务所需的当前上下文。",
+        bullets: [
+          "连接店铺、广告、分析和追踪系统",
+          "把表现、健康度和问题信号汇到一个工作台",
+          "减少分散上下文带来的判断延迟",
+        ],
+        badge: "连接上下文",
+      },
+      {
+        title: "描述目标，让 Spark 先规划",
+        description: "先告诉 Spark 你希望达成什么结果，再根据已连接工具、权限和当前状态去规划可执行路径。",
+        bullets: [
+          "把问题或目标整理成更清晰的计划",
+          "借助 AI 指引理解什么更重要、为什么重要",
+          "让规划始终贴近真正可以执行的工具环境",
+        ],
+        badge: "目标驱动",
+      },
+      {
+        title: "执行支持的任务并检查结果",
+        description: "从洞察直接进入支持的动作执行，再在同一个工作台里回看结果并决定下一步。",
+        bullets: [
+          "在已连接环境里执行支持的任务",
+          "把 AI 工作、运营动作和任务记录统一进任务中心",
+          "缩短从发现问题到开始处理之间的时间差",
+        ],
+        badge: "行动闭环",
+      },
+    ],
     features: [
       {title: "AI 店铺助手", description: "就店铺信号、经营表现和运营任务提问。"},
       {title: "问题发现", description: "在销售、转化、流量、追踪、内容和店铺健康中找出需要关注的问题。"},
@@ -690,15 +1094,24 @@ const productsZh: ProductItem[] = [
     useCases: [
       {
         title: "每日店铺复盘",
-        description: "适合希望每天快速查看收入、利润、转化、流量和短期 ROI 的商家。",
+        description: "把收入、利润、转化、流量和短期 ROI 放进一次更快的每日复盘。",
+        audience: "每天都要快速看清店铺状态的运营负责人、创始人和增长团队",
+        outcome: "更快知道今天发生了什么，以及哪些地方需要先处理",
+        category: "日常运营",
       },
       {
         title: "营销与追踪配置",
-        description: "适合连接 Meta、Google、TikTok、GA4、Search Console、PageSpeed，并校验 Pixel 与追踪的团队。",
+        description: "连接 Meta、Google、TikTok、GA4、Search Console、PageSpeed，并持续检查 Pixel 与追踪是否正常。",
+        audience: "负责渠道配置、像素和数据可靠性的团队",
+        outcome: "减少数据漂移时只能靠人工排查的情况",
+        category: "追踪与渠道",
       },
       {
         title: "内容与运营工作流",
-        description: "适合生成商品和活动内容，并在一个工作台里管理 AI 与运营任务的团队。",
+        description: "在同一个工作台里生成内容、创建任务并推进后续运营动作。",
+        audience: "需要同时处理内容生产和店铺执行的团队",
+        outcome: "缩短从洞察到具体动作之间的距离",
+        category: "执行工作流",
       },
     ],
     demoHighlights: ["今日概览", "问题发现与 AI 指引", "一体化任务管理"],

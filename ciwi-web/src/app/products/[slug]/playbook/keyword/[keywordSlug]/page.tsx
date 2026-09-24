@@ -416,7 +416,7 @@ export default async function SparkPlaybookKeywordDetailPage({params}: SparkPlay
   ]);
 
   return (
-    <main>
+    <main className="keyword-detail-page">
       <PageContainer>
         <script
           type="application/ld+json"
@@ -522,12 +522,8 @@ export default async function SparkPlaybookKeywordDetailPage({params}: SparkPlay
               {howToSteps.map((step, index) => (
                 <article
                   key={index}
-                  className="grid gap-5 overflow-hidden rounded-[24px] border border-slate-200/80 bg-white/94 p-5 shadow-[0_14px_34px_-26px_rgba(15,23,42,0.2)] md:grid-cols-[minmax(0,280px)_minmax(0,1fr)] md:gap-7 md:p-6 lg:grid-cols-[minmax(0,320px)_minmax(0,1fr)]"
+                  className="rounded-xl border border-slate-200 bg-white p-5 md:p-6"
                 >
-                  <div
-                    className="mx-auto aspect-[5/4] w-full max-w-[280px] rounded-[18px] bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.14),transparent_34%),linear-gradient(135deg,rgba(241,245,249,0.95),rgba(255,255,255,0.98))] lg:max-w-[320px]"
-                    aria-hidden="true"
-                  />
                   <div className="flex flex-col justify-center">
                     <div className="text-sm font-medium text-slate-400">{`0${index + 1}`}</div>
                     <h3 className="mt-3 text-xl font-semibold tracking-[-0.03em] text-slate-950 sm:text-2xl">

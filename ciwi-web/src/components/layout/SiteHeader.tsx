@@ -98,7 +98,7 @@ export function SiteHeader() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-white/70 bg-white/80 backdrop-blur-xl">
+    <header className="ui-site-header">
       <PageContainer>
         <div className="relative flex min-h-[80px] items-center justify-between gap-4">
           <LocalizedLink
@@ -118,7 +118,7 @@ export function SiteHeader() {
           </LocalizedLink>
           <button
             type="button"
-            className="inline-flex h-11 items-center justify-center rounded-full border border-slate-200 bg-white px-4 text-sm font-semibold text-slate-900 shadow-sm transition-colors hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-700 lg:hidden"
+            className="inline-flex h-11 items-center justify-center rounded-lg border border-slate-200 bg-white px-4 text-sm font-semibold text-slate-900 transition-colors hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-700 lg:hidden"
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-site-nav"
             aria-label={mobileMenuOpen ? mobileCopy.closeMenu : mobileCopy.openMenu}
@@ -158,7 +158,7 @@ export function SiteHeader() {
                   <LocalizedLink
                     href={item.href}
                     className={[
-                      "inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition-colors",
+                      "inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition-colors",
                       isDesktopOpen
                         ? "bg-slate-100 text-slate-950"
                         : "text-slate-600 hover:bg-slate-100 hover:text-slate-950",
@@ -172,7 +172,7 @@ export function SiteHeader() {
                   {hasChildren ? (
                     <div
                       className={[
-                        "absolute left-1/2 top-[calc(100%+10px)] min-w-[260px] -translate-x-1/2 rounded-3xl border border-slate-200/80 bg-white/95 p-3 shadow-[0_22px_60px_-28px_rgba(15,23,42,0.35)] backdrop-blur",
+                        "ui-nav-panel absolute left-1/2 top-[calc(100%+10px)] min-w-[260px] -translate-x-1/2 p-3",
                         "transition-all duration-200",
                         isDesktopOpen ? "visible translate-y-0 opacity-100" : "pointer-events-none invisible translate-y-2 opacity-0",
                       ].join(" ")}
@@ -183,7 +183,7 @@ export function SiteHeader() {
                         <LocalizedLink
                           key={`${child.label}-${child.href}`}
                           href={child.href}
-                          className="block rounded-2xl px-4 py-3 text-sm font-semibold text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-700"
+                          className="block rounded-lg px-4 py-3 text-sm font-semibold text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-700"
                           role="menuitem"
                         >
                           {child.label}
@@ -197,7 +197,7 @@ export function SiteHeader() {
           </nav>
           <div
             className={[
-              "absolute inset-x-0 top-full mt-3 rounded-[28px] border border-slate-200 bg-white/95 p-4 shadow-[0_22px_60px_-28px_rgba(15,23,42,0.35)] backdrop-blur lg:hidden",
+              "ui-nav-panel absolute inset-x-0 top-full mt-3 max-h-[calc(100dvh-112px)] overflow-y-auto p-4 lg:hidden",
               mobileMenuOpen ? "block" : "hidden",
             ].join(" ")}
             id="mobile-site-nav"

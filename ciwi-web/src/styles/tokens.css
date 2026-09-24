@@ -2,10 +2,10 @@
   --color-primary: #008060;
   --color-primary-hover: #00664f;
   --color-primary-soft: #e8f5ee;
-  --color-ink-900: #111827;
-  --color-ink-700: #374151;
-  --color-ink-500: #6b7280;
-  --color-border: #e5e7eb;
+  --color-ink-900: #172422;
+  --color-ink-700: #4d5e5b;
+  --color-ink-500: #667572;
+  --color-border: #dde6e2;
   --color-surface: #ffffff;
   --color-surface-muted: #f8fafc;
   --color-surface-soft: #f9fafb;
@@ -13,8 +13,49 @@
   --color-shopify: #95bf47;
   --color-success: #16a34a;
   --color-warning: #d97706;
-  --shadow-card: 0 2px 8px rgba(17, 24, 39, 0.06);
-  --shadow-panel: 0 8px 24px rgba(17, 24, 39, 0.08);
+  --color-surface-warm: #fff7ee;
+  --color-surface-lilac: #f0eef9;
+  --color-on-dark: #c8dad4;
+  --gradient-page:
+    radial-gradient(ellipse 65% 560px at 5% 0%, #e4f3ec 0%, transparent 75%),
+    radial-gradient(ellipse 60% 620px at 100% 80px, #eeeafa 0%, transparent 75%),
+    linear-gradient(180deg, #fafcfb, #ffffff 900px);
+  --gradient-surface: linear-gradient(145deg, #ffffff, #fafcfb);
+  --gradient-mint:
+    radial-gradient(ellipse at 90% 0%, #e5e4f6 0%, transparent 65%),
+    linear-gradient(135deg, #f4faf7, #dcefe7);
+  --gradient-pearl:
+    radial-gradient(ellipse at 5% 0%, #edf6f0 0%, transparent 60%),
+    linear-gradient(130deg, #fafbfc, #f0edf8);
+  --gradient-warm:
+    radial-gradient(ellipse at 15% 10%, #ffffffb3, transparent 60%),
+    linear-gradient(135deg, #fbeddc, #f4e2df 55%, #e5e3f7);
+  --gradient-dark:
+    radial-gradient(ellipse at 85% 0%, #284d45, transparent 65%),
+    radial-gradient(ellipse at 5% 100%, #30304c, transparent 60%),
+    linear-gradient(135deg, #142321, #101b1e);
+  --color-action-text: #344c43;
+  --color-action-border: #d2d9d5;
+  --color-action-primary: #466457;
+  --color-action-primary-hover: #3a5549;
+  --color-action-primary-active: #30483d;
+  --color-action-secondary: #ffffff;
+  --color-action-soft: #edf1ee;
+  --color-action-inverted: #f7f9f7;
+  --shadow-card: 0 2px 4px #173e2d03, 0 12px 32px -24px #173e2d33;
+  --shadow-panel: 0 1px 0 #ffffffb3 inset, 0 20px 60px -30px #294a3b40;
+  --text-button: 14px;
+  --text-button-large: 15px;
+  --text-card-title: clamp(20px, 1.7vw, 22px);
+  --text-section-title: clamp(28px, 3vw, 38px);
+  --text-hero-title: clamp(36px, 4.5vw, 60px);
+  --weight-control: 600;
+  --weight-heading: 700;
+  --line-body: 1.75;
+  --text-body: 16px;
+  --text-note: 14px;
+  --text-lead: clamp(17px, 1.4vw, 20px);
+  --heading-gap: clamp(16px, 2vw, 24px);
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;

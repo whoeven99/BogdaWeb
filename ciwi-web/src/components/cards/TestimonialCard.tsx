@@ -13,7 +13,7 @@ export function TestimonialCard({name, tag, quote}: TestimonialCardProps) {
     .join("");
 
   return (
-    <article className="testimonial-card h-full rounded-[28px] p-7 sm:p-8">
+    <article className="ui-editorial-card">
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-center gap-3">
           <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100 text-sm font-semibold text-emerald-700">

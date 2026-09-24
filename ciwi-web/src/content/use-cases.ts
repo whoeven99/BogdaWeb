@@ -2841,7 +2841,7 @@ export function getFeaturedUseCases(locale: Locale) {
 }
 
 export function getProductPlaybookHref(productSlug: string) {
-  return `/products/${productSlug}/playbook/`;
+  return `/products/${productSlug}/playbook`;
 }
 
 export function getRelatedUseCases(locale: Locale, slug: string, limit = 3) {

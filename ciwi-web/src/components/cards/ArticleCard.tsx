@@ -9,14 +9,19 @@ type ArticleCardProps = {
   description: string;
   href: string;
   meta: string[];
+  variant?: "default" | "landing";
 };
 
-export function ArticleCard({title, description, href, meta}: ArticleCardProps) {
+export function ArticleCard({title, description, href, meta, variant = "default"}: ArticleCardProps) {
   const locale = useLocale();
   const uiCopy = getUiCopy(locale);
+  const className =
+    variant === "landing"
+      ? "resource-card resource-card--landing group flex h-full flex-col"
+      : "ui-editorial-card group";
 
   return (
-    <article className="group flex h-full flex-col rounded-[24px] bg-white p-7 shadow-[0_18px_48px_-28px_rgba(15,23,42,0.16)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_24px_60px_-28px_rgba(15,23,42,0.18)] sm:p-8">
+    <article className={className}>
       <div className="flex flex-wrap gap-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">
         {meta.map((item) => (
           <span key={item} className="rounded-full bg-slate-100 px-3 py-1">
