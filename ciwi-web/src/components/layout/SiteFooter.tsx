@@ -94,15 +94,15 @@ export function SiteFooter() {
             href={SHOPIFY_SELECT_PARTNER_HREF}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex w-fit items-center rounded-lg bg-slate-950 px-3 py-2.5 transition-opacity hover:opacity-90"
+            className="inline-flex max-w-[10%] shrink-0 items-center self-end overflow-hidden rounded-md transition-opacity hover:opacity-90 sm:self-auto"
             aria-label="Shopify Select Partner"
           >
             <Image
-              src="/badges/shopify-select-partner-white-small.png"
+              src="/badges/shopify-select-partner-badge-select-wht.svg"
               alt="Shopify Select Partner"
-              width={131}
-              height={58}
-              className="h-9 w-auto"
+              width={262}
+              height={117}
+              className="h-auto w-full rounded-md"
             />
           </a>
         </div>
