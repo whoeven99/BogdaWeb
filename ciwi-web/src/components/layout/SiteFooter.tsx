@@ -1,10 +1,14 @@
 "use client";
 
+import Image from "next/image";
 import {useLocale} from "@/components/providers/LocaleProvider";
 import {LocalizedLink} from "@/components/ui/LocalizedLink";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {getNavigation} from "@/content/navigation";
 import {getUiCopy} from "@/content/ui-copy";
+
+/** Shopify Partner Directory (no org-specific profile URL in repo). */
+const SHOPIFY_SELECT_PARTNER_HREF = "https://www.shopify.com/partners/directory";
 
 const socialLinks = [
   {
@@ -84,7 +88,24 @@ export function SiteFooter() {
             ))}
           </div>
         </div>
-        <div className="border-t border-slate-200 py-5 text-sm text-slate-500">{uiCopy.footer.meta}</div>
+        <div className="flex flex-col gap-4 border-t border-slate-200 py-5 sm:flex-row sm:items-center sm:justify-between">
+          <div className="text-sm text-slate-500">{uiCopy.footer.meta}</div>
+          <a
+            href={SHOPIFY_SELECT_PARTNER_HREF}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex max-w-[10%] shrink-0 items-center self-end overflow-hidden rounded-md transition-opacity hover:opacity-90 sm:self-auto"
+            aria-label="Shopify Select Partner"
+          >
+            <Image
+              src="/badges/shopify-select-partner-badge-select-wht.svg"
+              alt="Shopify Select Partner"
+              width={262}
+              height={117}
+              className="h-auto w-full rounded-md"
+            />
+          </a>
+        </div>
       </PageContainer>
     </footer>
   );
