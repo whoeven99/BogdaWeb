@@ -118,7 +118,7 @@ export function localizeLanguageSignalFields<T>(locale: Locale, value: T): T {
 
   if (typeof value === "object") {
     const localizedEntries = Object.entries(value as Record<string, unknown>).map(([key, entry]) => {
-      if (typeof entry === "string" && nonLocalizedKeys.has(key)) {
+      if (typeof entry === "string" && (nonLocalizedKeys.has(key) || key.endsWith("Href"))) {
         return [key, entry];
       }
 

@@ -1547,6 +1547,14 @@ export default async function CompareDetailPage({params}: CompareDetailPageProps
             description={copy.sections.continue.description}
           />
           <div className="resource-grid">
+            {(data.slug === "langify-alternative" || data.slug === "transcy-alternative") && (
+              <ArticleCard
+                title={locale === "zh-cn" ? "翻译迁移与恢复检查清单" : "Translation migration and recovery checklist"}
+                description={locale === "zh-cn" ? "先备份、检查展示问题，再验证少量内容，逐步完成切换。" : "Back up translations, diagnose display issues and validate a small batch before switching."}
+                href="/use-cases/translator-quality-recovery"
+                meta={[locale === "zh-cn" ? "迁移指南" : "Migration guide"]}
+              />
+            )}
             {continueResourceItems.map((item) => (
               <ArticleCard
                 key={item.id}
