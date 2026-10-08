@@ -91,7 +91,7 @@ const nextConfig: NextConfig = {
       {
         source: "/zh-cn/:path*",
         has: [{type: "host", value: "blog.ciwi.ai"}],
-        destination: "https://ciwi.ai/zh-cn/blog/:path*",
+        destination: "https://ciwi.ai/zh-cn/blog/:path*/",
         permanent: true,
       },
       {
@@ -103,7 +103,7 @@ const nextConfig: NextConfig = {
       {
         source: "/:path*",
         has: [{type: "host", value: "blog.ciwi.ai"}],
-        destination: "https://ciwi.ai/blog/:path*",
+        destination: "https://ciwi.ai/blog/:path*/",
         permanent: true,
       },
     ];

@@ -61,6 +61,13 @@ function checkNextConfig() {
   if (!config.includes("trailingSlash: true")) {
     pushError("next.config.ts: missing `trailingSlash: true`.");
   }
+
+  for (const match of config.matchAll(/destination:\s*["'](https:\/\/ciwi\.ai\/[^"']+)["']/g)) {
+    const pathname = match[1].split(/[?#]/, 1)[0];
+    if (!pathname.endsWith("/")) {
+      pushError(`next.config.ts: redirect destination is missing its canonical trailing slash: ${match[1]}`);
+    }
+  }
 }
 
 function checkAppMetadata() {
