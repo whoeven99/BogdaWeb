@@ -1,12 +1,13 @@
 "use client";
 
 import {CardCtaLink} from "@/components/ui/CardCtaLink";
+import {LocalizedLink} from "@/components/ui/LocalizedLink";
 import {useLocale} from "@/components/providers/LocaleProvider";
 import {getUiCopy} from "@/content/ui-copy";
 
 type ArticleCardProps = {
   title: string;
-  description: string;
+  description?: string;
   href: string;
   meta: string[];
   variant?: "default" | "landing";
@@ -29,8 +30,10 @@ export function ArticleCard({title, description, href, meta, variant = "default"
           </span>
         ))}
       </div>
-      <h3 className="mt-5 text-[22px] font-semibold tracking-[-0.03em] text-slate-950">{title}</h3>
-      <p className="mt-4 flex-1 text-[15px] leading-8 text-slate-600">{description}</p>
+      <h3 className="mt-5 text-[22px] font-semibold tracking-[-0.03em] text-slate-950">
+        <LocalizedLink href={href} className="hover:text-emerald-700">{title}</LocalizedLink>
+      </h3>
+      {description ? <p className="mt-4 flex-1 text-[15px] leading-8 text-slate-600">{description}</p> : null}
       <div className="mt-7">
         <CardCtaLink href={href} variant="text">
           {uiCopy.resources.openResourceLabel}

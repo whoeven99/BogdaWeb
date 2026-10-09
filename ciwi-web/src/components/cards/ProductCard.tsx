@@ -5,6 +5,7 @@ import Image from "next/image";
 import type {CSSProperties} from "react";
 
 import {CardCtaLink} from "@/components/ui/CardCtaLink";
+import {LocalizedLink} from "@/components/ui/LocalizedLink";
 import {useLocale} from "@/components/providers/LocaleProvider";
 import {getUiCopy} from "@/content/ui-copy";
 
@@ -45,7 +46,9 @@ export function ProductCard({
       <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-100">
         <Image src={icon} alt={name} width={24} height={24} />
       </div>
-      <h3 className="mt-6 text-[22px] font-semibold tracking-[-0.03em] text-slate-950">{name}</h3>
+      <h3 className="mt-6 text-[22px] font-semibold tracking-[-0.03em] text-slate-950">
+        <LocalizedLink href={href} className="hover:text-emerald-700">{name}</LocalizedLink>
+      </h3>
       <p className="mt-4 text-[15px] leading-8 text-slate-600">{description}</p>
       {hasRating ? (
         <div className="mt-6 flex flex-wrap items-center gap-3 text-sm">

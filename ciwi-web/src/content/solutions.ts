@@ -218,7 +218,7 @@ const solutionsZh: SolutionItem[] = [
   {
     slug: "increase-conversion",
     name: "Increase Conversion",
-    title: "Increase Conversion for Shopify Stores",
+    title: "通过店铺本地化提升 Shopify 转化率",
     description: "通过更自然的商品表达、更清晰的本地化体验和更低的理解成本，帮助 Shopify 商家提升跨市场转化。",
     heroTitle: "让用户更容易理解商品，也更愿意下单",
     heroDescription:
@@ -338,7 +338,7 @@ const solutionsZh: SolutionItem[] = [
   {
     slug: "grow-aov",
     name: "Grow AOV",
-    title: "Grow AOV with Clear Bundle Narratives",
+    title: "通过套餐与加购表达提升 Shopify 客单价",
     description: "围绕套餐逻辑、加购引导和优惠表达，帮助 Shopify 商家更稳定地提升客单价。",
     heroTitle: "让用户看懂为什么要一起买，而不只是看到一个折扣",
     heroDescription:

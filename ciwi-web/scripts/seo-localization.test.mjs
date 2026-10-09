@@ -10,11 +10,29 @@ function loadContentModule(filePath, dependencies = {}) {
     compilerOptions: {module: ts.ModuleKind.CommonJS},
   });
   const exports = {};
-  vm.runInNewContext(outputText, {exports, require: (name) => dependencies[name]});
+  vm.runInNewContext(outputText, {exports, URL, require: (name) => dependencies[name]});
   return exports;
 }
 
 const languageSignals = loadContentModule("../src/lib/localized-language-signal.ts");
+const {withShopifyUtm} = loadContentModule("../src/lib/marketing-links.ts");
+
+test("Shopify attribution preserves existing parameters and ignores other destinations", () => {
+  const href = "https://apps.shopify.com/spark-1?keyword=sales%20report&source=ciwiweb#reviews";
+  const result = withShopifyUtm(href);
+  const url = new URL(result);
+  assert.equal(url.searchParams.get("utm_source"), "ciwi.ai");
+  assert.equal(url.searchParams.get("utm_medium"), "referral");
+  assert.equal(url.searchParams.get("utm_campaign"), "website");
+  assert.equal(url.searchParams.get("keyword"), "sales report");
+  assert.equal(url.searchParams.get("source"), "ciwiweb");
+  assert.equal(url.hash, "#reviews");
+  assert.equal(withShopifyUtm(result), result);
+  assert.equal(new URL(withShopifyUtm("https://apps.shopify.com/spark-1?utm_campaign=partner")).searchParams.get("utm_campaign"), "partner");
+  for (const other of ["/products/translator/", "https://example.com/", "https://apps.shopify.com.example.com/app"]) {
+    assert.equal(withShopifyUtm(other), other);
+  }
+});
 const i18n = loadContentModule("../src/lib/i18n.ts");
 const nextConfig = loadContentModule("../next.config.ts").default;
 const resources = loadContentModule("../src/content/resources-page-copy.ts", {

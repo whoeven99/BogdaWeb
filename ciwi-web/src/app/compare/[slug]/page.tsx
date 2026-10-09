@@ -5,7 +5,7 @@ import type {CSSProperties} from "react";
 import {FaqSection} from "@/components/sections/FaqSection";
 import {FinalCtaSection} from "@/components/sections/FinalCtaSection";
 import {ArticleCard} from "@/components/cards/ArticleCard";
-import {BackLink} from "@/components/ui/BackLink";
+import {Breadcrumbs} from "@/components/ui/Breadcrumbs";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import type {CompareItem, CompareMetric} from "@/content/compare";
@@ -17,7 +17,7 @@ import {localizeHref} from "@/lib/i18n";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {localizeLanguageSignalFields} from "@/lib/localized-language-signal";
 import {ciwiShopifyInstallUrl} from "@/lib/marketing-links";
-import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
+import {buildPageMetadata, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildFaqSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 
 export const dynamic = "force-dynamic";
@@ -1232,7 +1232,7 @@ export default async function CompareDetailPage({params}: CompareDetailPageProps
   });
   const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
-      {name: locale === "zh-cn" ? "首页" : "Home", item: siteUrl},
+      {name: locale === "zh-cn" ? "首页" : "Home", item: toAbsoluteLocalizedUrl(locale, "/")},
       {name: copy.breadcrumbLabel, item: toAbsoluteLocalizedUrl(locale, "/compare")},
       {name: data.title, item: pageUrl},
     ]),
@@ -1253,7 +1253,11 @@ export default async function CompareDetailPage({params}: CompareDetailPageProps
         />
         <section className="py-8 sm:py-10 lg:py-12">
           <div className="mx-auto max-w-5xl">
-            <BackLink href="/compare" label={copy.breadcrumbLabel} />
+            <Breadcrumbs locale={locale} items={[
+              {label: locale === "zh-cn" ? "首页" : "Home", href: "/"},
+              {label: copy.breadcrumbLabel, href: "/compare"},
+              {label: data.title},
+            ]} />
             <div className="mt-5 sm:mt-6">
               <SectionHeading eyebrow={copy.hero.eyebrow} title={data.title} description={data.description} as="h1" />
             </div>

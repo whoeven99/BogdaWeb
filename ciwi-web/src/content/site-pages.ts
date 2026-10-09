@@ -55,8 +55,8 @@ const sitePagesZh = {
       `,
   },
   contact: {
-    title: "Contact Us",
-    description: "如果你有任何问题或建议，可以直接联系 Ciwi 团队。",
+    title: "联系 Ciwi：Shopify 翻译与 AI 店铺工具",
+    description: "联系 Ciwi 团队，咨询 Shopify 多语言翻译、AI 店铺工具与合作事宜。",
     paragraphs: [
       "不用担心，我们会在24小时内回复你。",
       "你也可以先从 Shopify App Store、产品页或帮助文档开始，再决定是否需要进一步沟通。",

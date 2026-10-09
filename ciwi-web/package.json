@@ -9,6 +9,7 @@
     "lint": "next lint",
     "seo:check": "node --test ./scripts/seo-localization.test.mjs && node ./scripts/check-seo.mjs",
     "seo:artifacts": "node ./scripts/verify-seo-artifacts.mjs",
+    "seo:structure": "node ./scripts/audit-page-structure.mjs",
     "content:new": "node ./scripts/create-content-document.mjs",
     "best-apps:generate": "node ./scripts/generate-best-shopify-apps.mjs",
     "content:validate": "node ./scripts/validate-content.mjs",

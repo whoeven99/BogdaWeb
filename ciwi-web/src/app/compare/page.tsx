@@ -41,7 +41,7 @@ export async function generateMetadata() {
   const locale = await getRequestLocale();
 
   return buildPageMetadata({
-    title: locale === "zh-cn" ? "产品对比" : "Compare",
+    title: locale === "zh-cn" ? "Shopify 翻译应用对比与替代方案" : "Shopify Translation App Comparisons & Alternatives",
     description:
       locale === "zh-cn"
         ? "帮助 Shopify 商家更快比较不同翻译和本地化方案的适配度与长期成本。"
@@ -68,8 +68,8 @@ export default async function ComparePage() {
           },
           hero: {
             eyebrow: "对比",
-            title: "快速看清哪种方案更适合你的店铺阶段",
-            description: "从适配深度、维护成本和增长目标三个角度，判断哪条路线更适合当前业务。",
+            title: "Shopify 翻译应用对比与替代方案",
+            description: "比较 Langify、Transcy、Weglot、Translate & Adapt 与 Ciwi 的翻译覆盖、术语控制、价格和迁移流程。",
             cardMeta: ["对比", "选型"],
           },
           media: {
@@ -95,8 +95,8 @@ export default async function ComparePage() {
           },
           hero: {
             eyebrow: "Compare",
-            title: "See which path fits your store stage faster",
-            description: "Compare options through workflow depth, maintenance cost, and growth goals.",
+            title: "Shopify translation app comparisons and alternatives",
+            description: "Compare Langify, Transcy, Weglot, Translate & Adapt and Ciwi by translation coverage, glossary control, pricing and migration workflow.",
             cardMeta: ["Compare", "Selection"],
           },
           media: {

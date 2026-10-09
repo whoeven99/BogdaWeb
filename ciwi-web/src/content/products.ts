@@ -77,7 +77,7 @@ export type ProductItem = {
     bullets?: string[];
   }[];
   compareLinks?: {title: string; description: string; href: string; meta: string[]}[];
-  relatedResources: {title: string; href: string; meta: string[]}[];
+  relatedResources: {title: string; description?: string; href: string; meta: string[]}[];
   faq: {question: string; answer: string}[];
   ctaLabel: string;
   ctaHref: string;
@@ -88,9 +88,9 @@ const productsEn: ProductItem[] = [
     slug: "translator",
     name: "AI Translator",
     seoDescription: "Ciwi is an AI translation tool for Shopify ecommerce websites. Translate storefront content, manage brand terminology, and keep language versions in sync.",
-    seoTitle: "AI Translation Tool for Shopify Ecommerce",
+    seoTitle: "Shopify AI Translation App for Multilingual Stores",
     shortDescription: "An AI translation tool for Shopify ecommerce websites, with glossary control and workflows for keeping multilingual storefront content up to date.",
-    heroTitle: "AI-powered translation for your Shopify store",
+    heroTitle: "Shopify AI translation app for multilingual stores",
     heroDescription:
       "Use Ciwi AI Translator to translate Shopify products, themes, navigation, FAQs, images, and metafields. Manage brand terminology and keep multilingual storefront content aligned as your store changes.",
     videoUrl: "https://www.youtube.com/embed/rAFB3AuXuH0?si=6v-NjiENBOqvREy-",
@@ -379,6 +379,12 @@ const productsEn: ProductItem[] = [
     ],
     compareLinks: [
       {
+        title: "Langify Alternative for Shopify",
+        description: "Compare glossary control, translation coverage and migration checks before switching apps.",
+        href: "/compare/langify-alternative",
+        meta: ["Compare", "Migration"],
+      },
+      {
         title: "Shopify Translate & Adapt Alternative",
         description: "Compare Shopify native localization with a more complete multilingual workflow.",
         href: "/compare/shopify-translate-adapt-alternative",
@@ -398,6 +404,7 @@ const productsEn: ProductItem[] = [
       },
     ],
     relatedResources: [
+      {title: "Recover Shopify translations after switching apps", description: "Back up translations and check display issues before migrating a small batch.", href: "/use-cases/translator-quality-recovery", meta: ["Workflow", "Translation recovery"]},
       {title: "About the Ciwi AI Translator Shopify app", href: "/help-center/ShopifyApp/about-ciwi-ai-translator-shopify-app/", meta: ["Help Center", "Overview"]},
       {title: "How to set up and use glossary?", href: "/help-center/ShopifyApp/how-to-setup-and-use-glossary/", meta: ["Help Center", "Glossary"]},
       {title: "Shopify Translate & Adapt Alternative", href: "/compare/shopify-translate-adapt-alternative", meta: ["Compare", "Selection"]},
@@ -624,14 +631,16 @@ const productsEn: ProductItem[] = [
         meta: ["Best Apps", "Analytics"],
       },
       {
-        title: "How to localize currency pricing on Shopify",
-        href: "/guides/how-to-localize-currency-pricing-on-shopify",
-        meta: ["Guide", "Pricing"],
+        title: "How to use the Spark AI assistant",
+        description: "Set a task goal and review the supported steps using connected store data.",
+        href: "/help-center/ShopifyApp/how-to-use-the-spark-ai-assistant",
+        meta: ["Help Center", "Store tasks"],
       },
       {
-        title: "Resources",
-        href: "/resources",
-        meta: ["Resources", "Operations"],
+        title: "Spark Shopify workflows and scenario library",
+        description: "Browse reporting, catalog and store operation scenarios by topic.",
+        href: "/products/spark-analytics-agent/playbook",
+        meta: ["Playbook", "Operations"],
       },
     ],
     faq: [
@@ -660,10 +669,12 @@ const productsZh: ProductItem[] = [
   {
     slug: "translator",
     name: "AI Translator",
+    seoTitle: "Shopify AI 翻译应用与多语言店铺本地化",
+    seoDescription: "使用 Ciwi AI Translator 翻译 Shopify 商品、主题、图片和元字段，通过术语控制与持续同步维护多语言店铺。了解功能、迁移流程与应用对比。",
     shortDescription: "帮助 Shopify 商家更快上线多语言、稳定术语表达并持续同步更新。",
-    heroTitle: "Ciwi 翻译，让国际化SEO变成新的获客来源和转化工具",
+    heroTitle: "Shopify AI 翻译应用，让多语言店铺持续同步",
     heroDescription:
-      "Ciwi AI Translator 基于 ChatGPT 等先进 AI模型，进行更符合本地市场的翻译工作并保持品牌一致。同时，Ciwi 通过大数据模型优化翻译内容的 SEO 效果，为获客和转化率带来 13.5% 的显著提升",
+      "使用 Ciwi AI Translator 翻译 Shopify 商品、主题、导航、常见问题、图片和元字段。通过术语控制保持品牌表达一致，并在店铺内容更新时持续维护多语言版本。",
     videoUrl: "https://www.youtube.com/embed/rAFB3AuXuH0?si=6v-NjiENBOqvREy-",
     icon: "/translate.svg",
     metrics: ["适配全球一百多个市场", "保持品牌风格和调性", "强化 翻译后的SEO 效果"],
@@ -938,6 +949,12 @@ const productsZh: ProductItem[] = [
     ],
     compareLinks: [
       {
+        title: "Langify 替代方案与迁移对比",
+        description: "比较术语控制、翻译覆盖和切换应用前的迁移检查。",
+        href: "/compare/langify-alternative",
+        meta: ["应用对比", "翻译迁移"],
+      },
+      {
         title: "Shopify Translate & Adapt Alternative",
         description: "比较 Shopify 原生多语言能力和更完整本地化工作流的差异。",
         href: "/compare/shopify-translate-adapt-alternative",
@@ -957,6 +974,7 @@ const productsZh: ProductItem[] = [
       },
     ],
     relatedResources: [
+      {title: "切换应用后如何恢复 Shopify 翻译", description: "先备份翻译、检查展示问题，再通过小批量验证逐步迁移。", href: "/use-cases/translator-quality-recovery", meta: ["操作流程", "翻译恢复"]},
       {title: "About ciwi.ai-translator Shopify App", href: "/help-center/ShopifyApp/about-ciwi-ai-translator-shopify-app/", meta: ["Help Center", "Overview"]},
       {title: "How to setup and use glossary?", href: "/help-center/ShopifyApp/how-to-setup-and-use-glossary/", meta: ["Help Center", "Glossary"]},
       {title: "Shopify Translate & Adapt Alternative", href: "/compare/shopify-translate-adapt-alternative", meta: ["Compare", "Selection"]},
@@ -973,7 +991,9 @@ const productsZh: ProductItem[] = [
     slug: "spark-analytics-agent",
     name: "Spark: AI Store Assistant",
     shortDescription: "面向 Shopify 商家的 AI Agent，将目标拆解为计划，并通过已连接的数据和工具执行支持的店铺任务。",
-    heroTitle: "告诉 Spark 目标，让它规划并执行",
+    seoTitle: "Shopify AI Agent：店铺任务与自动化工作流",
+    seoDescription: "Spark 根据你的目标，使用已连接的 Shopify 店铺数据与工具规划并执行支持的任务。了解店铺分析、任务范围、权限确认与工作流。",
+    heroTitle: "Shopify AI Agent，让 Spark 规划并执行店铺任务",
     heroDescription:
       "Spark 是面向 Shopify 商家的 AI Agent。描述你希望达成的目标，Spark 会自主规划步骤，并使用已连接的店铺数据和工具执行支持的任务。你可以明确任务范围和权限，再检查执行结果。",
     videoUrl: "https://www.youtube.com/embed/UO8Hz0fCMJw?si=eBaqLeLxbLjxjKzw",
@@ -1177,14 +1197,16 @@ const productsZh: ProductItem[] = [
         meta: ["Best Apps", "Analytics"],
       },
       {
-        title: "How to localize currency pricing on Shopify",
-        href: "/guides/how-to-localize-currency-pricing-on-shopify",
-        meta: ["Guide", "Pricing"],
+        title: "如何使用 Spark AI 店铺助手",
+        description: "明确任务目标，使用已连接的店铺数据执行支持的步骤并检查结果。",
+        href: "/help-center/ShopifyApp/how-to-use-the-spark-ai-assistant",
+        meta: ["帮助中心", "店铺任务"],
       },
       {
-        title: "Resources",
-        href: "/resources",
-        meta: ["Resources", "Operations"],
+        title: "Spark Shopify 工作流与场景库",
+        description: "按主题浏览报表、商品目录与店铺运营场景。",
+        href: "/products/spark-analytics-agent/playbook",
+        meta: ["方案集", "运营"],
       },
     ],
     faq: [

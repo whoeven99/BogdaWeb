@@ -35,7 +35,7 @@ const navigationContent = {
         children: [
           {label: "Resources Hub", href: "/resources"},
           {label: "Use Cases", href: "/use-cases"},
-          {label: "Localization Guides", href: "/guides/localization"},
+          {label: "Ecommerce Localization Guides", href: "/guides/localization"},
           {label: "Shopify Guides & Workflows", href: "/guides"},
           {label: "Help Center", href: "/help-center"},
           {label: "Blog", href: "/blog"},
@@ -51,10 +51,11 @@ const navigationContent = {
         {label: "Spark: AI Store Assistant", href: "/products/spark-analytics-agent"},
       ],
       resources: [
+        {label: "Shopify Translation App Comparisons", href: "/compare"},
         {label: "Use Cases", href: "/use-cases"},
         {label: "Blog", href: "/blog"},
         {label: "Help Center", href: "/help-center"},
-        {label: "Localization Guides", href: "/guides/localization"},
+        {label: "Ecommerce Localization Guides", href: "/guides/localization"},
         {label: "Shopify Guides & Workflows", href: "/guides"},
         {label: "Best Shopify Apps", href: "/best-shopify-apps"},
         {label: "Resources Hub", href: "/resources"},
@@ -101,6 +102,7 @@ const navigationContent = {
         {label: "Spark AI 店铺助手", href: "/products/spark-analytics-agent"},
       ],
       resources: [
+        {label: "Shopify 翻译应用对比", href: "/compare"},
         {label: "应用场景", href: "/use-cases"},
         {label: "博客", href: "/blog"},
         {label: "帮助中心", href: "/help-center"},

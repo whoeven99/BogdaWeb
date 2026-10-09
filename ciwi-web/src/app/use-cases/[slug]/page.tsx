@@ -1,5 +1,6 @@
 import {FaqSection} from "@/components/sections/FaqSection";
-import {BackLink} from "@/components/ui/BackLink";
+import {Breadcrumbs} from "@/components/ui/Breadcrumbs";
+import {ResourceCollectionSection} from "@/components/sections/ResourceCollectionSection";
 import {Button} from "@/components/ui/Button";
 import {PageContainer} from "@/components/ui/PageContainer";
 import {SectionHeading} from "@/components/ui/SectionHeading";
@@ -7,7 +8,7 @@ import {getProductMap} from "@/content/products";
 import {getProductPlaybookHref, getUseCaseMap, useCases, type UseCaseItem} from "@/content/use-cases";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {localizeLanguageSignalFields, localizeLanguageSignalText} from "@/lib/localized-language-signal";
-import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
+import {buildPageMetadata, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildFaqSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 import {notFound} from "next/navigation";
 
@@ -25,7 +26,6 @@ function buildUseCaseNarrative(useCase: UseCaseItem, locale: "en" | "zh-cn") {
 
   if (locale === "zh-cn") {
     return [
-      `${useCase.heroDescription} 这类场景通常出现在团队已经感受到明显运营摩擦，但还没有把输入、判断和执行顺序沉淀成固定流程的时候。`,
       signalSummary
         ? `如果你现在遇到的问题更接近「${signalSummary}」，那这条工作流就是在把零散信号整理成一个可重复执行的流程。它会沿着 ${workflowTitles} 这样的顺序推进，避免不同成员各自用不同方法处理同一问题。`
         : `这条工作流会把零散信号整理成一个可重复执行的流程，避免不同成员各自用不同方法处理同一问题。`,
@@ -34,7 +34,6 @@ function buildUseCaseNarrative(useCase: UseCaseItem, locale: "en" | "zh-cn") {
   }
 
   return [
-    `${useCase.heroDescription} This kind of page is most useful when the team already feels the operating friction but has not yet turned the inputs, decisions, and handoff into a stable workflow.`,
     signalSummary
       ? `If the current pain looks more like "${signalSummary}", this workflow is designed to turn those scattered signals into one repeatable operating sequence. It moves through ${workflowTitles} so different team members are not improvising the same job in different ways.`
       : `This workflow turns scattered signals into one repeatable operating sequence so different team members are not improvising the same job in different ways.`,
@@ -133,8 +132,9 @@ export default async function UseCaseDetailPage({params}: UseCaseDetailPageProps
   const narrative = buildUseCaseNarrative(useCase, locale);
   const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
-      {name: locale === "zh-cn" ? "首页" : "Home", item: siteUrl},
-      {name: locale === "zh-cn" ? "应用场景" : "Use Cases", item: toAbsoluteLocalizedUrl(locale, "/use-cases")},
+      {name: locale === "zh-cn" ? "首页" : "Home", item: toAbsoluteLocalizedUrl(locale, "/")},
+      {name: productName, item: toAbsoluteLocalizedUrl(locale, `/products/${useCase.productSlug}`)},
+      {name: locale === "zh-cn" ? "产品方案集" : "Use case playbook", item: toAbsoluteLocalizedUrl(locale, playbookHref)},
       {name: useCase.title, item: pageUrl},
     ]),
     buildWebPageSchema({
@@ -156,7 +156,12 @@ export default async function UseCaseDetailPage({params}: UseCaseDetailPageProps
 
         <section className="py-8 sm:py-10 lg:py-12">
           <div className="mx-auto max-w-5xl">
-            <BackLink href={playbookHref} label={copy.hero.backToPlaybook} />
+            <Breadcrumbs locale={locale} items={[
+              {label: locale === "zh-cn" ? "首页" : "Home", href: "/"},
+              {label: productName, href: `/products/${useCase.productSlug}`},
+              {label: locale === "zh-cn" ? "产品方案集" : "Use case playbook", href: playbookHref},
+              {label: useCase.title},
+            ]} />
             <div className="mt-5 sm:mt-6">
               <SectionHeading
                 title={useCase.title}
@@ -214,6 +219,26 @@ export default async function UseCaseDetailPage({params}: UseCaseDetailPageProps
             </div>
           </div>
         </section>
+
+        <ResourceCollectionSection
+          title={locale === "zh-cn" ? "相关产品与操作指南" : "Related product and workflows"}
+          items={[
+            {
+              title: productName,
+              description: product?.shortDescription ?? useCase.description,
+              href: `/products/${useCase.productSlug}`,
+              meta: [locale === "zh-cn" ? "产品" : "Product"],
+            },
+            ...(product?.relatedResources ?? [])
+              .filter((item) => item.href !== `/use-cases/${useCase.slug}/`)
+              .slice(0, 2)
+              .map((item) => ({...item, description: item.description ?? ""})),
+            ...(useCase.slug === "translator-quality-recovery" ? [
+              {title: locale === "zh-cn" ? "Langify 替代方案与迁移注意事项" : "Langify alternative and migration considerations", description: locale === "zh-cn" ? "对比术语控制、翻译覆盖与切换前的备份检查。" : "Compare glossary control, translation coverage and backup checks before switching.", href: "/compare/langify-alternative", meta: [locale === "zh-cn" ? "应用对比" : "App comparison"]},
+              {title: locale === "zh-cn" ? "Transcy 替代方案与价格对比" : "Transcy alternative and pricing comparison", description: locale === "zh-cn" ? "了解方案差异，并在迁移前核对翻译范围。" : "Review plan differences and check translation scope before migrating.", href: "/compare/transcy-alternative", meta: [locale === "zh-cn" ? "应用对比" : "App comparison"]},
+            ] : []),
+          ]}
+        />
 
         <FaqSection
           eyebrow={copy.sections.faqEyebrow}
