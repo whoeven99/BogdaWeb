@@ -43,6 +43,10 @@ function checkSitemapArtifacts() {
 
   const redirectSourcePattern = /https:\/\/(?:www\.)?ciwi\.ai\/(?:deepl|vs-langshop)\/|https:\/\/ciwi\.ai\/compare\/ciwi-vs-|http:\/\//;
   for (const loc of locMatches) {
+    if (/^https:\/\/ciwi\.ai\/zh-cn\/(?:privacy-policy|terms-and-conditions)\/$/.test(loc)) {
+      pushError(`Built sitemap contains an intentionally noindex legal page: ${loc}`);
+    }
+
     if (redirectSourcePattern.test(loc)) {
       pushError(`Built sitemap contains a redirect-source URL: ${loc}`);
     }

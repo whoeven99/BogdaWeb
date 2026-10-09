@@ -1041,16 +1041,16 @@ const useCasesEn: UseCaseItem[] = [
     ],
     workflow: [
       {
-        title: "Import what already exists",
-        description: "Bring historical translations into Ciwi instead of discarding all previous work immediately.",
+        title: "Back up and check existing translations",
+        description: "Export Shopify-managed translations, preserve approved wording and record language and market settings. Confirm the destination import format before uploading files or removing the previous app.",
       },
       {
         title: "Identify gaps and low-quality areas",
-        description: "Scan for missing content, outdated output, duplicate translations, and obvious terminology inconsistency.",
+        description: "Check one product in one language. Compare saved translations with the live storefront, published language, market assignment and switcher. Distinguish missing text from content that is saved but not displayed.",
       },
       {
         title: "Retranslate selectively with better controls",
-        description: "Use glossary and prompt rules to improve the highest-impact content first instead of rebuilding the whole store at once.",
+        description: "Review a small batch using approved terminology. Verify product details, navigation, SEO fields and localized URLs before extending changes to other markets.",
       },
     ],
     deliverables: [
@@ -1075,7 +1075,7 @@ const useCasesEn: UseCaseItem[] = [
     faq: [
       {
         question: "Do we need to delete old translations first?",
-        answer: "No. This use case works best when the team imports what exists, sees the gaps clearly, and then improves the content selectively.",
+        answer: "No. Back up existing translations, confirm compatible import formats and inspect a small sample first. Preserve approved wording and replace only content that needs correction.",
       },
       {
         question: "Why make migration cleanup a separate use case?",
@@ -2426,16 +2426,16 @@ const useCasesZh: UseCaseItem[] = [
     ],
     workflow: [
       {
-        title: "先导入还能用的历史翻译",
-        description: "把已有内容先纳入 Ciwi，而不是一上来就假设所有历史翻译都得丢弃。",
+        title: "先备份并检查历史翻译",
+        description: "导出 Shopify 中的翻译，保留已审核文案并记录语言与市场设置。上传文件或卸载旧应用前，先确认目标流程支持的导入格式。",
       },
       {
         title: "识别缺口和低质量区域",
-        description: "先看哪些内容缺失、哪些内容老旧、哪些术语明显失控，再决定修哪里。",
+        description: "先检查一种语言的一个商品，对照已保存翻译、实际展示、语言发布状态、市场分配和切换器，区分翻译缺失与已保存但未展示的问题。",
       },
       {
         title: "按优先级逐步重翻",
-        description: "结合 Glossary 和 Prompt，优先修对品牌体验和转化影响最大的内容，而不是平均用力。",
+        description: "结合已审核术语修复少量内容，验证商品信息、导航、SEO 字段和本地化 URL，再逐步扩展到其他市场。",
       },
     ],
     deliverables: [
@@ -2460,7 +2460,7 @@ const useCasesZh: UseCaseItem[] = [
     faq: [
       {
         question: "迁移后需要先删掉所有旧翻译吗？",
-        answer: "不需要。更现实的做法是先导入已有内容、识别真正的问题点，再决定哪些地方值得重翻。",
+        answer: "不需要。先备份已有翻译，确认格式兼容性并检查少量样本。保留已审核文案，只替换确实需要修正的内容。",
       },
       {
         question: "为什么迁移修复要单独做成一个 use case？",

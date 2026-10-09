@@ -4,6 +4,7 @@ import type {ReactNode} from "react";
 
 import {LocalizedLink} from "@/components/ui/LocalizedLink";
 import {isExternalHref} from "@/lib/i18n";
+import {withShopifyUtm} from "@/lib/marketing-links";
 
 type ButtonVariant = "primary" | "secondary" | "ghost" | "dark" | "inverted" | "inverted-secondary";
 
@@ -32,7 +33,7 @@ export function Button({href, children, variant = "primary", size = "default"}: 
   if (isExternalHref(href)) {
     return (
       <a
-        href={href}
+        href={withShopifyUtm(href)}
         className={className}
         data-button-variant={variant}
         target="_blank"

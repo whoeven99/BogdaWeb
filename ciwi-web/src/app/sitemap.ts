@@ -70,6 +70,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const locale of ["en", "zh-cn"] as const) {
     for (const route of staticRoutes) {
+      // Chinese legal pages intentionally use noindex.
+      if (locale === "zh-cn" && (route === "/privacy-policy" || route === "/terms-and-conditions")) {
+        continue;
+      }
       addEntry(route, locale);
     }
 

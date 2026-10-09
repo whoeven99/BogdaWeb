@@ -216,15 +216,15 @@ const comparesEn: CompareItem[] = [
     appComparison:
       "Transcy's public pricing structure presents the app as a combined translation, currency, and market-localization tool. Even the Free plan already bundles one language, one currency, a basic switcher, third-party app translation, and Shopify Payments integration. Higher tiers then scale by editable languages, currencies, AI credits, multilingual SEO, automation, and API-key level integrations such as DeepL, OpenAI, and Gemini. Ciwi's public packaging reads differently. Its plans emphasize broad Shopify content coverage, glossary control, custom AI prompts, image and alt-text localization, IP-based language and currency switching, and higher-touch support at upper tiers. In practice, Transcy looks more like an all-in-one multilingual storefront operations suite, while Ciwi is positioned more around translation governance and structured localization workflow.",
     pricingComparison:
-      "Based on the Transcy pricing screenshot you shared, the public ladder starts with Free, then paid plans at $14.90/month, $29/month, and a top tier at $69/month, with 7-day free trials on the paid tiers. The plan logic is mostly language-count, currency-count, and AI-credit based: the lower paid tier starts around one editable language and one convertible currency, the middle tier moves to three languages and three currencies, and the highest tier pushes toward fifteen languages, fifteen currencies, more glossary capacity, geolocation, and external AI/API flexibility. Ciwi also publishes four tiers, but the entry prices are lower: Free, Basic at $7.99/month, Pro at $19.99/month, and Premium at $39.99/month, with annual billing saving 20%. Ciwi's paid tiers are more workflow-led, moving from 1,500,000 monthly credits plus glossary and custom prompts, to 3,000,000 monthly credits with auto translation and localized product images and alt text, and then 8,000,000 monthly credits with 1v1 support and manual review by translation experts. So Transcy is more explicit about multilingual storefront breadth across languages and currencies, while Ciwi is more aggressive on entry pricing and clearer on translation workflow depth per paid tier.",
+      "Verified October 8, 2026: the Shopify App Store lists Transcy Free, Regional at $29/month, Continental at $69/month, and Cross-Border at $99/month. Compare required languages, currencies and product count alongside translation credits, review workflow and support. Confirm both apps' current plan limits and usage charges before subscribing; entry price alone does not establish total cost.",
     pricingTable: {
       rowLabels: ["Free", "Tier 2", "Tier 3", "Tier 4"],
       ciwiPlans: ciwiPricingPlansEn,
       alternativePlans: [
         {name: "Free", price: "Free", note: "1 language; 1 currency"},
-        {name: "Basic", price: "$14.90/month", note: "1 editable language; 1 currency"},
-        {name: "Growth", price: "$29/month", note: "3 languages; 3 currencies"},
-        {name: "Enterprise", price: "$69/month", note: "15 languages; 15 currencies"},
+        {name: "Regional", price: "$29/month", note: "3 languages + currencies; 200 products"},
+        {name: "Continental", price: "$69/month", note: "15 languages + currencies; 300 products"},
+        {name: "Cross-Border", price: "$99/month", note: "50 languages + currencies; 1,500 products"},
       ],
     },
     bestFor: [
@@ -247,6 +247,14 @@ const comparesEn: CompareItem[] = [
       {label: "Long-term governance", ciwi: 9, alternative: 6},
     ],
     faq: [
+      {
+        question: "How do I migrate from Transcy to Ciwi?",
+        answer: "Back up Shopify-managed translations before changing apps. Record published languages, market assignments, approved terms and localized URLs. Document app-specific settings separately. Confirm the import format supported by Ciwi, then test a small product sample in one language before changing the rest of the store.",
+      },
+      {
+        question: "Should I uninstall the previous translation app first?",
+        answer: "Complete your backup and sample validation before uninstalling. Check saved translations against the live storefront, including navigation, metadata and the language switcher. Keep approved wording and replace only content that needs correction. Installing another app alone does not verify a successful migration.",
+      },
       {
         question: "When is Ciwi the better choice than Transcy?",
         answer:
@@ -527,6 +535,18 @@ const comparesEn: CompareItem[] = [
       {label: "Long-term governance", ciwi: 9, alternative: 6},
     ],
     faq: [
+      {
+        question: "How do I migrate from Langify to Ciwi?",
+        answer: "Back up Shopify-managed translations before changing apps. Record published languages, market assignments, approved terms and localized URLs. Document app-specific settings separately. Confirm the import format supported by Ciwi, then test a small product sample in one language before changing the rest of the store.",
+      },
+      {
+        question: "Should I uninstall the previous translation app first?",
+        answer: "Complete your backup and sample validation before uninstalling. Check saved translations against the live storefront, including navigation, metadata and the language switcher. Keep approved wording and replace only content that needs correction. Installing another app alone does not verify a successful migration.",
+      },
+      {
+        question: "Can I upload a Langify export directly as a Shopify translation CSV?",
+        answer: "No. Langify documents that its export format and Shopify translation CSV format are not interchangeable. Keep the original backup, export Shopify-managed translations separately, and confirm the destination import format before editing or uploading files.",
+      },
       {
         question: "Why emphasize ongoing synchronization in Ciwi vs Langify?",
         answer:
@@ -1304,15 +1324,15 @@ const comparesZh: CompareItem[] = [
     appComparison:
       "从你给的套餐图看，Transcy 的产品定位更像“翻译 + 货币 + 多市场前台运营”的一体化工具。即使是免费版，也直接包含 1 种语言、1 种货币、基础切换器、第三方应用翻译和 Shopify Payments 集成；往上再按可编辑语言数、货币数、AI 代币、多语言 SEO、自动化流程以及 DeepL/OpenAI/Gemini 这类 API 级能力去扩展。Ciwi 的公开套餐结构则不一样，更强调 Shopify 结构化内容翻译和治理，包括 glossary、自定义 AI prompts、图片和 alt text 本地化、按 IP 切换语言/货币，以及高阶套餐里的 1v1 支持和人工翻译审核。换句话说，Transcy 更像“把多语言前台运营能力打包在一起卖”，Ciwi 更像“把翻译治理和本地化工作流做深”。",
     pricingComparison:
-      "按你提供的截图，Transcy 当前公开是 4 档：免费版、$14.90/月、$29/月，以及最高档 $69/月，付费档都带 7 天免费试用。它的价格逻辑主要按语言数、货币数和 AI 代币往上走：较低档从 1 种可编辑语言、1 种货币开始，中间档提升到 3 种语言和 3 种货币，再到最高档强调 15 种语言、15 种货币、更多术语库、地理定位，以及 DeepL、OpenAI、Gemini API 密钥。Ciwi 也是 4 档，但公开月费更低：Free、Basic $7.99/月、Pro $19.99/月、Premium $39.99/月，年付可省 20%。Ciwi 的分层更像 credits 和 workflow 分层：Basic 给到每月 1,500,000 credits，加 glossary 和 custom AI prompts；Pro 提升到 3,000,000 credits，并加入 auto translation、localized product images and alt text；Premium 提升到 8,000,000 credits，再加 1v1 support 和人工翻译审核。简单说，Transcy 更强调“多语言+多货币+多市场广度”，Ciwi 更强调“更低入门价格 + 更清晰的翻译工作流深度”。",
+      "2026 年 10 月 8 日核实：Shopify App Store 列出的 Transcy 套餐为 Free、Regional $29/月、Continental $69/月、Cross-Border $99/月。选型时同时比较语言、货币、商品数量、翻译积分、审核流程和支持范围。订阅前确认两款应用的最新套餐限制与额外费用，不能只凭入门月费判断总成本。",
     pricingTable: {
       rowLabels: ["免费档", "第二档", "第三档", "第四档"],
       ciwiPlans: ciwiPricingPlansZh,
       alternativePlans: [
         {name: "免费版", price: "Free", note: "1 种语言；1 种货币"},
-        {name: "本地增强版", price: "$14.90/月", note: "1 种可编辑语言；1 种货币"},
-        {name: "区域版", price: "$29/月", note: "3 种语言；3 种货币"},
-        {name: "大陆版", price: "$69/月", note: "15 种语言；15 种货币"},
+        {name: "Regional", price: "$29/月", note: "3 种语言及货币；200 件商品"},
+        {name: "Continental", price: "$69/月", note: "15 种语言及货币；300 件商品"},
+        {name: "Cross-Border", price: "$99/月", note: "50 种语言及货币；1,500 件商品"},
       ],
     },
     bestFor: ["重视 glossary 和品牌术语一致性的商家", "需要覆盖 Shopify 结构化内容的团队", "希望把产品页、帮助文档和 SEO 页面联动起来的品牌"],
@@ -1331,6 +1351,14 @@ const comparesZh: CompareItem[] = [
       {label: "长期治理", ciwi: 9, alternative: 6},
     ],
     faq: [
+      {
+        question: "如何从 Transcy 迁移到 Ciwi？",
+        answer: "切换应用前先备份 Shopify 中的翻译，记录已发布语言、市场分配、已审核术语和本地化 URL，并单独整理应用专属设置。向 Ciwi 确认支持的导入格式，先用一种语言、少量商品验证，再扩展到整个店铺。",
+      },
+      {
+        question: "应该先卸载原来的翻译应用吗？",
+        answer: "先完成备份和少量样本验证，再安排卸载。对照保存的翻译与实际店铺展示，并检查导航、SEO 字段和语言切换器。保留已审核文案，只替换需要修正的内容；安装另一个应用本身并不代表迁移成功。",
+      },
       {
         question: "什么时候更应该选择 Ciwi？",
         answer: "结论：当你不能接受链接、SEO、价格或已上线内容被翻译工具改坏时，更应该选择 Ciwi，而不是只看“能不能快速翻出来”。",
@@ -1509,6 +1537,18 @@ const comparesZh: CompareItem[] = [
       {label: "长期治理", ciwi: 9, alternative: 6},
     ],
     faq: [
+      {
+        question: "如何从 Langify 迁移到 Ciwi？",
+        answer: "切换应用前先备份 Shopify 中的翻译，记录已发布语言、市场分配、已审核术语和本地化 URL，并单独整理应用专属设置。向 Ciwi 确认支持的导入格式，先用一种语言、少量商品验证，再扩展到整个店铺。",
+      },
+      {
+        question: "应该先卸载原来的翻译应用吗？",
+        answer: "先完成备份和少量样本验证，再安排卸载。对照保存的翻译与实际店铺展示，并检查导航、SEO 字段和语言切换器。保留已审核文案，只替换需要修正的内容；安装另一个应用本身并不代表迁移成功。",
+      },
+      {
+        question: "Langify 导出文件可以直接作为 Shopify 翻译 CSV 上传吗？",
+        answer: "不能直接互换。Langify 官方说明其导出格式与 Shopify 翻译 CSV 格式不同。保留原始备份，单独导出 Shopify 中的翻译，并在修改或上传文件前确认目标流程支持的格式。",
+      },
       {
         question: "为什么 Compare 页里要强调后续同步？",
         answer: "因为 Langify 类问题往往不是第一次翻译，而是后续回滚、速度慢、主题兼容和卸载残留；真正贵的通常是上线后的持续维护。",

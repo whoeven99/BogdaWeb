@@ -5,6 +5,7 @@ import {useState, type CSSProperties} from "react";
 import {AffiliateClickTracker} from "@/components/affiliate/AffiliateClickTracker";
 import {SectionHeading} from "@/components/ui/SectionHeading";
 import type {AffiliateLandingData} from "@/content/affiliate";
+import {withShopifyUtm} from "@/lib/marketing-links";
 
 type AffiliateLandingProps = {
   data: AffiliateLandingData;
@@ -89,7 +90,7 @@ export function AffiliateLanding({data, referralCode, productSlug}: AffiliateLan
                   {copy.installLabel}
                 </button>
                 {offer.reviewUrl ? (
-                  <a href={offer.reviewUrl} className="button button--secondary" target="_blank" rel="noopener noreferrer">
+                  <a href={withShopifyUtm(offer.reviewUrl)} className="button button--secondary" target="_blank" rel="noopener noreferrer">
                     {copy.reviewsLabel}
                   </a>
                 ) : null}

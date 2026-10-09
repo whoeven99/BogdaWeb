@@ -40,13 +40,13 @@ export async function generateMetadata() {
   const copy =
     locale === "zh-cn"
       ? {
-          title: "Shopify 本地化指南",
-          description: "参考行业、品牌与 B2B 本地化指南，规划目标市场、语言策略和多语言内容。",
+          title: "Shopify 电商本地化指南：行业、品牌与 B2B",
+          description: "规划 Shopify 电商本地化策略，了解目标市场、商品术语、多语言内容与图片的调整方法。按行业、品牌与 B2B 场景查找实操指南。",
         }
       : {
-          title: "Shopify Localization Guides",
+          title: "Ecommerce Localization Guides for Shopify",
           description:
-            "Plan your Shopify localization strategy with industry and B2B guides covering target markets, product terminology, and multilingual content.",
+            "Plan ecommerce localization for your Shopify store with industry and B2B guides covering target markets, product terminology, images and multilingual content.",
         };
 
   return buildPageMetadata({
@@ -69,15 +69,15 @@ export default async function LocalizationGuidesPage() {
     locale === "zh-cn"
       ? {
           structuredData: {
-            name: "Shopify 本地化指南",
+            name: "Shopify 电商本地化指南",
             description: "行业、品牌与 B2B 本地化指南聚合页。",
             keywords: ["Shopify 本地化", "本地化指南", "B2B 本地化", "品牌本地化"],
           },
           backLabel: "返回指南中心",
           hero: {
             eyebrow: "本地化指南",
-            title: "行业、品牌与 B2B 本地化指南",
-            description: "按行业和 B2B 场景选择本地化策略，了解市场差异、内容优先级、术语要求与常见翻译错误。",
+            title: "Shopify 电商本地化：行业、品牌与 B2B 指南",
+            description: "规划多语言店铺的商品术语、图片与目标市场内容。按行业和 B2B 场景选择本地化策略，了解内容优先级与常见翻译错误。",
           },
           stats: {
             pages: "指南页面",
@@ -97,16 +97,16 @@ export default async function LocalizationGuidesPage() {
         }
       : {
           structuredData: {
-            name: "Shopify Localization Guides",
+            name: "Ecommerce Localization Guides for Shopify",
             description: "Collection page for industry, brand, and B2B localization guides.",
             keywords: ["shopify localization guides", "b2b localization", "brand localization", "industry localization"],
           },
           backLabel: "Back to guides",
           hero: {
             eyebrow: "Localization guides",
-            title: "Industry, brand, and B2B localization guides",
+            title: "Ecommerce localization for Shopify brands",
             description:
-              "Choose a localization strategy for your industry or B2B store. Review market differences, content priorities, terminology, and common translation mistakes.",
+              "Plan your multilingual store's product terminology, images and market-specific content. Browse industry and B2B guides to choose a localization strategy and avoid common translation mistakes.",
           },
           stats: {
             pages: "Guide pages",

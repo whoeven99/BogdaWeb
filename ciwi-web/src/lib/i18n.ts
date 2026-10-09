@@ -34,11 +34,11 @@ export function isExternalHref(href: string): boolean {
 
 function ensureTrailingSlash(href: string): string {
   const match = href.match(/^([^?#]*)(.*)$/);
-  const pathname = match?.[1] ?? href;
+  const pathname = (match?.[1] ?? href).replace(/\/{2,}/g, "/");
   const suffix = match?.[2] ?? "";
 
   if (!pathname || pathname === "/" || pathname.endsWith("/")) {
-    return href;
+    return `${pathname}${suffix}`;
   }
 
   return `${pathname}/${suffix}`;

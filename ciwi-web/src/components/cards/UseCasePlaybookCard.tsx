@@ -3,6 +3,7 @@
 import Image from "next/image";
 
 import {CardCtaLink} from "@/components/ui/CardCtaLink";
+import {LocalizedLink} from "@/components/ui/LocalizedLink";
 
 type UseCasePlaybookCardProps = {
   title: string;
@@ -57,7 +58,9 @@ export function UseCasePlaybookCard({
             </span>
           ))}
         </div>
-        <h3 className="mt-5 text-[22px] font-semibold tracking-[-0.03em] text-slate-950">{title}</h3>
+        <h3 className="mt-5 text-[22px] font-semibold tracking-[-0.03em] text-slate-950">
+          <LocalizedLink href={href} className="hover:text-emerald-700">{title}</LocalizedLink>
+        </h3>
         <p className="mt-4 flex-1 text-[15px] leading-8 text-slate-600">{description}</p>
         <div className="mt-7">
           <CardCtaLink href={href}>{linkLabel}</CardCtaLink>

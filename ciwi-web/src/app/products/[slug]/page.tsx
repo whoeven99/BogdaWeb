@@ -11,6 +11,7 @@ import {ProductProofSection} from "@/components/sections/ProductProofSection";
 import {ProductSectionCta} from "@/components/sections/ProductSectionCta";
 import {ProductUseCasesSection} from "@/components/sections/ProductUseCasesSection";
 import {Button} from "@/components/ui/Button";
+import {Breadcrumbs} from "@/components/ui/Breadcrumbs";
 import {notFound} from "next/navigation";
 
 import {FaqSection} from "@/components/sections/FaqSection";
@@ -21,7 +22,7 @@ import {getProductMap, products} from "@/content/products";
 import {getProductPlaybookHref, getUseCasesByProduct} from "@/content/use-cases";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {localizeLanguageSignalFields} from "@/lib/localized-language-signal";
-import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
+import {buildPageMetadata, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildFaqSchema, buildGraphSchema, buildProductSchema, buildWebPageSchema} from "@/lib/seo/schema";
 
 export const dynamic = "force-dynamic";
@@ -249,7 +250,7 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
   const productsIndexUrl = toAbsoluteLocalizedUrl(locale, "/products");
   const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
-      {name: locale === "zh-cn" ? "首页" : "Home", item: siteUrl},
+      {name: locale === "zh-cn" ? "首页" : "Home", item: toAbsoluteLocalizedUrl(locale, "/")},
       {name: locale === "zh-cn" ? "产品" : "Products", item: productsIndexUrl},
       {name: product.name, item: pageUrl},
     ]),
@@ -323,6 +324,11 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
           dangerouslySetInnerHTML={{__html: JSON.stringify(structuredData)}}
         />
         <section className="py-12 sm:py-16 lg:py-20">
+          <Breadcrumbs locale={locale} items={[
+            {label: locale === "zh-cn" ? "首页" : "Home", href: "/"},
+            {label: locale === "zh-cn" ? "产品" : "Products", href: "/products"},
+            {label: product.name},
+          ]} />
           <div className="content-hero-shell">
             <div className="product-hero">
               <div className="product-hero__copy">
@@ -526,7 +532,7 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
               <ArticleCard
                 key={`${resource.title}-${resource.href}`}
                 title={resource.title}
-                description={product.shortDescription}
+                description={resource.description}
                 href={resource.href}
                 meta={resource.meta}
                 variant="landing"
@@ -535,7 +541,12 @@ export default async function ProductDetailPage({params}: ProductDetailPageProps
           </div>
         </section>
 
-        <FaqSection id="faq" className="anchor-offset" items={product.faq} />
+        <FaqSection
+          id="faq"
+          className="anchor-offset"
+          title={locale === "zh-cn" ? `${product.name} 常见问题` : `${product.name} frequently asked questions`}
+          items={product.faq}
+        />
         <FinalCtaSection
           title={locale === "zh-cn" ? `进一步了解 ${product.name}` : `Explore ${product.name}`}
           description={product.shortDescription}

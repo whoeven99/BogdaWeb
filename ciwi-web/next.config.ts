@@ -8,13 +8,17 @@ const securityHeaders = [
 ];
 
 const legacyMarketingRedirectTargets = {
-  "product-title-generation": "/products/content-ai/#features",
-  "product-description-generation": "/products/content-ai/#features",
-  "product-image-generation": "/products/content-ai/#features",
-  "product-seo-information-generation": "/products/content-ai/#features",
-  "collection-description-generation": "/products/content-ai/#features",
-  "product-faq-generation": "/products/content-ai/#features",
-  "image-alt-text-generation": "/products/content-ai/#features",
+  "product-title-generation": "/products/spark-analytics-agent/#features",
+  "product-description-generation": "/products/spark-analytics-agent/#features",
+  "product-image-generation": "/products/spark-analytics-agent/#features",
+  "product-seo-information-generation": "/products/spark-analytics-agent/#features",
+  "collection-description-generation": "/products/spark-analytics-agent/#features",
+  "product-faq-generation": "/products/spark-analytics-agent/#features",
+  "image-alt-text-generation": "/products/spark-analytics-agent/#features",
+  "store-theme-translation": "/products/translator/#features",
+  "product-content-translation": "/products/translator/#features",
+  "ip-based-automatic-switching": "/products/translator/#features",
+  "currency-exchange-rate-inquiry": "/guides/how-to-localize-currency-pricing-on-shopify/",
   deepl: "/products/translator/",
 } as const;
 
@@ -46,6 +50,26 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       ...legacyMarketingRedirects,
+      {
+        source: "/products/content-ai/",
+        destination: "/products/spark-analytics-agent/",
+        permanent: true,
+      },
+      {
+        source: "/zh-cn/products/content-ai/",
+        destination: "/zh-cn/products/spark-analytics-agent/",
+        permanent: true,
+      },
+      {
+        source: "/products/bundle-discount/",
+        destination: "/help-center/ShopifyApp/bundle-discount-app-overview/",
+        permanent: true,
+      },
+      {
+        source: "/zh-cn/products/bundle-discount/",
+        destination: "/zh-cn/help-center/ShopifyApp/bundle-discount-app-overview/",
+        permanent: true,
+      },
       {
         source: "/ghost/:path*",
         has: [{type: "host", value: "blog.ciwi.ai"}],
@@ -91,7 +115,7 @@ const nextConfig: NextConfig = {
       {
         source: "/zh-cn/:path*",
         has: [{type: "host", value: "blog.ciwi.ai"}],
-        destination: "https://ciwi.ai/zh-cn/blog/:path*",
+        destination: "https://ciwi.ai/zh-cn/blog/:path*/",
         permanent: true,
       },
       {
@@ -103,7 +127,7 @@ const nextConfig: NextConfig = {
       {
         source: "/:path*",
         has: [{type: "host", value: "blog.ciwi.ai"}],
-        destination: "https://ciwi.ai/blog/:path*",
+        destination: "https://ciwi.ai/blog/:path*/",
         permanent: true,
       },
     ];

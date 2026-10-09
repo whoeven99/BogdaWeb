@@ -76,7 +76,7 @@ export default async function BestShopifyAppsHubPage() {
           hero: {
             eyebrow: "Best Shopify Apps",
             title: "Best Shopify Apps",
-            description: "This hub is the collection index for all roundup pages and only shows card entries for each sub-collection.",
+            description: "Find Shopify apps by category, from translation and analytics to reviews, SEO and shipping. Open a collection to compare features, pricing and fit for your store.",
           },
         };
 
@@ -113,6 +113,7 @@ export default async function BestShopifyAppsHubPage() {
             </div>
           </div>
           <ResourceCollectionSection
+            title={locale === "zh-cn" ? "按需求浏览 Shopify 应用榜单" : "Browse Shopify app collections by category"}
             items={collections.map((item) => ({
               title: item.title,
               description: item.description,

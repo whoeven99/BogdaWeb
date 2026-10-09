@@ -183,10 +183,6 @@ export async function generateMetadata(props: CategoryPageProps) {
   );
   if (!match) return {};
   const copy = copyByLocale[locale as "en" | "zh-cn"];
-  const heroTitle =
-    locale === "zh-cn"
-      ? `${match.name} (${match.count.toLocaleString()} 条)`
-      : `${match.name} · ${match.count.toLocaleString()}`;
   const description = copy.hero.description(match.name, match.count);
   const pagePath = keywordCategoryHref(product.slug, locale as "en" | "zh-cn", match.name);
   const keywords = [
@@ -197,7 +193,7 @@ export async function generateMetadata(props: CategoryPageProps) {
     locale === "zh-cn" ? "Spark 运营场景库" : "Spark scenario library",
   ];
   return buildPageMetadata({
-    title: `${heroTitle} · ${product.name}${locale === "zh-cn" ? " 运营场景分类" : " scenario category"}`,
+    title: locale === "zh-cn" ? `${match.name}：Shopify 运营场景` : `${match.name} for Shopify`,
     description,
     locale,
     path: pagePath,
@@ -222,14 +218,14 @@ export default async function CategoryPage(props: CategoryPageProps) {
   const items = getKeywordUseCasesByCategory(locale, match.name);
   if (!items || items.length === 0) {
     return (
-      <PageContainer>
+      <main><PageContainer>
         <section className="py-14 sm:py-16 lg:py-20">
           <div className="mx-auto max-w-6xl space-y-8">
             <BackLink href={keywordIndexHref(product.slug)} label={copy.hero.backLabel} />
             <p className="text-sm text-slate-500">{copy.section.empty}</p>
           </div>
         </section>
-      </PageContainer>
+      </PageContainer></main>
     );
   }
 
@@ -311,7 +307,7 @@ export default async function CategoryPage(props: CategoryPageProps) {
   const jsonLd = buildGraphSchema([breadcrumbs, itemList, webPage]);
 
   return (
-    <PageContainer>
+    <main><PageContainer>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}}
@@ -388,7 +384,7 @@ export default async function CategoryPage(props: CategoryPageProps) {
         secondaryLabel={copy.finalCta.secondaryLabel}
         secondaryHref={playbookHref}
       />
-    </PageContainer>
+    </PageContainer></main>
   );
 }
 

@@ -11,8 +11,8 @@ export async function generateMetadata() {
   const copy =
     locale === "zh-cn"
       ? {
-          title: "Spark Waiting List",
-          description: "加入 Spark Shopify Analytics Agent waiting list，获取 AI 每日经营分析的优先体验资格。",
+          title: "Spark Shopify AI 店铺助手候补名单",
+          description: "加入 Spark Shopify AI 店铺助手候补名单，获取店铺分析与支持的任务自动化功能的优先体验资格。",
         }
       : {
           title: "Spark Waiting List",

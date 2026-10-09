@@ -85,9 +85,9 @@ const homePageCopyEn = {
     ],
     hero: {
       eyebrow: "BUILT FOR GLOBAL SHOPIFY GROWTH",
-      title: "Help your brand reach more customers around the world",
+      title: "Shopify AI translation and store automation for global growth",
       description:
-        "Ciwi builds AI-powered products for Shopify merchants so brands can cross language and market barriers more easily, and serve global customers with more confidence.",
+        "Build a multilingual storefront with Ciwi AI Translator, and use Spark to plan and execute supported Shopify store tasks. Reach global customers while keeping translations and daily operations up to date.",
       proofItems: ["Built for Shopify", "Expert support", "Designed for global growth"],
       primaryCtaLabel: "Explore Ciwi products",
       primaryCtaHref: "/products",
@@ -235,9 +235,9 @@ const homePageCopyZh: typeof homePageCopyEn = {
     ],
     hero: {
       eyebrow: "专为 Shopify 全球增长打造",
-      title: "让你的品牌，被更多世界顾客看见",
+      title: "Shopify AI 翻译与店铺自动化，助力全球增长",
       description:
-        "Ciwi 为 Shopify 商家打造 AI 驱动的产品，帮助品牌跨越语言与市场障碍，更轻松地触达、连接并服务全球消费者。",
+        "使用 Ciwi AI Translator 构建多语言店铺，让 Spark 规划并执行支持的 Shopify 店铺任务。在触达全球顾客的同时，持续维护翻译内容与日常运营。",
       proofItems: ["专为 Shopify 打造", "专业团队支持", "面向全球增长"],
       primaryCtaLabel: "探索 Ciwi 产品",
       primaryCtaHref: "/products",
