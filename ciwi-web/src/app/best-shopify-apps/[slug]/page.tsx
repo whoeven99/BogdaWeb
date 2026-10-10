@@ -17,35 +17,6 @@ type BestShopifyAppCollectionPageProps = {
   params: Promise<{slug: string}>;
 };
 
-function buildCollectionNarrative({
-  locale,
-  collection,
-}: {
-  locale: "en" | "zh-cn";
-  collection: ReturnType<typeof getBestShopifyAppCollectionMap>[string];
-}) {
-  const methodologyTitles = collection.methodology.slice(0, 3).map((item) => item.title);
-  const pickNames = collection.picks.slice(0, 3).map((item) => item.name);
-
-  if (locale === "zh-cn") {
-    return [
-      `${collection.summary} 这类榜单页更适合用来完成第一轮筛选：先确定当前业务更需要哪类 Shopify App，再深入到具体产品页或对比页做最终判断。`,
-      `本页的筛选逻辑主要围绕 ${methodologyTitles.join("、")} 展开，因此排序更偏向长期适配度，而不只是首次上手速度。`,
-      pickNames.length > 0
-        ? `如果你只想快速缩小范围，可以先看 ${pickNames.join("、")} 这些排在前面的候选项，再根据“适合谁”“价格”和“注意点”继续判断。`
-        : "如果你只想快速缩小范围，可以先看榜单前几名，再根据“适合谁”“价格”和“注意点”继续判断。",
-    ];
-  }
-
-  return [
-    `${collection.summary} Pages like this work best as a first-pass shortlist: decide which Shopify app profile fits the business now, then open the specific product or comparison page only after the candidate set is smaller.`,
-    `The shortlist is organized around ${methodologyTitles.join(", ")}, so the ranking leans toward long-term fit rather than first-demo speed alone.`,
-    pickNames.length > 0
-      ? `If you only need to narrow the field quickly, start with ${pickNames.join(", ")} near the top, then use the best-for, pricing, and watchout notes to keep filtering.`
-      : "If you only need to narrow the field quickly, start with the higher-ranked picks, then use the best-for, pricing, and watchout notes to keep filtering.",
-  ];
-}
-
 export function generateStaticParams() {
   return [...new Set([...getBestShopifyAppCollections("en"), ...getBestShopifyAppCollections("zh-cn")].map((item) => item.slug))].map(
     (slug) => ({slug}),
@@ -175,7 +146,6 @@ export default async function BestShopifyAppCollectionPage({params}: BestShopify
         };
 
   const pageUrl = toAbsoluteLocalizedUrl(locale, collection.href);
-  const narrative = buildCollectionNarrative({locale, collection});
   const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
       {name: locale === "zh-cn" ? "首页" : "Home", item: siteUrl},
@@ -244,7 +214,7 @@ export default async function BestShopifyAppCollectionPage({params}: BestShopify
                 {copy.hero.summaryLabel}
               </div>
               <div className="mt-3 space-y-4 text-[15px] leading-7 text-slate-600 sm:text-base">
-                {narrative.concat(collection.intro).map((paragraph) => (
+                {collection.intro.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
               </div>
