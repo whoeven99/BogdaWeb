@@ -1,0 +1,127 @@
+---
+entryId: help-center-how-to-translate-custom-liquid-and-third-party-apps-with-the-switcher
+locale: en
+slug: how-to-translate-custom-liquid-and-third-party-apps-with-the-switcher
+title: "How to Translate Custom Liquid and Third-Party App Text with the Ciwi Switcher"
+description: "Enable the storefront switcher, run Translate v4 with Custom Liquid, then verify Judge.me, Loox, bundle apps, and theme snippets in each target language."
+publishedAt: '2026-10-15'
+status: published
+category: shopify-app
+order: 18
+meta:
+  - "Help Center"
+  - "Switcher"
+  - "Custom Liquid"
+  - "Third-Party Apps"
+readingTime: "7 min read"
+sourceLocale: en
+translationStatus: manual
+relatedResources:
+  - title: "How to enable the language & currency exchange switcher"
+    description: "Configure and place the switcher before you validate translated app text on the storefront."
+    href: /help-center/ShopifyApp/how-to-enable-the-language-currency-exchange-switcher/
+    meta:
+      - "Help Center"
+      - "Switcher"
+  - title: "How to configure a v4 translation task and estimate credits"
+    description: "See where to turn on Custom Liquid and how it affects the credit estimate."
+    href: /help-center/ShopifyApp/how-to-use-your-own-key-for-translation/
+    meta:
+      - "Help Center"
+      - "Task Setup"
+  - title: "What content can Ciwi translate in Shopify?"
+    description: "Compare standard Shopify modules with optional custom Liquid coverage."
+    href: /help-center/ShopifyApp/what-are-the-differences-when-choosing-different-language-packs/
+    meta:
+      - "Help Center"
+      - "Content Modules"
+---
+
+Custom Liquid snippets and third-party app widgets often sit outside the usual product or page fields. Ciwi handles them through the **Custom Liquid** pipeline in **Translate v4**. The **Switcher** is how you confirm those strings actually appear in the right language on the live storefront.
+
+## What counts as custom Liquid or third-party app text
+
+Typical examples include:
+
+- hardcoded copy inside theme **Custom Liquid** blocks or snippets
+- storefront widgets from review apps such as **Judge.me** or **Loox**
+- bundle or upsell apps that render offer titles, tier labels, or button text on product or cart pages
+- other app blocks that inject visible text into the theme but do not map cleanly to a single Shopify content module
+
+This workflow is about **shopper-visible storefront text**, not app admin settings or checkout-only surfaces that never appear in the theme.
+
+## Before you start
+
+Make sure these basics are in place:
+
+1. The target language is added on the **Language** page.
+2. The Ciwi switcher is configured in the app and added to your Shopify theme.
+3. You know which templates show the apps or Custom Liquid blocks you care about, such as product detail, collection, cart, or a landing page section.
+
+If the switcher is missing from the theme, fix that first. You need a reliable way to change locale on the storefront before you can judge whether app or Liquid copy translated correctly.
+
+## Step 1: Enable and place the switcher
+
+Open the **Switcher** page in Ciwi and save the language behavior you need. Then add the Ciwi switcher app block in the theme editor where shoppers can find it.
+
+For full wiring steps, see [How to enable the language and currency switcher](/help-center/ShopifyApp/how-to-enable-the-language-currency-exchange-switcher/).
+
+## Step 2: Create a Translate v4 job with Custom Liquid enabled
+
+Open **Translate v4** and configure the run:
+
+- select the target language or languages
+- include the Shopify modules you still need, such as products, theme text, or navigation
+- turn on **Custom Liquid** so pending custom or third-party storefront text is included
+- choose the AI model and overwrite behavior that fit this run
+
+Review the credit estimate before you confirm. Custom Liquid coverage can increase the estimate because it pulls in additional pending storefront strings beyond the standard module list.
+
+## Step 3: Review important strings in Manage Translation
+
+When the job finishes, open **Manage Translation** and spot-check high-visibility copy before you publish. Prioritize:
+
+- review widget headings, empty states, and call-to-action labels
+- bundle offer names, discount descriptions, and button text
+- Custom Liquid blocks that appear on your main product or homepage templates
+
+Use glossary entries first if brand terms or product names repeat inside app widgets.
+
+## Step 4: Publish the target language
+
+Return to the **Language** page and publish the target language when you are satisfied with the saved translations. Unpublished languages are a common reason why the storefront still looks untranslated after a successful job.
+
+## Step 5: Validate on the storefront with the switcher
+
+Use the switcher the way a shopper would, not only the Shopify admin preview language selector.
+
+1. Open a page that contains the app or Custom Liquid block, such as a product page with Judge.me or Loox, or a product page with a bundle offer.
+2. Switch to the target language with the Ciwi switcher.
+3. Refresh once if the theme or app loads content asynchronously.
+4. Check desktop and mobile layouts.
+5. Repeat for each market-specific theme layout you actually sell through.
+
+### Suggested check pages
+
+| Area | What to verify |
+| --- | --- |
+| Product page + Judge.me | review section titles, rating labels, and write-a-review prompts |
+| Product page + Loox | gallery labels, review prompts, and widget headings |
+| Product or cart + bundle app | offer titles, tier names, savings copy, and add-to-cart buttons |
+| Custom Liquid section | hardcoded headings, badges, and promotional lines in that block |
+
+## If text still looks untranslated
+
+Work through these checks in order:
+
+- **Language not published:** publish the target language on the **Language** page.
+- **Custom Liquid not included:** create a new v4 job with **Custom Liquid** enabled.
+- **Wrong template or market:** the block may exist only in one theme section or market layout.
+- **App loads text after first paint:** reload the page after switching language, then test again.
+- **Non-storefront source:** some apps keep merchant-facing settings in their own admin and only expose part of the copy through Liquid on the storefront.
+
+If one widget still looks wrong while the rest of the page is translated, note the page URL, app name, and language, then contact Ciwi support from inside the app.
+
+## How this fits the rest of the workflow
+
+Custom Liquid and third-party app text is optional, but it is often what makes a multilingual store feel complete. Standard modules handle most Shopify-native content; the switcher is the final check that review apps, bundle widgets, and theme snippets follow the language your shopper selected.
