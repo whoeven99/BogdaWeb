@@ -23,40 +23,6 @@ type LinkedProductResearchRecommendation = ProductResearchArticle["recommendatio
   href: string;
 };
 
-function buildProductResearchNarrative({
-  locale,
-  article,
-}: {
-  locale: "en" | "zh-cn";
-  article: ProductResearchArticle;
-}) {
-  const toolNames = article.tools.slice(0, 3).map((item) => item.name).join(locale === "zh-cn" ? "、" : ", ");
-  const methodTitles = article.methods.slice(0, 2).map((item) => item.title).join(locale === "zh-cn" ? "、" : ", ");
-  const recommendationTitles = article.recommendations.slice(0, 2).map((item) => item.title).join(locale === "zh-cn" ? "、" : ", ");
-
-  if (locale === "zh-cn") {
-    return [
-      `${article.mainValue} 这个阶段页的重点，是把一个容易被笼统讨论的选品问题拆成具体动作，帮助你判断当前到底该先看工具、先看方法，还是先排除明显错误。`,
-      toolNames
-        ? `在这个阶段里，像 ${toolNames} 这样的工具只是辅助手段，真正关键的是按 ${methodTitles || "阶段方法"} 这样的顺序推进，否则很容易在数据很多时依然无法做决定。`
-        : `这个阶段里，工具只是辅助手段，真正关键的是按阶段方法顺序推进。`,
-      recommendationTitles
-        ? `如果你读完本页还没拿准下一步，通常可以继续看 ${recommendationTitles} 这些相邻阶段，把单点判断连成完整选品流程。`
-        : "如果你读完本页还没拿准下一步，通常需要继续看相邻阶段，把单点判断连成完整选品流程。",
-    ];
-  }
-
-  return [
-    `${article.mainValue} The point of a stage page like this is to turn a broad product-research problem into concrete actions so you can see whether the next move is a tool check, a method step, or a mistake to avoid first.`,
-    toolNames
-      ? `Tools such as ${toolNames} are useful in this stage, but they are still supporting layers. The harder part is moving through steps such as ${methodTitles || "the core stage methods"} in the right order so more data actually leads to a decision.`
-      : "Tools in this stage are supporting layers. The harder part is moving through the stage methods in the right order so more data actually leads to a decision.",
-    recommendationTitles
-      ? `If this page still leaves the next move unclear, the usual follow-up is to continue into adjacent stages such as ${recommendationTitles} so one decision point becomes a fuller product research workflow.`
-      : "If this page still leaves the next move unclear, the usual follow-up is to continue into the adjacent stages so one decision point becomes a fuller product research workflow.",
-  ];
-}
-
 function getPageCopy(locale: "en" | "zh-cn") {
   return locale === "zh-cn"
     ? {
@@ -297,7 +263,6 @@ export default async function ProductResearchArticlePage({params}: ProductResear
   const copy = getPageCopy(locale);
   const reviewHrefMap = getToolReviewHrefMap(locale);
   const structuredData = buildStructuredData(locale, article);
-  const narrative = buildProductResearchNarrative({locale, article});
   const linkedRecommendations = localizeLanguageSignalFields(locale, article.recommendations
     .map((item) => ({
       ...item,
@@ -344,16 +309,6 @@ export default async function ProductResearchArticlePage({params}: ProductResear
               ))}
             </div>
 
-            <div className="mt-6 rounded-[24px] border border-slate-200/80 bg-white/92 p-5 sm:p-6">
-              <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
-                {copy.hero.summaryLabel}
-              </div>
-              <div className="mt-3 space-y-4 text-[15px] leading-7 text-slate-700 sm:text-base">
-                {narrative.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
-              </div>
-            </div>
 
             <nav
               className="mt-6 rounded-[24px] border border-slate-200/80 bg-slate-50/80 p-5"

@@ -622,14 +622,12 @@ function getPricingFactRows(
 
 function buildCompareNarrative({
   locale,
-  alternativeName,
   overallReview,
   scoreSummary,
   appSummary,
   pricingSummary,
 }: {
   locale: "en" | "zh-cn";
-  alternativeName: string;
   overallReview: string;
   scoreSummary: string;
   appSummary: string;
@@ -644,10 +642,7 @@ function buildCompareNarrative({
   if (locale === "zh-cn") {
     return [
       ...splitNarrative(overallReview),
-      `这页的重点不是给出抽象的“谁更好”。`,
-      `${primaryProductName} 和 ${alternativeName} 适合的经营阶段，本来就不完全一样。`,
       ...splitNarrative(scoreSummary),
-      "如果你更在意长期治理、覆盖范围和持续更新，这些评分会更有参考价值。",
       ...splitNarrative(appSummary),
       ...splitNarrative(pricingSummary),
     ];
@@ -655,10 +650,7 @@ function buildCompareNarrative({
 
   return [
     ...splitNarrative(overallReview),
-    "The point of this page is not to force one abstract winner.",
-    `It is to show which operating context fits ${primaryProductName} versus ${alternativeName} more cleanly.`,
     ...splitNarrative(scoreSummary),
-    "If long-term governance, coverage, and repeat maintenance matter more than first-day setup speed, these signals usually matter more than a shallow launch demo.",
     ...splitNarrative(appSummary),
     ...splitNarrative(pricingSummary),
   ];
@@ -1224,7 +1216,6 @@ export default async function CompareDetailPage({params}: CompareDetailPageProps
   const hasFaq = renderedFaqItems.length > 0;
   const narrative = buildCompareNarrative({
     locale,
-    alternativeName: data.alternativeName,
     overallReview,
     scoreSummary,
     appSummary: appInsightCard.summary,

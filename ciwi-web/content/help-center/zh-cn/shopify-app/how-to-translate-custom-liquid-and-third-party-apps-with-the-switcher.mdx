@@ -1,0 +1,127 @@
+---
+entryId: help-center-how-to-translate-custom-liquid-and-third-party-apps-with-the-switcher
+locale: zh-cn
+slug: how-to-translate-custom-liquid-and-third-party-apps-with-the-switcher
+title: "如何用切换器翻译 Custom Liquid 与第三方 App 内容"
+description: "先启用前台切换器，再在 Translate v4 开启 Custom Liquid 跑翻译任务，最后用切换器验证 Judge.me、Loox、Bundle 等应用和主题片段的实际展示。"
+publishedAt: '2026-10-15'
+status: published
+category: shopify-app
+order: 18
+meta:
+  - "Help Center"
+  - "Switcher"
+  - "Custom Liquid"
+  - "Third-Party Apps"
+readingTime: "7 min read"
+sourceLocale: en
+translationStatus: reviewed
+relatedResources:
+  - title: "如何启用语言与币种切换器"
+    description: "先把切换器接入主题，再去前台验证第三方应用文案。"
+    href: /help-center/ShopifyApp/how-to-enable-the-language-currency-exchange-switcher/
+    meta:
+      - "Help Center"
+      - "Switcher"
+  - title: "如何配置 v4 翻译任务并预估 credits"
+    description: "查看 Custom Liquid 选项在哪里开启，以及它如何影响 credits 预估。"
+    href: /help-center/ShopifyApp/how-to-use-your-own-key-for-translation/
+    meta:
+      - "Help Center"
+      - "Task Setup"
+  - title: "Ciwi 可以翻译哪些 Shopify 内容模块？"
+    description: "对照标准 Shopify 模块与可选的 Custom Liquid 覆盖范围。"
+    href: /help-center/ShopifyApp/what-are-the-differences-when-choosing-different-language-packs/
+    meta:
+      - "Help Center"
+      - "Content Modules"
+---
+
+主题里的 **Custom Liquid** 片段，以及 **Judge.me**、**Loox**、各类 **Bundle** 应用在商品页或购物车注入的前台文案，往往不在常规商品字段或页面正文里。Ciwi 会在 **Translate v4** 里通过 **Custom Liquid** 管道把这些待处理文本纳入翻译；**Switcher（切换器）** 则是你在真实前台确认「换语言后这些文案有没有跟着变」的关键工具。
+
+## 哪些内容属于 Custom Liquid 或第三方 App 文本
+
+常见场景包括：
+
+- 主题 **Custom Liquid** 区块或 snippet 里写死的标题、说明、促销语
+- 评论类应用在前台渲染的组件，例如 **Judge.me**、**Loox** 的评价标题、按钮、空状态提示
+- Bundle / 搭售类应用在商品页、购物车展示的优惠名称、档位说明、按钮文案
+- 其他通过 app block 注入主题、但很难对应到单一 Shopify 标准模块的前台可见文本
+
+本文关注的是**顾客在前台能看到的文案**，不是应用后台的配置项，也不是只在 checkout 等主题外流程里出现的内容。
+
+## 开始前的准备
+
+建议先确认：
+
+1. 已在 **Language** 页面添加目标语言。
+2. 已在 Ciwi 里配置切换器，并在 Shopify 主题中挂载 Ciwi 切换器 app block。
+3. 已清楚哪些模板会展示目标应用或 Custom Liquid，例如商品详情页、集合页、购物车或首页 section。
+
+如果主题里还没有切换器，请先完成接入。没有可靠的前台语言切换方式，就很难判断第三方组件和 Liquid 文案是否真的翻译成功。
+
+## 第一步：启用并挂载切换器
+
+在 Ciwi 打开 **Switcher** 页面，保存你需要的语言相关行为，再到 Theme Editor 把 Ciwi 切换器放到用户容易找到的位置。
+
+完整步骤可参考：[如何启用语言与币种切换器](/help-center/ShopifyApp/how-to-enable-the-language-currency-exchange-switcher/)。
+
+## 第二步：在 Translate v4 创建任务并开启 Custom Liquid
+
+进入 **Translate v4**，配置本次任务：
+
+- 选择目标语言（可多个）
+- 按需勾选仍需要的标准模块，例如商品、主题文本、导航等
+- 开启 **Custom Liquid（自定义 Liquid）**，把待处理的自定义或第三方前台文本一并纳入
+- 选择 AI 模型，并决定是否覆盖已有翻译
+
+确认前先查看 credits 预估。开启 Custom Liquid 后，预估通常会高于只翻标准模块，因为会额外扫描更多前台待翻译字符串。
+
+## 第三步：在 Manage Translation 抽查重点文案
+
+任务完成后，到 **Manage Translation** 发布前抽查高曝光内容，优先看：
+
+- 评论组件的标题、按钮、空状态提示
+- Bundle 优惠名称、折扣说明、加购按钮
+- 主商品页或首页上 Custom Liquid 区块里的固定文案
+
+如果品牌词、系列名在应用组件里反复出现，建议先配好术语表再跑大批量任务。
+
+## 第四步：发布目标语言
+
+回到 **Language** 页面发布目标语言。任务已成功但前台仍像「没翻译」，最常见原因之一就是语言尚未发布。
+
+## 第五步：用切换器在前台验证
+
+请像真实顾客一样用 Ciwi 切换器换语言，不要只依赖 Shopify 后台预览里的语言切换。
+
+1. 打开包含目标应用或 Custom Liquid 的页面，例如带 Judge.me / Loox 的商品页，或带 Bundle 优惠的商品页。
+2. 用 Ciwi 切换器切换到目标语言。
+3. 若主题或应用异步加载内容，可刷新一次再查看。
+4. 分别检查桌面端与移动端。
+5. 若你按 market 使用不同主题布局，每个实际销售的市场布局都要测一遍。
+
+### 建议检查的页面
+
+| 场景 | 建议核对的内容 |
+| --- | --- |
+| 商品页 + Judge.me | 评价区标题、星级相关标签、写评价按钮与提示 |
+| 商品页 + Loox | 图库标签、评价引导语、组件标题 |
+| 商品页或购物车 + Bundle 应用 | 优惠名称、档位名称、节省说明、加购按钮 |
+| Custom Liquid 区块 | 写死在区块里的标题、角标、促销句 |
+
+## 如果前台看起来仍未翻译
+
+可按下面顺序排查：
+
+- **语言未发布：** 在 **Language** 页面发布目标语言。
+- **任务未包含 Custom Liquid：** 重新创建 v4 任务并开启 **Custom Liquid**。
+- **模板或 market 不对：** 该 app block 可能只存在于某一版主题 section 或某一 market 布局。
+- **应用延迟加载文案：** 切换语言后刷新页面再试。
+- **文案来源不在前台：** 部分应用只在自家后台保存设置，前台只暴露其中一部分 Liquid 渲染文本。
+
+若整页大部分已翻译，只有某个组件不对，请记录页面 URL、应用名称和目标语言，并通过应用内支持渠道联系 Ciwi 团队。
+
+## 与整体流程的关系
+
+Custom Liquid 和第三方 App 文本是可选模块，但往往是多语言店铺「看起来是否完整」的关键。标准 Shopify 模块能覆盖大部分原生内容；切换器则是最后一道验收：确认评论应用、Bundle 组件和主题片段会跟随顾客选择的语言一起切换。

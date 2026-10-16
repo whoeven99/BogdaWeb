@@ -81,57 +81,6 @@ function buildKeywordPageDescription({
   return `${productShortDescription} ${baseDescription} Page ${page} of ${totalPages}, covering topics ${startIdx + 1}-${endIdx}. ${topicRange}`.trim();
 }
 
-function buildKeywordIndexNarrative({
-  locale,
-  productName,
-  categories,
-  totalScenarios,
-  resolvedPage,
-  totalPages,
-}: {
-  locale: "en" | "zh-cn";
-  productName: string;
-  categories: Array<{name: string; count: number}>;
-  totalScenarios: number;
-  resolvedPage: number;
-  totalPages: number;
-}) {
-  const startIdx = (resolvedPage - 1) * CATEGORIES_PER_PAGE;
-  const visible = categories.slice(startIdx, startIdx + CATEGORIES_PER_PAGE);
-  const firstTopic = visible[0];
-  const lastTopic = visible[visible.length - 1];
-  const sampledTopics = visible
-    .slice(0, 4)
-    .map((item) => localizeLanguageSignalText(locale, item.name))
-    .join(locale === "zh-cn" ? "、" : ", ");
-  const firstTopicName = localizeLanguageSignalText(locale, firstTopic?.name ?? "");
-  const lastTopicName = localizeLanguageSignalText(locale, lastTopic?.name ?? "");
-
-  if (locale === "zh-cn") {
-    return [
-      `${productName} 运营场景库当前收录 ${categories.length} 个主题和 ${totalScenarios.toLocaleString()} 条具体场景页。`,
-      `当前第 ${resolvedPage}/${totalPages} 页覆盖从「${firstTopicName}」到「${lastTopicName}」的主题范围。`,
-      sampledTopics
-        ? `这一页优先展示 ${sampledTopics} 等主题。`
-        : `这一页会把当前页可见主题直接展开，便于继续进入具体场景、Prompt 和 FAQ。`,
-      sampledTopics
-        ? "进入任一主题后，你会看到对应的关键词场景、可复制 Prompt、FAQ 和步骤说明。"
-        : "你可以直接继续进入具体场景、Prompt 和 FAQ。",
-    ];
-  }
-
-  return [
-    `${productName} currently groups ${totalScenarios.toLocaleString()} scenario pages under ${categories.length} topics.`,
-    `Page ${resolvedPage} of ${totalPages} covers topics from ${firstTopicName} to ${lastTopicName}.`,
-    sampledTopics
-      ? `This page starts with topics such as ${sampledTopics}.`
-      : `This page expands the topics visible in the current slice so you can move directly into scenario pages, prompts, and FAQs.`,
-    sampledTopics
-      ? "Once you open a topic, you can move directly into the related scenario pages, copyable prompts, FAQs, and execution steps."
-      : "From here, you can move directly into scenario pages, prompts, and FAQs.",
-  ];
-}
-
 function buildPagination(
   current: number,
   total: number,
@@ -373,14 +322,6 @@ export default async function SparkPlaybookKeywordIndexPage({params}: SparkPlayb
     totalPages,
     categories,
   });
-  const pageNarrative = buildKeywordIndexNarrative({
-    locale,
-    productName: product.name,
-    categories,
-    totalScenarios: total,
-    resolvedPage,
-    totalPages,
-  });
 
   const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
@@ -495,13 +436,6 @@ export default async function SparkPlaybookKeywordIndexPage({params}: SparkPlayb
                   <Button href={`/products/${product.slug}`} variant="secondary">
                     {copy.hero.secondaryLabel}
                   </Button>
-                </div>
-                <div className="mt-6 rounded-[24px] border border-slate-200/80 bg-white/90 p-5 sm:p-6">
-                  <div className="space-y-4 text-[15px] leading-7 text-slate-600 sm:text-base">
-                    {pageNarrative.map((paragraph) => (
-                      <p key={paragraph}>{paragraph}</p>
-                    ))}
-                  </div>
                 </div>
               </div>
             </div>
