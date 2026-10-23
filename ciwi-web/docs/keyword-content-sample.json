@@ -1,0 +1,44 @@
+{
+  "_comment": "真实撰写样张（未接入构建，仅供评审）。字段与 shopify_keyword_use_cases.json 完全一致，可直接合并回数据源。对照目标：scenario 90-120 词、howToSolve 250-320 词且一句一步（模板按句号切分步骤）、aiPrompt 180-220 词且输入输出为本页专属、FAQ 3 条各自 60-90 词。",
+  "slug": "shopify-product-research-tool",
+  "keyword": "shopify product research tool",
+  "category": "Product Research and Market Opportunities",
+  "title": "Shopify Product Research Tool: Validate Demand Before You Buy",
+  "scenarioDescription": "Someone on the team has a spreadsheet of forty product candidates and a purchase decision three weeks out. The real question is not which product is trending; it is which of these forty can be sourced, shipped, and sold at a margin that survives paid acquisition in the markets you actually serve. Trend lists answer a different question, which is why merchants who buy into them end up holding inventory that looked validated and sells at a loss. This page covers the research pass that turns a raw candidate list into a ranked shortlist, with the evidence, the assumptions, and one next test attached to every candidate.",
+  "howToSolve": "Start by writing down the decision the research has to support, including your margin floor, price band, weight and size limits, and any category you cannot sell, then fix a review window so every candidate is judged against the same constraints instead of a vague sense of opportunity. Build the demand evidence from at least two independent sources, such as marketplace listing velocity, search interest over the last 24 months, and how long competitors have kept the same ad running, and record the pull date next to each number because a demand signal is only good for about six weeks. Quantify competition with figures rather than impressions: count active sellers inside your price band, note the review counts of the top five listings, and check whether those listings compete on price or on brand, since a review moat and a price war require completely different entry strategies. Stress-test the unit economics at your target price after landed cost, platform fees, expected return rate, and a realistic acquisition cost, then run the same calculation again at a twenty percent worse acquisition cost and keep only the candidates that still clear your margin floor in the pessimistic case. Check capacity before you commit to a candidate: confirm the supplier can repeat the order at the same cost, that shipping lead time fits your replenishment cycle, and that the product does not carry certification or compliance work you cannot finish before launch. Produce a ranked shortlist that shows, for each candidate, the demand evidence with its source and pull date, the competition reading, the margin at both base and pessimistic acquisition cost, and one concrete next test such as a sample order, a landing page test, or a supplier quote request, so the decision moves forward without a second research round.",
+  "aiPrompt": "Act as a product research analyst for a Shopify store. My store context: [category], [primary markets], [current AOV], [gross margin floor], [monthly ad budget]. My goal: decide which of the candidate products below deserve a sample order this quarter. Use these inputs: the candidate list with [supplier cost, target retail price, weight, and compliance constraints], plus these dated evidence exports: [search interest CSV], [marketplace listing counts by week], [competitor ad longevity notes]. For each candidate, evaluate demand durability, competitive density inside the price band, and margin after landed cost, platform fees, a [x]% return rate, and acquisition cost at [y]. Return one row per candidate with the columns: verdict (test, hold, or drop), demand evidence with source and pull date, competition reading, margin at base and pessimistic acquisition cost, the single assumption most likely to be wrong, and the next test with its cost and decision deadline. Sort the table by pessimistic margin in descending order, and list every drop verdict in a separate section with the one number that killed it. Flag any candidate supported by fewer than two independent sources instead of scoring it, and write unknown in any cell where the input data is missing rather than estimating a plausible figure.",
+  "faqs": [
+    {
+      "question": "How is a product research tool different from a keyword or trend tool?",
+      "answer": "A trend tool measures how much interest exists. A research pass measures whether that interest can be converted into margin under your constraints, which is a different calculation involving landed cost, competitive density in the price band, return rate, and acquisition cost. Merchants usually need both, but the trend signal is the input rather than the answer, and a candidate that scores well on interest can still fail the margin test at your price point."
+    },
+    {
+      "question": "How much data do I need before the first shortlist is usable?",
+      "answer": "Two independent demand sources plus your own cost sheet is enough for a first pass. Without landed cost the margin column is fiction, so get a supplier quote for the top ten candidates before you rank anything. Twenty to thirty candidates is a practical starting batch: fewer and you cannot see the shape of the market, more and the review time per candidate drops below the point where the evidence gets checked."
+    },
+    {
+      "question": "How quickly does product research go stale?",
+      "answer": "Demand signals decay in roughly four to eight weeks, while competitive structure moves more slowly and ad longevity is the slowest indicator of the three. Re-run the evidence pull before each purchase order rather than on a fixed calendar, and treat any shortlist older than a quarter as a hypothesis list rather than a decision document, because by then both the price band and the sellers inside it have usually changed."
+    }
+  ],
+  "zh_keyword": "shopify 选品工具",
+  "zh_category": "选品与市场机会",
+  "zh_title": "Shopify 选品工具：先验证需求，再下采购单",
+  "zh_scenarioDescription": "团队手里有一份四十个候选品的表格，三周内要决定下多少采购单。真正要回答的不是「哪个品正在流行」，而是「这四十个里，哪些在你能卖的市场、按你能承受的毛利，投得起广告还赚得回来」。趋势榜单回答的是另一个问题，照着它选品的人，最后往往拿到一批看起来验证过、卖起来却亏钱的库存。这一页讲的是把候选清单变成排序结论的那一遍工作：每个候选都带上证据、假设和一个具体的下一步验证动作。",
+  "zh_howToSolve": "先把这次研究要支撑的决定写清楚，包括毛利下限、价格带、重量与体积限制、以及你绝对不能碰的类目，同时定死一个复核窗口，让每个候选都对着同一套约束打分，而不是凭「感觉有机会」。需求证据至少要有两个互相独立的来源，例如平台在售链接的增长速度、过去 24 个月的搜索趋势、以及竞品同一条广告持续投放了多久，并且给每个数字标上抓取日期，因为一个需求信号大概只有六周的有效期。竞争要用数字衡量而不是印象：数一下你的价格带里有多少在售卖家，记下前五条链接的评价数，再看这些链接是靠价格还是靠品牌在打，因为评价壁垒和价格战需要完全不同的进入策略。在目标售价下把单位经济算一遍，扣掉到岸成本、平台费用、预期退货率和真实的获客成本，然后用获客成本恶化 20% 的假设再算一遍，只保留在悲观情形下依然守得住毛利下限的候选。在下决定之前先确认供应能力：供应商能不能以同样的成本复单、交期是否接得上你的补货节奏、以及这个品有没有你赶不上上市节点就做不完的认证与合规工作。最后产出一份排序清单，每个候选都要显示需求证据及其来源与抓取日期、竞争读数、基准与悲观获客成本下的毛利、以及一个具体的下一步验证动作，例如小批量样品、落地页测试或供应商报价。",
+  "zh_aiPrompt": "你是一名 Shopify 店铺的选品分析师。我的店铺背景：[类目]、[主要市场]、[当前客单价]、[毛利下限]、[月广告预算]。我的目标：判断下面这些候选品里，哪些值得在本季度下样品单。输入包括：候选清单及 [供应商报价、目标零售价、重量、合规限制]，以及这些带日期的证据导出：[搜索趋势 CSV]、[平台在售链接数的按周统计]、[竞品广告投放时长记录]。对每个候选，评估需求持续性、价格带内的竞争密度、以及扣掉到岸成本、平台费用、[x]% 退货率和 [y] 获客成本后的毛利。按每行一个候选输出表格，列为：结论（测试 / 观望 / 放弃）、需求证据及来源与抓取日期、竞争读数、基准与悲观获客成本下的毛利、最可能出错的那个假设、以及下一步验证动作及其成本与决策截止日。对不足两个独立来源支撑的候选，直接标注「证据不足」，不要给分。",
+  "zh_faqs": [
+    {
+      "question": "选品工具和关键词工具、趋势工具的区别在哪？",
+      "answer": "趋势工具衡量的是有多少人在关注，选品要衡量的是这份关注在你的约束下能不能变成毛利，中间差着到岸成本、价格带内的竞争密度、退货率和获客成本这几道计算。两者通常都要用，但趋势只是输入而不是答案：一个关注度很高的候选，在你的价格点上完全可能过不了毛利这道关。"
+    },
+    {
+      "question": "要多少数据，第一版排序清单才能用？",
+      "answer": "两个互相独立的需求来源，加上你自己的一份成本表，就够做第一轮了。没有到岸成本，毛利那一列就是编的，所以在排序之前先拿到前十名的供应商报价。二十到三十个候选是比较实际的起步批量：再少看不清市场结构，再多每个候选的复核时间就会短到证据根本没被核对。"
+    },
+    {
+      "question": "选品结论多久会失效？",
+      "answer": "需求信号的衰减周期大约是四到八周，竞争结构变化更慢，竞品广告的投放时长是三者里最慢的指标。建议按照采购节点重新抓一遍证据，而不是按固定日历；超过一个季度的排序清单，只能当假设清单看，不能当决策文件用。"
+    }
+  ]
+}

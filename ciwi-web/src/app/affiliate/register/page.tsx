@@ -16,6 +16,8 @@ export async function generateMetadata() {
     description: copy.register.description,
     path: "/affiliate/register",
     locale,
+    // Session surface: never index authenticated entry points.
+    noIndex: true,
   });
 }
 

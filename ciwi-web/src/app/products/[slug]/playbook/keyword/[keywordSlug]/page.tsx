@@ -14,6 +14,7 @@ import {
 } from "@/content/shopify-keyword-use-cases";
 import {getProductMap, products} from "@/content/products";
 import {getProductPlaybookHref} from "@/content/use-cases";
+import type {Locale} from "@/lib/i18n";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 import {
@@ -169,9 +170,18 @@ function getUiCopy(locale: "en" | "zh-cn") {
   };
 }
 
-function splitHowToSteps(text: string): string[] {
+function splitHowToSteps(text: string, locale: Locale = "en"): string[] {
   if (!text) return [];
   const raw = String(text).trim();
+  // 中文正文没有「句点 + 空格 + 大写字母」这一形态，必须改用 CJK 句末标点切分，
+  // 否则整段会被当作一个步骤渲染。
+  if (locale === "zh-cn") {
+    const zhParts = raw
+      .split(/(?<=[。！？])/)
+      .map((s) => s.trim())
+      .filter((s) => s.length > 0);
+    return zhParts.length ? zhParts : [raw];
+  }
   const parts = raw
     .split(/(?<=[.!?])\s+(?=[A-Z])/)
     .map((s) => s.trim())
@@ -301,7 +311,8 @@ export async function generateMetadata({params}: SparkPlaybookKeywordDetailPageP
   }
 
   return buildPageMetadata({
-    title: `${item.title} — ${item.keyword}`,
+    titleLead: item.keyword,
+    title: item.title,
     description: item.scenarioDescription || `${item.category}: ${item.title}`,
     path: keywordDetailHref(productSlug, keywordSlug),
     locale,
@@ -330,7 +341,7 @@ export default async function SparkPlaybookKeywordDetailPage({params}: SparkPlay
   const playbookHref = getProductPlaybookHref(productSlug);
   const pageUrl = toAbsoluteLocalizedUrl(locale, keywordDetailHref(productSlug, keywordSlug));
   const playbookUrl = toAbsoluteLocalizedUrl(locale, playbookHref);
-  const steps = splitHowToSteps(item.howToSolve);
+  const steps = splitHowToSteps(item.howToSolve, locale);
   const localizedTitle = localizeLanguageSignalText(locale, item.title);
   const localizedScenarioDescription = localizeLanguageSignalText(locale, item.scenarioDescription);
   const localizedCategory = localizeLanguageSignalText(locale, item.category);

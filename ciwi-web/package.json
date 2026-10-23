@@ -7,12 +7,13 @@
     "build": "npm run prisma:generate && npm run intelligence -- validate && npm run content:validate && npm run seo:check && next build && npm run seo:artifacts",
     "start": "cross-env PORT=9000 HOST=0.0.0.0 next start",
     "lint": "next lint",
-    "seo:check": "node --test ./scripts/seo-localization.test.mjs && node ./scripts/check-seo.mjs",
+    "seo:check": "node --test ./scripts/seo-localization.test.mjs ./scripts/seo-description.test.mjs && node ./scripts/check-seo.mjs",
     "seo:artifacts": "node ./scripts/verify-seo-artifacts.mjs",
     "seo:structure": "node ./scripts/audit-page-structure.mjs",
     "content:new": "node ./scripts/create-content-document.mjs",
     "best-apps:generate": "node ./scripts/generate-best-shopify-apps.mjs",
     "content:validate": "node ./scripts/validate-content.mjs",
+    "content:plan": "node ./scripts/build-keyword-content-plan.mjs && node ./scripts/build-keyword-plan-report.mjs",
     "content:translate": "node ./scripts/create-translation-draft.mjs",
     "guides:translate": "node ./scripts/create-guide-translation-draft.mjs",
     "prisma:generate": "prisma generate",
@@ -20,7 +21,8 @@
     "turso:migrate-referral": "node ./scripts/turso-migrate-referral.cjs",
     "turso:copy-affiliate": "node ./scripts/turso-copy-affiliate-data.cjs",
     "intelligence": "node scripts/merchant-intelligence/run.mjs",
-    "intelligence:test": "node --test scripts/merchant-intelligence/core.test.mjs"
+    "intelligence:test": "node --test scripts/merchant-intelligence/core.test.mjs",
+    "content:pilot": "node ./scripts/validate-keyword-content.mjs && node ./scripts/build-pilot-review.mjs"
   },
   "dependencies": {
     "@ant-design/icons": "^6.0.0",
