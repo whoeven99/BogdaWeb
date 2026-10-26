@@ -2,7 +2,7 @@ import type {NextRequest} from "next/server";
 import {NextResponse} from "next/server";
 
 import {chineseLocale, defaultLocale, getLocaleFromPathname, localizeHref, stripLocalePrefix} from "@/lib/i18n";
-import {canonicalizePathname, collapseDuplicateSlashes, resolveLegacyDestination, stripTrailingSlash} from "@/lib/seo/legacy-redirects";
+import {canonicalizePathname, collapseDuplicateSlashes, resolveLegacyDestination, restoreCanonicalCase, stripTrailingSlash} from "@/lib/seo/legacy-redirects";
 
 const localeQueryKey = "__ciwi_locale";
 
@@ -20,7 +20,9 @@ export function middleware(request: NextRequest) {
   const strippedPathname = stripLocalePrefix(request.nextUrl.pathname);
   // Duplicate slashes are collapsed before the legacy lookup so historical
   // `playbook//keyword/...` URLs still match their mapping.
-  const normalizedPathname = stripTrailingSlash(collapseDuplicateSlashes(strippedPathname));
+  // Casing is repaired at the same time: `/help-center/ShopifyApp` is the only
+  // case-sensitive prefix, and its lowercase form is a 404 rather than a match.
+  const normalizedPathname = restoreCanonicalCase(stripTrailingSlash(collapseDuplicateSlashes(strippedPathname)));
 
   const legacyMatch = resolveLegacyDestination(normalizedPathname);
 

@@ -45,6 +45,38 @@ export function canonicalizePathname(pathname: string): string {
 }
 
 /**
+ * Segments whose spelling is case-sensitive, keyed by their lowercase form.
+ *
+ * `legacyHelpCenterBasePath` is `/help-center/ShopifyApp`, and the MDX route
+ * resolves that exact camelCase prefix. `/help-center/shopifyapp/...` therefore
+ * 404s instead of redirecting, so any tool that lowercases a URL (CMS editors,
+ * chat clients, some crawlers) produces a dead link out of a live page.
+ */
+const caseSensitiveSegments = new Map(
+  legacyHelpCenterBasePath
+    .split("/")
+    .filter(Boolean)
+    .map((segment) => [segment.toLowerCase(), segment]),
+);
+
+/**
+ * Repairs the casing of case-sensitive segments.
+ *
+ * Idempotent: a path that is already canonical is returned untouched, which is
+ * what keeps this safe to run on every request before the redirect comparison.
+ */
+export function restoreCanonicalCase(pathname: string): string {
+  if (!pathname.includes("/")) {
+    return pathname;
+  }
+
+  return pathname
+    .split("/")
+    .map((segment) => caseSensitiveSegments.get(segment.toLowerCase()) ?? segment)
+    .join("/");
+}
+
+/**
  * Resolves a legacy URL straight to its live destination.
  *
  * It runs on the locale-stripped, slash-less path so both `/deepl` and `/deepl/`

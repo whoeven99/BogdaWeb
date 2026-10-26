@@ -27,7 +27,7 @@ const legacyRedirects = loadModule("../src/lib/seo/legacy-redirects.ts", {
   "@/lib/i18n": i18n,
 });
 
-const {canonicalizePathname, collapseDuplicateSlashes, resolveLegacyDestination} = legacyRedirects;
+const {canonicalizePathname, collapseDuplicateSlashes, resolveLegacyDestination, restoreCanonicalCase} = legacyRedirects;
 
 // 断言逐字段比对：模块在独立 vm context 里求值，跨 realm 的对象不能用 deepEqual。
 function expectRedirect(pathname, destination, locale) {
@@ -83,6 +83,18 @@ test("双斜杠形态被压平，避免 playbook//keyword 这类历史 URL 多�
 test("带双斜杠的历史 URL 仍然能匹配到映射", () => {
   expectRedirect("/help-center//ShopifyApp/why-do-i-need-to-pay-for-purchasing-credits", "/help-center/ShopifyApp/where-to-buy-credits");
   expectRedirect("//deepl", "/products/translator");
+});
+
+test("help center 前缀的大小写变体被修复成规范驼峰", () => {
+  // 路由只认 /help-center/ShopifyApp，小写形态原本是硬 404。
+  assert.equal(restoreCanonicalCase("/help-center/shopifyapp/how-to-translate"), "/help-center/ShopifyApp/how-to-translate");
+  assert.equal(restoreCanonicalCase("/help-center/SHOPIFYAPP/how-to-translate"), "/help-center/ShopifyApp/how-to-translate");
+  // 已规范的形态必须原样返回，否则每个请求都会自跳。
+  assert.equal(restoreCanonicalCase("/help-center/ShopifyApp/how-to-translate"), "/help-center/ShopifyApp/how-to-translate");
+  assert.equal(restoreCanonicalCase("/"), "/");
+  assert.equal(restoreCanonicalCase("/products/spark-analytics-agent/playbook/keyword/shopify-ads-not-converting"), "/products/spark-analytics-agent/playbook/keyword/shopify-ads-not-converting");
+  // 小写前缀 + 旧 slug 依旧能落到新文档。
+  expectRedirect(restoreCanonicalCase("/help-center/shopifyapp/why-do-i-need-to-pay-for-purchasing-credits"), "/help-center/ShopifyApp/where-to-buy-credits");
 });
 
 test("映射表自身不出现自指和空值", () => {
