@@ -1,0 +1,2594 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>关键词页内容计划 · 535 → 384</title>
+<style>
+  :root{--ink:#15181d;--muted:#6b7280;--line:#e6e8ec;--bg:#ffffff;--soft:#f7f8fa;--accent:#1f5eff;--warn:#b45309;--ok:#0f766e}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.65 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:56px 28px 96px}
+  header .kicker{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  h1{font-size:30px;line-height:1.25;margin:10px 0 8px;letter-spacing:-.01em}
+  .lede{color:var(--muted);font-size:15px;max-width:760px}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:28px 0 8px}
+  .stat{background:var(--bg);padding:16px 18px}
+  .stat b{display:block;font-size:24px;letter-spacing:-.02em}
+  .stat span{color:var(--muted);font-size:12.5px}
+  h2{font-size:19px;margin:44px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+  h3{font-size:15px;margin:22px 0 6px}
+  p{margin:10px 0}
+  .muted{color:var(--muted)}
+  .note{background:var(--soft);border-left:3px solid var(--accent);padding:14px 16px;border-radius:0 8px 8px 0;margin:16px 0}
+  .warn{border-left-color:var(--warn)}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:12px 0}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-weight:600;color:var(--muted);font-size:12px;letter-spacing:.04em;text-transform:uppercase;background:var(--soft);position:sticky;top:0}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+  .c-cluster{width:52px;color:var(--muted);font-variant-numeric:tabular-nums}
+  .c-slug{width:270px;color:var(--muted);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;word-break:break-all}
+  .c-num{width:64px}
+  .cat-row td{background:#fbfbfc;font-weight:600;font-size:13px}
+  .chips{margin-top:6px;display:flex;flex-wrap:wrap;gap:4px}
+  .chip{font-size:11.5px;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:1px 8px;background:#fff}
+  .toolbar{display:flex;gap:10px;align-items:center;margin:18px 0 10px;flex-wrap:wrap}
+  input[type=search],select{font:inherit;font-size:13.5px;padding:7px 10px;border:1px solid var(--line);border-radius:7px;background:#fff;color:var(--ink)}
+  input[type=search]{min-width:280px}
+  .scroll{max-height:620px;overflow:auto;border:1px solid var(--line);border-radius:10px}
+  code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;background:var(--soft);padding:1px 5px;border-radius:4px}
+  ol,ul{margin:10px 0;padding-left:22px}
+  li{margin:5px 0}
+  .kv{display:grid;grid-template-columns:190px 1fr;gap:6px 18px;font-size:13.5px;margin:10px 0}
+  .kv div:nth-child(odd){color:var(--muted)}
+  footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px}
+  @media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}.kv{grid-template-columns:1fr}.c-slug{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="kicker">Ciwi · Shopify 场景库</div>
+  <h1>关键词页内容计划：535 → 384</h1>
+  <p class="lede">按「一个搜索意图一个页面」重新切分，并给出每页需要唯一撰写的正文量。左侧表用于逐条标注，标注完即可进入撰写。</p>
+  <div class="note warn" style="margin-top:18px">
+    <strong>当前状态：仅批准「关键词页标题前置」这一项小范围改动。</strong>
+    本页的 <strong>384 页</strong>与<strong>151 条合并</strong>是初判，<strong>未获批执行</strong>；
+    最终规模由试产质量与逐条意图复核结果决定。在复核完成前，不合并任何 URL、不删除任何页面。
+  </div>
+</header>
+
+<div class="stats">
+  <div class="stat"><b>535</b><span>现有 URL</span></div>
+  <div class="stat"><b>384</b><span>应保留页面</span></div>
+  <div class="stat"><b>151</b><span>应合并 URL</span></div>
+  <div class="stat"><b>768</b><span>需撰写篇数（中英）</span></div>
+</div>
+<p class="muted" style="font-size:13px">注：合并掉的 151 条不是删除，是 301 到同意图的规范页；导航与内链都指向规范页。</p>
+
+<h2>一、必须先纠正我上一轮的判断</h2>
+<div class="note warn">
+  <strong>上一轮我说「167 个真实场景，被 535 个关键词以同义词复用」，这个结论是错的。</strong>
+  167 是<strong>正文簇</strong>的数量（按 <code>howToSolve</code> 相同聚出来的），不是<strong>意图</strong>的数量。
+  簇内关键词经常是真正不同的需求：20 号簇里同时装着 GA4 接入、Meta 投放报表、多点归因；37 号簇里同时装着竞品比价、新品监控、库存监控。
+  把它们当成同义词，会误删掉本来该独立拿排名的页面。
+</div>
+<p>重新按语义逐个簇判定后，真实结构是：</p>
+<div class="kv">
+  <div>正文簇</div><div>167 个（决定了 167 份重复正文）</div>
+  <div>真实搜索意图</div><div><strong>384 个</strong>（决定了需要 384 份唯一正文）</div>
+  <div>纯同义、该合并的词</div><div>151 条，分布在 106 个合并组里</div>
+  <div>最大合并组</div><div>6 个词共用一个页面（如 <code>shopify customer segmentation app</code> 组）</div>
+</div>
+<p>所以「重写」是成立的：<strong>384 个页面确实代表了 384 个不同的任务</strong>，素材来自这些任务各自的输入、产出与失败模式，而不是从同义词里硬编差别。这也意味着工作量比我上一轮估的 1070 篇少，但仍然是一个内容生产项目：<strong>768 篇</strong>。</p>
+
+<h2>二、为什么现在的页面撑不住 384 个独立页</h2>
+<p>现有每条数据的字段体量（535 条均值）：</p>
+<table>
+  <tr><th>字段</th><th class="num">现状</th><th class="num">目标</th><th>为什么</th></tr>
+  <tr><td><code>scenarioDescription</code></td><td class="num">47 词</td><td class="num">90–120 词</td><td>现在只交代「在做什么」，没有触发条件、约束和失败代价，读起来像通用介绍</td></tr>
+  <tr><td><code>howToSolve</code></td><td class="num">52 词 / 约 3 句</td><td class="num">250–320 词 / 5–6 步</td><td>模板按句号切分步骤，一句就是一步；3 句拆出的「流程」没有任何操作细节</td></tr>
+  <tr><td><code>aiPrompt</code></td><td class="num">153 词</td><td class="num">180–220 词</td><td>长度够了但内容同质：同簇内输入清单与产出物逐字相同，提示词不可替换</td></tr>
+  <tr><td><code>faqs</code></td><td class="num">3 条</td><td class="num">3 条 × 60–90 词</td><td>现在回答的是一般性问题，没有回答「这个任务为什么容易做错」</td></tr>
+</table>
+<p>也就是说，单纯把 151 条合并掉、保留 384 条不动，页面照样是薄的。去重和加深必须一起做，否则只是把 535 个薄页变成 384 个薄页。</p>
+
+<h2>三、每页唯一的正文从哪来</h2>
+<p>差异化的唯一可靠来源是<strong>任务本身的结构</strong>，不是措辞。每页固定的六个信息位：</p>
+<ol>
+  <li><strong>触发条件</strong> — 什么信号出现时该做这件事（指标异常、上新、投放起量、退款集中）。</li>
+  <li><strong>前置输入</strong> — 需要哪些具体数据，缺了会怎样算错。</li>
+  <li><strong>判定规则</strong> — 阈值、对比基线、样本量下限。</li>
+  <li><strong>失败模式</strong> — 这个任务最常见的三种做错方式及其表现。</li>
+  <li><strong>产出格式</strong> — 交付物长什么样（表格列定义、分级标准）。</li>
+  <li><strong>复核方式</strong> — 怎么知道这次判断是对的，多久后回看。</li>
+</ol>
+<p>这六项在每个意图上都有实质差异，因为任务不同。撰写时每页必须至少有三处<strong>只在该页成立的数字或规则</strong>（例如安全库存的算法、退款率的行业基线、广告疲劳的频次阈值），否则视为未完成。</p>
+
+<h2>四、样张（已按上述标准写完，中英各一版）</h2>
+<p>选了 <code>shopify product research tool</code>（合并了 <code>shopify product research app</code> 与 <code>find winning products for shopify</code>），文件在 <code>docs/keyword-content-sample.json</code>。摘录场景段：</p>
+<div class="note">
+  “Someone on the team has a spreadsheet of forty product candidates and a purchase decision three weeks out. The real question is not which product is trending; it is which of these forty can be sourced, shipped, and sold at a margin that survives paid acquisition in the markets you actually serve.”
+</div>
+<p>与现有写法对比，区别不在修辞，在于它给出了<strong>场景数量、决策期限、约束条件</strong>三件只在选品这件事上成立的事实。撰写标准以这份样张为准。</p>
+
+<h2>五、384 个页面清单（按类目，含被合并词）</h2>
+<div class="toolbar">
+  <input type="search" id="q" placeholder="搜索关键词或 slug…">
+  <select id="cat"><option value="">全部类目（112）</option><option>Product Research and Market Opportunities</option><option>Alert Rules and Notification Management</option><option>Analytics Integrations and Unified Reporting</option><option>Product Creation and Import</option><option>Product Video Creation and Editing</option><option>Customer Analytics and Segmentation</option><option>Competitor Research and Monitoring</option><option>Product Data Quality and Audits</option><option>Technical SEO and Indexing</option><option>Ad Optimization and Budget Management</option><option>AI Store Management and Agents</option><option>Conversion Analysis and Optimization</option><option>Customer Support Operations</option><option>Variant Creation and Management</option><option>Ad Creative and Copy Generation</option><option>Inventory Analysis and Turnover</option><option>Inventory Synchronization and Accuracy</option><option>Keyword Research and SEO Opportunities</option><option>Lead Generation and Prospecting</option><option>Product Image Quality and Errors</option><option>Product Workflow Automation</option><option>Replenishment and Inventory Planning</option><option>SEO Metadata and Content Audits</option><option>Shipment Tracking and Exceptions</option><option>Stock Availability and Alerts</option><option>Website Errors and Broken Links</option><option>Add to Cart Issues and Optimization</option><option>AI Analytics and Diagnosis</option><option>AI Customer Support and Chatbots</option><option>Conversion Tracking and Pixel Issues</option><option>Email Marketing Automation</option><option>Marketing Attribution and ROAS</option><option>Page Layout and Bulk Creation</option><option>Pricing and Bulk Price Updates</option><option>Product Data Enrichment</option><option>Product Image Generation</option><option>Product Page Audits and Layout</option><option>Product Page Creation</option><option>Product Page Trust and Purchase Information</option><option>Product Performance Analytics</option><option>Sales and Store Analytics</option><option>Automated Data Collection and Reporting</option><option>Banners and Collection Images</option><option>Blog and SEO Content Generation</option><option>Bulk Product Editing</option><option>Cart Abandonment Analysis and Recovery</option><option>Checkout Abandonment and Optimization</option><option>Content Production and Publishing Automation</option><option>CRM and Contact Management</option><option>Customer Lifetime Value</option><option>Fulfillment Monitoring and Alerts</option><option>Influencer Discovery and Outreach</option><option>International Product Sourcing</option><option>Inventory Management and Visibility</option><option>Market and Supply Chain Alerts</option><option>Order and Shipping Customer Support</option><option>Order Exceptions and Validation</option><option>Product Image Editing</option><option>Product Quality and Review Alerts</option><option>Product Tags and Categorization</option><option>Product Titles and Descriptions</option><option>Promotional Content Creation</option><option>Refund Analysis and Alerts</option><option>Repeat Purchase and Retention Analytics</option><option>SKU Generation and Cleanup</option><option>Social Media Content Creation</option><option>Store Health Audits</option><option>Store Monitoring and Alerts</option><option>Store Workflow Automation</option><option>Ad Creative Testing and Fatigue</option><option>Ad Performance Alerts</option><option>Ad Performance Analytics</option><option>AI Shopping and Product Recommendations</option><option>App and Integration Issues</option><option>Collection Page SEO</option><option>Conversion and Cart Alerts</option><option>Customer Acquisition Cost</option><option>Customer Churn and Winback</option><option>Customer Service Analytics</option><option>Email Marketing Content and Templates</option><option>Homepage Design and Creation</option><option>Image Background Removal and Replacement</option><option>Landing Page Creation and Optimization</option><option>Lead Outreach and Follow Up</option><option>Order Analytics and Reporting</option><option>Order and Shipping Notifications</option><option>Order Management and Automation</option><option>Personalized Marketing</option><option>Product Comparison and Guided Selling</option><option>Promotional Landing Pages</option><option>Sales and Demand Forecasting</option><option>Sales and Order Alerts</option><option>Support FAQs and Knowledge Base</option><option>Traffic Anomalies and Alerts</option><option>Video Ad Creation</option><option>Average Order Value Analysis</option><option>Chargeback Alerts</option><option>Collection Page Design</option><option>Customer Loyalty and Retention</option><option>Marketing Workflow Automation</option><option>Page A/B Testing</option><option>Product FAQs</option><option>Product Features and Benefits Copy</option><option>Product Page SEO</option><option>Product Translation and Localization</option><option>Reorder Reminders and Replenishment Emails</option><option>Returns and Refund Automation</option><option>Sales Decline Diagnosis</option><option>Shipping and Fulfillment Automation</option><option>Structured Data and Schema</option><option>Traffic Source Analytics</option><option>Upselling and Cross Selling</option></select>
+  <span class="muted" id="count"></span>
+</div>
+<div class="scroll">
+<table id="plan">
+  <thead><tr><th>簇</th><th>规范页主词 / 被并入的词</th><th>slug</th><th class="num">覆盖词数</th></tr></thead>
+  <tbody>
+  <tr class="cat-row" data-cat="Product Research and Market Opportunities"><td colspan="4">Product Research and Market Opportunities <span class="muted">· 14 页</span></td></tr>
+<tr class="page-row" data-cat="Product Research and Market Opportunities" data-kw="product research by country ">
+      <td class="c-cluster">117</td>
+      <td class="c-kw"><strong>product research by country</strong></td>
+      <td class="c-slug">product-research-by-country</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Research and Market Opportunities" data-kw="ecommerce category analysis ">
+      <td class="c-cluster">118</td>
+      <td class="c-kw"><strong>ecommerce category analysis</strong></td>
+      <td class="c-slug">ecommerce-category-analysis</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Research and Market Opportunities" data-kw="ecommerce market research tool ">
+      <td class="c-cluster">118</td>
+      <td class="c-kw"><strong>ecommerce market research tool</strong></td>
+      <td class="c-slug">ecommerce-market-research-tool</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Research and Market Opportunities" data-kw="find emerging product trends ">
+      <td class="c-cluster">118</td>
+      <td class="c-kw"><strong>find emerging product trends</strong></td>
+      <td class="c-slug">find-emerging-product-trends</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Research and Market Opportunities" data-kw="product competition analysis tool ">
+      <td class="c-cluster">118</td>
+      <td class="c-kw"><strong>product competition analysis tool</strong></td>
+      <td class="c-slug">product-competition-analysis-tool</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Research and Market Opportunities" data-kw="product demand analysis tool ">
+      <td class="c-cluster">118</td>
+      <td class="c-kw"><strong>product demand analysis tool</strong></td>
+      <td class="c-slug">product-demand-analysis-tool</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Research and Market Opportunities" data-kw="shopify niche research ">
+      <td class="c-cluster">118</td>
+      <td class="c-kw"><strong>shopify niche research</strong></td>
+      <td class="c-slug">shopify-niche-research</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Research and Market Opportunities" data-kw="shopify product research tool find winning products for shopify shopify product research app">
+      <td class="c-cluster">118</td>
+      <td class="c-kw"><strong>shopify product research tool</strong><div class="chips"><span class="chip">find winning products for shopify</span><span class="chip">shopify product research app</span></div></td>
+      <td class="c-slug">shopify-product-research-tool</td>
+      <td class="c-num">3</td>
+    </tr>
+<tr class="page-row" data-cat="Product Research and Market Opportunities" data-kw="track best selling products ">
+      <td class="c-cluster">118</td>
+      <td class="c-kw"><strong>track best selling products</strong></td>
+      <td class="c-slug">track-best-selling-products</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Research and Market Opportunities" data-kw="trending products to sell on shopify ">
+      <td class="c-cluster">118</td>
+      <td class="c-kw"><strong>trending products to sell on shopify</strong></td>
+      <td class="c-slug">trending-products-to-sell-on-shopify</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Research and Market Opportunities" data-kw="find low competition products to sell ">
+      <td class="c-cluster">119</td>
+      <td class="c-kw"><strong>find low competition products to sell</strong></td>
+      <td class="c-slug">find-low-competition-products-to-sell</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Research and Market Opportunities" data-kw="seasonal product research holiday product trends">
+      <td class="c-cluster">120</td>
+      <td class="c-kw"><strong>seasonal product research</strong><div class="chips"><span class="chip">holiday product trends</span></div></td>
+      <td class="c-slug">seasonal-product-research</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Product Research and Market Opportunities" data-kw="social media product trend tracker ">
+      <td class="c-cluster">121</td>
+      <td class="c-kw"><strong>social media product trend tracker</strong></td>
+      <td class="c-slug">social-media-product-trend-tracker</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Research and Market Opportunities" data-kw="find high margin products to sell ">
+      <td class="c-cluster">122</td>
+      <td class="c-kw"><strong>find high margin products to sell</strong></td>
+      <td class="c-slug">find-high-margin-products-to-sell</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Alert Rules and Notification Management"><td colspan="4">Alert Rules and Notification Management <span class="muted">· 10 页</span></td></tr>
+<tr class="page-row" data-cat="Alert Rules and Notification Management" data-kw="shopify notification frequency settings ">
+      <td class="c-cluster">15</td>
+      <td class="c-kw"><strong>shopify notification frequency settings</strong></td>
+      <td class="c-slug">shopify-notification-frequency-settings</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Alert Rules and Notification Management" data-kw="shopify alert dashboard ">
+      <td class="c-cluster">16</td>
+      <td class="c-kw"><strong>shopify alert dashboard</strong></td>
+      <td class="c-slug">shopify-alert-dashboard</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Alert Rules and Notification Management" data-kw="shopify alert escalation workflow ">
+      <td class="c-cluster">16</td>
+      <td class="c-kw"><strong>shopify alert escalation workflow</strong></td>
+      <td class="c-slug">shopify-alert-escalation-workflow</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Alert Rules and Notification Management" data-kw="shopify custom alert rules ">
+      <td class="c-cluster">16</td>
+      <td class="c-kw"><strong>shopify custom alert rules</strong></td>
+      <td class="c-slug">shopify-custom-alert-rules</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Alert Rules and Notification Management" data-kw="shopify email alerts ">
+      <td class="c-cluster">16</td>
+      <td class="c-kw"><strong>shopify email alerts</strong></td>
+      <td class="c-slug">shopify-email-alerts</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Alert Rules and Notification Management" data-kw="shopify kpi threshold alerts ">
+      <td class="c-cluster">16</td>
+      <td class="c-kw"><strong>shopify kpi threshold alerts</strong></td>
+      <td class="c-slug">shopify-kpi-threshold-alerts</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Alert Rules and Notification Management" data-kw="shopify team chat notifications ">
+      <td class="c-cluster">16</td>
+      <td class="c-kw"><strong>shopify team chat notifications</strong></td>
+      <td class="c-slug">shopify-team-chat-notifications</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Alert Rules and Notification Management" data-kw="shopify create tasks from alerts ">
+      <td class="c-cluster">17</td>
+      <td class="c-kw"><strong>shopify create tasks from alerts</strong></td>
+      <td class="c-slug">shopify-create-tasks-from-alerts</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Alert Rules and Notification Management" data-kw="shopify wecom notifications ">
+      <td class="c-cluster">18</td>
+      <td class="c-kw"><strong>shopify wecom notifications</strong></td>
+      <td class="c-slug">shopify-wecom-notifications</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Alert Rules and Notification Management" data-kw="shopify sms alerts ">
+      <td class="c-cluster">19</td>
+      <td class="c-kw"><strong>shopify sms alerts</strong></td>
+      <td class="c-slug">shopify-sms-alerts</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Analytics Integrations and Unified Reporting"><td colspan="4">Analytics Integrations and Unified Reporting <span class="muted">· 10 页</span></td></tr>
+<tr class="page-row" data-cat="Analytics Integrations and Unified Reporting" data-kw="shopify tiktok conversion tracking ">
+      <td class="c-cluster">20</td>
+      <td class="c-kw"><strong>shopify tiktok conversion tracking</strong></td>
+      <td class="c-slug">shopify-tiktok-conversion-tracking</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Analytics Integrations and Unified Reporting" data-kw="shopify facebook ads attribution ">
+      <td class="c-cluster">21</td>
+      <td class="c-kw"><strong>shopify facebook ads attribution</strong></td>
+      <td class="c-slug">shopify-facebook-ads-attribution</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Analytics Integrations and Unified Reporting" data-kw="shopify ga4 integration ">
+      <td class="c-cluster">21</td>
+      <td class="c-kw"><strong>shopify ga4 integration</strong></td>
+      <td class="c-slug">shopify-ga4-integration</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Analytics Integrations and Unified Reporting" data-kw="shopify google ads attribution ">
+      <td class="c-cluster">21</td>
+      <td class="c-kw"><strong>shopify google ads attribution</strong></td>
+      <td class="c-slug">shopify-google-ads-attribution</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Analytics Integrations and Unified Reporting" data-kw="shopify google ads reporting ">
+      <td class="c-cluster">21</td>
+      <td class="c-kw"><strong>shopify google ads reporting</strong></td>
+      <td class="c-slug">shopify-google-ads-reporting</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Analytics Integrations and Unified Reporting" data-kw="shopify google analytics dashboard ">
+      <td class="c-cluster">21</td>
+      <td class="c-kw"><strong>shopify google analytics dashboard</strong></td>
+      <td class="c-slug">shopify-google-analytics-dashboard</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Analytics Integrations and Unified Reporting" data-kw="shopify meta ads reporting ">
+      <td class="c-cluster">21</td>
+      <td class="c-kw"><strong>shopify meta ads reporting</strong></td>
+      <td class="c-slug">shopify-meta-ads-reporting</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Analytics Integrations and Unified Reporting" data-kw="shopify multi touch attribution ">
+      <td class="c-cluster">21</td>
+      <td class="c-kw"><strong>shopify multi touch attribution</strong></td>
+      <td class="c-slug">shopify-multi-touch-attribution</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Analytics Integrations and Unified Reporting" data-kw="shopify tiktok ads reporting ">
+      <td class="c-cluster">21</td>
+      <td class="c-kw"><strong>shopify tiktok ads reporting</strong></td>
+      <td class="c-slug">shopify-tiktok-ads-reporting</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Analytics Integrations and Unified Reporting" data-kw="shopify unified analytics dashboard shopify cross channel analytics">
+      <td class="c-cluster">21</td>
+      <td class="c-kw"><strong>shopify unified analytics dashboard</strong><div class="chips"><span class="chip">shopify cross channel analytics</span></div></td>
+      <td class="c-slug">shopify-unified-analytics-dashboard</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="cat-row" data-cat="Product Creation and Import"><td colspan="4">Product Creation and Import <span class="muted">· 9 页</span></td></tr>
+<tr class="page-row" data-cat="Product Creation and Import" data-kw="automatically create shopify products ">
+      <td class="c-cluster">95</td>
+      <td class="c-kw"><strong>automatically create shopify products</strong></td>
+      <td class="c-slug">automatically-create-shopify-products</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Creation and Import" data-kw="generate product listings from supplier data ">
+      <td class="c-cluster">95</td>
+      <td class="c-kw"><strong>generate product listings from supplier data</strong></td>
+      <td class="c-slug">generate-product-listings-from-supplier-data</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Creation and Import" data-kw="import products from a url to shopify ">
+      <td class="c-cluster">95</td>
+      <td class="c-kw"><strong>import products from a url to shopify</strong></td>
+      <td class="c-slug">import-products-from-a-url-to-shopify</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Creation and Import" data-kw="import supplier products to shopify ">
+      <td class="c-cluster">95</td>
+      <td class="c-kw"><strong>import supplier products to shopify</strong></td>
+      <td class="c-slug">import-supplier-products-to-shopify</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Creation and Import" data-kw="shopify csv product import import products from excel to shopify">
+      <td class="c-cluster">95</td>
+      <td class="c-kw"><strong>shopify csv product import</strong><div class="chips"><span class="chip">import products from excel to shopify</span></div></td>
+      <td class="c-slug">shopify-csv-product-import</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Product Creation and Import" data-kw="shopify product import app shopify bulk product upload">
+      <td class="c-cluster">95</td>
+      <td class="c-kw"><strong>shopify product import app</strong><div class="chips"><span class="chip">shopify bulk product upload</span></div></td>
+      <td class="c-slug">shopify-product-import-app</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Product Creation and Import" data-kw="create product listings from images ">
+      <td class="c-cluster">96</td>
+      <td class="c-kw"><strong>create product listings from images</strong></td>
+      <td class="c-slug">create-product-listings-from-images</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Creation and Import" data-kw="shopify csv import errors ">
+      <td class="c-cluster">97</td>
+      <td class="c-kw"><strong>shopify csv import errors</strong></td>
+      <td class="c-slug">shopify-csv-import-errors</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Creation and Import" data-kw="shopify product csv field mapping ">
+      <td class="c-cluster">98</td>
+      <td class="c-kw"><strong>shopify product csv field mapping</strong></td>
+      <td class="c-slug">shopify-product-csv-field-mapping</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Product Video Creation and Editing"><td colspan="4">Product Video Creation and Editing <span class="muted">· 9 页</span></td></tr>
+<tr class="page-row" data-cat="Product Video Creation and Editing" data-kw="bulk product video creation ">
+      <td class="c-cluster">128</td>
+      <td class="c-kw"><strong>bulk product video creation</strong></td>
+      <td class="c-slug">bulk-product-video-creation</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Video Creation and Editing" data-kw="ecommerce short video generator ">
+      <td class="c-cluster">128</td>
+      <td class="c-kw"><strong>ecommerce short video generator</strong></td>
+      <td class="c-slug">ecommerce-short-video-generator</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Video Creation and Editing" data-kw="multilingual product video generator ">
+      <td class="c-cluster">128</td>
+      <td class="c-kw"><strong>multilingual product video generator</strong></td>
+      <td class="c-slug">multilingual-product-video-generator</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Video Creation and Editing" data-kw="product demo video generator ">
+      <td class="c-cluster">128</td>
+      <td class="c-kw"><strong>product demo video generator</strong></td>
+      <td class="c-slug">product-demo-video-generator</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Video Creation and Editing" data-kw="product video script generator ">
+      <td class="c-cluster">128</td>
+      <td class="c-kw"><strong>product video script generator</strong></td>
+      <td class="c-slug">product-video-script-generator</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Video Creation and Editing" data-kw="product video voiceover generator ">
+      <td class="c-cluster">128</td>
+      <td class="c-kw"><strong>product video voiceover generator</strong></td>
+      <td class="c-slug">product-video-voiceover-generator</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Video Creation and Editing" data-kw="shopify product video maker ecommerce video editor">
+      <td class="c-cluster">128</td>
+      <td class="c-kw"><strong>shopify product video maker</strong><div class="chips"><span class="chip">ecommerce video editor</span></div></td>
+      <td class="c-slug">shopify-product-video-maker</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Product Video Creation and Editing" data-kw="add subtitles to product videos ">
+      <td class="c-cluster">129</td>
+      <td class="c-kw"><strong>add subtitles to product videos</strong></td>
+      <td class="c-slug">add-subtitles-to-product-videos</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Video Creation and Editing" data-kw="convert product videos to vertical ">
+      <td class="c-cluster">130</td>
+      <td class="c-kw"><strong>convert product videos to vertical</strong></td>
+      <td class="c-slug">convert-product-videos-to-vertical</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Customer Analytics and Segmentation"><td colspan="4">Customer Analytics and Segmentation <span class="muted">· 8 页</span></td></tr>
+<tr class="page-row" data-cat="Customer Analytics and Segmentation" data-kw="shopify customer retention analytics ">
+      <td class="c-cluster">44</td>
+      <td class="c-kw"><strong>shopify customer retention analytics</strong></td>
+      <td class="c-slug">shopify-customer-retention-analytics</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Customer Analytics and Segmentation" data-kw="shopify rfm analysis ">
+      <td class="c-cluster">45</td>
+      <td class="c-kw"><strong>shopify rfm analysis</strong></td>
+      <td class="c-slug">shopify-rfm-analysis</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Customer Analytics and Segmentation" data-kw="shopify new vs returning customers ">
+      <td class="c-cluster">46</td>
+      <td class="c-kw"><strong>shopify new vs returning customers</strong></td>
+      <td class="c-slug">shopify-new-vs-returning-customers</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Customer Analytics and Segmentation" data-kw="shopify customer analytics ">
+      <td class="c-cluster">48</td>
+      <td class="c-kw"><strong>shopify customer analytics</strong></td>
+      <td class="c-slug">shopify-customer-analytics</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Customer Analytics and Segmentation" data-kw="shopify customer growth report ">
+      <td class="c-cluster">48</td>
+      <td class="c-kw"><strong>shopify customer growth report</strong></td>
+      <td class="c-slug">shopify-customer-growth-report</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Customer Analytics and Segmentation" data-kw="shopify customer purchase behavior ">
+      <td class="c-cluster">48</td>
+      <td class="c-kw"><strong>shopify customer purchase behavior</strong></td>
+      <td class="c-slug">shopify-customer-purchase-behavior</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Customer Analytics and Segmentation" data-kw="shopify customer segmentation app shopify high frequency customer segment shopify inactive customer segment shopify new customer segmentation shopify returning customer segmentation shopify vip customer segmentation">
+      <td class="c-cluster">48</td>
+      <td class="c-kw"><strong>shopify customer segmentation app</strong><div class="chips"><span class="chip">shopify high frequency customer segment</span><span class="chip">shopify inactive customer segment</span><span class="chip">shopify new customer segmentation</span><span class="chip">shopify returning customer segmentation</span><span class="chip">shopify vip customer segmentation</span></div></td>
+      <td class="c-slug">shopify-customer-segmentation-app</td>
+      <td class="c-num">6</td>
+    </tr>
+<tr class="page-row" data-cat="Customer Analytics and Segmentation" data-kw="shopify high value customer report ">
+      <td class="c-cluster">48</td>
+      <td class="c-kw"><strong>shopify high value customer report</strong></td>
+      <td class="c-slug">shopify-high-value-customer-report</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Competitor Research and Monitoring"><td colspan="4">Competitor Research and Monitoring <span class="muted">· 7 页</span></td></tr>
+<tr class="page-row" data-cat="Competitor Research and Monitoring" data-kw="find competitor best selling products ">
+      <td class="c-cluster">36</td>
+      <td class="c-kw"><strong>find competitor best selling products</strong></td>
+      <td class="c-slug">find-competitor-best-selling-products</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Competitor Research and Monitoring" data-kw="find competitors from ads ">
+      <td class="c-cluster">36</td>
+      <td class="c-kw"><strong>find competitors from ads</strong></td>
+      <td class="c-slug">find-competitors-from-ads</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Competitor Research and Monitoring" data-kw="shopify competitor monitoring ">
+      <td class="c-cluster">36</td>
+      <td class="c-kw"><strong>shopify competitor monitoring</strong></td>
+      <td class="c-slug">shopify-competitor-monitoring</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Competitor Research and Monitoring" data-kw="shopify competitor new product alerts track competitor product launches">
+      <td class="c-cluster">36</td>
+      <td class="c-kw"><strong>shopify competitor new product alerts</strong><div class="chips"><span class="chip">track competitor product launches</span></div></td>
+      <td class="c-slug">shopify-competitor-new-product-alerts</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Competitor Research and Monitoring" data-kw="shopify competitor price tracking ">
+      <td class="c-cluster">36</td>
+      <td class="c-kw"><strong>shopify competitor price tracking</strong></td>
+      <td class="c-slug">shopify-competitor-price-tracking</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Competitor Research and Monitoring" data-kw="shopify competitor research tool analyze competitor product catalogs shopify competitor product analysis">
+      <td class="c-cluster">36</td>
+      <td class="c-kw"><strong>shopify competitor research tool</strong><div class="chips"><span class="chip">analyze competitor product catalogs</span><span class="chip">shopify competitor product analysis</span></div></td>
+      <td class="c-slug">shopify-competitor-research-tool</td>
+      <td class="c-num">3</td>
+    </tr>
+<tr class="page-row" data-cat="Competitor Research and Monitoring" data-kw="shopify competitor stock monitoring ">
+      <td class="c-cluster">36</td>
+      <td class="c-kw"><strong>shopify competitor stock monitoring</strong></td>
+      <td class="c-slug">shopify-competitor-stock-monitoring</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Product Data Quality and Audits"><td colspan="4">Product Data Quality and Audits <span class="muted">· 7 页</span></td></tr>
+<tr class="page-row" data-cat="Product Data Quality and Audits" data-kw="product description plagiarism checker ">
+      <td class="c-cluster">100</td>
+      <td class="c-kw"><strong>product description plagiarism checker</strong></td>
+      <td class="c-slug">product-description-plagiarism-checker</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Data Quality and Audits" data-kw="shopify duplicate product descriptions ">
+      <td class="c-cluster">101</td>
+      <td class="c-kw"><strong>shopify duplicate product descriptions</strong></td>
+      <td class="c-slug">shopify-duplicate-product-descriptions</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Data Quality and Audits" data-kw="shopify missing variant images shopify missing variant prices">
+      <td class="c-cluster">101</td>
+      <td class="c-kw"><strong>shopify missing variant images</strong><div class="chips"><span class="chip">shopify missing variant prices</span></div></td>
+      <td class="c-slug">shopify-missing-variant-images</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Product Data Quality and Audits" data-kw="shopify product data validation shopify automated product audits shopify product audit app shopify product quality report">
+      <td class="c-cluster">101</td>
+      <td class="c-kw"><strong>shopify product data validation</strong><div class="chips"><span class="chip">shopify automated product audits</span><span class="chip">shopify product audit app</span><span class="chip">shopify product quality report</span></div></td>
+      <td class="c-slug">shopify-product-data-validation</td>
+      <td class="c-num">4</td>
+    </tr>
+<tr class="page-row" data-cat="Product Data Quality and Audits" data-kw="shopify product listing score ">
+      <td class="c-cluster">101</td>
+      <td class="c-kw"><strong>shopify product listing score</strong></td>
+      <td class="c-slug">shopify-product-listing-score</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Data Quality and Audits" data-kw="shopify product price display issues ">
+      <td class="c-cluster">101</td>
+      <td class="c-kw"><strong>shopify product price display issues</strong></td>
+      <td class="c-slug">shopify-product-price-display-issues</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Data Quality and Audits" data-kw="shopify variant display issues ">
+      <td class="c-cluster">101</td>
+      <td class="c-kw"><strong>shopify variant display issues</strong></td>
+      <td class="c-slug">shopify-variant-display-issues</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Technical SEO and Indexing"><td colspan="4">Technical SEO and Indexing <span class="muted">· 7 页</span></td></tr>
+<tr class="page-row" data-cat="Technical SEO and Indexing" data-kw="shopify canonical tag issues ">
+      <td class="c-cluster">162</td>
+      <td class="c-kw"><strong>shopify canonical tag issues</strong></td>
+      <td class="c-slug">shopify-canonical-tag-issues</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Technical SEO and Indexing" data-kw="shopify duplicate content checker ">
+      <td class="c-cluster">162</td>
+      <td class="c-kw"><strong>shopify duplicate content checker</strong></td>
+      <td class="c-slug">shopify-duplicate-content-checker</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Technical SEO and Indexing" data-kw="shopify hreflang checker ">
+      <td class="c-cluster">162</td>
+      <td class="c-kw"><strong>shopify hreflang checker</strong></td>
+      <td class="c-slug">shopify-hreflang-checker</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Technical SEO and Indexing" data-kw="shopify internal linking tool ">
+      <td class="c-cluster">162</td>
+      <td class="c-kw"><strong>shopify internal linking tool</strong></td>
+      <td class="c-slug">shopify-internal-linking-tool</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Technical SEO and Indexing" data-kw="shopify multilingual seo audit ">
+      <td class="c-cluster">162</td>
+      <td class="c-kw"><strong>shopify multilingual seo audit</strong></td>
+      <td class="c-slug">shopify-multilingual-seo-audit</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Technical SEO and Indexing" data-kw="shopify sitemap checker shopify sitemap not updating">
+      <td class="c-cluster">162</td>
+      <td class="c-kw"><strong>shopify sitemap checker</strong><div class="chips"><span class="chip">shopify sitemap not updating</span></div></td>
+      <td class="c-slug">shopify-sitemap-checker</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Technical SEO and Indexing" data-kw="shopify pages not indexed shopify indexing issues">
+      <td class="c-cluster">163</td>
+      <td class="c-kw"><strong>shopify pages not indexed</strong><div class="chips"><span class="chip">shopify indexing issues</span></div></td>
+      <td class="c-slug">shopify-pages-not-indexed</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="cat-row" data-cat="Ad Optimization and Budget Management"><td colspan="4">Ad Optimization and Budget Management <span class="muted">· 6 页</span></td></tr>
+<tr class="page-row" data-cat="Ad Optimization and Budget Management" data-kw="automate ad bidding for ecommerce ">
+      <td class="c-cluster">4</td>
+      <td class="c-kw"><strong>automate ad bidding for ecommerce</strong></td>
+      <td class="c-slug">automate-ad-bidding-for-ecommerce</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Ad Optimization and Budget Management" data-kw="ecommerce ad scaling alerts ">
+      <td class="c-cluster">4</td>
+      <td class="c-kw"><strong>ecommerce ad scaling alerts</strong></td>
+      <td class="c-slug">ecommerce-ad-scaling-alerts</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Ad Optimization and Budget Management" data-kw="shopify ad budget optimization automate ecommerce ad budget allocation">
+      <td class="c-cluster">4</td>
+      <td class="c-kw"><strong>shopify ad budget optimization</strong><div class="chips"><span class="chip">automate ecommerce ad budget allocation</span></div></td>
+      <td class="c-slug">shopify-ad-budget-optimization</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Ad Optimization and Budget Management" data-kw="shopify ad optimization software ">
+      <td class="c-cluster">4</td>
+      <td class="c-kw"><strong>shopify ad optimization software</strong></td>
+      <td class="c-slug">shopify-ad-optimization-software</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Ad Optimization and Budget Management" data-kw="shopify ads not converting ">
+      <td class="c-cluster">4</td>
+      <td class="c-kw"><strong>shopify ads not converting</strong></td>
+      <td class="c-slug">shopify-ads-not-converting</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Ad Optimization and Budget Management" data-kw="automatically pause underperforming ads ">
+      <td class="c-cluster">5</td>
+      <td class="c-kw"><strong>automatically pause underperforming ads</strong></td>
+      <td class="c-slug">automatically-pause-underperforming-ads</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="AI Store Management and Agents"><td colspan="4">AI Store Management and Agents <span class="muted">· 6 页</span></td></tr>
+<tr class="page-row" data-cat="AI Store Management and Agents" data-kw="shopify ai agent shopify ai assistant for merchants shopify ai store manager shopify autonomous store management">
+      <td class="c-cluster">14</td>
+      <td class="c-kw"><strong>shopify ai agent</strong><div class="chips"><span class="chip">shopify ai assistant for merchants</span><span class="chip">shopify ai store manager</span><span class="chip">shopify autonomous store management</span></div></td>
+      <td class="c-slug">shopify-ai-agent</td>
+      <td class="c-num">4</td>
+    </tr>
+<tr class="page-row" data-cat="AI Store Management and Agents" data-kw="shopify ai marketing assistant ">
+      <td class="c-cluster">14</td>
+      <td class="c-kw"><strong>shopify ai marketing assistant</strong></td>
+      <td class="c-slug">shopify-ai-marketing-assistant</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="AI Store Management and Agents" data-kw="shopify ai operations assistant ">
+      <td class="c-cluster">14</td>
+      <td class="c-kw"><strong>shopify ai operations assistant</strong></td>
+      <td class="c-slug">shopify-ai-operations-assistant</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="AI Store Management and Agents" data-kw="shopify ai product management ">
+      <td class="c-cluster">14</td>
+      <td class="c-kw"><strong>shopify ai product management</strong></td>
+      <td class="c-slug">shopify-ai-product-management</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="AI Store Management and Agents" data-kw="shopify ai store monitoring ">
+      <td class="c-cluster">14</td>
+      <td class="c-kw"><strong>shopify ai store monitoring</strong></td>
+      <td class="c-slug">shopify-ai-store-monitoring</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="AI Store Management and Agents" data-kw="shopify ai workflow automation ">
+      <td class="c-cluster">14</td>
+      <td class="c-kw"><strong>shopify ai workflow automation</strong></td>
+      <td class="c-slug">shopify-ai-workflow-automation</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Conversion Analysis and Optimization"><td colspan="4">Conversion Analysis and Optimization <span class="muted">· 6 页</span></td></tr>
+<tr class="page-row" data-cat="Conversion Analysis and Optimization" data-kw="shopify conversion funnel analysis shopify conversion rate analytics">
+      <td class="c-cluster">38</td>
+      <td class="c-kw"><strong>shopify conversion funnel analysis</strong><div class="chips"><span class="chip">shopify conversion rate analytics</span></div></td>
+      <td class="c-slug">shopify-conversion-funnel-analysis</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Conversion Analysis and Optimization" data-kw="shopify conversion rate by channel ">
+      <td class="c-cluster">38</td>
+      <td class="c-kw"><strong>shopify conversion rate by channel</strong></td>
+      <td class="c-slug">shopify-conversion-rate-by-channel</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Conversion Analysis and Optimization" data-kw="shopify conversion rate optimization tool shopify cro audit">
+      <td class="c-cluster">38</td>
+      <td class="c-kw"><strong>shopify conversion rate optimization tool</strong><div class="chips"><span class="chip">shopify cro audit</span></div></td>
+      <td class="c-slug">shopify-conversion-rate-optimization-tool</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Conversion Analysis and Optimization" data-kw="shopify high traffic low sales shopify traffic but no orders">
+      <td class="c-cluster">38</td>
+      <td class="c-kw"><strong>shopify high traffic low sales</strong><div class="chips"><span class="chip">shopify traffic but no orders</span></div></td>
+      <td class="c-slug">shopify-high-traffic-low-sales</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Conversion Analysis and Optimization" data-kw="shopify product page conversion rate improve shopify product page conversion shopify product conversion report">
+      <td class="c-cluster">38</td>
+      <td class="c-kw"><strong>shopify product page conversion rate</strong><div class="chips"><span class="chip">improve shopify product page conversion</span><span class="chip">shopify product conversion report</span></div></td>
+      <td class="c-slug">shopify-product-page-conversion-rate</td>
+      <td class="c-num">3</td>
+    </tr>
+<tr class="page-row" data-cat="Conversion Analysis and Optimization" data-kw="why is my shopify conversion rate dropping ">
+      <td class="c-cluster">38</td>
+      <td class="c-kw"><strong>why is my shopify conversion rate dropping</strong></td>
+      <td class="c-slug">why-is-my-shopify-conversion-rate-dropping</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Customer Support Operations"><td colspan="4">Customer Support Operations <span class="muted">· 6 页</span></td></tr>
+<tr class="page-row" data-cat="Customer Support Operations" data-kw="shopify customer complaint management shopify customer complaint alerts">
+      <td class="c-cluster">54</td>
+      <td class="c-kw"><strong>shopify customer complaint management</strong><div class="chips"><span class="chip">shopify customer complaint alerts</span></div></td>
+      <td class="c-slug">shopify-customer-complaint-management</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Customer Support Operations" data-kw="shopify customer service automation shopify ai customer service replies shopify automated customer replies">
+      <td class="c-cluster">54</td>
+      <td class="c-kw"><strong>shopify customer service automation</strong><div class="chips"><span class="chip">shopify ai customer service replies</span><span class="chip">shopify automated customer replies</span></div></td>
+      <td class="c-slug">shopify-customer-service-automation</td>
+      <td class="c-num">3</td>
+    </tr>
+<tr class="page-row" data-cat="Customer Support Operations" data-kw="shopify multilingual customer support ">
+      <td class="c-cluster">54</td>
+      <td class="c-kw"><strong>shopify multilingual customer support</strong></td>
+      <td class="c-slug">shopify-multilingual-customer-support</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Customer Support Operations" data-kw="shopify support reply templates ">
+      <td class="c-cluster">54</td>
+      <td class="c-kw"><strong>shopify support reply templates</strong></td>
+      <td class="c-slug">shopify-support-reply-templates</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Customer Support Operations" data-kw="shopify support ticket classification shopify support ticket routing">
+      <td class="c-cluster">54</td>
+      <td class="c-kw"><strong>shopify support ticket classification</strong><div class="chips"><span class="chip">shopify support ticket routing</span></div></td>
+      <td class="c-slug">shopify-support-ticket-classification</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Customer Support Operations" data-kw="shopify chatbot human handoff ">
+      <td class="c-cluster">55</td>
+      <td class="c-kw"><strong>shopify chatbot human handoff</strong></td>
+      <td class="c-slug">shopify-chatbot-human-handoff</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Variant Creation and Management"><td colspan="4">Variant Creation and Management <span class="muted">· 6 页</span></td></tr>
+<tr class="page-row" data-cat="Variant Creation and Management" data-kw="import shopify variants from csv ">
+      <td class="c-cluster">167</td>
+      <td class="c-kw"><strong>import shopify variants from csv</strong></td>
+      <td class="c-slug">import-shopify-variants-from-csv</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Variant Creation and Management" data-kw="shopify bulk variant creation add variants to existing shopify products">
+      <td class="c-cluster">167</td>
+      <td class="c-kw"><strong>shopify bulk variant creation</strong><div class="chips"><span class="chip">add variants to existing shopify products</span></div></td>
+      <td class="c-slug">shopify-bulk-variant-creation</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Variant Creation and Management" data-kw="shopify remove duplicate variants ">
+      <td class="c-cluster">167</td>
+      <td class="c-kw"><strong>shopify remove duplicate variants</strong></td>
+      <td class="c-slug">shopify-remove-duplicate-variants</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Variant Creation and Management" data-kw="shopify rename variant options ">
+      <td class="c-cluster">167</td>
+      <td class="c-kw"><strong>shopify rename variant options</strong></td>
+      <td class="c-slug">shopify-rename-variant-options</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Variant Creation and Management" data-kw="shopify reorder variants ">
+      <td class="c-cluster">167</td>
+      <td class="c-kw"><strong>shopify reorder variants</strong></td>
+      <td class="c-slug">shopify-reorder-variants</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Variant Creation and Management" data-kw="shopify color and size variants ">
+      <td class="c-cluster">168</td>
+      <td class="c-kw"><strong>shopify color and size variants</strong></td>
+      <td class="c-slug">shopify-color-and-size-variants</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Ad Creative and Copy Generation"><td colspan="4">Ad Creative and Copy Generation <span class="muted">· 5 页</span></td></tr>
+<tr class="page-row" data-cat="Ad Creative and Copy Generation" data-kw="ecommerce ad image generator ">
+      <td class="c-cluster">1</td>
+      <td class="c-kw"><strong>ecommerce ad image generator</strong></td>
+      <td class="c-slug">ecommerce-ad-image-generator</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Ad Creative and Copy Generation" data-kw="shopify ad copy generator ">
+      <td class="c-cluster">1</td>
+      <td class="c-kw"><strong>shopify ad copy generator</strong></td>
+      <td class="c-slug">shopify-ad-copy-generator</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Ad Creative and Copy Generation" data-kw="shopify ad creative generator ecommerce ad creative variations shopify automated ad creative generation">
+      <td class="c-cluster">1</td>
+      <td class="c-kw"><strong>shopify ad creative generator</strong><div class="chips"><span class="chip">ecommerce ad creative variations</span><span class="chip">shopify automated ad creative generation</span></div></td>
+      <td class="c-slug">shopify-ad-creative-generator</td>
+      <td class="c-num">3</td>
+    </tr>
+<tr class="page-row" data-cat="Ad Creative and Copy Generation" data-kw="shopify product ad generator ">
+      <td class="c-cluster">1</td>
+      <td class="c-kw"><strong>shopify product ad generator</strong></td>
+      <td class="c-slug">shopify-product-ad-generator</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Ad Creative and Copy Generation" data-kw="resize ecommerce ads for social media ">
+      <td class="c-cluster">2</td>
+      <td class="c-kw"><strong>resize ecommerce ads for social media</strong></td>
+      <td class="c-slug">resize-ecommerce-ads-for-social-media</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Inventory Analysis and Turnover"><td colspan="4">Inventory Analysis and Turnover <span class="muted">· 5 页</span></td></tr>
+<tr class="page-row" data-cat="Inventory Analysis and Turnover" data-kw="shopify dead stock report shopify excess inventory analysis shopify slow moving inventory report">
+      <td class="c-cluster">66</td>
+      <td class="c-kw"><strong>shopify dead stock report</strong><div class="chips"><span class="chip">shopify excess inventory analysis</span><span class="chip">shopify slow moving inventory report</span></div></td>
+      <td class="c-slug">shopify-dead-stock-report</td>
+      <td class="c-num">3</td>
+    </tr>
+<tr class="page-row" data-cat="Inventory Analysis and Turnover" data-kw="shopify inventory and sales report ">
+      <td class="c-cluster">66</td>
+      <td class="c-kw"><strong>shopify inventory and sales report</strong></td>
+      <td class="c-slug">shopify-inventory-and-sales-report</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Inventory Analysis and Turnover" data-kw="shopify inventory overstock alerts ">
+      <td class="c-cluster">66</td>
+      <td class="c-kw"><strong>shopify inventory overstock alerts</strong></td>
+      <td class="c-slug">shopify-inventory-overstock-alerts</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Inventory Analysis and Turnover" data-kw="shopify inventory turnover report ">
+      <td class="c-cluster">66</td>
+      <td class="c-kw"><strong>shopify inventory turnover report</strong></td>
+      <td class="c-slug">shopify-inventory-turnover-report</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Inventory Analysis and Turnover" data-kw="shopify days of inventory remaining ">
+      <td class="c-cluster">67</td>
+      <td class="c-kw"><strong>shopify days of inventory remaining</strong></td>
+      <td class="c-slug">shopify-days-of-inventory-remaining</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Inventory Synchronization and Accuracy"><td colspan="4">Inventory Synchronization and Accuracy <span class="muted">· 5 页</span></td></tr>
+<tr class="page-row" data-cat="Inventory Synchronization and Accuracy" data-kw="shopify allocate inventory across variants ">
+      <td class="c-cluster">70</td>
+      <td class="c-kw"><strong>shopify allocate inventory across variants</strong></td>
+      <td class="c-slug">shopify-allocate-inventory-across-variants</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Inventory Synchronization and Accuracy" data-kw="shopify automatic inventory updates shopify inventory sync app">
+      <td class="c-cluster">70</td>
+      <td class="c-kw"><strong>shopify automatic inventory updates</strong><div class="chips"><span class="chip">shopify inventory sync app</span></div></td>
+      <td class="c-slug">shopify-automatic-inventory-updates</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Inventory Synchronization and Accuracy" data-kw="shopify bulk inventory update ">
+      <td class="c-cluster">70</td>
+      <td class="c-kw"><strong>shopify bulk inventory update</strong></td>
+      <td class="c-slug">shopify-bulk-inventory-update</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Inventory Synchronization and Accuracy" data-kw="shopify inventory not matching orders shopify inventory discrepancy alerts shopify inventory discrepancy report">
+      <td class="c-cluster">70</td>
+      <td class="c-kw"><strong>shopify inventory not matching orders</strong><div class="chips"><span class="chip">shopify inventory discrepancy alerts</span><span class="chip">shopify inventory discrepancy report</span></div></td>
+      <td class="c-slug">shopify-inventory-not-matching-orders</td>
+      <td class="c-num">3</td>
+    </tr>
+<tr class="page-row" data-cat="Inventory Synchronization and Accuracy" data-kw="shopify variant inventory management shopify sync variant inventory">
+      <td class="c-cluster">70</td>
+      <td class="c-kw"><strong>shopify variant inventory management</strong><div class="chips"><span class="chip">shopify sync variant inventory</span></div></td>
+      <td class="c-slug">shopify-variant-inventory-management</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="cat-row" data-cat="Keyword Research and SEO Opportunities"><td colspan="4">Keyword Research and SEO Opportunities <span class="muted">· 5 页</span></td></tr>
+<tr class="page-row" data-cat="Keyword Research and SEO Opportunities" data-kw="shopify content gap analysis ">
+      <td class="c-cluster">71</td>
+      <td class="c-kw"><strong>shopify content gap analysis</strong></td>
+      <td class="c-slug">shopify-content-gap-analysis</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Keyword Research and SEO Opportunities" data-kw="shopify keyword performance tracking ">
+      <td class="c-cluster">71</td>
+      <td class="c-kw"><strong>shopify keyword performance tracking</strong></td>
+      <td class="c-slug">shopify-keyword-performance-tracking</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Keyword Research and SEO Opportunities" data-kw="shopify keyword research tool shopify keyword opportunity finder">
+      <td class="c-cluster">71</td>
+      <td class="c-kw"><strong>shopify keyword research tool</strong><div class="chips"><span class="chip">shopify keyword opportunity finder</span></div></td>
+      <td class="c-slug">shopify-keyword-research-tool</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Keyword Research and SEO Opportunities" data-kw="shopify long tail keyword research ">
+      <td class="c-cluster">72</td>
+      <td class="c-kw"><strong>shopify long tail keyword research</strong></td>
+      <td class="c-slug">shopify-long-tail-keyword-research</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Keyword Research and SEO Opportunities" data-kw="shopify keyword clustering ">
+      <td class="c-cluster">73</td>
+      <td class="c-kw"><strong>shopify keyword clustering</strong></td>
+      <td class="c-slug">shopify-keyword-clustering</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Lead Generation and Prospecting"><td colspan="4">Lead Generation and Prospecting <span class="muted">· 5 页</span></td></tr>
+<tr class="page-row" data-cat="Lead Generation and Prospecting" data-kw="find international buyers for ecommerce ">
+      <td class="c-cluster">75</td>
+      <td class="c-kw"><strong>find international buyers for ecommerce</strong></td>
+      <td class="c-slug">find-international-buyers-for-ecommerce</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Lead Generation and Prospecting" data-kw="find wholesale buyers for shopify ">
+      <td class="c-cluster">75</td>
+      <td class="c-kw"><strong>find wholesale buyers for shopify</strong></td>
+      <td class="c-slug">find-wholesale-buyers-for-shopify</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Lead Generation and Prospecting" data-kw="shopify b2b lead generation ">
+      <td class="c-cluster">75</td>
+      <td class="c-kw"><strong>shopify b2b lead generation</strong></td>
+      <td class="c-slug">shopify-b2b-lead-generation</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Lead Generation and Prospecting" data-kw="shopify lead generation app ecommerce lead prospecting tool shopify lead generation automation">
+      <td class="c-cluster">75</td>
+      <td class="c-kw"><strong>shopify lead generation app</strong><div class="chips"><span class="chip">ecommerce lead prospecting tool</span><span class="chip">shopify lead generation automation</span></div></td>
+      <td class="c-slug">shopify-lead-generation-app</td>
+      <td class="c-num">3</td>
+    </tr>
+<tr class="page-row" data-cat="Lead Generation and Prospecting" data-kw="ecommerce lead scoring ">
+      <td class="c-cluster">76</td>
+      <td class="c-kw"><strong>ecommerce lead scoring</strong></td>
+      <td class="c-slug">ecommerce-lead-scoring</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Product Image Quality and Errors"><td colspan="4">Product Image Quality and Errors <span class="muted">· 5 页</span></td></tr>
+<tr class="page-row" data-cat="Product Image Quality and Errors" data-kw="shopify duplicate image finder ">
+      <td class="c-cluster">106</td>
+      <td class="c-kw"><strong>shopify duplicate image finder</strong></td>
+      <td class="c-slug">shopify-duplicate-image-finder</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Image Quality and Errors" data-kw="shopify missing product images shopify broken product images">
+      <td class="c-cluster">106</td>
+      <td class="c-kw"><strong>shopify missing product images</strong><div class="chips"><span class="chip">shopify broken product images</span></div></td>
+      <td class="c-slug">shopify-missing-product-images</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Product Image Quality and Errors" data-kw="shopify product image checker ">
+      <td class="c-cluster">106</td>
+      <td class="c-kw"><strong>shopify product image checker</strong></td>
+      <td class="c-slug">shopify-product-image-checker</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Image Quality and Errors" data-kw="shopify product image resolution ">
+      <td class="c-cluster">106</td>
+      <td class="c-kw"><strong>shopify product image resolution</strong></td>
+      <td class="c-slug">shopify-product-image-resolution</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Image Quality and Errors" data-kw="shopify product images loading slowly ">
+      <td class="c-cluster">106</td>
+      <td class="c-kw"><strong>shopify product images loading slowly</strong></td>
+      <td class="c-slug">shopify-product-images-loading-slowly</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Product Workflow Automation"><td colspan="4">Product Workflow Automation <span class="muted">· 5 页</span></td></tr>
+<tr class="page-row" data-cat="Product Workflow Automation" data-kw="shopify automated product optimization ">
+      <td class="c-cluster">131</td>
+      <td class="c-kw"><strong>shopify automated product optimization</strong></td>
+      <td class="c-slug">shopify-automated-product-optimization</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Workflow Automation" data-kw="shopify automatic product updates ">
+      <td class="c-cluster">131</td>
+      <td class="c-kw"><strong>shopify automatic product updates</strong></td>
+      <td class="c-slug">shopify-automatic-product-updates</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Workflow Automation" data-kw="shopify product creation automation ">
+      <td class="c-cluster">131</td>
+      <td class="c-kw"><strong>shopify product creation automation</strong></td>
+      <td class="c-slug">shopify-product-creation-automation</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Workflow Automation" data-kw="shopify rule based product updates ">
+      <td class="c-cluster">131</td>
+      <td class="c-kw"><strong>shopify rule based product updates</strong></td>
+      <td class="c-slug">shopify-rule-based-product-updates</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Workflow Automation" data-kw="shopify scheduled product updates shopify scheduled bulk product edits">
+      <td class="c-cluster">131</td>
+      <td class="c-kw"><strong>shopify scheduled product updates</strong><div class="chips"><span class="chip">shopify scheduled bulk product edits</span></div></td>
+      <td class="c-slug">shopify-scheduled-product-updates</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="cat-row" data-cat="Replenishment and Inventory Planning"><td colspan="4">Replenishment and Inventory Planning <span class="muted">· 5 页</span></td></tr>
+<tr class="page-row" data-cat="Replenishment and Inventory Planning" data-kw="shopify reorder quantity calculator ">
+      <td class="c-cluster">139</td>
+      <td class="c-kw"><strong>shopify reorder quantity calculator</strong></td>
+      <td class="c-slug">shopify-reorder-quantity-calculator</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Replenishment and Inventory Planning" data-kw="shopify inventory planning software shopify purchase planning">
+      <td class="c-cluster">140</td>
+      <td class="c-kw"><strong>shopify inventory planning software</strong><div class="chips"><span class="chip">shopify purchase planning</span></div></td>
+      <td class="c-slug">shopify-inventory-planning-software</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Replenishment and Inventory Planning" data-kw="shopify reorder alerts ">
+      <td class="c-cluster">140</td>
+      <td class="c-kw"><strong>shopify reorder alerts</strong></td>
+      <td class="c-slug">shopify-reorder-alerts</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Replenishment and Inventory Planning" data-kw="shopify replenishment planning shopify automatic replenishment">
+      <td class="c-cluster">140</td>
+      <td class="c-kw"><strong>shopify replenishment planning</strong><div class="chips"><span class="chip">shopify automatic replenishment</span></div></td>
+      <td class="c-slug">shopify-replenishment-planning</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Replenishment and Inventory Planning" data-kw="shopify safety stock calculator ">
+      <td class="c-cluster">140</td>
+      <td class="c-kw"><strong>shopify safety stock calculator</strong></td>
+      <td class="c-slug">shopify-safety-stock-calculator</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="SEO Metadata and Content Audits"><td colspan="4">SEO Metadata and Content Audits <span class="muted">· 5 页</span></td></tr>
+<tr class="page-row" data-cat="SEO Metadata and Content Audits" data-kw="shopify duplicate meta titles ">
+      <td class="c-cluster">151</td>
+      <td class="c-kw"><strong>shopify duplicate meta titles</strong></td>
+      <td class="c-slug">shopify-duplicate-meta-titles</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="SEO Metadata and Content Audits" data-kw="shopify meta description checker ">
+      <td class="c-cluster">151</td>
+      <td class="c-kw"><strong>shopify meta description checker</strong></td>
+      <td class="c-slug">shopify-meta-description-checker</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="SEO Metadata and Content Audits" data-kw="shopify seo audit tool shopify seo issue checker">
+      <td class="c-cluster">151</td>
+      <td class="c-kw"><strong>shopify seo audit tool</strong><div class="chips"><span class="chip">shopify seo issue checker</span></div></td>
+      <td class="c-slug">shopify-seo-audit-tool</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="SEO Metadata and Content Audits" data-kw="shopify seo title checker ">
+      <td class="c-cluster">151</td>
+      <td class="c-kw"><strong>shopify seo title checker</strong></td>
+      <td class="c-slug">shopify-seo-title-checker</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="SEO Metadata and Content Audits" data-kw="shopify url handle optimization ">
+      <td class="c-cluster">151</td>
+      <td class="c-kw"><strong>shopify url handle optimization</strong></td>
+      <td class="c-slug">shopify-url-handle-optimization</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Shipment Tracking and Exceptions"><td colspan="4">Shipment Tracking and Exceptions <span class="muted">· 5 页</span></td></tr>
+<tr class="page-row" data-cat="Shipment Tracking and Exceptions" data-kw="shopify damaged shipment alerts ">
+      <td class="c-cluster">152</td>
+      <td class="c-kw"><strong>shopify damaged shipment alerts</strong></td>
+      <td class="c-slug">shopify-damaged-shipment-alerts</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Shipment Tracking and Exceptions" data-kw="shopify delivery performance report ">
+      <td class="c-cluster">152</td>
+      <td class="c-kw"><strong>shopify delivery performance report</strong></td>
+      <td class="c-slug">shopify-delivery-performance-report</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Shipment Tracking and Exceptions" data-kw="shopify lost package tracking ">
+      <td class="c-cluster">152</td>
+      <td class="c-kw"><strong>shopify lost package tracking</strong></td>
+      <td class="c-slug">shopify-lost-package-tracking</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Shipment Tracking and Exceptions" data-kw="shopify shipment tracking app ">
+      <td class="c-cluster">152</td>
+      <td class="c-kw"><strong>shopify shipment tracking app</strong></td>
+      <td class="c-slug">shopify-shipment-tracking-app</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Shipment Tracking and Exceptions" data-kw="shopify shipping delay alerts shopify shipment exception alerts">
+      <td class="c-cluster">152</td>
+      <td class="c-kw"><strong>shopify shipping delay alerts</strong><div class="chips"><span class="chip">shopify shipment exception alerts</span></div></td>
+      <td class="c-slug">shopify-shipping-delay-alerts</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="cat-row" data-cat="Stock Availability and Alerts"><td colspan="4">Stock Availability and Alerts <span class="muted">· 5 页</span></td></tr>
+<tr class="page-row" data-cat="Stock Availability and Alerts" data-kw="shopify best seller inventory tracking ">
+      <td class="c-cluster">156</td>
+      <td class="c-kw"><strong>shopify best seller inventory tracking</strong></td>
+      <td class="c-slug">shopify-best-seller-inventory-tracking</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Stock Availability and Alerts" data-kw="shopify continue selling when out of stock ">
+      <td class="c-cluster">156</td>
+      <td class="c-kw"><strong>shopify continue selling when out of stock</strong></td>
+      <td class="c-slug">shopify-continue-selling-when-out-of-stock</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Stock Availability and Alerts" data-kw="shopify low stock alerts shopify low stock report">
+      <td class="c-cluster">156</td>
+      <td class="c-kw"><strong>shopify low stock alerts</strong><div class="chips"><span class="chip">shopify low stock report</span></div></td>
+      <td class="c-slug">shopify-low-stock-alerts</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Stock Availability and Alerts" data-kw="shopify out of stock alerts shopify out of stock product report">
+      <td class="c-cluster">156</td>
+      <td class="c-kw"><strong>shopify out of stock alerts</strong><div class="chips"><span class="chip">shopify out of stock product report</span></div></td>
+      <td class="c-slug">shopify-out-of-stock-alerts</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Stock Availability and Alerts" data-kw="shopify stockout prediction ">
+      <td class="c-cluster">156</td>
+      <td class="c-kw"><strong>shopify stockout prediction</strong></td>
+      <td class="c-slug">shopify-stockout-prediction</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Website Errors and Broken Links"><td colspan="4">Website Errors and Broken Links <span class="muted">· 5 页</span></td></tr>
+<tr class="page-row" data-cat="Website Errors and Broken Links" data-kw="shopify 404 error checker shopify broken link checker">
+      <td class="c-cluster">170</td>
+      <td class="c-kw"><strong>shopify 404 error checker</strong><div class="chips"><span class="chip">shopify broken link checker</span></div></td>
+      <td class="c-slug">shopify-404-error-checker</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Website Errors and Broken Links" data-kw="shopify 500 error troubleshooting ">
+      <td class="c-cluster">170</td>
+      <td class="c-kw"><strong>shopify 500 error troubleshooting</strong></td>
+      <td class="c-slug">shopify-500-error-troubleshooting</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Website Errors and Broken Links" data-kw="shopify internal link audit ">
+      <td class="c-cluster">170</td>
+      <td class="c-kw"><strong>shopify internal link audit</strong></td>
+      <td class="c-slug">shopify-internal-link-audit</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Website Errors and Broken Links" data-kw="shopify page loading issues ">
+      <td class="c-cluster">170</td>
+      <td class="c-kw"><strong>shopify page loading issues</strong></td>
+      <td class="c-slug">shopify-page-loading-issues</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Website Errors and Broken Links" data-kw="shopify redirect checker ">
+      <td class="c-cluster">170</td>
+      <td class="c-kw"><strong>shopify redirect checker</strong></td>
+      <td class="c-slug">shopify-redirect-checker</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Add to Cart Issues and Optimization"><td colspan="4">Add to Cart Issues and Optimization <span class="muted">· 4 页</span></td></tr>
+<tr class="page-row" data-cat="Add to Cart Issues and Optimization" data-kw="shopify add to cart button text shopify call to action optimization">
+      <td class="c-cluster">8</td>
+      <td class="c-kw"><strong>shopify add to cart button text</strong><div class="chips"><span class="chip">shopify call to action optimization</span></div></td>
+      <td class="c-slug">shopify-add-to-cart-button-text</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Add to Cart Issues and Optimization" data-kw="shopify low add to cart rate shopify add to cart funnel analysis">
+      <td class="c-cluster">8</td>
+      <td class="c-kw"><strong>shopify low add to cart rate</strong><div class="chips"><span class="chip">shopify add to cart funnel analysis</span></div></td>
+      <td class="c-slug">shopify-low-add-to-cart-rate</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Add to Cart Issues and Optimization" data-kw="shopify add to cart button not working ">
+      <td class="c-cluster">9</td>
+      <td class="c-kw"><strong>shopify add to cart button not working</strong></td>
+      <td class="c-slug">shopify-add-to-cart-button-not-working</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Add to Cart Issues and Optimization" data-kw="shopify mobile add to cart button ">
+      <td class="c-cluster">10</td>
+      <td class="c-kw"><strong>shopify mobile add to cart button</strong></td>
+      <td class="c-slug">shopify-mobile-add-to-cart-button</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="AI Analytics and Diagnosis"><td colspan="4">AI Analytics and Diagnosis <span class="muted">· 4 页</span></td></tr>
+<tr class="page-row" data-cat="AI Analytics and Diagnosis" data-kw="shopify ai analytics assistant shopify ai sales analysis">
+      <td class="c-cluster">11</td>
+      <td class="c-kw"><strong>shopify ai analytics assistant</strong><div class="chips"><span class="chip">shopify ai sales analysis</span></div></td>
+      <td class="c-slug">shopify-ai-analytics-assistant</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="AI Analytics and Diagnosis" data-kw="shopify automated issue detection ">
+      <td class="c-cluster">11</td>
+      <td class="c-kw"><strong>shopify automated issue detection</strong></td>
+      <td class="c-slug">shopify-automated-issue-detection</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="AI Analytics and Diagnosis" data-kw="shopify root cause analysis ">
+      <td class="c-cluster">11</td>
+      <td class="c-kw"><strong>shopify root cause analysis</strong></td>
+      <td class="c-slug">shopify-root-cause-analysis</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="AI Analytics and Diagnosis" data-kw="shopify store optimization recommendations ">
+      <td class="c-cluster">11</td>
+      <td class="c-kw"><strong>shopify store optimization recommendations</strong></td>
+      <td class="c-slug">shopify-store-optimization-recommendations</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="AI Customer Support and Chatbots"><td colspan="4">AI Customer Support and Chatbots <span class="muted">· 4 页</span></td></tr>
+<tr class="page-row" data-cat="AI Customer Support and Chatbots" data-kw="shopify ai customer service shopify ai chatbot">
+      <td class="c-cluster">12</td>
+      <td class="c-kw"><strong>shopify ai customer service</strong><div class="chips"><span class="chip">shopify ai chatbot</span></div></td>
+      <td class="c-slug">shopify-ai-customer-service</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="AI Customer Support and Chatbots" data-kw="shopify chatbot inventory availability ">
+      <td class="c-cluster">12</td>
+      <td class="c-kw"><strong>shopify chatbot inventory availability</strong></td>
+      <td class="c-slug">shopify-chatbot-inventory-availability</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="AI Customer Support and Chatbots" data-kw="shopify presales chatbot ">
+      <td class="c-cluster">12</td>
+      <td class="c-kw"><strong>shopify presales chatbot</strong></td>
+      <td class="c-slug">shopify-presales-chatbot</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="AI Customer Support and Chatbots" data-kw="shopify product questions chatbot ">
+      <td class="c-cluster">12</td>
+      <td class="c-kw"><strong>shopify product questions chatbot</strong></td>
+      <td class="c-slug">shopify-product-questions-chatbot</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Conversion Tracking and Pixel Issues"><td colspan="4">Conversion Tracking and Pixel Issues <span class="muted">· 4 页</span></td></tr>
+<tr class="page-row" data-cat="Conversion Tracking and Pixel Issues" data-kw="shopify pixel duplicate events ">
+      <td class="c-cluster">40</td>
+      <td class="c-kw"><strong>shopify pixel duplicate events</strong></td>
+      <td class="c-slug">shopify-pixel-duplicate-events</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Conversion Tracking and Pixel Issues" data-kw="shopify conversion tracking audit ">
+      <td class="c-cluster">41</td>
+      <td class="c-kw"><strong>shopify conversion tracking audit</strong></td>
+      <td class="c-slug">shopify-conversion-tracking-audit</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Conversion Tracking and Pixel Issues" data-kw="shopify events not tracking shopify facebook pixel not firing">
+      <td class="c-cluster">41</td>
+      <td class="c-kw"><strong>shopify events not tracking</strong><div class="chips"><span class="chip">shopify facebook pixel not firing</span></div></td>
+      <td class="c-slug">shopify-events-not-tracking</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Conversion Tracking and Pixel Issues" data-kw="shopify meta pixel checker ">
+      <td class="c-cluster">41</td>
+      <td class="c-kw"><strong>shopify meta pixel checker</strong></td>
+      <td class="c-slug">shopify-meta-pixel-checker</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Email Marketing Automation"><td colspan="4">Email Marketing Automation <span class="muted">· 4 页</span></td></tr>
+<tr class="page-row" data-cat="Email Marketing Automation" data-kw="shopify new customer nurture emails ">
+      <td class="c-cluster">56</td>
+      <td class="c-kw"><strong>shopify new customer nurture emails</strong></td>
+      <td class="c-slug">shopify-new-customer-nurture-emails</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Email Marketing Automation" data-kw="shopify email marketing automation shopify automated email sequences shopify marketing message automation">
+      <td class="c-cluster">57</td>
+      <td class="c-kw"><strong>shopify email marketing automation</strong><div class="chips"><span class="chip">shopify automated email sequences</span><span class="chip">shopify marketing message automation</span></div></td>
+      <td class="c-slug">shopify-email-marketing-automation</td>
+      <td class="c-num">3</td>
+    </tr>
+<tr class="page-row" data-cat="Email Marketing Automation" data-kw="shopify personalized email marketing ">
+      <td class="c-cluster">57</td>
+      <td class="c-kw"><strong>shopify personalized email marketing</strong></td>
+      <td class="c-slug">shopify-personalized-email-marketing</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Email Marketing Automation" data-kw="shopify post purchase follow up ">
+      <td class="c-cluster">58</td>
+      <td class="c-kw"><strong>shopify post purchase follow up</strong></td>
+      <td class="c-slug">shopify-post-purchase-follow-up</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Marketing Attribution and ROAS"><td colspan="4">Marketing Attribution and ROAS <span class="muted">· 4 页</span></td></tr>
+<tr class="page-row" data-cat="Marketing Attribution and ROAS" data-kw="shopify advertising roi calculator ">
+      <td class="c-cluster">79</td>
+      <td class="c-kw"><strong>shopify advertising roi calculator</strong></td>
+      <td class="c-slug">shopify-advertising-roi-calculator</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Marketing Attribution and ROAS" data-kw="shopify marketing attribution tool shopify sales attribution">
+      <td class="c-cluster">79</td>
+      <td class="c-kw"><strong>shopify marketing attribution tool</strong><div class="chips"><span class="chip">shopify sales attribution</span></div></td>
+      <td class="c-slug">shopify-marketing-attribution-tool</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Marketing Attribution and ROAS" data-kw="shopify orders by marketing campaign shopify marketing channel comparison">
+      <td class="c-cluster">79</td>
+      <td class="c-kw"><strong>shopify orders by marketing campaign</strong><div class="chips"><span class="chip">shopify marketing channel comparison</span></div></td>
+      <td class="c-slug">shopify-orders-by-marketing-campaign</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Marketing Attribution and ROAS" data-kw="shopify roas tracking shopify roas by channel">
+      <td class="c-cluster">79</td>
+      <td class="c-kw"><strong>shopify roas tracking</strong><div class="chips"><span class="chip">shopify roas by channel</span></div></td>
+      <td class="c-slug">shopify-roas-tracking</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="cat-row" data-cat="Page Layout and Bulk Creation"><td colspan="4">Page Layout and Bulk Creation <span class="muted">· 4 页</span></td></tr>
+<tr class="page-row" data-cat="Page Layout and Bulk Creation" data-kw="shopify bulk page creation shopify bulk publish pages">
+      <td class="c-cluster">88</td>
+      <td class="c-kw"><strong>shopify bulk page creation</strong><div class="chips"><span class="chip">shopify bulk publish pages</span></div></td>
+      <td class="c-slug">shopify-bulk-page-creation</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Page Layout and Bulk Creation" data-kw="shopify page content generator ">
+      <td class="c-cluster">88</td>
+      <td class="c-kw"><strong>shopify page content generator</strong></td>
+      <td class="c-slug">shopify-page-content-generator</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Page Layout and Bulk Creation" data-kw="shopify page section builder ">
+      <td class="c-cluster">88</td>
+      <td class="c-kw"><strong>shopify page section builder</strong></td>
+      <td class="c-slug">shopify-page-section-builder</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Page Layout and Bulk Creation" data-kw="shopify responsive page builder ">
+      <td class="c-cluster">89</td>
+      <td class="c-kw"><strong>shopify responsive page builder</strong></td>
+      <td class="c-slug">shopify-responsive-page-builder</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Pricing and Bulk Price Updates"><td colspan="4">Pricing and Bulk Price Updates <span class="muted">· 4 页</span></td></tr>
+<tr class="page-row" data-cat="Pricing and Bulk Price Updates" data-kw="shopify increase prices by percentage ">
+      <td class="c-cluster">91</td>
+      <td class="c-kw"><strong>shopify increase prices by percentage</strong></td>
+      <td class="c-slug">shopify-increase-prices-by-percentage</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Pricing and Bulk Price Updates" data-kw="shopify bulk price editor shopify bulk edit variant prices">
+      <td class="c-cluster">92</td>
+      <td class="c-kw"><strong>shopify bulk price editor</strong><div class="chips"><span class="chip">shopify bulk edit variant prices</span></div></td>
+      <td class="c-slug">shopify-bulk-price-editor</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Pricing and Bulk Price Updates" data-kw="shopify price rounding app ">
+      <td class="c-cluster">92</td>
+      <td class="c-kw"><strong>shopify price rounding app</strong></td>
+      <td class="c-slug">shopify-price-rounding-app</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Pricing and Bulk Price Updates" data-kw="shopify variant pricing by size ">
+      <td class="c-cluster">93</td>
+      <td class="c-kw"><strong>shopify variant pricing by size</strong></td>
+      <td class="c-slug">shopify-variant-pricing-by-size</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Product Data Enrichment"><td colspan="4">Product Data Enrichment <span class="muted">· 4 页</span></td></tr>
+<tr class="page-row" data-cat="Product Data Enrichment" data-kw="shopify missing product fields ">
+      <td class="c-cluster">99</td>
+      <td class="c-kw"><strong>shopify missing product fields</strong></td>
+      <td class="c-slug">shopify-missing-product-fields</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Data Enrichment" data-kw="shopify product specifications ">
+      <td class="c-cluster">99</td>
+      <td class="c-kw"><strong>shopify product specifications</strong></td>
+      <td class="c-slug">shopify-product-specifications</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Data Enrichment" data-kw="shopify product unit conversion ">
+      <td class="c-cluster">99</td>
+      <td class="c-kw"><strong>shopify product unit conversion</strong></td>
+      <td class="c-slug">shopify-product-unit-conversion</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Data Enrichment" data-kw="standardize product data shopify product data enrichment">
+      <td class="c-cluster">99</td>
+      <td class="c-kw"><strong>standardize product data</strong><div class="chips"><span class="chip">shopify product data enrichment</span></div></td>
+      <td class="c-slug">standardize-product-data</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="cat-row" data-cat="Product Image Generation"><td colspan="4">Product Image Generation <span class="muted">· 4 页</span></td></tr>
+<tr class="page-row" data-cat="Product Image Generation" data-kw="bulk product image generator ">
+      <td class="c-cluster">105</td>
+      <td class="c-kw"><strong>bulk product image generator</strong></td>
+      <td class="c-slug">bulk-product-image-generator</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Image Generation" data-kw="product detail image generator ">
+      <td class="c-cluster">105</td>
+      <td class="c-kw"><strong>product detail image generator</strong></td>
+      <td class="c-slug">product-detail-image-generator</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Image Generation" data-kw="product lifestyle image generator ">
+      <td class="c-cluster">105</td>
+      <td class="c-kw"><strong>product lifestyle image generator</strong></td>
+      <td class="c-slug">product-lifestyle-image-generator</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Image Generation" data-kw="shopify product image generator shopify ai product photography white background product photo generator">
+      <td class="c-cluster">105</td>
+      <td class="c-kw"><strong>shopify product image generator</strong><div class="chips"><span class="chip">shopify ai product photography</span><span class="chip">white background product photo generator</span></div></td>
+      <td class="c-slug">shopify-product-image-generator</td>
+      <td class="c-num">3</td>
+    </tr>
+<tr class="cat-row" data-cat="Product Page Audits and Layout"><td colspan="4">Product Page Audits and Layout <span class="muted">· 4 页</span></td></tr>
+<tr class="page-row" data-cat="Product Page Audits and Layout" data-kw="shopify product page audit shopify product page content checklist">
+      <td class="c-cluster">107</td>
+      <td class="c-kw"><strong>shopify product page audit</strong><div class="chips"><span class="chip">shopify product page content checklist</span></div></td>
+      <td class="c-slug">shopify-product-page-audit</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Product Page Audits and Layout" data-kw="shopify product page layout ">
+      <td class="c-cluster">107</td>
+      <td class="c-kw"><strong>shopify product page layout</strong></td>
+      <td class="c-slug">shopify-product-page-layout</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Page Audits and Layout" data-kw="shopify product page optimization ">
+      <td class="c-cluster">107</td>
+      <td class="c-kw"><strong>shopify product page optimization</strong></td>
+      <td class="c-slug">shopify-product-page-optimization</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Page Audits and Layout" data-kw="shopify mobile product page optimization ">
+      <td class="c-cluster">108</td>
+      <td class="c-kw"><strong>shopify mobile product page optimization</strong></td>
+      <td class="c-slug">shopify-mobile-product-page-optimization</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Product Page Creation"><td colspan="4">Product Page Creation <span class="muted">· 4 页</span></td></tr>
+<tr class="page-row" data-cat="Product Page Creation" data-kw="create shopify product pages from supplier data ">
+      <td class="c-cluster">109</td>
+      <td class="c-kw"><strong>create shopify product pages from supplier data</strong></td>
+      <td class="c-slug">create-shopify-product-pages-from-supplier-data</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Page Creation" data-kw="shopify bulk create product pages ">
+      <td class="c-cluster">109</td>
+      <td class="c-kw"><strong>shopify bulk create product pages</strong></td>
+      <td class="c-slug">shopify-bulk-create-product-pages</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Page Creation" data-kw="shopify product page builder shopify ai product page generator shopify custom product page design shopify product page templates">
+      <td class="c-cluster">109</td>
+      <td class="c-kw"><strong>shopify product page builder</strong><div class="chips"><span class="chip">shopify ai product page generator</span><span class="chip">shopify custom product page design</span><span class="chip">shopify product page templates</span></div></td>
+      <td class="c-slug">shopify-product-page-builder</td>
+      <td class="c-num">4</td>
+    </tr>
+<tr class="page-row" data-cat="Product Page Creation" data-kw="shopify product page section layout ">
+      <td class="c-cluster">109</td>
+      <td class="c-kw"><strong>shopify product page section layout</strong></td>
+      <td class="c-slug">shopify-product-page-section-layout</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Product Page Trust and Purchase Information"><td colspan="4">Product Page Trust and Purchase Information <span class="muted">· 4 页</span></td></tr>
+<tr class="page-row" data-cat="Product Page Trust and Purchase Information" data-kw="shopify product page social proof ">
+      <td class="c-cluster">111</td>
+      <td class="c-kw"><strong>shopify product page social proof</strong></td>
+      <td class="c-slug">shopify-product-page-social-proof</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Page Trust and Purchase Information" data-kw="shopify product page trust badges ">
+      <td class="c-cluster">111</td>
+      <td class="c-kw"><strong>shopify product page trust badges</strong></td>
+      <td class="c-slug">shopify-product-page-trust-badges</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Page Trust and Purchase Information" data-kw="show return policy on shopify product page ">
+      <td class="c-cluster">111</td>
+      <td class="c-kw"><strong>show return policy on shopify product page</strong></td>
+      <td class="c-slug">show-return-policy-on-shopify-product-page</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Page Trust and Purchase Information" data-kw="show shipping information on shopify product page ">
+      <td class="c-cluster">111</td>
+      <td class="c-kw"><strong>show shipping information on shopify product page</strong></td>
+      <td class="c-slug">show-shipping-information-on-shopify-product-page</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Product Performance Analytics"><td colspan="4">Product Performance Analytics <span class="muted">· 4 页</span></td></tr>
+<tr class="page-row" data-cat="Product Performance Analytics" data-kw="shopify product performance alerts ">
+      <td class="c-cluster">113</td>
+      <td class="c-kw"><strong>shopify product performance alerts</strong></td>
+      <td class="c-slug">shopify-product-performance-alerts</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Performance Analytics" data-kw="shopify product sales report shopify best selling products report shopify revenue by product">
+      <td class="c-cluster">113</td>
+      <td class="c-kw"><strong>shopify product sales report</strong><div class="chips"><span class="chip">shopify best selling products report</span><span class="chip">shopify revenue by product</span></div></td>
+      <td class="c-slug">shopify-product-sales-report</td>
+      <td class="c-num">3</td>
+    </tr>
+<tr class="page-row" data-cat="Product Performance Analytics" data-kw="shopify underperforming products report ">
+      <td class="c-cluster">113</td>
+      <td class="c-kw"><strong>shopify underperforming products report</strong></td>
+      <td class="c-slug">shopify-underperforming-products-report</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Performance Analytics" data-kw="shopify traffic by product ">
+      <td class="c-cluster">114</td>
+      <td class="c-kw"><strong>shopify traffic by product</strong></td>
+      <td class="c-slug">shopify-traffic-by-product</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Sales and Store Analytics"><td colspan="4">Sales and Store Analytics <span class="muted">· 4 页</span></td></tr>
+<tr class="page-row" data-cat="Sales and Store Analytics" data-kw="shopify analytics app shopify sales analytics shopify sales dashboard">
+      <td class="c-cluster">147</td>
+      <td class="c-kw"><strong>shopify analytics app</strong><div class="chips"><span class="chip">shopify sales analytics</span><span class="chip">shopify sales dashboard</span></div></td>
+      <td class="c-slug">shopify-analytics-app</td>
+      <td class="c-num">3</td>
+    </tr>
+<tr class="page-row" data-cat="Sales and Store Analytics" data-kw="shopify sales trend analysis ">
+      <td class="c-cluster">147</td>
+      <td class="c-kw"><strong>shopify sales trend analysis</strong></td>
+      <td class="c-slug">shopify-sales-trend-analysis</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Sales and Store Analytics" data-kw="shopify monthly sales report ">
+      <td class="c-cluster">148</td>
+      <td class="c-kw"><strong>shopify monthly sales report</strong></td>
+      <td class="c-slug">shopify-monthly-sales-report</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Sales and Store Analytics" data-kw="shopify daily sales report ">
+      <td class="c-cluster">149</td>
+      <td class="c-kw"><strong>shopify daily sales report</strong></td>
+      <td class="c-slug">shopify-daily-sales-report</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Automated Data Collection and Reporting"><td colspan="4">Automated Data Collection and Reporting <span class="muted">· 3 页</span></td></tr>
+<tr class="page-row" data-cat="Automated Data Collection and Reporting" data-kw="shopify automated reporting shopify scheduled email reports">
+      <td class="c-cluster">23</td>
+      <td class="c-kw"><strong>shopify automated reporting</strong><div class="chips"><span class="chip">shopify scheduled email reports</span></div></td>
+      <td class="c-slug">shopify-automated-reporting</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Automated Data Collection and Reporting" data-kw="shopify automated data collection ">
+      <td class="c-cluster">24</td>
+      <td class="c-kw"><strong>shopify automated data collection</strong></td>
+      <td class="c-slug">shopify-automated-data-collection</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Automated Data Collection and Reporting" data-kw="shopify scheduled data export ">
+      <td class="c-cluster">24</td>
+      <td class="c-kw"><strong>shopify scheduled data export</strong></td>
+      <td class="c-slug">shopify-scheduled-data-export</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Banners and Collection Images"><td colspan="4">Banners and Collection Images <span class="muted">· 3 页</span></td></tr>
+<tr class="page-row" data-cat="Banners and Collection Images" data-kw="shopify banner maker shopify homepage banner generator">
+      <td class="c-cluster">26</td>
+      <td class="c-kw"><strong>shopify banner maker</strong><div class="chips"><span class="chip">shopify homepage banner generator</span></div></td>
+      <td class="c-slug">shopify-banner-maker</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Banners and Collection Images" data-kw="shopify collection image generator ">
+      <td class="c-cluster">26</td>
+      <td class="c-kw"><strong>shopify collection image generator</strong></td>
+      <td class="c-slug">shopify-collection-image-generator</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Banners and Collection Images" data-kw="shopify banner image resize ">
+      <td class="c-cluster">27</td>
+      <td class="c-kw"><strong>shopify banner image resize</strong></td>
+      <td class="c-slug">shopify-banner-image-resize</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Blog and SEO Content Generation"><td colspan="4">Blog and SEO Content Generation <span class="muted">· 3 页</span></td></tr>
+<tr class="page-row" data-cat="Blog and SEO Content Generation" data-kw="shopify ai blog writer shopify bulk blog post generator">
+      <td class="c-cluster">28</td>
+      <td class="c-kw"><strong>shopify ai blog writer</strong><div class="chips"><span class="chip">shopify bulk blog post generator</span></div></td>
+      <td class="c-slug">shopify-ai-blog-writer</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Blog and SEO Content Generation" data-kw="shopify blog seo ">
+      <td class="c-cluster">28</td>
+      <td class="c-kw"><strong>shopify blog seo</strong></td>
+      <td class="c-slug">shopify-blog-seo</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Blog and SEO Content Generation" data-kw="shopify seo content generator ">
+      <td class="c-cluster">28</td>
+      <td class="c-kw"><strong>shopify seo content generator</strong></td>
+      <td class="c-slug">shopify-seo-content-generator</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Bulk Product Editing"><td colspan="4">Bulk Product Editing <span class="muted">· 3 页</span></td></tr>
+<tr class="page-row" data-cat="Bulk Product Editing" data-kw="shopify bulk edit vendors ">
+      <td class="c-cluster">29</td>
+      <td class="c-kw"><strong>shopify bulk edit vendors</strong></td>
+      <td class="c-slug">shopify-bulk-edit-vendors</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Bulk Product Editing" data-kw="shopify bulk product optimization shopify bulk product editor">
+      <td class="c-cluster">29</td>
+      <td class="c-kw"><strong>shopify bulk product optimization</strong><div class="chips"><span class="chip">shopify bulk product editor</span></div></td>
+      <td class="c-slug">shopify-bulk-product-optimization</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Bulk Product Editing" data-kw="shopify bulk edit metafields ">
+      <td class="c-cluster">30</td>
+      <td class="c-kw"><strong>shopify bulk edit metafields</strong></td>
+      <td class="c-slug">shopify-bulk-edit-metafields</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Cart Abandonment Analysis and Recovery"><td colspan="4">Cart Abandonment Analysis and Recovery <span class="muted">· 3 页</span></td></tr>
+<tr class="page-row" data-cat="Cart Abandonment Analysis and Recovery" data-kw="reduce shopify cart abandonment ">
+      <td class="c-cluster">31</td>
+      <td class="c-kw"><strong>reduce shopify cart abandonment</strong></td>
+      <td class="c-slug">reduce-shopify-cart-abandonment</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Cart Abandonment Analysis and Recovery" data-kw="shopify abandoned cart analysis ">
+      <td class="c-cluster">31</td>
+      <td class="c-kw"><strong>shopify abandoned cart analysis</strong></td>
+      <td class="c-slug">shopify-abandoned-cart-analysis</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Cart Abandonment Analysis and Recovery" data-kw="shopify abandoned cart revenue report ">
+      <td class="c-cluster">31</td>
+      <td class="c-kw"><strong>shopify abandoned cart revenue report</strong></td>
+      <td class="c-slug">shopify-abandoned-cart-revenue-report</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Checkout Abandonment and Optimization"><td colspan="4">Checkout Abandonment and Optimization <span class="muted">· 3 页</span></td></tr>
+<tr class="page-row" data-cat="Checkout Abandonment and Optimization" data-kw="shopify checkout abandonment reasons ">
+      <td class="c-cluster">33</td>
+      <td class="c-kw"><strong>shopify checkout abandonment reasons</strong></td>
+      <td class="c-slug">shopify-checkout-abandonment-reasons</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Checkout Abandonment and Optimization" data-kw="shopify checkout conversion rate ">
+      <td class="c-cluster">33</td>
+      <td class="c-kw"><strong>shopify checkout conversion rate</strong></td>
+      <td class="c-slug">shopify-checkout-conversion-rate</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Checkout Abandonment and Optimization" data-kw="shopify checkout drop off analysis ">
+      <td class="c-cluster">33</td>
+      <td class="c-kw"><strong>shopify checkout drop off analysis</strong></td>
+      <td class="c-slug">shopify-checkout-drop-off-analysis</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Content Production and Publishing Automation"><td colspan="4">Content Production and Publishing Automation <span class="muted">· 3 页</span></td></tr>
+<tr class="page-row" data-cat="Content Production and Publishing Automation" data-kw="shopify ai content generator shopify bulk content creation">
+      <td class="c-cluster">37</td>
+      <td class="c-kw"><strong>shopify ai content generator</strong><div class="chips"><span class="chip">shopify bulk content creation</span></div></td>
+      <td class="c-slug">shopify-ai-content-generator</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Content Production and Publishing Automation" data-kw="shopify blog scheduling ">
+      <td class="c-cluster">37</td>
+      <td class="c-kw"><strong>shopify blog scheduling</strong></td>
+      <td class="c-slug">shopify-blog-scheduling</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Content Production and Publishing Automation" data-kw="shopify content publishing automation shopify automated blog publishing">
+      <td class="c-cluster">37</td>
+      <td class="c-kw"><strong>shopify content publishing automation</strong><div class="chips"><span class="chip">shopify automated blog publishing</span></div></td>
+      <td class="c-slug">shopify-content-publishing-automation</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="cat-row" data-cat="CRM and Contact Management"><td colspan="4">CRM and Contact Management <span class="muted">· 3 页</span></td></tr>
+<tr class="page-row" data-cat="CRM and Contact Management" data-kw="shopify crm software ">
+      <td class="c-cluster">42</td>
+      <td class="c-kw"><strong>shopify crm software</strong></td>
+      <td class="c-slug">shopify-crm-software</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="CRM and Contact Management" data-kw="shopify customer contact management ">
+      <td class="c-cluster">42</td>
+      <td class="c-kw"><strong>shopify customer contact management</strong></td>
+      <td class="c-slug">shopify-customer-contact-management</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="CRM and Contact Management" data-kw="shopify customer deduplication ">
+      <td class="c-cluster">42</td>
+      <td class="c-kw"><strong>shopify customer deduplication</strong></td>
+      <td class="c-slug">shopify-customer-deduplication</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Customer Lifetime Value"><td colspan="4">Customer Lifetime Value <span class="muted">· 3 页</span></td></tr>
+<tr class="page-row" data-cat="Customer Lifetime Value" data-kw="increase shopify customer lifetime value ">
+      <td class="c-cluster">50</td>
+      <td class="c-kw"><strong>increase shopify customer lifetime value</strong></td>
+      <td class="c-slug">increase-shopify-customer-lifetime-value</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Customer Lifetime Value" data-kw="shopify customer lifetime value calculator ">
+      <td class="c-cluster">50</td>
+      <td class="c-kw"><strong>shopify customer lifetime value calculator</strong></td>
+      <td class="c-slug">shopify-customer-lifetime-value-calculator</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Customer Lifetime Value" data-kw="shopify ltv analytics ">
+      <td class="c-cluster">50</td>
+      <td class="c-kw"><strong>shopify ltv analytics</strong></td>
+      <td class="c-slug">shopify-ltv-analytics</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Fulfillment Monitoring and Alerts"><td colspan="4">Fulfillment Monitoring and Alerts <span class="muted">· 3 页</span></td></tr>
+<tr class="page-row" data-cat="Fulfillment Monitoring and Alerts" data-kw="shopify fulfillment tracking ">
+      <td class="c-cluster">60</td>
+      <td class="c-kw"><strong>shopify fulfillment tracking</strong></td>
+      <td class="c-slug">shopify-fulfillment-tracking</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Fulfillment Monitoring and Alerts" data-kw="shopify unfulfilled order alerts shopify overdue fulfillment alerts">
+      <td class="c-cluster">60</td>
+      <td class="c-kw"><strong>shopify unfulfilled order alerts</strong><div class="chips"><span class="chip">shopify overdue fulfillment alerts</span></div></td>
+      <td class="c-slug">shopify-unfulfilled-order-alerts</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Fulfillment Monitoring and Alerts" data-kw="shopify unfulfilled order report ">
+      <td class="c-cluster">60</td>
+      <td class="c-kw"><strong>shopify unfulfilled order report</strong></td>
+      <td class="c-slug">shopify-unfulfilled-order-report</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Influencer Discovery and Outreach"><td colspan="4">Influencer Discovery and Outreach <span class="muted">· 3 页</span></td></tr>
+<tr class="page-row" data-cat="Influencer Discovery and Outreach" data-kw="shopify influencer discovery tool ">
+      <td class="c-cluster">63</td>
+      <td class="c-kw"><strong>shopify influencer discovery tool</strong></td>
+      <td class="c-slug">shopify-influencer-discovery-tool</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Influencer Discovery and Outreach" data-kw="shopify influencer outreach automation ">
+      <td class="c-cluster">63</td>
+      <td class="c-kw"><strong>shopify influencer outreach automation</strong></td>
+      <td class="c-slug">shopify-influencer-outreach-automation</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Influencer Discovery and Outreach" data-kw="shopify influencer campaign tracking ">
+      <td class="c-cluster">64</td>
+      <td class="c-kw"><strong>shopify influencer campaign tracking</strong></td>
+      <td class="c-slug">shopify-influencer-campaign-tracking</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="International Product Sourcing"><td colspan="4">International Product Sourcing <span class="muted">· 3 页</span></td></tr>
+<tr class="page-row" data-cat="International Product Sourcing" data-kw="product compliance screening tool ">
+      <td class="c-cluster">65</td>
+      <td class="c-kw"><strong>product compliance screening tool</strong></td>
+      <td class="c-slug">product-compliance-screening-tool</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="International Product Sourcing" data-kw="product sourcing for international markets ">
+      <td class="c-cluster">65</td>
+      <td class="c-kw"><strong>product sourcing for international markets</strong></td>
+      <td class="c-slug">product-sourcing-for-international-markets</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="International Product Sourcing" data-kw="product sourcing logistics analysis ">
+      <td class="c-cluster">65</td>
+      <td class="c-kw"><strong>product sourcing logistics analysis</strong></td>
+      <td class="c-slug">product-sourcing-logistics-analysis</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Inventory Management and Visibility"><td colspan="4">Inventory Management and Visibility <span class="muted">· 3 页</span></td></tr>
+<tr class="page-row" data-cat="Inventory Management and Visibility" data-kw="shopify inventory dashboard ">
+      <td class="c-cluster">68</td>
+      <td class="c-kw"><strong>shopify inventory dashboard</strong></td>
+      <td class="c-slug">shopify-inventory-dashboard</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Inventory Management and Visibility" data-kw="shopify inventory management app shopify inventory monitoring shopify real time inventory tracking">
+      <td class="c-cluster">68</td>
+      <td class="c-kw"><strong>shopify inventory management app</strong><div class="chips"><span class="chip">shopify inventory monitoring</span><span class="chip">shopify real time inventory tracking</span></div></td>
+      <td class="c-slug">shopify-inventory-management-app</td>
+      <td class="c-num">3</td>
+    </tr>
+<tr class="page-row" data-cat="Inventory Management and Visibility" data-kw="shopify multi location inventory management ">
+      <td class="c-cluster">69</td>
+      <td class="c-kw"><strong>shopify multi location inventory management</strong></td>
+      <td class="c-slug">shopify-multi-location-inventory-management</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Market and Supply Chain Alerts"><td colspan="4">Market and Supply Chain Alerts <span class="muted">· 3 页</span></td></tr>
+<tr class="page-row" data-cat="Market and Supply Chain Alerts" data-kw="ecommerce market price alerts ">
+      <td class="c-cluster">78</td>
+      <td class="c-kw"><strong>ecommerce market price alerts</strong></td>
+      <td class="c-slug">ecommerce-market-price-alerts</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Market and Supply Chain Alerts" data-kw="ecommerce regulatory change monitoring ">
+      <td class="c-cluster">78</td>
+      <td class="c-kw"><strong>ecommerce regulatory change monitoring</strong></td>
+      <td class="c-slug">ecommerce-regulatory-change-monitoring</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Market and Supply Chain Alerts" data-kw="ecommerce supply chain disruption alerts ">
+      <td class="c-cluster">78</td>
+      <td class="c-kw"><strong>ecommerce supply chain disruption alerts</strong></td>
+      <td class="c-slug">ecommerce-supply-chain-disruption-alerts</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Order and Shipping Customer Support"><td colspan="4">Order and Shipping Customer Support <span class="muted">· 3 页</span></td></tr>
+<tr class="page-row" data-cat="Order and Shipping Customer Support" data-kw="shopify order modification automation ">
+      <td class="c-cluster">82</td>
+      <td class="c-kw"><strong>shopify order modification automation</strong></td>
+      <td class="c-slug">shopify-order-modification-automation</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Order and Shipping Customer Support" data-kw="shopify order status chatbot ">
+      <td class="c-cluster">82</td>
+      <td class="c-kw"><strong>shopify order status chatbot</strong></td>
+      <td class="c-slug">shopify-order-status-chatbot</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Order and Shipping Customer Support" data-kw="shopify shipping support automation ">
+      <td class="c-cluster">82</td>
+      <td class="c-kw"><strong>shopify shipping support automation</strong></td>
+      <td class="c-slug">shopify-shipping-support-automation</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Order Exceptions and Validation"><td colspan="4">Order Exceptions and Validation <span class="muted">· 3 页</span></td></tr>
+<tr class="page-row" data-cat="Order Exceptions and Validation" data-kw="shopify order exception management ">
+      <td class="c-cluster">84</td>
+      <td class="c-kw"><strong>shopify order exception management</strong></td>
+      <td class="c-slug">shopify-order-exception-management</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Order Exceptions and Validation" data-kw="shopify payment failure alerts ">
+      <td class="c-cluster">84</td>
+      <td class="c-kw"><strong>shopify payment failure alerts</strong></td>
+      <td class="c-slug">shopify-payment-failure-alerts</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Order Exceptions and Validation" data-kw="shopify order address validation ">
+      <td class="c-cluster">85</td>
+      <td class="c-kw"><strong>shopify order address validation</strong></td>
+      <td class="c-slug">shopify-order-address-validation</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Product Image Editing"><td colspan="4">Product Image Editing <span class="muted">· 3 页</span></td></tr>
+<tr class="page-row" data-cat="Product Image Editing" data-kw="product image annotation tool ">
+      <td class="c-cluster">104</td>
+      <td class="c-kw"><strong>product image annotation tool</strong></td>
+      <td class="c-slug">product-image-annotation-tool</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Image Editing" data-kw="shopify product image watermark app ">
+      <td class="c-cluster">104</td>
+      <td class="c-kw"><strong>shopify product image watermark app</strong></td>
+      <td class="c-slug">shopify-product-image-watermark-app</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Image Editing" data-kw="shopify product photo enhancer shopify product image upscaler">
+      <td class="c-cluster">104</td>
+      <td class="c-kw"><strong>shopify product photo enhancer</strong><div class="chips"><span class="chip">shopify product image upscaler</span></div></td>
+      <td class="c-slug">shopify-product-photo-enhancer</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="cat-row" data-cat="Product Quality and Review Alerts"><td colspan="4">Product Quality and Review Alerts <span class="muted">· 3 页</span></td></tr>
+<tr class="page-row" data-cat="Product Quality and Review Alerts" data-kw="shopify product compliance monitoring ">
+      <td class="c-cluster">115</td>
+      <td class="c-kw"><strong>shopify product compliance monitoring</strong></td>
+      <td class="c-slug">shopify-product-compliance-monitoring</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Quality and Review Alerts" data-kw="shopify product quality alerts ">
+      <td class="c-cluster">115</td>
+      <td class="c-kw"><strong>shopify product quality alerts</strong></td>
+      <td class="c-slug">shopify-product-quality-alerts</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Quality and Review Alerts" data-kw="shopify negative review alerts ">
+      <td class="c-cluster">116</td>
+      <td class="c-kw"><strong>shopify negative review alerts</strong></td>
+      <td class="c-slug">shopify-negative-review-alerts</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Product Tags and Categorization"><td colspan="4">Product Tags and Categorization <span class="muted">· 3 页</span></td></tr>
+<tr class="page-row" data-cat="Product Tags and Categorization" data-kw="shopify bulk add product tags ">
+      <td class="c-cluster">123</td>
+      <td class="c-kw"><strong>shopify bulk add product tags</strong></td>
+      <td class="c-slug">shopify-bulk-add-product-tags</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Tags and Categorization" data-kw="shopify automatic product tagging automatically categorize shopify products">
+      <td class="c-cluster">124</td>
+      <td class="c-kw"><strong>shopify automatic product tagging</strong><div class="chips"><span class="chip">automatically categorize shopify products</span></div></td>
+      <td class="c-slug">shopify-automatic-product-tagging</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Product Tags and Categorization" data-kw="shopify bulk remove product tags ">
+      <td class="c-cluster">125</td>
+      <td class="c-kw"><strong>shopify bulk remove product tags</strong></td>
+      <td class="c-slug">shopify-bulk-remove-product-tags</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Product Titles and Descriptions"><td colspan="4">Product Titles and Descriptions <span class="muted">· 3 页</span></td></tr>
+<tr class="page-row" data-cat="Product Titles and Descriptions" data-kw="shopify bulk edit product titles ">
+      <td class="c-cluster">126</td>
+      <td class="c-kw"><strong>shopify bulk edit product titles</strong></td>
+      <td class="c-slug">shopify-bulk-edit-product-titles</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Titles and Descriptions" data-kw="shopify product description generator rewrite shopify product descriptions shopify ai product descriptions shopify bulk product description generator shopify bulk replace product descriptions shopify product copywriting tool">
+      <td class="c-cluster">126</td>
+      <td class="c-kw"><strong>shopify product description generator</strong><div class="chips"><span class="chip">rewrite shopify product descriptions</span><span class="chip">shopify ai product descriptions</span><span class="chip">shopify bulk product description generator</span><span class="chip">shopify bulk replace product descriptions</span><span class="chip">shopify product copywriting tool</span></div></td>
+      <td class="c-slug">shopify-product-description-generator</td>
+      <td class="c-num">6</td>
+    </tr>
+<tr class="page-row" data-cat="Product Titles and Descriptions" data-kw="shopify product title generator shopify product title optimization">
+      <td class="c-cluster">126</td>
+      <td class="c-kw"><strong>shopify product title generator</strong><div class="chips"><span class="chip">shopify product title optimization</span></div></td>
+      <td class="c-slug">shopify-product-title-generator</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="cat-row" data-cat="Promotional Content Creation"><td colspan="4">Promotional Content Creation <span class="muted">· 3 页</span></td></tr>
+<tr class="page-row" data-cat="Promotional Content Creation" data-kw="ecommerce promotional image generator ">
+      <td class="c-cluster">132</td>
+      <td class="c-kw"><strong>ecommerce promotional image generator</strong></td>
+      <td class="c-slug">ecommerce-promotional-image-generator</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Promotional Content Creation" data-kw="shopify holiday marketing content ">
+      <td class="c-cluster">132</td>
+      <td class="c-kw"><strong>shopify holiday marketing content</strong></td>
+      <td class="c-slug">shopify-holiday-marketing-content</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Promotional Content Creation" data-kw="shopify promotion copy generator ">
+      <td class="c-cluster">132</td>
+      <td class="c-kw"><strong>shopify promotion copy generator</strong></td>
+      <td class="c-slug">shopify-promotion-copy-generator</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Refund Analysis and Alerts"><td colspan="4">Refund Analysis and Alerts <span class="muted">· 3 页</span></td></tr>
+<tr class="page-row" data-cat="Refund Analysis and Alerts" data-kw="shopify product refund alerts shopify refund spike alerts">
+      <td class="c-cluster">135</td>
+      <td class="c-kw"><strong>shopify product refund alerts</strong><div class="chips"><span class="chip">shopify refund spike alerts</span></div></td>
+      <td class="c-slug">shopify-product-refund-alerts</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Refund Analysis and Alerts" data-kw="shopify refund analytics shopify refund rate by product">
+      <td class="c-cluster">135</td>
+      <td class="c-kw"><strong>shopify refund analytics</strong><div class="chips"><span class="chip">shopify refund rate by product</span></div></td>
+      <td class="c-slug">shopify-refund-analytics</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Refund Analysis and Alerts" data-kw="shopify refund reasons report ">
+      <td class="c-cluster">135</td>
+      <td class="c-kw"><strong>shopify refund reasons report</strong></td>
+      <td class="c-slug">shopify-refund-reasons-report</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Repeat Purchase and Retention Analytics"><td colspan="4">Repeat Purchase and Retention Analytics <span class="muted">· 3 页</span></td></tr>
+<tr class="page-row" data-cat="Repeat Purchase and Retention Analytics" data-kw="shopify repeat purchase prediction ">
+      <td class="c-cluster">137</td>
+      <td class="c-kw"><strong>shopify repeat purchase prediction</strong></td>
+      <td class="c-slug">shopify-repeat-purchase-prediction</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Repeat Purchase and Retention Analytics" data-kw="shopify repeat purchase rate ">
+      <td class="c-cluster">137</td>
+      <td class="c-kw"><strong>shopify repeat purchase rate</strong></td>
+      <td class="c-slug">shopify-repeat-purchase-rate</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Repeat Purchase and Retention Analytics" data-kw="shopify time between purchases ">
+      <td class="c-cluster">138</td>
+      <td class="c-kw"><strong>shopify time between purchases</strong></td>
+      <td class="c-slug">shopify-time-between-purchases</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="SKU Generation and Cleanup"><td colspan="4">SKU Generation and Cleanup <span class="muted">· 3 页</span></td></tr>
+<tr class="page-row" data-cat="SKU Generation and Cleanup" data-kw="shopify bulk edit skus ">
+      <td class="c-cluster">154</td>
+      <td class="c-kw"><strong>shopify bulk edit skus</strong></td>
+      <td class="c-slug">shopify-bulk-edit-skus</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="SKU Generation and Cleanup" data-kw="shopify duplicate sku checker ">
+      <td class="c-cluster">154</td>
+      <td class="c-kw"><strong>shopify duplicate sku checker</strong></td>
+      <td class="c-slug">shopify-duplicate-sku-checker</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="SKU Generation and Cleanup" data-kw="shopify sku generator ">
+      <td class="c-cluster">154</td>
+      <td class="c-kw"><strong>shopify sku generator</strong></td>
+      <td class="c-slug">shopify-sku-generator</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Social Media Content Creation"><td colspan="4">Social Media Content Creation <span class="muted">· 3 页</span></td></tr>
+<tr class="page-row" data-cat="Social Media Content Creation" data-kw="ecommerce social media image generator ">
+      <td class="c-cluster">155</td>
+      <td class="c-kw"><strong>ecommerce social media image generator</strong></td>
+      <td class="c-slug">ecommerce-social-media-image-generator</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Social Media Content Creation" data-kw="shopify social media content calendar ">
+      <td class="c-cluster">155</td>
+      <td class="c-kw"><strong>shopify social media content calendar</strong></td>
+      <td class="c-slug">shopify-social-media-content-calendar</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Social Media Content Creation" data-kw="shopify social media post generator ">
+      <td class="c-cluster">155</td>
+      <td class="c-kw"><strong>shopify social media post generator</strong></td>
+      <td class="c-slug">shopify-social-media-post-generator</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Store Health Audits"><td colspan="4">Store Health Audits <span class="muted">· 3 页</span></td></tr>
+<tr class="page-row" data-cat="Store Health Audits" data-kw="shopify operational risk monitoring ">
+      <td class="c-cluster">157</td>
+      <td class="c-kw"><strong>shopify operational risk monitoring</strong></td>
+      <td class="c-slug">shopify-operational-risk-monitoring</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Store Health Audits" data-kw="shopify store audit tool shopify automated store audit report shopify store health check shopify website audit">
+      <td class="c-cluster">157</td>
+      <td class="c-kw"><strong>shopify store audit tool</strong><div class="chips"><span class="chip">shopify automated store audit report</span><span class="chip">shopify store health check</span><span class="chip">shopify website audit</span></div></td>
+      <td class="c-slug">shopify-store-audit-tool</td>
+      <td class="c-num">4</td>
+    </tr>
+<tr class="page-row" data-cat="Store Health Audits" data-kw="shopify website error checker ">
+      <td class="c-cluster">157</td>
+      <td class="c-kw"><strong>shopify website error checker</strong></td>
+      <td class="c-slug">shopify-website-error-checker</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Store Monitoring and Alerts"><td colspan="4">Store Monitoring and Alerts <span class="muted">· 3 页</span></td></tr>
+<tr class="page-row" data-cat="Store Monitoring and Alerts" data-kw="shopify anomaly detection ">
+      <td class="c-cluster">158</td>
+      <td class="c-kw"><strong>shopify anomaly detection</strong></td>
+      <td class="c-slug">shopify-anomaly-detection</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Store Monitoring and Alerts" data-kw="shopify automated notifications ">
+      <td class="c-cluster">158</td>
+      <td class="c-kw"><strong>shopify automated notifications</strong></td>
+      <td class="c-slug">shopify-automated-notifications</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Store Monitoring and Alerts" data-kw="shopify kpi monitoring ">
+      <td class="c-cluster">158</td>
+      <td class="c-kw"><strong>shopify kpi monitoring</strong></td>
+      <td class="c-slug">shopify-kpi-monitoring</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Store Workflow Automation"><td colspan="4">Store Workflow Automation <span class="muted">· 3 页</span></td></tr>
+<tr class="page-row" data-cat="Store Workflow Automation" data-kw="shopify automation app shopify operations automation shopify task automation shopify workflow automation">
+      <td class="c-cluster">159</td>
+      <td class="c-kw"><strong>shopify automation app</strong><div class="chips"><span class="chip">shopify operations automation</span><span class="chip">shopify task automation</span><span class="chip">shopify workflow automation</span></div></td>
+      <td class="c-slug">shopify-automation-app</td>
+      <td class="c-num">4</td>
+    </tr>
+<tr class="page-row" data-cat="Store Workflow Automation" data-kw="shopify operations task management ">
+      <td class="c-cluster">159</td>
+      <td class="c-kw"><strong>shopify operations task management</strong></td>
+      <td class="c-slug">shopify-operations-task-management</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Store Workflow Automation" data-kw="shopify scheduled workflows ">
+      <td class="c-cluster">159</td>
+      <td class="c-kw"><strong>shopify scheduled workflows</strong></td>
+      <td class="c-slug">shopify-scheduled-workflows</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Ad Creative Testing and Fatigue"><td colspan="4">Ad Creative Testing and Fatigue <span class="muted">· 2 页</span></td></tr>
+<tr class="page-row" data-cat="Ad Creative Testing and Fatigue" data-kw="ecommerce ad creative ab testing ">
+      <td class="c-cluster">3</td>
+      <td class="c-kw"><strong>ecommerce ad creative ab testing</strong></td>
+      <td class="c-slug">ecommerce-ad-creative-ab-testing</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Ad Creative Testing and Fatigue" data-kw="ecommerce ad fatigue detection ">
+      <td class="c-cluster">3</td>
+      <td class="c-kw"><strong>ecommerce ad fatigue detection</strong></td>
+      <td class="c-slug">ecommerce-ad-fatigue-detection</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Ad Performance Alerts"><td colspan="4">Ad Performance Alerts <span class="muted">· 2 页</span></td></tr>
+<tr class="page-row" data-cat="Ad Performance Alerts" data-kw="shopify ad spend anomaly detection ecommerce ad account monitoring shopify ad overspend alerts">
+      <td class="c-cluster">6</td>
+      <td class="c-kw"><strong>shopify ad spend anomaly detection</strong><div class="chips"><span class="chip">ecommerce ad account monitoring</span><span class="chip">shopify ad overspend alerts</span></div></td>
+      <td class="c-slug">shopify-ad-spend-anomaly-detection</td>
+      <td class="c-num">3</td>
+    </tr>
+<tr class="page-row" data-cat="Ad Performance Alerts" data-kw="shopify roas alerts ">
+      <td class="c-cluster">6</td>
+      <td class="c-kw"><strong>shopify roas alerts</strong></td>
+      <td class="c-slug">shopify-roas-alerts</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Ad Performance Analytics"><td colspan="4">Ad Performance Analytics <span class="muted">· 2 页</span></td></tr>
+<tr class="page-row" data-cat="Ad Performance Analytics" data-kw="shopify ad conversion rate report ">
+      <td class="c-cluster">7</td>
+      <td class="c-kw"><strong>shopify ad conversion rate report</strong></td>
+      <td class="c-slug">shopify-ad-conversion-rate-report</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Ad Performance Analytics" data-kw="shopify ad performance dashboard shopify ad analytics tool shopify ad spend tracking">
+      <td class="c-cluster">7</td>
+      <td class="c-kw"><strong>shopify ad performance dashboard</strong><div class="chips"><span class="chip">shopify ad analytics tool</span><span class="chip">shopify ad spend tracking</span></div></td>
+      <td class="c-slug">shopify-ad-performance-dashboard</td>
+      <td class="c-num">3</td>
+    </tr>
+<tr class="cat-row" data-cat="AI Shopping and Product Recommendations"><td colspan="4">AI Shopping and Product Recommendations <span class="muted">· 2 页</span></td></tr>
+<tr class="page-row" data-cat="AI Shopping and Product Recommendations" data-kw="shopify ai shopping assistant ">
+      <td class="c-cluster">13</td>
+      <td class="c-kw"><strong>shopify ai shopping assistant</strong></td>
+      <td class="c-slug">shopify-ai-shopping-assistant</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="AI Shopping and Product Recommendations" data-kw="shopify personalized product recommendations shopify behavioral product recommendations">
+      <td class="c-cluster">13</td>
+      <td class="c-kw"><strong>shopify personalized product recommendations</strong><div class="chips"><span class="chip">shopify behavioral product recommendations</span></div></td>
+      <td class="c-slug">shopify-personalized-product-recommendations</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="cat-row" data-cat="App and Integration Issues"><td colspan="4">App and Integration Issues <span class="muted">· 2 页</span></td></tr>
+<tr class="page-row" data-cat="App and Integration Issues" data-kw="shopify app conflict troubleshooting ">
+      <td class="c-cluster">22</td>
+      <td class="c-kw"><strong>shopify app conflict troubleshooting</strong></td>
+      <td class="c-slug">shopify-app-conflict-troubleshooting</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="App and Integration Issues" data-kw="shopify integration monitoring ">
+      <td class="c-cluster">22</td>
+      <td class="c-kw"><strong>shopify integration monitoring</strong></td>
+      <td class="c-slug">shopify-integration-monitoring</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Collection Page SEO"><td colspan="4">Collection Page SEO <span class="muted">· 2 页</span></td></tr>
+<tr class="page-row" data-cat="Collection Page SEO" data-kw="shopify collection description generator ">
+      <td class="c-cluster">35</td>
+      <td class="c-kw"><strong>shopify collection description generator</strong></td>
+      <td class="c-slug">shopify-collection-description-generator</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Collection Page SEO" data-kw="shopify collection seo audit shopify collection page seo">
+      <td class="c-cluster">35</td>
+      <td class="c-kw"><strong>shopify collection seo audit</strong><div class="chips"><span class="chip">shopify collection page seo</span></div></td>
+      <td class="c-slug">shopify-collection-seo-audit</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="cat-row" data-cat="Conversion and Cart Alerts"><td colspan="4">Conversion and Cart Alerts <span class="muted">· 2 页</span></td></tr>
+<tr class="page-row" data-cat="Conversion and Cart Alerts" data-kw="shopify cart abandonment alerts ">
+      <td class="c-cluster">39</td>
+      <td class="c-kw"><strong>shopify cart abandonment alerts</strong></td>
+      <td class="c-slug">shopify-cart-abandonment-alerts</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Conversion and Cart Alerts" data-kw="shopify conversion rate alerts shopify add to cart rate alerts">
+      <td class="c-cluster">39</td>
+      <td class="c-kw"><strong>shopify conversion rate alerts</strong><div class="chips"><span class="chip">shopify add to cart rate alerts</span></div></td>
+      <td class="c-slug">shopify-conversion-rate-alerts</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="cat-row" data-cat="Customer Acquisition Cost"><td colspan="4">Customer Acquisition Cost <span class="muted">· 2 页</span></td></tr>
+<tr class="page-row" data-cat="Customer Acquisition Cost" data-kw="shopify cac vs ltv ">
+      <td class="c-cluster">43</td>
+      <td class="c-kw"><strong>shopify cac vs ltv</strong></td>
+      <td class="c-slug">shopify-cac-vs-ltv</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Customer Acquisition Cost" data-kw="shopify customer acquisition cost calculator ">
+      <td class="c-cluster">43</td>
+      <td class="c-kw"><strong>shopify customer acquisition cost calculator</strong></td>
+      <td class="c-slug">shopify-customer-acquisition-cost-calculator</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Customer Churn and Winback"><td colspan="4">Customer Churn and Winback <span class="muted">· 2 页</span></td></tr>
+<tr class="page-row" data-cat="Customer Churn and Winback" data-kw="shopify customer churn prediction shopify at risk customers">
+      <td class="c-cluster">49</td>
+      <td class="c-kw"><strong>shopify customer churn prediction</strong><div class="chips"><span class="chip">shopify at risk customers</span></div></td>
+      <td class="c-slug">shopify-customer-churn-prediction</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Customer Churn and Winback" data-kw="shopify customer winback automation shopify customer reactivation emails shopify winback email campaign">
+      <td class="c-cluster">49</td>
+      <td class="c-kw"><strong>shopify customer winback automation</strong><div class="chips"><span class="chip">shopify customer reactivation emails</span><span class="chip">shopify winback email campaign</span></div></td>
+      <td class="c-slug">shopify-customer-winback-automation</td>
+      <td class="c-num">3</td>
+    </tr>
+<tr class="cat-row" data-cat="Customer Service Analytics"><td colspan="4">Customer Service Analytics <span class="muted">· 2 页</span></td></tr>
+<tr class="page-row" data-cat="Customer Service Analytics" data-kw="shopify customer service analytics shopify customer satisfaction tracking">
+      <td class="c-cluster">52</td>
+      <td class="c-kw"><strong>shopify customer service analytics</strong><div class="chips"><span class="chip">shopify customer satisfaction tracking</span></div></td>
+      <td class="c-slug">shopify-customer-service-analytics</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Customer Service Analytics" data-kw="shopify support response time report ">
+      <td class="c-cluster">53</td>
+      <td class="c-kw"><strong>shopify support response time report</strong></td>
+      <td class="c-slug">shopify-support-response-time-report</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Email Marketing Content and Templates"><td colspan="4">Email Marketing Content and Templates <span class="muted">· 2 页</span></td></tr>
+<tr class="page-row" data-cat="Email Marketing Content and Templates" data-kw="shopify email copy generator ">
+      <td class="c-cluster">59</td>
+      <td class="c-kw"><strong>shopify email copy generator</strong></td>
+      <td class="c-slug">shopify-email-copy-generator</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Email Marketing Content and Templates" data-kw="shopify email marketing templates shopify email sequence templates">
+      <td class="c-cluster">59</td>
+      <td class="c-kw"><strong>shopify email marketing templates</strong><div class="chips"><span class="chip">shopify email sequence templates</span></div></td>
+      <td class="c-slug">shopify-email-marketing-templates</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="cat-row" data-cat="Homepage Design and Creation"><td colspan="4">Homepage Design and Creation <span class="muted">· 2 页</span></td></tr>
+<tr class="page-row" data-cat="Homepage Design and Creation" data-kw="shopify homepage builder shopify homepage design templates">
+      <td class="c-cluster">61</td>
+      <td class="c-kw"><strong>shopify homepage builder</strong><div class="chips"><span class="chip">shopify homepage design templates</span></div></td>
+      <td class="c-slug">shopify-homepage-builder</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Homepage Design and Creation" data-kw="shopify homepage copy generator ">
+      <td class="c-cluster">61</td>
+      <td class="c-kw"><strong>shopify homepage copy generator</strong></td>
+      <td class="c-slug">shopify-homepage-copy-generator</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Image Background Removal and Replacement"><td colspan="4">Image Background Removal and Replacement <span class="muted">· 2 页</span></td></tr>
+<tr class="page-row" data-cat="Image Background Removal and Replacement" data-kw="bulk product image background removal ">
+      <td class="c-cluster">62</td>
+      <td class="c-kw"><strong>bulk product image background removal</strong></td>
+      <td class="c-slug">bulk-product-image-background-removal</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Image Background Removal and Replacement" data-kw="shopify product image background remover shopify product image background changer">
+      <td class="c-cluster">62</td>
+      <td class="c-kw"><strong>shopify product image background remover</strong><div class="chips"><span class="chip">shopify product image background changer</span></div></td>
+      <td class="c-slug">shopify-product-image-background-remover</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="cat-row" data-cat="Landing Page Creation and Optimization"><td colspan="4">Landing Page Creation and Optimization <span class="muted">· 2 页</span></td></tr>
+<tr class="page-row" data-cat="Landing Page Creation and Optimization" data-kw="shopify landing page builder shopify ai landing page generator">
+      <td class="c-cluster">74</td>
+      <td class="c-kw"><strong>shopify landing page builder</strong><div class="chips"><span class="chip">shopify ai landing page generator</span></div></td>
+      <td class="c-slug">shopify-landing-page-builder</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Landing Page Creation and Optimization" data-kw="shopify landing page optimization ">
+      <td class="c-cluster">74</td>
+      <td class="c-kw"><strong>shopify landing page optimization</strong></td>
+      <td class="c-slug">shopify-landing-page-optimization</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Lead Outreach and Follow Up"><td colspan="4">Lead Outreach and Follow Up <span class="muted">· 2 页</span></td></tr>
+<tr class="page-row" data-cat="Lead Outreach and Follow Up" data-kw="automated inquiry emails for ecommerce ecommerce inquiry email templates">
+      <td class="c-cluster">77</td>
+      <td class="c-kw"><strong>automated inquiry emails for ecommerce</strong><div class="chips"><span class="chip">ecommerce inquiry email templates</span></div></td>
+      <td class="c-slug">automated-inquiry-emails-for-ecommerce</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Lead Outreach and Follow Up" data-kw="shopify sales follow up automation shopify lead follow up reminders">
+      <td class="c-cluster">77</td>
+      <td class="c-kw"><strong>shopify sales follow up automation</strong><div class="chips"><span class="chip">shopify lead follow up reminders</span></div></td>
+      <td class="c-slug">shopify-sales-follow-up-automation</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="cat-row" data-cat="Order Analytics and Reporting"><td colspan="4">Order Analytics and Reporting <span class="muted">· 2 页</span></td></tr>
+<tr class="page-row" data-cat="Order Analytics and Reporting" data-kw="shopify order analytics shopify order reporting app">
+      <td class="c-cluster">81</td>
+      <td class="c-kw"><strong>shopify order analytics</strong><div class="chips"><span class="chip">shopify order reporting app</span></div></td>
+      <td class="c-slug">shopify-order-analytics</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="page-row" data-cat="Order Analytics and Reporting" data-kw="shopify order volume report ">
+      <td class="c-cluster">81</td>
+      <td class="c-kw"><strong>shopify order volume report</strong></td>
+      <td class="c-slug">shopify-order-volume-report</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Order and Shipping Notifications"><td colspan="4">Order and Shipping Notifications <span class="muted">· 2 页</span></td></tr>
+<tr class="page-row" data-cat="Order and Shipping Notifications" data-kw="shopify delivery notification app ">
+      <td class="c-cluster">83</td>
+      <td class="c-kw"><strong>shopify delivery notification app</strong></td>
+      <td class="c-slug">shopify-delivery-notification-app</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Order and Shipping Notifications" data-kw="shopify order notification automation shopify shipping notification automation">
+      <td class="c-cluster">83</td>
+      <td class="c-kw"><strong>shopify order notification automation</strong><div class="chips"><span class="chip">shopify shipping notification automation</span></div></td>
+      <td class="c-slug">shopify-order-notification-automation</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="cat-row" data-cat="Order Management and Automation"><td colspan="4">Order Management and Automation <span class="muted">· 2 页</span></td></tr>
+<tr class="page-row" data-cat="Order Management and Automation" data-kw="shopify automatic order tagging ">
+      <td class="c-cluster">86</td>
+      <td class="c-kw"><strong>shopify automatic order tagging</strong></td>
+      <td class="c-slug">shopify-automatic-order-tagging</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Order Management and Automation" data-kw="shopify order management app shopify automated order processing shopify order workflow automation">
+      <td class="c-cluster">86</td>
+      <td class="c-kw"><strong>shopify order management app</strong><div class="chips"><span class="chip">shopify automated order processing</span><span class="chip">shopify order workflow automation</span></div></td>
+      <td class="c-slug">shopify-order-management-app</td>
+      <td class="c-num">3</td>
+    </tr>
+<tr class="cat-row" data-cat="Personalized Marketing"><td colspan="4">Personalized Marketing <span class="muted">· 2 页</span></td></tr>
+<tr class="page-row" data-cat="Personalized Marketing" data-kw="shopify personalized discount offers ">
+      <td class="c-cluster">90</td>
+      <td class="c-kw"><strong>shopify personalized discount offers</strong></td>
+      <td class="c-slug">shopify-personalized-discount-offers</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Personalized Marketing" data-kw="shopify personalized marketing ">
+      <td class="c-cluster">90</td>
+      <td class="c-kw"><strong>shopify personalized marketing</strong></td>
+      <td class="c-slug">shopify-personalized-marketing</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Product Comparison and Guided Selling"><td colspan="4">Product Comparison and Guided Selling <span class="muted">· 2 页</span></td></tr>
+<tr class="page-row" data-cat="Product Comparison and Guided Selling" data-kw="shopify guided selling app ">
+      <td class="c-cluster">94</td>
+      <td class="c-kw"><strong>shopify guided selling app</strong></td>
+      <td class="c-slug">shopify-guided-selling-app</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Product Comparison and Guided Selling" data-kw="shopify product comparison app ">
+      <td class="c-cluster">94</td>
+      <td class="c-kw"><strong>shopify product comparison app</strong></td>
+      <td class="c-slug">shopify-product-comparison-app</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Promotional Landing Pages"><td colspan="4">Promotional Landing Pages <span class="muted">· 2 页</span></td></tr>
+<tr class="page-row" data-cat="Promotional Landing Pages" data-kw="shopify campaign landing page shopify holiday landing page shopify sale landing page">
+      <td class="c-cluster">133</td>
+      <td class="c-kw"><strong>shopify campaign landing page</strong><div class="chips"><span class="chip">shopify holiday landing page</span><span class="chip">shopify sale landing page</span></div></td>
+      <td class="c-slug">shopify-campaign-landing-page</td>
+      <td class="c-num">3</td>
+    </tr>
+<tr class="page-row" data-cat="Promotional Landing Pages" data-kw="shopify flash sale page ">
+      <td class="c-cluster">134</td>
+      <td class="c-kw"><strong>shopify flash sale page</strong></td>
+      <td class="c-slug">shopify-flash-sale-page</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Sales and Demand Forecasting"><td colspan="4">Sales and Demand Forecasting <span class="muted">· 2 页</span></td></tr>
+<tr class="page-row" data-cat="Sales and Demand Forecasting" data-kw="shopify demand forecasting shopify inventory forecasting app shopify product sales forecasting">
+      <td class="c-cluster">143</td>
+      <td class="c-kw"><strong>shopify demand forecasting</strong><div class="chips"><span class="chip">shopify inventory forecasting app</span><span class="chip">shopify product sales forecasting</span></div></td>
+      <td class="c-slug">shopify-demand-forecasting</td>
+      <td class="c-num">3</td>
+    </tr>
+<tr class="page-row" data-cat="Sales and Demand Forecasting" data-kw="shopify seasonal sales analysis ">
+      <td class="c-cluster">144</td>
+      <td class="c-kw"><strong>shopify seasonal sales analysis</strong></td>
+      <td class="c-slug">shopify-seasonal-sales-analysis</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Sales and Order Alerts"><td colspan="4">Sales and Order Alerts <span class="muted">· 2 页</span></td></tr>
+<tr class="page-row" data-cat="Sales and Order Alerts" data-kw="shopify large order alerts ">
+      <td class="c-cluster">145</td>
+      <td class="c-kw"><strong>shopify large order alerts</strong></td>
+      <td class="c-slug">shopify-large-order-alerts</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Sales and Order Alerts" data-kw="shopify sales alerts shopify order volume alerts shopify sales drop alerts shopify sales spike alerts">
+      <td class="c-cluster">146</td>
+      <td class="c-kw"><strong>shopify sales alerts</strong><div class="chips"><span class="chip">shopify order volume alerts</span><span class="chip">shopify sales drop alerts</span><span class="chip">shopify sales spike alerts</span></div></td>
+      <td class="c-slug">shopify-sales-alerts</td>
+      <td class="c-num">4</td>
+    </tr>
+<tr class="cat-row" data-cat="Support FAQs and Knowledge Base"><td colspan="4">Support FAQs and Knowledge Base <span class="muted">· 2 页</span></td></tr>
+<tr class="page-row" data-cat="Support FAQs and Knowledge Base" data-kw="shopify customer support knowledge base ">
+      <td class="c-cluster">161</td>
+      <td class="c-kw"><strong>shopify customer support knowledge base</strong></td>
+      <td class="c-slug">shopify-customer-support-knowledge-base</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Support FAQs and Knowledge Base" data-kw="shopify faq chatbot ">
+      <td class="c-cluster">161</td>
+      <td class="c-kw"><strong>shopify faq chatbot</strong></td>
+      <td class="c-slug">shopify-faq-chatbot</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Traffic Anomalies and Alerts"><td colspan="4">Traffic Anomalies and Alerts <span class="muted">· 2 页</span></td></tr>
+<tr class="page-row" data-cat="Traffic Anomalies and Alerts" data-kw="shopify bot traffic detection ">
+      <td class="c-cluster">164</td>
+      <td class="c-kw"><strong>shopify bot traffic detection</strong></td>
+      <td class="c-slug">shopify-bot-traffic-detection</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Traffic Anomalies and Alerts" data-kw="shopify traffic drop alerts shopify unusual traffic alerts">
+      <td class="c-cluster">164</td>
+      <td class="c-kw"><strong>shopify traffic drop alerts</strong><div class="chips"><span class="chip">shopify unusual traffic alerts</span></div></td>
+      <td class="c-slug">shopify-traffic-drop-alerts</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="cat-row" data-cat="Video Ad Creation"><td colspan="4">Video Ad Creation <span class="muted">· 2 页</span></td></tr>
+<tr class="page-row" data-cat="Video Ad Creation" data-kw="ecommerce video ad script generator ">
+      <td class="c-cluster">169</td>
+      <td class="c-kw"><strong>ecommerce video ad script generator</strong></td>
+      <td class="c-slug">ecommerce-video-ad-script-generator</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="page-row" data-cat="Video Ad Creation" data-kw="shopify video ad maker ">
+      <td class="c-cluster">169</td>
+      <td class="c-kw"><strong>shopify video ad maker</strong></td>
+      <td class="c-slug">shopify-video-ad-maker</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Average Order Value Analysis"><td colspan="4">Average Order Value Analysis <span class="muted">· 1 页</span></td></tr>
+<tr class="page-row" data-cat="Average Order Value Analysis" data-kw="shopify average order value report shopify aov analysis">
+      <td class="c-cluster">25</td>
+      <td class="c-kw"><strong>shopify average order value report</strong><div class="chips"><span class="chip">shopify aov analysis</span></div></td>
+      <td class="c-slug">shopify-average-order-value-report</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="cat-row" data-cat="Chargeback Alerts"><td colspan="4">Chargeback Alerts <span class="muted">· 1 页</span></td></tr>
+<tr class="page-row" data-cat="Chargeback Alerts" data-kw="shopify chargeback alerts ">
+      <td class="c-cluster">32</td>
+      <td class="c-kw"><strong>shopify chargeback alerts</strong></td>
+      <td class="c-slug">shopify-chargeback-alerts</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Collection Page Design"><td colspan="4">Collection Page Design <span class="muted">· 1 页</span></td></tr>
+<tr class="page-row" data-cat="Collection Page Design" data-kw="shopify collection page builder shopify collection page templates">
+      <td class="c-cluster">34</td>
+      <td class="c-kw"><strong>shopify collection page builder</strong><div class="chips"><span class="chip">shopify collection page templates</span></div></td>
+      <td class="c-slug">shopify-collection-page-builder</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="cat-row" data-cat="Customer Loyalty and Retention"><td colspan="4">Customer Loyalty and Retention <span class="muted">· 1 页</span></td></tr>
+<tr class="page-row" data-cat="Customer Loyalty and Retention" data-kw="shopify customer loyalty app shopify customer retention app">
+      <td class="c-cluster">51</td>
+      <td class="c-kw"><strong>shopify customer loyalty app</strong><div class="chips"><span class="chip">shopify customer retention app</span></div></td>
+      <td class="c-slug">shopify-customer-loyalty-app</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="cat-row" data-cat="Marketing Workflow Automation"><td colspan="4">Marketing Workflow Automation <span class="muted">· 1 页</span></td></tr>
+<tr class="page-row" data-cat="Marketing Workflow Automation" data-kw="shopify marketing automation ">
+      <td class="c-cluster">80</td>
+      <td class="c-kw"><strong>shopify marketing automation</strong></td>
+      <td class="c-slug">shopify-marketing-automation</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Page A/B Testing"><td colspan="4">Page A/B Testing <span class="muted">· 1 页</span></td></tr>
+<tr class="page-row" data-cat="Page A/B Testing" data-kw="shopify product page ab testing shopify landing page ab testing">
+      <td class="c-cluster">87</td>
+      <td class="c-kw"><strong>shopify product page ab testing</strong><div class="chips"><span class="chip">shopify landing page ab testing</span></div></td>
+      <td class="c-slug">shopify-product-page-ab-testing</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="cat-row" data-cat="Product FAQs"><td colspan="4">Product FAQs <span class="muted">· 1 页</span></td></tr>
+<tr class="page-row" data-cat="Product FAQs" data-kw="shopify product faq generator add faq to shopify product page">
+      <td class="c-cluster">102</td>
+      <td class="c-kw"><strong>shopify product faq generator</strong><div class="chips"><span class="chip">add faq to shopify product page</span></div></td>
+      <td class="c-slug">shopify-product-faq-generator</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="cat-row" data-cat="Product Features and Benefits Copy"><td colspan="4">Product Features and Benefits Copy <span class="muted">· 1 页</span></td></tr>
+<tr class="page-row" data-cat="Product Features and Benefits Copy" data-kw="product bullet point generator product benefits copywriting tool shopify product feature descriptions shopify product marketing copy generator">
+      <td class="c-cluster">103</td>
+      <td class="c-kw"><strong>product bullet point generator</strong><div class="chips"><span class="chip">product benefits copywriting tool</span><span class="chip">shopify product feature descriptions</span><span class="chip">shopify product marketing copy generator</span></div></td>
+      <td class="c-slug">product-bullet-point-generator</td>
+      <td class="c-num">4</td>
+    </tr>
+<tr class="cat-row" data-cat="Product Page SEO"><td colspan="4">Product Page SEO <span class="muted">· 1 页</span></td></tr>
+<tr class="page-row" data-cat="Product Page SEO" data-kw="shopify product seo optimization ">
+      <td class="c-cluster">110</td>
+      <td class="c-kw"><strong>shopify product seo optimization</strong></td>
+      <td class="c-slug">shopify-product-seo-optimization</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Product Translation and Localization"><td colspan="4">Product Translation and Localization <span class="muted">· 1 页</span></td></tr>
+<tr class="page-row" data-cat="Product Translation and Localization" data-kw="translate shopify product information ">
+      <td class="c-cluster">127</td>
+      <td class="c-kw"><strong>translate shopify product information</strong></td>
+      <td class="c-slug">translate-shopify-product-information</td>
+      <td class="c-num">1</td>
+    </tr>
+<tr class="cat-row" data-cat="Reorder Reminders and Replenishment Emails"><td colspan="4">Reorder Reminders and Replenishment Emails <span class="muted">· 1 页</span></td></tr>
+<tr class="page-row" data-cat="Reorder Reminders and Replenishment Emails" data-kw="shopify reorder reminder emails shopify replenishment email automation">
+      <td class="c-cluster">136</td>
+      <td class="c-kw"><strong>shopify reorder reminder emails</strong><div class="chips"><span class="chip">shopify replenishment email automation</span></div></td>
+      <td class="c-slug">shopify-reorder-reminder-emails</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="cat-row" data-cat="Returns and Refund Automation"><td colspan="4">Returns and Refund Automation <span class="muted">· 1 页</span></td></tr>
+<tr class="page-row" data-cat="Returns and Refund Automation" data-kw="shopify returns automation shopify refund automation">
+      <td class="c-cluster">142</td>
+      <td class="c-kw"><strong>shopify returns automation</strong><div class="chips"><span class="chip">shopify refund automation</span></div></td>
+      <td class="c-slug">shopify-returns-automation</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="cat-row" data-cat="Sales Decline Diagnosis"><td colspan="4">Sales Decline Diagnosis <span class="muted">· 1 页</span></td></tr>
+<tr class="page-row" data-cat="Sales Decline Diagnosis" data-kw="shopify sales drop analysis why are my shopify sales dropping">
+      <td class="c-cluster">150</td>
+      <td class="c-kw"><strong>shopify sales drop analysis</strong><div class="chips"><span class="chip">why are my shopify sales dropping</span></div></td>
+      <td class="c-slug">shopify-sales-drop-analysis</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="cat-row" data-cat="Shipping and Fulfillment Automation"><td colspan="4">Shipping and Fulfillment Automation <span class="muted">· 1 页</span></td></tr>
+<tr class="page-row" data-cat="Shipping and Fulfillment Automation" data-kw="shopify shipping automation shopify fulfillment automation">
+      <td class="c-cluster">153</td>
+      <td class="c-kw"><strong>shopify shipping automation</strong><div class="chips"><span class="chip">shopify fulfillment automation</span></div></td>
+      <td class="c-slug">shopify-shipping-automation</td>
+      <td class="c-num">2</td>
+    </tr>
+<tr class="cat-row" data-cat="Structured Data and Schema"><td colspan="4">Structured Data and Schema <span class="muted">· 1 页</span></td></tr>
+<tr class="page-row" data-cat="Structured Data and Schema" data-kw="shopify schema checker shopify product schema audit shopify structured data testing">
+      <td class="c-cluster">160</td>
+      <td class="c-kw"><strong>shopify schema checker</strong><div class="chips"><span class="chip">shopify product schema audit</span><span class="chip">shopify structured data testing</span></div></td>
+      <td class="c-slug">shopify-schema-checker</td>
+      <td class="c-num">3</td>
+    </tr>
+<tr class="cat-row" data-cat="Traffic Source Analytics"><td colspan="4">Traffic Source Analytics <span class="muted">· 1 页</span></td></tr>
+<tr class="page-row" data-cat="Traffic Source Analytics" data-kw="shopify traffic source report shopify organic traffic analytics shopify paid traffic analytics shopify referral traffic report shopify social media traffic report">
+      <td class="c-cluster">165</td>
+      <td class="c-kw"><strong>shopify traffic source report</strong><div class="chips"><span class="chip">shopify organic traffic analytics</span><span class="chip">shopify paid traffic analytics</span><span class="chip">shopify referral traffic report</span><span class="chip">shopify social media traffic report</span></div></td>
+      <td class="c-slug">shopify-traffic-source-report</td>
+      <td class="c-num">5</td>
+    </tr>
+<tr class="cat-row" data-cat="Upselling and Cross Selling"><td colspan="4">Upselling and Cross Selling <span class="muted">· 1 页</span></td></tr>
+<tr class="page-row" data-cat="Upselling and Cross Selling" data-kw="shopify cross sell app shopify upsell app">
+      <td class="c-cluster">166</td>
+      <td class="c-kw"><strong>shopify cross sell app</strong><div class="chips"><span class="chip">shopify upsell app</span></div></td>
+      <td class="c-slug">shopify-cross-sell-app</td>
+      <td class="c-num">2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h2>六、各页面数分布</h2>
+<table>
+  <thead><tr><th>类目</th><th class="num">保留页数</th><th class="num">并掉</th></tr></thead>
+  <tbody><tr><td>Product Research and Market Opportunities</td><td class="num">14</td><td class="num muted">3</td></tr><tr><td>Alert Rules and Notification Management</td><td class="num">10</td><td class="num muted">0</td></tr><tr><td>Analytics Integrations and Unified Reporting</td><td class="num">10</td><td class="num muted">1</td></tr><tr><td>Product Creation and Import</td><td class="num">9</td><td class="num muted">2</td></tr><tr><td>Product Video Creation and Editing</td><td class="num">9</td><td class="num muted">1</td></tr><tr><td>Customer Analytics and Segmentation</td><td class="num">8</td><td class="num muted">5</td></tr><tr><td>Competitor Research and Monitoring</td><td class="num">7</td><td class="num muted">3</td></tr><tr><td>Product Data Quality and Audits</td><td class="num">7</td><td class="num muted">4</td></tr><tr><td>Technical SEO and Indexing</td><td class="num">7</td><td class="num muted">2</td></tr><tr><td>Ad Optimization and Budget Management</td><td class="num">6</td><td class="num muted">1</td></tr><tr><td>AI Store Management and Agents</td><td class="num">6</td><td class="num muted">3</td></tr><tr><td>Conversion Analysis and Optimization</td><td class="num">6</td><td class="num muted">4</td></tr><tr><td>Customer Support Operations</td><td class="num">6</td><td class="num muted">4</td></tr><tr><td>Variant Creation and Management</td><td class="num">6</td><td class="num muted">1</td></tr><tr><td>Ad Creative and Copy Generation</td><td class="num">5</td><td class="num muted">2</td></tr><tr><td>Inventory Analysis and Turnover</td><td class="num">5</td><td class="num muted">2</td></tr><tr><td>Inventory Synchronization and Accuracy</td><td class="num">5</td><td class="num muted">4</td></tr><tr><td>Keyword Research and SEO Opportunities</td><td class="num">5</td><td class="num muted">1</td></tr><tr><td>Lead Generation and Prospecting</td><td class="num">5</td><td class="num muted">2</td></tr><tr><td>Product Image Quality and Errors</td><td class="num">5</td><td class="num muted">1</td></tr><tr><td>Product Workflow Automation</td><td class="num">5</td><td class="num muted">1</td></tr><tr><td>Replenishment and Inventory Planning</td><td class="num">5</td><td class="num muted">2</td></tr><tr><td>SEO Metadata and Content Audits</td><td class="num">5</td><td class="num muted">1</td></tr><tr><td>Shipment Tracking and Exceptions</td><td class="num">5</td><td class="num muted">1</td></tr><tr><td>Stock Availability and Alerts</td><td class="num">5</td><td class="num muted">2</td></tr><tr><td>Website Errors and Broken Links</td><td class="num">5</td><td class="num muted">1</td></tr><tr><td>Add to Cart Issues and Optimization</td><td class="num">4</td><td class="num muted">2</td></tr><tr><td>AI Analytics and Diagnosis</td><td class="num">4</td><td class="num muted">1</td></tr><tr><td>AI Customer Support and Chatbots</td><td class="num">4</td><td class="num muted">1</td></tr><tr><td>Conversion Tracking and Pixel Issues</td><td class="num">4</td><td class="num muted">1</td></tr><tr><td>Email Marketing Automation</td><td class="num">4</td><td class="num muted">2</td></tr><tr><td>Marketing Attribution and ROAS</td><td class="num">4</td><td class="num muted">3</td></tr><tr><td>Page Layout and Bulk Creation</td><td class="num">4</td><td class="num muted">1</td></tr><tr><td>Pricing and Bulk Price Updates</td><td class="num">4</td><td class="num muted">1</td></tr><tr><td>Product Data Enrichment</td><td class="num">4</td><td class="num muted">1</td></tr><tr><td>Product Image Generation</td><td class="num">4</td><td class="num muted">2</td></tr><tr><td>Product Page Audits and Layout</td><td class="num">4</td><td class="num muted">1</td></tr><tr><td>Product Page Creation</td><td class="num">4</td><td class="num muted">3</td></tr><tr><td>Product Page Trust and Purchase Information</td><td class="num">4</td><td class="num muted">0</td></tr><tr><td>Product Performance Analytics</td><td class="num">4</td><td class="num muted">3</td></tr><tr><td>Sales and Store Analytics</td><td class="num">4</td><td class="num muted">2</td></tr><tr><td>Automated Data Collection and Reporting</td><td class="num">3</td><td class="num muted">1</td></tr><tr><td>Banners and Collection Images</td><td class="num">3</td><td class="num muted">1</td></tr><tr><td>Blog and SEO Content Generation</td><td class="num">3</td><td class="num muted">1</td></tr><tr><td>Bulk Product Editing</td><td class="num">3</td><td class="num muted">1</td></tr><tr><td>Cart Abandonment Analysis and Recovery</td><td class="num">3</td><td class="num muted">0</td></tr><tr><td>Checkout Abandonment and Optimization</td><td class="num">3</td><td class="num muted">0</td></tr><tr><td>Content Production and Publishing Automation</td><td class="num">3</td><td class="num muted">2</td></tr><tr><td>CRM and Contact Management</td><td class="num">3</td><td class="num muted">0</td></tr><tr><td>Customer Lifetime Value</td><td class="num">3</td><td class="num muted">0</td></tr><tr><td>Fulfillment Monitoring and Alerts</td><td class="num">3</td><td class="num muted">1</td></tr><tr><td>Influencer Discovery and Outreach</td><td class="num">3</td><td class="num muted">0</td></tr><tr><td>International Product Sourcing</td><td class="num">3</td><td class="num muted">0</td></tr><tr><td>Inventory Management and Visibility</td><td class="num">3</td><td class="num muted">2</td></tr><tr><td>Market and Supply Chain Alerts</td><td class="num">3</td><td class="num muted">0</td></tr><tr><td>Order and Shipping Customer Support</td><td class="num">3</td><td class="num muted">0</td></tr><tr><td>Order Exceptions and Validation</td><td class="num">3</td><td class="num muted">0</td></tr><tr><td>Product Image Editing</td><td class="num">3</td><td class="num muted">1</td></tr><tr><td>Product Quality and Review Alerts</td><td class="num">3</td><td class="num muted">0</td></tr><tr><td>Product Tags and Categorization</td><td class="num">3</td><td class="num muted">1</td></tr><tr><td>Product Titles and Descriptions</td><td class="num">3</td><td class="num muted">6</td></tr><tr><td>Promotional Content Creation</td><td class="num">3</td><td class="num muted">0</td></tr><tr><td>Refund Analysis and Alerts</td><td class="num">3</td><td class="num muted">2</td></tr><tr><td>Repeat Purchase and Retention Analytics</td><td class="num">3</td><td class="num muted">0</td></tr><tr><td>SKU Generation and Cleanup</td><td class="num">3</td><td class="num muted">0</td></tr><tr><td>Social Media Content Creation</td><td class="num">3</td><td class="num muted">0</td></tr><tr><td>Store Health Audits</td><td class="num">3</td><td class="num muted">3</td></tr><tr><td>Store Monitoring and Alerts</td><td class="num">3</td><td class="num muted">0</td></tr><tr><td>Store Workflow Automation</td><td class="num">3</td><td class="num muted">3</td></tr><tr><td>Ad Creative Testing and Fatigue</td><td class="num">2</td><td class="num muted">0</td></tr><tr><td>Ad Performance Alerts</td><td class="num">2</td><td class="num muted">2</td></tr><tr><td>Ad Performance Analytics</td><td class="num">2</td><td class="num muted">2</td></tr><tr><td>AI Shopping and Product Recommendations</td><td class="num">2</td><td class="num muted">1</td></tr><tr><td>App and Integration Issues</td><td class="num">2</td><td class="num muted">0</td></tr><tr><td>Collection Page SEO</td><td class="num">2</td><td class="num muted">1</td></tr><tr><td>Conversion and Cart Alerts</td><td class="num">2</td><td class="num muted">1</td></tr><tr><td>Customer Acquisition Cost</td><td class="num">2</td><td class="num muted">0</td></tr><tr><td>Customer Churn and Winback</td><td class="num">2</td><td class="num muted">3</td></tr><tr><td>Customer Service Analytics</td><td class="num">2</td><td class="num muted">1</td></tr><tr><td>Email Marketing Content and Templates</td><td class="num">2</td><td class="num muted">1</td></tr><tr><td>Homepage Design and Creation</td><td class="num">2</td><td class="num muted">1</td></tr><tr><td>Image Background Removal and Replacement</td><td class="num">2</td><td class="num muted">1</td></tr><tr><td>Landing Page Creation and Optimization</td><td class="num">2</td><td class="num muted">1</td></tr><tr><td>Lead Outreach and Follow Up</td><td class="num">2</td><td class="num muted">2</td></tr><tr><td>Order Analytics and Reporting</td><td class="num">2</td><td class="num muted">1</td></tr><tr><td>Order and Shipping Notifications</td><td class="num">2</td><td class="num muted">1</td></tr><tr><td>Order Management and Automation</td><td class="num">2</td><td class="num muted">2</td></tr><tr><td>Personalized Marketing</td><td class="num">2</td><td class="num muted">0</td></tr><tr><td>Product Comparison and Guided Selling</td><td class="num">2</td><td class="num muted">0</td></tr><tr><td>Promotional Landing Pages</td><td class="num">2</td><td class="num muted">2</td></tr><tr><td>Sales and Demand Forecasting</td><td class="num">2</td><td class="num muted">2</td></tr><tr><td>Sales and Order Alerts</td><td class="num">2</td><td class="num muted">3</td></tr><tr><td>Support FAQs and Knowledge Base</td><td class="num">2</td><td class="num muted">0</td></tr><tr><td>Traffic Anomalies and Alerts</td><td class="num">2</td><td class="num muted">1</td></tr><tr><td>Video Ad Creation</td><td class="num">2</td><td class="num muted">0</td></tr><tr><td>Average Order Value Analysis</td><td class="num">1</td><td class="num muted">1</td></tr><tr><td>Chargeback Alerts</td><td class="num">1</td><td class="num muted">0</td></tr><tr><td>Collection Page Design</td><td class="num">1</td><td class="num muted">1</td></tr><tr><td>Customer Loyalty and Retention</td><td class="num">1</td><td class="num muted">1</td></tr><tr><td>Marketing Workflow Automation</td><td class="num">1</td><td class="num muted">0</td></tr><tr><td>Page A/B Testing</td><td class="num">1</td><td class="num muted">1</td></tr><tr><td>Product FAQs</td><td class="num">1</td><td class="num muted">1</td></tr><tr><td>Product Features and Benefits Copy</td><td class="num">1</td><td class="num muted">3</td></tr><tr><td>Product Page SEO</td><td class="num">1</td><td class="num muted">0</td></tr><tr><td>Product Translation and Localization</td><td class="num">1</td><td class="num muted">0</td></tr><tr><td>Reorder Reminders and Replenishment Emails</td><td class="num">1</td><td class="num muted">1</td></tr><tr><td>Returns and Refund Automation</td><td class="num">1</td><td class="num muted">1</td></tr><tr><td>Sales Decline Diagnosis</td><td class="num">1</td><td class="num muted">1</td></tr><tr><td>Shipping and Fulfillment Automation</td><td class="num">1</td><td class="num muted">1</td></tr><tr><td>Structured Data and Schema</td><td class="num">1</td><td class="num muted">2</td></tr><tr><td>Traffic Source Analytics</td><td class="num">1</td><td class="num muted">4</td></tr><tr><td>Upselling and Cross Selling</td><td class="num">1</td><td class="num muted">1</td></tr></tbody>
+</table>
+
+<h2>七、怎么标注</h2>
+<p>用 <code>docs/keyword-content-plan.csv</code>（535 行，Excel 可直接打开，UTF-8 BOM）。只需填两列：</p>
+<div class="kv">
+  <div><code>你的决定</code></div><div>留空 = 同意我的建议；或填 <code>独立</code> / <code>合并到:xxx</code></div>
+  <div><code>备注</code></div><div>给撰写用的补充信息，例如「这个词我们有真实数据可以引用」</div>
+</div>
+<p>改完把表发我，我更新 <code>docs/keyword-intent-map.json</code> 并重跑 <code>node ./scripts/build-keyword-content-plan.mjs</code>，页面数会重新计算。</p>
+
+<h2>八、撰写怎么分批</h2>
+<p>768 篇不适合一次全出：质量无法逐篇复核，且一旦标准偏了就是 768 篇返工。建议：</p>
+<ol>
+  <li><strong>第 1 批 10 页（20 篇）</strong> — 覆盖 5 个不同类目，你逐篇过。验收标准：每页至少三处只在该页成立的数字或规则。</li>
+  <li><strong>第 2 批 40 页</strong> — 校准后的标准跑一遍，抽查 20%。</li>
+  <li><strong>其余 334 页</strong> — 按类目分批，每批 50 页，批内自查 + 抽样。</li>
+</ol>
+<p>每批产出直接写入 <code>shopify_keyword_use_cases.json</code> 的对应记录（含 <code>zh_*</code> 字段），并跑 <code>seo:check</code> 与 <code>content:validate</code>。合并掉的 151 条在最后一批统一做 301 与内链改指。</p>
+
+<footer>
+  数据源：<code>src/content/data/shopify_keyword_use_cases.json</code>（535 条）· 意图表：<code>docs/keyword-intent-map.json</code> · 生成脚本：<code>scripts/build-keyword-content-plan.mjs</code>
+</footer>
+</div>
+<script>
+const q = document.getElementById('q'), cat = document.getElementById('cat'), count = document.getElementById('count');
+function apply(){
+  const term = q.value.trim().toLowerCase();
+  const c = cat.value;
+  let visible = 0, shownCat = new Set();
+  document.querySelectorAll('#plan tbody tr').forEach(tr => {
+    if (tr.classList.contains('cat-row')) { tr.dataset.show = 'maybe'; tr.style.display = 'none'; return; }
+    const okTerm = !term || tr.dataset.kw.includes(term);
+    const okCat = !c || tr.dataset.cat === c;
+    const show = okTerm && okCat;
+    tr.style.display = show ? '' : 'none';
+    if (show) { visible++; shownCat.add(tr.dataset.cat); }
+  });
+  document.querySelectorAll('#plan tbody tr.cat-row').forEach(tr => {
+    tr.style.display = shownCat.has(tr.dataset.cat) ? '' : 'none';
+  });
+  count.textContent = visible + ' 页';
+}
+q.addEventListener('input', apply); cat.addEventListener('change', apply); apply();
+</script>
+</body>
+</html>

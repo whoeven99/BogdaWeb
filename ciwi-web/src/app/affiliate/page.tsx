@@ -18,6 +18,8 @@ export async function generateMetadata() {
     description: copy.hero.description,
     path: "/affiliate",
     locale,
+    // Account-facing surface: keep it out of the index and out of any public listing.
+    noIndex: true,
   });
 }
 

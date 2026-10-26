@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ciwi.ai SEO 检测报告 · 2026-10-22</title>
+<style>
+  :root{
+    --bg:#f7f8fa; --surface:#ffffff; --border:#e3e6ea; --text:#1b1f24;
+    --muted:#6b7280; --accent:#1f6feb; --ok:#1a7f37; --warn:#bf5900;
+    --p0:#c0392b; --p1:#e08a00; --p2:#5b6b7a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    line-height:1.7;font-size:15px;}
+  .wrap{max-width:1080px;margin:0 auto;padding:40px 28px 80px}
+  header{border-bottom:1px solid var(--border);padding-bottom:24px;margin-bottom:32px}
+  h1{font-size:28px;margin:0 0 8px;letter-spacing:-.4px}
+  .sub{color:var(--muted);font-size:14px}
+  h2{font-size:20px;margin:44px 0 14px;padding-top:8px}
+  h3{font-size:16px;margin:26px 0 10px}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px 20px;margin:14px 0}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin:18px 0}
+  .stat{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px}
+  .stat .n{font-size:26px;font-weight:650;letter-spacing:-.5px;display:block}
+  .stat .l{font-size:12.5px;color:var(--muted);margin-top:2px}
+  .stat.bad .n{color:var(--p0)} .stat.warn .n{color:var(--warn)} .stat.good .n{color:var(--ok)}
+  table{width:100%;border-collapse:collapse;background:var(--surface);
+    border:1px solid var(--border);border-radius:10px;overflow:hidden;font-size:14px}
+  th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--border);vertical-align:top}
+  th{background:#eef1f5;font-weight:600;font-size:13px;color:#374151}
+  tr:last-child td{border-bottom:none}
+  .tag{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:20px;color:#fff;vertical-align:2px}
+  .t0{background:var(--p0)} .t1{background:var(--p1)} .t2{background:var(--p2)} .tok{background:var(--ok)}
+  code{background:#eef1f5;padding:1.5px 6px;border-radius:4px;font-size:12.8px;
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+  pre{background:#f4f6f8;border:1px solid var(--border);border-radius:8px;padding:14px 16px;overflow-x:auto;
+    font-size:12.8px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;line-height:1.6}
+  .pass li,.fail li{margin:6px 0}
+  ul{margin:8px 0;padding-left:22px}
+  .note{border-left:3px solid var(--accent);background:#f0f6ff;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0;font-size:14px}
+  .danger{border-left:3px solid var(--p0);background:#fdf2f1;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .dim{color:var(--muted)}
+  .bar{height:8px;background:#e6e9ed;border-radius:5px;overflow:hidden;margin-top:8px}
+  .bar i{display:block;height:100%;border-radius:5px}
+  footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--border);color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Ciwi.ai SEO 检测报告</h1>
+  <div class="sub">检测时间 2026-10-22 · 对象 <code>https://ciwi.ai</code> · Next.js 15 + App Router + 文件化 MDX 内容 · 版本 commit 工作区</div>
+</header>
+
+<div class="note">
+  <strong>一句话结论：</strong>技术底座（规范、hreflang、canonical、sitemap 卫生、CI 守门）在同类站点里属于<strong>上游水平</strong>，几乎没有低级错误；
+  真正的问题在内容结构层：占全站 77% 的关键词页，在数据层只有 167 份不同正文，却被 535 个关键词各建一页。
+  <br><br>
+  <strong>诊断修正（2026-10-22 复检）：</strong>本报告初版把问题描述为「535 个页面完全重复」并不准确。深入 data 层后发现：
+  535 条的 <code>title</code> / <code>scenarioDescription</code> / <code>aiPrompt</code> 每条都唯一，真正重复的是
+  <code>howToSolve</code> 与 <code>faqs</code> —— 全站只有 <strong>167 份</strong>，平均被 3.2 个关键词复用，最坏 11 个关键词共用同一份解决步骤。
+  因此页面相似度高（92%–97%）是「同簇共用正文 + 站点骨架 + 同簇推荐卡片」三者叠加的结果，而非整页复制。
+</div>
+
+<h2>一、总体评分</h2>
+<div class="grid">
+  <div class="stat good"><span class="n">A</span><div class="l">技术规范性<br>robots / canonical / hreflang / URL 卫生</div></div>
+  <div class="stat good"><span class="n">A</span><div class="l">多语言实现<br>独立语言版本、不自动回退</div></div>
+  <div class="stat bad"><span class="n">D</span><div class="l">内容质量<br>程序化页面重复、薄内容</div></div>
+  <div class="stat warn"><span class="n">C</span><div class="l">内部链接<br>10/10 博客零内链</div></div>
+  <div class="stat warn"><span class="n">C</span><div class="l">渲染性能<br>43/43 页面 force-dynamic</div></div>
+  <div class="stat warn"><span class="n">C</span><div class="l">社交与分发<br>OG 图单一、无 RSS</div></div>
+</div>
+
+<h2>二、站点规模实况</h2>
+<div class="grid">
+  <div class="stat"><span class="n">1,691</span><div class="l">sitemap 收录 URL</div></div>
+  <div class="stat"><span class="n">859 / 832</span><div class="l">英文 / 中文 URL</div></div>
+  <div class="stat bad"><span class="n">1,304</span><div class="l">关键词模板页（77.1%）</div></div>
+  <div class="stat"><span class="n">387</span><div class="l">其余全部页面</div></div>
+  <div class="stat warn"><span class="n">12.4%</span><div class="l">sitemap lastmod 覆盖率</div></div>
+  <div class="stat"><span class="n">0.69–0.95s</span><div class="l">实测 TTFB（无缓存）</div></div>
+</div>
+
+<h3>URL 构成：一个模板吃掉四分之三个站点</h3>
+<table>
+  <tr><th>类别</th><th style="width:90px">URL 数</th><th>占比</th><th>说明</th></tr>
+  <tr><td><code>/products/*/playbook/keyword/**</code> 详情长尾页</td><td>1,072</td><td>63.4%</td><td>每个长尾词一页，正文互不相同部分仅 5–9 个词</td></tr>
+  <tr><td><code>…/keyword/category/**</code> 分类聚合页</td><td>224</td><td>13.2%</td><td>按关键词类别聚合</td></tr>
+  <tr><td><code>…/keyword/page/N</code> 分页归档页</td><td>8</td><td>0.5%</td><td>每页 25 条</td></tr>
+  <tr><td>Guides</td><td>73</td><td>4.3%</td><td>含 localization / function-scenarios</td></tr>
+  <tr><td>Help Center</td><td>30</td><td>1.8%</td><td>中英各 29 篇，已对齐</td></tr>
+  <tr><td>Blog</td><td>11</td><td>0.7%</td><td><strong>英文仅 10 篇</strong></td></tr>
+  <tr><td>其余（首页 / 产品 / 对比 / 用例 …）</td><td>273</td><td>16.1%</td><td>—</td></tr>
+</table>
+<div class="bar"><i style="width:77.1%;background:var(--p0)"></i></div>
+<div class="dim" style="font-size:12.5px;margin-top:4px">红色部分 = 单一模板批量生成页面占全站比例 77.1%</div>
+
+<h2>三、P0：必须立刻处理</h2>
+
+<div class="card">
+<h3><span class="tag t0">P0-1</span> 1,304 个关键词页互相重复 92%–97% — 规模化内容滥用风险</h3>
+<p>抽样 <code>shopify-product-research-tool</code> / <code>shopify-product-research-app</code> / <code>find-winning-products-for-shopify</code> 三页做正文比对：</p>
+<table>
+  <tr><th>页面</th><th>正文词数</th><th>独有词</th><th>页间相似度</th></tr>
+  <tr><td>研究工具页 vs 研究 App 页</td><td>977 / 978</td><td>9</td><td><strong>95.6%</strong></td></tr>
+  <tr><td>研究工具页 vs 选品页</td><td>977 / 979</td><td>5</td><td><strong>97.2%</strong></td></tr>
+  <tr><td>研究 App 页 vs 选品页</td><td>978 / 979</td><td>8</td><td><strong>96.1%</strong></td></tr>
+</table>
+<p>差异只剩：H1 措辞互换、正文里替换一个动词短语、推荐模块内容重叠。导航、CTA、FAQ、页脚 100% 相同。</p>
+
+<h3 style="margin-top:22px">但根因不在模板，在数据 —— 全量 535 条字段级统计</h3>
+<table>
+  <tr><th>字段</th><th>唯一值 / 535</th><th>最大重复簇</th><th>结论</th></tr>
+  <tr><td><code>title</code></td><td>535</td><td>1</td><td>每条独立 ✓</td></tr>
+  <tr><td><code>scenarioDescription</code></td><td>535</td><td>1</td><td>每条唯一，但仅中间任务短语不同</td></tr>
+  <tr><td><code>aiPrompt</code></td><td>535</td><td>1</td><td>每条唯一，同样只差任务短语</td></tr>
+  <tr><td><code>howToSolve</code></td><td><strong>167</strong></td><td><strong>11</strong></td><td>最坏 11 个关键词共用同一份步骤 ✗</td></tr>
+  <tr><td><code>faqs</code>（整组）</td><td><strong>167</strong></td><td><strong>11</strong></td><td>与 howToSolve 划分完全一致 ✗</td></tr>
+</table>
+<p>同一簇 5 条抽样，<code>aiPrompt</code> 的「Use these inputs」与「Return」两段<strong>逐字相同</strong>：</p>
+<table>
+  <tr><th>slug</th><th>title</th><th>aiPrompt 输入</th><th>aiPrompt 产出</th></tr>
+  <tr><td>shopify-product-research-tool</td><td>Evaluate product opportunities…</td><td rowspan="5" style="background:#fdf2f1">target market, candidate products, dated demand evidence, competitor listings, supplier costs and delivery constraints</td><td rowspan="5" style="background:#fdf2f1">a ranked product shortlist with evidence, uncertainty and next tests</td></tr>
+  <tr><td>shopify-niche-research</td><td>Compare niche opportunities…</td></tr>
+  <tr><td>ecommerce-category-analysis</td><td>Compare demand and competition…</td></tr>
+  <tr><td>product-competition-analysis-tool</td><td>Assess the competitive pressure…</td></tr>
+  <tr><td>find-emerging-product-trends</td><td>Identify emerging product trends…</td></tr>
+</table>
+<div class="danger">
+  <strong>这决定了修复方式：</strong>簇内每条唯一的数据只有 <code>title</code> 一个字段，<code>howToSolve</code>、<code>faqs</code>、<code>aiPrompt</code> 的输入与产出全部重合。
+  也就是说 <strong>数据里不存在可供差异化提取的真实语义素材</strong>。若用模板/同义词改写去「差异化」，产出的是 spun content，
+  Google 对这类内容的处置比原文重复更重。<br><br>
+  可行路径只有三条：① 按 167 簇合并为规范页 + 301（结构上真实去重）；② 投入真实撰写，为 535×2 语言逐条写出不同的运营流程；③ 先降低共模板比（保持 535 页但压缩共享样板、跨簇推荐）。
+</div>
+<p><strong>建议：</strong>优先 ①，因为它一次性解决重复、抓取预算与同簇自相竞争，且不需要编造内容。② 只有在确认这批长尾词确有独立搜索需求时才值得投入。</p>
+</div>
+
+<div class="card">
+<h3><span class="tag t0">P0-2</span> Meta description 普遍超长，被搜索引擎截断</h3>
+<table>
+  <tr><th>位置</th><th>实测长度</th><th>上限参考</th><th>结果</th></tr>
+  <tr><td>首页 description</td><td>204 字符</td><td>~155</td><td>尾部约 30% 被截断</td></tr>
+  <tr><td>关键词页 description</td><td>357–363 字符</td><td>~155</td><td>超过 2 倍，几乎必被截断或改写</td></tr>
+  <tr><td>Blog 文章</td><td>均值 164 字符，7/10 超限</td><td>~155</td><td>10 篇里 7 篇超限</td></tr>
+</table>
+<p>现有 <code>buildPageMetadata</code> 已经<strong>只对 title 做了 SERP 宽度截断</strong>（见 <code>truncateTitleToSERPWidth</code>），description 完全没有保护——这是同一个 helper 里的对称性缺口。</p>
+<p><strong>建议：</strong>在 <code>src/lib/seo/metadata.ts</code> 补一个 <code>truncateDescription(text, maxChars=155)</code>，按中英文字符分别计数（中文按 2 字符宽），在词边界或句边界截断。同时在 <code>validate-content.mjs</code> 里加规则：frontmatter <code>description</code> &gt; 160 字符直接报错，和现有 frontmatter 校验同级。</p>
+</div>
+
+<div class="card">
+<h3><span class="tag t0">P0-3</span> 全站零静态化：43/43 页面 force-dynamic</h3>
+<p>根因不在页面，而在架构：<code>middleware.ts</code> 用 header 注入语言（<code>x-ciwi-locale</code>）+ rewrite，而不是用 <code>/[locale]/</code> 路由段。任何读 <code>headers()</code> 的页面都无法预渲染，因此 all pages 被迫 <code>force-dynamic</code>。</p>
+<table>
+  <tr><th>页面</th><th>TTFB</th><th>总耗时</th></tr>
+  <tr><td><code>/</code></td><td>0.687s</td><td>0.965s</td></tr>
+  <tr><td><code>/blog/</code></td><td>0.732s</td><td>1.036s</td></tr>
+  <tr><td><code>/zh-cn/blog/</code></td><td>0.720s</td><td>1.030s</td></tr>
+  <tr><td><code>/products/translator/</code></td><td>0.949s</td><td>1.480s</td></tr>
+  <tr><td><code>/sitemap.xml</code>（1691 条）</td><td>—</td><td>1.525s</td></tr>
+</table>
+<p>每次访问都要完整服务端渲染 + 可能查库，也无法被 CDN 缓存，直接影响 LCP 与抓取速度。Googlebot 抓 1691 个 URL 的成本显著高于静态站。</p>
+<p><strong>建议：</strong>中长期把 i18n 迁到 App Router 的 <code>/[locale]/</code> 路由段（<code>generateStaticParams</code> + ISR），彻底摆脱 header 依赖；短期可行的折中是让 mid 层 rewrite 之外的内容类路由（blog / help-center / guides）走 <code>revalidate</code>，至少恢复增量静态。</p>
+</div>
+
+<h2>四、P1：重要，一个月内处理</h2>
+
+<div class="card">
+<h3><span class="tag t1">P1-1</span> Sitemap lastmod 覆盖率仅 12.4%（209 / 1,691）</h3>
+<p>只有 blog / help-center / 部分 guides 带 <code>lastModified</code>，其余全部缺失。Google 无法判断页面是否更新，会降低重抓频率。</p>
+<p><strong>建议：</strong>给所有静态路由与产品页补 lastmod（可用内容文件 mtime 或 Git 提交时间作为来源），并保证不写未来时间。1691 条 URL 还建议拆成 sitemap index（blog / help-center / guides / products-keyword 分文件），避免单一 200KB 文件整体重下。</p>
+</div>
+
+<div class="card">
+<h3><span class="tag t1">P1-2</span> 内容内部链接为零 — 最便宜的增长空间</h3>
+<table>
+  <tr><th>内容集合</th><th>篇数</th><th>零内链</th><th>篇均正文内链数</th></tr>
+  <tr><td>Blog（英文）</td><td>10</td><td><strong>10 / 10</strong></td><td>0.0</td></tr>
+  <tr><td>Help Center（英文）</td><td>29</td><td><strong>28 / 29</strong></td><td>≈0.03</td></tr>
+</table>
+<p>结果是每个页面都是孤岛：权重无法流向产品页 / guides，主题聚类无法形成，Google 难以判断站点主次。首页也只有 26 个内部链接。</p>
+<p><strong>建议：</strong></p>
+<ul>
+  <li>在 MDX 组件库里加一个 <code>&lt;RelatedLinks /&gt;</code>，让每篇文章底部自动挂载 3–5 条同主题链接 + 1 条产品/CTA 链接，按 frontmatter 的 <code>tags</code> 自动匹配——一次性解决全部内容。</li>
+  <li>把「每篇新正文至少 3 条站内链接」写进 <code>validate-content.mjs</code>，和现有「必填 frontmatter」同级阻断。</li>
+  <li>优先给 guides（73 个 URL）之间建立集群互链，这是最有商业价值的资产。</li>
+</ul>
+</div>
+
+<div class="card">
+<h3><span class="tag t1">P1-3</span> OG 图全站只有一张 logo</h3>
+<p>1691 个页面的 <code>og:image</code> 都是 <code>https://ciwi.ai/logo-150.png</code>。分享到社交、Slack、微信时全部显示同一个 logo，社交 CTR 基本浪费。</p>
+<p><strong>建议：</strong>用 <code>next/og</code>（ImageResponse）做动态 OG 图：标题 + 分类 + 品牌，部署成本不高，可与 P1-4 的 RSS 一起做。注意你现在 <code>images.unoptimized: true</code> 不影响 OG 生成。</p>
+</div>
+
+<div class="card">
+<h3><span class="tag t1">P1-4</span> 缺少 RSS feed，且 affiliate 页面可被抓取</h3>
+<ul>
+  <li><code>blog.ciwi.ai</code> 的 <code>/rss</code> 已被 301 到 <code>/blog/</code>，等于主动放弃了 RSS 这一分发渠道（对 SEO 工具、聚合站、AI 爬虫都有价值）。<strong>建议</strong>新增 <code>/rss.xml</code> 并加入 llms.txt。</li>
+  <li><code>/affiliate</code>、<code>/affiliate/dashboard</code>、<code>/affiliate/login</code>、<code>/affiliate/register</code> 均<strong>未设置 noindex</strong>，且页面含会话与账户信息。虽然不在 sitemap，但仍可被抓取。<strong>建议</strong>补 <code>noIndex: true</code>，与你对 Chinese 法务页的做法保持一致。</li>
+</ul>
+</div>
+
+<div class="card">
+<h3><span class="tag t1">P1-5</span> 缺少自定义 404 页</h3>
+<p>请求 <code>/this-page-does-not-exist/</code> 返回状态码 404（正确），但页面<strong>没有 title 标签</strong>、没有站内导航，用户/爬虫落到一堵墙。仓库没有 <code>not-found.tsx</code> 与 <code>error.tsx</code>。</p>
+<p><strong>建议：</strong>补 <code>src/app/not-found.tsx</code>，含搜索框 + 热门入口（products / guides / help-center）+ <code>FinalCtaSection</code>，并输出 <code>noindex</code> metadata。别忘了 zh-cn 版本。</p>
+</div>
+
+<h2>五、P2：细节优化</h2>
+<table>
+  <tr><th style="width:30px">#</th><th>问题</th><th>现状</th><th>建议</th></tr>
+  <tr><td>1</td><td>英文文章用了拼音 slug</td><td><code>slug: ciwi-translator-cha-jian-jie-shao</code> 位于 <code>content/blog/en/</code></td><td>改为 <code>ciwi-translator-introduction</code>，配 301 重定向</td></tr>
+  <tr><td>2</td><td>薄内容作为 blog post 存在</td><td><code>about.mdx</code> 205 词、<code>coming-soon.mdx</code> 203 词出现在 blog 集合</td><td>移出 blog frontmatter 索引，或标记 <code>noindex</code></td></tr>
+  <tr><td>3</td><td>Blog 集合无结构化数据</td><td><code>/blog/</code> JSON-LD 块数 0</td><td>加 <code>CollectionPage</code> + <code>ItemList</code>；每篇文章加 <code>Article</code></td></tr>
+  <tr><td>4</td><td>图片未优化</td><td><code>images.unoptimized: true</code></td><td>如为部署环境限制，至少对 hero / OG 相关的关键图手工产出 webp + 显式尺寸，避免 CLS</td></tr>
+  <tr><td>5</td><td>无 PWA manifest / apple-touch-icon</td><td><code>public/</code> 与 <code>app/</code> 均缺失</td><td>补 <code>manifest.webmanifest</code> 与 apple icon</td></tr>
+  <tr><td>6</td><td><code>keywords</code> meta 标签</td><td>仍在输出</td><td>Google 早已弃用，无负面影响但也无收益，可移除降低 HTML 体积</td></tr>
+  <tr><td>7</td><td><code>http://</code> 访问返回 403</td><td>未 301 跳转 https</td><td>确认是否为代理层行为；若是线上真实行为，应在边缘层加 301</td></tr>
+  <tr><td>8</td><td>首页内链偏少</td><td>26 条</td><td>补充到 guides / compare / use-cases 的入口，尤其给 money page</td></tr>
+</table>
+
+<h2>六、已经做对的部分（不要改）</h2>
+<div class="card">
+<ul class="pass">
+  <li><strong>robots.txt 规范</strong>：<code>Allow: /</code> + <code>Disallow: /api/</code> + <code>Host</code> + <code>Sitemap</code> 四项齐全，且用单一 <code>User-Agent: *</code> 组避免 specificity 覆盖问题。</li>
+  <li><strong>canonical + hreflang 三标签全覆盖</strong>：<code>en</code> / <code>zh-CN</code> / <code>x-default</code> 首尾互相指向，抽样三个层级页面（首页 / 列表页 / 程序化详情页）均正确。（注意 Next.js 输出为 <code>hrefLang</code> 驼峰，HTML 属性大小写不敏感，爬虫解析正常。）</li>
+  <li><strong>URL 卫生 Excellent</strong>：1691 条 URL 零重复、全部 HTTPS、统一尾斜杠、无 www、无重定向源地址、无双斜杠。<code>/blog</code> → <code>/blog/</code> 返回 308，<code>www.ciwi.ai</code> → <code>ciwi.ai</code> 返回 301。</li>
+  <li><strong>结构化数据覆盖广</strong>：27 个模板带 JSON-LD，含 <code>BreadcrumbList</code> + <code>WebPage</code> @graph 结构，层级正确。</li>
+  <li><strong>元数据 100% 覆盖</strong>：43/43 <code>page.tsx</code> 都有 metadata 处理，且统一走 <code>buildPageMetadata</code>，无硬编码。</li>
+  <li><strong>多语言是独立版本而非自动回退</strong>：这是很多 i18n 站踩的坑，你们从内容层避免了。</li>
+  <li><strong>llms.txt 已经上线</strong>：面向 AI 爬虫的前瞻性投入，继续保持。</li>
+  <li><strong>CI 三层守门全部通过</strong>：<code>seo:check</code>、<code>content:validate</code>、<code>seo:artifacts</code> 均已通过。</li>
+</ul>
+</div>
+
+<h2>七、本次已修复并验证</h2>
+<table>
+  <tr><th style="width:180px">问题</th><th>改动</th><th>验证结果</th></tr>
+  <tr>
+    <td><span class="tag t0">P0-2</span> description 超限</td>
+    <td><code>src/lib/seo/metadata.ts</code> 新增 <code>truncateDescription()</code>：中文字符按 2 单位计宽，优先在句末截断、其次词边界，统一预算 155 单位，并作用于 <code>buildPageMetadata</code> 的 description 输出。</td>
+    <td>本地生产渲染实测：首页 <strong>204 → 122</strong> 字符；关键词页 <strong>358 → 100</strong> 字符；关键词索引 <strong>→ 121</strong>。canonical 与三个 hreflang 均未受影响。</td>
+  </tr>
+  <tr>
+    <td><span class="tag t1">P1-4</span> affiliate 可被抓取</td>
+    <td>4 个账户页补 <code>noIndex: true</code>：<code>/affiliate</code>、<code>/login</code>、<code>/register</code>、<code>/dashboard</code>。</td>
+    <td>实测均输出 <code>&lt;meta name="robots" content="noindex, follow"&gt;</code>，follow 保留以传递权重。</td>
+  </tr>
+  <tr>
+    <td>回归防护</td>
+    <td>新增 <code>scripts/seo-description.test.mjs</code>（6 个用例），覆盖中英截断、词边界、空值、canonical/hreflang 不受影响、noindex 输出。</td>
+    <td>6/6 通过。</td>
+  </tr>
+</table>
+<p class="dim" style="font-size:13.5px">全量校验：<code>lint</code> 通过（仅 1 条既有 &lt;img&gt; 警告）、<code>seo:check</code> 通过、<code>content:validate</code> 通过、<code>next build</code> 通过、<code>seo:artifacts</code> 通过。</p>
+
+<div class="danger">
+  <strong>修复过程中新发现（未改动，待决策）：</strong><code>truncateTitleToSERPWidth</code> 的目标宽度写成 <strong>480</strong>，而每个 ASCII 字符只计 0.52 单位，
+  相当于允许约 920 个字符 —— 这个函数<strong>事实上从未触发过</strong>。实测关键词页 title 长达 <strong>106 字符</strong>（Google 约展示 60 字符）。
+  <br>但直接调小常量并非正确做法：现模板格式是 <code>{描述性标题} — {关键词}</code>，从尾部截断会把<strong>关键词整段丢掉</strong>。
+  正确修法是同时把格式改为 <code>{关键词} — {描述性标题}</code> 并把预算调到约 32 单位。因涉及全站 1691 个 title 的可见变化，需你确认后再动。
+</div>
+
+<h2>八、执行顺序建议</h2>
+<table>
+  <tr><th style="width:60px">阶段</th><th>动作</th><th>预期收益</th></tr>
+  <tr><td><strong>已完成</strong></td><td>description 截断 helper + 回归测试；affiliate 四页 noindex</td><td>SERP 文案不再被截断/改写；账户页退出索引</td></tr>
+  <tr><td><strong>待决策</strong></td><td>关键词页去重路线（合并 167 簇+301 / 真实撰写 535 条 / 先降共模板比）；title 格式与截断预算修正</td><td>这是全站最大的质量与抓取预算变量</td></tr>
+  <tr><td><strong>第 2–4 周</strong></td><td>全站 lastmod 补全 + sitemap 拆分；加 <code>&lt;RelatedLinks /&gt;</code> 组件批量补内链；把「正文相似度」「description 长度」写进 CI 守门</td><td>让 73 个 guides + 39 篇 blog 真正被发现和传权重</td></tr>
+  <tr><td><strong>第 2 个月</strong></td><td>保留 10–20 个高价值长尾页重写为独立内容，其余 301 合并到分类页；补 <code>not-found.tsx</code>、RSS、动态 OG 图</td><td>把权重集中到真实能排名的页面</td></tr>
+  <tr><td><strong>持续</strong></td><td>i18n 迁 <code>/[locale]/</code> 路由段，恢复 SSG/ISR；扩展 SEO CI 守门覆盖内容相似度与描述长度</td><td>性能与可维护性长期收益</td></tr>
+</table>
+
+<footer>
+  数据来源：线上抓取 <code>https://ciwi.ai/robots.txt</code>、<code>/sitemap.xml</code> 及 6 个代表性页面 HTML；本地仓库静态分析（43 个 <code>page.tsx</code>、78 个 MDX、18 个脚本）；仓库自带脚本 <code>seo:check</code> / <code>content:validate</code> 运行结果。
+  所有数值均为本次实测，非估算。
+</footer>
+
+</div>
+</body>
+</html>

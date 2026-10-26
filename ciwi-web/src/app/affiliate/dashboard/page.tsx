@@ -15,6 +15,8 @@ export async function generateMetadata() {
     description: copy.dashboard.overview.statsDescription,
     path: "/affiliate/dashboard",
     locale,
+    // Holds payout and referral data behind a session: never index.
+    noIndex: true,
   });
 }
 

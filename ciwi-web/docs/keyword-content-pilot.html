@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>关键词页试产 · 10 页</title>
+<style>
+  :root{--ink:#15181d;--muted:#6b7280;--line:#e6e8ec;--soft:#f7f8fa;--accent:#1f5eff;--ok:#0f766e;--warn:#b45309}
+  *{box-sizing:border-box}
+  body{margin:0;background:#fff;color:var(--ink);font:15px/1.7 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif}
+  .wrap{max-width:980px;margin:0 auto;padding:54px 28px 96px}
+  .kicker{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  h1{font-size:29px;margin:10px 0 8px;letter-spacing:-.01em}
+  .lede{color:var(--muted);max-width:740px}
+  h2{font-size:19px;margin:0}
+  h3{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:18px 0 6px}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin:22px 0 8px}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);background:var(--soft)}
+  td.num{text-align:right;font-variant-numeric:tabular-nums}
+  td.ok{color:var(--ok);font-weight:600}
+  .muted{color:var(--muted)}
+  .slug{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.5px;color:var(--muted);word-break:break-all}
+  .note{background:var(--soft);border-left:3px solid var(--accent);padding:13px 16px;border-radius:0 8px 8px 0;margin:18px 0}
+  .note.status{background:#fff7ed;border-left-color:var(--warn)}
+  .sec{margin-top:34px}
+  .page{border:1px solid var(--line);border-radius:12px;padding:22px 24px 26px;margin:26px 0}
+  .page-head{display:flex;gap:14px;align-items:flex-start;padding-bottom:14px;border-bottom:1px solid var(--line)}
+  .idx{font:600 13px/1 ui-monospace,Menlo,monospace;color:#fff;background:var(--ink);border-radius:6px;padding:6px 7px}
+  .title-row{display:grid;gap:6px;margin:14px 0 4px;font-size:13.5px}
+  .tag{display:inline-block;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);border-radius:4px;padding:0 5px;margin-right:6px}
+  .lang{margin-top:14px}
+  .lang.zh{border-top:1px dashed var(--line);padding-top:6px}
+  .lang-label{display:inline-block;font:600 10.5px/1.6 ui-monospace,Menlo,monospace;color:#fff;background:var(--ink);padding:1px 7px;border-radius:4px;letter-spacing:.08em}
+  .lang.zh .lang-label{background:#6b7280}
+  p{margin:6px 0}
+  ol{padding-left:20px;margin:6px 0}
+  li{margin:6px 0}
+  blockquote{margin:6px 0;padding:12px 14px;background:var(--soft);border-radius:8px;font-size:13.5px;color:#333}
+  .faq{margin:10px 0;padding-left:12px;border-left:2px solid var(--line)}
+  .faq .q{font-weight:600}
+  footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kicker">Ciwi · 关键词页内容重建</div>
+  <h1>试产：10 个页面 / 中英 20 篇</h1>
+  <p class="lede">按六信息位标准撰写：触发条件、前置输入、判定规则、失败模式、产出格式、复核方式。每页至少三处只在该页成立的数字或规则。以下全部通过 <code>scripts/validate-keyword-content.mjs</code> 校验。</p>
+
+  <div class="note status">
+    <strong>状态：第二轮修改稿，未发布。</strong>
+    本轮修掉了评审提出的业务逻辑问题、补齐了提示词缺项与「不可判断」兜底，并修复了模板的中文步骤切分缺陷。
+    站点线上内容未变更，试产稿仅存在于 <code>docs/</code> 与 <code>scripts/</code>，不参与构建。
+  </div>
+
+  <h2 class="sec">本轮修正（对照评审意见）</h2>
+  <table>
+    <thead><tr><th>页面</th><th>评审指出的问题</th><th>本轮处理</th></tr></thead>
+    <tbody>
+      <tr><td>转化率优化</td><td>「100 次转化或 14 天」不能保证有效，且与 FAQ 的「取较晚者」自相矛盾</td><td>改为由基准转化率、MDE、显著性水平、统计功效四个输入推导样本量；删除「或」与「取较晚者」</td></tr>
+      <tr><td>转化率优化</td><td>「流失率 × 流量 × 客单价」被当作可回收收入，隐含全部可挽回且可能跨阶段重复计算</td><td>拆分为「理论流失金额」与「可实现增量收入」，后者要求写明提升幅度假设与后续成交概率</td></tr>
+      <tr><td>弃购分析</td><td>最后停留页面不能证明原因；末次触达与订单对账不能证明增量</td><td>新增「原因待验证」桶并要求标注置信度；设置不发件 / 仅提醒 / 提醒加折扣三组对照</td></tr>
+      <tr><td>GA4 接入</td><td>把「购买事件未标关键事件」当典型故障有误；「20–30% 必然建模」无依据</td><td>改为检查事件名、采集、参数与报表口径；建模改为说明资格与数据门槛，不预设比例</td></tr>
+      <tr><td>退款分析</td><td>混淆退款、退货与报废；「前者钱能收回、后者那件货基本报废」错误</td><td>三个事件分别定义；各类率的分子分母写明；分开记录退款金额、退货运费与报废损失</td></tr>
+      <tr><td>低库存预警</td><td>「有在途单就抑制提醒」会掩盖到货前断货；促销日解释方向反了</td><td>改为逐日推演断货窗口与预计到货比对；常态需求与计划促销需求分开预测</td></tr>
+      <tr><td>批量改价</td><td>先验证毛利再取整会漏掉向下取整后破线；「9 尾数更好」无适用条件</td><td>改为取整后重新验证毛利；写明毛利口径；尾数策略降级为待测试项</td></tr>
+      <tr><td>选品工具</td><td>「六周有效期」「四至八周衰减」是普遍化结论</td><td>删除固定周期，改为按类目、季节与采购节点复核；20% 压力测试标注为示例</td></tr>
+      <tr><td>竞品比价</td><td>要求判断「价格维持 14 天」但输入无历史快照；抓取频率与 FAQ 冲突</td><td>补齐带时间戳的价格快照序列；删除 14 天硬性判据；频率改为由快照历史校准</td></tr>
+      <tr><td>商品描述生成</td><td>「40 个字段」「缺 5 个就阻断」无类目依据；「前 100 字符」不准确</td><td>改为按类目定义必填属性；长度降级为版式建议；删除 SEO 风险的绝对化表述</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    <strong>与现有页面的差别不在篇幅，在可验证性。</strong>
+    现有正文平均 47 词场景 + 52 词步骤，读起来像通用介绍；本轮 10 页平均 102 词场景 + 274 词步骤（6 步），每步都带阈值、周期或样本量，且同簇页面之间不共享任何段落。
+  </div>
+
+  <div class="note">
+    <strong>贯穿全稿的统一规则：数字分三级标注。</strong>
+    事实（附来源与适用范围）／示例假设（写明「以……为例」）／商家配置（由商家填写并说明如何校准）。
+    校验器会扫出未归入任何一级的裸数字。提示词中缺失的输入统一输出「不可判断」，不允许强行归类。
+  </div>
+
+  <table>
+    <thead><tr><th>关键词</th><th>类目</th><th class="num">场景词数</th><th class="num">步骤词数</th><th class="num">提示词词数</th><th class="num">FAQ 词数</th><th>校验</th></tr></thead>
+    <tbody><tr>
+      <td><strong>shopify product research tool</strong><div class="slug">shopify-product-research-tool</div></td>
+      <td>Product Research and Market Opportunities</td>
+      <td class="num">130</td>
+      <td class="num">286<span class="muted"> / 6 步</span></td>
+      <td class="num">216</td>
+      <td class="num">71 / 72 / 70</td>
+      <td class="ok">达标</td>
+    </tr><tr>
+      <td><strong>shopify conversion rate optimization tool</strong><div class="slug">shopify-conversion-rate-optimization-tool</div></td>
+      <td>Conversion Analysis and Optimization</td>
+      <td class="num">109</td>
+      <td class="num">317<span class="muted"> / 6 步</span></td>
+      <td class="num">195</td>
+      <td class="num">80 / 66 / 69</td>
+      <td class="ok">达标</td>
+    </tr><tr>
+      <td><strong>shopify low stock alerts</strong><div class="slug">shopify-low-stock-alerts</div></td>
+      <td>Inventory and Operations</td>
+      <td class="num">109</td>
+      <td class="num">304<span class="muted"> / 6 步</span></td>
+      <td class="num">209</td>
+      <td class="num">72 / 56 / 62</td>
+      <td class="ok">达标</td>
+    </tr><tr>
+      <td><strong>shopify abandoned cart analysis</strong><div class="slug">shopify-abandoned-cart-analysis</div></td>
+      <td>Conversion Analysis and Optimization</td>
+      <td class="num">103</td>
+      <td class="num">272<span class="muted"> / 6 步</span></td>
+      <td class="num">206</td>
+      <td class="num">63 / 67 / 62</td>
+      <td class="ok">达标</td>
+    </tr><tr>
+      <td><strong>shopify competitor price tracking</strong><div class="slug">shopify-competitor-price-tracking</div></td>
+      <td>Pricing and Margin</td>
+      <td class="num">93</td>
+      <td class="num">250<span class="muted"> / 6 步</span></td>
+      <td class="num">206</td>
+      <td class="num">68 / 56 / 60</td>
+      <td class="ok">达标</td>
+    </tr><tr>
+      <td><strong>shopify meta pixel checker</strong><div class="slug">shopify-meta-pixel-checker</div></td>
+      <td>Tracking and Attribution</td>
+      <td class="num">93</td>
+      <td class="num">267<span class="muted"> / 6 步</span></td>
+      <td class="num">189</td>
+      <td class="num">56 / 52 / 51</td>
+      <td class="ok">达标</td>
+    </tr><tr>
+      <td><strong>shopify ga4 integration</strong><div class="slug">shopify-ga4-integration</div></td>
+      <td>Tracking and Attribution</td>
+      <td class="num">92</td>
+      <td class="num">255<span class="muted"> / 6 步</span></td>
+      <td class="num">187</td>
+      <td class="num">61 / 54 / 58</td>
+      <td class="ok">达标</td>
+    </tr><tr>
+      <td><strong>shopify product description generator</strong><div class="slug">shopify-product-description-generator</div></td>
+      <td>Catalog and Content</td>
+      <td class="num">101</td>
+      <td class="num">257<span class="muted"> / 6 步</span></td>
+      <td class="num">184</td>
+      <td class="num">55 / 51 / 59</td>
+      <td class="ok">达标</td>
+    </tr><tr>
+      <td><strong>shopify refund analytics</strong><div class="slug">shopify-refund-analytics</div></td>
+      <td>Returns and Customer Experience</td>
+      <td class="num">95</td>
+      <td class="num">264<span class="muted"> / 6 步</span></td>
+      <td class="num">202</td>
+      <td class="num">57 / 52 / 59</td>
+      <td class="ok">达标</td>
+    </tr><tr>
+      <td><strong>shopify bulk price editor</strong><div class="slug">shopify-bulk-price-editor</div></td>
+      <td>Pricing and Margin</td>
+      <td class="num">97</td>
+      <td class="num">268<span class="muted"> / 6 步</span></td>
+      <td class="num">195</td>
+      <td class="num">58 / 58 / 56</td>
+      <td class="ok">达标</td>
+    </tr></tbody>
+  </table>
+  <p class="muted" style="font-size:12.5px">目标区间：场景 85–130 · 步骤 240–330（5–6 步）· 提示词 170–230 · FAQ 每条 50–95。</p>
+
+  <section class="page">
+  <header class="page-head">
+    <div class="idx">01</div>
+    <div>
+      <h2>shopify product research tool</h2>
+      <div class="slug">shopify-product-research-tool · Product Research and Market Opportunities</div>
+    </div>
+  </header>
+  <div class="title-row">
+    <div><span class="tag">EN title</span> Shopify Product Research Tool: Validate Demand Before You Buy</div>
+    <div><span class="tag">ZH title</span> Shopify 选品工具：先验证需求，再下采购单</div>
+  </div>
+
+  <div class="lang">
+    <div class="lang-label">EN</div>
+    <h3>Scenario</h3><p>Someone on the team has a spreadsheet of forty product candidates and a purchase decision three weeks out. The real question is not which product is trending; it is which of these forty can be sourced, shipped, and sold at a margin that survives paid acquisition in the markets you actually serve. Trend lists answer a different question, which is why merchants who buy into them end up holding inventory that looked validated and sells at a loss. This page covers the research pass that turns a raw candidate list into a ranked shortlist, with the evidence, the assumptions, and one next test attached to every candidate. How often you re-pull the evidence is a setting tied to your category and reorder cycle, not to a fixed number of weeks.</p>
+    <h3>Workflow · 6 步</h3><ol><li>Write down the decision this research has to support, including your gross margin floor, target price band, weight and size limits, and any category you cannot sell, and fix the review window now so all 40 candidates are judged against the same constraints rather than a feeling that it might work.</li><li>Build demand evidence from at least 2 independent sources, for example search interest over the last 24 months and weekly marketplace listing counts, and stamp each figure with its pull date, because how much a signal is worth depends on how old it is when you act on it.</li><li>Quantify competition with counts rather than impressions by recording how many sellers sit inside your price band, what the top 5 listings hold in review volume, and whether they compete on price or on brand, since a review moat and a price war call for different entry plans.</li><li>Stress-test unit economics at your target price after landed cost, platform fees, your own return rate and a realistic acquisition cost, then repeat the calculation with acquisition cost worsened by a severity you set yourself, for example 20% worse, and keep only the candidates that still clear the floor in the pessimistic case.</li><li>Confirm supply capacity before committing by checking that the supplier can repeat the order at the same cost, that the shipping method fits your replenishment cycle, and that no certification work would push the launch past the date you need it.</li><li>Publish a ranked shortlist where each candidate carries its demand evidence with source and pull date, the competition reading, margin at base and stressed cost, and one concrete next test such as a sample order, a landing page test or a supplier quote request.</li></ol>
+    <h3>Prompt</h3><blockquote>Act as a product research analyst for a Shopify store. My store context: [category], [primary markets], [current AOV], [gross margin floor], [monthly ad budget], [reorder cycle length]. My goal: decide which candidates below deserve a sample order this quarter. Use these inputs: the candidate list with [supplier cost, target retail price, weight, compliance constraints], plus dated evidence exports: [search interest CSV], [marketplace listing counts by week], [competitor ad longevity notes with first-seen and last-seen dates]. Take the stress-test severity from [CAC stress percentage] rather than assuming a default. For each candidate evaluate demand durability, competitive density inside the price band, and margin after landed cost, platform fees, a [x]% return rate and acquisition cost at [y], then repeat at the stressed acquisition cost. Return one row per candidate with: verdict (test, hold, or drop), demand evidence with source and pull date, competition reading, margin at base and stressed cost, the assumption most likely to be wrong, and the next test with its cost and decision deadline. Sort by stressed margin descending and list every drop separately with the number that killed it. If a candidate is supported by fewer than two independent sources, write insufficient evidence instead of a verdict, and write unknown in any cell whose input is missing rather than estimating a plausible figure.</blockquote>
+    <h3>FAQ</h3><div class="faq"><p class="q">How is a product research tool different from a keyword or trend tool?</p><p>A trend tool measures how much interest exists, while a research pass measures whether that interest converts into margin under your constraints. The second calculation needs landed cost, competitive density inside your price band, your own return rate, and your acquisition cost. Most merchants need both, but the trend figure is an input rather than an answer, and a candidate that scores well on interest can still fail the margin test.</p></div><div class="faq"><p class="q">How much data does a first shortlist need?</p><p>Two independent demand sources plus your own cost sheet is enough for a first pass. Without landed cost the margin column is fiction, so get supplier quotes for the top ten candidates before you rank anything. Twenty to thirty candidates is a practical starting batch: fewer and you cannot see the shape of the market, more and the review time per candidate drops below the point where the evidence actually gets checked.</p></div><div class="faq"><p class="q">How often should the research be refreshed?</p><p>Tie it to your purchasing calendar rather than to a fixed number of weeks. A workable rule is to re-pull evidence before each purchase decision, and additionally whenever a category event changes the picture, such as a competitor entering your price band, a seasonal shift, or a supplier cost change. Which signals decay fastest varies by category, so confirm the cadence against your own dated records instead of assuming one.</p></div>
+  </div>
+
+  <div class="lang zh">
+    <div class="lang-label">ZH</div>
+    <h3>场景</h3><p>团队手里有一份四十个候选品的表格，三周内要决定下多少采购单。真正要回答的不是「哪个品正在流行」，而是「这四十个里，哪些在你能卖的市场、按你能承受的毛利，投得起广告还赚得回来」。趋势榜单回答的是另一个问题，照着它选品的人，最后往往拿到一批看起来验证过、卖起来却亏钱的库存。这一页讲的是把候选清单变成排序结论的那一遍工作：每个候选都带上证据、假设和一个具体的下一步验证动作。至于多久重新拉一次证据，这是跟你的类目和补货节奏绑定的配置项，不是一个固定周数。</p>
+    <h3>步骤 · 6 步</h3><ol><li>先把这次研究要支撑的决定写清楚，包括毛利下限、目标价格带、重量与体积限制、以及你绝对不能碰的类目，同时现在就把复核窗口定死，让每个候选都对着同一套约束打分，而不是凭「感觉能行」。</li><li>需求证据至少要有两个互相独立的来源，例如过去 24 个月的搜索趋势加上按周统计的平台在售链接数，并且给每个数字标上抓取日期，因为一个信号值多少钱，取决于你行动时它已经放了多久。</li><li>竞争要用计数衡量而不是印象：记下你的价格带里有多少卖家、前五条链接各自有多少评价、它们到底在拼价格还是拼品牌，因为评价壁垒和价格战对应的是两套完全不同的进入方案。</li><li>在目标售价下把单位经济算一遍，扣掉到岸成本、平台费用、你自己的退货率和真实获客成本，然后用你自己设定的恶化幅度再算一遍，例如获客成本恶化 20%，只保留在悲观情形下依然守得住毛利下限的候选。</li><li>下单前确认供应能力：供应商能不能以同样的成本复单、运输方式接不接得上你的补货节奏、有没有会让上市时间拖过节点的认证工作。</li><li>最后产出一份排序清单，每个候选都带上需求证据及其来源与抓取日期、竞争读数、基准与悲观成本下的毛利，以及一个具体的下一步验证动作，例如样品单、落地页测试或供应商报价。</li></ol>
+    <h3>提示词</h3><blockquote>你是一名 Shopify 店铺的选品分析师。我的店铺背景：[类目]、[主要市场]、[当前客单价]、[毛利下限]、[月广告预算]、[补货周期长度]。我的目标：判断下面这些候选品里，哪些值得在本季度下样品单。输入包括：候选清单及 [供应商报价、目标零售价、重量、合规限制]，以及这些带日期的证据导出：[搜索趋势 CSV]、[平台在售链接数的按周统计]、[竞品广告投放时长记录，含首次与最后观察到的日期]。压力测试的恶化幅度请取自 [获客成本恶化幅度]，不要自行假设默认值。对每个候选，评估需求持续性、价格带内的竞争密度、以及扣掉到岸成本、平台费用、[x]% 退货率和 [y] 获客成本后的毛利，再用恶化后的获客成本重算一遍。按每行一个候选输出表格，列为：结论（测试 / 观望 / 放弃）、需求证据及来源与抓取日期、竞争读数、基准与压力情形下的毛利、最可能出错的那个假设、以及下一步验证动作及其成本与决策截止日。按压力情形下的毛利从高到低排序，并把所有「放弃」的候选单独列成一节，写明是哪一个数字否决了它。对不足两个独立来源支撑的候选，直接写「证据不足」不要给结论；任何输入缺失的单元格写「未知」，不要估算一个看起来合理的数字。</blockquote>
+    <h3>常见问题</h3><div class="faq"><p class="q">选品工具和关键词工具、趋势工具的区别在哪？</p><p>趋势工具衡量的是有多少人在关注，选品这一遍要衡量的是这份关注在你的约束下能不能变成毛利，中间差着到岸成本、价格带内的竞争密度、你自己的退货率和获客成本这几道计算。两者通常都要用，但趋势只是输入而不是答案：一个关注度很高的候选，在你的价格点上完全可能过不了毛利这道关。</p></div><div class="faq"><p class="q">第一版排序清单需要多少数据才够用？</p><p>两个独立的需求来源，加上你自己的成本表，就够跑第一遍了。没有到岸成本，毛利那一列就是虚构的，所以先拿到前十个候选的供应商报价再开始排序。二十到三十个候选是现实的起步批量：再少你看不出市场形状，再多则每个候选分摊到的复核时间会降到证据根本没被核实的程度。</p></div><div class="faq"><p class="q">多久需要重新跑一次选品研究？</p><p>把它绑到你的采购日历上，而不是绑到一个固定的周数。可操作的规则是每次采购决策前重新拉一次证据，另外在类目发生事件时也重跑，例如竞品进入你的价格带、季节切换、或供应商成本变动。哪类信号衰减得最快因类目而异，所以应当用你自己带日期的记录去验证节奏，而不是照搬一个默认值。</p></div>
+  </div>
+</section>
+<section class="page">
+  <header class="page-head">
+    <div class="idx">02</div>
+    <div>
+      <h2>shopify conversion rate optimization tool</h2>
+      <div class="slug">shopify-conversion-rate-optimization-tool · Conversion Analysis and Optimization</div>
+    </div>
+  </header>
+  <div class="title-row">
+    <div><span class="tag">EN title</span> Shopify Conversion Rate Optimization Tool: Find the Leaking Step</div>
+    <div><span class="tag">ZH title</span> Shopify 转化率优化工具：先定位漏损环节</div>
+  </div>
+
+  <div class="lang">
+    <div class="lang-label">EN</div>
+    <h3>Scenario</h3><p>A store converts at 1.1% while the benchmark the team tracks sits near 2.4%, and a new theme, a discount banner, and a chat widget have already been tried without moving the number. At that point more opinions stop helping, because nobody can say which step of the funnel is losing the revenue or whether the loss comes from traffic quality, offer, price presentation, or checkout friction. A conversion tool earns its cost only when it ties each drop-off to a specific page element and to a test that can settle the question. This page covers that audit pass, and how to size the test before you run it.</p>
+    <h3>Workflow · 6 步</h3><ol><li>Establish the baseline before touching anything by pulling sessions, add-to-cart rate, checkout start rate, and purchase rate for the last 90 days, split by device and by traffic source, because a blended rate hides the fact that mobile may be converting at half the desktop rate.</li><li>Locate the largest revenue gap by multiplying each funnel step drop-off by the sessions and average order value behind it, and rank by that product rather than by drop-off percentage, since a 20% loss on a page with 300 sessions a month is a smaller problem than 9% on the main checkout path.</li><li>Classify the cause before designing a fix by testing the drop-off against four hypotheses, which are traffic intent mismatch, price and offer, shipping and returns cost revealed late, and checkout form friction, then write down which one the evidence supports instead of shipping the redesign the loudest person wants.</li><li>Calculate the required sample size from four inputs you fix in advance, which are your baseline conversion rate, the smallest lift worth detecting, your significance level, and your statistical power, using a sample size calculator or the equivalent formula, and record all four before the test begins.</li><li>Fix the stopping rule in advance as either a fixed sample size reached or a sequential design whose thresholds were adjusted for repeated looks, and do not stop because the observed difference crossed your minimum detectable effect on an interim check, because peeking at a fixed-horizon test inflates the false positive rate.</li><li>Keep a record of the hypothesis, the deciding metric, and the traffic mix for the window, discard any test whose traffic mix shifted materially mid-flight since that shift usually explains the result better than the change did, and convert each win into a reusable rule such as a price-display standard or a checkout field order, because a test that only lives in a screenshot gets quietly reverted within two quarters.</li></ol>
+    <h3>Prompt</h3><blockquote>Act as a conversion analyst for a Shopify store. My store context: [category], [monthly sessions], [current conversion rate], [AOV], [top three traffic sources], [device mix]. My goal: find the funnel step losing the most revenue and decide which test to run next. Use these inputs: [90-day funnel export by device and source], [GA4 or Shopify analytics exports], [current theme and checkout notes], [shipping and returns policy text], [tests already run with dates and results], [baseline conversion rate], [minimum detectable effect], [significance level], [statistical power]. For each step from session to purchase, calculate the drop-off rate and the revenue attached to that drop-off, then rank steps by attached revenue rather than by drop-off percentage. Return a table with: step name, drop-off rate, revenue at risk, the two most plausible causes, the evidence that would confirm each cause, the required sample size per variant computed from the four statistical inputs above, and the stopping rule. Separate theoretical revenue at risk from an estimate of realizable incremental revenue, and state the lift assumption and downstream completion probability used for the latter. Where any of the four statistical inputs is missing, write cannot determine instead of a sample size.</blockquote>
+    <h3>FAQ</h3><div class="faq"><p class="q">How do I know whether low conversion is a traffic problem or a page problem?</p><p>Segment before you judge. If add-to-cart rate is normal but checkout completion is poor, the problem sits in checkout rather than in traffic or the product page. If add-to-cart is also low and the traffic came from a broad campaign, the audience is probably mismatched to the offer. A clean check is to compare the same page across two traffic sources, since a page that converts well from email but not from paid social points at intent rather than design.</p></div><div class="faq"><p class="q">How do I work out how long a test needs to run?</p><p>Derive it from four inputs you fix in advance, which are your baseline conversion rate, the smallest lift worth detecting, your significance level, and your statistical power, then run until that sample is reached across whole weeks. Stopping early is only legitimate if you planned a sequential design with adjusted thresholds, because an observed difference that has crossed the minimum detectable effect can still be noise.</p></div><div class="faq"><p class="q">Should the product page or the checkout be fixed first?</p><p>Fix whichever step carries more revenue attached to its drop-off, which is the drop-off rate multiplied by the sessions and average order value behind that step. Checkout usually wins on stores with healthy product pages, because the loss per session is larger there. Stores with weak product pages usually gain more from fixing images, sizing information, and shipping clarity. Ranking by percentage alone regularly points at the wrong step.</p></div>
+  </div>
+
+  <div class="lang zh">
+    <div class="lang-label">ZH</div>
+    <h3>场景</h3><p>店铺转化率 1.1%，而团队跟踪的同类基准在 2.4% 附近，换主题、上折扣横幅、加客服插件都已经试过，数字还是没动。到这一步，再多的意见也没用了，因为没人能说清楚到底是漏斗哪一环在漏钱，更说不清漏的是流量质量问题、卖点问题、价格呈现问题，还是结账流程摩擦。转化率工具值不值这个钱，只取决于一件事：它能不能把每个流失点钉到具体的页面元素，并给出能定案的测试。这一页讲的就是这一遍审计，以及开跑前怎么定样本量。</p>
+    <h3>步骤 · 6 步</h3><ol><li>先建立基准再动手：拉取最近 90 天的会话数、加购率、发起结账率和成交率，并按设备与流量来源拆开，因为混合在一起的转化率会把「移动端只有桌面端一半」这件事整个藏起来。</li><li>定位最大的收入缺口：把每个漏斗环节的流失率乘以它背后的会话数与客单价，按这个乘积排序，而不是按流失率排序——一个月只有 300 会话的落地页流失 20%，问题小于主结账路径上流失 9%。</li><li>先归因再定方案：把流失拆到四个假设上去检验，分别是流量意图错配、价格与卖点、运费与退货成本暴露太晚、结账表单摩擦，然后写清楚证据支持哪一个，而不是照着房间里嗓门最大的人想做的改版去改。</li><li>样本量要算不要猜：由基准转化率、值得检出的最小提升、显著性水平、统计功效这四个事先定死的输入，用样本量计算器或等价公式算出每版所需样本，并在开跑前把四个输入全部记录下来。</li><li>停止条件提前定死：要么达到固定样本量后停止，要么一开始就采用为多次查看调整过阈值的序贯设计；绝不能因为中途看到差异超过最小可检出效应就停——在固定视野的测试上反复偷看会把假阳性率推高。</li><li>每次测试都记录假设、判定指标和窗口内的流量结构，流量结构在测试中途发生实质性偏移的结果应当作废，因为那个偏移通常比改动本身更能解释结果；把每次赢下来的结论固化成可复用规则，例如价格展示标准或结账字段顺序，因为只活在截图里的测试结论，两个季度内就会被悄悄改回去。</li></ol>
+    <h3>提示词</h3><blockquote>你是一名 Shopify 店铺的转化分析师。我的店铺背景：[类目]、[月会话数]、[当前转化率]、[客单价]、[前三大流量来源]、[设备占比]。我的目标：找到漏掉最多收入的漏斗环节，并决定下一个跑什么测试。输入包括：[按设备和来源拆分的 90 天漏斗导出]、[GA4 或 Shopify 分析导出]、[当前主题与结账配置说明]、[运费与退货政策原文]、[已跑过的测试清单及日期与结果]、[基准转化率]、[最小可检出效应]、[显著性水平]、[统计功效]、[计划测试时长（整周数）]。对从会话到成交的每个环节，计算流失率及其对应的收入。请按「流失对应的收入」排序而不是按流失率排序，因为低流量页面上的高流失率和主路径上的较小流失率不是同一个问题。输出表格，列为：环节名称、流失率、流失对应收入、两个最可能的原因、能确认每个原因的证据、由上述四个统计输入算出的每版所需样本量、以及停止规则。请把「理论流失金额」与「可实现增量收入」分开列，并写明后者所用的提升幅度假设与后续成交概率假设。若四个统计输入中有任何一项缺失，请写「不可判断」而不是给一个样本量；未通过证据隔离的环节，不要直接推荐改版。</blockquote>
+    <h3>常见问题</h3><div class="faq"><p class="q">怎么判断转化率低是流量问题还是页面问题？</p><p>先拆分再判断。如果加购率正常但结账完成率低，问题在结账环节，而不是流量或商品页。如果加购率也低，且流量来自宽泛投放，那更可能是人群和卖点错配。一个干净的检验方式是拿同一个页面对比两个流量来源：邮件渠道转化好、付费社交转化差，指向的是意图而不是设计。</p></div><div class="faq"><p class="q">测试要跑多久才能信？</p><p>不要用固定天数或固定转化数。样本量应由四个事先定死的输入推导：基准转化率、值得检出的最小提升、显著性水平、统计功效。然后一直跑到达到该样本量，并跨越完整周，让工作日和周末的行为都被覆盖。提前停止只有在你一开始就采用了带调整阈值的序贯设计时才成立，因为超过最小可检出效应的差异仍然可能是噪声。</p></div><div class="faq"><p class="q">先改商品页还是先改进结账流程？</p><p>改那个「流失对应收入」更大的环节，也就是流失率乘以该环节背后的会话数与客单价。商品页健康的店铺通常结账优先，因为每次会话的损失更大；商品页本身薄弱的店铺，改图片、尺码信息和运费清晰度收益更高。只按百分比排序，经常会把你指向错误的环节。</p></div>
+  </div>
+</section>
+<section class="page">
+  <header class="page-head">
+    <div class="idx">03</div>
+    <div>
+      <h2>shopify low stock alerts</h2>
+      <div class="slug">shopify-low-stock-alerts · Inventory and Operations</div>
+    </div>
+  </header>
+  <div class="title-row">
+    <div><span class="tag">EN title</span> Shopify Low Stock Alerts: Thresholds That Survive Real Lead Times</div>
+    <div><span class="tag">ZH title</span> Shopify 低库存预警：阈值要按真实交期算</div>
+  </div>
+
+  <div class="lang">
+    <div class="lang-label">EN</div>
+    <h3>Scenario</h3><p>A store runs two hundred active SKUs and finds out about stockouts from customer emails rather than from inventory. The usual cause is not a missing alert but a badly set one, because a default threshold of ten units applies the same number to a product selling twelve a day with a 21-day lead time and to one selling two a month with a 5-day lead time. The result is silence on the SKU that matters and daily noise on the one that does not. This page covers deriving per-SKU thresholds from measured demand and measured replenishment time, and checking the stockout window before trusting an open purchase order.</p>
+    <h3>Workflow · 6 步</h3><ol><li>Choose a demand window per SKU and compute the daily run rate from it, then separate planned promotion periods from that baseline and forecast them separately, because leaving promotion days in the baseline inflates normal demand while deleting the promotion volume entirely would understate the stock you need before the event.</li><li>Measure real replenishment time per supplier instead of using the quoted lead time, taking the median days from purchase order to units becoming sellable across your last 5 orders, and where a lane is volatile use a higher percentile such as the 80th, since planning to the median is what leaves you short.</li><li>Set the threshold as daily run rate multiplied by the replenishment time you measured, plus a buffer you calibrate per SKU from how much its demand actually varies, where a workable starting point is a larger buffer such as 50% for the most volatile SKUs and close to zero for stable ones, and write down the number you chose so it can be reviewed later.</li><li>Check the stockout window rather than muting alerts whenever a purchase order exists, by projecting on-hand inventory day by day and comparing it against the expected arrival date and quantity of every open order, and still raise the alert when projected inventory reaches zero before that arrival date.</li><li>Split alerts into reorder now, reorder this week, and watch, and cap repeat reminders at a frequency you set, such as 1 reminder per SKU every 48 hours, because a single threshold that fires daily on slow movers trains the team to mute the whole channel.</li><li>Review thresholds quarterly against actual stockouts and against the service level you promised, and treat any SKU that stocked out twice in a quarter as a supplier or forecast problem to fix upstream rather than an alerting problem to keep tuning.</li></ol>
+    <h3>Prompt</h3><blockquote>Act as an inventory planner for a Shopify store. My store context: [category], [number of active SKUs], [sales channels], [supplier list with shipping method per supplier], [service level target in days]. My goal: set a reorder threshold per SKU that prevents stockouts without flooding the team with alerts. Use these inputs: [daily sales per SKU for the lookback window], [promotion calendar with dates and expected uplift per SKU], [purchase order history with order date and goods-received date], [current on-hand and on-order quantities per SKU], [current threshold configuration per SKU]. Compute the daily run rate excluding promotion periods, forecast promotion demand separately, and measure replenishment time as the median of actual receipt intervals, switching to the 80th percentile where the spread is wide and stating which percentile you used. Return one row per SKU with: baseline daily run rate, promotion-adjusted demand for the upcoming event, measured replenishment time and percentile used, recommended threshold, current threshold, projected days of cover, and whether open purchase orders cover the window through to their expected arrival date. Where an input is missing, write cannot determine for that column rather than substituting a default, and flag every SKU whose projected inventory reaches zero before the expected arrival date even when a purchase order is open.</blockquote>
+    <h3>FAQ</h3><div class="faq"><p class="q">Why is a fixed threshold such as ten units wrong?</p><p>Because it ignores how fast the SKU sells and how long it takes to arrive. The threshold has to cover demand during the replenishment window, so it is the daily run rate multiplied by real lead time plus a buffer. Ten units is roughly an hour of demand for a product selling a dozen a day, and roughly five months of demand for a slow mover, so one number cannot serve both.</p></div><div class="faq"><p class="q">Should an open purchase order suppress the alert?</p><p>No, not on its own. An open order only helps if it arrives before stock runs out, so project on-hand inventory day by day and compare it against the expected arrival date and quantity. Suppressing purely because a purchase order exists hides exactly the late or short shipments that cause stockouts, and it does so silently.</p></div><div class="faq"><p class="q">How should promotions enter the forecast?</p><p>Forecast them separately rather than stripping them out. Promotion periods inflate the demand baseline if they are averaged in, and understate the peak requirement if they are deleted, so compute the normal run rate without them and add a separate promotion demand line. The uplift factor is merchant specific and is best taken from the same promotion last year rather than assumed.</p></div>
+  </div>
+
+  <div class="lang zh">
+    <div class="lang-label">ZH</div>
+    <h3>场景</h3><p>店铺有两百个在售 SKU，断货这件事是客服邮件告诉他们的，不是库存系统。原因通常不是没配预警，而是配错了：默认的十件阈值，被同时套在一个一天卖十二件、交期 21 天的品，和一个一个月卖两件、交期 5 天的品上。结果是要紧的那个 SKU 一声不响，不要紧的那个天天响。这一页讲的是用实测动销和实测补货时长推出每个 SKU 的阈值，以及在信任在途采购单之前先算一遍断货窗口。</p>
+    <h3>步骤 · 6 步</h3><ol><li>先给每个 SKU 选定一个动销窗口并算出日均销量，然后把计划内的促销期从这个基准里拆出来单独预测——促销日留在基准里会把常态需求抬高，而把促销销量整个删掉则会低估活动前你需要备的货。</li><li>补货时长要用实测值而不是供应商的报价交期：取最近五张采购单从下单到可售天数的中位数；如果某条线路波动很大，就改用更高的分位比如第 80 百分位，因为真正造成断货的是尾部。</li><li>阈值定为日均动销乘以实测补货时长，再加上一个按该 SKU 需求波动幅度校准的缓冲——可用的起点是波动最大的 SKU 给到 50% 左右、稳定的 SKU 接近于零，并且把你选的数字记下来以便后续复盘。</li><li>有在途采购单时不要直接静音，而是逐日推演在手库存，和每张在途单的预计到货日期与数量做比对；只要推演显示预计到货日之前库存已归零，就照样发预警。</li><li>把预警分成立即补货、本周补货、观察三档，并把同一 SKU 的重复提醒限制为每 48 小时一次，因为一个天天在滞销品上响的阈值，会让团队把整个渠道静音。</li><li>每季度对照真实断货记录和你承诺的服务水平复盘阈值；一个季度断货两次的 SKU，应当被当作供应商或预测问题去上游解决，而不是继续调参数。</li></ol>
+    <h3>提示词</h3><blockquote>你是一名 Shopify 店铺的库存计划员。我的店铺背景：[类目]、[在售 SKU 数]、[销售渠道]、[供应商清单及各供应商运输方式]、[服务水平目标天数]。我的目标：为每个 SKU 设定既能防止断货、又不会淹没团队的补货阈值。输入包括：[回看窗口内每个 SKU 的日销量]、[促销日历含日期与各 SKU 预期提升幅度]、[采购单历史含下单日期与到货日期]、[每个 SKU 当前在手与在途数量]、[每个 SKU 当前阈值配置]。请剔除促销期计算日均动销，单独预测促销需求；补货时长取实际到货间隔的中位数，在离散度高时改用第 80 百分位并注明所用分位。按每行一个 SKU 输出，列为：基准日均动销、即将到来活动的促销调整后需求、实测补货时长及所用分位、建议阈值、当前阈值、预计可售天数、以及现有在途采购单是否覆盖到其预计到货日。任何输入缺失的单元格请写「不可判断」，不要套用默认值；并请单独标出所有在预计到货日之前库存即归零的 SKU，即使其已有在途采购单。</blockquote>
+    <h3>常见问题</h3><div class="faq"><p class="q">为什么固定阈值比如十件是错的？</p><p>因为它忽略了这个 SKU 卖得多快、以及补一次货要多久。阈值必须覆盖补货窗口内的需求，所以它等于日均动销乘以真实交期，再加上缓冲。十件对一个一天卖一打的品大约只够一小时，对一个慢动销品大约够五个月，同一个数字不可能同时服务两者。</p></div><div class="faq"><p class="q">有在途采购单就该静音预警吗？</p><p>单凭这一点不够。在途单只有在断货之前到货才有用，所以要逐日推演在手库存，再和预计到货日期与数量比对。仅仅因为存在采购单就静音，恰好会把那些迟到或短装的发货——也就是真正造成断货的情况——悄悄藏起来。</p></div><div class="faq"><p class="q">促销该怎么进预测？</p><p>单独预测，而不是把它删掉。促销期如果平均进基准里，会把常态需求抬高；如果整个删掉，又会低估峰值的备货需求。正确做法是剔除促销期算出常态动销，再加一条独立的促销需求。提升系数是因店而异的，最好取去年同一场活动的实际值，而不是拍一个。</p></div>
+  </div>
+</section>
+<section class="page">
+  <header class="page-head">
+    <div class="idx">04</div>
+    <div>
+      <h2>shopify abandoned cart analysis</h2>
+      <div class="slug">shopify-abandoned-cart-analysis · Conversion Analysis and Optimization</div>
+    </div>
+  </header>
+  <div class="title-row">
+    <div><span class="tag">EN title</span> Shopify Abandoned Cart Analysis: Where the 70% Actually Goes</div>
+    <div><span class="tag">ZH title</span> Shopify 弃购分析：先拆开那 70% 再看怎么救</div>
+  </div>
+
+  <div class="lang">
+    <div class="lang-label">EN</div>
+    <h3>Scenario</h3><p>Cart abandonment is commonly reported somewhere between 60% and 80%, and a store measuring 71% cannot tell from that figure alone what to fix. Reading the last page a session touched produces a hypothesis, not a reason, because a cart left at the shipping step is equally consistent with shipping cost shock, a missing delivery estimate, and a buyer who never intended to purchase that day. This page covers turning a raw abandonment rate into reason buckets that carry a confidence level, and designing the recovery test so you can separate email lift from discount lift instead of crediting both to the email.</p>
+    <h3>Workflow · 6 步</h3><ol><li>Fix the funnel boundaries first by deciding what counts as a cart, what counts as checkout started, and what your store counts as recovered, then compute abandonment at each boundary rather than one blended figure, because the blended rate cannot be acted on.</li><li>Attach a reason hypothesis to each abandoned session from the last page path touched, the shipping method selected, and whether a discount code field was present, and label the reading as inferred rather than confirmed.</li><li>Sort sessions into four buckets which are shipping and tax revealed late, checkout friction or errors, comparison shopping, and deliberate save for later, keep a fifth bucket named reason unverified for everything the data cannot support, and require a minimum sample such as 30 sessions in a bucket before its rate is treated as a signal, recording the window the sample came from.</li><li>Find out when recovery actually happens by measuring the distribution of time from cart creation to order for carts that recovered, then place the first send before the bulk of that distribution instead of copying a default schedule.</li><li>Separate email lift from discount lift by sending a plain reminder to one cohort, a reminder with a discount to another, and nothing at all to a third, and only compare the three against each other.</li><li>Reconcile recovered revenue against total orders for the same window so you can see whether recovery added orders or simply took credit for ones that would have closed anyway, then close the loop by turning the largest bucket into a product page or checkout change, because the analysis only pays for itself once one bucket stops growing.</li></ol>
+    <h3>Prompt</h3><blockquote>Act as a retention analyst for a Shopify store. My store context: [category], [AOV], [monthly carts created], [current recovery email schedule], [markets and currencies], [returns policy]. My goal: work out why carts are abandoned and how much of the recovery is incremental. Use these inputs: [cart and checkout events with session identifier, timestamp, last page path, selected shipping method], [orders with cart identifier and time from cart creation], [recovery email sends with cohort assignment, randomisation method, and whether a discount was included], [definition and membership of the no-send holdout group], [promotion calendar]. Bucket each abandoned cart into shipping and tax revealed late, checkout friction or errors, comparison shopping, deliberate save for later, or reason unverified, and state the evidence behind each assignment. Return a table with: bucket, cart count, share of abandoned carts, confidence level, median time from cart creation to order for recovered carts in that bucket, and the fix implied. Separately report incremental orders from reminder only versus reminder plus discount, measured against the no-send group, stating the sample size and window for each cohort. Where the evidence cannot support an assignment, write cannot determine rather than choosing the most plausible bucket, and refuse to report incremental revenue when no randomised holdout group exists.</blockquote>
+    <h3>FAQ</h3><div class="faq"><p class="q">Can the last page a shopper viewed tell me why they abandoned?</p><p>No, it gives you a hypothesis. A cart left at the shipping step is consistent with shipping cost shock, with a missing delivery estimate, and with someone who was browsing with no intent to buy. That is why each bucket should carry a confidence level and there should be an explicit unverified bucket, so an inference never gets reported as a diagnosed cause.</p></div><div class="faq"><p class="q">How do I know whether recovery emails added revenue?</p><p>Compare three groups rather than one cohort before and after. Send nothing to a holdout group, a plain reminder to the second, and a reminder with a discount to the third. The gap between the first and second is email lift, and the gap between the second and third is discount lift. Without a no-send group, whatever number you have is just revenue that happened to arrive.</p></div><div class="faq"><p class="q">When should the first recovery email go out?</p><p>Derive it from your own order timing instead of copying a schedule. Measure the distribution of time from cart creation to order for carts that recovered unaided, then place the first send ahead of the bulk of that distribution. A reminder that lands on day three mostly reaches people who already decided, while an immediate discount teaches repeat buyers to abandon deliberately.</p></div>
+  </div>
+
+  <div class="lang zh">
+    <div class="lang-label">ZH</div>
+    <h3>场景</h3><p>购物车放弃率常被报道在 60% 到 80% 之间，而一个店铺测出 71%，光看这个数字并不能告诉你该改什么。拿会话最后停留的页面当原因，得到的只是假设而不是结论：停在运费那一步的购物车，既可能是运费冲击，也可能是缺配送时效提示，还可能这个买家今天本来就不打算买。这一页讲的是把原始放弃率拆成带置信度的原因分桶，并把召回测试设计成能区分邮件增量和折扣增量，而不是把两者都算到邮件头上。</p>
+    <h3>步骤 · 6 步</h3><ol><li>先把漏斗边界定清楚：什么算加购、什么算发起结账、你们店把什么算作已召回，然后分别计算每个边界上的放弃率，而不是给一个混合值，因为混合值无法落地成动作。</li><li>给每个弃购会话附上原因假设，依据包括最后停留的页面路径、已选运输方式、以及页面上有无折扣码输入框，并明确标注这个读数是推断而不是已确认。</li><li>把会话归进四个桶——运费与税费暴露太晚、结账摩擦或报错、比价中、有意留着以后买——另外保留第五个桶叫原因待验证，装下所有数据支撑不了的归类；并且设一个最小样本门槛，例如某桶需满 30 个会话才把它的占比当作信号，同时记录样本所取自的时间窗口。</li><li>先测召回真实发生的时点：统计已召回购物车从创建到下单的时间分布，把第一封邮件排在这个分布的主体之前，而不是照抄默认节奏。</li><li>把邮件增量和折扣增量分开：一组只发纯提醒，一组发提醒加折扣，一组完全不发，三组互相对照。</li><li>再把召回收入与同窗口的总订单数对账，才能判断召回究竟是新增了订单，还是只是把本来就会成交的订单记到了自己名下；最后把最大的那个桶转成商品页或结账环节的具体改动，因为只有当某个桶停止增长，这份分析才算收回成本。</li></ol>
+    <h3>提示词</h3><blockquote>你是一名 Shopify 店铺的留存分析师。我的店铺背景：[类目]、[客单价]、[月新增购物车数]、[当前召回邮件节奏]、[市场与币种]、[退货政策]。我的目标：弄清购物车为什么被放弃，以及召回带来的增量有多少。输入包括：[购物车与结账事件，含会话标识、时间戳、最后停留页面路径、已选运输方式]、[订单，含购物车标识与从创建到下单的时长]、[召回邮件发送记录，含分组标识、随机化方式与是否含折扣]、[不发件对照组的定义与成员]、[促销日历]。请把每个弃购购物车归入：运费与税费暴露太晚、结账摩擦或报错、比价中、有意留着以后买、或原因待验证，并写明每次归类所依据的证据。输出表格，列为：原因桶、购物车数、占弃购比例、置信度、该桶内已召回购物车从创建到下单时长的中位数、以及对应的改进动作。另请分别报告仅提醒与提醒加折扣相对完全不发对照组的增量订单数，注明每组样本量与时间窗口。证据支撑不了的归类请写不可判断，不要挑一个看起来最合理的桶；没有随机化的不发件对照组时，请拒绝给出增量收入。</blockquote>
+    <h3>常见问题</h3><div class="faq"><p class="q">买家最后停留的页面，能说明他为什么弃购吗？</p><p>不能，它只给你一个假设。停在运费那一步的购物车，既可能是运费冲击，也可能是缺配送时效提示，还可能这个人只是在逛、今天根本不打算买。所以每个分桶都要带置信度，并且要有一个明确的原因待验证桶，让推断永远不会被当成已诊断的原因报出去。</p></div><div class="faq"><p class="q">怎么知道召回邮件到底带来了多少增量？</p><p>要比三组，而不是拿一组做前后对比。一组完全不发作为对照，一组只发纯提醒，一组发提醒加折扣。第一组和第二组的差是邮件增量，第二组和第三组的差是折扣增量。没有不发件对照组，你手上那个数字只是恰好进来的收入。</p></div><div class="faq"><p class="q">第一封召回邮件应该什么时候发？</p><p>从你自己的下单时点推导，而不是照抄一个时间表。先统计自然召回的购物车从创建到下单的时间分布，再把第一封邮件排在这个分布的主体之前。第三天才发出的提醒，大部分收件人早已经做了决定；而一上来就给折扣，会教会老顾客故意弃购。</p></div>
+  </div>
+</section>
+<section class="page">
+  <header class="page-head">
+    <div class="idx">05</div>
+    <div>
+      <h2>shopify competitor price tracking</h2>
+      <div class="slug">shopify-competitor-price-tracking · Pricing and Margin</div>
+    </div>
+  </header>
+  <div class="title-row">
+    <div><span class="tag">EN title</span> Shopify Competitor Price Tracking: Rules Before Robots</div>
+    <div><span class="tag">ZH title</span> Shopify 竞品价格监控：先把规则定好再上爬虫</div>
+  </div>
+
+  <div class="lang">
+    <div class="lang-label">EN</div>
+    <h3>Scenario</h3><p>A merchant wants to know when a competitor changes price so the store can react, but reacting to every move turns into a race nobody wins. The hard part is not scraping, it is deciding in advance which moves matter and what response each one justifies, because a one-day promotional drop and a permanent repositioning deserve different answers. Answering that second question requires price history, not just the latest value. This page covers building the comparison set, storing snapshots so change duration is knowable, and setting reaction thresholds that protect the margin floor.</p>
+    <h3>Workflow · 6 步</h3><ol><li>Define the comparison set by SKU instead of by category, matching each of your products to at most 3 listings a real buyer would actually consider, and keep the set inside a range you can review, for example 20 to 50 SKUs, so the output stays checkable rather than merely large.</li><li>Record the landed price for the buyer's location including shipping and tax rather than the sticker price, because a lower sticker price frequently disappears once shipping is added and a naive comparison triggers a price cut you did not need.</li><li>Store every crawl as a dated snapshot covering a window you choose, for example 90 days, rather than overwriting the previous value, since deciding whether a move is temporary or permanent requires knowing how long it has held, and a single current price cannot answer that.</li><li>Pick a crawl cadence from how fast the category actually moves, then confirm it against your own snapshot history instead of assuming, and keep the cadence fixed per category so consecutive readings are comparable.</li><li>Set the reaction rules before any data arrives by choosing a noise band below which moves are logged but not acted on, plus a margin floor that no automated rule may cross, and write both down as configuration.</li><li>Separate the response playbook by situation, because matching a competitor clearing stock differs from matching one who has permanently repriced, expire your response when theirs does, and review the comparison set quarterly to drop competitors who no longer share your assortment.</li></ol>
+    <h3>Prompt</h3><blockquote>Act as a pricing analyst for a Shopify store. My store context: [category], [number of tracked SKUs], [primary markets], [shipping and tax rules per market], [gross margin floor], [current price ending convention]. My goal: decide which competitor price moves require a response and what that response should be. Use these inputs: [current competitor listing price, shipping and tax for the buyer location], [competitor price snapshots with timestamp for each tracked SKU covering at least the last 90 days], [your own cost, current price, and margin per SKU], [promotion calendar for both your store and tracked competitors], [configured noise band and margin floor]. For each tracked SKU, report: current landed price difference, how long the current competitor price has held based on the snapshot series, whether the move is inside the noise band, and whether a response would breach the margin floor. Return a table with: SKU, competitor landed price, your landed price, difference percentage, days held at current price, verdict (monitor, match, or hold), and the reasoning. Where the snapshot history is missing or shorter than the window needed, write cannot determine for days held and for the verdict rather than assuming the price is new, and never recommend a price below the configured margin floor.</blockquote>
+    <h3>FAQ</h3><div class="faq"><p class="q">How often should competitor prices be crawled?</p><p>Set it from how fast the category moves and confirm it against your own snapshot history rather than copying a default. The thing to check is whether the cadence is frequent enough to catch a move before it affects your orders, and rare enough that consecutive readings differ by real changes rather than by noise. A category where prices hold for weeks does not need an hourly crawl.</p></div><div class="faq"><p class="q">Why is storing price history necessary?</p><p>Because a single current price cannot tell you whether a move is a short promotion or a permanent change, and those call for different responses. Matching a two-day sale hands over margin for nothing, while ignoring a permanent repositioning loses share. Dated snapshots make the duration of each price a known quantity instead of a guess.</p></div><div class="faq"><p class="q">Should a price drop always be matched?</p><p>No. Match only when the competitor shares your assortment, the move has held long enough to look deliberate, and the resulting price still clears your margin floor. A competitor clearing discontinued stock, or one competing on a different bundle, is not making a move you need to follow. The margin floor is the rule that no automated response may cross.</p></div>
+  </div>
+
+  <div class="lang zh">
+    <div class="lang-label">ZH</div>
+    <h3>场景</h3><p>商家想知道竞品什么时候调价，好让自己跟上，但对每一次变动都作出反应，最后会变成一场谁都赢不了的比赛。难的不是抓取，而是提前决定哪些变动值得反应、每一种变动对应什么动作——为期一天的促销降价和永久性的重新定位，需要的答案是不同的。而要回答后一个问题，你必须有价格历史，而不只是最新值。这一页讲的是怎么建可比集合、怎么存快照以便判断变动持续了多久、以及怎么设反应阈值才能守住毛利底线。</p>
+    <h3>步骤 · 6 步</h3><ol><li>可比集合要按 SKU 建而不是按类目建：给你的每个商品匹配至多 3 个真实买家会放在一起比较的竞品链接，并把集合规模控制在你能复核的范围内，例如 20 到 50 个 SKU，这样输出是经得起检查的，而不只是大。</li><li>记录买家所在地的到手价（含运费与税费）而不是标价，因为标价低的那点优势经常在加上运费后消失，只比标价会让你白白让出一刀毛利。</li><li>每次抓取都要存成带日期的快照，而不是覆盖上一次的值——判断一次变动是临时还是永久，需要知道它已经维持了多久，只拿一个当前价回答不了这个问题。</li><li>抓取频率从类目实际的变化速度推导，并用你自己的快照历史去验证它是否合适，而不是照抄一个默认值；频率要在每个类目内保持固定，这样相邻两次读数才可比。</li><li>在任何数据进来之前就把反应规则定好：选一个噪声带，带内的变动只记录不动作；再选一条毛利底线，任何自动化规则都不得越线；两者都要作为配置写下来。</li><li>反应预案要按情形分开，因为跟随一个在清库存的竞品和跟随一个永久调价的竞品不是一回事；你的应对应当在对方恢复时同步失效，并且每季度复核一次可比集合，把已经和你商品结构不再重合的竞品剔除。</li></ol>
+    <h3>提示词</h3><blockquote>你是一名 Shopify 店铺的定价分析师。我的店铺背景：[类目]、[监控 SKU 数]、[主要市场]、[各市场的运费与税费规则]、[毛利下限]、[当前价格尾数惯例]。我的目标：判断哪些竞品价格变动需要应对，以及该怎么应对。输入包括：[竞品当前挂牌价及买家所在地的运费与税费]、[每个监控 SKU 带时间戳的价格快照序列，至少覆盖最近 90 天]、[你自己每个 SKU 的成本、现价与毛利]、[你方与竞品的促销日历]、[已配置的噪声带与毛利底线]。对每个 SKU 请报告：当前到手价差、按快照序列得出的当前价格已维持天数、变动是否落在噪声带内、以及应对后是否会突破毛利底线。输出表格，列为：SKU、竞品到手价、你的到手价、差异百分比、当前价格已维持天数、判定（观察 / 跟价 / 不动）、以及理由。若快照历史缺失或短于所需窗口，「已维持天数」与最终判定请写「不可判断」，不要假定这是新价格；任何情况下都不要建议低于已配置毛利底线的价格。</blockquote>
+    <h3>常见问题</h3><div class="faq"><p class="q">竞品价格多久抓一次？</p><p>抓取频率应当从类目实际的变化速度推导，并用你自己的快照历史去验证，而不是照抄默认值。要检查的是两件事：频率是否高到能在一次调价影响到你的订单之前发现它，以及是否低到相邻两次读数的差异来自真实变动而不是噪声。一个价格能维持好几周的类目，不需要每小时抓一次。</p></div><div class="faq"><p class="q">为什么必须存价格历史？</p><p>因为只拿一个当前价，无法判断这次变动是短期促销还是永久调整，而这两种情况需要的应对不同。跟随一场为期两天的促销，等于白送毛利；而忽视一次永久性的重新定价，则会丢掉份额。带日期的快照能把「这个价格维持了多久」变成已知量，而不是猜测。</p></div><div class="faq"><p class="q">竞品降价就要跟吗？</p><p>不。只在三个条件同时成立时才跟：对方的商品结构和你重合、这次变动已经维持了足够久、跟价后的价格仍在你毛利底线之上。一个在清尾货的竞品，或者靠不同捆绑方式在竞争的竞品，它的动作不是你必须跟随的。毛利底线是任何自动化应对都不许越过的那条线。</p></div>
+  </div>
+</section>
+<section class="page">
+  <header class="page-head">
+    <div class="idx">06</div>
+    <div>
+      <h2>shopify meta pixel checker</h2>
+      <div class="slug">shopify-meta-pixel-checker · Tracking and Attribution</div>
+    </div>
+  </header>
+  <div class="title-row">
+    <div><span class="tag">EN title</span> Shopify Meta Pixel Checker: Separate Tracking Bugs from Attribution</div>
+    <div><span class="tag">ZH title</span> Shopify Meta Pixel 检查：分清追踪故障与归因差异</div>
+  </div>
+
+  <div class="lang">
+    <div class="lang-label">EN</div>
+    <h3>Scenario</h3><p>A merchant compares the purchase count in Shopify with the purchases reported in Ads Manager, sees a gap, and assumes the pixel is broken. Some gaps are real defects: events never firing, firing twice, or carrying the wrong value. Others are expected, because the two systems use different attribution windows and attribution models, so they will never match exactly. Telling those apart matters, because the first case needs a technical fix while the second needs a reporting decision. This page covers the checks that separate the two and the inputs each one needs.</p>
+    <h3>Workflow · 6 步</h3><ol><li>Confirm events reach Meta at all by opening Test Events in Events Manager and completing a test purchase, then checking that page_view, view_item, add_to_cart, initiate_checkout and purchase arrive in the right order with the expected value and currency, and repeat the test on a mobile device because checkout extensions frequently behave differently there.</li><li>Check for duplicates by comparing the event identifier sent with each purchase, since express checkout buttons and some theme scripts fire purchase more than once for a single order, which inflates reported revenue rather than losing it.</li><li>Verify that value and currency match what the order actually contained, because a mismatch usually means tax or shipping was included on one side and not the other, or that a currency conversion was applied twice.</li><li>Compare only complete calendar days over a window you fix in advance, for example 7 days, and allow for the processing delay in both systems of up to 48 hours, because a same-day comparison always shows a gap that is not a defect, and reconcile counts per day so both sides cover identical dates.</li><li>Quantify what remains as a percentage and classify it as an expected attribution difference when it falls inside the range your attribution settings explain, and as a defect only when the evidence points to missing, duplicated or mistyped events.</li><li>Record the verdict with the evidence behind it and the exact window compared, then re-check after any change using the last 30 days of theme, app and checkout updates as your review list, because the pixel breaks at the checkout step far more often than at page level.</li></ol>
+    <h3>Prompt</h3><blockquote>Act as a tracking QA analyst for a Shopify store. My store context: [category], [monthly orders], [markets and currencies], [pixel and Conversions API setup], [consent tool in use]. My goal: decide whether a reporting gap is a tracking failure or an attribution difference, and fix the failure before anyone changes budget. Use these inputs: [Shopify orders and revenue for the last 7 complete days], [Events Manager event counts by event name including event identifiers], [Ad Manager reported purchases and revenue for the same window], [Test Events screenshots from a completed test purchase], [theme, app and checkout extension changes in the last 30 days with dates]. Compare counts and revenue per window, compute the gap percentage, and classify it as expected attribution difference, duplicate events, missing events, or value mismatch. Return a table with: check performed, expected result, actual result, verdict, and the fix. List events missing from the sequence, any duplicate event identifiers, and the value delta per order. Where the data needed for a check is absent, write cannot determine instead of a verdict, and do not propose a budget change on the basis of an unclassified gap.</blockquote>
+    <h3>FAQ</h3><div class="faq"><p class="q">Why do Shopify orders and Meta reported purchases never match exactly?</p><p>Because the two systems credit a conversion differently. They use different attribution windows and different models for which touchpoint gets the credit, and each only sees the sessions it can observe. A gap is only a defect when it is explained by missing, duplicated or mistyped events, so the classification has to come before any conclusion.</p></div><div class="faq"><p class="q">What is the most common real tracking defect?</p><p>Duplicate purchase events, usually from an express checkout button or a second integration firing alongside the Conversions API. The symptom is reported revenue exceeding actual revenue rather than falling short, which is why it often goes unnoticed. Checking the event identifier sent with each purchase is the fastest way to confirm it.</p></div><div class="faq"><p class="q">When should I stop investigating and accept the gap?</p><p>When the checks pass and the remaining difference is inside the range your attribution settings explain. At that point record the gap size, the window, and the settings behind it, and compare future periods against the same configuration. Changing the setup mid-comparison resets the baseline and makes every later number unreadable.</p></div>
+  </div>
+
+  <div class="lang zh">
+    <div class="lang-label">ZH</div>
+    <h3>场景</h3><p>商家把 Shopify 里的订单数和广告后台报的购买数放在一起，看到有缺口，就断定像素坏了。有些缺口确实是缺陷：事件根本没发、发了两次、或者带错了金额。另一些则是正常的——两套系统的归因窗口和归因模型不同，本来就对不齐。区分这两者很重要，因为前者要改技术，后者只是个口径决策。这一页讲的是把两者分开的检查项，以及每一项需要的输入。</p>
+    <h3>步骤 · 6 步</h3><ol><li>先确认事件到底有没有到 Meta：打开事件管理工具的测试事件，完成一笔测试订单，检查 page_view、view_item、add_to_cart、initiate_checkout 和 purchase 是否按序到达，金额和币种是否符合预期，并在移动端重跑一次，因为结账扩展在两端的表现经常不一样。</li><li>再查重复：比对每次购买事件随事件发出的事件标识，因为快捷结账按钮和部分主题脚本会让一笔订单触发多次 purchase，结果是上报收入虚高而不是漏报。</li><li>核对金额与币种是否和订单实际内容一致，这里的偏差通常来自一边含税含运费另一边不含，或者币种换算被做了两次。</li><li>只比对完整自然日，比较窗口要事先定死，例如 7 天，并且要等两边系统都过完处理延迟，最多 48 小时，因为拿当天数据比永远会看到一个并非缺陷的缺口；对账时两边必须覆盖完全相同的日历日期再开始比较。</li><li>把剩下的缺口算成百分比，如果落在你的归因设置所能解释的范围之内就归类为预期归因差异；只有在证据指向漏发、重复或参数错误时才判为缺陷。</li><li>记录结论、支撑证据和比较的具体窗口，并在任何主题、应用或结账扩展改动后重新检查——用最近 30 天的改动清单作为复核列表，因为像素在结账环节出问题的频率远高于页面层。</li></ol>
+    <h3>提示词</h3><blockquote>你是一名 Shopify 店铺的追踪质量分析师。我的店铺背景：[类目]、[月订单数]、[市场与币种]、[像素与转化 API 配置]、[在用的同意管理工具]。我的目标：判断一个报表缺口是追踪故障还是归因差异，并在任何人调整预算之前把故障修掉。输入包括：[最近 7 个完整自然日的 Shopify 订单数与收入]、[事件管理工具按事件名统计的事件数，含事件标识]、[广告后台同窗口的上报购买数与收入]、[测试订单在测试事件页面的截图]、[最近 30 天的主题、应用与结账扩展改动及日期]。请逐窗口比较事件数与收入，算出缺口百分比，并归类为：预期归因差异、重复事件、漏发事件、或金额不匹配。输出表格，列为：检查项、预期结果、实际结果、判定、以及修复动作。另外列出序列中缺失的事件、重复的事件标识、以及每笔订单的金额差值。检查所需数据不存在时请写「不可判断」而不是给出判定；缺口未归类前，不要提出预算调整建议。</blockquote>
+    <h3>常见问题</h3><div class="faq"><p class="q">为什么 Shopify 订单数和广告后台的上报购买数永远对不齐？</p><p>因为两套系统记功的方式不同：归因窗口不同，判断哪个触点该拿这笔转化的模型也不同，而且各自只看得到自己能观察到的会话。只有当缺口能被漏发、重复或参数错误解释时，才算缺陷。所以必须先归类，再下结论。</p></div><div class="faq"><p class="q">最常见的真实追踪缺陷是什么？</p><p>重复的购买事件，通常来自快捷结账按钮，或者第二个集成在转化 API 之外又发了一遍。症状是上报收入高于实际收入而不是低于，所以经常一直没人发现。最快的确认方式是比对每次购买随事件发出的事件标识。</p></div><div class="faq"><p class="q">什么时候该停止排查、接受这个缺口？</p><p>当各项检查都通过、剩余差异落在你的归因设置能解释的范围之内时。此时记录缺口大小、比较窗口和背后的设置，后续期间用同一套配置对比。中途改配置会重置基准，之后每个数字都没法读了。</p></div>
+  </div>
+</section>
+<section class="page">
+  <header class="page-head">
+    <div class="idx">07</div>
+    <div>
+      <h2>shopify ga4 integration</h2>
+      <div class="slug">shopify-ga4-integration · Tracking and Attribution</div>
+    </div>
+  </header>
+  <div class="title-row">
+    <div><span class="tag">EN title</span> Shopify GA4 Integration: Checks That Make the Numbers Trustworthy</div>
+    <div><span class="tag">ZH title</span> Shopify GA4 接入：先让数字可信再谈优化</div>
+  </div>
+
+  <div class="lang">
+    <div class="lang-label">EN</div>
+    <h3>Scenario</h3><p>A store has GA4 collecting data, but nobody on the team trusts the channel report enough to move budget on it. That distrust is usually justified at the start, because ecommerce tracking fails quietly: the event fires, the number looks plausible, and the parameter that would have exposed the problem is empty. Verification is not about confirming that data exists; it is about confirming that the names, parameters and report definitions line up with what you think you are measuring. This page covers those checks and what to do when one fails.</p>
+    <h3>Workflow · 6 步</h3><ol><li>Confirm events arrive by opening the Realtime report and completing a test purchase, then checking that page_view, view_item, add_to_cart, begin_checkout and purchase appear in sequence with the expected currency and value.</li><li>Verify event names and parameters against the ecommerce specification rather than trusting app defaults, because a renamed or empty parameter such as items or value breaks downstream reports while the event itself keeps firing.</li><li>Check the key event configuration in your property, noting that the standard purchase event is marked as a key event by default in GA4, so the useful checks are whether your own custom events are marked deliberately and whether a non-converting event was left marked by accident.</li><li>Reconcile purchase counts and revenue at transaction level using the transaction identifier for the last 30 days, since a persistent mismatch usually traces to duplicate purchase events from express checkout or to a currency conversion applied on only one side.</li><li>Account for consent state before calling a gap a defect, because modelling applies only when your consent mode implementation qualifies and your traffic reaches the thresholds Google sets, and the property reports the observed and modelled split directly, so read it there rather than assuming a share.</li><li>Compare complete calendar days only, over a window of at least 7 days, and allow up to 48 hours for a day to finalise, then re-run the test purchase after any theme, app or checkout change and keep a dated record, because the integration breaks at the checkout step far more often than at page level.</li></ol>
+    <h3>Prompt</h3><blockquote>Act as an analytics implementation reviewer for a Shopify store. My store context: [category], [monthly orders], [markets and currencies], [GA4 property and data stream setup], [consent tool and its default state]. My goal: decide whether the GA4 property can be trusted for channel decisions, and fix whatever breaks that trust. Use these inputs: [Shopify orders and revenue for the last 30 complete days], [GA4 purchase count and revenue for the same window], [key event configuration listing which events are marked], [consent mode implementation type and settings], [theme, app and checkout changes in the last 30 days with dates]. Reconcile at transaction level where the transaction identifier is present, then classify the gap as consent modelling, missing or unmarked key event, duplicate purchase, currency mismatch, or processing lag. Return a table with: dimension compared, Shopify value, GA4 value, gap percentage, classification, and the fix. List the events that are missing or unmarked, and state which comparisons are invalid until the gap is closed. Where the transaction identifier is absent, write cannot determine rather than forcing a classification, and do not recommend budget changes while any unexplained gap remains.</blockquote>
+    <h3>FAQ</h3><div class="faq"><p class="q">Is a missing key event mark the usual reason purchases disappear from reports?</p><p>Usually not. In GA4 the standard purchase event is marked as a key event by default, so a missing mark is more likely to affect a custom event you defined yourself. The checks that find real problems are whether the event fires at all, whether it carries items and value, and whether the report you are reading actually counts that event.</p></div><div class="faq"><p class="q">How much of my traffic should I expect to be modelled under consent mode?</p><p>There is no fixed share you should expect. Modelling applies only when your consent mode implementation qualifies and your traffic meets the thresholds Google sets, and the resulting split between observed and modelled data is reported inside the property. Read that figure and compare periods with the same configuration rather than assuming a percentage.</p></div><div class="faq"><p class="q">Why does my GA4 revenue look low when I check it the same day?</p><p>Because a day in GA4 is not final immediately and can take up to 48 hours to settle, so a same-day comparison shows a gap that is not a defect. Compare complete calendar days only, wait for the window to finalise, and compare the same weekday against the previous week so day-of-week patterns do not distort the reading.</p></div>
+  </div>
+
+  <div class="lang zh">
+    <div class="lang-label">ZH</div>
+    <h3>场景</h3><p>店铺的 GA4 在收数据，但团队里没人敢信渠道报表，更不敢按它动预算。这种不信任在初期通常是有道理的，因为电商追踪坏得很安静：事件照发、数字看起来也合理，而本来能暴露问题的那个参数却是空的。验证不是要确认数据存在，而是要确认事件名、参数和报表口径，和你以为自己在量的那件事是对齐的。这一页讲的就是这些检查项，以及某一项失败时该怎么办。</p>
+    <h3>步骤 · 6 步</h3><ol><li>先确认事件有到达：打开实时报告并完成一笔测试订单，检查 page_view、view_item、add_to_cart、begin_checkout 和 purchase 是否按序出现，币种和金额是否符合预期。</li><li>拿事件名和参数去比照电商规范，而不是信任应用的默认配置，因为一个被改名或为空的参数，比如 items 或 value，会在事件照常发出的同时悄悄毁掉下游报表。</li><li>检查属性里的关键事件配置，注意标准 purchase 事件在 GA4 中默认就被标记为关键事件，所以真正有用的检查是：你自己定义的自定义事件是否被有意标记，以及有没有哪个并非转化的事件被误留了标记。</li><li>在交易标识存在的前提下，按交易逐笔对账购买数与收入，因为偏差通常要么来自快捷结账触发的重复购买事件，要么来自只在一侧做过的币种换算。</li><li>判断缺口之前先把同意状态考虑进去，因为建模只在你的同意模式实现方式符合资格、且流量达到 Google 设定的门槛时才适用；而观测数据与建模数据的占比是属性里直接报出来的，去那里读，不要自己假设一个比例。</li><li>只比对完整自然日，并给一天留出最多 48 小时的定稿时间；任何主题、应用或结账改动后都重跑一次测试订单并留档，因为接入在结账环节断掉的频率远高于页面层。</li></ol>
+    <h3>提示词</h3><blockquote>你是一名 Shopify 店铺的分析实施审查员。我的店铺背景：[类目]、[月订单数]、[市场与币种]、[GA4 属性与数据流配置]、[同意管理工具及其默认状态]。我的目标：判断这个 GA4 属性能不能用来做渠道决策，并修掉任何破坏可信度的问题。输入包括：[最近 30 个完整自然日的 Shopify 订单数与收入]、[同窗口的 GA4 购买数与收入]、[关键事件配置清单，写明哪些事件被标记]、[同意模式的实现方式与设置]、[最近 30 天的主题、应用与结账改动及日期]。请在交易标识存在的前提下按交易逐笔对账，然后把缺口归类为：同意建模、关键事件漏发或未标记、重复购买、币种不匹配、或处理延迟。输出表格，列为：比较维度、Shopify 值、GA4 值、缺口百分比、归类、以及修复动作。列出漏发或未标记的事件，并说明在缺口关闭之前哪些对比是无效的。交易标识缺失时请写不可判断，不要强行归一类；只要仍有未解释的缺口，就不要给出预算调整建议。</blockquote>
+    <h3>常见问题</h3><div class="faq"><p class="q">购买数从报表里消失，通常是因为关键事件没标记吗？</p><p>通常不是。在 GA4 里标准的 purchase 事件默认就被标记为关键事件，所以「没标记」更可能影响的只是你自己定义的自定义事件。真正能查出问题的检查是：事件到底有没有触发、有没有带上 items 和 value、以及你正在看的这张报表是否真的统计了这个事件。</p></div><div class="faq"><p class="q">同意模式下，我应该预期有多少流量被建模？</p><p>不存在一个你该预期的固定比例。建模只在你的同意模式实现方式符合资格、且流量达到 Google 设定的门槛时才适用，而观测数据与建模数据的占比是属性里直接报出来的。去那里读这个数，并在配置相同的期间之间做比较，而不是假设一个百分比。</p></div><div class="faq"><p class="q">为什么当天看 GA4 收入总是偏低？</p><p>因为 GA4 里的一天不会立刻定稿，最多可能需要 48 小时才能确定，所以拿当天数据比对一定会看到一个并非缺陷的缺口。只比对完整的自然日、等窗口定稿，并把同一个星期几与前一周对比，避免星期效应干扰读数。</p></div>
+  </div>
+</section>
+<section class="page">
+  <header class="page-head">
+    <div class="idx">08</div>
+    <div>
+      <h2>shopify product description generator</h2>
+      <div class="slug">shopify-product-description-generator · Catalog and Content</div>
+    </div>
+  </header>
+  <div class="title-row">
+    <div><span class="tag">EN title</span> Shopify Product Description Generator: From Supplier PDF to Real Copy</div>
+    <div><span class="tag">ZH title</span> Shopify 商品描述生成：从供应商资料到能卖的文案</div>
+  </div>
+
+  <div class="lang">
+    <div class="lang-label">EN</div>
+    <h3>Scenario</h3><p>A merchant imports two hundred products from a supplier and the descriptions arrive as one line of marketing copy that is identical across the catalog. Generating copy at that scale only works when there is something specific to generate from, which means the attribute table has to be filled before generation rather than after. The failure mode is not bad prose, it is confident prose: a generator with no facts produces specifications that sound authoritative and are wrong, and wrong specifications turn into returns. This page covers preparing the attributes, generating from them, and checking the output before it goes live.</p>
+    <h3>Workflow · 6 步</h3><ol><li>Define the required attribute set per category before generating anything, choosing the fields a buyer actually needs to decide in that category, for example sizing and fabric in apparel or compatibility and power rating in electronics, rather than applying one field count across the whole catalog.</li><li>Audit the existing attribute table first and fix the data at source, since a field that is empty on more than 30% of products is a taxonomy problem rather than a copywriting one, and generating around the gap only hides it from the next person who looks.</li><li>Generate 3 candidate headlines per product from the filled attributes, keep the one that states a checkable fact, and treat material, dimensions, compatibility and care as atomic facts that can be corrected in one place and propagated to every variant.</li><li>Treat length as a layout decision rather than a ranking factor, using short blocks and scannable lists for mobile, because search engines derive their own snippet from the page and no fixed character prefix is guaranteed to be shown.</li><li>Check every generated claim against the source before publishing and drop any claim the source does not support, because an invented specification is a compliance problem before it is a copy problem, and returns driven by wrong specifications cost more than the writing ever saved.</li><li>Compare rewritten products against a control group you deliberately left alone so you can tell whether the change added revenue or just changed the words, and repeat the comparison over at least 2 quarters before treating the result as stable.</li></ol>
+    <h3>Prompt</h3><blockquote>Act as a catalog content editor for a Shopify store. My store context: [category], [brand voice notes], [primary markets and languages], [required attribute fields per category], [return rate by category]. My goal: turn raw supplier data into descriptions that are accurate and specific enough to reduce returns. Use these inputs: [supplier data sheet or PDF text per product], [existing attribute table with empty fields marked], [target keyword per product], [control group product list that must not be rewritten], [compliance rules for claims in this category]. For each product, write: a one-line summary, a scannable attribute list, a use-case paragraph, and a care or compatibility note. Use only facts present in the source data. Return a table with: product, fields used, claims made, source line supporting each claim, and any claim that was dropped for lack of support. Where a required attribute is empty in the source, write unknown rather than inferring a typical value, and list those products separately so the data can be fixed at source. Do not state or imply that a specific character prefix is guaranteed to appear in search results.</blockquote>
+    <h3>FAQ</h3><div class="faq"><p class="q">How many product attributes do I need before generating?</p><p>Enough for a buyer in that category to decide, which is a category question rather than a number. Apparel needs sizing, fabric and care, electronics needs compatibility and power rating, and furniture needs dimensions and assembly. Audit what is actually filled, fix the gaps at source, and generate only from fields that hold real values.</p></div><div class="faq"><p class="q">Does generated copy carry a search risk?</p><p>Yes, and duplicate text is only one of the risks. Ungrounded or invented specifications are the more common problem, because they create compliance exposure and drive returns, while thin and templated text across a large catalog can also be treated as low value. Accuracy and per-product specificity matter more than wording.</p></div><div class="faq"><p class="q">How do I tell whether the rewrite actually helped?</p><p>Hold back a control group and compare over the same window. Pick a slice of comparable products, leave their descriptions untouched, and measure revenue per session and return rate for both groups. Without a control group you cannot separate the effect of the copy from seasonality or traffic changes, and a single before-and-after comparison will usually flatter the change.</p></div>
+  </div>
+
+  <div class="lang zh">
+    <div class="lang-label">ZH</div>
+    <h3>场景</h3><p>商家从供应商那里导入两百个商品，拿到的描述是一整条全目录通用的营销套话。这种规模下要生成文案，前提是得有东西可生成——也就是说属性表要在生成之前填好，而不是之后。真正的失败模式不是写得差，而是写得自信：没有事实支撑的生成器，会产出听起来很权威、实际是错的规格参数，而错误的规格会变成退货。这一页讲的是怎么准备属性、怎么基于属性生成、以及上线前怎么核。</p>
+    <h3>步骤 · 6 步</h3><ol><li>生成之前先按类目定义必填属性集，挑的是该类目里买家真正需要用来做决定的字段，例如服装是尺码和面料、电子是兼容性和功率，而不是给整个目录套一个统一的字段数量。</li><li>先审计现有属性表并从源头修数据——一个在超过 30% 商品上为空的字段是分类体系的问题，而不是文案问题；绕着它生成只会把问题藏起来，留给下一个看的人。</li><li>从已填写的属性里为每个商品生成 3 个候选标题，留下陈述可核查事实的那一个；把材质、尺寸、兼容性和洗护当作原子事实，一次更正就能同步到所有变体。</li><li>把长度当作版式决策而不是排名因素，移动端用短段落和可扫读的列表；搜索引擎的摘要是从页面自行提取的，并不存在某个固定长度的前缀必然被展示。</li><li>上线前逐条核对生成内容里的每个断言是否有出处支撑，没有支撑的直接删掉——编造出来的规格参数首先是合规问题，其次才是文案问题；由错误规格导致的退货，代价远高于省下的写作时间。</li><li>把改写过的商品和你刻意留着不动的对照组做比较，才能分清这次改动究竟是带来了收入，还是只是换了措辞；并且至少连续比较 2 个季度，再把它当成稳定结论。</li></ol>
+    <h3>提示词</h3><blockquote>你是一名 Shopify 店铺的商品内容编辑。我的店铺背景：[类目]、[品牌语气说明]、[主要市场与语言]、[各类目必填属性字段]、[各类目退货率]。我的目标：把原始供应商资料转成准确且具体到能降低退货率的描述。输入包括：[每个商品的供应商数据表或 PDF 文本]、[现有属性表，空字段需标注]、[每个商品的目标关键词]、[不得改写的对照组商品清单]、[该类目关于宣传用语的合规规则]。对每个商品请写出：一句摘要、可扫读的属性列表、一段使用场景、以及一条洗护或兼容性提示。只能使用来源数据中实际存在的事实。输出表格，列为：商品、所用字段、所作断言、支撑每条断言的来源行、以及因缺乏支撑而被删除的断言。必填属性在来源中为空时请写「未知」，不要推断一个常见值，并把这些商品单独列出以便在源头修数据。不要声称或暗示搜索结果中某个固定长度的前缀一定会被展示。</blockquote>
+    <h3>常见问题</h3><div class="faq"><p class="q">生成之前需要多少个商品属性？</p><p>够让该类目的买家做出决定就够了，这是一个类目问题而不是一个数字问题。服装需要尺码、面料和洗护，电子需要兼容性和功率，家具需要尺寸和安装要求。先审计实际填了什么、从源头把缺口补上，再只用确有值的字段去生成。</p></div><div class="faq"><p class="q">生成文案会有搜索风险吗？</p><p>有，而重复只是其中一种风险。更常见的问题是无依据或编造的规格参数——它带来合规风险并推高退货；同时，大批量目录上使用单薄且模板化的文案也可能被判定为低价值内容。准确性和逐商品的具体性，比措辞重要得多。</p></div><div class="faq"><p class="q">怎么判断这次改写到底有没有用？</p><p>留一组对照再比较。挑一批可比的同类商品，保持它们的描述不动，然后在同一窗口内比较两组的每次会话收入和退货率。没有对照组，你无法把文案的效果和季节性或流量变化分开。</p></div>
+  </div>
+</section>
+<section class="page">
+  <header class="page-head">
+    <div class="idx">09</div>
+    <div>
+      <h2>shopify refund analytics</h2>
+      <div class="slug">shopify-refund-analytics · Returns and Customer Experience</div>
+    </div>
+  </header>
+  <div class="title-row">
+    <div><span class="tag">EN title</span> Shopify Refund Analytics: Read Refund Rate by Reason, Not by Total</div>
+    <div><span class="tag">ZH title</span> Shopify 退款分析：按原因拆，而不是只看总额</div>
+  </div>
+
+  <div class="lang">
+    <div class="lang-label">EN</div>
+    <h3>Scenario</h3><p>A store sees refunds climbing and the first instinct is to tighten the returns policy. That usually treats the symptom, because three different things are folded into the same number: money returned to customers, goods coming back to the warehouse, and goods that come back unsellable. Those are separate events with separate costs, and they are driven by different causes. A sizing problem produces resalable returns, while a quality problem produces write-offs. This page covers splitting the number so the fix matches the cause, and defining each rate so it can be compared across periods.</p>
+    <h3>Workflow · 6 步</h3><ol><li>Separate the three events before measuring anything, because a refund is money returned to the customer, a return is goods arriving back at the warehouse, and a write-off is returned goods that cannot be resold, and whether returned goods are resalable is a third question rather than a consequence of either of the first two.</li><li>Define each rate with an explicit numerator and denominator and write them down, for example refund amount over net sales amount, returned units over shipped units, and written-off units over returned units, all for the same window.</li><li>Attribute refunds to the month the order shipped rather than the month the refund was issued, because refunds lag orders and comparing a refund month against an order month produces a trend that is partly an artefact of timing.</li><li>Group refunds by reason code and require a minimum sample before ranking causes, for example at least 20 units returned in a reason before its rate is treated as a signal, and record the window the sample came from.</li><li>Separate the costs that behave differently by recording refunded amount, return shipping and handling cost, and the value of inventory written off, because a high refund rate on cheap resalable items is a different problem from a low rate on items that come back unsellable.</li><li>Check whether the cause is concentrated, since 12% on one size of one style points at the sizing chart while 12% spread evenly across a category points at quality or expectation, then ship the fix and re-measure the same rates on the same definitions for the next 2 quarters.</li></ol>
+    <h3>Prompt</h3><blockquote>Act as a returns analyst for a Shopify store. My store context: [category], [AOV], [monthly orders], [return window in days], [return shipping policy], [primary markets]. My goal: find what is actually driving refunds and what each cause costs. Use these inputs: [orders by ship month with units, net sales amount and COGS], [refunds with order identifier, ship date, refund date, reason code and refunded amount], [return receipts with units, condition grade and whether restocked], [write-off records with units and inventory value], [return shipping cost per unit]. Compute refund rate as refund amount over net sales amount, return rate as returned units over shipped units, and write-off rate as written-off units over returned units, all grouped by the ship month of the original order. Return a table with: reason code, refund count, refund amount, units returned, units written off, resalable value, return shipping cost, and total cost. Then rank reasons by total cost and mark any reason whose sample is under 20 refunds as inconclusive. Where the refund records lack the original order date or the shipped-unit denominator, write cannot determine for that rate rather than estimating a denominator, and do not rank reasons against each other when the denominators differ between windows.</blockquote>
+    <h3>FAQ</h3><div class="faq"><p class="q">Why is one overall refund rate not enough?</p><p>Because it merges three events with different costs and different causes. Refunds are money leaving, returns are goods arriving back at the warehouse, and write-offs are goods that cannot be resold again. A store can see refund rate hold steady while write-offs climb, which a single number hides until the loss shows up as a margin problem.</p></div><div class="faq"><p class="q">How do I tell a sizing problem from a quality problem?</p><p>Look at where the refunds concentrate. A high rate concentrated on one size of one style usually indicates the sizing chart or the product page is misleading buyers. The same rate spread evenly across a whole category points more often at quality or at a gap between the listing and what arrives.</p></div><div class="faq"><p class="q">What is a normal refund rate?</p><p>There is no universal figure, because a defensible range depends on your category, price point and return window. What matters is your own trend under a fixed definition. Pick one set of numerators and denominators, hold them constant, compare consecutive periods against that baseline, and recheck the baseline itself whenever you change the return policy or the product mix.</p></div>
+  </div>
+
+  <div class="lang zh">
+    <div class="lang-label">ZH</div>
+    <h3>场景</h3><p>店铺看到退款在涨，第一反应往往是收紧退货政策。这通常只是在治症状，因为同一个数字里混着三件不同的事：钱退给了买家、货回到了仓库、以及货回来了但不能再卖。这三件事成本结构不同，成因也不同——尺码问题带来的是可再售的退货，质量问题带来的是报废。这一页讲的是怎么把这个数字拆开，让对策对得上成因，以及怎么把每个率定义清楚以便跨期比较。</p>
+    <h3>步骤 · 6 步</h3><ol><li>测量之前先把三件事分开：退款是钱退回给买家，退货是货回到仓库，报废是回来但卖不出去的货；而退回来的货能不能再卖，是第三个独立的问题，不是前两者的必然结果。</li><li>给每个率写明分子分母并记下来，例如退款金额比同窗口的净销售额、退回件数比发货件数、报废件数比退回件数。</li><li>归因要挂到原订单的发货月而不是退款发生月，因为退款滞后于订单，拿退款月比订单月会得到一个部分来自时间错位的趋势。</li><li>按原因码分组并设最小样本门槛，例如某原因的退回件数不足 20 件时不参与排序；同时把行为规律不同的成本分开记录——退款金额、退货运费与处理成本、以及报废库存的价值——因为便宜但可再售商品的退款率高，和贵但回来就报废的商品退款率低，是完全不同的问题。</li><li>检查成因是否集中：12% 集中在某个款的某个尺码，指向尺码表；12% 均匀铺满整个类目，通常指向质量或预期落差。</li><li>最后把改进动作发出去，例如更新尺码表、换包装、或如实写配送时效，并在接下来的 2 个季度里用同一套定义重新测量同样的指标，再把它当作稳定结论。</li></ol>
+    <h3>提示词</h3><blockquote>你是一名 Shopify 店铺的退货分析师。我的店铺背景：[类目]、[客单价]、[月订单数]、[退货窗口天数]、[退货运费政策]、[主要市场]。我的目标：找出退款的真实驱动因素，以及每种成因各自的成本。输入包括：[按发货月统计的订单，含件数、净销售额与 COGS]、[退款记录，含订单标识、发货日期、退款日期、原因码与退款金额]、[退货入库记录，含件数、成色分级与是否重新上架]、[报废记录，含件数与库存价值]、[单位退货运费]。请计算：退款率 = 退款金额 / 净销售额，退货率 = 退回件数 / 发货件数，报废率 = 报废件数 / 退回件数，全部按原订单发货月分组。输出表格，列为：原因码、退款笔数、退款金额、退回件数、报废件数、可再售价值、退货运费、总成本。然后按总成本排序，并把样本不足 20 笔的原因标注为「样本不足」。若退款记录缺少原订单日期或缺少发货件数分母，该率请写「不可判断」，不要估算分母；不同窗口分母不一致时，不要跨窗口排序。</blockquote>
+    <h3>常见问题</h3><div class="faq"><p class="q">为什么只看一个总的退款率不够？</p><p>因为它把三件成本结构和成因都不同的事混在了一起：退款是钱流出，退货是货回到仓库，报废是回来但再也不能卖的货。一个店铺完全可能出现退款率持平、报废却在涨的情况，而这在一个数字里是看不出来的。</p></div><div class="faq"><p class="q">怎么区分尺码问题和质量问题？</p><p>看退款集中在哪儿。高退款率集中在某个款的某个尺码，通常说明尺码表或商品页在误导买家；同样的比例均匀铺满整个类目，则更多指向质量本身，或者商品页描述和到手实物之间的落差。</p></div><div class="faq"><p class="q">正常的退款率是多少？</p><p>不存在一个通用数字，因为合理区间取决于你的类目、价格点和退货窗口。真正重要的是你自己在固定定义下的趋势。选好一组分子分母，保持不变，然后把连续期间对照这个基准来看。</p></div>
+  </div>
+</section>
+<section class="page">
+  <header class="page-head">
+    <div class="idx">10</div>
+    <div>
+      <h2>shopify bulk price editor</h2>
+      <div class="slug">shopify-bulk-price-editor · Pricing and Margin</div>
+    </div>
+  </header>
+  <div class="title-row">
+    <div><span class="tag">EN title</span> Shopify Bulk Price Editor: Rules, Batch Size, and a Way Back</div>
+    <div><span class="tag">ZH title</span> Shopify 批量改价：先定规则、再分批、留回滚</div>
+  </div>
+
+  <div class="lang">
+    <div class="lang-label">EN</div>
+    <h3>Scenario</h3><p>A merchant needs to move prices on four hundred variants after a supplier cost increase, and the fear is not the edit itself but discovering a week later that half the catalog is now selling below cost. Bulk edits fail in two predictable ways: the rounding step quietly pushes a variant under the margin floor after the margin check has already passed, and there is no rollback file when something goes wrong. Both are preventable with ordering and a backup. This page covers defining the rule, applying it in a safe order, and recovering when it fails.</p>
+    <h3>Workflow · 6 步</h3><ol><li>Declare the margin definition before calculating anything, stating whether margin means gross margin after cost of goods only, or contribution margin after shipping, payment fees and acquisition cost are also deducted, because the same price can clear one definition and breach the other, and the gap is usually the fixed per-order costs that do not scale with price.</li><li>Compute the target price from the rule using a formula applied identically across the batch, such as current price multiplied by one plus the cost increase percentage, for example 20%, then record the input and the result per variant in an export you can diff later.</li><li>Round only after the calculation and never to an intermediate value, because rounding an intermediate shifts the price you were trying to protect by up to the rounding unit, and that shift is largest on the lowest priced variants.</li><li>Re-validate margin on the rounded price as a separate final gate, and route every variant that breaches the floor into a human decision list with the reason it breached rather than publishing it with the batch.</li><li>Size the batch from the exposure you can absorb, which is roughly the number of variants multiplied by how long a wrong price would go unnoticed, for example 24 hours if you review daily, so a mistake stays survivable.</li><li>Generate a rollback file before applying anything, containing the previous price for every variant you touch, verify it by restoring 1 variant first, and treat price endings as a decision to test rather than as a rule, since whether a .99 ending helps depends on your category and price point.</li></ol>
+    <h3>Prompt</h3><blockquote>Act as a pricing operations reviewer for a Shopify store. My store context: [category], [number of variants in scope], [margin definition in use], [primary markets and currencies], [price ending convention], [channels that will be affected]. My goal: apply a price rule in bulk without breaching the margin floor, and be able to undo it. Use these inputs: [variant export with SKU, current price, compare-at price, cost per unit], [supplier cost change with effective date], [margin floor as a percentage], [configured batch size], [rounding rule such as nearest whole unit or .99 ending], [list of variants that must not be repriced]. For every variant in scope, compute the target price from the cost change, apply the rounding rule, then re-validate the margin on the rounded price. Return a table with: SKU, current price, target price, rounded price, margin before rounding, margin after rounding, and verdict (apply, hold, or exclude). Produce a rollback file listing the previous price for every variant marked apply. Where a variant has no cost recorded, exclude it from the run and list it as blocked rather than applying the average cost change to it, and write cannot determine for its margin columns.</blockquote>
+    <h3>FAQ</h3><div class="faq"><p class="q">Why check margin twice, before and after rounding?</p><p>Because rounding happens after the price is calculated and can move it down across the floor. A variant priced at 49 with a 7% increase lands at 52.43, and rounding to 51 can drop it under a margin floor that the unrounded value cleared. The second check is the only one that reflects the price customers actually see.</p></div><div class="faq"><p class="q">What batch size should I use?</p><p>Size it from exposure rather than picking a round number. Exposure is roughly the number of variants multiplied by how long a wrong price would go unnoticed before someone catches it. If you check daily, larger batches are survivable; if the next review is a week away, keep them small enough that a mistake cannot do real damage.</p></div><div class="faq"><p class="q">Should I use .99 price endings?</p><p>Treat it as something to test rather than a rule. Whether a charm ending helps depends on your category, price point and how competitors in your market present prices, and the effect, if any, is usually small. Run it on a subset, measure revenue per session, and keep it only if your own data supports it.</p></div>
+  </div>
+
+  <div class="lang zh">
+    <div class="lang-label">ZH</div>
+    <h3>场景</h3><p>供应商涨价后，商家要一次调整四百个变体的价格。真正让人担心的不是改这个动作本身，而是一周后才发现半个目录在亏本卖。批量改价的失败方式基本就两种：取整这一步在毛利校验通过之后，又把某个变体悄悄推到毛利底线以下；以及出了问题没有回滚文件。这两件都能靠执行顺序和备份提前挡掉。这一页讲的就是怎么定规则、按什么顺序落地、以及出事怎么恢复。</p>
+    <h3>步骤 · 6 步</h3><ol><li>动手算之前先把毛利口径写清楚：这里的毛利是只扣掉商品成本的毛利，还是再扣掉运费、支付手续费和获客成本之后的贡献毛利——同一个价格在一种口径下过关，在另一种口径下可能就破线了，而差额通常来自那些不随价格缩放的每单固定成本。</li><li>按规则算出目标价，公式要在整批里完全一致，例如现价乘以一加成本涨幅，比如涨幅为 20%，并逐变体把输入与结果记进一份可以事后比对的导出文件里。</li><li>取整只在计算之后做，绝不对中间值取整——对中间值取整会把你本来想保护的价格偏移最多一个取整单位，而这个偏移在最低价的变体上最大。</li><li>对取整后的价格再做一次独立的毛利校验作为最后一道闸；所有因此破线的变体，连破线原因一起进人工决策清单，不随本批发布。</li><li>批次大小按你能承受的敞口来定，敞口约等于变体数量乘以一个错价多久才会被发现，例如你每天复核就按 24 小时算；批次要小到出错也不致命。</li><li>落地前先生成回滚文件，包含你这次要改的每个变体的原价，并先还原 1 个变体验证文件可用，再跑剩下的；价格尾数要当成待测试的选项而不是通则——.99 有没有用，取决于你的类目和价格点。</li></ol>
+    <h3>提示词</h3><blockquote>你是一名 Shopify 店铺的定价运营审查员。我的店铺背景：[类目]、[本次范围内的变体数]、[在用的毛利口径]、[主要市场与币种]、[价格尾数惯例]、[会受影响的渠道]。我的目标：批量套用价格规则，同时不突破毛利底线，并且能撤销。输入包括：[变体导出，含 SKU、现价、划线价、单位成本]、[供应商成本变动及生效日期]、[毛利下限百分比]、[已配置的批次大小]、[取整规则，例如取整到个位或 .99 尾数]、[不得调价的变体清单]。对每个范围内的变体，请按成本变动算出目标价，套用取整规则，然后对取整后的价格重新校验一次毛利。输出表格，列为：SKU、现价、目标价、取整后价格、取整前毛利、取整后毛利、判定（执行 / 暂缓 / 排除）。并生成一份回滚文件，列出所有标记为「执行」的变体的原价。若某个变体没有记录成本，请将其排除在本轮之外并标注为「已阻断」，不要用平均成本涨幅套到它身上，其毛利相关列请写「不可判断」。</blockquote>
+    <h3>常见问题</h3><div class="faq"><p class="q">为什么取整前后都要查一次毛利？</p><p>因为取整发生在算价之后，会把价格往下推过底线。一个现价 49 的商品涨 7% 后落在 52.43，取整到 51 就可能跌破毛利底线——而未取整的值本来是守得住的。第二次校验是唯一反映买家实际看到的价格的那一次。</p></div><div class="faq"><p class="q">一批应该改多少个变体？</p><p>按你能承受的敞口来定，而不是挑一个整数。敞口约等于变体数量乘以一个错价多久才会被发现。如果你每天都会看，批次可以大一些；如果下次复核是一周以后，就要小到出错也不致命。</p></div><div class="faq"><p class="q">价格要用 .99 尾数吗？</p><p>把它当成待测试的选项，而不是通则。.99 有没有用，取决于你的类目、价格点，以及你所在市场的竞品怎么呈现价格，而且即便有效，幅度通常也很小。先在一部分商品上跑，测每次会话收入，只有你自己的数据支持时才保留。</p></div>
+  </div>
+</section>
+
+  <footer>
+    数据源：<code>docs/keyword-content-pilot.json</code> · 校验：<code>npm run content:pilot</code>（含 <code>validate-keyword-content.mjs</code>，20 项检查）· 本文件为评审用，未接入构建，站点内容未变更。
+  </footer>
+</div>
+</body>
+</html>
