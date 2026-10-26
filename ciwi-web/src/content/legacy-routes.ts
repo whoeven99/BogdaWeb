@@ -85,3 +85,53 @@ export const legacyRouteMap = {
 };
 
 export type LegacyRouteSlug = keyof typeof legacyRouteMap;
+
+/**
+ * Root-level slugs that were dropped or renamed before the structured route tree
+ * existed. Middleware resolves these in a single hop so Googlebot never walks a
+ * "trailing slash normalisation -> page level redirect" chain.
+ *
+ * Every entry below is a judgement call: the destination is the closest live
+ * equivalent, not a perfect match. Review before shipping if intent matters.
+ */
+export const legacyExtraRootRedirects: Record<string, string> = {
+  // Feature pages folded into the product pages.
+  "product-title-generation": "/products/spark-analytics-agent/#features",
+  "product-image-generation": "/products/spark-analytics-agent/#features",
+  "product-seo-information-generation": "/products/spark-analytics-agent/#features",
+  "collection-description-generation": "/products/spark-analytics-agent/#features",
+  "product-faq-generation": "/products/spark-analytics-agent/#features",
+  "store-theme-translation": "/products/translator/#features",
+  "product-content-translation": "/products/translator/#features",
+  "ip-based-automatic-switching": "/products/translator/#features",
+  "currency-exchange-rate-inquiry": "/guides/how-to-localize-currency-pricing-on-shopify",
+  // Pages that no longer exist. Redirected to the closest live page instead of
+  // returning 404 so the accumulated signals are not thrown away.
+  pricing: "/products/spark-analytics-agent",
+  "google-translation": "/products/translator",
+  "product-image-translation": "/products/translator",
+  "shopify-app-translation": "/products/translator",
+  "supported-languages-list": "/products/translator",
+  // Misspelled compare slugs kept by external links.
+  "vs-g-translate": "/compare/gtranslate-alternative",
+  "vs-transtor": "/compare/transtore-alternative",
+};
+
+/**
+ * Help center documents whose slug changed when the MDX library was rebuilt.
+ * Anything not listed here falls through to the current slug (unchanged) or a
+ * 404 when the document was genuinely retired.
+ */
+export const legacyHelpCenterSlugRedirects: Record<string, string> = {
+  "how-to-complete-the-credit-payment-process": "/help-center/ShopifyApp/where-to-buy-credits",
+  "why-do-i-need-to-pay-for-purchasing-credits": "/help-center/ShopifyApp/where-to-buy-credits",
+  "how-can-i-check-my-credit": "/help-center/ShopifyApp/how-can-i-check-my-credit-balance",
+  "how-to-enable-the-app-from-shopify-theme-customization-to-apply-the-language-currency-exchange-switcher":
+    "/help-center/ShopifyApp/how-to-enable-the-language-currency-exchange-switcher",
+  "why-cant-some-content-be-translated-by-open-ais-policy-restrictions": "/help-center/ShopifyApp/faqs-about-translation",
+  "why-do-i-see-a-pop-up-window-indicating-that-the-translation-failed": "/help-center/ShopifyApp/faqs-about-translation",
+  "translation-service-guarantees": "/help-center/ShopifyApp/faqs-about-translation",
+  "changelog-ciwi-translator": "/help-center/ShopifyApp/about-ciwi-ai-translator-shopify-app",
+};
+
+export const legacyHelpCenterBasePath = "/help-center/ShopifyApp";
