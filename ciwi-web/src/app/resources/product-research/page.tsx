@@ -8,6 +8,7 @@ import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getProductResearchHub, getProductResearchWorkflowArticles} from "@/content/product-research";
 import {getToolReviewHrefMap, getToolReviews} from "@/content/tool-reviews";
 import {getRequestLocale} from "@/lib/i18n-server";
+import {localizeHref} from "@/lib/i18n";
 import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 import {buildBreadcrumbSchema, buildFaqSchema, buildWebPageSchema, buildGraphSchema} from "@/lib/seo/schema";
 
@@ -307,18 +308,20 @@ export default async function ProductResearchHubPage() {
           className="page-section"
         />
 
+        {/* Shortlist only: listing every review here made the reviews index a
+            near-duplicate of this hub, and Google consolidated the two. */}
         <ResourceCollectionSection
           eyebrow={copy.sections.reviews.eyebrow}
           title={copy.sections.reviews.title}
           description={copy.sections.reviews.description}
-          items={reviews.slice(0, 6).map((review) => ({
+          items={reviews.slice(0, 3).map((review) => ({
             title: review.title,
             description: review.description,
             href: review.href,
             meta: [review.categoryLabel, `${review.rating}/10`, String(review.year)],
           }))}
-          ctaLabel={reviews.length > 6 ? copy.sections.reviews.viewAllLabel : undefined}
-          ctaHref={reviews.length > 6 ? "/resources/product-research/reviews" : undefined}
+          ctaLabel={reviews.length > 3 ? copy.sections.reviews.viewAllLabel : undefined}
+          ctaHref={reviews.length > 3 ? localizeHref(locale, "/resources/product-research/reviews") : undefined}
           className="page-section"
         />
 

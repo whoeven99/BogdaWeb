@@ -7287,6 +7287,63 @@ select {
   box-shadow: none;
 }
 
+/* Tool review comparison matrix on /resources/product-research/reviews.
+   Mirrors the compare facts table so both read as the same component family. */
+.review-matrix-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.review-matrix-table {
+  display: grid;
+  gap: 0;
+  min-width: 720px;
+  border: 1px solid rgba(229, 231, 235, 0.9);
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(248, 250, 252, 0.72);
+}
+
+.review-matrix-table__row {
+  display: grid;
+  grid-template-columns: minmax(120px, 1.1fr) repeat(4, minmax(0, 1fr));
+}
+
+.review-matrix-table__row + .review-matrix-table__row {
+  border-top: 1px solid rgba(229, 231, 235, 0.9);
+}
+
+.review-matrix-table__cell {
+  padding: 16px 18px;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.review-matrix-table__cell + .review-matrix-table__cell {
+  border-left: 1px solid rgba(229, 231, 235, 0.9);
+}
+
+.review-matrix-table__cell--head {
+  background: rgba(241, 245, 249, 0.88);
+  color: var(--color-ink-900);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+}
+
+.review-matrix-table__cell--tool {
+  background: rgba(248, 250, 252, 0.92);
+  color: var(--color-ink-900);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.review-matrix-table__text {
+  margin: 0;
+  color: var(--color-ink-800);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

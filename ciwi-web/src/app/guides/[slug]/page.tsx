@@ -538,9 +538,22 @@ function buildGuideStructuredData(
   };
 }
 
-function formatNaturalList(items: string[]) {
+/**
+ * Joins a list into prose. The conjunction and separators are locale-specific:
+ * Chinese uses "、" between items and "和" before the last one, so hardcoding
+ * English "and" leaked English words into the zh-cn pages.
+ */
+function formatNaturalList(items: string[], locale: "en" | "zh-cn") {
   if (items.length <= 1) {
     return items[0] ?? "";
+  }
+
+  if (locale === "zh-cn") {
+    if (items.length === 2) {
+      return `${items[0]}和${items[1]}`;
+    }
+
+    return `${items.slice(0, -1).join("、")}和${items[items.length - 1]}`;
   }
 
   if (items.length === 2) {
@@ -548,6 +561,11 @@ function formatNaturalList(items: string[]) {
   }
 
   return `${items.slice(0, -1).join(", ")}, and ${items[items.length - 1]}`;
+}
+
+/** Sentence punctuation that follows a joined list, per locale. */
+function listSentenceEnd(locale: "en" | "zh-cn") {
+  return locale === "zh-cn" ? "。" : ".";
 }
 
 function getFunctionScenarioNarrativeCopy(locale: "en" | "zh-cn") {
@@ -908,12 +926,16 @@ function renderLocalizationGuidePage(
                 <p className="guide-article__lede">{articleCopy.scopeLead}</p>
                 {criticalScope ? (
                   <p>
-                    <strong>{articleCopy.criticalLabel}:</strong> {formatNaturalList(criticalScope.items)}.
+                    <strong>{articleCopy.criticalLabel}{locale === "zh-cn" ? "：" : ":"}</strong>{" "}
+                    {formatNaturalList(criticalScope.items, locale)}
+                    {listSentenceEnd(locale)}
                   </p>
                 ) : null}
                 {importantScope ? (
                   <p>
-                    <strong>{articleCopy.importantLabel}:</strong> {formatNaturalList(importantScope.items)}.
+                    <strong>{articleCopy.importantLabel}{locale === "zh-cn" ? "：" : ":"}</strong>{" "}
+                    {formatNaturalList(importantScope.items, locale)}
+                    {listSentenceEnd(locale)}
                   </p>
                 ) : null}
               </div>
@@ -1168,12 +1190,16 @@ function renderFunctionScenarioGuidePage(
                 <p className="guide-article__lede">{articleCopy.scopeLead}</p>
                 {criticalScope ? (
                   <p>
-                    <strong>{articleCopy.criticalLabel}:</strong> {formatNaturalList(criticalScope.items)}.
+                    <strong>{articleCopy.criticalLabel}{locale === "zh-cn" ? "：" : ":"}</strong>{" "}
+                    {formatNaturalList(criticalScope.items, locale)}
+                    {listSentenceEnd(locale)}
                   </p>
                 ) : null}
                 {importantScope ? (
                   <p>
-                    <strong>{articleCopy.importantLabel}:</strong> {formatNaturalList(importantScope.items)}.
+                    <strong>{articleCopy.importantLabel}{locale === "zh-cn" ? "：" : ":"}</strong>{" "}
+                    {formatNaturalList(importantScope.items, locale)}
+                    {listSentenceEnd(locale)}
                   </p>
                 ) : null}
               </div>
