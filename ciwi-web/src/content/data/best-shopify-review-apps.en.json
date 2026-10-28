@@ -1,0 +1,174 @@
+{
+  "slug": "best-shopify-review-apps",
+  "href": "/best/best-shopify-review-apps",
+  "categorySlug": "reviews",
+  "categoryLabel": "Reviews",
+  "year": 2026,
+  "updatedLabel": "Checked October 28, 2026",
+  "title": "Best Shopify Review Apps (2026): Free Plans Compared",
+  "description": "Compare six Shopify product review apps by free plan, pricing, review collection and integrations. See plan limits and choose a fit for your store.",
+  "heroEyebrow": "Customer proof",
+  "summary": "A product review app comparison based on current Shopify App Store listings, with free-plan limits and upgrade tradeoffs.",
+  "intro": [
+    "Start with Judge.me if you need unlimited product reviews, photos and videos on a free plan. Compare AG (Air Reviews) for a free automated-request workflow, and Doran if product questions and answers matter alongside reviews.",
+    "Junip is worth comparing for mobile-first submissions and a defined integration upgrade path. CWILL (formerly TrustWILL/Trustoo) needs a closer look at display limits; Vitals fits merchants who also need bundles and upsells.",
+    "This is a listing-based comparison, not a hands-on speed or conversion test. Pricing and named plan features were checked on October 28, 2026 using the linked Shopify App Store pages. Google Business Profile review widgets are outside this product-review shortlist."
+  ],
+  "methodology": [
+    {
+      "title": "Product-review workflow",
+      "description": "Compare review requests, photo and video collection, product-page widgets and migration. Google business reviews serve a different purpose and are excluded."
+    },
+    {
+      "title": "Cost at the required feature tier",
+      "description": "Compare free-plan restrictions and the paid tier needed for your actual workflow, rather than comparing entry prices alone. Prices below are USD per month unless stated otherwise."
+    },
+    {
+      "title": "Evidence and limits",
+      "description": "Each app links to its source listing. The order is an editorial shortlist by use case; it is not an install-count ranking or a measured performance benchmark. Test compatibility on your own theme."
+    }
+  ],
+  "picks": [
+    {
+      "rank": 1,
+      "name": "Judge.me Product Reviews App",
+      "badge": "Free reviews and media",
+      "summary": "A starting point for stores wanting photo and video reviews without paying for the basic collection workflow.",
+      "bestFor": "Unlimited reviews and media on a free plan",
+      "pricing": "Free; Awesome $15/month",
+      "strengths": [
+        "Free photo/video reviews and review widgets",
+        "Paid plan adds Klaviyo integrations and Google Shopping"
+      ],
+      "watchouts": [
+        "Google Shopping and advanced integrations require Awesome; rich snippets and Google Shopping are different features."
+      ],
+      "href": "https://apps.shopify.com/judgeme"
+    },
+    {
+      "rank": 2,
+      "name": "AG Product Reviews App & UGC (Air Reviews)",
+      "badge": "Free automated requests",
+      "summary": "Compare AG if automated requests and storefront review widgets are your main needs.",
+      "bestFor": "Free requests, widgets and testimonials",
+      "pricing": "Free",
+      "strengths": [
+        "Automated review requests",
+        "Review widgets, carousels and rich snippets"
+      ],
+      "watchouts": [
+        "Test migration and widget styling with your theme before switching from an existing app."
+      ],
+      "href": "https://apps.shopify.com/air-reviews"
+    },
+    {
+      "rank": 3,
+      "name": "Doran Product Reviews App & QA",
+      "badge": "Reviews plus questions",
+      "summary": "Doran combines product reviews with questions and answers for merchants who need both workflows.",
+      "bestFor": "Product Q&A alongside photo/video reviews",
+      "pricing": "Free",
+      "strengths": [
+        "Photo/video reviews and customizable widgets",
+        "Imports from several other review apps"
+      ],
+      "watchouts": [
+        "Check that imported reviews retain the product mapping, media and attribution you need."
+      ],
+      "href": "https://apps.shopify.com/doran-reviews-questions"
+    },
+    {
+      "rank": 4,
+      "name": "CWILL(Trustoo) Product Reviews",
+      "badge": "Compare display limits",
+      "summary": "CWILL offers a free starting point, but its display allowance changes the practical value of that tier.",
+      "bestFor": "Stores comparing review display and translation tiers",
+      "pricing": "Free; Essential $11.99/month; Pro $29.99/month",
+      "strengths": [
+        "Free widgets; Essential shows unlimited reviews",
+        "Pro includes video collection and Google Shopping"
+      ],
+      "watchouts": [
+        "Free plan displays six reviews per product. Check the tier for video collection, integrations and translation."
+      ],
+      "href": "https://apps.shopify.com/sealapps-product-review"
+    },
+    {
+      "rank": 5,
+      "name": "Vitals: Reviews, Bundles & 40+",
+      "badge": "Reviews in a broader suite",
+      "summary": "Compare Vitals when review collection is one part of a wider bundle and upsell workflow.",
+      "bestFor": "Reviews, bundles and upsells in one app",
+      "pricing": "$29.99/month plus usage fees; free trial",
+      "strengths": [
+        "Product reviews with media",
+        "Bundles and upsells in the same suite"
+      ],
+      "watchouts": [
+        "No free plan is listed. Usage fees can add to the base price; a suite may be unnecessary if you only need reviews."
+      ],
+      "href": "https://apps.shopify.com/vitals"
+    },
+    {
+      "rank": 6,
+      "name": "Junip Product Reviews App & AI",
+      "badge": "Mobile-first submissions",
+      "summary": "Junip separates its free collection workflow from paid media requests and marketing integrations.",
+      "bestFor": "Mobile-first collection with a paid integration path",
+      "pricing": "Free; Core $29/month; Growth $79/month",
+      "strengths": [
+        "Free unlimited orders and request emails",
+        "Growth adds Google Shopping and Klaviyo integrations"
+      ],
+      "watchouts": [
+        "The Core plan lists review requests with media. Growth is needed for the named marketing integrations; do not assume the free tier includes them."
+      ],
+      "href": "https://apps.shopify.com/junip"
+    }
+  ],
+  "selectionGuide": [
+    {
+      "title": "Compare the feature you will actually use",
+      "description": "Check request-email allowances, photo/video collection, widget placement, review imports and exports. Confirm whether Klaviyo and Google Shopping require a paid tier."
+    },
+    {
+      "title": "Separate free plans from free trials",
+      "description": "Judge.me, AG, Doran, CWILL and Junip offer a free starting point in the checked listings. Vitals lists a paid subscription with a trial. A free plan may still restrict display or integrations."
+    },
+    {
+      "title": "Test migration and theme compatibility",
+      "description": "On a duplicate theme, check imported product mappings, review media, mobile layout and request emails. Remove the previous widget only after validating the replacement; compare page speed before and after."
+    }
+  ],
+  "rightFitGuide": [
+    {
+      "title": "Starting with a free review app",
+      "description": "Compare Judge.me, AG and Doran first. Judge.me covers free media reviews; AG offers automated requests; Doran is an option when product Q&A is part of the requirement."
+    },
+    {
+      "title": "Connecting reviews to marketing",
+      "description": "Compare Judge.me Awesome at $15/month with Junip Growth at $79/month for the listed Klaviyo and Google Shopping features. Check your specific integration workflow before choosing."
+    },
+    {
+      "title": "Choosing a suite or display upgrade",
+      "description": "Compare Vitals if you also need bundles and upsells. For CWILL, budget for Essential if displaying more than six reviews per product is necessary."
+    }
+  ],
+  "finalVerdict": {
+    "title": "Which Shopify review app should you shortlist?",
+    "paragraphs": [
+      "For a free product-review workflow, start by comparing Judge.me, AG and Doran. For integrations, compare the required paid tiers rather than the free-plan badge.",
+      "Use the linked listings to confirm plan details, then test imports, review requests and storefront display on your own theme. This comparison does not establish which app is fastest or produces the most sales."
+    ],
+    "primaryLabel": "Judge.me Product Reviews App",
+    "primaryHref": "https://apps.shopify.com/judgeme",
+    "secondaryLabel": "Browse Shopify App Store",
+    "secondaryHref": "https://apps.shopify.com/"
+  },
+  "keywords": [
+    "best shopify review apps",
+    "shopify review app comparison",
+    "best free product review app for shopify",
+    "shopify product reviews app"
+  ]
+}

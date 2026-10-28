@@ -203,6 +203,66 @@ test("同类目关键词页的相似度高不过阈值（8-gram Jaccard）", () 
   assert.ok(zhPeak.score < 0.7, `ZH 峰值相似度 ${zhPeak.score.toFixed(3)} (${zhPeak.pair})`);
 });
 
+// 2026-10-28：去重只是及格线。评审指出重写后的页面仍是"不同的任务摘要"——
+// EN 步骤平均 47 词、FAQ 答案 18 词，读者拿不到判断规则（分母口径、归因规则、
+// 例外处理、回滚字段、核对方法）。以下仅检查最低长度与结构，
+// 不能证明方法正确或内容可执行；业务口径和事实依据仍须人工验收。
+test("步骤与 FAQ 满足最低长度与标点结构", () => {
+  const bad = [];
+  for (const item of scenarios) {
+    const en = splitEn(item.howToSolve);
+    const enWords = en.map((s) => s.split(/\s+/).filter(Boolean).length);
+    if (enWords.some((n) => n < 20)) bad.push(`${item.slug}: EN 步骤过短 ${enWords.join("/")}`);
+    if (enWords.reduce((a, b) => a + b, 0) < 70) bad.push(`${item.slug}: EN 步骤总词数 ${enWords.reduce((a, b) => a + b, 0)}`);
+
+    const zh = splitZh(item.zh_howToSolve);
+    const zhLen = zh.map((s) => s.length);
+    if (zhLen.some((n) => n < 35)) bad.push(`${item.slug}: ZH 分句过短 ${zhLen.join("/")}`);
+    if (item.zh_howToSolve.length < 130) bad.push(`${item.slug}: ZH 步骤总长 ${item.zh_howToSolve.length}`);
+
+    for (const faq of item.faqs ?? []) {
+      const words = String(faq.answer).split(/\s+/).filter(Boolean).length;
+      if (words < 20) bad.push(`${item.slug}: EN FAQ 答案仅 ${words} 词`);
+      const qw = String(faq.question).split(/\s+/).filter(Boolean).length;
+      if (qw > 16) bad.push(`${item.slug}: EN FAQ 问题 ${qw} 词，过长`);
+      if (!String(faq.answer).trimEnd().endsWith(".")) bad.push(`${item.slug}: EN FAQ 答案未以句号结尾`);
+    }
+    for (const faq of item.zh_faqs ?? []) {
+      const len = String(faq.answer).replace(/\s+/g, "").length;
+      if (len < 32) bad.push(`${item.slug}: ZH FAQ 答案仅 ${len} 字`);
+      if (!String(faq.answer).trimEnd().endsWith("。")) bad.push(`${item.slug}: ZH FAQ 答案未以句号结尾`);
+    }
+  }
+  assert.deepEqual(bad.slice(0, 10), [], `内容退化成摘要 ${bad.length} 处:\n${bad.slice(0, 10).join("\n")}`);
+});
+
+// 数字字面量只触发人工复核，不等同于判定事实真伪；英文拼写数字也仍需人工检查。
+function numericLiterals(text) {
+  return String(text).replace(/\b(?:GA4|B2B|1P|AOV\d?)\b/gi, "").match(/\d+(?:\.\d+)?[%％]?/g) ?? [];
+}
+
+test("数字复核能发现普通百分比、周期和中文数字字面量", () => {
+  assert.deepEqual(numericLiterals("Use 20% for 14 days; 等待 7 天，比例 5％。"), ["20%", "14", "7", "5％"]);
+  assert.deepEqual(numericLiterals("GA4 B2B 1P AOV2"), []);
+});
+
+test("中英文步骤、提示词与 FAQ 无未复核的数字字面量", () => {
+  const bad = [];
+  for (const item of scenarios) {
+    for (const field of ["howToSolve", "zh_howToSolve", "aiPrompt", "zh_aiPrompt", "faqs", "zh_faqs"]) {
+      // 中文提示词的编号是结构标记，不是业务阈值。
+      const text = (Array.isArray(item[field]) ? item[field].map((f) => `${f.question} ${f.answer}`).join(" ") : String(item[field]))
+        .replace(/^\s*\d+\.\s*/gm, "");
+      // 仅在对应 HTTP 故障场景中放行状态码，不为业务阈值全局放行。
+      const technicalCode = item.slug === "shopify-404-error-checker" ? /\b404\b/g
+        : item.slug === "shopify-500-error-troubleshooting" ? /\b500\b/g : null;
+      const numbers = numericLiterals(technicalCode ? text.replace(technicalCode, "HTTP status") : text);
+      if (numbers.length) bad.push(`${item.slug}: ${field} 的数字须人工复核 ${numbers.join(", ")}`);
+    }
+  }
+  assert.deepEqual(bad.slice(0, 10), [], `数字待复核 ${bad.length} 处:\n${bad.slice(0, 10).join("\n")}`);
+});
+
 test("两种语言都有 3 条 FAQ，且同类目内问题不重复", () => {
   const bad = [];
   for (const item of scenarios) {
