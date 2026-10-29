@@ -522,7 +522,6 @@ export default async function SparkPlaybookKeywordDetailPage({params}: SparkPlay
                     key={candidate.slug}
                     href={keywordDetailHref(productSlug, candidate.slug)}
                     title={localizeLanguageSignalText(locale, candidate.title)}
-                    description={localizeLanguageSignalText(locale, candidate.scenarioDescription).slice(0, 140) + "…"}
                     meta={[localizeLanguageSignalText(locale, candidate.category), candidate.keyword]}
                     ctaLabel={copy.sections.related.ctaLabel}
                     titleLevel="h3"

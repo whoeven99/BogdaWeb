@@ -4,7 +4,9 @@ import {LocalizedLink} from "@/components/ui/LocalizedLink";
 type ContentIndexCardProps = {
   href: string;
   title: string;
-  description: string;
+  /** Optional: omit when the source description is boilerplate shared across
+   * sibling cards, since repeating identical copy adds no information. */
+  description?: string;
   meta: string[];
   ctaLabel: string;
   titleLevel?: "h2" | "h3";
@@ -45,7 +47,7 @@ export function ContentIndexCard({
           {title}
         </LocalizedLink>
       </HeadingTag>
-      <p className="ui-content-index-card__body">{description}</p>
+      {description ? <p className="ui-content-index-card__body">{description}</p> : null}
       <div className="ui-content-index-card__cta">
         <CardCtaLink href={href} variant="text">
           {ctaLabel}

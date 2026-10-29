@@ -145,6 +145,8 @@ export default async function BestShopifyAppCollectionPage({params}: BestShopify
           },
         };
 
+  const isReviewComparison = locale === "en" && slug === "best-shopify-review-apps";
+
   const pageUrl = toAbsoluteLocalizedUrl(locale, collection.href);
   const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
@@ -257,8 +259,32 @@ export default async function BestShopifyAppCollectionPage({params}: BestShopify
           <SectionHeading
             eyebrow={copy.picks.eyebrow}
             title={copy.picks.title}
-            description={copy.picks.description}
+            description={isReviewComparison ? "Compare product-review workflows, free-plan limits and paid upgrades. Source listings are linked under each app; this shortlist is not a performance benchmark." : copy.picks.description}
           />
+          {isReviewComparison ? (
+            <div className="mt-6 overflow-x-auto">
+              <table className="w-full text-left text-sm leading-6">
+                <caption className="mb-3 text-left font-semibold">Shopify review app comparison: plans and store fit</caption>
+                <thead>
+                  <tr>
+                    {["App", "Best fit", "Price / plan", "Main tradeoff"].map((label) => (
+                      <th key={label} scope="col" className="border-b border-slate-200 p-3">{label}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {collection.picks.map((item) => (
+                    <tr key={item.name}>
+                      <th scope="row" className="min-w-40 border-b border-slate-200 p-3 font-semibold">{item.name}</th>
+                      <td className="min-w-40 border-b border-slate-200 p-3">{item.bestFor}</td>
+                      <td className="min-w-40 border-b border-slate-200 p-3">{item.pricing}</td>
+                      <td className="min-w-52 border-b border-slate-200 p-3">{item.watchouts[0]}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : null}
           <div className="best-apps-picks">
             {collection.picks.map((item) => (
               <article key={item.name} className="surface-card best-apps-pick">

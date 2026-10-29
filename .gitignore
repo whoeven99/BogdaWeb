@@ -4,3 +4,5 @@ dist/
 .idea/
 doc/shopify_apps.csv
 .env.prod
+*.md
+*.md

@@ -1,6 +1,7 @@
 import type {Locale} from "@/lib/i18n";
 import {normalizeInternalHrefFields} from "@/lib/i18n-content";
 import generatedCollections from "@/content/best-shopify-apps.generated.json";
+import reviewAppsEn from "@/content/data/best-shopify-review-apps.en.json";
 import importedCollections from "@/content/data/best_shopify_app_collections.json";
 
 export type BestShopifyAppCriterion = {
@@ -833,7 +834,7 @@ function localizeImportedCollections(
 
     if (locale === "en") {
       return {
-        ...item,
+        ...(item.slug === reviewAppsEn.slug ? reviewAppsEn : item),
         href: normalizedHref,
       };
     }
