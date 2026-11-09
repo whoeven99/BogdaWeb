@@ -200,6 +200,7 @@ function getLocalizationGuidePageCopy(locale: "en" | "zh-cn") {
             title: "基于 Ciwi 的推荐工具组合",
             description: "如果页面最后要落到工具建议，这里更适合讲 Ciwi 能解决哪些真正的多语言工作流问题。",
             featureDescription: "更适合持续做多语言店铺更新、SEO 同步和结构化内容维护。",
+            productLinkLabel: "查看 Ciwi AI 翻译如何处理这些工作流 →",
           },
           checklist: {
             eyebrow: "检查清单",
@@ -309,6 +310,7 @@ function getLocalizationGuidePageCopy(locale: "en" | "zh-cn") {
             title: "Recommended app setup with Ciwi",
             description: "If the page ends with a tool recommendation, use this section to explain what Ciwi solves in a real localization workflow.",
             featureDescription: "A practical fit for ongoing multilingual storefront updates, SEO sync, and structured content maintenance.",
+            productLinkLabel: "See how Ciwi AI Translator handles this workflow →",
           },
           checklist: {
             eyebrow: "Checklist",
@@ -394,6 +396,7 @@ function getFunctionScenarioPageCopy(locale: "en" | "zh-cn") {
             title: "Ciwi 在这个场景里能做什么？",
             description: "把产品能力翻成用户能理解的工作流收益，而不是只列功能名。",
             featureDescription: "更适合做批量翻译、结构化内容同步和多市场持续更新。",
+            productLinkLabel: "查看 Ciwi AI 翻译如何处理这个场景 →",
           },
           recommendations: {
             eyebrow: "延伸阅读",
@@ -475,6 +478,7 @@ function getFunctionScenarioPageCopy(locale: "en" | "zh-cn") {
             title: "What Ciwi helps automate here",
             description: "Translate product capabilities into workflow outcomes users can actually understand and act on.",
             featureDescription: "A practical fit for bulk translation, structured content sync, and ongoing multi-market updates.",
+            productLinkLabel: "See how Ciwi AI Translator handles this scenario →",
           },
           recommendations: {
             eyebrow: "Next topics",
@@ -1004,6 +1008,14 @@ function renderLocalizationGuidePage(
                 ))}
               </ul>
             </div>
+            <p className="mt-4 text-[15px]">
+              <a
+                className="underline decoration-slate-300 underline-offset-4 transition-colors hover:decoration-slate-500"
+                href={localizeHref(locale, "/products/translator")}
+              >
+                {copy.sections.ciwi.productLinkLabel}
+              </a>
+            </p>
             <div className="guide-callout__actions">
               <Button href={uiCopy.cta.installHref}>{copy.sections.cta.primaryCtaLabel}</Button>
               <Button href={uiCopy.cta.talkHref} variant="secondary">
@@ -1324,6 +1336,14 @@ function renderFunctionScenarioGuidePage(
                 ))}
               </ul>
             </div>
+            <p className="mt-4 text-[15px]">
+              <a
+                className="underline decoration-slate-300 underline-offset-4 transition-colors hover:decoration-slate-500"
+                href={localizeHref(locale, "/products/translator")}
+              >
+                {copy.sections.ciwi.productLinkLabel}
+              </a>
+            </p>
             <div className="guide-callout__actions">
               <Button href={uiCopy.cta.installHref}>{copy.sections.cta.primaryCtaLabel}</Button>
               <Button href={uiCopy.cta.talkHref} variant="secondary">

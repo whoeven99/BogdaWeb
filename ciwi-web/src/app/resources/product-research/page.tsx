@@ -128,11 +128,11 @@ export async function generateMetadata() {
   const locale = await getRequestLocale();
 
   return buildPageMetadata({
-    title: locale === "zh-cn" ? "Shopify 选品工具推荐" : "Best Shopify Product Research Tools",
+    title: locale === "zh-cn" ? "最佳 Shopify 选品工具推荐（2026）" : "Best Shopify Product Research Tools (2026)",
     description:
       locale === "zh-cn"
-        ? "按需求发现、竞品拆解、利润测算和供货履约四个阶段拆解的 Shopify 选品工具与策略专题。"
-        : "A workflow-based hub for Shopify product research tools, split into discovery, competitor analysis, profit validation, and sourcing.",
+        ? "按需求发现、竞品拆解、利润测算和供货履约四个阶段对比 Shopify 选品工具，含 Koala Inspector、Minea、Sell The Trend、Zik Analytics 等独立测评。"
+        : "Shopify product research tools compared by workflow stage — demand discovery, competitor teardowns, profit validation, and sourcing — with independent reviews of Koala Inspector, Minea, Sell The Trend, Zik Analytics, and more.",
     path: "/resources/product-research",
     locale,
   });
