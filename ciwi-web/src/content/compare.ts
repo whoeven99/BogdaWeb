@@ -19,6 +19,53 @@ export type ComparePricingTable = {
   alternativePlans: ComparePricingPlan[];
 };
 
+export type CompareAlternativeOverviewItem = {
+  name: string;
+  href?: string;
+  isCurrentPage?: boolean;
+  bestFor: string;
+  freeAllowance: string;
+  paidFrom: string;
+};
+
+export type CompareAlternativesOverview = {
+  title: string;
+  description: string;
+  items: CompareAlternativeOverviewItem[];
+};
+
+export type CompareFreePlanRow = {
+  label: string;
+  ciwi: string;
+  alternative: string;
+};
+
+export type CompareFreePlanComparison = {
+  title: string;
+  description: string;
+  rows: CompareFreePlanRow[];
+  summary: string;
+};
+
+export type CompareMerchantReviewQuote = {
+  source: string;
+  date: string;
+  issue: string;
+};
+
+export type CompareMerchantReviews = {
+  title: string;
+  description: string;
+  negativeReviewCount: string;
+  negativeReviewCountLabel: string;
+  themes: string[];
+  quotes: CompareMerchantReviewQuote[];
+  paraphraseNote?: string;
+  sourceLabel?: string;
+  sourceUrl?: string;
+  summary: string;
+};
+
 export type CompareItem = {
   slug: string;
   title: string;
@@ -28,6 +75,9 @@ export type CompareItem = {
   appComparison?: string;
   pricingComparison?: string;
   pricingTable?: ComparePricingTable;
+  alternativesOverview?: CompareAlternativesOverview;
+  freePlanComparison?: CompareFreePlanComparison;
+  merchantReviews?: CompareMerchantReviews;
   bestFor: string[];
   summaryMetrics: CompareMetric[];
   scoreMatrix: CompareMetric[];
@@ -193,35 +243,36 @@ function withAdditionalScoreMetrics(items: CompareItem[], locale: Locale): Compa
 }
 
 const ciwiPricingPlansEn: ComparePricingPlan[] = [
-  {name: "Free", price: "Free", note: "147+ languages; image support"},
-  {name: "Basic", price: "$7.99/month", note: "1.5M credits; 200+ currencies"},
-  {name: "Pro", price: "$19.99/month", note: "3M credits; auto translation"},
-  {name: "Premium", price: "$39.99/month", note: "8M credits; 1v1 support"},
+  {name: "Free", price: "Free", note: "500,000 free credits; 148 languages"},
+  {name: "Basic", price: "$7.99/month", note: "2M credits/month; AI glossary; IP-based switching"},
+  {name: "Pro", price: "$19.99/month", note: "5M credits/month; auto translation; images & alt text"},
+  {name: "Premium", price: "$39.99/month", note: "15M credits/month; 1v1 support; expert review"},
 ];
 
 const ciwiPricingPlansZh: ComparePricingPlan[] = [
-  {name: "Free", price: "Free", note: "147+ 种语言；支持图片本地化"},
-  {name: "Basic", price: "$7.99/月", note: "150 万积分；200+ 货币"},
-  {name: "Pro", price: "$19.99/月", note: "300 万积分；自动翻译"},
-  {name: "Premium", price: "$39.99/月", note: "800 万积分；1 对 1 支持"},
+  {name: "Free", price: "Free", note: "50 万免费积分；148 种语言"},
+  {name: "Basic", price: "$7.99/月", note: "200 万积分/月；AI 术语表；按 IP 切换"},
+  {name: "Pro", price: "$19.99/月", note: "500 万积分/月；自动翻译；图片与 Alt 文本"},
+  {name: "Premium", price: "$39.99/月", note: "1500 万积分/月；1 对 1 支持；人工审核"},
 ];
 
 const comparesEn: CompareItem[] = [
   {
     slug: "transcy-alternative",
-    title: "Transcy Alternative for Shopify Translation",
+    title: "Best Transcy Alternatives for Shopify (2026)",
     alternativeName: "Transcy",
-    description: "Compare Ciwi as a Transcy alternative for Shopify, covering storefront content, glossary control, review workflows, and translation maintenance.",
+    description: "Compare the best Transcy alternatives for Shopify — free plan credits, pricing tiers, SEO safety, and recurring merchant complaints, verified Nov 2026.",
     summary: "If you care about more than turning source text into another language, and you want a workflow for products, themes, FAQs, and long-term consistency, Ciwi is more focused on structured governance and localization quality.",
     appComparison:
       "Transcy's public pricing structure presents the app as a combined translation, currency, and market-localization tool. Even the Free plan already bundles one language, one currency, a basic switcher, third-party app translation, and Shopify Payments integration. Higher tiers then scale by editable languages, currencies, AI credits, multilingual SEO, automation, and API-key level integrations such as DeepL, OpenAI, and Gemini. Ciwi's public packaging reads differently. Its plans emphasize broad Shopify content coverage, glossary control, custom AI prompts, image and alt-text localization, IP-based language and currency switching, and higher-touch support at upper tiers. In practice, Transcy looks more like an all-in-one multilingual storefront operations suite, while Ciwi is positioned more around translation governance and structured localization workflow.",
     pricingComparison:
-      "Verified October 8, 2026: the Shopify App Store lists Transcy Free, Regional at $29/month, Continental at $69/month, and Cross-Border at $99/month. Compare required languages, currencies and product count alongside translation credits, review workflow and support. Confirm both apps' current plan limits and usage charges before subscribing; entry price alone does not establish total cost.",
+      "Verified November 9, 2026: the Shopify App Store lists Transcy Free, Local Plus at $14.90/month, Regional at $29/month, Continental at $69/month, and Cross-Border at $99/month, with 7-day trials on paid tiers. Compare required languages, currencies and product count alongside translation credits, review workflow and support. Confirm both apps' current plan limits and usage charges before subscribing; entry price alone does not establish total cost.",
     pricingTable: {
-      rowLabels: ["Free", "Tier 2", "Tier 3", "Tier 4"],
+      rowLabels: ["Free", "Tier 2", "Tier 3", "Tier 4", "Tier 5"],
       ciwiPlans: ciwiPricingPlansEn,
       alternativePlans: [
         {name: "Free", price: "Free", note: "1 language; 1 currency"},
+        {name: "Local Plus", price: "$14.90/month", note: "1 language + currency; 100 products"},
         {name: "Regional", price: "$29/month", note: "3 languages + currencies; 200 products"},
         {name: "Continental", price: "$69/month", note: "15 languages + currencies; 300 products"},
         {name: "Cross-Border", price: "$99/month", note: "50 languages + currencies; 1,500 products"},
@@ -232,6 +283,112 @@ const comparesEn: CompareItem[] = [
       "Teams that need broader Shopify structure coverage",
       "Brands that want product pages, help docs, and SEO pages to work together",
     ],
+    alternativesOverview: {
+      title: "Other Transcy Alternatives Worth Comparing",
+      description: "Beyond Ciwi, these Shopify translation apps are frequent Transcy alternatives. Free-tier allowances and paid entry points below reflect each app's published plans — follow the links for full Ciwi-versus-app breakdowns.",
+      items: [
+        {
+          name: "Ciwi Translator",
+          isCurrentPage: true,
+          bestFor: "Translation governance — glossary, custom prompts, structured Shopify content.",
+          freeAllowance: "500,000 credits; 148 languages",
+          paidFrom: "$7.99/month",
+        },
+        {
+          name: "Shopify Translate & Adapt",
+          href: "/compare/shopify-translate-adapt-alternative",
+          bestFor: "Native Shopify start with manual editing in the admin.",
+          freeAllowance: "Auto-translation for up to 2 languages",
+          paidFrom: "Shopify built-in, no app fee",
+        },
+        {
+          name: "Langwill",
+          href: "/compare/langwill-alternative",
+          bestFor: "All-in-one translation plus currency growth.",
+          freeAllowance: "5,000 words; 1 language",
+          paidFrom: "$9.99/month",
+        },
+        {
+          name: "Hextom AI",
+          href: "/compare/hextom-ai-alternative",
+          bestFor: "Language scale — up to 133 auto languages.",
+          freeAllowance: "3 auto languages; 180+ currencies",
+          paidFrom: "$9.99/month",
+        },
+        {
+          name: "LangShop",
+          href: "/compare/langshop-alternative",
+          bestFor: "Product-count based catalogs; Shopify Flow support.",
+          freeAllowance: "50 products; 1 language",
+          paidFrom: "$10/month",
+        },
+        {
+          name: "T Lab",
+          href: "/compare/t-lab-alternative",
+          bestFor: "Product and collection based limits.",
+          freeAllowance: "500 products; 20 collections",
+          paidFrom: "$11.99/month",
+        },
+        {
+          name: "GTranslate",
+          href: "/compare/gtranslate-alternative",
+          bestFor: "Instant machine translation for all languages.",
+          freeAllowance: "All languages; machine translation",
+          paidFrom: "$12/month",
+        },
+        {
+          name: "Locales.ai",
+          href: "/compare/locales-ai-alternative",
+          bestFor: "Credit-based budgeting, up to 40 languages.",
+          freeAllowance: "2,500 credits; 1 language",
+          paidFrom: "$9.99/month",
+        },
+        {
+          name: "Reversia",
+          href: "/compare/reversia-alternative",
+          bestFor: "Premium word-volume plans.",
+          freeAllowance: "No free plan",
+          paidFrom: "$199/month",
+        },
+      ],
+    },
+    freePlanComparison: {
+      title: "Free Transcy Alternatives: What the Free Plans Actually Include",
+      description: "If you are searching for free Transcy alternatives, the free tier is the fastest way to test fit before paying anything. Here is what each app's free plan covers, and where the paid line sits.",
+      rows: [
+        {label: "Languages in Free", ciwi: "148 languages", alternative: "1 language & 1 currency"},
+        {label: "Free translation allowance", ciwi: "500,000 credits", alternative: "On-page machine translation; no published allowance"},
+        {label: "Editing translations", ciwi: "Edit anytime in Free", alternative: "Full editing starts on paid plans"},
+        {label: "Product images & alt text", ciwi: "From the Pro plan ($19.99/month)", alternative: "Not included in Free"},
+      ],
+      summary:
+        "Verified against both apps' Shopify App Store listings on November 9, 2026. Transcy Free goes live in one language and one currency, with full editing behind the paid upgrade. Ciwi Free includes 500,000 translation credits across 148 languages with editing anytime; image and alt-text localization starts on the Pro plan.",
+    },
+    merchantReviews: {
+      title: "What Real Merchants Say About Transcy",
+      description: "In our review baseline, Transcy has accumulated 284 one-to-three-star reviews on the Shopify App Store between August 2020 and August 2026 — one of the highest complaint volumes in this comparison group. The recurring themes are operational, not cosmetic.",
+      negativeReviewCount: "284",
+      negativeReviewCountLabel: "one-to-three-star App Store reviews, Aug 2020 – Aug 2026",
+      themes: [
+        "Broken links and uneditable URL changes",
+        "SEO, canonical and hreflang damage",
+        "Ongoing charges and refund friction",
+        "Lost or damaged translations after updates or uninstall",
+      ],
+      quotes: [
+        {source: "PurrEmbassy", date: "2026-03", issue: "Reported that links were rewritten by the app and could no longer be edited."},
+        {source: "chronofactum.com", date: "2026-04", issue: "Reported a refund dispute after nearly $1,000 in spend, unresolved for months."},
+        {source: "sandiia", date: "2024-10", issue: "Reported that months of SEO work were damaged."},
+        {source: "ZHENHUO GEAR", date: "2025-12", issue: "Reported being charged continuously after uninstalling the app."},
+        {source: "MARSONIPRINT", date: "2026-08", issue: "Reported that existing translations were damaged after an update."},
+        {source: "Tessi-supply.com", date: "2026-01", issue: "Reported declining SEO rankings while the app was running."},
+      ],
+      paraphraseNote: "The entries above are paraphrased summaries of public App Store reviews, not verbatim quotes — see the source for original wording.",
+      sourceLabel: "View original reviews on the Shopify App Store",
+      sourceUrl: "https://apps.shopify.com/transcy-multiple-languages/reviews",
+      summary:
+        "If any of these failure modes matches your situation — SEO-sensitive catalogs, hard-won organic traffic, or billing you cannot easily cancel — weigh them before committing. Ciwi's positioning focuses on the control and safety areas where these complaints cluster.",
+    },
     summaryMetrics: [
       {label: "Price", ciwi: 7, alternative: 8},
       {label: "Translation speed", ciwi: 8, alternative: 8},
@@ -288,7 +445,7 @@ const comparesEn: CompareItem[] = [
         answer:
           "Conclusion: the meaningful comparison is not just sticker price, but whether multilingual breadth is bundled at the cost of harder-to-control operations once languages, currencies, and SEO dependencies grow.",
         evidence: [
-          "The public Transcy ladder runs Free, $14.90/month, $29/month, and $69/month, with paid tiers carrying 7-day trials.",
+          "The public Transcy ladder runs Free, Local Plus at $14.90/month, Regional at $29/month, Continental at $69/month, and Cross-Border at $99/month, with paid tiers carrying 7-day trials.",
           "Ciwi's published ladder is lower on entry price at Free, $7.99/month, $19.99/month, and $39.99/month, while packaging around credits, glossary, custom prompts, auto translation, image localization, and support depth.",
           "That makes Transcy more explicit on multilingual storefront breadth, while Ciwi is clearer on workflow depth and lower first paid commitment.",
         ],
@@ -511,15 +668,84 @@ const comparesEn: CompareItem[] = [
   },
   {
     slug: "langify-alternative",
-    title: "Langify Alternative for Shopify",
+    title: "Best Langify Alternatives for Shopify Translation (2026)",
     alternativeName: "Langify",
-    description: "Compare Ciwi as a Langify alternative for Shopify, focusing on human review, terminology control, translation workflow, and ongoing content updates.",
+    description: "Compare budget-friendly Langify alternatives with automatic translation, SEO-optimized URLs and metadata, and glossary control — plus what to check before switching apps.",
     summary: "If you care more about human review, terminology consistency, and ongoing update governance, Ciwi is easier to combine with glossary, help docs, and resource routing. If the need is more basic translation organization, a Langify-like path is usually easier to understand.",
     bestFor: [
       "Brands with high requirements for human review and terminology consistency",
       "Teams already operating localization workflows and trying to reduce maintenance friction",
       "Shopify merchants thinking about SEO content and storefront content together",
     ],
+    alternativesOverview: {
+      title: "Other Langify Alternatives Worth Comparing",
+      description: "Beyond Ciwi, these Shopify translation apps are frequent Langify alternatives. Free-tier allowances and paid entry points below reflect each app's published plans — follow the links for full Ciwi-versus-app breakdowns.",
+      items: [
+        {
+          name: "Ciwi Translator",
+          isCurrentPage: true,
+          bestFor: "Translation governance — glossary, custom prompts, structured Shopify content.",
+          freeAllowance: "500,000 credits; 148 languages",
+          paidFrom: "$7.99/month",
+        },
+        {
+          name: "Transcy",
+          href: "/compare/transcy-alternative",
+          bestFor: "Automated translation at scale for cross-border selling.",
+          freeAllowance: "1 language & 1 currency",
+          paidFrom: "$14.90/month",
+        },
+        {
+          name: "Shopify Translate & Adapt",
+          href: "/compare/shopify-translate-adapt-alternative",
+          bestFor: "Native Shopify start with manual editing in the admin.",
+          freeAllowance: "Auto-translation for up to 2 languages",
+          paidFrom: "Shopify built-in, no app fee",
+        },
+        {
+          name: "Langwill",
+          href: "/compare/langwill-alternative",
+          bestFor: "All-in-one translation plus currency growth.",
+          freeAllowance: "5,000 words; 1 language",
+          paidFrom: "$9.99/month",
+        },
+        {
+          name: "Hextom AI",
+          href: "/compare/hextom-ai-alternative",
+          bestFor: "Language scale — up to 133 auto languages.",
+          freeAllowance: "3 auto languages; 180+ currencies",
+          paidFrom: "$9.99/month",
+        },
+        {
+          name: "LangShop",
+          href: "/compare/langshop-alternative",
+          bestFor: "Product-count based catalogs; Shopify Flow support.",
+          freeAllowance: "50 products; 1 language",
+          paidFrom: "$10/month",
+        },
+        {
+          name: "T Lab",
+          href: "/compare/t-lab-alternative",
+          bestFor: "Product and collection based limits.",
+          freeAllowance: "500 products; 20 collections",
+          paidFrom: "$11.99/month",
+        },
+        {
+          name: "GTranslate",
+          href: "/compare/gtranslate-alternative",
+          bestFor: "Instant machine translation for all languages.",
+          freeAllowance: "All languages; machine translation",
+          paidFrom: "$12/month",
+        },
+        {
+          name: "Locales.ai",
+          href: "/compare/locales-ai-alternative",
+          bestFor: "Credit-based budgeting, up to 40 languages.",
+          freeAllowance: "2,500 credits; 1 language",
+          paidFrom: "$9.99/month",
+        },
+      ],
+    },
     summaryMetrics: [
       {label: "Price", ciwi: 7, alternative: 7},
       {label: "Translation speed", ciwi: 8, alternative: 7},
@@ -1114,9 +1340,9 @@ const comparesEn: CompareItem[] = [
   },
   {
     slug: "orbe-geolocation-alternative",
-    title: "Orbe Alternative: Shopify Localization & Geolocation",
+    title: "Best Orbe Alternatives for Shopify Geolocation (2026)",
     alternativeName: "Orbe Geolocation",
-    description: "Compare Shopify geolocation and localization needs when considering an Orbe alternative. Separate visitor redirection from storefront translation requirements.",
+    description: "Compare Orbe.app alternatives for Shopify: geolocation and market routing vs. full storefront localization, when Shopify's built-in market setup is enough, and what to check before paying for a redirect tool.",
     summary:
       "Ciwi and Orbe solve different problems. Ciwi is for multilingual translation and localization governance, while Orbe is primarily for geolocation, market routing, and country-based storefront logic.",
     bestFor: [
@@ -1138,7 +1364,33 @@ const comparesEn: CompareItem[] = [
       {label: "Shopify localization fit", ciwi: 9, alternative: 6},
       {label: "Functional overlap", ciwi: 3, alternative: 3},
     ],
-    faq: [],
+    faq: [
+      {
+        question: "What is the best Orbe alternative for Shopify?",
+        answer:
+          "It depends on which problem you are solving. If visitors mainly need the right country and language, a market-routing layer like Orbe or Selecty is the closer fit. If the bottleneck is translating and governing storefront content across languages, Ciwi covers that workflow instead. Many stores end up needing both layers working together.",
+        evidence: [
+          "The score matrix on this page shows Orbe strong on market redirection and geolocation logic, while Ciwi leads on translation workflow and glossary control.",
+          "Orbe itself does not translate storefront content, so merchants with multilingual catalogs usually pair a routing tool with a translation workflow.",
+        ],
+      },
+      {
+        question: "Does Shopify have built-in geolocation like Orbe?",
+        answer:
+          "Shopify Markets supports automatic country and language redirection where available, and many themes include market selectors. Shopify retired its Geolocation app in March 2025. Test the built-in settings first, and consider a dedicated app if you need a consent-based recommendation or more control over popups and routing rules.",
+        evidence: [
+          "Shopify's built-in market features are free, so the paid decision should hinge on customization needs the default experience does not cover.",
+        ],
+      },
+      {
+        question: "Do I need Orbe and a translation app at the same time?",
+        answer:
+          "They solve different problems, and many multilingual stores use both. Orbe decides where a visitor should land based on location; a translation app produces and maintains the localized content that visitor then reads. If only one budget line exists, pick the layer that matches your current bottleneck: routing experience or content coverage.",
+        evidence: [
+          "The functional overlap score on this page is intentionally low for both products, reflecting that they are adjacent tools rather than substitutes.",
+        ],
+      },
+    ],
   },
   {
     slug: "ez-product-image-translate-alternative",
@@ -1317,25 +1569,132 @@ const comparesEn: CompareItem[] = [
 const comparesZh: CompareItem[] = [
   {
     slug: "transcy-alternative",
-    title: "Transcy Alternative",
+    title: "最佳 Transcy 替代方案对比（2026）",
     alternativeName: "Transcy",
-    description: "从 Shopify 适配深度、术语控制和长期维护成本三个维度比较两种路径。",
+    description: "对比最佳 Transcy 替代方案：免费额度、档位价格与 SEO 安全性，并梳理商家高频投诉（2026 年 11 月核实）。",
     summary: "如果你关心的不只是把文字翻出来，而是希望长期维护多语言商品、主题和 FAQ，Ciwi 会更偏向结构化治理和本地化质量。",
     appComparison:
       "从你给的套餐图看，Transcy 的产品定位更像“翻译 + 货币 + 多市场前台运营”的一体化工具。即使是免费版，也直接包含 1 种语言、1 种货币、基础切换器、第三方应用翻译和 Shopify Payments 集成；往上再按可编辑语言数、货币数、AI 代币、多语言 SEO、自动化流程以及 DeepL/OpenAI/Gemini 这类 API 级能力去扩展。Ciwi 的公开套餐结构则不一样，更强调 Shopify 结构化内容翻译和治理，包括 glossary、自定义 AI prompts、图片和 alt text 本地化、按 IP 切换语言/货币，以及高阶套餐里的 1v1 支持和人工翻译审核。换句话说，Transcy 更像“把多语言前台运营能力打包在一起卖”，Ciwi 更像“把翻译治理和本地化工作流做深”。",
     pricingComparison:
-      "2026 年 10 月 8 日核实：Shopify App Store 列出的 Transcy 套餐为 Free、Regional $29/月、Continental $69/月、Cross-Border $99/月。选型时同时比较语言、货币、商品数量、翻译积分、审核流程和支持范围。订阅前确认两款应用的最新套餐限制与额外费用，不能只凭入门月费判断总成本。",
+      "2026 年 11 月 9 日核实：Shopify App Store 列出的 Transcy 套餐为 Free、Local Plus $14.90/月、Regional $29/月、Continental $69/月、Cross-Border $99/月，付费档含 7 天试用。选型时同时比较语言、货币、商品数量、翻译积分、审核流程和支持范围。订阅前确认两款应用的最新套餐限制与额外费用，不能只凭入门月费判断总成本。",
     pricingTable: {
-      rowLabels: ["免费档", "第二档", "第三档", "第四档"],
+      rowLabels: ["免费档", "第二档", "第三档", "第四档", "第五档"],
       ciwiPlans: ciwiPricingPlansZh,
       alternativePlans: [
         {name: "免费版", price: "Free", note: "1 种语言；1 种货币"},
+        {name: "Local Plus", price: "$14.90/月", note: "1 种语言及货币；100 件商品"},
         {name: "Regional", price: "$29/月", note: "3 种语言及货币；200 件商品"},
         {name: "Continental", price: "$69/月", note: "15 种语言及货币；300 件商品"},
         {name: "Cross-Border", price: "$99/月", note: "50 种语言及货币；1,500 件商品"},
       ],
     },
     bestFor: ["重视 glossary 和品牌术语一致性的商家", "需要覆盖 Shopify 结构化内容的团队", "希望把产品页、帮助文档和 SEO 页面联动起来的品牌"],
+    alternativesOverview: {
+      title: "其他值得对比的 Transcy 替代方案",
+      description: "除了 Ciwi，以下 Shopify 翻译应用也是常见的 Transcy 替代选择。免费额度和付费起点来自各应用公开套餐，点击可查看与 Ciwi 的完整对比。",
+      items: [
+        {
+          name: "Ciwi Translator",
+          isCurrentPage: true,
+          bestFor: "翻译治理——术语表、自定义提示词、Shopify 结构化内容。",
+          freeAllowance: "50 万积分；148 种语言",
+          paidFrom: "$7.99/月",
+        },
+        {
+          name: "Shopify Translate & Adapt",
+          href: "/compare/shopify-translate-adapt-alternative",
+          bestFor: "Shopify 原生起步，后台内手动编辑。",
+          freeAllowance: "最多 2 种语言免费自动翻译",
+          paidFrom: "Shopify 内置，无应用费",
+        },
+        {
+          name: "Langwill",
+          href: "/compare/langwill-alternative",
+          bestFor: "翻译 + 货币一体化增长。",
+          freeAllowance: "5,000 words；1 种语言",
+          paidFrom: "$9.99/月",
+        },
+        {
+          name: "Hextom AI",
+          href: "/compare/hextom-ai-alternative",
+          bestFor: "语言规模——最多 133 种自动翻译语言。",
+          freeAllowance: "3 种自动翻译语言；180+ 货币",
+          paidFrom: "$9.99/月",
+        },
+        {
+          name: "LangShop",
+          href: "/compare/langshop-alternative",
+          bestFor: "按商品数量计价的目录；支持 Shopify Flow。",
+          freeAllowance: "50 件商品；1 种语言",
+          paidFrom: "$10/月",
+        },
+        {
+          name: "T Lab",
+          href: "/compare/t-lab-alternative",
+          bestFor: "按商品和集合数量分层。",
+          freeAllowance: "500 件商品；20 个集合",
+          paidFrom: "$11.99/月",
+        },
+        {
+          name: "GTranslate",
+          href: "/compare/gtranslate-alternative",
+          bestFor: "全语言即时机器翻译。",
+          freeAllowance: "全部语言；机器翻译",
+          paidFrom: "$12/月",
+        },
+        {
+          name: "Locales.ai",
+          href: "/compare/locales-ai-alternative",
+          bestFor: "按积分预算，最多 40 种语言。",
+          freeAllowance: "2,500 积分；1 种语言",
+          paidFrom: "$9.99/月",
+        },
+        {
+          name: "Reversia",
+          href: "/compare/reversia-alternative",
+          bestFor: "高端词量套餐。",
+          freeAllowance: "无免费档",
+          paidFrom: "$199/月",
+        },
+      ],
+    },
+    freePlanComparison: {
+      title: "免费的 Transcy 替代方案：免费版到底包含什么",
+      description: "如果你在找免费的 Transcy 替代品，免费版是最快的试错方式。下面是两款应用免费档的公开能力对比，以及付费线划在哪里。",
+      rows: [
+        {label: "免费版语言", ciwi: "148 种语言", alternative: "1 种语言、1 种货币"},
+        {label: "免费翻译额度", ciwi: "50 万积分", alternative: "页面即时机器翻译（未公布额度）"},
+        {label: "翻译编辑", ciwi: "免费版可随时编辑", alternative: "完整编辑需升级付费档"},
+        {label: "商品图片与 Alt 文本", ciwi: "Pro 档（$19.99/月）起", alternative: "免费版不包含"},
+      ],
+      summary:
+        "以上信息按 2026 年 11 月 9 日两款应用的 Shopify App Store 页面核实。Transcy 免费版以 1 种语言、1 种货币上线，完整编辑在付费档之后；Ciwi 免费版包含 50 万翻译积分、148 种语言，且可随时编辑，图片与 Alt 文本本地化从 Pro 档开始。",
+    },
+    merchantReviews: {
+      title: "真实商家对 Transcy 的评价",
+      description: "在我们的评价基准里，Transcy 在 2020 年 8 月至 2026 年 8 月间累计有 284 条 1–3 星 Shopify App Store 评论，是本对比组中差评量最高的应用之一。高频问题集中在运营层面，而不是表面功能。",
+      negativeReviewCount: "284",
+      negativeReviewCountLabel: "条 1–3 星 App Store 评论（2020-08 至 2026-08）",
+      themes: [
+        "链接被改且无法编辑",
+        "SEO / canonical / hreflang 受损",
+        "持续扣费与退款困难",
+        "更新或卸载后翻译丢失",
+      ],
+      quotes: [
+        {source: "PurrEmbassy", date: "2026-03", issue: "反馈链接被应用改写，之后无法再编辑。"},
+        {source: "chronofactum.com", date: "2026-04", issue: "反馈花费近 1000 美元后陷入退款纠纷，数月未解决。"},
+        {source: "sandiia", date: "2024-10", issue: "反馈几个月的 SEO 工作被毁。"},
+        {source: "ZHENHUO GEAR", date: "2025-12", issue: "反馈卸载应用后仍被持续扣费。"},
+        {source: "MARSONIPRINT", date: "2026-08", issue: "反馈更新后现有翻译被破坏。"},
+        {source: "Tessi-supply.com", date: "2026-01", issue: "反馈使用期间 SEO 排名下滑。"},
+      ],
+      paraphraseNote: "以上内容为对 App Store 公开评论的转述摘要，非原文引用，完整措辞请查看来源页面。",
+      sourceLabel: "在 Shopify App Store 查看原始评论",
+      sourceUrl: "https://apps.shopify.com/transcy-multiple-languages/reviews",
+      summary:
+        "如果你的店铺依赖自然流量、SEO 资产，或者预算不能随时取消，建议在下单前把这些失败模式纳入考量。Ciwi 的定位恰恰聚焦在这些投诉集中的可控性与安全性上。",
+    },
     summaryMetrics: [
       {label: "价格", ciwi: 7, alternative: 8},
       {label: "翻译速度", ciwi: 8, alternative: 8},
@@ -1517,11 +1876,80 @@ const comparesZh: CompareItem[] = [
   },
   {
     slug: "langify-alternative",
-    title: "Langify Alternative",
+    title: "最佳 Langify 替代方案：Shopify 翻译应用对比（2026）",
     alternativeName: "Langify",
-    description: "适合比较翻译工作流、人工可控性与持续同步策略时使用。",
+    description: "对比高性价比的 Langify 替代方案：自动翻译、SEO 优化与 URL 本地化、术语控制，以及换应用前要先确认的事项。",
     summary: "如果你更强调人工控制、术语一致性和后续更新治理，Ciwi 的路径更容易和 glossary、帮助文档与资源前台结合；如果只是基础翻译组织，Langify 类路径通常更容易理解。",
     bestFor: ["对人工控制和术语一致性要求较高的品牌", "已经有一定本地化运营流程、希望降低后续维护摩擦的团队", "需要把 SEO 内容和产品前台一起考虑的 Shopify 商家"],
+    alternativesOverview: {
+      title: "其他值得对比的 Langify 替代方案",
+      description: "除了 Ciwi，以下 Shopify 翻译应用也是常见的 Langify 替代选择。免费额度与付费起点来自各应用公开套餐，点击可查看与 Ciwi 的完整对比。",
+      items: [
+        {
+          name: "Ciwi Translator",
+          isCurrentPage: true,
+          bestFor: "翻译治理——术语表、自定义指令、结构化 Shopify 内容。",
+          freeAllowance: "50 万积分；148 种语言",
+          paidFrom: "$7.99/月",
+        },
+        {
+          name: "Transcy",
+          href: "/compare/transcy-alternative",
+          bestFor: "面向跨境销售的规模化自动翻译。",
+          freeAllowance: "1 种语言、1 种货币",
+          paidFrom: "$14.90/月",
+        },
+        {
+          name: "Shopify Translate & Adapt",
+          href: "/compare/shopify-translate-adapt-alternative",
+          bestFor: "在 Shopify 后台原生起步、手动编辑。",
+          freeAllowance: "最多 2 种语言免费自动翻译",
+          paidFrom: "Shopify 内置，无应用费",
+        },
+        {
+          name: "Langwill",
+          href: "/compare/langwill-alternative",
+          bestFor: "翻译加货币的一体化增长方案。",
+          freeAllowance: "5,000 词；1 种语言",
+          paidFrom: "$9.99/月",
+        },
+        {
+          name: "Hextom AI",
+          href: "/compare/hextom-ai-alternative",
+          bestFor: "语言规模——最多 133 种自动翻译语言。",
+          freeAllowance: "3 种自动语言；180+ 货币",
+          paidFrom: "$9.99/月",
+        },
+        {
+          name: "LangShop",
+          href: "/compare/langshop-alternative",
+          bestFor: "按商品数计费的目录；支持 Shopify Flow。",
+          freeAllowance: "50 件商品；1 种语言",
+          paidFrom: "$10/月",
+        },
+        {
+          name: "T Lab",
+          href: "/compare/t-lab-alternative",
+          bestFor: "按商品和集合数量分层。",
+          freeAllowance: "500 件商品；20 个集合",
+          paidFrom: "$11.99/月",
+        },
+        {
+          name: "GTranslate",
+          href: "/compare/gtranslate-alternative",
+          bestFor: "全语言即时机器翻译。",
+          freeAllowance: "全部语言；机器翻译",
+          paidFrom: "$12/月",
+        },
+        {
+          name: "Locales.ai",
+          href: "/compare/locales-ai-alternative",
+          bestFor: "按积分预算，最多 40 种语言。",
+          freeAllowance: "2,500 积分；1 种语言",
+          paidFrom: "$9.99/月",
+        },
+      ],
+    },
     summaryMetrics: [
       {label: "价格", ciwi: 7, alternative: 7},
       {label: "翻译速度", ciwi: 8, alternative: 7},
@@ -2087,9 +2515,9 @@ const comparesZh: CompareItem[] = [
   },
   {
     slug: "orbe-geolocation-alternative",
-    title: "Orbe Geolocation Alternative",
+    title: "最佳 Orbe 替代方案：Shopify 地理定位与本地化（2026）",
     alternativeName: "Orbe Geolocation",
-    description: "适合比较翻译本地化工作流和地理位置识别/市场重定向工具时使用。",
+    description: "对比 Shopify 的 Orbe.app 替代方案：地理定位与市场重定向 vs. 完整店面本地化，什么情况下 Shopify 内置市场设置就够用，以及付费跳转工具前要先验证什么。",
     summary:
       "Ciwi 和 Orbe 解决的问题并不相同。Ciwi 更偏向多语言翻译与本地化治理，而 Orbe 更偏向地理位置识别、市场路由和国家级前台跳转。",
     bestFor: [
@@ -2111,7 +2539,33 @@ const comparesZh: CompareItem[] = [
       {label: "Shopify 本地化适配", ciwi: 9, alternative: 6},
       {label: "功能重叠度", ciwi: 3, alternative: 3},
     ],
-    faq: [],
+    faq: [
+      {
+        question: "Shopify 上最好的 Orbe 替代方案是什么？",
+        answer:
+          "取决于你要解决哪一层问题。如果访客主要是需要被引导到正确的国家和语言，Orbe、Selecty 这类市场路由层更对口；如果瓶颈在于跨语言的翻译和内容治理，Ciwi 覆盖的是这条工作流。很多店铺最终两层都需要协同使用。",
+        evidence: [
+          "本页评分矩阵显示 Orbe 在市场重定向和地理识别上领先，Ciwi 在翻译工作流和术语控制上领先。",
+          "Orbe 本身不翻译店面内容，所以多语言目录的商家通常会把路由工具和翻译工作流搭配使用。",
+        ],
+      },
+      {
+        question: "Shopify 有像 Orbe 一样的内置地理定位吗？",
+        answer:
+          "Shopify Markets 在适用的市场支持按国家和语言自动跳转，许多主题也提供市场选择器。Shopify 已于 2025 年 3 月下线 Geolocation 应用。先测试内置设置；如果需要征得访客同意后再推荐市场，或需要定制弹窗和跳转规则，再评估专用应用。",
+        evidence: [
+          "Shopify Markets 的自动跳转和主题选择器可覆盖基础需求，实际效果取决于市场设置和访客所在地区。",
+        ],
+      },
+      {
+        question: "需要同时使用 Orbe 和翻译应用吗？",
+        answer:
+          "两者解决不同问题，很多多语言店铺会同时使用。Orbe 根据位置决定访客落在哪里；翻译应用负责产出并维护访客随后阅读的本地化内容。如果预算只够一条线，就选当前瓶颈所在的那一层：路由体验还是内容覆盖。",
+        evidence: [
+          "本页的功能重叠度对两款产品都刻意打了低分，说明它们是相邻工具而非替代品。",
+        ],
+      },
+    ],
   },
   {
     slug: "ez-product-image-translate-alternative",

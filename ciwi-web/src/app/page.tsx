@@ -19,11 +19,13 @@ export const dynamic = "force-dynamic";
 
 export async function generateMetadata() {
   const locale = await getRequestLocale();
-  const copy = getHomePageCopy(locale);
 
   return buildPageMetadata({
-    title: locale === "en" ? "Shopify AI Growth Platform" : "Shopify AI 增长平台",
-    description: copy.hero.description,
+    title: locale === "en" ? "Shopify AI Translation & Store Automation" : "Shopify AI 翻译与店铺自动化",
+    description:
+      locale === "en"
+        ? "Ciwi is the Shopify app for AI translation and store automation — multilingual storefronts in 148 languages, localized SEO, and AI agents for daily store tasks."
+        : "Ciwi 是面向 Shopify 的 AI 翻译与店铺自动化应用——148 种语言多语言店面、本地化 SEO，以及处理日常店铺任务的 AI 助手。",
     path: "/",
     locale,
   });

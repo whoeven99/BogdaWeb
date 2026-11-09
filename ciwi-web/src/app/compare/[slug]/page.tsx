@@ -1057,6 +1057,21 @@ function getCompareDetailCopy(locale: "en" | "zh-cn") {
             featureLabel: "功能点",
             overallLabel: "综合",
           },
+          alternativesOverview: {
+            eyebrow: "替代方案速览",
+            toolLabel: "工具",
+            freeAllowanceLabel: "免费档包含",
+            paidFromLabel: "付费起点",
+            bestForLabel: "适合谁",
+            currentPageLabel: "本页产品",
+          },
+          freePlanComparison: {
+            eyebrow: "免费方案对比",
+            fieldLabel: "字段",
+          },
+          merchantReviews: {
+            eyebrow: "真实评价",
+          },
           faq: {
             eyebrow: "FAQ",
             title: "常见问题",
@@ -1107,6 +1122,21 @@ function getCompareDetailCopy(locale: "en" | "zh-cn") {
             description: "Read the feature rows vertically and compare both products horizontally on a ten-point scale. Scores 0-5 are weak, 6-8 are medium, and 9-10 are strong.",
             featureLabel: "Capability",
             overallLabel: "Overall",
+          },
+          alternativesOverview: {
+            eyebrow: "Alternatives overview",
+            toolLabel: "Tool",
+            freeAllowanceLabel: "Free tier includes",
+            paidFromLabel: "Paid from",
+            bestForLabel: "Best for",
+            currentPageLabel: "This page",
+          },
+          freePlanComparison: {
+            eyebrow: "Free plan comparison",
+            fieldLabel: "Field",
+          },
+          merchantReviews: {
+            eyebrow: "Merchant reviews",
           },
           faq: {
             eyebrow: "FAQ",
@@ -1292,6 +1322,55 @@ export default async function CompareDetailPage({params}: CompareDetailPageProps
             </div>
           </div>
         </section>
+
+        {data.alternativesOverview ? (
+          <section className="page-section compare-page-section compare-page-section--resources">
+            <SectionHeading
+              eyebrow={copy.sections.alternativesOverview.eyebrow}
+              title={data.alternativesOverview.title}
+              description={data.alternativesOverview.description}
+            />
+            <div className="surface-card compare-table-card">
+              <div className="compare-table-wrapper">
+                <table className="compare-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">{copy.sections.alternativesOverview.toolLabel}</th>
+                      <th scope="col">{copy.sections.alternativesOverview.freeAllowanceLabel}</th>
+                      <th scope="col">{copy.sections.alternativesOverview.paidFromLabel}</th>
+                      <th scope="col">{copy.sections.alternativesOverview.bestForLabel}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {data.alternativesOverview.items.map((item) => (
+                      <tr key={item.name}>
+                        <th scope="row">
+                          {item.isCurrentPage ? (
+                            <span className="flex flex-wrap items-center gap-2">
+                              <span>{item.name}</span>
+                              <span className="compare-score-badge compare-score-badge--strong">
+                                {copy.sections.alternativesOverview.currentPageLabel}
+                              </span>
+                            </span>
+                          ) : item.href ? (
+                            <a className="underline decoration-slate-300 underline-offset-4 hover:decoration-slate-500" href={localizeHref(locale, item.href)}>
+                              {item.name}
+                            </a>
+                          ) : (
+                            item.name
+                          )}
+                        </th>
+                        <td>{item.freeAllowance}</td>
+                        <td>{item.paidFrom}</td>
+                        <td>{item.bestFor}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+        ) : null}
 
         <section className="page-section page-section--compact">
           <div className="grid gap-6 xl:grid-cols-[minmax(0,1.45fr)_minmax(320px,0.8fr)]">
@@ -1534,6 +1613,104 @@ export default async function CompareDetailPage({params}: CompareDetailPageProps
             </div>
           </div>
         </section>
+
+        {data.freePlanComparison ? (
+          <section className="page-section compare-page-section">
+            <SectionHeading
+              eyebrow={copy.sections.freePlanComparison.eyebrow}
+              title={data.freePlanComparison.title}
+              description={data.freePlanComparison.description}
+            />
+            <div className="mx-auto max-w-5xl">
+              <section className="compare-insight-card">
+                <div className="compare-facts-table" role="table" aria-label={data.freePlanComparison.title}>
+                  <div className="compare-facts-table__row compare-facts-table__row--head" role="row">
+                    <div className="compare-facts-table__cell compare-facts-table__cell--head" role="columnheader">
+                      {copy.sections.freePlanComparison.fieldLabel}
+                    </div>
+                    <div className="compare-facts-table__cell compare-facts-table__cell--head" role="columnheader">
+                      {primaryProductName}
+                    </div>
+                    <div className="compare-facts-table__cell compare-facts-table__cell--head" role="columnheader">
+                      {data.alternativeName}
+                    </div>
+                  </div>
+                  {data.freePlanComparison.rows.map((row) => (
+                    <div key={`${data.slug}-free-${row.label}`} className="compare-facts-table__row" role="row">
+                      <div className="compare-facts-table__cell compare-facts-table__cell--label" role="cell">
+                        {row.label}
+                      </div>
+                      <div className="compare-facts-table__cell" role="cell">
+                        <p className="compare-facts-table__text">{row.ciwi}</p>
+                      </div>
+                      <div className="compare-facts-table__cell" role="cell">
+                        <p className="compare-facts-table__text">{row.alternative}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="compare-insight-card__summary">
+                  <span className="compare-insight-card__summary-label">{locale === "zh-cn" ? "总结摘要" : "Summary"}</span>
+                  <p className="compare-insight-card__summary-text">{data.freePlanComparison.summary}</p>
+                </div>
+              </section>
+            </div>
+          </section>
+        ) : null}
+
+        {data.merchantReviews ? (
+          <section className="page-section compare-page-section">
+            <SectionHeading
+              eyebrow={copy.sections.merchantReviews.eyebrow}
+              title={data.merchantReviews.title}
+              description={data.merchantReviews.description}
+            />
+            <div className="mx-auto max-w-5xl space-y-4">
+              <div className="rounded-[24px] border border-slate-200/80 bg-white/92 p-5 sm:p-6">
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                  <span className="text-3xl font-semibold text-slate-900">{data.merchantReviews.negativeReviewCount}</span>
+                  <span className="text-sm font-semibold text-slate-500">{data.merchantReviews.negativeReviewCountLabel}</span>
+                </div>
+                <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+                  {data.merchantReviews.themes.map((theme) => (
+                    <li key={theme} className="flex items-start gap-2 text-[15px] leading-7 text-slate-600">
+                      <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400" />
+                      <span>{theme}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {data.merchantReviews.quotes.map((quote) => (
+                  <div key={`${quote.source}-${quote.date}`} className="rounded-2xl border border-slate-200/80 bg-white/90 p-4">
+                    <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+                      {quote.source} · {quote.date}
+                    </div>
+                    <p className="mt-2 text-[15px] leading-7 text-slate-700">
+                      {quote.issue}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              {data.merchantReviews.paraphraseNote ? (
+                <p className="text-sm leading-6 text-slate-400">{data.merchantReviews.paraphraseNote}</p>
+              ) : null}
+              <p className="text-[15px] leading-7 text-slate-600 sm:text-base">{data.merchantReviews.summary}</p>
+              {data.merchantReviews.sourceUrl && data.merchantReviews.sourceLabel ? (
+                <p>
+                  <a
+                    className="text-sm font-semibold text-slate-600 underline decoration-slate-300 underline-offset-4 hover:decoration-slate-500"
+                    href={data.merchantReviews.sourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {data.merchantReviews.sourceLabel} ↗
+                  </a>
+                </p>
+              ) : null}
+            </div>
+          </section>
+        ) : null}
 
         <section className="page-section compare-page-section compare-page-section--resources">
           <SectionHeading
