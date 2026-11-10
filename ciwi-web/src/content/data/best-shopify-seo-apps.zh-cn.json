@@ -1,0 +1,215 @@
+{
+  "slug": "best-shopify-seo-apps",
+  "href": "/best-shopify-apps/best-shopify-seo-apps",
+  "categorySlug": "seo",
+  "categoryLabel": "SEO",
+  "year": 2026,
+  "updatedLabel": "2026 年 11 月 10 日核对",
+  "title": "2026 年最佳 Shopify SEO 应用：结构化数据、速度与内容",
+  "description": "按「解决什么问题」对比 6 款 Shopify SEO 应用：结构化数据、图片体积、批量标题描述与 AI 内容，含免费额度限制和各档价格。",
+  "heroEyebrow": "搜索可见度",
+  "summary": "按用途拆分的 Shopify SEO 应用清单：结构化数据、页面速度、图片体积与内容产出。下列应用都有免费档，真正要比较的是免费档能覆盖到哪里。",
+  "picksNote": "下列每款应用都链接到对应的 Shopify App Store 页面，排序按应用解决的问题归类，而不是按安装量。",
+  "intro": [
+    "Shopify SEO 应用并不是在同一组功能上竞争。这个类目实际上分成四件事：输出结构化数据让商品在搜索结果里带出评分和价格、压缩图片并降低加载时间、批量修改标题与描述、以及生产你自己写不完的博客内容。",
+    "所以选择顺序应该反过来：先确认是哪一件事卡住了你的搜索可见度，再比较免费档能走到哪一步。下面每个应用都有免费方案，差别在于免费额度允许你做什么。",
+    "本页是基于应用商店页面的对比，不是实测排名研究。方案名称与价格读取自 2026 年 11 月 10 日的 Shopify App Store 页面，以美元展示，实际计费币种与地区定价可能不同。此前版本中出现过的 SEOLab 与 EZ AI 已没有在架的应用页面，因此被移除，而不是留在名单里。"
+  ],
+  "methodology": [
+    {
+      "title": "按任务覆盖，而不是按功能数量",
+      "description": "每个应用按它在 Shopify 后台解决的那一个问题归类。能勉强做四件事的应用，不一定比把一件事做好的应用更值得付费。"
+    },
+    {
+      "title": "免费档实际给了什么",
+      "description": "这个类目的免费方案通常限制商品数、每月图片数、AI 额度或文章数。决定你什么时候必须升级的是这个上限，不是功能列表的长度。"
+    },
+    {
+      "title": "只收录在架应用",
+      "description": "下列应用在核对日期都有可访问的商店页面和可读的价格。已下架的应用直接移除，不用它把名单凑长；价格取自商店页面，而不是第三方测评站。"
+    }
+  ],
+  "picks": [
+    {
+      "rank": 1,
+      "name": "Webrex: AI SEO, Schema JSON-LD",
+      "badge": "结构化数据与富媒体结果",
+      "fixes": "商品、评价、FAQ 与面包屑的结构化数据",
+      "summary": "这份名单里最专注的一款。它为商品、变体、评价和 FAQ 区块输出 JSON-LD，让 Google 和 AI 搜索能读懂商品目录；多语言店铺还可以按市场分别输出 schema。",
+      "bestFor": "搜索结果里缺少评分、价格和库存状态的商品页",
+      "pricing": "免费；Growth 约 $9.99/月；Pro 约 $29.99/月",
+      "strengths": [
+        "免费档商品 schema 不限量",
+        "支持 Judge.me、Loox 等 30 多款评价应用的评价 schema",
+        "Pro 提供重复 schema 检测与报错修复"
+      ],
+      "watchouts": [
+        "FAQ 与视频 schema 在 Pro 档，免费档没有",
+        "不做图片和速度优化，如果瓶颈是体积，需要另外配一款速度应用"
+      ],
+      "href": "https://apps.shopify.com/webrex-seo-schema"
+    },
+    {
+      "rank": 2,
+      "name": "Tapita AI SEO Optimizer, Speed",
+      "badge": "免费档覆盖最广",
+      "fixes": "页面 SEO 审计、标题描述、schema、图片压缩、死链",
+      "summary": "一款吃免费档的一体化工具：页面审计不限次数、支持批量与 AI 辅助修改标题描述、每月 900 张图片压缩、50 个商品的 alt 文本。宣传重点在 AI 搜索，但你每周真正会打开的是审计和批量元数据。",
+      "bestFor": "希望在同一个后台完成审计、元数据与图片修复的店铺",
+      "pricing": "免费；Business 约 $9.99/月（另有附加费）；Premium 约 $49.99/月",
+      "strengths": [
+        "免费档每月 900 张图片压缩",
+        "批量与 AI 辅助的标题、描述编辑",
+        "Business 起支持死链检测与自动跳转"
+      ],
+      "watchouts": [
+        "Business 与 Premium 对 Grow、Advanced、Shopify Plus 另有按方案收取的附加费",
+        "AI 元数据额度按档位限制，全店批量改写可能做到一半就用完"
+      ],
+      "href": "https://apps.shopify.com/google-seo-schema-meta-data"
+    },
+    {
+      "rank": 3,
+      "name": "StoreSEO: AI SEO & Image Tools",
+      "badge": "小目录的最佳免费档",
+      "fixes": "标题描述、alt 文本、图片压缩、schema 与站点地图",
+      "summary": "免费档刻意按起步目录来划线：25 个商品、25 张图片、200 个 AI 额度；从 Lite 起有 schema 生成器、LLMs.txt 输出和 Search Console 连接。它还提供 MCP 连接器，可以让 Claude 或 ChatGPT 直接进来改内容。",
+      "bestFor": "希望在付费前先拿到完整工具集的新店或小店",
+      "pricing": "免费；Lite 约 $14.99/月；Essential 约 $39.99/月",
+      "strengths": [
+        "Lite 起包含 schema 标记、站点地图提交与 GSC 数据",
+        "图片压缩加批量 alt 文本",
+        "修改标题描述前可以先预览"
+      ],
+      "watchouts": [
+        "免费档限于 25 个商品和 25 张图片",
+        "多语言 SEO 只列在 Advanced 档"
+      ],
+      "href": "https://apps.shopify.com/storeseo"
+    },
+    {
+      "rank": 4,
+      "name": "Avada Image & Page Speed Up",
+      "badge": "速度与 Core Web Vitals",
+      "fixes": "图片压缩、JS/CSS 延迟、加载时间报表",
+      "summary": "这是速度工具，不是元数据工具。它压缩并重设图片尺寸、延迟 JS 与 CSS 加载，并在后台给出 FCP、LCP、CLS，另有团队直接帮你改主题代码的托管档。",
+      "bestFor": "图片体积成为排名瓶颈的重目录店铺",
+      "pricing": "免费（每月 100 张图片）；Basic 约 $19/月；Pro 约 $49/月",
+      "strengths": [
+        "免费档每月 100 张图片与 alt 文本",
+        "不用离开后台即可看 Core Web Vitals",
+        "Expert 档包含主题代码改动与速度保证"
+      ],
+      "watchouts": [
+        "不做 schema，也不改标题描述",
+        "速度类应用先在复制的主题上测试；注入的脚本有时比省下的更多"
+      ],
+      "href": "https://apps.shopify.com/ap-speed-optimizer"
+    },
+    {
+      "rank": 5,
+      "name": "Avada Blog SEO AEO Content",
+      "badge": "内容产能",
+      "fixes": "AI 博客草稿、关键词研究与页面评分",
+      "summary": "面向打算持续更新内容的店铺。免费档可以发不限篇数的文章，但受一次性 AI 额度限制；Pro 提供每月额度、AI 助手和不限篇数的多语言文章。",
+      "bestFor": "需要经营内容栏目、而不只是商品页的店铺",
+      "pricing": "免费（一次性 20 万 AI token）；Pro 约 $14.90/月",
+      "strengths": [
+        "免费档文章篇数不限",
+        "内置关键词研究与内链建议"
+      ],
+      "watchouts": [
+        "免费额度不按月刷新，实际上等同于试用",
+        "生成的草稿仍需人工编辑；内容过薄的 AI 文章会拉低而不是提升排名"
+      ],
+      "href": "https://apps.shopify.com/seoon-blog"
+    },
+    {
+      "rank": 6,
+      "name": "Essential AI SEO: AI Blog Post",
+      "badge": "批量生成文章",
+      "fixes": "支持 13 种语言的批量定时发文",
+      "summary": "更窄的内容工具：选主题、生成文章、推到 Shopify 博客，可以批量做。适合把博客当流量渠道、需要产能多于打磨的店铺。",
+      "bestFor": "有固定高频发文节奏的店铺",
+      "pricing": "免费（每月 3 篇）；Starter 约 $9.99/月；Essential 约 $29.99/月",
+      "strengths": [
+        "批量生成与自动发布",
+        "支持 13 种输出语言",
+        "纯内容类应用里评价历史较长"
+      ],
+      "watchouts": [
+        "免费档每月只有 3 篇",
+        "没有技术 SEO 功能，需要另外搭配做 schema 和元数据的应用"
+      ],
+      "href": "https://apps.shopify.com/essential-seo-ai-blog-writer"
+    }
+  ],
+  "selectionGuide": [
+    {
+      "title": "先按任务排序，再按价格排序",
+      "description": "写下搜索结果里唯一缺的那样东西：富媒体结果、加载速度、独立标题描述，还是可被索引的内容。多数店铺只需要其中两样，为另外两样付的钱通常就是浪费。"
+    },
+    {
+      "title": "把免费档看成上限，而不是功能清单",
+      "description": "算一下哪个上限会先卡住你：商品数、每月图片数、AI 额度还是文章数。覆盖 25 个商品的免费档，对 20 个 SKU 的店是真实方案，对 400 个 SKU 的店只是两周试用。"
+    },
+    {
+      "title": "看应用往主题里写了什么",
+      "description": "注入脚本或改动主题代码的应用，可能吃掉的速度比它省下的更多。先在复制的主题上安装，对比安装前后的加载时间和渲染出的标记，两项都变好再发布。"
+    }
+  ],
+  "rightFitGuide": [
+    {
+      "title": "商品页没有富媒体结果",
+      "description": "从 Webrex 开始。它是这里唯一在免费档对商品 schema 不限量的应用，而商品 schema 正是决定评分和价格摘要能不能出现的类型。"
+    },
+    {
+      "title": "移动端加载慢",
+      "description": "把 Avada Image & Page Speed Up 与 Tapita、StoreSEO 里的图片工具放在一起比。如果问题只在压缩，一体化工具就够了；如果还需要 JS/CSS 处理和 Core Web Vitals 报表，用专门的速度工具。"
+    },
+    {
+      "title": "根本还没有可排名的内容",
+      "description": "把两款内容应用按你实际的编辑时间比较。Avada 适合稳定更新并配合人工审校，Essential 适合追求数量。但两者都解决不了一个问题：所有语言共用同一套内容。"
+    }
+  ],
+  "faq": [
+    {
+      "question": "Shopify 店铺一定要装 SEO 应用吗？",
+      "answer": "不一定。Shopify 本身已输出 canonical 标签、站点地图和基础的商品结构化数据。只有当你要评价或 FAQ schema、批量改元数据、规模化压缩图片或生成内容时，应用才值这个钱；如果这些都不是你的瓶颈，订阅带来的改变很有限。"
+    },
+    {
+      "question": "小店更适合哪款 SEO 应用？",
+      "answer": "先比 StoreSEO 和 Tapita。StoreSEO 免费档限 25 个商品，但在一处覆盖 schema、站点地图和图片；Tapita 免费档页面审计不限次数、每月 900 张图片压缩。商品少于 25 个时，StoreSEO 能走得更远。"
+    },
+    {
+      "question": "SEO 应用能解决多语言店铺的排名问题吗？",
+      "answer": "只能解决一部分。它们可以按市场输出 schema、翻译元数据，但第二语言能不能排上，取决于结构：每种语言有可独立索引的 URL、hreflang 标注正确、商品与合集内容是真正翻译过的，而不是藏在语言切换器后面。这部分属于本地化类目，不属于 SEO 类目。"
+    },
+    {
+      "question": "同时装几个 SEO 应用会有副作用吗？",
+      "answer": "会，通常有两种：重复的结构化数据块，以及互相竞争的脚本注入拖慢前台。一个任务只留一个应用；装第二个之后，检查渲染后的 HTML 里是否有重复的 JSON-LD，并重新测一次加载时间。"
+    },
+    {
+      "question": "这些价格多久变一次？",
+      "answer": "变化频繁，而且多数是压缩免费档而不是抬高标价。本页此前收录的两款应用已经没有在架页面，所以每一行都留了商店页面链接，安装前请重新核对。"
+    }
+  ],
+  "finalVerdict": {
+    "title": "该把哪款 Shopify SEO 应用放进候选？",
+    "paragraphs": [
+      "搜索结果里没有评分和价格，先上 Webrex。店铺加载慢，先上 Avada Image & Page Speed Up。还没有内容可排，选一款内容应用，并把博客当成有固定排期的渠道来经营。",
+      "100 个商品以内的店铺，通常一款一体化工具就能在免费档或入门档覆盖元数据、图片和 schema。超过这个规模，把 schema 和速度拆给两个应用，比让一款应用样样都做更容易衡量效果。"
+    ],
+    "primaryLabel": "Webrex: AI SEO, Schema JSON-LD",
+    "primaryHref": "https://apps.shopify.com/webrex-seo-schema",
+    "secondaryLabel": "浏览 Shopify App Store",
+    "secondaryHref": "https://apps.shopify.com/"
+  },
+  "keywords": [
+    "shopify seo 应用",
+    "shopify seo app",
+    "shopify 搜索引擎优化应用",
+    "最佳 shopify seo 应用",
+    "shopify seo 工具"
+  ]
+}

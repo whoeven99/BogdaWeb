@@ -2947,7 +2947,7 @@
       },
       {
         "rank": 2,
-        "name": "SEO Speed Image Optimizer",
+        "name": "Avada Image & Page Speed Up",
         "badge": "Best free plan",
         "summary": "Don't let images drag your SEO down. Resize images and optimize alt text with App Plaza speedy Large & unoptimized images slow site speed and not friendly for...",
         "bestFor": "bringing more qualified shoppers to a Shopify store",
@@ -2965,24 +2965,6 @@
       },
       {
         "rank": 3,
-        "name": "SEOLab — All in #1 SEO AI",
-        "badge": "Best free plan",
-        "summary": "SEOLab All-in-One App to Boost Traffic, Improve Rankings, Fix SEO Issues & Grow Sales Automatically SEOLab: Struggling with low traffic and poor search rankings?...",
-        "bestFor": "bringing more qualified shoppers to a Shopify store",
-        "pricing": "Free plan available",
-        "strengths": [
-          "Strong 4.9-star rating",
-          "1,050 merchant reviews",
-          "Estimated 21,000 total installs",
-          "Shows current install momentum"
-        ],
-        "watchouts": [
-          "Confirm feature fit and plan limits before installing"
-        ],
-        "href": "https://apps.shopify.com/seolab"
-      },
-      {
-        "rank": 4,
         "name": "Tapita AI SEO Optimizer, Speed",
         "badge": "Best free plan",
         "summary": "Boost your store SEO & site speed for better conversion and sales. Transform your Shopify store into a conversion powerhouse with Tapita AI SEO Optimizer, Speed,...",
@@ -3000,7 +2982,7 @@
         "href": "https://apps.shopify.com/google-seo-schema-meta-data"
       },
       {
-        "rank": 5,
+        "rank": 4,
         "name": "TikTok Shop Connector — SPL",
         "badge": "Best free plan",
         "summary": "Multi TikTok Shop Integration — Efficiently Sync Products, Inventory, Orders, Fulfilment & Returns TikTok Shop Integration: Simplify your e-commerce management...",
@@ -3018,12 +3000,12 @@
         "href": "https://apps.shopify.com/slashcart-tiktok-shop-sync"
       },
       {
-        "rank": 6,
-        "name": "Avada SEO AI Blog Post Builder",
+        "rank": 5,
+        "name": "Avada Blog SEO AEO Content",
         "badge": "Best free plan",
         "summary": "Write SEO-friendly AI blog post in a minute and drive organic traffic to your store Is your blog editor holding you back? Turn your ideas into engaging blog...",
         "bestFor": "bringing more qualified shoppers to a Shopify store",
-        "pricing": "Free plan available; paid plans from $24.90 / month or $249/year and save 17%",
+        "pricing": "Free; Pro from about $14.90 / month",
         "strengths": [
           "Strong 4.9-star rating",
           "528 merchant reviews",
@@ -3036,7 +3018,7 @@
         "href": "https://apps.shopify.com/seoon-blog"
       },
       {
-        "rank": 7,
+        "rank": 6,
         "name": "Essential AI SEO: AI Blog Post",
         "badge": "Best free plan",
         "summary": "Generate SEO-optimized blog posts using auto blog writer! Boost SEO and build professional blogs. Elevate your blog writing with Essential SEO - AI Blogger, the...",
@@ -3054,25 +3036,7 @@
         "href": "https://apps.shopify.com/essential-seo-ai-blog-writer"
       },
       {
-        "rank": 8,
-        "name": "EZ AI: SEO & AEO & AI Blog",
-        "badge": "Best free plan",
-        "summary": "Boost organic traffic and speed in a few clicks — SEO made simple for anyone, no expert needed. SEO doesn’t have to be hard. Scan your store for issues, write...",
-        "bestFor": "bringing more qualified shoppers to a Shopify store",
-        "pricing": "Free plan available; paid plans from $12.99 / month",
-        "strengths": [
-          "Strong 4.8-star rating",
-          "368 merchant reviews",
-          "Estimated 7,360 total installs",
-          "Shows current install momentum"
-        ],
-        "watchouts": [
-          "Newer app with less long-term operating history"
-        ],
-        "href": "https://apps.shopify.com/ez-seo-ai-products-optimizer"
-      },
-      {
-        "rank": 9,
+        "rank": 7,
         "name": "Tiny SEO Speed Image Optimizer",
         "badge": "Best free plan",
         "summary": "Boost sales, AI organic & SEO traffic, improve page speed, optimize images and outrank competition! TinySEO is your all-in-one tool for SEO image & page speed...",
@@ -3090,7 +3054,7 @@
         "href": "https://apps.shopify.com/smart-image-optimizer"
       },
       {
-        "rank": 10,
+        "rank": 8,
         "name": "Google Reviews Rocket",
         "badge": "Best free plan",
         "summary": "All-in-One Google Reviews Manager: Collects Reviews, Shows Widget, AI Reply, Filters & Auto Syncs NEW! Multi-Widget Support. Enhance your sales with Google...",
