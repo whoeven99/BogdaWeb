@@ -2,6 +2,8 @@ import type {Locale} from "@/lib/i18n";
 import {normalizeInternalHrefFields} from "@/lib/i18n-content";
 import generatedCollections from "@/content/best-shopify-apps.generated.json";
 import reviewAppsEn from "@/content/data/best-shopify-review-apps.en.json";
+import seoAppsEn from "@/content/data/best-shopify-seo-apps.en.json";
+import seoAppsZh from "@/content/data/best-shopify-seo-apps.zh-cn.json";
 import importedCollections from "@/content/data/best_shopify_app_collections.json";
 
 export type BestShopifyAppCriterion = {
@@ -19,6 +21,11 @@ export type BestShopifyAppPick = {
   strengths: string[];
   watchouts: string[];
   href?: string;
+  /**
+   * 这款应用修的是哪一个具体问题。填了的合集会在榜单上方渲染一张
+   * 「按任务找工具」的对比表；没填的合集保持原有版式不变。
+   */
+  fixes?: string;
 };
 
 export type BestShopifyAppDecisionPoint = {
@@ -51,6 +58,14 @@ export type BestShopifyAppCollection = {
     secondaryHref: string;
   };
   keywords: string[];
+  /** 可选 FAQ，填了才渲染常见问题区块；正文价值优先，不依赖富媒体结果 */
+  faq?: {question: string; answer: string}[];
+  /**
+   * 可选：覆盖榜单区默认介绍语。默认文案必须对所有合集成立，
+   * 而「每款都链到应用商店」这类描述只对确实全部外链的合集成立，
+   * 因此由数据自己声明，模板不替合集做承诺。
+   */
+  picksNote?: string;
 };
 
 const collectionsEn: BestShopifyAppCollection[] = [
@@ -825,18 +840,34 @@ function localizeImportedPickSummary(pick: BestShopifyAppPick) {
   return `${pick.name}${prefix}，适合用于${bestFor}，可以优先放进第一轮评估名单。`;
 }
 
+/**
+ * 从应用商店批量抓取的合集文案比较泛（每款应用的 bestFor 都是同一句），
+ * 手写覆盖文件按 slug 整体替换对应合集，中英文分别维护。
+ */
+const importedOverrides: Record<Locale, Record<string, BestShopifyAppCollection>> = {
+  en: {
+    [reviewAppsEn.slug]: reviewAppsEn as BestShopifyAppCollection,
+    [seoAppsEn.slug]: seoAppsEn as BestShopifyAppCollection,
+  },
+  "zh-cn": {
+    [seoAppsZh.slug]: seoAppsZh as BestShopifyAppCollection,
+  },
+};
+
 function localizeImportedCollections(
   collections: BestShopifyAppCollection[],
   locale: Locale,
 ): BestShopifyAppCollection[] {
   return collections.map((item) => {
     const normalizedHref = `/best-shopify-apps/${item.slug}`;
+    const override = importedOverrides[locale][item.slug];
+
+    if (override) {
+      return {...override, href: normalizedHref};
+    }
 
     if (locale === "en") {
-      return {
-        ...(item.slug === reviewAppsEn.slug ? reviewAppsEn : item),
-        href: normalizedHref,
-      };
+      return {...item, href: normalizedHref};
     }
 
     const meta = importedCollectionZhMeta[item.slug];

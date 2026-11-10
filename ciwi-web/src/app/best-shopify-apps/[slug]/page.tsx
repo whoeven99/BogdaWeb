@@ -1,6 +1,7 @@
 import {notFound} from "next/navigation";
 
 import {FinalCtaSection} from "@/components/sections/FinalCtaSection";
+import {FaqSection} from "@/components/sections/FaqSection";
 import {SimpleCardGridSection} from "@/components/sections/SimpleCardGridSection";
 import {BackLink} from "@/components/ui/BackLink";
 import {Button} from "@/components/ui/Button";
@@ -9,7 +10,7 @@ import {SectionHeading} from "@/components/ui/SectionHeading";
 import {getBestShopifyAppCollectionMap, getBestShopifyAppCollections} from "@/content/best-shopify-apps";
 import {getRequestLocale} from "@/lib/i18n-server";
 import {buildPageMetadata, siteUrl, toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
-import {buildBreadcrumbSchema, buildGraphSchema, buildItemListSchema, buildWebPageSchema} from "@/lib/seo/schema";
+import {buildBreadcrumbSchema, buildFaqSchema, buildGraphSchema, buildItemListSchema, buildWebPageSchema} from "@/lib/seo/schema";
 
 export const dynamic = "force-dynamic";
 
@@ -99,6 +100,16 @@ export default async function BestShopifyAppCollectionPage({params}: BestShopify
             title: "如何选择适合自己的 App",
             description: "真正适合你的方案，取决于店铺阶段、运营复杂度，以及你现在最想优先解决的增长问题。",
           },
+          table: {
+            jobCaption: "按任务对照：每款 SEO 应用修的是哪一个问题",
+            jobHead: ["应用", "修什么问题", "价格", "主要取舍"],
+          },
+          faq: {
+            eyebrow: "常见问题",
+            title: "关于 Shopify SEO 应用的常见问题",
+            description: "回答商家在选 SEO 应用时最常问的几件事。",
+            navLabel: "常见问题",
+          },
         }
       : {
           backLabel: "Back to Best Shopify Apps",
@@ -126,7 +137,7 @@ export default async function BestShopifyAppCollectionPage({params}: BestShopify
           picks: {
             eyebrow: "Ranked apps",
             title: "Rankings and app notes",
-            description: "The order below is based on Shopify localization fit, maintenance cost, and workflow depth.",
+            description: "The order below is meant as a first-pass shortlist to narrow the field, not as a substitute for checking each app against your own store.",
             bestForLabel: "Best for",
             pricingLabel: "Pricing",
             strengthsLabel: "Strengths",
@@ -143,9 +154,23 @@ export default async function BestShopifyAppCollectionPage({params}: BestShopify
             title: "How to choose the right app for your store",
             description: "The right pick depends on your store stage, operating complexity, and how often your content changes later.",
           },
+          table: {
+            jobCaption: "Shopify SEO apps by job: what each one actually fixes",
+            jobHead: ["App", "What it fixes", "Pricing", "Main tradeoff"],
+          },
+          faq: {
+            eyebrow: "FAQ",
+            title: "Shopify SEO app questions",
+            description: "The questions merchants ask most often before installing an SEO app.",
+            navLabel: "FAQ",
+          },
         };
 
   const isReviewComparison = locale === "en" && slug === "best-shopify-review-apps";
+  const hasJobTable = collection.picks.some((pick) => Boolean(pick.fixes));
+  const tocItems = collection.faq?.length
+    ? [...copy.toc, {href: "#faq", label: copy.faq.navLabel}]
+    : copy.toc;
 
   const pageUrl = toAbsoluteLocalizedUrl(locale, collection.href);
   const structuredData = buildGraphSchema([
@@ -174,6 +199,9 @@ export default async function BestShopifyAppCollectionPage({params}: BestShopify
           description: item.summary,
         })),
     }),
+    // Google 自 2026 年 5 月起不再据 FAQPage 展示 FAQ 富媒体结果，因此这里保留标记
+    // 只是为了页面结构本身可读、可被机器解析，不作为 SEO 验收项。
+    ...(collection.faq?.length ? [buildFaqSchema(collection.faq)] : []),
   ]);
 
   return (
@@ -230,7 +258,7 @@ export default async function BestShopifyAppCollectionPage({params}: BestShopify
                 {copy.hero.tocLabel}
               </div>
               <div className="mt-3 flex flex-wrap gap-x-4 gap-y-2">
-                {copy.toc.map((item) => (
+                {tocItems.map((item) => (
                   <a
                     key={item.href}
                     href={item.href}
@@ -259,7 +287,11 @@ export default async function BestShopifyAppCollectionPage({params}: BestShopify
           <SectionHeading
             eyebrow={copy.picks.eyebrow}
             title={copy.picks.title}
-            description={isReviewComparison ? "Compare product-review workflows, free-plan limits and paid upgrades. Source listings are linked under each app; this shortlist is not a performance benchmark." : copy.picks.description}
+            description={
+              isReviewComparison
+                ? "Compare product-review workflows, free-plan limits and paid upgrades. Source listings are linked under each app; this shortlist is not a performance benchmark."
+                : (collection.picksNote ?? copy.picks.description)
+            }
           />
           {isReviewComparison ? (
             <div className="mt-6 overflow-x-auto">
@@ -279,6 +311,33 @@ export default async function BestShopifyAppCollectionPage({params}: BestShopify
                       <td className="min-w-40 border-b border-slate-200 p-3">{item.bestFor}</td>
                       <td className="min-w-40 border-b border-slate-200 p-3">{item.pricing}</td>
                       <td className="min-w-52 border-b border-slate-200 p-3">{item.watchouts[0]}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : hasJobTable ? (
+            <div className="mt-6 overflow-x-auto">
+              <table className="w-full text-left text-sm leading-6">
+                <caption className="mb-3 text-left font-semibold">{copy.table.jobCaption}</caption>
+                <thead>
+                  <tr>
+                    {copy.table.jobHead.map((label) => (
+                      <th key={label} scope="col" className="border-b border-slate-200 p-3">
+                        {label}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {collection.picks.map((item) => (
+                    <tr key={item.name}>
+                      <th scope="row" className="min-w-40 border-b border-slate-200 p-3 font-semibold">
+                        {item.name}
+                      </th>
+                      <td className="min-w-44 border-b border-slate-200 p-3">{item.fixes}</td>
+                      <td className="min-w-40 border-b border-slate-200 p-3">{item.pricing}</td>
+                      <td className="min-w-48 border-b border-slate-200 p-3">{item.watchouts[0]}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -371,6 +430,16 @@ export default async function BestShopifyAppCollectionPage({params}: BestShopify
             ))}
           </ol>
         </section>
+
+        {collection.faq?.length ? (
+          <FaqSection
+            id="faq"
+            eyebrow={copy.faq.eyebrow}
+            title={copy.faq.title}
+            description={copy.faq.description}
+            items={collection.faq}
+          />
+        ) : null}
 
         <FinalCtaSection
           title={collection.finalVerdict.title}

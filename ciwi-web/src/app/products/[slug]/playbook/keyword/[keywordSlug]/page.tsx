@@ -35,6 +35,111 @@ type SparkPlaybookKeywordDetailPageProps = {
 
 const PRODUCT_SLUG = "spark-analytics-agent";
 
+/**
+ * 关键词页标题的宽度预算（含 " | Ciwi"）。
+ * Google 英文标题展示约 60 字符，超过就会被截断，而关键词本身已经用掉大半预算，
+ * 所以只追加一个短后缀，宁可少说也不要在 SERP 里出现 "Calculate suggested r…" 这种残句。
+ */
+const KEYWORD_TITLE_MAX_LENGTH = 60;
+const BRAND_SUFFIX_LENGTH = " | Ciwi".length;
+const KEYWORD_TITLE_SUFFIX = {
+  en: ": Step-by-Step",
+  "zh-cn": "：分步流程与提示词",
+} as const;
+
+const keywordTitleAcronyms = new Set([
+  "ai",
+  "api",
+  "aov",
+  "b2b",
+  "b2c",
+  "cms",
+  "crm",
+  "csv",
+  "ctr",
+  "faq",
+  "faqs",
+  "gmc",
+  "kpi",
+  "ltv",
+  "pdp",
+  "rfm",
+  "roas",
+  "roi",
+  "seo",
+  "sku",
+  "skus",
+  "ugc",
+  "url",
+  "urls",
+  "utm",
+]);
+
+const keywordTitleSmallWords = new Set([
+  "a",
+  "an",
+  "and",
+  "as",
+  "at",
+  "by",
+  "for",
+  "from",
+  "in",
+  "of",
+  "on",
+  "or",
+  "the",
+  "to",
+  "vs",
+  "with",
+]);
+
+/** `shopify reorder quantity calculator` -> `Shopify Reorder Quantity Calculator`（RFM、SEO 保持大写）。 */
+function toKeywordTitle(keyword: string) {
+  return keyword
+    .trim()
+    .split(/\s+/)
+    .map((word, index) => {
+      const lower = word.toLowerCase();
+      if (keywordTitleAcronyms.has(lower)) {
+        return lower.toUpperCase();
+      }
+      if (index > 0 && keywordTitleSmallWords.has(lower)) {
+        return lower;
+      }
+      return lower.charAt(0).toUpperCase() + lower.slice(1);
+    })
+    .join(" ");
+}
+
+function buildKeywordTitle(keyword: string, locale: Locale) {
+  const base = toKeywordTitle(keyword);
+  const withSuffix = `${base}${KEYWORD_TITLE_SUFFIX[locale]}`;
+
+  return withSuffix.length + BRAND_SUFFIX_LENGTH <= KEYWORD_TITLE_MAX_LENGTH ? withSuffix : base;
+}
+
+function estimateMetaWidth(text: string) {
+  let width = 0;
+  for (const ch of text) {
+    width += (ch.codePointAt(0) ?? 0) >= 0x2e80 ? 2 : 1;
+  }
+  return width;
+}
+
+/**
+ * 描述骨架：先用本页独一无二的任务句承接搜索意图，再补一句统一的「这页能给你什么」。
+ * 之前直接截 `scenarioDescription`，会在 SERP 里留下半句诊断式描述（"…ignoring what is inbound and what."），
+ * 既没有承诺也没有行动指引。
+ */
+function buildKeywordDescription(title: string, locale: Locale) {
+  const promise =
+    locale === "zh-cn" ? "分步流程、可复制提示词与常见问题。" : "Step-by-step workflow, copyable AI prompt, and FAQs.";
+  const candidate = locale === "zh-cn" ? `${title}：${promise}` : `${title}. ${promise}`;
+
+  return estimateMetaWidth(candidate) <= 155 ? candidate : title;
+}
+
 function keywordIndexHref(productSlug: string) {
   return `${getProductPlaybookHref(productSlug)}/keyword`;
 }
@@ -311,9 +416,8 @@ export async function generateMetadata({params}: SparkPlaybookKeywordDetailPageP
   }
 
   return buildPageMetadata({
-    titleLead: item.keyword,
-    title: item.title,
-    description: item.scenarioDescription || `${item.category}: ${item.title}`,
+    title: buildKeywordTitle(item.keyword, locale),
+    description: buildKeywordDescription(item.title, locale),
     path: keywordDetailHref(productSlug, keywordSlug),
     locale,
     keywords: [item.keyword, item.category, "Shopify AI", "Shopify automation", "Spark playbook"],

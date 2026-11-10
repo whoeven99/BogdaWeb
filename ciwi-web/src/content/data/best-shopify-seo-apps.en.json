@@ -1,0 +1,215 @@
+{
+  "slug": "best-shopify-seo-apps",
+  "href": "/best-shopify-apps/best-shopify-seo-apps",
+  "categorySlug": "seo",
+  "categoryLabel": "SEO",
+  "year": 2026,
+  "updatedLabel": "Checked November 10, 2026",
+  "title": "Best Shopify SEO Apps (2026): Schema, Speed, Content",
+  "description": "Six Shopify SEO apps compared by the job they do — schema, image weight, bulk meta tags and AI content — with free-plan limits and what each tier costs.",
+  "heroEyebrow": "Search visibility",
+  "summary": "A job-based shortlist of Shopify SEO apps: structured data, page speed, image weight and content. Every app here has a free entry tier, so the real decision is what that tier covers.",
+  "picksNote": "Every app below links to its Shopify App Store listing, and the order groups apps by the job they do rather than by install count.",
+  "intro": [
+    "Shopify SEO apps do not compete on one feature set. The category splits into four jobs: emitting structured data so products can appear with ratings and prices, cutting image weight and load time, bulk-editing titles and descriptions, and producing blog content you would otherwise write yourself.",
+    "That changes how you choose. Start from the job that is actually holding back your search visibility, then compare the free tier against the point where you have to pay. Every app in this shortlist lists a free plan; the difference is in what the free plan allows.",
+    "This is a listing-based comparison, not a measured ranking study. Plan names and prices were read from the linked Shopify App Store pages on November 10, 2026 and are shown in USD; your billing currency and regional pricing may differ. Two apps that appeared on earlier versions of this page, SEOLab and EZ AI, no longer have live App Store listings and were removed rather than left in place."
+  ],
+  "methodology": [
+    {
+      "title": "Job coverage, not feature count",
+      "description": "Each app is grouped by the problem it solves inside the Shopify admin. An app that handles four jobs adequately is not automatically a better buy than one that handles a single job well."
+    },
+    {
+      "title": "What the free tier actually includes",
+      "description": "Free plans in this category cap products, images per month, AI credits or posts. That cap, not the length of the feature list, is what decides when a store is forced to upgrade."
+    },
+    {
+      "title": "Live listing check",
+      "description": "Every app below had a live listing and readable pricing on the check date. Unlisted apps are dropped instead of being kept to make the list look longer, and prices are quoted from the listing rather than from review sites."
+    }
+  ],
+  "picks": [
+    {
+      "rank": 1,
+      "name": "Webrex: AI SEO, Schema JSON-LD",
+      "badge": "Schema and rich results",
+      "fixes": "Structured data for products, reviews, FAQ and breadcrumbs",
+      "summary": "The most focused app on this list. It writes JSON-LD for products, variants, reviews and FAQ blocks so Google and AI answer engines can read the catalog, and it produces schema per market once you sell in more than one language.",
+      "bestFor": "Stores missing star ratings, price and availability in search results",
+      "pricing": "Free; Growth ≈$9.99/month; Pro ≈$29.99/month",
+      "strengths": [
+        "Unlimited product schema on the free plan",
+        "Review schema for Judge.me, Loox and 30+ review apps",
+        "Duplicate-schema detection and error fixing on Pro"
+      ],
+      "watchouts": [
+        "FAQ and video schema sit on Pro, not the free plan",
+        "It does no image or speed work, so pair it with a speed app if weight is your bottleneck"
+      ],
+      "href": "https://apps.shopify.com/webrex-seo-schema"
+    },
+    {
+      "rank": 2,
+      "name": "Tapita AI SEO Optimizer, Speed",
+      "badge": "Broadest free tier",
+      "fixes": "On-page audit, meta tags, schemas, image compression, broken links",
+      "summary": "An all-in-one that leans on its free plan: unlimited on-page audits, bulk and AI-assisted meta editing, 900 image compressions a month and alt text for 50 products. The AI-search extras get the marketing space, but the audit and bulk metadata tools are the parts you will open weekly.",
+      "bestFor": "Stores that want audit, metadata and image fixes in one admin",
+      "pricing": "Free; Business ≈$9.99/month plus add-ons; Premium ≈$49.99/month",
+      "strengths": [
+        "900 image compressions per month on the free plan",
+        "Bulk and AI-assisted meta title and description editing",
+        "Broken-link detection with auto-redirect on Business"
+      ],
+      "watchouts": [
+        "Business and Premium carry per-plan surcharges for Grow, Advanced and Shopify Plus",
+        "AI metadata credits are capped per tier, so a full catalog rewrite can run out mid-project"
+      ],
+      "href": "https://apps.shopify.com/google-seo-schema-meta-data"
+    },
+    {
+      "rank": 3,
+      "name": "StoreSEO: AI SEO & Image Tools",
+      "badge": "Best free plan for small catalogs",
+      "fixes": "Meta, alt text, image compression, schema and sitemaps",
+      "summary": "The free tier is scoped for a starting catalog: 25 products, 25 images and 200 AI credits, with a schema generator, LLMs.txt output and a Search Console connection from Lite. It also exposes an MCP connector, so Claude or ChatGPT can make edits through the app.",
+      "bestFor": "New or small stores that want the full toolset before paying",
+      "pricing": "Free; Lite ≈$14.99/month; Essential ≈$39.99/month",
+      "strengths": [
+        "Schema markup, sitemap submission and GSC data from Lite",
+        "Image compression plus bulk alt text",
+        "Editable preview before meta changes go live"
+      ],
+      "watchouts": [
+        "Free tier stops at 25 products and 25 images",
+        "Multilingual SEO is listed on Advanced only"
+      ],
+      "href": "https://apps.shopify.com/storeseo"
+    },
+    {
+      "rank": 4,
+      "name": "Avada Image & Page Speed Up",
+      "badge": "Speed and Core Web Vitals",
+      "fixes": "Image compression, JS/CSS deferral, load-time reporting",
+      "summary": "A speed tool rather than a metadata tool. It compresses and resizes images, defers JavaScript and CSS, and reports FCP, LCP and CLS in the admin, with a done-for-you tier where their team edits theme code for you.",
+      "bestFor": "Heavy catalogs where image weight is the ranking bottleneck",
+      "pricing": "Free (100 images/month); Basic ≈$19/month; Pro ≈$49/month",
+      "strengths": [
+        "100 images and alt texts per month free",
+        "Core Web Vitals reporting without leaving the admin",
+        "Expert tier includes theme-code work and a speed guarantee"
+      ],
+      "watchouts": [
+        "No schema or meta editing",
+        "Test any speed app on a duplicated theme first; injected scripts can cost more than they save"
+      ],
+      "href": "https://apps.shopify.com/ap-speed-optimizer"
+    },
+    {
+      "rank": 5,
+      "name": "Avada Blog SEO AEO Content",
+      "badge": "AI content at volume",
+      "fixes": "AI blog drafts with keyword research and on-page scoring",
+      "summary": "An AI blog builder for stores that intend to publish consistently. Free covers unlimited posts against a one-off token allowance; Pro adds a monthly token budget, an AI assistant and unlimited multilingual posts.",
+      "bestFor": "Stores publishing editorial content, not just product pages",
+      "pricing": "Free (200,000 one-off AI tokens); Pro ≈$14.90/month",
+      "strengths": [
+        "Unlimited blog posts on the free plan",
+        "Keyword research and internal-linking suggestions built in"
+      ],
+      "watchouts": [
+        "The free token allowance does not renew, so in practice it is a trial",
+        "Generated drafts still need editing; thin AI posts can cost rankings rather than earn them"
+      ],
+      "href": "https://apps.shopify.com/seoon-blog"
+    },
+    {
+      "rank": 6,
+      "name": "Essential AI SEO: AI Blog Post",
+      "badge": "Bulk post generation",
+      "fixes": "Scheduled bulk articles in 13 output languages",
+      "summary": "A narrower content tool: pick a topic, generate the article, push it to the Shopify blog, optionally in bulk. It suits stores that treat the blog as a traffic channel and need volume more than craft.",
+      "bestFor": "Stores running a high-volume posting schedule",
+      "pricing": "Free (3 posts/month); Starter ≈$9.99/month; Essential ≈$29.99/month",
+      "strengths": [
+        "Bulk generation and auto-posting",
+        "13 output languages",
+        "Long review history for a content-only app"
+      ],
+      "watchouts": [
+        "The free plan is three posts a month",
+        "No technical SEO features, so pair it with an app that handles schema and metadata"
+      ],
+      "href": "https://apps.shopify.com/essential-seo-ai-blog-writer"
+    }
+  ],
+  "selectionGuide": [
+    {
+      "title": "Sort by job before you sort by price",
+      "description": "Write down the single thing search results are missing: rich results, load time, unique titles, or indexable content. Most stores need two of these, not four, and buying the tool that covers the other two is where the subscription gets wasted."
+    },
+    {
+      "title": "Read the free tier as a limit, not a feature list",
+      "description": "Count the cap that will bite first: products, images per month, AI credits or posts. A free plan that covers 25 products is a real tier for a 20-SKU store and a two-week trial for a 400-SKU catalog."
+    },
+    {
+      "title": "Check what the app writes into your theme",
+      "description": "Apps that inject scripts or edit theme code can cost more page speed than they recover. Install on a duplicated theme, compare load time and rendered markup before and after, then publish only if both improve."
+    }
+  ],
+  "rightFitGuide": [
+    {
+      "title": "Catalog pages missing rich results",
+      "description": "Start with Webrex. It is the only app here whose free plan is unlimited on product schema, which is the type that drives star ratings and price snippets in search results."
+    },
+    {
+      "title": "Slow storefront, especially on mobile",
+      "description": "Compare Avada Image & Page Speed Up with the image tools inside Tapita and StoreSEO. If compression is the whole problem, the all-in-ones cover it; if you need JS/CSS work and Core Web Vitals reporting, use the specialist."
+    },
+    {
+      "title": "Nothing to rank in the first place",
+      "description": "Compare the two content apps against how much editing time you actually have. Avada suits steady publishing with review; Essential suits volume. Neither one fixes a store that shows the same content to every language."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Do I need an SEO app for Shopify at all?",
+      "answer": "Not always. Shopify already emits canonical tags, a sitemap and basic product structured data. An app earns its fee when you need review or FAQ schema, bulk metadata editing, image compression at scale, or content generation — if none of those is your bottleneck, the subscription buys very little."
+    },
+    {
+      "question": "Which Shopify SEO app is best for a small store?",
+      "answer": "Compare StoreSEO and Tapita first. StoreSEO caps its free plan at 25 products but covers schema, sitemaps and images in one place; Tapita gives unlimited on-page audits and 900 image compressions a month. Under 25 products, StoreSEO gets further before you pay."
+    },
+    {
+      "question": "Do SEO apps help with multilingual or translated stores?",
+      "answer": "Only partly. They can output schema per market and translate metadata, but ranking in a second language depends on structure: a separately indexable URL per language, correct hreflang tags, and translated product and collection content rather than text hidden behind a switcher. That work belongs to the localization category, not the SEO category."
+    },
+    {
+      "question": "Can running several SEO apps at once hurt?",
+      "answer": "Yes, in two ways: duplicate schema blocks, and competing script injections that slow the storefront. Keep one app per job, and after installing a second app check the rendered HTML for repeated JSON-LD blocks and re-measure load time."
+    },
+    {
+      "question": "How often do these prices change?",
+      "answer": "Frequently, and usually by shrinking the free tier rather than raising the headline price. Two apps previously listed on this page no longer have live App Store listings, which is why every row here links to the source listing — re-check it before you install."
+    }
+  ],
+  "finalVerdict": {
+    "title": "Which Shopify SEO app should you shortlist?",
+    "paragraphs": [
+      "If search results are missing star ratings and prices, start with Webrex. If the store is slow, start with Avada Image & Page Speed Up. If you have nothing to rank, pick one content app and treat the blog as a channel with its own publishing schedule.",
+      "Most stores under 100 products can cover metadata, images and schema with one all-in-one on a free or entry tier. Above that, splitting the work between a schema app and a speed app is easier to measure than one app doing everything adequately."
+    ],
+    "primaryLabel": "Webrex: AI SEO, Schema JSON-LD",
+    "primaryHref": "https://apps.shopify.com/webrex-seo-schema",
+    "secondaryLabel": "Browse Shopify App Store",
+    "secondaryHref": "https://apps.shopify.com/"
+  },
+  "keywords": [
+    "best shopify seo apps",
+    "shopify seo app",
+    "best seo app for shopify",
+    "shopify seo tools",
+    "shopify seo apps 2026"
+  ]
+}
