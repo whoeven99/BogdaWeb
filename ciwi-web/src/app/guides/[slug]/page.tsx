@@ -534,6 +534,7 @@ function buildGuideStructuredData(
         headline: localizedGuide.title,
         description: localizedGuide.description,
         datePublished: localizedGuide.publishedAt,
+        dateModified: localizedGuide.updatedAt ?? localizedGuide.publishedAt,
         keywords: localizedGuide.keywords,
         author: {name: author.name, jobTitle: author.role[locale], url: toAbsoluteLocalizedUrl(locale, `/authors/${author.id}`)},
       }),
@@ -914,7 +915,18 @@ function renderLocalizationGuidePage(
             <div className="guide-narrative-stack">
               {guide.recommendations.map((item) => (
                 <article key={item.title} className="surface-card guide-narrative-card">
-                  <h3>{item.title}</h3>
+                  <h3>
+                    {item.href ? (
+                      <a
+                        className="underline decoration-slate-300 underline-offset-4 transition-colors hover:decoration-slate-500"
+                        href={localizeHref(locale, item.href)}
+                      >
+                        {item.title}
+                      </a>
+                    ) : (
+                      item.title
+                    )}
+                  </h3>
                   <p>{item.description}</p>
                 </article>
               ))}
@@ -1368,7 +1380,18 @@ function renderFunctionScenarioGuidePage(
             <div className="guide-narrative-stack">
               {guide.recommendations.map((item) => (
                 <article key={item.title} className="surface-card guide-narrative-card">
-                  <h3>{item.title}</h3>
+                  <h3>
+                    {item.href ? (
+                      <a
+                        className="underline decoration-slate-300 underline-offset-4 transition-colors hover:decoration-slate-500"
+                        href={localizeHref(locale, item.href)}
+                      >
+                        {item.title}
+                      </a>
+                    ) : (
+                      item.title
+                    )}
+                  </h3>
                   <p>{item.description}</p>
                 </article>
               ))}

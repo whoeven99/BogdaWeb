@@ -74,6 +74,8 @@ export type GuideSolution = {
 export type GuideRecommendation = {
   title: string;
   description: string;
+  /** 可选内链；填了标题会渲染成链接 */
+  href?: string;
 };
 
 export type GuideTerminology = {

@@ -31,6 +31,8 @@ export type FunctionScenarioMistake = {
 export type FunctionScenarioRecommendation = {
   title: string;
   description: string;
+  /** 可选内链；填了标题会渲染成链接 */
+  href?: string;
 };
 
 export type FunctionScenarioFaq = {
@@ -43,6 +45,8 @@ export type FunctionScenarioGuide = {
   href: string;
   year: number;
   publishedAt: string;
+  /** 内容最后一次实质改写的日期；用于 sitemap lastmod 与 schema 的 dateModified，未填则沿用 publishedAt */
+  updatedAt?: string;
   status?: "draft" | "published";
   sourceLocale?: Locale;
   translationStatus?: "manual" | "ai-draft" | "reviewed";

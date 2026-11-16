@@ -856,12 +856,12 @@ function buildGeneratedFaqItems(data: CompareItem, locale: "en" | "zh-cn"): Comp
   items.push(
     locale === "zh-cn"
       ? {
-          question: `${data.title} 更适合哪类商家？`,
+          question: `${data.title}更适合哪类商家？`,
           answer: `结论：这页比较最适合已经明确要做多语言运营、但还在比较“快速上线”与“长期治理”两条路径的 Shopify 商家。`,
           evidence: bestForText ? [`当前条目的适用人群重点包括：${bestForText}。`] : undefined,
         }
       : {
-          question: `Who is ${data.title} most useful for?`,
+          question: `Who should read this ${data.alternativeName} alternative comparison?`,
           answer: `Conclusion: this comparison is most useful for Shopify merchants who already know they need multilingual operations and are deciding between faster launch and stronger long-term governance.`,
           evidence: bestForText ? [`Best-fit signals on this page include: ${bestForText}.`] : undefined,
         },
@@ -1069,6 +1069,9 @@ function getCompareDetailCopy(locale: "en" | "zh-cn") {
             eyebrow: "免费方案对比",
             fieldLabel: "字段",
           },
+          freeStart: {
+            eyebrow: "免费起步路线",
+          },
           merchantReviews: {
             eyebrow: "真实评价",
           },
@@ -1134,6 +1137,9 @@ function getCompareDetailCopy(locale: "en" | "zh-cn") {
           freePlanComparison: {
             eyebrow: "Free plan comparison",
             fieldLabel: "Field",
+          },
+          freeStart: {
+            eyebrow: "Starting free",
           },
           merchantReviews: {
             eyebrow: "Merchant reviews",
@@ -1655,6 +1661,32 @@ export default async function CompareDetailPage({params}: CompareDetailPageProps
                 </div>
               </section>
             </div>
+          </section>
+        ) : null}
+
+        {data.freeStart ? (
+          <section className="page-section compare-page-section compare-page-section--start">
+            <SectionHeading
+              eyebrow={copy.sections.freeStart.eyebrow}
+              title={data.freeStart.title}
+              description={data.freeStart.description}
+            />
+            <div className="resource-grid">
+              {data.freeStart.links.map((link) => (
+                <ArticleCard
+                  key={link.href}
+                  title={link.title}
+                  description={link.description}
+                  href={link.href}
+                  meta={link.meta ?? []}
+                />
+              ))}
+            </div>
+            {data.freeStart.note ? (
+              <p className="mx-auto mt-6 max-w-5xl text-[15px] leading-7 text-slate-500 sm:text-base">
+                {data.freeStart.note}
+              </p>
+            ) : null}
           </section>
         ) : null}
 

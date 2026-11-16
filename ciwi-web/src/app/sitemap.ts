@@ -115,11 +115,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
 
     for (const compare of getCompares(locale)) {
-      addEntry(`/compare/${compare.slug}`, locale);
+      addEntry(`/compare/${compare.slug}`, locale, compare.updatedAt);
     }
 
     for (const collection of getBestShopifyAppCollections(locale)) {
-      addEntry(collection.href, locale);
+      addEntry(collection.href, locale, collection.updatedAt);
     }
 
     for (const blogPost of getBlogPosts(locale)) {
@@ -135,7 +135,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
 
     for (const guide of getFunctionScenarioGuides(locale)) {
-      addEntry(guide.href, locale, guide.publishedAt);
+      addEntry(guide.href, locale, guide.updatedAt ?? guide.publishedAt);
     }
 
     for (const article of getProductResearchWorkflowArticles(locale)) {
