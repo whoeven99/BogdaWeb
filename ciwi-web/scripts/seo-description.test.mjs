@@ -95,6 +95,76 @@ test("noindex pages get index false with follow preserved", () => {
   assert.equal(result.robots.follow, true);
 });
 
+test("noindex pages stop declaring a canonical", () => {
+  // 本站规则：noindex 页不声明正本，避免「别收录我」和「我是正本」同时出现。
+  // 这不解释 GSC 的重复分类成因，那条要靠部署后的 URL 检查核对。
+  const result = buildPageMetadata({
+    title: "Ciwi 联盟计划",
+    description: "分享你的推广链接。",
+    path: "/zh-cn/affiliate",
+    locale: "zh-cn",
+    noIndex: true,
+  });
+
+  assert.equal(result.alternates, undefined);
+  assert.equal(result.robots.index, false);
+});
+
+test("hreflang never points at the noindex Chinese twin", () => {
+  const english = buildPageMetadata({
+    title: "Privacy Policy",
+    description: "How Ciwi handles merchant data.",
+    path: "/privacy-policy",
+    locale: "en",
+  });
+
+  assert.equal(english.alternates.canonical, "https://ciwi.ai/privacy-policy/");
+  assert.equal(english.alternates.languages["zh-CN"], undefined, "zh-CN twin is noindex");
+  assert.equal(english.alternates.languages.en, "https://ciwi.ai/privacy-policy/");
+  assert.equal(english.alternates.languages["x-default"], "https://ciwi.ai/privacy-policy/");
+});
+
+test("indexable paths keep the full three-way hreflang group", () => {
+  const result = buildPageMetadata({
+    title: "Shopify 本地化指南",
+    description: "按行业和 B2B 场景选择本地化策略。",
+    path: "/zh-cn/guides/localization",
+    locale: "zh-cn",
+  });
+
+  assert.equal(result.alternates.canonical, "https://ciwi.ai/zh-cn/guides/localization/");
+  assert.equal(result.alternates.languages.en, "https://ciwi.ai/guides/localization/");
+  assert.equal(result.alternates.languages["zh-CN"], "https://ciwi.ai/zh-cn/guides/localization/");
+  assert.equal(result.alternates.languages["x-default"], "https://ciwi.ai/guides/localization/");
+});
+
+// 线上页面传进来的 path 是不带语言前缀的（内容数据里 href 都存成 /guides/xxx），
+// 语言由 locale 决定。canonical 必须跟着 locale 走，否则中文正文会把正本让给英文页。
+test("unprefixed paths still self-canonicalize on the Chinese locale", () => {
+  const result = buildPageMetadata({
+    title: "Shopify 本地化指南",
+    description: "按行业和 B2B 场景选择本地化策略。",
+    path: "/guides/localization",
+    locale: "zh-cn",
+  });
+
+  assert.equal(result.alternates.canonical, "https://ciwi.ai/zh-cn/guides/localization/");
+  assert.equal(result.openGraph.url, "https://ciwi.ai/zh-cn/guides/localization/");
+});
+
+test("a locale the page is not translated into falls back to English", () => {
+  const result = buildPageMetadata({
+    title: "Merchant guide",
+    description: "A guide that only exists in English.",
+    path: "/guides/merchant-guide",
+    locale: "zh-cn",
+    supportedLocales: ["en"],
+  });
+
+  assert.equal(result.alternates.canonical, "https://ciwi.ai/guides/merchant-guide/");
+  assert.equal(result.alternates.languages["zh-CN"], undefined);
+});
+
 // 与 metadata.ts 的 estimateSERPWidth 保持一致的宽度估算，用于断言标题是否守住预算。
 function serpWidth(text) {
   let width = 0;

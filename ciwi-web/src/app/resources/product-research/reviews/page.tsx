@@ -14,6 +14,25 @@ function formatRating(value: number) {
   return Number.isInteger(value) ? value.toString() : value.toFixed(1);
 }
 
+const MONTH_ABBREVIATIONS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+// 日期取自测评的 publishedAt —— 它只能证明文章何时发布，不等于价格复核时间。
+// 手写格式化而不是 toLocaleDateString，避免不同运行环境的 ICU 数据把同一个日期
+// 渲染成两种样子。
+function formatPublishedDate(value: string, locale: "en" | "zh-cn") {
+  const [year, month, day] = value.split("-").map((part) => Number(part));
+
+  if (!year || !month || !day || month > 12) {
+    return value;
+  }
+
+  const paddedDay = String(day).padStart(2, "0");
+
+  return locale === "zh-cn"
+    ? `${year}-${String(month).padStart(2, "0")}-${paddedDay}`
+    : `${MONTH_ABBREVIATIONS[month - 1]} ${day}, ${year}`;
+}
+
 function getPageCopy(locale: "en" | "zh-cn") {
   return locale === "zh-cn"
     ? {
@@ -34,6 +53,14 @@ function getPageCopy(locale: "en" | "zh-cn") {
           title: "先看这张横向对比",
           description: "把六款工具的综合评分、定价、所属阶段和最佳场景并排放在一起，先缩小范围，再点进去看细节。",
           columns: ["工具", "综合评分", "定价", "所属阶段", "最佳场景"],
+          publishedLabel: "测评发布于",
+          note: "数据来源：本站六篇独立测评，点工具名进入对应测评页。日期为该测评的发布时间，不是价格的复核日期；定价按当时公开方案记录，官方调整后不会自动回写。",
+        },
+        scores: {
+          eyebrow: "分项评分",
+          title: "五个维度逐项对照",
+          description:
+            "六款工具用同一套五个维度打分，方便你只看决定购买的那一项。单项分之间不能相加，也不能跨维度取平均；综合分见上一张表。",
         },
         method: {
           eyebrow: "评分方法",
@@ -60,6 +87,14 @@ function getPageCopy(locale: "en" | "zh-cn") {
           title: "Start with the comparison",
           description: "Score, pricing, stage and best fit for all six tools on one table, so you can shortlist before opening a full review.",
           columns: ["Tool", "Score", "Pricing", "Stage", "Best for"],
+          publishedLabel: "Published",
+          note: "Source: the six independent reviews on this site — the tool name links to each one. The date is when that review was published, not when its pricing was re-checked; vendor changes afterwards are not written back automatically.",
+        },
+        scores: {
+          eyebrow: "Dimension scores",
+          title: "The same five dimensions, side by side",
+          description:
+            "All six tools are scored on the same five dimensions, so you can look at the one that decides the purchase for you. Dimension scores do not add up, and averaging across them is not meaningful — the headline score is in the table above.",
         },
         method: {
           eyebrow: "How we score",
@@ -86,6 +121,11 @@ export default async function ToolReviewsIndexPage() {
   const locale = await getRequestLocale();
   const reviews = getToolReviews(locale);
   const copy = getPageCopy(locale);
+  // 表头取所有测评维度的并集（按首次出现顺序），单元格按维度标签匹配取值。
+  // 不按下标取值：某一篇删掉中间一项或调整顺序时，分数会整列错位；缺项留破折号。
+  const dimensionLabels = Array.from(
+    new Set(reviews.flatMap((review) => review.scoreBreakdown.map((item) => item.label))),
+  );
 
   const pageUrl = toAbsoluteLocalizedUrl(locale, "/resources/product-research/reviews");
   const structuredData = buildGraphSchema([
@@ -134,6 +174,9 @@ export default async function ToolReviewsIndexPage() {
                     <p className="review-matrix-table__text">
                       <LocalizedLink href={review.href}>{review.toolName}</LocalizedLink>
                     </p>
+                    <p className="review-matrix-table__meta">
+                      {`${copy.matrix.publishedLabel} ${formatPublishedDate(review.publishedAt, locale)}`}
+                    </p>
                   </div>
                   <div className="review-matrix-table__cell" role="cell">
                     <p className="review-matrix-table__text">{`${formatRating(review.rating)}/10`}</p>
@@ -147,6 +190,55 @@ export default async function ToolReviewsIndexPage() {
                   <div className="review-matrix-table__cell" role="cell">
                     <p className="review-matrix-table__text">{review.bestFor[0] ?? ""}</p>
                   </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <p className="quote mt-6">{copy.matrix.note}</p>
+        </section>
+
+        {/* 综合分只有一列，看不出「哪一项拖后腿」。分项表用同一套维度摊开，
+            让读者按自己关心的维度挑工具，也把发布日期和口径写在页面上。 */}
+        <section id="scores" className="page-section page-section--compact">
+          <SectionHeading eyebrow={copy.scores.eyebrow} title={copy.scores.title} description={copy.scores.description} />
+          <div className="review-matrix-scroll mt-8">
+            <div
+              className="review-matrix-table review-matrix-table--scores"
+              role="table"
+              aria-label={copy.scores.title}
+            >
+              <div className="review-matrix-table__row" role="row">
+                <div className="review-matrix-table__cell review-matrix-table__cell--head" role="columnheader">
+                  <p className="review-matrix-table__text">{copy.matrix.columns[0]}</p>
+                </div>
+                {dimensionLabels.map((label) => (
+                  <div
+                    key={label}
+                    className="review-matrix-table__cell review-matrix-table__cell--head"
+                    role="columnheader"
+                  >
+                    <p className="review-matrix-table__text">{label}</p>
+                  </div>
+                ))}
+              </div>
+              {reviews.map((review) => (
+                <div key={review.slug} className="review-matrix-table__row" role="row">
+                  <div className="review-matrix-table__cell review-matrix-table__cell--tool" role="cell">
+                    <p className="review-matrix-table__text">
+                      <LocalizedLink href={review.href}>{review.toolName}</LocalizedLink>
+                    </p>
+                  </div>
+                  {dimensionLabels.map((label) => {
+                    const score = review.scoreBreakdown.find((item) => item.label === label)?.score;
+
+                    return (
+                      <div key={`${review.slug}-${label}`} className="review-matrix-table__cell" role="cell">
+                        <p className="review-matrix-table__text review-matrix-table__text--score">
+                          {typeof score === "number" ? score.toString() : "—"}
+                        </p>
+                      </div>
+                    );
+                  })}
                 </div>
               ))}
             </div>

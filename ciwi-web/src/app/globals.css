@@ -7344,6 +7344,29 @@ select {
   line-height: 1.7;
 }
 
+/* 来源与核验日期：挂在工具名下面，比单开一列更省横向空间。 */
+.review-matrix-table__meta {
+  margin: 4px 0 0;
+  color: var(--color-ink-500);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* 分项评分表比综合表多一列，单独给一套列宽。 */
+.review-matrix-table--scores {
+  min-width: 780px;
+}
+
+.review-matrix-table--scores .review-matrix-table__row {
+  grid-template-columns: minmax(132px, 1.15fr) repeat(5, minmax(0, 1fr));
+}
+
+.review-matrix-table__text--score {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  color: var(--color-ink-900);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

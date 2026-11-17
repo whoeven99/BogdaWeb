@@ -351,10 +351,12 @@ export function MediaPlaceholderSection({
           const preset = localizeLanguageSignalFields(locale, getShowcasePreset(localizedItem, index, locale));
           const placementLabel = locale === "zh-cn" ? "位置" : "Placement";
           const placementValue = locale === "zh-cn" ? localizedItem.placement : localizedItem.title;
+          // 素材 brief 是写给设计/视频的内部说明（中文），不是读者文案。英文页直接用它
+          // 会把整段中文渲染进正文，所以英文侧一律改用 preset 自带的英文摘要。
           const itemDescription =
             locale === "zh-cn"
               ? localizeLanguageSignalText(locale, normalizeItemDescription(localizedItem.description, locale))
-              : localizedItem.description || preset.summary;
+              : preset.summary;
           const watchLabel = locale === "zh-cn" ? "查看演示" : "Watch walkthrough";
 
           return (

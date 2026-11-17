@@ -210,7 +210,7 @@ function getLocalizationGuidePageCopy(locale: "en" | "zh-cn") {
           faq: {
             eyebrow: "常见问题",
             title: "常见问题",
-            description: "补齐长尾搜索问题，并回答团队在启动本地化时最常见的疑问。",
+            description: "团队在启动本地化时最常问的问题，以及决定先翻什么的判断依据。",
           },
           moreGuides: {
             eyebrow: "延伸阅读",
@@ -320,7 +320,7 @@ function getLocalizationGuidePageCopy(locale: "en" | "zh-cn") {
           faq: {
             eyebrow: "FAQ",
             title: "Frequently asked questions",
-            description: "Cover long-tail search intent and the most common rollout questions teams ask early.",
+            description: "The questions that decide rollout order, gathered from teams before their first launch.",
           },
           moreGuides: {
             eyebrow: "Keep reading",
@@ -406,7 +406,7 @@ function getFunctionScenarioPageCopy(locale: "en" | "zh-cn") {
           faq: {
             eyebrow: "常见问题",
             title: "常见问题",
-            description: "覆盖用户在执行这个功能场景时最常问的问题。",
+            description: "真正动手做这个场景时才会冒出来的问题。",
           },
           moreGuides: {
             eyebrow: "延伸阅读",
@@ -488,7 +488,7 @@ function getFunctionScenarioPageCopy(locale: "en" | "zh-cn") {
           faq: {
             eyebrow: "FAQ",
             title: "Frequently asked questions",
-            description: "Cover the most common execution questions users ask when working through this scenario.",
+            description: "The questions that come up while doing the work, not before starting it.",
           },
           moreGuides: {
             eyebrow: "Keep reading",
@@ -509,7 +509,7 @@ function getFunctionScenarioPageCopy(locale: "en" | "zh-cn") {
 
 function buildGuideStructuredData(
   locale: "en" | "zh-cn",
-  guide: {title: string; description: string; href: string; publishedAt: string; keywords: string[]; faq: {question: string; answer: string}[]}
+  guide: {title: string; description: string; href: string; publishedAt: string; updatedAt?: string; keywords: string[]; faq: {question: string; answer: string}[]}
 ) {
   const localizedGuide = localizeLanguageSignalFields(locale, guide);
   const pageUrl = toAbsoluteLocalizedUrl(locale, guide.href);
@@ -609,7 +609,7 @@ function getFunctionScenarioNarrativeCopy(locale: "en" | "zh-cn") {
 function getLocalizationNarrativeCopy(locale: "en" | "zh-cn") {
   return locale === "zh-cn"
     ? {
-        overviewLead: "如果这个页面已经明确指向某个类目，那么真正重要的不是先列模块，而是先把这个类目的购买逻辑、内容重点和本地化难点讲清楚。",
+        overviewLead: "买家在联系你之前，先要判断的是产品对不对、市场合不合适、资料齐不齐。本地化要么帮他把这个比较做完，要么在中途打断他。",
         marketsLead: "同一个类目在不同市场，用户关注点、表达习惯和信任判断都不一样。先理解这些差异，再决定怎么翻、翻到什么程度。",
         languagesLead: "语言优先级不应该只看人口规模，而要看这个类目在当地是否有更明确的搜索需求、购买习惯和品牌接受度。",
         mistakesLead: "下面这些错误并不是简单的翻译失误，它们往往会直接影响用户是否理解产品、是否信任品牌，以及是否愿意继续下单。",
@@ -619,13 +619,13 @@ function getLocalizationNarrativeCopy(locale: "en" | "zh-cn") {
         scopeLead: "翻译范围最好先覆盖最影响搜索、转化和理解的部分，再逐步扩到支持性内容，而不是一开始平均铺开。",
         workflowLead: "不同团队适合的本地化方案不一样。关键不是理论上最完整，而是当前团队是否能稳定维护并持续更新。",
         checklistLead: "如果准备把这个类目真正推向新市场，最好把上线前检查变成固定动作，而不是临时补漏。",
-        ciwiLead: "如果最后要落到工具建议，重点应该是它能帮你把哪些多语言工作流长期跑起来。",
+        ciwiLead: "第一次做多语言时最容易出问题的部分，Ciwi 都覆盖到了：商品、主题文案、元数据、图片，以及承载规格的结构化字段。",
         criticalLabel: "核心层",
         importantLabel: "重要层",
       }
     : {
         overviewLead:
-          "If the page targets a specific category, the first job is not listing modules. It is explaining how buyers evaluate that category and why its localization is different.",
+          "This is the decision a buyer makes before contacting you: whether the product, the market fit, and the paperwork line up. Localization either supports that comparison or gets in its way.",
         marketsLead:
           "The same category behaves differently across markets. Buyer expectations, trust signals, and wording habits all shift, so the localization advice has to shift with them.",
         languagesLead:
@@ -645,7 +645,7 @@ function getLocalizationNarrativeCopy(locale: "en" | "zh-cn") {
         checklistLead:
           "If this category is about to launch in a new market, the checks below should work like a release routine instead of a last-minute cleanup pass.",
         ciwiLead:
-          "If the page ends with a tool recommendation, the focus should be on which multilingual workflows it helps your team run continuously.",
+          "Ciwi covers the parts that usually break in a first multilingual launch: products, theme copy, metadata, images, and the structured fields that hold specifications.",
         criticalLabel: "Critical layer",
         importantLabel: "Important layer",
       };
@@ -727,13 +727,10 @@ function renderLocalizationGuidePage(
           <SectionHeading
             eyebrow={copy.sections.overview.eyebrow}
             title={copy.sections.overview.title}
-            description={copy.sections.overview.description}
           />
           <div className="surface-card guide-article">
             <div className="guide-prose">
               <p className="guide-article__lede">{articleCopy.overviewLead}</p>
-              <p>{guide.mainValue}</p>
-              <p>{guide.description}</p>
             </div>
             <div className="guide-article__sections">
               {guide.overviewDrivers.map((item) => (
@@ -750,7 +747,6 @@ function renderLocalizationGuidePage(
           <SectionHeading
             eyebrow={copy.sections.habits.eyebrow}
             title={copy.sections.habits.title}
-            description={copy.sections.habits.description}
           />
           <div className="guide-article-layout">
             <article className="surface-card guide-article">
@@ -789,7 +785,6 @@ function renderLocalizationGuidePage(
           <SectionHeading
             eyebrow={copy.sections.languages.eyebrow}
             title={copy.sections.languages.title}
-            description={copy.sections.languages.description}
           />
           <div className="guide-article-layout">
             <article className="surface-card guide-article">
@@ -814,7 +809,6 @@ function renderLocalizationGuidePage(
           <SectionHeading
             eyebrow={copy.sections.mistakes.eyebrow}
             title={copy.sections.mistakes.title}
-            description={copy.sections.mistakes.description}
           />
           <div className="guide-article-layout">
             <article className="surface-card guide-article">
@@ -845,7 +839,7 @@ function renderLocalizationGuidePage(
         </section>
 
         <section id="style" className="page-section">
-          <SectionHeading eyebrow={copy.sections.style.eyebrow} title={copy.sections.style.title} description={copy.sections.style.description} />
+          <SectionHeading eyebrow={copy.sections.style.eyebrow} title={copy.sections.style.title} />
           <div className="guide-article-layout">
             <article className="surface-card guide-article">
               <div className="guide-prose">
@@ -867,7 +861,6 @@ function renderLocalizationGuidePage(
           <SectionHeading
             eyebrow={copy.sections.terminology.eyebrow}
             title={copy.sections.terminology.title}
-            description={copy.sections.terminology.description}
           />
           <div className="guide-article-layout">
             <article className="surface-card guide-article">
@@ -904,7 +897,6 @@ function renderLocalizationGuidePage(
           <SectionHeading
             eyebrow={copy.sections.recommendations.eyebrow}
             title={copy.sections.recommendations.title}
-            description={copy.sections.recommendations.description}
           />
           <div className="guide-article-layout">
             <article className="surface-card guide-article">
@@ -935,7 +927,7 @@ function renderLocalizationGuidePage(
         </section>
 
         <section className="page-section">
-          <SectionHeading eyebrow={copy.sections.scope.eyebrow} title={copy.sections.scope.title} description={copy.sections.scope.description} />
+          <SectionHeading eyebrow={copy.sections.scope.eyebrow} title={copy.sections.scope.title} />
           <div className="guide-article-layout">
             <article className="surface-card guide-article">
               <div className="guide-prose">
@@ -980,7 +972,6 @@ function renderLocalizationGuidePage(
           <SectionHeading
             eyebrow={copy.sections.solutions.eyebrow}
             title={copy.sections.solutions.title}
-            description={copy.sections.solutions.description}
           />
           <div className="guide-article-layout">
             <article className="surface-card guide-article">
@@ -1009,7 +1000,7 @@ function renderLocalizationGuidePage(
 
         <section id="ciwi" className="page-section">
           <div className="callout guide-callout">
-            <SectionHeading eyebrow={copy.sections.ciwi.eyebrow} title={copy.sections.ciwi.title} description={copy.sections.ciwi.description} />
+            <SectionHeading eyebrow={copy.sections.ciwi.eyebrow} title={copy.sections.ciwi.title} />
             <div className="guide-prose">
               <p className="guide-article__lede">{articleCopy.ciwiLead}</p>
             </div>
@@ -1041,7 +1032,6 @@ function renderLocalizationGuidePage(
           <SectionHeading
             eyebrow={copy.sections.checklist.eyebrow}
             title={copy.sections.checklist.title}
-            description={copy.sections.checklist.description}
           />
           <div className="guide-article-layout">
             <article className="surface-card guide-article">
@@ -1188,12 +1178,10 @@ function renderFunctionScenarioGuidePage(
         </section>
 
         <section id="overview" className="page-section">
-          <SectionHeading eyebrow={copy.sections.overview.eyebrow} title={copy.sections.overview.title} description={copy.sections.overview.description} />
+          <SectionHeading eyebrow={copy.sections.overview.eyebrow} title={copy.sections.overview.title} />
           <div className="surface-card guide-article">
             <div className="guide-prose">
               <p className="guide-article__lede">{articleCopy.overviewLead}</p>
-              <p>{guide.mainValue}</p>
-              <p>{guide.description}</p>
             </div>
             <div className="guide-article__sections">
               {guide.overviewDrivers.map((item) => (
@@ -1207,7 +1195,7 @@ function renderFunctionScenarioGuidePage(
         </section>
 
         <section id="scope" className="page-section">
-          <SectionHeading eyebrow={copy.sections.scope.eyebrow} title={copy.sections.scope.title} description={copy.sections.scope.description} />
+          <SectionHeading eyebrow={copy.sections.scope.eyebrow} title={copy.sections.scope.title} />
           <div className="guide-article-layout">
             <article className="surface-card guide-article">
               <div className="guide-prose">
@@ -1252,7 +1240,6 @@ function renderFunctionScenarioGuidePage(
           <SectionHeading
             eyebrow={copy.sections.mistakes.eyebrow}
             title={copy.sections.mistakes.title}
-            description={copy.sections.mistakes.description}
           />
           <div className="guide-article-layout">
             <article className="surface-card guide-article">
@@ -1286,7 +1273,6 @@ function renderFunctionScenarioGuidePage(
           <SectionHeading
             eyebrow={copy.sections.workflow.eyebrow}
             title={copy.sections.workflow.title}
-            description={copy.sections.workflow.description}
           />
           <div className="guide-article-layout">
             <article className="surface-card guide-article">
@@ -1317,7 +1303,6 @@ function renderFunctionScenarioGuidePage(
           <SectionHeading
             eyebrow={copy.sections.checklist.eyebrow}
             title={copy.sections.checklist.title}
-            description={copy.sections.checklist.description}
           />
           <div className="guide-article-layout">
             <article className="surface-card guide-article">
@@ -1337,7 +1322,7 @@ function renderFunctionScenarioGuidePage(
 
         <section id="ciwi" className="page-section">
           <div className="callout guide-callout">
-            <SectionHeading eyebrow={copy.sections.ciwi.eyebrow} title={copy.sections.ciwi.title} description={copy.sections.ciwi.description} />
+            <SectionHeading eyebrow={copy.sections.ciwi.eyebrow} title={copy.sections.ciwi.title} />
             <div className="guide-prose">
               <p className="guide-article__lede">{articleCopy.ciwiLead}</p>
             </div>
@@ -1369,7 +1354,6 @@ function renderFunctionScenarioGuidePage(
           <SectionHeading
             eyebrow={copy.sections.recommendations.eyebrow}
             title={copy.sections.recommendations.title}
-            description={copy.sections.recommendations.description}
           />
           <div className="guide-article-layout">
             <article className="surface-card guide-article">

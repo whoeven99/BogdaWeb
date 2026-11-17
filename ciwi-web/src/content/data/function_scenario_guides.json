@@ -361,12 +361,12 @@
     "year": 2026,
     "publishedAt": "2026-08-20",
     "title": "How to Translate Shopify Cart & Mini-Cart",
-    "description": "Translate Shopify mini-cart text, cart buttons, and empty-cart messages so shoppers can review products and continue to checkout in their language.",
+    "description": "Fix the cart and mini-cart copy shoppers actually read: drawer buttons, free-shipping messages, empty states, and the wording handoff into checkout.",
     "industry": "Ecommerce",
     "audience": "Shopify merchants localizing their storefront",
     "segmentLabel": "How-to",
     "guideLabel": "Translation Guide",
-    "mainValue": "A repeatable method for localizing cart and mini-cart copy — the buttons, labels, and empty states that keep shoppers moving toward checkout.",
+    "mainValue": "Work out where each cart string lives — theme locale file, hardcoded section markup, or an app — and verify the whole drawer in every language instead of only the cart page.",
     "topic": "Cart & Mini-Cart",
     "keywords": [
       "translate shopify cart",
@@ -376,56 +376,56 @@
     ],
     "overviewDrivers": [
       {
-        "title": "The cart is the last decision point before payment",
-        "description": "Subtotal wording, quantity labels, and the checkout button all live here. If any of them reads awkwardly in the shopper's language, momentum stalls one step before revenue."
+        "title": "The drawer, not the cart page, is what most shoppers see",
+        "description": "On most modern themes the slide-out drawer opens the moment something is added. It is also the surface with the least translated copy, because its strings often sit in section markup rather than in the theme's locale file."
       },
       {
-        "title": "Mini-cart text often hides in theme code",
-        "description": "The slide-out mini-cart is frequently a theme component with hardcoded strings that don't appear in Shopify's standard translation list, so it silently stays untranslated."
+        "title": "Cart copy is small, which is exactly why it gets skipped",
+        "description": "Twenty strings sit between the product page and payment: buttons, subtotal, quantity, remove, empty state, free-shipping progress. A translation project scoped to product pages leaves all of them in the source language."
       },
       {
-        "title": "Cart text must match the checkout that follows",
-        "description": "Inconsistent wording between cart and checkout — 'Continue to checkout' vs 'Proceed to payment' — makes the store feel unpolished and invites second-guessing."
+        "title": "Money and status messages break differently",
+        "description": "A progress bar that composes a sentence around an amount, or a plural form for one item remaining, fails in ways a product description never does. These need checking in the browser, not in the translation editor."
       }
     ],
     "solutions": [
       {
-        "name": "Manual translation (in-house or freelancer)",
+        "name": "Translate the theme's cart locale strings",
         "advantages": [
-          "Full control over every cart string including theme hardcodes",
-          "No cost for a small set of markets",
-          "Human nuance for calls-to-action"
+          "Covers most of the drawer when it is built from theme sections",
+          "Same glossary as product and collection pages",
+          "Survives theme updates better than edited markup"
         ],
         "limitations": [
-          "Mini-cart strings are easy to miss because they live in theme code",
-          "Slow to update when the theme changes",
-          "Inconsistent phrasing across markets without a glossary"
+          "Only reaches strings the theme actually stores in its locale file",
+          "Hardcoded markup and inline JavaScript text stay untranslated",
+          "A custom or heavily modified theme may expose very little"
         ]
       },
       {
-        "name": "Shopify translation app (Translate & Adapt / Ciwi)",
+        "name": "Edit the hardcoded cart-drawer strings in the theme",
         "advantages": [
-          "Detects and translates cart strings across theme and Shopify",
-          "Keeps cart and checkout wording consistent",
-          "Auto-syncs when you change the theme or copy"
+          "Reaches the strings the locale file does not cover",
+          "No app needed for a handful of labels",
+          "Immediate, visible result in the drawer"
         ],
         "limitations": [
-          "Theme-specific strings may still need a manual check",
-          "Recurring subscription cost",
-          "Quality depends on engine and glossary setup"
+          "Changes live in the theme and are lost on a theme update unless you keep a copy",
+          "Needs someone comfortable editing sections or snippets",
+          "Easy to break the amount or currency format inside a sentence"
         ]
       },
       {
-        "name": "Custom build with the Shopify API",
+        "name": "Handle the cart text an installed app owns",
         "advantages": [
-          "Full programmatic control of cart text via the Storefront API",
-          "Tight integration with a custom headless cart",
-          "No app markup at large scale"
+          "Covers upsell, bundle, subscription and currency widgets inside the cart",
+          "App settings usually expose their own per-language fields",
+          "Keeps app copy separate from theme copy, so updates do not collide"
         ],
         "limitations": [
-          "Requires developer resources and a custom storefront",
-          "Ongoing maintenance",
-          "Slower to launch than an app"
+          "Each app has its own settings surface",
+          "Coverage depends on what the app exposes",
+          "Some apps inject text with no per-language option at all"
         ]
       }
     ],
@@ -433,75 +433,77 @@
       {
         "category": "Critical",
         "items": [
-          "Cart & checkout buttons (CTA)",
-          "Subtotal, tax, and shipping labels",
-          "Quantity & remove item labels",
-          "Empty-cart state text"
+          "Checkout and continue buttons in the drawer and cart page",
+          "Subtotal, shipping, tax and total labels",
+          "Quantity, remove and update controls",
+          "Empty-cart message"
         ],
         "priority": "High"
       },
       {
         "category": "Important",
         "items": [
-          "Line-item labels (SKU, variant, unit price)",
-          "Discount / promo code field",
-          "Continue-shopping links"
+          "Free-shipping progress message",
+          "Discount code field and its error messages",
+          "Line-item labels (variant, unit price, SKU)",
+          "Continue-shopping link"
         ],
         "priority": "Medium"
       },
       {
         "category": "Optional",
         "items": [
-          "Upsell and cross-sell blocks",
-          "Gift note and delivery date fields"
+          "Upsell and cross-sell blocks inside the drawer",
+          "Gift note and delivery-date fields"
         ],
         "priority": "Lower"
       }
     ],
     "checklist": [
-      "Open your cart and mini-cart and capture every visible string, including the slide-out drawer.",
-      "Check whether your theme hardcodes mini-cart text — inspect the cart-drawer section or use a translation app that scans theme strings.",
-      "Translate the high-impact strings first: CTA button, subtotal, tax, and shipping labels.",
-      "Localize quantity, remove, and empty-cart states — these are easy to overlook.",
-      "Keep wording consistent with your checkout (button label, discount field, totals).",
-      "Apply the same glossary you use on product pages so product names match.",
-      "Test the full cart flow in each language, including adding, updating, and emptying the cart."
+      "Open the drawer in a browser and screenshot it in the source language, with one item and with none. The empty state is the one nobody remembers.",
+      "For each string, decide who owns it: the theme (locale file or section markup), Shopify's own system messages, or an installed app.",
+      "Translate the theme locale strings first, then diff the drawer against your screenshot to see what stayed in the source language.",
+      "Check the free-shipping message in each language, because it usually composes an amount into a sentence. Confirm the currency symbol and rounding still read correctly.",
+      "Translate the error path, not just the happy path: an invalid discount code and a quantity of zero are the strings shoppers actually hit.",
+      "Switch language with items already in the cart, rather than rebuilding the cart in the new language.",
+      "Run the drawer on a phone viewport, where translated buttons wrap or get clipped.",
+      "Re-check after the next theme update, since hardcoded fixes do not survive it."
     ],
     "mistakes": [
       {
-        "category": "Missing the mini-cart theme strings",
-        "wrongExample": "Translating the main cart page but leaving the slide-out mini-cart in the source language.",
-        "correct": "Audit the theme's cart-drawer section and translate every hardcoded string there too.",
-        "impact": "Shoppers see an untranslated mini-cart immediately after adding to cart.",
+        "category": "Translating the cart page and stopping there",
+        "wrongExample": "Cart page fully localized while the slide-out drawer still says Add to cart and Subtotal in English.",
+        "correct": "Treat the drawer and the cart page as two separate surfaces with separate string sources.",
+        "impact": "Shoppers meet the untranslated version within seconds of adding a product.",
         "severity": "High"
       },
       {
-        "category": "Cart and checkout wording mismatch",
-        "wrongExample": "Using 'Continue to checkout' in the cart but a differently-phrased button in checkout.",
-        "correct": "Use one glossary for the whole funnel so button and total labels match.",
-        "impact": "Inconsistent wording erodes trust at the final decision point.",
+        "category": "Hardcoding a translated string into the theme",
+        "wrongExample": "Typing the French label directly into the drawer section markup instead of the locale file.",
+        "correct": "Put the string in the locale file when the theme supports it, and keep a written record when it does not.",
+        "impact": "The next theme update silently reverts the translation.",
+        "severity": "High"
+      },
+      {
+        "category": "Breaking the amount inside the progress message",
+        "wrongExample": "Translating just the wrapping sentence and leaving the price template to compose with the wrong word order or currency format.",
+        "correct": "Translate the whole message and check the rendered amount in each language and currency.",
+        "impact": "A message that reads as broken arithmetic is worse than no message.",
         "severity": "Medium"
       },
       {
-        "category": "Skipping the empty-cart state",
-        "wrongExample": "Leaving the empty-cart message in English for a new store with no orders yet.",
-        "correct": "Translate empty-cart and 'your cart is empty' copy — it's often the first thing a new visitor sees.",
-        "impact": "A confusing first impression for first-time shoppers.",
-        "severity": "Lower"
-      },
-      {
-        "category": "Not syncing after theme updates",
-        "wrongExample": "Updating the theme and not re-running the cart translation.",
-        "correct": "Re-scan and re-verify cart strings after any theme or app update.",
-        "impact": "Regressions that silently revert translated cart copy.",
+        "category": "Never testing the empty and error states",
+        "wrongExample": "Verifying only a cart with one product and a valid discount code.",
+        "correct": "Check empty cart, invalid code, and the one-item plural case in every language.",
+        "impact": "The states that generate support tickets are the ones nobody checked.",
         "severity": "Medium"
       }
     ],
     "features": [
-      "Scan and translate cart strings across your theme and Shopify",
-      "Localize CTA buttons, totals, and empty-cart states",
-      "Keep cart and checkout wording consistent",
-      "Auto-sync when your theme or copy changes"
+      "Translates the drawer, the cart page and the checkout handoff from one glossary, so the button label does not change mid-funnel",
+      "Reaches cart strings that live in theme sections, not only the ones in the locale file",
+      "Covers cart content injected by upsell, bundle and subscription apps",
+      "Keeps amount-bearing messages such as free-shipping progress readable in every currency"
     ],
     "recommendations": [
       {
@@ -519,18 +521,27 @@
     ],
     "faq": [
       {
-        "question": "Why is my Shopify mini-cart still untranslated after I localized the cart page?",
-        "answer": "Because mini-cart strings often live inside theme components or cart-drawer code instead of Shopify's main translation layer. Localizing the cart page alone does not always touch those strings, so the drawer, empty state, or action buttons can stay in the source language until the theme layer is translated too."
+        "question": "Why is my mini-cart still in English after translating the cart page?",
+        "answer": "Because the drawer is usually a separate theme section with its own strings, and some of them are written directly into the markup instead of the theme's locale file. Translating the cart page does not touch the drawer; check the section for hardcoded labels first."
       },
       {
-        "question": "Do cart and checkout button labels need to match across languages?",
-        "answer": "They do not have to be word-for-word identical, but they should feel like one continuous flow. If the cart says one thing and checkout suddenly switches tone or meaning, the store feels less polished and the customer may hesitate right before payment."
+        "question": "Can I translate the free-shipping progress message?",
+        "answer": "Yes, but translate the whole template rather than the visible sentence. Those messages compose an amount into text, so word order, currency symbol and rounding all have to be checked in the browser for each language and currency."
       },
       {
-        "question": "How do I keep cart and mini-cart translations updated after a Shopify theme change?",
-        "answer": "Re-audit the cart drawer and related theme strings after every theme update, because new components often reintroduce untranslated labels. A glossary for cart CTAs, subtotal language, and empty-state copy makes it much easier to restore consistency after the theme changes."
+        "question": "Should the cart button and the checkout button use the same words?",
+        "answer": "They do not have to match word for word, but they should read as one continuous action. Divergence here is noticeable because the two buttons are seen seconds apart, and it reads as a different store taking over at payment."
+      },
+      {
+        "question": "What about discount code errors and other cart messages?",
+        "answer": "Not all of them, so check the owner before editing. The discount field on the cart page is usually rendered by the theme, so check whether that message comes from your locale files before assuming it does — discount, loyalty and checkout apps can return the error too; a code rejected at checkout is worded by Shopify, so editing the theme will not change it; and sold-out labels or back-in-stock notices often belong to an inventory, preorder or waitlist app. Fix each at its own source, then apply an invalid code and add a sold-out variant in every language and read the message on the storefront, not in the theme editor."
+      },
+      {
+        "question": "How do I keep cart translations after a theme update?",
+        "answer": "Keep the translated strings in the theme's locale file wherever the theme supports it, and note any hardcoded edits you made. After an update, re-open the drawer with an item in the cart and compare it against your source-language screenshot."
       }
-    ]
+    ],
+    "updatedAt": "2026-11-16"
   },
   {
     "slug": "how-to-translate-shopify-checkout",
@@ -3909,7 +3920,7 @@
     "audience": "Shopify merchants using review, loyalty, or chat apps",
     "segmentLabel": "How-to",
     "guideLabel": "Translation Guide",
-    "mainValue": "Separate the strings you control from the ones the app owns, translate in the right place, and check every surface on the storefront rather than in the admin.",
+    "mainValue": "Separate the strings you control from the ones the app owns, translate in the right place, and check every surface on the storefront or in a test email rather than in the admin.",
     "topic": "Review Apps Content",
     "keywords": [
       "translate shopify reviews",
@@ -4044,9 +4055,9 @@
       }
     ],
     "features": [
-      "Translates review widget labels, request emails and merchant replies in the same pass as the rest of the storefront",
+      "Translates the review widget text Ciwi supports on the storefront, including app-injected labels that are not Shopify translatable resources",
       "Keeps product names and review terminology in one glossary, so Verified buyer does not drift into a different phrase on another page",
-      "Covers app-injected text that is not a Shopify translatable resource, including third-party widgets",
+      "Handles review request emails and merchant replies through the fields each app exposes, with a test send before a campaign goes out",
       "Leaves customer reviews in the source language where the app owns them instead of manufacturing full coverage"
     ],
     "recommendations": [
@@ -4066,11 +4077,11 @@
     "faq": [
       {
         "question": "Can Shopify's translation app translate customer reviews?",
-        "answer": "Usually not. Review text is stored by the review app rather than as a Shopify translatable resource, so Translate & Adapt cannot see it. Translate the widget labels and your replies there, and check the review app's own settings for a translation option before concluding it is impossible."
+        "answer": "Usually not. Review text sits in the review app's database rather than in a Shopify translatable resource, so Translate & Adapt cannot see it. Sort the surface by owner before editing: widget chrome is either a theme string or injected by the app, your replies are written inside the app, and review text usually has no per-language field at all. Translate whatever one of those owners exposes, then switch the storefront language in a private window and read the widget and a reply, and send yourself a test review-request email in that language."
       },
       {
         "question": "Why is my review widget still in English after translating the theme?",
-        "answer": "Because the widget chrome comes from the app, not the theme. Theme-level translation only reaches strings in your locale files; anything the app injects at runtime has to be handled in the app or by a layer that covers app content."
+        "answer": "Because the widget chrome usually comes from the app, not the theme. Theme-level translation only reaches strings in your locale files, so check whether the label you are looking at is one of them; if it is not, the fix is the app's own language settings or a layer that covers app content."
       },
       {
         "question": "How do I localize loyalty reward names and the redemption flow?",

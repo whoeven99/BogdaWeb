@@ -3460,7 +3460,7 @@
     "audience": "Manufacturing and industrial equipment companies",
     "segmentLabel": "Manufacturing",
     "guideLabel": "Translation Guide",
-    "mainValue": "Start manufacturing website translation with the product specifications and inquiry information buyers need to evaluate a supplier. Keep technical terminology, catalog structure, and contact paths consistent across languages.",
+    "mainValue": "Start with the pages a procurement engineer actually reads: category tables, spec sheets, and the RFQ form. Fix the terminology for tolerances, materials, certifications, and lead time before you scale, because those are the words a buyer uses to decide whether your numbers can be trusted.",
     "keywords": [
       "manufacturing website translation",
       "industrial equipment localization",
@@ -3484,8 +3484,8 @@
     "benefits": [
       {
         "title": "Trust",
-        "description": "Localized manufacturing websites content helps buyers understand your offer without second-guessing terminology, units, or product intent.",
-        "evidence": "Shoppers stay longer when key buying details read like native-market content instead of translated copy."
+        "description": "A buyer comparing three suppliers will not stop to decode your units, tolerances, or model naming. Specs written in their language remove that hesitation before the RFQ stage.",
+        "evidence": "Procurement teams leave when a spec table mixes metric and imperial units or keeps English column headers."
       },
       {
         "title": "Conversion",
@@ -3494,7 +3494,7 @@
       },
       {
         "title": "SEO",
-        "description": "Localized metadata, collection pages, and search intent coverage help manufacturing websites brands compete in market-specific search results.",
+        "description": "Localized titles, category pages, and application pages are what let a supplier appear when a buyer searches for a component or process in their own language.",
         "evidence": "Search engines index local-language queries more effectively when titles, descriptions, and page structure match the market."
       },
       {
@@ -3506,9 +3506,9 @@
     "mistakes": [
       {
         "category": "Literal translation",
-        "wrongExample": "Publishing manufacturing websites pages with untranslated specifications, forms, and category terminology.",
-        "correct": "Translate technical specs, solution pages, contact forms, and downloadable assets with glossary control and reviewer QA.",
-        "impact": "Buyers see the page as low-trust or confusing during evaluation.",
+        "wrongExample": "Publishing a category page with English spec tables, an untranslated RFQ form, and mixed unit conventions.",
+        "correct": "Translate spec tables, application pages, the RFQ form, and datasheet summaries with glossary control, and have someone who knows the trade review them.",
+        "impact": "The buyer cannot compare your offer against a local supplier, and leaves before sending an RFQ.",
         "severity": "High"
       },
       {
@@ -3676,7 +3676,7 @@
       },
       {
         "title": "Keep one category voice",
-        "description": "Keep manufacturing websites copy precise, structured, and professional so technical buyers can evaluate it quickly."
+        "description": "Keep spec copy factual and structured: units, tolerances, and certifications stated the same way on every page."
       },
       {
         "title": "Translate structure, not just sentences",
@@ -3772,7 +3772,7 @@
       }
     ],
     "checklist": [
-      "Start with the highest-intent manufacturing websites pages, not the whole site at once.",
+      "Start with the pages that carry evaluation — category tables, spec pages, and the RFQ form — not the whole site at once.",
       "Build a glossary for repeated terms, category labels, and conversion wording before bulk translation.",
       "Translate category pages, specification content, and lead capture flows before broader editorial pages.",
       "Review market-specific phrasing and claims instead of publishing direct machine output.",
@@ -3782,15 +3782,15 @@
     "faq": [
       {
         "question": "Which pages should manufacturers translate first?",
-        "answer": "Product categories, product detail or spec pages, application pages, and inquiry forms usually create the biggest impact."
+        "answer": "Category tables, spec or product-detail pages, application pages, and the RFQ form. Buyers read those before they ever email a supplier, and they are also where a mistranslated unit or tolerance does the most damage."
       },
       {
         "question": "Do manufacturers need localized SEO pages?",
-        "answer": "Yes. Buyers often search by component, application, or equipment type in their own language before they ever contact a supplier."
+        "answer": "Yes, and the queries are specific: buyers search by component name, process, material, or equipment type in their own language. A translated homepage does not answer those queries; localized category and application pages are the ones written to fit them."
       },
       {
         "question": "What is the biggest localization risk for manufacturing websites?",
-        "answer": "Inconsistent technical terminology. Even small wording drift can reduce clarity and confidence for professional buyers."
+        "answer": "Terminology drift in technical content, where the same tolerance, material grade, or certification is named differently on two pages. It reads as carelessness to a procurement engineer and breaks the comparison they are trying to make."
       }
     ]
   },

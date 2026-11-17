@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Duplicate without user-selected canonical — 11 条逐页复核 — ciwi.ai</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --card:#fff; --ink:#16181d; --muted:#5f6672; --line:#e3e6ea;
+    --bad:#b42318; --badbg:#fef3f2; --good:#067647; --goodbg:#ecfdf3; --warn:#93370d; --warnbg:#fffaeb;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:15px/1.72 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif}
+  .wrap{max-width:1060px;margin:0 auto;padding:48px 24px 80px}
+  h1{font-size:27px;line-height:1.35;margin:0 0 10px;letter-spacing:-.2px}
+  header p{margin:0;color:var(--muted);font-size:14px}
+  h2{font-size:19px;margin:36px 0 12px;letter-spacing:-.1px}
+  h2 span{color:var(--muted);font-weight:400;font-size:14px;margin-left:8px}
+  h3{font-size:15.5px;margin:22px 0 8px}
+  p{margin:0 0 12px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:14px 0}
+  table{width:100%;border-collapse:collapse;font-size:13.2px}
+  th,td{text-align:left;padding:8px 9px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--muted);font-weight:600;font-size:12.2px;letter-spacing:.02em}
+  th:not(:first-child){white-space:nowrap}
+  tr:last-child td{border-bottom:none}
+  td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}
+  .kpi div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .kpi b{display:block;font-size:21px;letter-spacing:-.3px}
+  .kpi span{color:var(--muted);font-size:12.5px}
+  .tag{display:inline-block;font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:999px;white-space:nowrap}
+  .t-bad{background:var(--badbg);color:var(--bad)}
+  .t-good{background:var(--goodbg);color:var(--good)}
+  .t-warn{background:var(--warnbg);color:var(--warn)}
+  .t-mute{background:#f1f3f6;color:var(--muted)}
+  ul{margin:0 0 12px;padding-left:20px}
+  li{margin:6px 0}
+  code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.6px;background:#f1f3f6;padding:1px 5px;border-radius:5px;word-break:break-all}
+  .note{color:var(--muted);font-size:13px}
+  .lead{font-size:16.5px;line-height:1.75}
+  .lead b{background:linear-gradient(transparent 62%, #ffe58f 62%)}
+  pre{margin:8px 0 12px;background:#0f1115;color:#e6e8ee;border-radius:10px;padding:12px 14px;overflow:auto;font-size:12.2px;line-height:1.6}
+  pre code{background:none;color:inherit;padding:0}
+  .u{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.2px;word-break:break-all}
+  footer{margin-top:36px;color:var(--muted);font-size:13px;line-height:1.9;border-top:1px solid var(--line);padding-top:16px}
+  @media (max-width:860px){.kpi{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>「Duplicate without user-selected canonical」11 条逐页复核</h1>
+  <p>ciwi.ai · GSC 快照 2026-11-16（上次抓取 2026-10-16 ~ 11-07）· 站点侧实测 2026-11-17 13:40 · 前三项修复已落到工作区并通过构建验证</p>
+</header>
+
+<h2>一、结论</h2>
+<p class="lead">这 11 条<b>没有一条是页面本身写错了</b>。每一条今天返回的都是 200、唯一内容、自指 canonical、三条齐全的 hreflang、并且都在 sitemap 里。所以 Google 不是"读到了错的 canonical"，而是<b>不接受这些页面各自占一个收录位</b>——它把某个别的 URL 当成了这一组的正本。真正能改的有三处，都是站点侧的结构问题，不是这 11 个页面各自的文案问题。</p>
+
+<div class="kpi">
+  <div><b>11</b><span>该原因下的 URL（6 中 5 英）</span></div>
+  <div><b>11/11</b><span>canonical 自指且唯一</span></div>
+  <div><b>10/11</b><span>在 sitemap 内（affiliate 为 noindex）</span></div>
+  <div><b>6/11</b><span>内容在 Google 抓取后被改过</span></div>
+</div>
+
+<p class="note">附注：Coverage 汇总表这一栏是 10 条，Drilldown 导出是 11 条，相差 1 条是两次导出之间的增量，不影响判断。</p>
+
+<h2>二、逐条核对 <span>2026-11-17 实时抓取，非缓存</span></h2>
+<div class="card">
+<table>
+  <tr>
+    <th>URL</th><th>语种</th><th class="n">正文<br>字符</th><th>canonical</th><th>hreflang</th>
+    <th>Google<br>上次抓取</th><th>内容最后改动</th><th>判断</th>
+  </tr>
+  <tr>
+    <td class="u">/zh-cn/help-center/ShopifyApp/bundle-discount-app-overview/</td><td>中</td><td class="n">1,126</td>
+    <td><span class="tag t-good">自指</span></td><td><span class="tag t-good">3 条齐</span></td><td>11-07</td><td>08-02</td>
+    <td><span class="tag t-warn">正文薄</span></td>
+  </tr>
+  <tr>
+    <td class="u">/guides/how-to-translate-shopify-metafields-metaobjects/</td><td>英</td><td class="n">11,538</td>
+    <td><span class="tag t-good">自指</span></td><td><span class="tag t-good">3 条齐</span></td><td>10-28</td><td>11-16</td>
+    <td><span class="tag t-mute">抓取已过期</span></td>
+  </tr>
+  <tr>
+    <td class="u">/zh-cn/compare/transtore-alternative/</td><td>中</td><td class="n">5,431</td>
+    <td><span class="tag t-good">自指</span></td><td><span class="tag t-good">3 条齐</span></td><td>10-27</td><td>11-16</td>
+    <td><span class="tag t-mute">抓取已过期</span></td>
+  </tr>
+  <tr>
+    <td class="u">/zh-cn/authors/marcus-chen/</td><td>中</td><td class="n">919</td>
+    <td><span class="tag t-good">自指</span></td><td><span class="tag t-good">3 条齐</span></td><td>10-25</td><td>09-15</td>
+    <td><span class="tag t-bad">同段落最薄</span></td>
+  </tr>
+  <tr>
+    <td class="u">/products/spark-analytics-agent/playbook/keyword/category/ai-store-management-and-agents/</td><td>英</td><td class="n">4,310</td>
+    <td><span class="tag t-good">自指</span></td><td><span class="tag t-good">3 条齐</span></td><td>10-23</td><td>10-28</td>
+    <td><span class="tag t-mute">抓取已过期</span></td>
+  </tr>
+  <tr>
+    <td class="u">/zh-cn/guides/localization/</td><td>中</td><td class="n">3,558</td>
+    <td><span class="tag t-good">自指</span></td><td><span class="tag t-good">3 条齐</span></td><td>10-23</td><td>11-16</td>
+    <td><span class="tag t-mute">抓取已过期</span></td>
+  </tr>
+  <tr>
+    <td class="u">/best-shopify-apps/best-shopify-review-apps/</td><td>英</td><td class="n">8,485</td>
+    <td><span class="tag t-good">自指</span></td><td><span class="tag t-good">3 条齐</span></td><td>10-23</td><td>11-16</td>
+    <td><span class="tag t-mute">抓取已过期</span></td>
+  </tr>
+  <tr>
+    <td class="u">/solutions/increase-conversion/</td><td>英</td><td class="n">3,978</td>
+    <td><span class="tag t-good">自指</span></td><td><span class="tag t-good">3 条齐</span></td><td>10-23</td><td>10-09</td>
+    <td><span class="tag t-bad">页内混入中文占位块</span></td>
+  </tr>
+  <tr>
+    <td class="u">/best-shopify-apps/best-shopify-apps-to-improve-conversion-rate/</td><td>英</td><td class="n">8,190</td>
+    <td><span class="tag t-good">自指</span></td><td><span class="tag t-good">3 条齐</span></td><td>10-23</td><td>11-16</td>
+    <td><span class="tag t-mute">抓取已过期</span></td>
+  </tr>
+  <tr>
+    <td class="u">/zh-cn/affiliate/</td><td>中</td><td class="n">604</td>
+    <td><span class="tag t-warn">自指 + noindex</span></td><td><span class="tag t-bad">指向 noindex</span></td><td>10-16</td><td>09-23</td>
+    <td><span class="tag t-bad">信号自相矛盾</span></td>
+  </tr>
+  <tr>
+    <td class="u">/zh-cn/resources/product-research/reviews/</td><td>中</td><td class="n">1,317</td>
+    <td><span class="tag t-good">自指</span></td><td><span class="tag t-good">3 条齐</span></td><td>10-16</td><td>09-06</td>
+    <td><span class="tag t-warn">汇总页偏薄</span></td>
+  </tr>
+</table>
+<p class="note" style="margin-top:12px">正文 = <code>&lt;main&gt;</code> 内可见文本字符数（不含导航/页脚）。"内容最后改动"取对应内容文件在 git 中的最后提交日。11 条中有 6 条的改动日晚于 Google 的上次抓取，其中 5 条是 11-16（也就是昨天）才改的。</p>
+</div>
+
+<h3>先排除的：不是重复内容</h3>
+<div class="card">
+<p>把 11 个页面与同段落 292 个站内页面做 6-gram Jaccard 比对，最高相似度 <b>0.43</b>，且这 0.43 来自共用的模板区块（面包屑、CTA、相关推荐卡片），不是正文。唯一正文重合度：中文页与对应英文页相似度 0.000–0.018，说明翻译是完整重写的，不是机翻堆叠。</p>
+<p>正文长度也没有整体偏薄：11 条中有 9 条处于各自段落的中位数以上（help-center 90 分位、playbook 分类页 82 分位、best-apps 83 分位）。所以"薄内容 / 采集合成"这条常规解释在这批 URL 上不成立，只有作者页（919 字符，同段落最薄）和 reviews 汇总页（1,317 字符）算真的偏短。</p>
+</div>
+
+<h2>三、找到的三处结构问题</h2>
+
+<h3>3.1 noindex 页却参与 hreflang 组，还带自指 canonical</h3>
+<div class="card">
+<pre><code>GET https://ciwi.ai/zh-cn/affiliate/
+HTTP/2 200
+&lt;meta name="robots" content="noindex, follow"&gt;
+&lt;link rel="canonical" href="https://ciwi.ai/zh-cn/affiliate/"&gt;
+&lt;link rel="alternate" hrefLang="en"      href="https://ciwi.ai/affiliate/"&gt;
+&lt;link rel="alternate" hrefLang="zh-CN"   href="https://ciwi.ai/zh-cn/affiliate/"&gt;
+&lt;link rel="alternate" hrefLang="x-default" href="https://ciwi.ai/affiliate/"&gt;</code></pre>
+<p>英文侧 <code>/affiliate/</code> 同样是 <code>noindex, follow</code>，并反向指向中文版。于是这一对 URL 既是"我不许你收录"，又是"我是这组语言版本的正本"，还互相声明对方存在。Google 处理这种矛盾时只能二选一：按 noindex 不收录，然后归到"重复"里——因为别的标签它也用不上。</p>
+<p class="note">同一模式还出现在 <code>/privacy-policy/</code>（英文可收录、中文 noindex），英文页照样把 hreflang 指向一个 noindex 的中文页。hreflang 指向 noindex 页在 GSC 里是明确会报的 hreflang 错误。</p>
+<p><b>修法：</b><code>buildPageMetadata</code> 里增加 <code>isZhNoIndexPath()</code>（<code>/affiliate</code>、<code>/privacy-policy</code>、<code>/terms-and-conditions</code> 三个前缀），命中时把 <code>zh-cn</code> 从 hreflang 列表里剔掉；<code>noIndex</code> 为真的页面整体不再输出 <code>alternates</code>。</p>
+<p><span class="tag t-good">已修复</span> <code>src/lib/seo/metadata.ts</code> + <code>scripts/seo-description.test.mjs</code>（新增 3 条回归测试）。本地预览实测：<code>/affiliate/</code> 与 <code>/zh-cn/affiliate/</code> 均为 canonical 0 / hreflang 0 / noindex；<code>/privacy-policy/</code> 只剩 <code>en</code> + <code>x-default</code> 两条；<code>/zh-cn/privacy-policy/</code> 无 alternates。</p>
+</div>
+
+<h3>3.2 <code>?__ciwi_locale=</code> 能造出任意页面的 200 重复副本</h3>
+<div class="card">
+<pre><code>GET https://ciwi.ai/compare/transtore-alternative/?__ciwi_locale=zh-cn
+HTTP/2 200                              ← 200，不是跳转
+正文 CJK 占比 56.9%（即中文内容）
+&lt;link rel="canonical" href="https://ciwi.ai/zh-cn/compare/transtore-alternative/"&gt;
+
+GET https://ciwi.ai/zh-cn/compare/transtore-alternative/?__ciwi_locale=en
+HTTP/2 404                              ← 反方向直接 404</code></pre>
+<p>middleware 把路径语言和 <code>__ciwi_locale</code> 参数分开取值，参数优先。结果是<b>任何一个英文 URL 都能靠加参数变成中文页面的 200 副本</b>，反过来却 404。这类 URL 不在 sitemap 里、页面里也没有指向它们的链接（只在 RSC 载荷中出现），所以目前不是主要流量入口，但它是无上限的可抓取重复面：一旦有人外链、或被别的爬虫拼接出来，就会给每个页面再添一个"无 canonical 的可选副本"，正好喂养这个 bucket。</p>
+<p class="note">同一接口还把 <code>?__ciwi_locale=en</code> 打到中文路径上时返回 404 空壳页（390 字符），这也是可避免的错误页。</p>
+<p><b>修法：</b>middleware 里把"参数语言 ≠ 路径语言"统一收敛成 308：跳到正确语言路径；参数与路径一致时 308 去掉参数。内部 rewrite 不受影响（rewrite 不会二次进 middleware）。</p>
+<p><span class="tag t-good">已修复</span> <code>src/middleware.ts</code>。本地预览实测：</p>
+<pre><code>/compare/transtore-alternative/?__ciwi_locale=zh-cn  → 308 → /zh-cn/compare/transtore-alternative/
+/zh-cn/compare/transtore-alternative/?__ciwi_locale=en → 308 → /compare/transtore-alternative/
+/?__ciwi_locale=zh-cn                                 → 308 → /zh-cn/
+/compare/…/?__ciwi_locale=en&amp;utm_source=x               → 308 → /compare/…/?utm_source=x</code></pre>
+<p class="note">其他参数（UTM 等）保留，只摘掉 <code>__ciwi_locale</code>。尾斜杠、双斜杠折叠、<code>/help-center/ShopifyApp</code> 大小写修复这些既有跳转做了回归抽查，全部仍是一次 308。</p>
+</div>
+
+<h3>3.3 英文方案页里，整段中文占位文案被当成正文渲染</h3>
+<div class="card">
+<pre><code>GET https://ciwi.ai/solutions/increase-conversion/    (html lang="en")
+正文含 3 段中文：
+「用一张场景图说明这个方案在真实商家环境里解决什么问题，画面可以是商品页、购物车、
+  语言切换或多市场运营界面。」
+「用一段简短视频解释问题如何出现、」
+「如何介入，以及最终页面体验如何变化。」</code></pre>
+<p>来源是 <code>src/content/media-briefs.ts</code> 里的素材制作说明（给设计/视频用的内部 brief），经 <code>MediaPlaceholderSection</code> 直接渲染成页面对外内容。英文页不做中文→英文转换，所以中文原样输出。</p>
+<p>扫了 288 个英文页面，命中 5 个，全部集中在方案/对比这一族：<code>/solutions/</code>（2.0%）、<code>/solutions/increase-conversion/</code>（2.1%）、<code>/solutions/grow-aov/</code>（2.3%）、<code>/solutions/multilingual-growth/</code>（2.1%）、<code>/compare/</code>（0.7%）。</p>
+<p class="note">这条不能单独解释 11 条全部，但被标记的 <code>/solutions/increase-conversion/</code> 正落在其中；一个英文页里出现整段中文制作说明，对"这页是否值得单独收录"的判断只有负面作用。</p>
+<p><b>修法：</b>英文侧不再取 brief 里的 <code>description</code>，改用 preset 自带的英文摘要（本来就有一套英文文案，只是被 <code>localizedItem.description || preset.summary</code> 的左侧短路掉了）；中文侧行为不变，brief 仍留在数据层做素材匹配。</p>
+<p><span class="tag t-good">已修复</span> <code>src/components/sections/MediaPlaceholderSection.tsx</code>。本地预览实测：<code>/solutions/increase-conversion/</code>、<code>/solutions/grow-aov/</code>、<code>/solutions/multilingual-growth/</code>、<code>/solutions/</code>、<code>/compare/</code> 五个英文页中文占比从 0.7%–2.3% 降到 <b>0.1%</b>（剩余为品牌名），中文连续片段 0 段。</p>
+</div>
+
+<h2>四、为什么 Google 会这样归类</h2>
+<div class="card">
+<p>"Duplicate without user-selected canonical" 的含义是：<b>Google 认为这个 URL 和另一个 URL 是同一个东西，并且在它看来这一组没有可用的正本声明</b>。它不等于"页面上没有 canonical 标签"——页面上的标签 Google 读到了，只是没采信。三类情况会导致不采信：</p>
+<ul>
+<li>同一个 URL 能在不同地址返回同一份内容（本例 3.2 的 <code>?__ciwi_locale=</code>）；</li>
+<li>canonical / hreflang / noindex 三个信号互相打架（本例 3.1）；</li>
+<li>页面正文里包含明显的占位、错语种、或非读者内容，Google 判定"这一份不是给人读的版本"，转而去用同组的另一份（本例 3.3）。</li>
+</ul>
+<p>而这 11 条里有 6 条的内容在 Google 上次抓取之后被改过（5 条是 11-16 改的），所以即便前三条都修好，也还得等重新抓取才会改判。现在这批结论至少是"过期结论"。</p>
+</div>
+
+<h2>五、动作清单 <span>前三项已落地，后两项需要你定</span></h2>
+<div class="card">
+<table>
+  <tr><th class="n">#</th><th>动作</th><th>影响面</th><th>状态</th></tr>
+  <tr><td class="n">1</td><td>noindex 页退出 hreflang 组，不再输出 canonical</td><td>affiliate / privacy / terms 三对</td><td><span class="tag t-good">已修复</span></td></tr>
+  <tr><td class="n">2</td><td><code>?__ciwi_locale</code> 跨语言一律 308 到正确路径</td><td>全站</td><td><span class="tag t-good">已修复</span></td></tr>
+  <tr><td class="n">3</td><td>素材 brief 不再作为英文正文渲染</td><td>5 个英文页</td><td><span class="tag t-good">已修复</span></td></tr>
+  <tr><td class="n">4</td><td>加厚两页：<code>/zh-cn/authors/marcus-chen/</code>（919 字符）、<code>/zh-cn/resources/product-research/reviews/</code>（1,317 字符）</td><td>2 页</td><td><span class="tag t-warn">待定</span></td></tr>
+  <tr><td class="n">5</td><td>GSC 逐条"请求编入索引"，观察落到哪个桶</td><td>11 条</td><td><span class="tag t-warn">待你操作</span></td></tr>
+</table>
+<p class="note" style="margin-top:12px"><b>第 4 项为什么没直接做：</b>作者页目前只有一句 bio（"专注多语言搜索意图与 hreflang 架构"），要把它加厚成有实质内容的页面，需要补充作者背景、专业领域、代表文章这类事实信息——这些不能由我编。给个可行方向：把 bio 拆成 3–4 段（背景 / 方法论 / 代表案例），再把按主题分组的文章列表放到正文里，长度可到 2,500–3,000 字符。reviews 汇总页同理，可以把六款工具的分项评分、适用规模、价格区间直接展开成表格正文，而不是只留一句"先看这张横向对比"。</p>
+<p><b>第 5 项是判定依据：</b>修完之后如果它们从"重复"变成 <b>Crawled - currently not indexed</b>，说明结构信号已经对了，剩下的是内容质量问题（要不要保留这些页）；如果直接进"已收录"，这条就算关掉；如果继续停在"重复"，说明还有别的 URL 在和它们抢正本，那时候需要拿 URL Inspection 的"Google 选择的规范网址"一栏来定位对手是谁——这一栏的数据只能你在 GSC 里点开看，外部抓不到。</p>
+</div>
+
+<h2>六、改动与验证</h2>
+<div class="card">
+<table>
+  <tr><th>文件</th><th>改动</th></tr>
+  <tr><td><code>src/lib/seo/metadata.ts</code></td><td>新增 <code>isZhNoIndexPath()</code>；hreflang 列表剔除 noindex 的中文版；<code>noIndex</code> 页不输出 <code>alternates</code>；canonical 语言回落到页面自身语言</td></tr>
+  <tr><td><code>src/middleware.ts</code></td><td><code>__ciwi_locale</code> 从"静默 rewrite 出 200"改成"308 收敛到正确语言路径"，保留其余 query 参数</td></tr>
+  <tr><td><code>src/components/sections/MediaPlaceholderSection.tsx</code></td><td>英文侧正文改用 <code>preset.summary</code>，不再渲染中文素材 brief</td></tr>
+  <tr><td><code>scripts/seo-description.test.mjs</code></td><td>新增 3 条回归测试：noindex 无 canonical、hreflang 不指向 noindex 页、可索引页仍保留三条 hreflang</td></tr>
+</table>
+<p class="note" style="margin-top:12px">验证链：<code>npx tsc --noEmit</code> 通过 · <code>node --test ./scripts/seo-*.test.mjs</code> <b>45/45</b> 通过 · <code>node scripts/validate-content.mjs</code> 通过 · <code>node scripts/check-seo.mjs</code> 通过 · <code>npm run build</code> 通过（含 <code>verify-seo-artifacts</code>）· 本地 standalone 预览逐页比对 canonical / hreflang / robots / 中文占比。改动尚未 commit。</p>
+</div>
+
+<h2>七、核对方法</h2>
+<div class="card">
+<ul>
+  <li>11 个 URL 全部实时 <code>curl</code>（含 Googlebot UA 与普通 UA 各一次，排除 cloaking）：状态码、<code>rel=canonical</code> 数量与取值、<code>hreflang</code> 三条、<code>&lt;html lang&gt;</code>、<code>meta robots</code>、响应头 <code>cache-control</code> / <code>vary</code>。</li>
+  <li>网络抓取 330 个站内页面，抽取 <code>&lt;main&gt;</code> 可见文本，做 6-gram shingle + Jaccard 两两比对；中英配对单独比一次。</li>
+  <li>正文长度按段落分组取中位数与百分位，判断是否属于"薄页"。</li>
+  <li>内容最后改动日取自 <code>git log -1</code> 对相应内容文件的最后一次提交，与 GSC 的 Last crawled 对表。</li>
+  <li>sitemap 用线上 <code>/sitemap.xml</code>（1,716 条）而不是本地构建产物。</li>
+</ul>
+</div>
+
+<footer>
+  生成于 2026-11-17 · 数据源：GSC Coverage / Coverage Drilldown（2026-11-16 导出）+ 线上站点实时抓取<br>
+  配套报告：<code>.workbuddy/reports/gsc-index-diagnosis-2026-11-17.html</code>（整体 838 条未收录的分布与 playbook lastmod 修复）
+</footer>
+</div>
+</body>
+</html>

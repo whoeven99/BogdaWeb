@@ -109,34 +109,73 @@ function getTopLabels(items: CompareMetric[], key: "ciwi" | "alternative", limit
     .map((item) => item.label);
 }
 
+function getSignalCounts(items: CompareMetric[]) {
+  const ciwi = items.filter((item) => item.ciwi > item.alternative).length;
+  const alternative = items.filter((item) => item.alternative > item.ciwi).length;
+
+  return {ciwi, alternative, ties: items.length - ciwi - alternative};
+}
+
+/**
+ * Ranks labels by margin regardless of who wins, so an app that loses every
+ * signal still gets its closest dimensions named instead of a made-up fallback.
+ */
+function getRelativeLabels(items: CompareMetric[], key: "ciwi" | "alternative", limit = 2) {
+  const other = key === "ciwi" ? "alternative" : "ciwi";
+
+  return [...items]
+    .sort((a, b) => (b[key] - b[other]) - (a[key] - a[other]))
+    .slice(0, limit)
+    .map((item) => item.label);
+}
+
 function buildOverallAssessment(data: CompareItem, locale: "en" | "zh-cn") {
   const allScores = [...data.summaryMetrics, ...data.scoreMatrix];
-  const ciwiWins = allScores.filter((item) => item.ciwi > item.alternative).length;
-  const alternativeWins = allScores.filter((item) => item.alternative > item.ciwi).length;
-  const ciwiFocus = getTopLabels(allScores, "ciwi").join(locale === "zh-cn" ? "、" : ", ");
-  const alternativeFocus = getTopLabels(allScores, "alternative").join(locale === "zh-cn" ? "、" : ", ");
+  const {ciwi: ciwiWins, alternative: alternativeWins, ties} = getSignalCounts(allScores);
+  const total = allScores.length;
+  const separator = locale === "zh-cn" ? "、" : ", ";
+  // One label each. Two often returns near-duplicates ("price" and "entry
+  // price") on Chinese pages, and the matrix below already lists every signal.
+  const ciwiFocus = getTopLabels(allScores, "ciwi", 1).join(separator);
+  // Not "where the alternative wins" — where it is closest. Most pages are
+  // one-sided by construction, and naming a winner that does not exist reads
+  // as marketing rather than review.
+  const alternativeFocus = getRelativeLabels(allScores, "alternative", 1).join(separator);
+  const lopsided = ciwiWins >= Math.ceil(total * 0.75);
 
   if (locale === "zh-cn") {
+    const tieNote = ties > 0 ? `，${ties} 项持平` : "";
+
     if (ciwiWins === alternativeWins) {
-      return `综合评价：按 ${allScores.length} 个 10 分制评分点看，两者各领先 ${ciwiWins} 项。${primaryProductName} 的高分维度主要是 ${ciwiFocus || "长期治理"}，${data.alternativeName} 的高分维度主要是 ${alternativeFocus || "快速上线"}。`;
+      return `综合评价：按 ${total} 个 10 分制评分点看，两者各领先 ${ciwiWins} 项${tieNote}。${primaryProductName} 的高分维度主要是${ciwiFocus || "长期治理"}，${data.alternativeName} 相对最靠前的是${alternativeFocus || "快速上线"}。`;
     }
 
     if (ciwiWins > alternativeWins) {
-      return `综合评价：按 ${allScores.length} 个 10 分制评分点看，${primaryProductName} 领先 ${ciwiWins} 项，${data.alternativeName} 领先 ${alternativeWins} 项。${primaryProductName} 的优势主要集中在 ${ciwiFocus || "长期治理"}；${data.alternativeName} 的高分维度主要是 ${alternativeFocus || "价格和上线速度"}。`;
+      const disclosure = lopsided
+        ? `这份评测由 ${primaryProductName} 自己发布，一边倒的比分会更像立场而不是结论——真正值得盯的是 ${data.alternativeName} 相对最靠前的 ${alternativeFocus || "价格和上线速度"}，取舍往往就发生在这里。`
+        : `${primaryProductName} 的优势主要集中在${ciwiFocus || "长期治理"}；${data.alternativeName} 相对最靠前的是${alternativeFocus || "价格和上线速度"}。`;
+
+      return `综合评价：按 ${total} 个 10 分制评分点看，${primaryProductName} 领先 ${ciwiWins} 项，${data.alternativeName} 领先 ${alternativeWins} 项${tieNote}。${disclosure}`;
     }
 
-    return `综合评价：按 ${allScores.length} 个 10 分制评分点看，${data.alternativeName} 领先 ${alternativeWins} 项，${primaryProductName} 领先 ${ciwiWins} 项。${data.alternativeName} 的高分维度主要是 ${alternativeFocus || "快速上线"}；${primaryProductName} 的高分维度主要是 ${ciwiFocus || "长期治理"}。`;
+    return `综合评价：按 ${total} 个 10 分制评分点看，${data.alternativeName} 领先 ${alternativeWins} 项，${primaryProductName} 领先 ${ciwiWins} 项${tieNote}。${data.alternativeName} 的高分维度主要是${alternativeFocus || "快速上线"}；${primaryProductName} 的高分维度主要是${ciwiFocus || "长期治理"}。`;
   }
 
+  const tieNote = ties > 0 ? `, ${ties} tied` : "";
+
   if (ciwiWins === alternativeWins) {
-    return `Overall: across ${allScores.length} ten-point signals, both products lead in ${ciwiWins} areas. ${primaryProductName}'s highest-scoring areas are ${ciwiFocus || "long-term governance"}, while ${data.alternativeName}'s highest-scoring areas are ${alternativeFocus || "faster launch"}.`;
+    return `Overall: the two products split the ${total} ten-point signals ${ciwiWins} each${tieNote}. ${primaryProductName}'s highest-scoring areas are ${ciwiFocus || "long-term governance"}, while ${data.alternativeName} is closest on ${(alternativeFocus || "launch speed").toLowerCase()}.`;
   }
 
   if (ciwiWins > alternativeWins) {
-    return `Overall: across ${allScores.length} ten-point signals, ${primaryProductName} leads in ${ciwiWins} areas and ${data.alternativeName} leads in ${alternativeWins}. ${primaryProductName}'s strongest areas are ${ciwiFocus || "long-term governance"}; ${data.alternativeName}'s strongest areas are ${alternativeFocus || "price and launch speed"}.`;
+    const disclosure = lopsided
+      ? `This review is published by ${primaryProductName}, so read a ${ciwiWins}\u2013${alternativeWins} tally as a position rather than a verdict \u2014 ${data.alternativeName} is closest on ${(alternativeFocus || "launch speed").toLowerCase()}; that is usually where the decision turns.`
+      : `${primaryProductName}'s strongest areas are ${ciwiFocus || "long-term governance"}; ${data.alternativeName} is closest on ${(alternativeFocus || "price and launch speed").toLowerCase()}.`;
+
+    return `Overall: ${primaryProductName} scores higher on ${ciwiWins} of ${total} ten-point signals, ${data.alternativeName} on ${alternativeWins}${ties > 0 ? `, with ${ties} tied` : ""}. ${disclosure}`;
   }
 
-  return `Overall: across ${allScores.length} ten-point signals, ${data.alternativeName} leads in ${alternativeWins} areas and ${primaryProductName} leads in ${ciwiWins}. ${data.alternativeName}'s strongest areas are ${alternativeFocus || "faster launch"}; ${primaryProductName}'s strongest areas are ${ciwiFocus || "long-term governance"}.`;
+  return `Overall: ${data.alternativeName} scores higher on ${alternativeWins} of ${total} ten-point signals, ${primaryProductName} on ${ciwiWins}${ties > 0 ? `, with ${ties} tied` : ""}. ${data.alternativeName}'s strongest areas are ${alternativeFocus || "faster launch"}; ${primaryProductName} is closest on ${(ciwiFocus || "long-term governance").toLowerCase()}.`;
 }
 
 function buildScoreSummary(data: CompareItem, locale: "en" | "zh-cn") {
@@ -144,23 +183,24 @@ function buildScoreSummary(data: CompareItem, locale: "en" | "zh-cn") {
   const ciwiTotal = getTotalScore(allScores, "ciwi");
   const alternativeTotal = getTotalScore(allScores, "alternative");
   const totalMax = allScores.length * 10;
-  const ciwiFocus = getTopLabels(allScores, "ciwi").join(locale === "zh-cn" ? "、" : ", ");
-  const alternativeFocus = getTopLabels(allScores, "alternative").join(locale === "zh-cn" ? "、" : ", ");
-  const priceMetric = getPriceMetric(data);
 
   if (locale === "zh-cn") {
-    const pricingText = priceMetric
-      ? `价格评分为 Ciwi ${formatScore(priceMetric.ciwi)}，${data.alternativeName} ${formatScore(priceMetric.alternative)}。`
-      : "当前页未单列价格评分。";
+    const gap = ciwiTotal - alternativeTotal;
+    const gapText =
+      gap === 0
+        ? "两者总分持平。"
+        : `两者相差 ${Math.abs(gap)} 分，全部评分点都在下方逐项列出，可以只看自己真正在意的维度。`;
 
-    return `按 ${allScores.length} 个 10 分制评分点计算，Ciwi 总分 ${ciwiTotal}/${totalMax}，${data.alternativeName} 总分 ${alternativeTotal}/${totalMax}。Ciwi 领先维度集中在 ${ciwiFocus || "长期治理"}；${data.alternativeName} 的相对高分维度集中在 ${alternativeFocus || "上线速度"}。${pricingText}`;
+    return `按 ${allScores.length} 个 10 分制评分点计算，Ciwi 总分 ${ciwiTotal}/${totalMax}，${data.alternativeName} 总分 ${alternativeTotal}/${totalMax}。${gapText}`;
   }
 
-  const pricingText = priceMetric
-    ? `The price signal is ${formatScore(priceMetric.ciwi)} for Ciwi versus ${formatScore(priceMetric.alternative)} for ${data.alternativeName}.`
-    : "This page does not expose a standalone price signal.";
+  const gap = ciwiTotal - alternativeTotal;
+  const gapText =
+    gap === 0
+      ? "The totals are level."
+      : `A ${Math.abs(gap)}-point gap over ${totalMax}, with every signal listed below so you can read only the ones you care about.`;
 
-  return `Across ${allScores.length} ten-point signals, Ciwi totals ${ciwiTotal}/${totalMax} and ${data.alternativeName} totals ${alternativeTotal}/${totalMax}. Ciwi's leading dimensions are ${ciwiFocus || "long-term governance"}, while ${data.alternativeName}'s relative strengths are ${alternativeFocus || "launch speed"}. ${pricingText}`;
+  return `Across ${allScores.length} ten-point signals Ciwi totals ${ciwiTotal}/${totalMax} and ${data.alternativeName} totals ${alternativeTotal}/${totalMax}. ${gapText}`;
 }
 
 function getPriceMetric(data: CompareItem) {
@@ -189,13 +229,13 @@ function buildAppPositioningComparison(data: CompareItem, locale: "en" | "zh-cn"
 
   const allScores = [...data.summaryMetrics, ...data.scoreMatrix];
   const ciwiFocus = getTopLabels(allScores, "ciwi").join(locale === "zh-cn" ? "、" : ", ");
-  const alternativeFocus = getTopLabels(allScores, "alternative").join(locale === "zh-cn" ? "、" : ", ");
+  const alternativeFocus = getRelativeLabels(allScores, "alternative").join(locale === "zh-cn" ? "、" : ", ");
 
   if (locale === "zh-cn") {
-    return `${data.description} ${primaryProductName} 的高分维度主要是 ${ciwiFocus || "长期治理"}；${data.alternativeName} 的高分维度主要是 ${alternativeFocus || "快速上线"}。`;
+    return `${data.description} ${primaryProductName} 的高分维度主要是${ciwiFocus || "长期治理"}；${data.alternativeName} 相对最靠前的是${alternativeFocus || "快速上线"}。`;
   }
 
-  return `${data.description} ${primaryProductName}'s higher-scoring areas are ${ciwiFocus || "long-term governance"}; ${data.alternativeName}'s higher-scoring areas are ${alternativeFocus || "faster launch"}.`;
+  return `${data.description} ${primaryProductName}'s higher-scoring areas are ${ciwiFocus || "long-term governance"}; ${data.alternativeName} is closest on ${(alternativeFocus || "faster launch").toLowerCase()}.`;
 }
 
 function buildPricingComparison(data: CompareItem, locale: "en" | "zh-cn") {
@@ -334,16 +374,19 @@ function getDefaultCiwiPricingContent(locale: "en" | "zh-cn") {
 
 function getAppInsightSummary(data: CompareItem, locale: "en" | "zh-cn") {
   const allScores = [...data.summaryMetrics, ...data.scoreMatrix];
-  const ciwiWins = allScores.filter((item) => item.ciwi > item.alternative).length;
-  const alternativeWins = allScores.filter((item) => item.alternative > item.ciwi).length;
+  const {ciwi: ciwiWins, alternative: alternativeWins, ties} = getSignalCounts(allScores);
   const ciwiFocus = getTopLabels(allScores, "ciwi").join(locale === "zh-cn" ? "、" : ", ");
-  const alternativeFocus = getTopLabels(allScores, "alternative").join(locale === "zh-cn" ? "、" : ", ");
+  const alternativeFocus = getRelativeLabels(allScores, "alternative").join(locale === "zh-cn" ? "、" : ", ");
 
   if (locale === "zh-cn") {
-    return `评分摘要：共 ${allScores.length} 个评分点，Ciwi 领先 ${ciwiWins} 项，${data.alternativeName} 领先 ${alternativeWins} 项。Ciwi 的高分维度主要是 ${ciwiFocus || "长期治理"}；${data.alternativeName} 的高分维度主要是 ${alternativeFocus || "快速上线"}。`;
+    const tieNote = ties > 0 ? `，${ties} 项持平` : "";
+
+    return `评分摘要：共 ${allScores.length} 个评分点，Ciwi 领先 ${ciwiWins} 项，${data.alternativeName} 领先 ${alternativeWins} 项${tieNote}。Ciwi 的高分维度主要是${ciwiFocus || "长期治理"}；${data.alternativeName} 相对最靠前的是${alternativeFocus || "快速上线"}。`;
   }
 
-  return `Scoring summary: across ${allScores.length} scoring signals, Ciwi leads in ${ciwiWins} and ${data.alternativeName} leads in ${alternativeWins}. Ciwi's strongest areas are ${ciwiFocus || "long-term governance"}; ${data.alternativeName}'s strongest areas are ${alternativeFocus || "faster launch"}.`;
+  const tieNote = ties > 0 ? `, ${ties} tied` : "";
+
+  return `Scoring summary: across ${allScores.length} scoring signals Ciwi leads in ${ciwiWins} and ${data.alternativeName} in ${alternativeWins}${tieNote}. Ciwi's strongest areas are ${ciwiFocus || "long-term governance"}; ${data.alternativeName} is closest on ${(alternativeFocus || "faster launch").toLowerCase()}.`;
 }
 
 function getPricingInsightSummary(data: CompareItem, locale: "en" | "zh-cn") {
@@ -359,7 +402,9 @@ function getPricingInsightSummary(data: CompareItem, locale: "en" | "zh-cn") {
     return `价格摘要：Ciwi 价格评分 ${formatScore(priceMetric.ciwi)}，${data.alternativeName} 价格评分 ${formatScore(priceMetric.alternative)}，分差 ${Math.abs(priceMetric.ciwi - priceMetric.alternative)} 分。`;
   }
 
-  return `Pricing summary: Ciwi scores ${formatScore(priceMetric.ciwi)} on price and ${data.alternativeName} scores ${formatScore(priceMetric.alternative)}, a gap of ${Math.abs(priceMetric.ciwi - priceMetric.alternative)} points.`;
+  const gap = Math.abs(priceMetric.ciwi - priceMetric.alternative);
+
+  return `Pricing summary: Ciwi scores ${formatScore(priceMetric.ciwi)} on price and ${data.alternativeName} scores ${formatScore(priceMetric.alternative)}, a ${gap === 1 ? "1-point" : `${gap}-point`} gap.`;
 }
 
 function getPricingTableRows(data: CompareItem, locale: "en" | "zh-cn") {
@@ -621,17 +666,11 @@ function getPricingFactRows(
 }
 
 function buildCompareNarrative({
-  locale,
   overallReview,
-  scoreSummary,
-  appSummary,
-  pricingSummary,
+  priceLine,
 }: {
-  locale: "en" | "zh-cn";
   overallReview: string;
-  scoreSummary: string;
-  appSummary: string;
-  pricingSummary: string;
+  priceLine: string | null;
 }) {
   const splitNarrative = (text: string) =>
     text
@@ -639,21 +678,11 @@ function buildCompareNarrative({
       .map((segment) => segment.trim())
       .filter(Boolean);
 
-  if (locale === "zh-cn") {
-    return [
-      ...splitNarrative(overallReview),
-      ...splitNarrative(scoreSummary),
-      ...splitNarrative(appSummary),
-      ...splitNarrative(pricingSummary),
-    ];
-  }
-
-  return [
-    ...splitNarrative(overallReview),
-    ...splitNarrative(scoreSummary),
-    ...splitNarrative(appSummary),
-    ...splitNarrative(pricingSummary),
-  ];
+  // The hero only carries the verdict plus the price signal. Totals, leading
+  // dimensions and the per-app summaries repeat the same numbers in the summary
+  // panel and the score table further down, which padded the page without
+  // adding anything a reader could use.
+  return [...splitNarrative(overallReview), ...(priceLine ? [priceLine] : [])];
 }
 
 function hashString(value: string) {
@@ -1250,12 +1279,19 @@ export default async function CompareDetailPage({params}: CompareDetailPageProps
   const bestFitItems = getBestFitItems(data, locale);
   const renderedFaqItems = getRenderedFaqItems(data, locale);
   const hasFaq = renderedFaqItems.length > 0;
+  const heroPriceMetric = getPriceMetric(data);
+  const heroPriceLine = heroPriceMetric
+    ? heroPriceMetric.ciwi === heroPriceMetric.alternative
+      ? locale === "zh-cn"
+        ? `价格一项两者同分，都是 ${formatScore(heroPriceMetric.ciwi)}。`
+        : `Price is scored level at ${formatScore(heroPriceMetric.ciwi)} for both.`
+      : locale === "zh-cn"
+        ? `价格评分为 Ciwi ${formatScore(heroPriceMetric.ciwi)}，${data.alternativeName} ${formatScore(heroPriceMetric.alternative)}。`
+        : `The price signal is ${formatScore(heroPriceMetric.ciwi)} for Ciwi versus ${formatScore(heroPriceMetric.alternative)} for ${data.alternativeName}.`
+    : null;
   const narrative = buildCompareNarrative({
-    locale,
     overallReview,
-    scoreSummary,
-    appSummary: appInsightCard.summary,
-    pricingSummary: pricingInsightCard.summary,
+    priceLine: heroPriceLine,
   });
   const structuredData = buildGraphSchema([
     buildBreadcrumbSchema([
@@ -1320,6 +1356,11 @@ export default async function CompareDetailPage({params}: CompareDetailPageProps
               </div>
             </div>
             <div className="mt-6 rounded-[24px] border border-slate-200/80 bg-white/92 p-5 sm:p-6">
+              {data.summary ? (
+                <p className="mb-5 text-[17px] font-medium leading-8 text-slate-800 sm:text-lg">
+                  {data.summary}
+                </p>
+              ) : null}
               <div className="space-y-4 text-[15px] leading-7 text-slate-600 sm:text-base">
                 {narrative.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
@@ -1382,7 +1423,9 @@ export default async function CompareDetailPage({params}: CompareDetailPageProps
           <div className="grid gap-6 xl:grid-cols-[minmax(0,1.45fr)_minmax(320px,0.8fr)]">
             <article className="compare-hero-panel compare-summary-card">
               <h2 className="compare-hero-panel__title">{copy.hero.panels.summaryTitle}</h2>
-              <p className="compare-summary-card__lead">{overallReview}</p>
+              {data.summary ? null : (
+                <p className="compare-summary-card__lead">{overallReview}</p>
+              )}
               <p className="quote">{scoreSummary}</p>
               <div className="compare-insight-stack">
                 <section className="compare-insight-card">
@@ -1581,45 +1624,6 @@ export default async function CompareDetailPage({params}: CompareDetailPageProps
             </article>
           </div>
         </section>
-        <section className="page-section compare-page-section compare-page-section--matrix">
-          <div className="compare-score-intro">
-            <div className="compare-score-intro__header">
-              <div className="section-heading__eyebrow">{copy.sections.scoreTable.eyebrow}</div>
-              <h2>{copy.sections.scoreTable.title}</h2>
-            </div>
-            <p className="compare-score-intro__description">{copy.sections.scoreTable.description}</p>
-          </div>
-          <div className="surface-card compare-table-card">
-            <div className="compare-table-wrapper">
-              <table className="compare-table">
-                <thead>
-                  <tr>
-                    <th scope="col">{copy.sections.scoreTable.featureLabel}</th>
-                    <th scope="col">{primaryProductName}</th>
-                    <th scope="col">{data.alternativeName}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {data.scoreMatrix.map((row) => (
-                    <tr key={row.label}>
-                      <th scope="row">{row.label}</th>
-                      <td>{renderScoreCell(row.ciwi, locale)}</td>
-                      <td>{renderScoreCell(row.alternative, locale)}</td>
-                    </tr>
-                  ))}
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <th scope="row">{copy.sections.scoreTable.overallLabel}</th>
-                    <td>{renderScoreCell(ciwiAverage, locale)}</td>
-                    <td>{renderScoreCell(alternativeAverage, locale)}</td>
-                  </tr>
-                </tfoot>
-              </table>
-            </div>
-          </div>
-        </section>
-
         {data.freePlanComparison ? (
           <section className="page-section compare-page-section">
             <SectionHeading
@@ -1689,6 +1693,45 @@ export default async function CompareDetailPage({params}: CompareDetailPageProps
             ) : null}
           </section>
         ) : null}
+
+        <section className="page-section compare-page-section compare-page-section--matrix">
+          <div className="compare-score-intro">
+            <div className="compare-score-intro__header">
+              <div className="section-heading__eyebrow">{copy.sections.scoreTable.eyebrow}</div>
+              <h2>{copy.sections.scoreTable.title}</h2>
+            </div>
+            <p className="compare-score-intro__description">{copy.sections.scoreTable.description}</p>
+          </div>
+          <div className="surface-card compare-table-card">
+            <div className="compare-table-wrapper">
+              <table className="compare-table">
+                <thead>
+                  <tr>
+                    <th scope="col">{copy.sections.scoreTable.featureLabel}</th>
+                    <th scope="col">{primaryProductName}</th>
+                    <th scope="col">{data.alternativeName}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.scoreMatrix.map((row) => (
+                    <tr key={row.label}>
+                      <th scope="row">{row.label}</th>
+                      <td>{renderScoreCell(row.ciwi, locale)}</td>
+                      <td>{renderScoreCell(row.alternative, locale)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th scope="row">{copy.sections.scoreTable.overallLabel}</th>
+                    <td>{renderScoreCell(ciwiAverage, locale)}</td>
+                    <td>{renderScoreCell(alternativeAverage, locale)}</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </section>
 
         {data.merchantReviews ? (
           <section className="page-section compare-page-section">

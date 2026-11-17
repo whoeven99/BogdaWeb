@@ -7,34 +7,6 @@ const securityHeaders = [
   },
 ];
 
-const legacyMarketingRedirectTargets = {
-  "product-title-generation": "/products/spark-analytics-agent/#features",
-  "product-description-generation": "/products/spark-analytics-agent/#features",
-  "product-image-generation": "/products/spark-analytics-agent/#features",
-  "product-seo-information-generation": "/products/spark-analytics-agent/#features",
-  "collection-description-generation": "/products/spark-analytics-agent/#features",
-  "product-faq-generation": "/products/spark-analytics-agent/#features",
-  "image-alt-text-generation": "/products/spark-analytics-agent/#features",
-  "store-theme-translation": "/products/translator/#features",
-  "product-content-translation": "/products/translator/#features",
-  "ip-based-automatic-switching": "/products/translator/#features",
-  "currency-exchange-rate-inquiry": "/guides/how-to-localize-currency-pricing-on-shopify/",
-  deepl: "/products/translator/",
-} as const;
-
-const legacyMarketingRedirects = Object.entries(legacyMarketingRedirectTargets).flatMap(([sourceSlug, destination]) => [
-  {
-    source: `/${sourceSlug}`,
-    destination,
-    permanent: true,
-  },
-  {
-    source: `/${sourceSlug}/`,
-    destination,
-    permanent: true,
-  },
-]);
-
 const nextConfig: NextConfig = {
   output: "standalone",
   trailingSlash: true,
@@ -47,29 +19,12 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  // 页面级的旧链接跳转全部在 `src/lib/seo/legacy-redirects.ts` 里，由 middleware
+  // 统一发一次 308。这里只留 host 级规则：`redirects()` 在 middleware 之前执行，
+  // 一旦把页面路径写在这里，middleware 就看不到请求，`__ciwi_locale` 和 UTM 只能
+  // 靠下一跳处理，每条旧链接都要多走一次 308。
   async redirects() {
     return [
-      ...legacyMarketingRedirects,
-      {
-        source: "/products/content-ai/",
-        destination: "/products/spark-analytics-agent/",
-        permanent: true,
-      },
-      {
-        source: "/zh-cn/products/content-ai/",
-        destination: "/zh-cn/products/spark-analytics-agent/",
-        permanent: true,
-      },
-      {
-        source: "/products/bundle-discount/",
-        destination: "/help-center/ShopifyApp/bundle-discount-app-overview/",
-        permanent: true,
-      },
-      {
-        source: "/zh-cn/products/bundle-discount/",
-        destination: "/zh-cn/help-center/ShopifyApp/bundle-discount-app-overview/",
-        permanent: true,
-      },
       {
         source: "/ghost/:path*",
         has: [{type: "host", value: "blog.ciwi.ai"}],

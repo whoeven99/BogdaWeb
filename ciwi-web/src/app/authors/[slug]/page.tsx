@@ -17,6 +17,24 @@ type AuthorPageProps = {
   params: Promise<{slug: string}>;
 };
 
+type GuideTopic = "planning" | "execution" | "limits";
+
+const guideTopicOrder: GuideTopic[] = ["planning", "execution", "limits"];
+
+// 按任务阶段分组，而不是按行业标签：同一行业的指南常常只出现一次，
+// 按行业分会裂成一堆单篇。这里只切分已有的署名文章，不新增任何背景或案例。
+function classifyGuideTopic(href: string): GuideTopic {
+  if (href.includes("translate-and-adapt")) {
+    return "limits";
+  }
+
+  if (href.includes("/how-to-translate-")) {
+    return "execution";
+  }
+
+  return "planning";
+}
+
 export function generateStaticParams() {
   return authors.map((author) => ({slug: author.id}));
 }
@@ -69,10 +87,24 @@ export default async function AuthorDetailPage({params}: AuthorPageProps) {
           hero: {
             eyebrow: "作者",
             contentCount: `${totalCount} 篇文章`,
+            scopeNote: `已署名 ${allGuides.length} 篇指南、${posts.length} 篇博客，按主题分组如下。`,
           },
-          guidesSection: {
-            eyebrow: "指南",
-            title: "本地化与翻译指南",
+          guideGroups: {
+            planning: {
+              eyebrow: "规划",
+              title: "市场与品类怎么选",
+              description: "先定目标市场、判断品类是否适合本地化，再决定第一批要翻的内容。",
+            },
+            execution: {
+              eyebrow: "执行",
+              title: "具体模块怎么翻",
+              description: "法律政策、POS、评价与忠诚度应用这些模块，各自有对应的处理方式。",
+            },
+            limits: {
+              eyebrow: "平台边界",
+              title: "Translate & Adapt 能覆盖到哪",
+              description: "语言上限与覆盖范围决定了哪些内容靠应用就能解决，哪些需要另想办法。",
+            },
           },
           blogSection: {
             eyebrow: "博客",
@@ -91,10 +123,24 @@ export default async function AuthorDetailPage({params}: AuthorPageProps) {
           hero: {
             eyebrow: "Author",
             contentCount: `${totalCount} articles`,
+            scopeNote: `${allGuides.length} guides and ${posts.length} blog posts are published under this byline, grouped by topic below.`,
           },
-          guidesSection: {
-            eyebrow: "Guides",
-            title: "Localization & translation guides",
+          guideGroups: {
+            planning: {
+              eyebrow: "Planning",
+              title: "Choosing markets and categories",
+              description: "Pick the target market and judge whether the category localizes well before deciding what to translate first.",
+            },
+            execution: {
+              eyebrow: "Execution",
+              title: "Translating specific storefront modules",
+              description: "Legal policy pages, POS, reviews and loyalty apps each need their own handling rather than one blanket pass.",
+            },
+            limits: {
+              eyebrow: "Platform limits",
+              title: "What Translate & Adapt actually covers",
+              description: "Language caps and coverage decide what the free app solves on its own and what needs another route.",
+            },
           },
           blogSection: {
             eyebrow: "Blog",
@@ -105,6 +151,14 @@ export default async function AuthorDetailPage({params}: AuthorPageProps) {
             description: "More content by this author will be added over time.",
           },
         };
+
+  const groupedGuides = guideTopicOrder
+    .map((topic) => ({
+      topic,
+      copy: copy.guideGroups[topic],
+      guides: allGuides.filter((guide) => classifyGuideTopic(guide.href) === topic),
+    }))
+    .filter((group) => group.guides.length > 0);
 
   const pageUrl = toAbsoluteLocalizedUrl(locale, `/authors/${author.id}`);
   const structuredData = buildGraphSchema([
@@ -137,17 +191,20 @@ export default async function AuthorDetailPage({params}: AuthorPageProps) {
               <div className="mt-2 text-sm font-medium text-slate-600">{author.role[locale]}</div>
               <p className="mt-2 max-w-2xl text-[15px] leading-7 text-slate-600">{author.bio[locale]}</p>
               <div className="mt-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-slate-400">{copy.hero.contentCount}</div>
+              <p className="mt-2 max-w-2xl text-[13px] leading-6 text-slate-500">{copy.hero.scopeNote}</p>
             </div>
           </div>
         </section>
 
         {totalCount > 0 ? (
           <>
-            {allGuides.length > 0 ? (
+            {groupedGuides.map((group) => (
               <ResourceCollectionSection
-                eyebrow={copy.guidesSection.eyebrow}
-                title={copy.guidesSection.title}
-                items={allGuides.map((guide) => ({
+                key={group.topic}
+                eyebrow={group.copy.eyebrow}
+                title={group.copy.title}
+                description={group.copy.description}
+                items={group.guides.map((guide) => ({
                   title: guide.title,
                   description: guide.description,
                   href: guide.href,
@@ -155,7 +212,7 @@ export default async function AuthorDetailPage({params}: AuthorPageProps) {
                 }))}
                 className="page-section"
               />
-            ) : null}
+            ))}
 
             {posts.length > 0 ? (
               <ResourceCollectionSection

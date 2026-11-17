@@ -55,11 +55,14 @@ test("internal page URLs collapse duplicate slashes and retain query and fragmen
   assert.equal(i18n.normalizeInternalHref("https://example.com/a//b"), "https://example.com/a//b");
 });
 
-test("legacy redirects do not target the removed Content AI product", async () => {
+test("next.config 只保留 host 级跳转，页面级旧链接交给中间件", async () => {
+  // `redirects()` 在 middleware 之前执行。一旦页面路径写回这里，中间件就看不到
+  // 请求，语言参数与 UTM 只能靠下一跳摘除——每条旧链接都要多走一次 308。
   const redirects = await nextConfig.redirects();
+
   for (const redirect of redirects) {
+    const hostCondition = Array.isArray(redirect.has) && redirect.has.some((condition) => condition.type === "host");
+    assert.ok(hostCondition, `${redirect.source} 不是 host 级跳转，应移到 legacy-redirects.ts`);
     assert.ok(!redirect.destination.includes("/products/content-ai/"), redirect.source);
   }
-  const titleRedirect = redirects.find((redirect) => redirect.source === "/product-title-generation/");
-  assert.equal(titleRedirect.destination, "/products/spark-analytics-agent/#features");
 });
