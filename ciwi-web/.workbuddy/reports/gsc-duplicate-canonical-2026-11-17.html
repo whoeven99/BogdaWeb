@@ -220,12 +220,37 @@ HTTP/2 404                              ← 反方向直接 404</code></pre>
 <div class="card">
 <table>
   <tr><th>文件</th><th>改动</th></tr>
-  <tr><td><code>src/lib/seo/metadata.ts</code></td><td>新增 <code>isZhNoIndexPath()</code>；hreflang 列表剔除 noindex 的中文版；<code>noIndex</code> 页不输出 <code>alternates</code>；canonical 语言回落到页面自身语言</td></tr>
-  <tr><td><code>src/middleware.ts</code></td><td><code>__ciwi_locale</code> 从"静默 rewrite 出 200"改成"308 收敛到正确语言路径"，保留其余 query 参数</td></tr>
+  <tr><td><code>src/lib/seo/metadata.ts</code></td><td>新增 <code>isZhNoIndexPath()</code>；hreflang 列表剔除 noindex 的中文版；<code>noIndex</code> 页不输出 <code>alternates</code>；canonical 语言取页面自身语言</td></tr>
+  <tr><td><code>src/middleware.ts</code></td><td>旧路径映射、语言参数、UTM、尾斜杠与大小写归一合并进同一个 308；锚点走 <code>redirectUrl.hash</code></td></tr>
+  <tr><td><code>src/lib/seo/legacy-redirects.ts</code></td><td>接管原本在 <code>next.config.ts</code> 里的页面级跳转；新增 <code>withFragment()</code> 把 <code>path#fragment</code> 拆成路径 + 锚点</td></tr>
   <tr><td><code>src/components/sections/MediaPlaceholderSection.tsx</code></td><td>英文侧正文改用 <code>preset.summary</code>，不再渲染中文素材 brief</td></tr>
-  <tr><td><code>scripts/seo-description.test.mjs</code></td><td>新增 3 条回归测试：noindex 无 canonical、hreflang 不指向 noindex 页、可索引页仍保留三条 hreflang</td></tr>
+  <tr><td><code>src/app/resources/product-research/reviews/page.tsx</code></td><td>补六款工具 × 五个维度的分项评分表，按维度名取单元格，缺项显示破折号；日期标注改为「测评发布于」</td></tr>
+  <tr><td><code>src/app/authors/[slug]/page.tsx</code></td><td>按任务阶段（规划 / 执行 / 平台边界）分组已确认署名文章</td></tr>
+  <tr><td><code>scripts/seo-description.test.mjs</code></td><td>3 条回归测试：noindex 无 canonical、hreflang 不指向 noindex 页、可索引页仍保留三条 hreflang</td></tr>
+  <tr><td><code>scripts/seo-middleware-locale.test.mjs</code></td><td>把中间件返回的目标地址再喂回中间件一次，断言不再产生第二个 308；断言目标里没有 <code>%23</code></td></tr>
+  <tr><td><code>scripts/seo-test-manifest.test.mjs</code></td><td>断言 <code>scripts/seo-*.test.mjs</code> 与 <code>package.json</code> 的 <code>seo:check</code> 清单双向一致，防止新测试文件没被挂上</td></tr>
+  <tr><td><code>scripts/audit-redirects.mjs</code></td><td>新增锚点编码检测：<code>Location</code> 的路径段出现 <code>%23</code> 时单独判定为 <code>fragment-encoded</code>，不再混在 <code>ends-in-404</code> 里；新增每 URL 跳数分布输出</td></tr>
 </table>
-<p class="note" style="margin-top:12px">验证链：<code>npx tsc --noEmit</code> 通过 · <code>node --test ./scripts/seo-*.test.mjs</code> <b>45/45</b> 通过 · <code>node scripts/validate-content.mjs</code> 通过 · <code>node scripts/check-seo.mjs</code> 通过 · <code>npm run build</code> 通过（含 <code>verify-seo-artifacts</code>）· 本地 standalone 预览逐页比对 canonical / hreflang / robots / 中文占比。改动尚未 commit。</p>
+<p class="note" style="margin-top:12px">验证链：<code>npx tsc --noEmit</code> 通过 · 默认测试集 <b>61/61</b> 通过 · <code>npm run seo:check</code> 通过 · <code>npm run build</code> 通过（含 <code>verify-seo-artifacts</code>）· 按 <code>git archive HEAD</code> 导出的干净副本重跑默认测试集仍 <b>61/61</b>，确认两个新增测试脚本已随提交入库（<code>2d628d5d</code>，已推 <code>origin/allen</code>）。</p>
+</div>
+
+<h3>6.1 线上跳转实测：跳数与锚点</h3>
+<div class="card">
+<p>规则从 <code>next.config.ts</code> 搬进中间件之后，唯一能让「一次跳转」失效的是 Next 自己的尾斜杠归一化——它在中间件之前执行，中间件看不到原始地址。所以这里不看中间件的返回值，而是对 standalone 构建发真实 HTTP 请求、手工逐跳跟随。</p>
+<p>样本：<code>legacyRouteMap</code> + <code>legacyExtraRootRedirects</code> + <code>compareSlugRedirectMap</code> + <code>legacyHelpCenterSlugRedirects</code> 全部 90 条旧地址，每条取「带斜杠 / 无斜杠 × 英文 / 中文」四种写法，共 <b>360 个 URL</b>，全部带 <code>?utm_source=audit&amp;utm_medium=smoke</code>。</p>
+<table>
+  <tr><th>输入写法</th><th>跳转次数</th><th>最终状态</th><th><code>%23</code></th><th>UTM</th></tr>
+  <tr><td><code>/product-title-generation/</code></td><td>1</td><td>200</td><td>无</td><td>保留</td></tr>
+  <tr><td><code>/product-title-generation</code></td><td>2</td><td>200</td><td>无</td><td>保留</td></tr>
+  <tr><td><code>/zh-cn/product-title-generation/</code></td><td>1</td><td>200</td><td>无</td><td>保留</td></tr>
+  <tr><td><code>/zh-cn/product-title-generation</code></td><td>2</td><td>200</td><td>无</td><td>保留</td></tr>
+</table>
+<pre><code>GET /zh-cn/product-title-generation/?__ciwi_locale=zh-cn&amp;utm_source=wechat
+308 → Location: /zh-cn/products/spark-analytics-agent/?utm_source=wechat#features
+200  ← 锚点在 Location 里是真 fragment，不在路径里；参数只剩 utm_source</code></pre>
+<p>360 个 URL 的汇总：<b>180 个 1 跳</b>（带斜杠，英文与中文各 90），<b>180 个 2 跳</b>（无斜杠，第一跳是 Next 补斜杠，第二跳才是规则本身），<b>0 个 404、0 个 <code>%23</code>、0 个 UTM 丢失、0 条 3 跳以上</b>。落到产品页后 <code>rel=canonical</code> 指向自身、<code>hreflang</code> 三条互为对称、<code>id="features"</code> 在页面上真实存在。</p>
+<p class="note">无斜杠那 180 条的两跳是框架层行为：<code>trailingSlash: true</code> 让 Next 在进入中间件之前先把 <code>/x</code> 308 到 <code>/x/</code>。试过 <code>skipTrailingSlashRedirect: true</code> 想把这跳也收进中间件，结果是 <code>/deepl</code> → <code>/products/translator</code> → 自身 的循环 308，已完整回退，配置里不留该开关。站内链接与 sitemap 全部带尾斜杠，所以这两跳只影响外部手输地址。</p>
+<p><b>反向验证：</b>审计脚本新增的检测不能只看它「这次没报」。用一个合成 308（<code>Location: /target/%23features/</code>）跑同一脚本，输出 <code>verdict=fragment-encoded</code>、<code>cause=fragment-encoded</code>，并点名编码后的路径——说明这类回归今后会被脚本直接指出，而不是表现成一个费解的 404。</p>
 </div>
 
 <h2>七、核对方法</h2>

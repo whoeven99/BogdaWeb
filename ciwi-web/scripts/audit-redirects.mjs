@@ -128,6 +128,7 @@ async function readUrlFile(path) {
 async function trace(url) {
   const hops = [];
   let current = url;
+  const locations = [];
 
   for (let step = 0; step < 6; step += 1) {
     let response;
@@ -154,10 +155,19 @@ async function trace(url) {
       break;
     }
 
+    locations.push(location);
     current = new URL(location, current).toString();
   }
 
   const finalStatus = hops.at(-1);
+
+  // A fragment appended to a pathname is escaped to `%23` and becomes part of
+  // the route, so the hop lands on `/products/x/%23features/` and 404s. That is
+  // exactly what `/zh-cn/product-title-generation/` did before the resolver
+  // split `#features` out of the destination. Without this flag the symptom
+  // shows up only as a generic `ends-in-404`, which reads like a missing page
+  // rather than an encoding bug in the redirect itself.
+  const encodedFragment = locations.find((location) => /%23/i.test(location.split("?")[0]));
 
   let verdict = "other";
 
@@ -171,7 +181,19 @@ async function trace(url) {
     verdict = "connection-error";
   }
 
-  return {url, hops: hops.join(" "), finalStatus, finalUrl: current, verdict, cause: classifyCause(url, current)};
+  if (encodedFragment) {
+    verdict = "fragment-encoded";
+  }
+
+  return {
+    url,
+    hops: hops.join(" "),
+    finalStatus,
+    finalUrl: current,
+    verdict,
+    cause: encodedFragment ? "fragment-encoded" : classifyCause(url, current),
+    encodedFragment: encodedFragment ?? "",
+  };
 }
 
 const gscFile = readOption("gsc", null);
@@ -208,7 +230,20 @@ for (const result of results) {
   counts.set(result.verdict, (counts.get(result.verdict) ?? 0) + 1);
 }
 
-const lines = ["url,hops,final_status,final_url,verdict,cause", ...results.map((result) => [result.url, `"${result.hops}"`, result.finalStatus, result.finalUrl, result.verdict, result.cause].join(","))];
+const lines = [
+  "url,hops,final_status,final_url,verdict,cause,encoded_fragment",
+  ...results.map((result) =>
+    [
+      result.url,
+      `"${result.hops}"`,
+      result.finalStatus,
+      result.finalUrl,
+      result.verdict,
+      result.cause,
+      `"${result.encodedFragment}"`,
+    ].join(","),
+  ),
+];
 
 writeFileSync(outFile, `${lines.join("\n")}\n`);
 
@@ -216,6 +251,31 @@ console.log(`audited ${results.length} URLs against ${baseUrl}`);
 
 for (const [verdict, count] of [...counts.entries()].sort((left, right) => right[1] - left[1])) {
   console.log(`  ${String(count).padStart(5)}  ${verdict}`);
+}
+
+// Redirect count per URL, so a change that turns one hop into two is visible
+// without opening the CSV.
+const redirectCounts = new Map();
+
+for (const result of results) {
+  const redirects = result.hops.split(" ").filter((hop) => hop.startsWith("3")).length;
+  redirectCounts.set(redirects, (redirectCounts.get(redirects) ?? 0) + 1);
+}
+
+console.log("\nredirects before landing:");
+
+for (const [redirects, count] of [...redirectCounts.entries()].sort((left, right) => left[0] - right[0])) {
+  console.log(`  ${String(count).padStart(5)}  ${redirects} redirect${redirects === 1 ? "" : "s"}`);
+}
+
+const encoded = results.filter((result) => result.verdict === "fragment-encoded");
+
+if (encoded.length > 0) {
+  console.log(`\nfragment encoded into path (${encoded.length}):`);
+
+  for (const result of encoded) {
+    console.log(`  ${result.url}\n    -> ${result.encodedFragment}`);
+  }
 }
 
 if (gscFile) {
