@@ -361,12 +361,12 @@
     "year": 2026,
     "publishedAt": "2026-08-20",
     "title": "How to Translate Shopify Cart & Mini-Cart",
-    "description": "Translate Shopify mini-cart text, cart buttons, and empty-cart messages so shoppers can review products and continue to checkout in their language.",
+    "description": "Fix the cart and mini-cart copy shoppers actually read: drawer buttons, free-shipping messages, empty states, and the wording handoff into checkout.",
     "industry": "Ecommerce",
     "audience": "Shopify merchants localizing their storefront",
     "segmentLabel": "How-to",
     "guideLabel": "Translation Guide",
-    "mainValue": "A repeatable method for localizing cart and mini-cart copy — the buttons, labels, and empty states that keep shoppers moving toward checkout.",
+    "mainValue": "Work out where each cart string lives — theme locale file, hardcoded section markup, or an app — and verify the whole drawer in every language instead of only the cart page.",
     "topic": "Cart & Mini-Cart",
     "keywords": [
       "translate shopify cart",
@@ -376,56 +376,56 @@
     ],
     "overviewDrivers": [
       {
-        "title": "The cart is the last decision point before payment",
-        "description": "Subtotal wording, quantity labels, and the checkout button all live here. If any of them reads awkwardly in the shopper's language, momentum stalls one step before revenue."
+        "title": "The drawer, not the cart page, is what most shoppers see",
+        "description": "On most modern themes the slide-out drawer opens the moment something is added. It is also the surface with the least translated copy, because its strings often sit in section markup rather than in the theme's locale file."
       },
       {
-        "title": "Mini-cart text often hides in theme code",
-        "description": "The slide-out mini-cart is frequently a theme component with hardcoded strings that don't appear in Shopify's standard translation list, so it silently stays untranslated."
+        "title": "Cart copy is small, which is exactly why it gets skipped",
+        "description": "Twenty strings sit between the product page and payment: buttons, subtotal, quantity, remove, empty state, free-shipping progress. A translation project scoped to product pages leaves all of them in the source language."
       },
       {
-        "title": "Cart text must match the checkout that follows",
-        "description": "Inconsistent wording between cart and checkout — 'Continue to checkout' vs 'Proceed to payment' — makes the store feel unpolished and invites second-guessing."
+        "title": "Money and status messages break differently",
+        "description": "A progress bar that composes a sentence around an amount, or a plural form for one item remaining, fails in ways a product description never does. These need checking in the browser, not in the translation editor."
       }
     ],
     "solutions": [
       {
-        "name": "Manual translation (in-house or freelancer)",
+        "name": "Translate the theme's cart locale strings",
         "advantages": [
-          "Full control over every cart string including theme hardcodes",
-          "No cost for a small set of markets",
-          "Human nuance for calls-to-action"
+          "Covers most of the drawer when it is built from theme sections",
+          "Same glossary as product and collection pages",
+          "Survives theme updates better than edited markup"
         ],
         "limitations": [
-          "Mini-cart strings are easy to miss because they live in theme code",
-          "Slow to update when the theme changes",
-          "Inconsistent phrasing across markets without a glossary"
+          "Only reaches strings the theme actually stores in its locale file",
+          "Hardcoded markup and inline JavaScript text stay untranslated",
+          "A custom or heavily modified theme may expose very little"
         ]
       },
       {
-        "name": "Shopify translation app (Translate & Adapt / Ciwi)",
+        "name": "Edit the hardcoded cart-drawer strings in the theme",
         "advantages": [
-          "Detects and translates cart strings across theme and Shopify",
-          "Keeps cart and checkout wording consistent",
-          "Auto-syncs when you change the theme or copy"
+          "Reaches the strings the locale file does not cover",
+          "No app needed for a handful of labels",
+          "Immediate, visible result in the drawer"
         ],
         "limitations": [
-          "Theme-specific strings may still need a manual check",
-          "Recurring subscription cost",
-          "Quality depends on engine and glossary setup"
+          "Changes live in the theme and are lost on a theme update unless you keep a copy",
+          "Needs someone comfortable editing sections or snippets",
+          "Easy to break the amount or currency format inside a sentence"
         ]
       },
       {
-        "name": "Custom build with the Shopify API",
+        "name": "Handle the cart text an installed app owns",
         "advantages": [
-          "Full programmatic control of cart text via the Storefront API",
-          "Tight integration with a custom headless cart",
-          "No app markup at large scale"
+          "Covers upsell, bundle, subscription and currency widgets inside the cart",
+          "App settings usually expose their own per-language fields",
+          "Keeps app copy separate from theme copy, so updates do not collide"
         ],
         "limitations": [
-          "Requires developer resources and a custom storefront",
-          "Ongoing maintenance",
-          "Slower to launch than an app"
+          "Each app has its own settings surface",
+          "Coverage depends on what the app exposes",
+          "Some apps inject text with no per-language option at all"
         ]
       }
     ],
@@ -433,75 +433,77 @@
       {
         "category": "Critical",
         "items": [
-          "Cart & checkout buttons (CTA)",
-          "Subtotal, tax, and shipping labels",
-          "Quantity & remove item labels",
-          "Empty-cart state text"
+          "Checkout and continue buttons in the drawer and cart page",
+          "Subtotal, shipping, tax and total labels",
+          "Quantity, remove and update controls",
+          "Empty-cart message"
         ],
         "priority": "High"
       },
       {
         "category": "Important",
         "items": [
-          "Line-item labels (SKU, variant, unit price)",
-          "Discount / promo code field",
-          "Continue-shopping links"
+          "Free-shipping progress message",
+          "Discount code field and its error messages",
+          "Line-item labels (variant, unit price, SKU)",
+          "Continue-shopping link"
         ],
         "priority": "Medium"
       },
       {
         "category": "Optional",
         "items": [
-          "Upsell and cross-sell blocks",
-          "Gift note and delivery date fields"
+          "Upsell and cross-sell blocks inside the drawer",
+          "Gift note and delivery-date fields"
         ],
         "priority": "Lower"
       }
     ],
     "checklist": [
-      "Open your cart and mini-cart and capture every visible string, including the slide-out drawer.",
-      "Check whether your theme hardcodes mini-cart text — inspect the cart-drawer section or use a translation app that scans theme strings.",
-      "Translate the high-impact strings first: CTA button, subtotal, tax, and shipping labels.",
-      "Localize quantity, remove, and empty-cart states — these are easy to overlook.",
-      "Keep wording consistent with your checkout (button label, discount field, totals).",
-      "Apply the same glossary you use on product pages so product names match.",
-      "Test the full cart flow in each language, including adding, updating, and emptying the cart."
+      "Open the drawer in a browser and screenshot it in the source language, with one item and with none. The empty state is the one nobody remembers.",
+      "For each string, decide who owns it: the theme (locale file or section markup), Shopify's own system messages, or an installed app.",
+      "Translate the theme locale strings first, then diff the drawer against your screenshot to see what stayed in the source language.",
+      "Check the free-shipping message in each language, because it usually composes an amount into a sentence. Confirm the currency symbol and rounding still read correctly.",
+      "Translate the error path, not just the happy path: an invalid discount code and a quantity of zero are the strings shoppers actually hit.",
+      "Switch language with items already in the cart, rather than rebuilding the cart in the new language.",
+      "Run the drawer on a phone viewport, where translated buttons wrap or get clipped.",
+      "Re-check after the next theme update, since hardcoded fixes do not survive it."
     ],
     "mistakes": [
       {
-        "category": "Missing the mini-cart theme strings",
-        "wrongExample": "Translating the main cart page but leaving the slide-out mini-cart in the source language.",
-        "correct": "Audit the theme's cart-drawer section and translate every hardcoded string there too.",
-        "impact": "Shoppers see an untranslated mini-cart immediately after adding to cart.",
+        "category": "Translating the cart page and stopping there",
+        "wrongExample": "Cart page fully localized while the slide-out drawer still says Add to cart and Subtotal in English.",
+        "correct": "Treat the drawer and the cart page as two separate surfaces with separate string sources.",
+        "impact": "Shoppers meet the untranslated version within seconds of adding a product.",
         "severity": "High"
       },
       {
-        "category": "Cart and checkout wording mismatch",
-        "wrongExample": "Using 'Continue to checkout' in the cart but a differently-phrased button in checkout.",
-        "correct": "Use one glossary for the whole funnel so button and total labels match.",
-        "impact": "Inconsistent wording erodes trust at the final decision point.",
+        "category": "Hardcoding a translated string into the theme",
+        "wrongExample": "Typing the French label directly into the drawer section markup instead of the locale file.",
+        "correct": "Put the string in the locale file when the theme supports it, and keep a written record when it does not.",
+        "impact": "The next theme update silently reverts the translation.",
+        "severity": "High"
+      },
+      {
+        "category": "Breaking the amount inside the progress message",
+        "wrongExample": "Translating just the wrapping sentence and leaving the price template to compose with the wrong word order or currency format.",
+        "correct": "Translate the whole message and check the rendered amount in each language and currency.",
+        "impact": "A message that reads as broken arithmetic is worse than no message.",
         "severity": "Medium"
       },
       {
-        "category": "Skipping the empty-cart state",
-        "wrongExample": "Leaving the empty-cart message in English for a new store with no orders yet.",
-        "correct": "Translate empty-cart and 'your cart is empty' copy — it's often the first thing a new visitor sees.",
-        "impact": "A confusing first impression for first-time shoppers.",
-        "severity": "Lower"
-      },
-      {
-        "category": "Not syncing after theme updates",
-        "wrongExample": "Updating the theme and not re-running the cart translation.",
-        "correct": "Re-scan and re-verify cart strings after any theme or app update.",
-        "impact": "Regressions that silently revert translated cart copy.",
+        "category": "Never testing the empty and error states",
+        "wrongExample": "Verifying only a cart with one product and a valid discount code.",
+        "correct": "Check empty cart, invalid code, and the one-item plural case in every language.",
+        "impact": "The states that generate support tickets are the ones nobody checked.",
         "severity": "Medium"
       }
     ],
     "features": [
-      "Scan and translate cart strings across your theme and Shopify",
-      "Localize CTA buttons, totals, and empty-cart states",
-      "Keep cart and checkout wording consistent",
-      "Auto-sync when your theme or copy changes"
+      "Translates the drawer, the cart page and the checkout handoff from one glossary, so the button label does not change mid-funnel",
+      "Reaches cart strings that live in theme sections, not only the ones in the locale file",
+      "Covers cart content injected by upsell, bundle and subscription apps",
+      "Keeps amount-bearing messages such as free-shipping progress readable in every currency"
     ],
     "recommendations": [
       {
@@ -519,18 +521,27 @@
     ],
     "faq": [
       {
-        "question": "Why is my Shopify mini-cart still untranslated after I localized the cart page?",
-        "answer": "Because mini-cart strings often live inside theme components or cart-drawer code instead of Shopify's main translation layer. Localizing the cart page alone does not always touch those strings, so the drawer, empty state, or action buttons can stay in the source language until the theme layer is translated too."
+        "question": "Why is my mini-cart still in English after translating the cart page?",
+        "answer": "Because the drawer is usually a separate theme section with its own strings, and some of them are written directly into the markup instead of the theme's locale file. Translating the cart page does not touch the drawer; check the section for hardcoded labels first."
       },
       {
-        "question": "Do cart and checkout button labels need to match across languages?",
-        "answer": "They do not have to be word-for-word identical, but they should feel like one continuous flow. If the cart says one thing and checkout suddenly switches tone or meaning, the store feels less polished and the customer may hesitate right before payment."
+        "question": "Can I translate the free-shipping progress message?",
+        "answer": "Yes, but translate the whole template rather than the visible sentence. Those messages compose an amount into text, so word order, currency symbol and rounding all have to be checked in the browser for each language and currency."
       },
       {
-        "question": "How do I keep cart and mini-cart translations updated after a Shopify theme change?",
-        "answer": "Re-audit the cart drawer and related theme strings after every theme update, because new components often reintroduce untranslated labels. A glossary for cart CTAs, subtotal language, and empty-state copy makes it much easier to restore consistency after the theme changes."
+        "question": "Should the cart button and the checkout button use the same words?",
+        "answer": "They do not have to match word for word, but they should read as one continuous action. Divergence here is noticeable because the two buttons are seen seconds apart, and it reads as a different store taking over at payment."
+      },
+      {
+        "question": "What about discount code errors and other cart messages?",
+        "answer": "Not all of them, so check the owner before editing. The discount field on the cart page is usually rendered by the theme, so check whether that message comes from your locale files before assuming it does — discount, loyalty and checkout apps can return the error too; a code rejected at checkout is worded by Shopify, so editing the theme will not change it; and sold-out labels or back-in-stock notices often belong to an inventory, preorder or waitlist app. Fix each at its own source, then apply an invalid code and add a sold-out variant in every language and read the message on the storefront, not in the theme editor."
+      },
+      {
+        "question": "How do I keep cart translations after a theme update?",
+        "answer": "Keep the translated strings in the theme's locale file wherever the theme supports it, and note any hardcoded edits you made. After an update, re-open the drawer with an item in the cart and compare it against your source-language screenshot."
       }
-    ]
+    ],
+    "updatedAt": "2026-11-16"
   },
   {
     "slug": "how-to-translate-shopify-checkout",
@@ -3904,12 +3915,12 @@
     "year": 2026,
     "publishedAt": "2026-08-20",
     "title": "How to Translate Shopify Review, Loyalty & Chat App Content",
-    "description": "Translate loyalty, reviews, and chat apps on your Shopify storefront — widgets, review-request emails, loyalty labels, chat greetings, and your replies — so social proof works in every language.",
+    "description": "What you can translate in Shopify review, loyalty and chat apps, what stays inside the app's own database, and how to verify each surface on the live storefront.",
     "industry": "Ecommerce",
     "audience": "Shopify merchants using review, loyalty, or chat apps",
     "segmentLabel": "How-to",
     "guideLabel": "Translation Guide",
-    "mainValue": "Check which review, loyalty, and chat strings can be translated, where to edit them, and how to verify each language on the live storefront.",
+    "mainValue": "Separate the strings you control from the ones the app owns, translate in the right place, and check every surface on the storefront or in a test email rather than in the admin.",
     "topic": "Review Apps Content",
     "keywords": [
       "translate shopify reviews",
@@ -3921,56 +3932,56 @@
     ],
     "overviewDrivers": [
       {
-        "title": "Social proof only works in the shopper's language",
-        "description": "A wall of English reviews on a Spanish storefront kills the exact trust signal it was meant to build. Translated reviews restore it."
+        "title": "Three apps, three different owners of the text",
+        "description": "A review widget, a loyalty panel and a chat launcher look like one storefront problem. They are not: each app exposes a different subset of strings, and some of that text never reaches Shopify's translatable resources at all."
       },
       {
-        "title": "Review content is a mix of user copy and your copy",
-        "description": "Widget labels, request emails, and your merchant replies need translation even when customer reviews themselves cannot all be translated."
+        "title": "Review text is user content, not catalogue content",
+        "description": "Customer reviews live in the review app's database. That is why a fully translated product page can still show an English review wall underneath it, and why the fix usually sits in the app rather than in Translate & Adapt."
       },
       {
-        "title": "Authenticity is fragile",
-        "description": "Awkward machine-translated reviews read as fake, and shoppers discount the entire widget once trust is broken."
+        "title": "Trust breaks faster in a widget than on a product page",
+        "description": "A clumsy spec sentence is merely awkward; a stilted review reads as fabricated. Authentication signals such as Verified buyer, star filters and your own replies carry more trust weight than the prose they sit next to."
       }
     ],
     "solutions": [
       {
-        "name": "Manual translation (in-house or freelancer)",
+        "name": "Translate the app-owned strings inside the app",
         "advantages": [
-          "Human nuance preserves authenticity",
-          "Selective translation of top reviews",
-          "No recurring fee for a few hero reviews"
+          "Loyalty and chat apps usually ship per-language fields for greetings, reward names and redemption buttons",
+          "Widget labels set here survive theme updates and app re-publishes",
+          "A handful of strings, no export or import round trip"
         ],
         "limitations": [
-          "Slow for hundreds of reviews",
-          "Hard to keep tone consistent",
-          "User reviews update constantly"
+          "Coverage is whatever the app exposes, not whatever Shopify can translate",
+          "Every app keeps its language settings in a different place",
+          "Review text often has no per-language field at all"
         ]
       },
       {
-        "name": "Shopify translation app (Translate & Adapt / Ciwi)",
+        "name": "Translate theme and Shopify-owned strings with Translate & Adapt",
         "advantages": [
-          "Bulk-translates text exposed to the translation tool",
-          "Lets you verify supported third-party widget strings on the storefront",
-          "Helps keep merchant reply terminology consistent"
+          "Reaches widget chrome that lives in theme locale files",
+          "Shares one glossary with the rest of the storefront",
+          "Keeps Verified buyer and star labels consistent with product pages"
         ],
         "limitations": [
-          "Recurring subscription cost",
-          "Machine-translated reviews can read flat",
-          "Top reviews still need a human review pass"
+          "Only covers content that is a Shopify translatable resource",
+          "Text injected by an app at runtime stays in the source language",
+          "Does not reach customer reviews, which are not a Shopify resource"
         ]
       },
       {
-        "name": "Custom build with the Shopify API",
+        "name": "Translate the high-value user content by hand",
         "advantages": [
-          "Full control over the review pipeline and storage",
-          "Integrates with your review platform",
-          "No per-app markup at scale"
+          "Keeps tone natural exactly where trust is decided",
+          "Lets you label a review as translated instead of passing machine output off as native",
+          "Stays affordable when you limit it to hero reviews and your replies"
         ],
         "limitations": [
-          "Requires development resources",
-          "Ongoing maintenance burden",
-          "Slower to launch than an app"
+          "Every new review reopens the decision",
+          "Cost per review is hard to predict",
+          "Needs a reviewer who knows the product, not just the language"
         ]
       }
     ],
@@ -3978,106 +3989,114 @@
       {
         "category": "Critical",
         "items": [
-          "Review widget labels",
-          "Review request emails",
-          "Merchant responses"
+          "Review widget labels (Verified buyer, Write a review, star filters)",
+          "Merchant replies under reviews",
+          "Loyalty: reward names, point balance label, redemption button",
+          "Chat: greeting, offline message, quick replies"
         ],
         "priority": "High"
       },
       {
         "category": "Important",
         "items": [
-          "Top customer reviews",
-          "Star-rating filters & sort labels",
-          "Q&A sections"
+          "Review request emails (subject, body, button)",
+          "Q&A answers written by you",
+          "Loyalty tier names and expiry notices"
         ],
         "priority": "Medium"
       },
       {
         "category": "Optional",
         "items": [
-          "Photo review captions",
-          "Featured-review banners"
+          "Top customer reviews",
+          "Photo captions and featured-review banners"
         ],
         "priority": "Lower"
       }
     ],
     "checklist": [
-      "Inventory every review surface — on-page widgets, request emails, and the review app's admin text.",
-      "Export widget labels, email templates, and your merchant replies into one sheet.",
-      "Build a glossary for verified, rating, recommend, and your product names.",
-      "Scope it: widget labels and emails first, then top reviews, then photos and captions.",
-      "Pick a method — manual for a few hero reviews, app for bulk, API for custom pipelines.",
-      "Human-review the top reviews you translate; authenticity matters more than speed here.",
-      "Translate your merchant replies so concerns get answered in-language.",
-      "Check the live widget renders correctly in the target language, including length and RTL.",
-      "Loyalty apps: check the app settings for per-language point balances, reward names, and redemption buttons. Switch languages with a test member account and verify both the launcher and the redemption flow.",
-      "Chat apps: check the app settings for locale rules, then configure greetings, offline messages, and quick replies. Switch storefront languages in a private window and test online and offline states separately. If the widget stays in the default language, check its locale support. Verify widget copy and live conversations separately."
+      "List the three surfaces separately: review widget, loyalty panel, chat launcher. They almost never share settings.",
+      "For each string, note whether it lives in the app's settings, the theme's locale file, or Shopify's translatable resources. That decides where you edit it.",
+      "Open the app's own settings first: loyalty and chat usually expose per-language fields for greetings, reward names and buttons.",
+      "Translate the theme-side chrome with Translate & Adapt so labels like Verified buyer match the rest of the storefront.",
+      "Decide the review-text policy before touching it: widget chrome and your replies always, customer reviews selectively.",
+      "Translate two or three hero reviews by hand and mark them as translated rather than presenting machine output as native copy.",
+      "Switch the storefront language in a private window and walk all three surfaces, including the loyalty redemption flow and the chat offline state.",
+      "Re-check after any app update or theme publish, because widget strings are the first thing to revert."
     ],
     "mistakes": [
       {
-        "category": "Machine-translating every review wholesale",
-        "wrongExample": "Bulk auto-translating all reviews into stilted output with no review.",
-        "correct": "Translate widget labels and top reviews, and keep the tone natural.",
-        "impact": "Reviews read as fake and lose their trust signal.",
+        "category": "Assuming one setting translates all three apps",
+        "wrongExample": "Translating the review widget and expecting the loyalty panel and chat launcher to follow.",
+        "correct": "Treat each app as its own translation surface with its own settings and its own owner of the text.",
+        "impact": "Two of three widgets stay in English and the storefront reads as half-localized.",
         "severity": "High"
       },
       {
-        "category": "Leaving widget labels in the source language",
-        "wrongExample": "Translating reviews while Verified buyer and Write a review stay in English.",
-        "correct": "Translate the widget chrome along with the reviews.",
-        "impact": "A half-translated, unpolished experience.",
+        "category": "Machine-translating reviews wholesale with no reviewable pass",
+        "wrongExample": "Bulk auto-translating every review into stiff text that reads as machine output.",
+        "correct": "Translate the chrome and the hero reviews; leave the long tail in the source language and say so.",
+        "impact": "Reviews read as fabricated and the trust signal inverts into a warning sign.",
+        "severity": "High"
+      },
+      {
+        "category": "Leaving merchant replies in the source language",
+        "wrongExample": "Answering a Spanish shopper's complaint in English underneath a Spanish review.",
+        "correct": "Reply in the language of the review, or in the market's language when the review itself is a translation.",
+        "impact": "The recovery attempt misses exactly the shoppers who needed it.",
         "severity": "Medium"
       },
       {
-        "category": "Skipping merchant replies",
-        "wrongExample": "Translating reviews but leaving your replies and Q&A answers untranslated.",
-        "correct": "Answer questions and concerns in the shopper's language.",
-        "impact": "Missed recovery and unresolved objections.",
+        "category": "Verifying in the admin instead of on the storefront",
+        "wrongExample": "Checking the app preview and assuming the live widget renders the same way.",
+        "correct": "Switch storefront language in a private window and inspect the rendered widget, launcher and emails.",
+        "impact": "Clipped buttons, broken layout or an untranslated offline message only show up in production.",
         "severity": "Medium"
-      },
-      {
-        "category": "Showing region-irrelevant reviews",
-        "wrongExample": "Displaying US-specific reviews to European shoppers without curation.",
-        "correct": "Curate or flag reviews that are relevant to each market.",
-        "impact": "Shoppers see social proof that does not apply to them.",
-        "severity": "Lower"
       }
     ],
     "features": [
-      "Bulk-translate review widgets, emails, and labels",
-      "Auto-translate incoming reviews as they arrive",
-      "Glossary keeps product names and review terms consistent",
-      "Preserve authentic tone with a human review pass"
+      "Translates the review widget text Ciwi supports on the storefront, including app-injected labels that are not Shopify translatable resources",
+      "Keeps product names and review terminology in one glossary, so Verified buyer does not drift into a different phrase on another page",
+      "Handles review request emails and merchant replies through the fields each app exposes, with a test send before a campaign goes out",
+      "Leaves customer reviews in the source language where the app owns them instead of manufacturing full coverage"
     ],
     "recommendations": [
       {
         "title": "How to Translate Shopify Product Descriptions",
-        "description": "Localize the product pages where your review widgets appear."
+        "description": "Localize the product pages the review widget sits on."
       },
       {
         "title": "How to Translate Shopify Email Notifications",
-        "description": "Translate the review request emails that generate social proof."
+        "description": "Translate the review request emails that supply the social proof in the first place."
       },
       {
-        "title": "How to Translate Shopify FAQ Sections",
-        "description": "Keep Q&A and review sections consistent with the rest of the page."
+        "title": "How to Translate Shopify Loyalty & Membership Pages",
+        "description": "Cover reward names, tiers and the redemption flow beyond the widget itself."
       }
     ],
     "faq": [
       {
-        "question": "Should I translate customer reviews or leave them in the original language?",
-        "answer": "Translate the widget chrome and your top reviews, and keep the tone natural. For authenticity, consider a note like translated from English rather than presenting stilted machine output as a native review."
+        "question": "Can Shopify's translation app translate customer reviews?",
+        "answer": "Usually not. Review text sits in the review app's database rather than in a Shopify translatable resource, so Translate & Adapt cannot see it. Sort the surface by owner before editing: widget chrome is either a theme string or injected by the app, your replies are written inside the app, and review text usually has no per-language field at all. Translate whatever one of those owners exposes, then switch the storefront language in a private window and read the widget and a reply, and send yourself a test review-request email in that language."
       },
       {
-        "question": "Do translated reviews hurt authenticity?",
-        "answer": "They can, if machine translation reads flat or robotic. Human-review the top reviews and keep phrasing natural so the social proof still feels genuine."
+        "question": "Why is my review widget still in English after translating the theme?",
+        "answer": "Because the widget chrome usually comes from the app, not the theme. Theme-level translation only reaches strings in your locale files, so check whether the label you are looking at is one of them; if it is not, the fix is the app's own language settings or a layer that covers app content."
       },
       {
-        "question": "How do I handle new reviews coming in?",
-        "answer": "Use a translation app that auto-translates incoming reviews, then add a human review pass on high-visibility ones. This keeps the widget fresh in every language."
+        "question": "How do I localize loyalty reward names and the redemption flow?",
+        "answer": "In the loyalty app's own settings, where most apps expose per-language fields for reward names, tier labels and redemption buttons. Save, then switch to a test member account in each language and walk the redemption flow end to end, because the button is where it usually breaks."
+      },
+      {
+        "question": "What about chat greetings and offline messages?",
+        "answer": "Configure them per language inside the chat app, then test the online and offline states separately in a private window. The offline message is the one most often left in the default language, because it only appears outside business hours."
+      },
+      {
+        "question": "Should translated reviews be labelled as translations?",
+        "answer": "Yes. A short translated from English note is more credible than machine output presented as a native review, and it protects you when a shopper compares the two versions side by side."
       }
-    ]
+    ],
+    "updatedAt": "2026-11-16"
   },
   {
     "slug": "how-to-translate-shopify-search-filters",
@@ -5491,6 +5510,584 @@
       {
         "question": "How do I keep B2B catalogs in sync when pricing changes?",
         "answer": "Use a translation app with auto-sync, or re-export changed products on a schedule. Manual translation drifts fastest and is the riskiest for tiered pricing."
+      }
+    ]
+  },
+  {
+    "slug": "how-to-translate-shopify-store-for-free-2026",
+    "href": "/guides/how-to-translate-shopify-store-for-free-2026",
+    "year": 2026,
+    "publishedAt": "2026-11-16",
+    "title": "How to Translate a Shopify Store for Free in 2026",
+    "description": "Translate a Shopify store at no app cost with Translate & Adapt: the 8-or-2 language cap, Auto-sync that stays off until you enable it per language, and the four gaps that still need another tool.",
+    "industry": "Ecommerce",
+    "audience": "Shopify merchants localizing on a limited budget",
+    "segmentLabel": "How-to",
+    "guideLabel": "Free Translation Guide",
+    "mainValue": "Get a second and third language live without paying an app subscription — and know exactly where the free path stops.",
+    "topic": "Free Translation",
+    "keywords": [
+      "how to translate shopify store for free",
+      "shopify free translation app",
+      "translate and adapt free",
+      "shopify automatic translation"
+    ],
+    "overviewDrivers": [
+      {
+        "title": "Automatic translation now ships with Shopify",
+        "description": "Translate & Adapt installs itself the moment you add a language, and Shopify's AI translation fills in content that hasn't been translated yet. There is no per-word invoice and no second app to buy."
+      },
+      {
+        "title": "The free ceiling is a language count, not a price",
+        "description": "What's capped is how many languages can be translated automatically, not how much text you push through — so the real planning question is which markets get the automatic slots."
+      },
+      {
+        "title": "Free covers the catalog, not the edges",
+        "description": "Standard product, collection, page, blog and theme content is covered. Images, tags, collection filters and most third-party app text sit outside the app entirely."
+      }
+    ],
+    "solutions": [
+      {
+        "name": "Translate & Adapt with automatic translation",
+        "advantages": [
+          "No app cost and no per-word billing",
+          "Installs automatically with the language",
+          "Auto-sync keeps translations current once you enable it per language"
+        ],
+        "limitations": [
+          "Capped at 8 languages where the app shows Translate now, 2 elsewhere",
+          "Weekly cadence rather than real time",
+          "Doesn't reach images, tags, filters or non-standard app content"
+        ]
+      },
+      {
+        "name": "Manual translation inside Translate & Adapt",
+        "advantages": [
+          "No language cap — add as many languages as Markets supports",
+          "Full control over wording in every field",
+          "The only free route for legal policies, which can't be machine translated"
+        ],
+        "limitations": [
+          "Every field is typed by hand",
+          "Effort scales with catalog size",
+          "No glossary enforcement across thousands of products"
+        ]
+      },
+      {
+        "name": "CSV export and re-import",
+        "advantages": [
+          "Reaches translatable resources the app search doesn't surface, such as metafields",
+          "Good for one bulk pass before launch",
+          "Free"
+        ],
+        "limitations": [
+          "No diffing or change tracking",
+          "Errors are hard to spot in a large sheet",
+          "Re-running after catalog changes is manual work"
+        ]
+      }
+    ],
+    "translationScope": [
+      {
+        "category": "Translated automatically",
+        "items": [
+          "Product titles and descriptions",
+          "Collection titles and descriptions",
+          "Pages and blog posts",
+          "Theme and storefront text",
+          "Menus and navigation"
+        ],
+        "priority": "High"
+      },
+      {
+        "category": "Manual only",
+        "items": [
+          "Legal policies, which can't be auto-translated",
+          "URL handles: typed by hand for each language, because automatic translation skips them",
+          "Fields you choose to write yourself",
+          "Any language that has used up the automatic slots"
+        ],
+        "priority": "Medium"
+      },
+      {
+        "category": "Outside the app",
+        "items": [
+          "Product images",
+          "Tags",
+          "Collection filters",
+          "Forms built with the Shopify Forms app",
+          "Manual payment method instructions",
+          "Third-party app content that isn't a Shopify translatable resource"
+        ],
+        "priority": "High"
+      }
+    ],
+    "checklist": [
+      "Add the language in your Shopify settings — Translate & Adapt installs automatically when a language is added.",
+      "Check whether the app shows Translate now for your store: that decides whether you get 8 automatic languages plus Auto-sync, or 2 without it.",
+      "Rank your markets by revenue potential and assign the automatic slots in that order, because a slot can't be reassigned later.",
+      "Run Translate now for the first language and review the machine output on your 20 best-selling products before publishing.",
+      "If your store has Auto-sync, turn it on per language so weekly updates keep pace with catalog changes instead of drifting.",
+      "Write or commission the legal policies before publishing the market — they can't be machine translated.",
+      "Enter a translated URL handle for each language by hand, because automatic translation skips handles, then open a localized product URL in the browser to confirm it resolves. The products segment of the path can't be translated.",
+      "Export a CSV for metafields and any other resource the app search doesn't list."
+    ],
+    "mistakes": [
+      {
+        "category": "Spending language slots on the wrong markets",
+        "wrongExample": "Auto-translating your four biggest markets first, then finding the cap blocks the launch that actually matters.",
+        "correct": "Rank markets by revenue potential and current traffic, then assign automatic slots in that order.",
+        "impact": "Removing a language doesn't free the slot, so a bad assignment can cost a market launch.",
+        "severity": "High"
+      },
+      {
+        "category": "Assuming Auto-sync is already on",
+        "wrongExample": "Turning on a language and expecting new products to translate themselves.",
+        "correct": "Auto-sync is off by default and runs once a week; enable it per language and expect the first run up to a week later.",
+        "impact": "New products sit in the source language for days and read as unfinished.",
+        "severity": "High"
+      },
+      {
+        "category": "Publishing before the legal pages are written",
+        "wrongExample": "Launching a market with machine-translated terms and refund policies.",
+        "correct": "Legal policies can't be auto-translated; finish them before the market goes live.",
+        "impact": "Compliance exposure and avoidable refund disputes in the new market.",
+        "severity": "High"
+      },
+      {
+        "category": "Treating a full progress bar as finished",
+        "wrongExample": "Assuming everything is translated because the app shows all languages complete.",
+        "correct": "Images, tags, filters and third-party app text sit outside the app and need a separate audit.",
+        "impact": "A storefront that reads as half-translated exactly where buyers make decisions.",
+        "severity": "Medium"
+      }
+    ],
+    "features": [
+      "Localizes product metafields and metaobjects the Translate & Adapt app can't surface in its own search",
+      "Translates product images and alt text, not only the text fields around them",
+      "Covers third-party app content such as reviews, loyalty widgets and chat",
+      "Keeps terminology consistent across large catalogs with glossary and custom prompts",
+      "Runs continuous sync for catalogs too large to re-translate by hand every week"
+    ],
+    "recommendations": [
+      {
+        "title": "Shopify Translate & Adapt Language Limits",
+        "description": "The 8-versus-2 split by store country, and why a used slot can't be reassigned.",
+        "href": "/guides/shopify-translate-and-adapt-language-limits-2026"
+      },
+      {
+        "title": "What Translate & Adapt Can't Translate",
+        "description": "Images, tags, filters, metafields and third-party app content, with a workaround for each.",
+        "href": "/guides/shopify-translate-and-adapt-unsupported-content-2026"
+      },
+      {
+        "title": "How to Translate Shopify Metafields & Metaobjects",
+        "description": "The CSV path for structured content the app search skips entirely.",
+        "href": "/guides/how-to-translate-shopify-metafields-metaobjects"
+      }
+    ],
+    "faq": [
+      {
+        "question": "Is Translate & Adapt really free?",
+        "answer": "Yes. It ships with Shopify and has no app subscription or per-word charge. What's capped is the number of languages you can translate automatically, not the amount of text you translate."
+      },
+      {
+        "question": "How many languages can I translate for free?",
+        "answer": "If the app shows Translate now, up to 8 beyond your default language, and Auto-sync comes with it. That's normally the case in Austria, Belgium, Canada, Denmark, France, Germany, Ireland, Italy, the Netherlands, Spain, Sweden, Switzerland, the UK and the US, but the button is the real test: stores in other countries can qualify too. Stores that only see Auto-translate get 2 languages and no Auto-sync."
+      },
+      {
+        "question": "Does it translate new products automatically?",
+        "answer": "Only when Auto-sync is switched on for that language, and it runs once a week. Otherwise you press Translate now, and it fills in whatever is missing at that moment."
+      },
+      {
+        "question": "Can I translate into Tagalog for free?",
+        "answer": "No. Tagalog (Filipino) is one of 14 languages the app can't translate. Those languages need manual translation or a third-party translation app."
+      },
+      {
+        "question": "What breaks first as the store grows?",
+        "answer": "Images, tags, collection filters, metafields and third-party app content — none of which the app reaches, so they stay in the source language while the rest of the store looks finished."
+      }
+    ]
+  },
+  {
+    "slug": "shopify-translate-and-adapt-language-limits-2026",
+    "href": "/guides/shopify-translate-and-adapt-language-limits-2026",
+    "year": 2026,
+    "publishedAt": "2026-11-16",
+    "title": "Shopify Translate & Adapt Language Limits (2026)",
+    "description": "Why Translate & Adapt caps at 8 languages in some countries and 2 in others, which 14 languages it can't translate, and how to plan markets around the limit.",
+    "industry": "Ecommerce",
+    "audience": "Shopify merchants localizing on a limited budget",
+    "segmentLabel": "Reference",
+    "guideLabel": "Language Limits Guide",
+    "mainValue": "Treat automatic translation as a scarce resource: decide which markets get the slots before you spend them.",
+    "topic": "Language Limits",
+    "keywords": [
+      "translate and adapt language limit",
+      "how many languages shopify translate free",
+      "translate and adapt 8 languages",
+      "shopify translation language cap"
+    ],
+    "overviewDrivers": [
+      {
+        "title": "The Translate now button decides the cap",
+        "description": "If the app displays Translate now, your store can translate up to 8 languages automatically and use Auto-sync, even when it sits in a country that isn't on Shopify's list. Stores that only see Auto-translate get 2 languages and no Auto-sync."
+      },
+      {
+        "title": "Slots are spent, not borrowed",
+        "description": "Each language translated automatically uses one of the slots permanently. Removing a language from the store doesn't return it, and you can't move an automatic translation to a different language."
+      },
+      {
+        "title": "Some languages are excluded outright",
+        "description": "Fourteen languages, including Tagalog, Bengali and Hawaiian, can't be translated by the app at all — no slot, no workaround inside Shopify."
+      }
+    ],
+    "solutions": [
+      {
+        "name": "Spend automatic slots on your highest-value markets",
+        "advantages": [
+          "No cost per language",
+          "Weekly Auto-sync once you enable it per language",
+          "Covers the standard catalog fields completely"
+        ],
+        "limitations": [
+          "Permanent assignment per language",
+          "8 or 2 slots depending on whether the app shows Translate now",
+          "Weekly rather than on-demand, and off by default"
+        ]
+      },
+      {
+        "name": "Manual translation for everything beyond the cap",
+        "advantages": [
+          "No language limit",
+          "Works for the excluded languages",
+          "Full editorial control"
+        ],
+        "limitations": [
+          "Manual effort on every field",
+          "Doesn't scale past a few hundred products",
+          "No automation for new content"
+        ]
+      },
+      {
+        "name": "Third-party translation app for the overflow",
+        "advantages": [
+          "No Shopify-side language cap",
+          "Covers excluded languages and structured content",
+          "Can automate sync far more often than weekly"
+        ],
+        "limitations": [
+          "Costs money, either subscription or usage",
+          "Adds another system to manage",
+          "Needs a migration plan if you later consolidate"
+        ]
+      }
+    ],
+    "translationScope": [
+      {
+        "category": "Consumes a slot",
+        "items": [
+          "Any language translated with Translate now or Auto-translate",
+          "Languages re-translated after a content change",
+          "Single-resource translations inside an untranslated language"
+        ],
+        "priority": "High"
+      },
+      {
+        "category": "Blocked at the cap",
+        "items": [
+          "New languages once all slots are used",
+          "Reassigning a slot to a different language",
+          "Restoring a slot after removing a language"
+        ],
+        "priority": "High"
+      },
+      {
+        "category": "Excluded regardless of slots",
+        "items": [
+          "Bengali, Cebuano, Corsican, Frisian, Haitian Creole",
+          "Hawaiian, Hmong, Latin, Nyanja (Chichewa), Odia (Oriya)",
+          "Samoan, Scots Gaelic, Sesotho, Tagalog (Filipino)"
+        ],
+        "priority": "High"
+      }
+    ],
+    "checklist": [
+      "Open Translate & Adapt and check whether the button says Translate now or Auto-translate.",
+      "List the markets you sell into and rank them by revenue, not by how easy they look.",
+      "Assign automatic languages to the top 8 or top 2 in that order, then stop.",
+      "Check whether any target language is on the excluded list before you promise the market internally.",
+      "If your store has Auto-sync, turn it on for each assigned language: it's off by default and the first run can be up to a week away.",
+      "Confirm what happens to a language slot before you ever remove a language.",
+      "Plan the overflow markets for manual translation or a third-party app from day one."
+    ],
+    "mistakes": [
+      {
+        "category": "Planning languages before checking the cap",
+        "wrongExample": "Promising five markets in a launch plan before opening the app.",
+        "correct": "Check the button label first: it tells you whether the ceiling is 8 or 2.",
+        "impact": "A launch calendar built on the wrong ceiling usually slips by weeks.",
+        "severity": "High"
+      },
+      {
+        "category": "Assuming removing a language frees a slot",
+        "wrongExample": "Removing a market's language to auto-translate a different one.",
+        "correct": "The slot stays spent; plan the assignment as permanent.",
+        "impact": "You can run out of automatic translation before the markets you actually needed.",
+        "severity": "High"
+      },
+      {
+        "category": "Reassigning after the fact",
+        "wrongExample": "Auto-translating French, then deciding you wanted German in that slot.",
+        "correct": "Decide the order before the first translation, because a language can't be switched afterwards.",
+        "impact": "One wasted slot permanently reduces your free coverage.",
+        "severity": "Medium"
+      },
+      {
+        "category": "Ignoring the excluded languages",
+        "wrongExample": "Planning a Philippines launch around free automatic translation.",
+        "correct": "Tagalog is excluded; budget for manual or third-party translation instead.",
+        "impact": "The market ships with untranslated content or misses its date.",
+        "severity": "High"
+      }
+    ],
+    "features": [
+      "Translates languages beyond the Translate & Adapt cap, including the 14 Shopify excludes",
+      "Keeps a glossary so terminology doesn't drift across markets added later",
+      "Syncs new and edited products continuously instead of on a weekly cycle",
+      "Covers structured content such as metafields and metaobjects alongside standard fields",
+      "Lets you consolidate several apps' worth of translation into one workflow"
+    ],
+    "recommendations": [
+      {
+        "title": "How to Translate a Shopify Store for Free",
+        "description": "The step-by-step free path, including where it stops working.",
+        "href": "/guides/how-to-translate-shopify-store-for-free-2026"
+      },
+      {
+        "title": "What Translate & Adapt Can't Translate",
+        "description": "The content types the app leaves in the source language, and why.",
+        "href": "/guides/shopify-translate-and-adapt-unsupported-content-2026"
+      },
+      {
+        "title": "Shopify Translate & Adapt Alternative",
+        "description": "A side-by-side comparison of the free native path and a dedicated translation app.",
+        "href": "/compare/shopify-translate-adapt-alternative"
+      }
+    ],
+    "faq": [
+      {
+        "question": "Why does Translate & Adapt allow 8 languages in some stores and 2 in others?",
+        "answer": "The app's own signal is the test. If it shows Translate now, you get up to 8 automatic languages plus Auto-sync, even when your store is in a country that isn't on Shopify's list; the 14 listed countries are simply where that's normally available. Stores that only see Auto-translate get 2 languages, and Auto-sync isn't offered."
+      },
+      {
+        "question": "Does removing a language give the slot back?",
+        "answer": "No. Removing a language from your store doesn't reset the limit, so treat every automatic translation as a permanent allocation."
+      },
+      {
+        "question": "Can I switch an automatic translation to a different language later?",
+        "answer": "No. Once a language has been translated automatically, it can't be switched to another language. Choosing the order is a one-time decision."
+      },
+      {
+        "question": "Which languages can't be translated at all?",
+        "answer": "Bengali, Cebuano, Corsican, Frisian, Haitian Creole, Hawaiian, Hmong, Latin, Nyanja (Chichewa), Odia (Oriya), Samoan, Scots Gaelic, Sesotho and Tagalog (Filipino)."
+      },
+      {
+        "question": "What happens when all slots are used?",
+        "answer": "Automatic translation becomes unavailable for any other language. You can still add languages manually, or use a third-party translation app."
+      }
+    ]
+  },
+  {
+    "slug": "shopify-translate-and-adapt-unsupported-content-2026",
+    "href": "/guides/shopify-translate-and-adapt-unsupported-content-2026",
+    "year": 2026,
+    "publishedAt": "2026-11-16",
+    "title": "What Shopify Translate & Adapt Can't Translate",
+    "description": "The content Shopify's free translation app leaves in your source language: product images, tags, collection filters, metafields and third-party app text.",
+    "industry": "Ecommerce",
+    "audience": "Shopify merchants localizing on a limited budget",
+    "segmentLabel": "Reference",
+    "guideLabel": "Coverage Guide",
+    "mainValue": "Know which parts of the storefront the free app simply doesn't reach, so a full-looking translation doesn't ship with untranslated gaps.",
+    "topic": "Content Coverage",
+    "keywords": [
+      "translate and adapt limitations",
+      "shopify translate and adapt not translating",
+      "translate and adapt images tags metafields",
+      "shopify translation unsupported content"
+    ],
+    "overviewDrivers": [
+      {
+        "title": "The app translates resources, not screenshots",
+        "description": "Translate & Adapt works on Shopify's translatable resource types. Anything rendered by a theme section, an app block or an image doesn't exist for it."
+      },
+      {
+        "title": "Metafields are translatable but not searchable",
+        "description": "Metafields can hold translations, yet the app's search doesn't return METAFIELD results. In practice you can't review or edit them in the interface — only through CSV export."
+      },
+      {
+        "title": "Tags and filters are structural, not editorial",
+        "description": "Tags are excluded, and collection filters are excluded too. That's a problem precisely where shoppers narrow a catalog: filter labels stay in the source language."
+      }
+    ],
+    "solutions": [
+      {
+        "name": "Native translation plus a targeted CSV pass",
+        "advantages": [
+          "Free",
+          "Reaches metafields and other resources the search skips",
+          "Keeps everything inside Shopify"
+        ],
+        "limitations": [
+          "No review workflow for the CSV content",
+          "Re-running after catalog changes is manual",
+          "Still can't touch images, tags or app blocks"
+        ]
+      },
+      {
+        "name": "Theme-level patching for labels",
+        "advantages": [
+          "Fixes filter and section labels where the theme exposes locale keys",
+          "No extra app"
+        ],
+        "limitations": [
+          "Requires theme editing",
+          "Breaks on updates or theme changes",
+          "Doesn't cover app-embedded text"
+        ]
+      },
+      {
+        "name": "A translation app that covers structured and app content",
+        "advantages": [
+          "Handles images, third-party app text and metafields in one place",
+          "Glossary keeps terms consistent",
+          "Continuous sync instead of manual passes"
+        ],
+        "limitations": [
+          "Paid",
+          "Additional setup and migration",
+          "Needs review on high-traffic pages"
+        ]
+      }
+    ],
+    "translationScope": [
+      {
+        "category": "Never translated by the app",
+        "items": [
+          "Product images",
+          "Tags",
+          "Collection filters",
+          "Forms built with the Shopify Forms app",
+          "Manual payment method instructions",
+          "Third-party app content that isn't a Shopify translatable resource"
+        ],
+        "priority": "High"
+      },
+      {
+        "category": "Translatable but not searchable",
+        "items": [
+          "METAFIELD values",
+          "EMAIL_TEMPLATE content",
+          "SHOP_POLICY entries",
+          "FILTER resources",
+          "SELLING_PLAN and PAYMENT_GATEWAY strings"
+        ],
+        "priority": "Medium"
+      },
+      {
+        "category": "Translated with caveats",
+        "items": [
+          "URL handles: typed by hand per language, and the products segment never changes",
+          "Handles can't be customized per market",
+          "Legal policies need manual translation"
+        ],
+        "priority": "Medium"
+      }
+    ],
+    "checklist": [
+      "List every theme section and app block that renders customer-facing text, then mark which ones the app can't reach.",
+      "Search the app for metafields; if nothing returns, export a CSV instead of assuming they're covered.",
+      "Check your collection filter labels in a second language on the storefront, not in the admin.",
+      "Open a product page, a collection page and a checkout-adjacent page in the target language and compare them against the source.",
+      "Confirm which third-party apps inject text into the storefront: reviews, loyalty, chat, upsells, bundles.",
+      "Decide per gap whether to patch the theme, export a CSV, or move that content to an app that handles it.",
+      "Re-check the same list after any theme update or app install."
+    ],
+    "mistakes": [
+      {
+        "category": "Trusting the progress indicator",
+        "wrongExample": "Shipping a market because Translate & Adapt shows every field complete.",
+        "correct": "Walk the storefront in the target language and compare it with the source page by page.",
+        "impact": "Buyers hit untranslated filters, image text and app widgets at the point of decision.",
+        "severity": "High"
+      },
+      {
+        "category": "Assuming metafields are covered",
+        "wrongExample": "Leaving sizing charts and spec tables in English because the products look translated.",
+        "correct": "Metafields are translatable but don't show up in app search; handle them via CSV.",
+        "impact": "The most technical, trust-building content stays in the wrong language.",
+        "severity": "High"
+      },
+      {
+        "category": "Forgetting app-injected text",
+        "wrongExample": "Translating the theme but not the review widget under every product.",
+        "correct": "Inventory the third-party apps that render text, then decide how each gets localized.",
+        "impact": "A page that is 90% translated reads as unfinished where social proof matters most.",
+        "severity": "Medium"
+      },
+      {
+        "category": "Translating URL handles without a redirect plan",
+        "wrongExample": "Changing the slug and letting old localized URLs 404.",
+        "correct": "Enter translated handles by hand before launch, and remember the products segment can't be translated.",
+        "impact": "Lost rankings and broken inbound links in the market you just launched.",
+        "severity": "Medium"
+      }
+    ],
+    "features": [
+      "Translates product metafields and metaobject entries that don't appear in the app's own search",
+      "Localizes product images and alt text alongside the surrounding copy",
+      "Covers third-party app content such as reviews, loyalty and chat widgets",
+      "Keeps filter and navigation labels consistent through a shared glossary",
+      "Flags untranslated content so gaps surface before a market goes live"
+    ],
+    "recommendations": [
+      {
+        "title": "How to Translate Shopify Metafields & Metaobjects",
+        "description": "The CSV route for the structured content the app can't surface.",
+        "href": "/guides/how-to-translate-shopify-metafields-metaobjects"
+      },
+      {
+        "title": "How to Translate Shopify Product Images & Alt Text",
+        "description": "What to do about images the free app leaves untouched.",
+        "href": "/guides/how-to-translate-shopify-product-images-alt-text"
+      },
+      {
+        "title": "How to Translate Shopify Tags",
+        "description": "Why tags are excluded and how they affect filtered collection pages.",
+        "href": "/guides/how-to-translate-shopify-tags"
+      }
+    ],
+    "faq": [
+      {
+        "question": "Why won't Translate & Adapt translate my product images?",
+        "answer": "Product images are on Shopify's list of content types the app can't translate. Only text fields tied to translatable resources are covered, so text baked into an image stays in the source language."
+      },
+      {
+        "question": "What about metafields?",
+        "answer": "Metafields are a translatable resource type, but they're excluded from the app's search. You can't browse or edit them in the interface — the workable path is a CSV export and re-import."
+      },
+      {
+        "question": "Can I translate tags and collection filters?",
+        "answer": "Not with the app. Tags and collection filters are both unsupported content types, so filter labels stay in the source language unless your theme exposes them as locale strings."
+      },
+      {
+        "question": "Does it translate content injected by other apps?",
+        "answer": "Only if that content is a Shopify translatable resource or lives in a storefront locale file. Text rendered directly by a third-party app isn't reachable."
+      },
+      {
+        "question": "Are SEO fields translated?",
+        "answer": "Meta titles and descriptions for products, collections, pages and blog posts are translatable. What isn't: the products segment of a URL, per-market custom handles, and tags that feed filtered collection URLs."
       }
     ]
   }

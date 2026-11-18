@@ -47,6 +47,24 @@ export type CompareFreePlanComparison = {
   summary: string;
 };
 
+export type CompareFreeStartLink = {
+  title: string;
+  description: string;
+  href: string;
+  meta?: string[];
+};
+
+/**
+ * 只在“先用免费方案起步”这条路径确实存在时才声明：
+ * 由数据决定是否渲染，模板本身不假设任何页面都有免费起步路线。
+ */
+export type CompareFreeStart = {
+  title: string;
+  description: string;
+  links: CompareFreeStartLink[];
+  note?: string;
+};
+
 export type CompareMerchantReviewQuote = {
   source: string;
   date: string;
@@ -68,6 +86,8 @@ export type CompareMerchantReviews = {
 
 export type CompareItem = {
   slug: string;
+  /** 内容最后一次实质改动的日期，仅用于 sitemap 的 lastmod；未填则输出不带 lastmod 的条目 */
+  updatedAt?: string;
   title: string;
   alternativeName: string;
   description: string;
@@ -77,6 +97,7 @@ export type CompareItem = {
   pricingTable?: ComparePricingTable;
   alternativesOverview?: CompareAlternativesOverview;
   freePlanComparison?: CompareFreePlanComparison;
+  freeStart?: CompareFreeStart;
   merchantReviews?: CompareMerchantReviews;
   bestFor: string[];
   summaryMetrics: CompareMetric[];
@@ -259,10 +280,11 @@ const ciwiPricingPlansZh: ComparePricingPlan[] = [
 const comparesEn: CompareItem[] = [
   {
     slug: "transcy-alternative",
+    updatedAt: "2026-11-16",
     title: "Best Transcy Alternatives for Shopify (2026)",
     alternativeName: "Transcy",
-    description: "Compare the best Transcy alternatives for Shopify — free plan credits, pricing tiers, SEO safety, and recurring merchant complaints, verified Nov 2026.",
-    summary: "If you care about more than turning source text into another language, and you want a workflow for products, themes, FAQs, and long-term consistency, Ciwi is more focused on structured governance and localization quality.",
+    description: "Free and paid Transcy alternatives for Shopify compared on plan credits, pricing tiers, SEO safety and recurring merchant complaints. Verified November 2026.",
+    summary: "The free Transcy alternative is Shopify's own Translate & Adapt: no app fee, and up to 8 automatic languages where the app shows Translate now. Below that, Ciwi starts at $7.99/month with 500,000 free credits, Langwill and Hextom AI start at $9.99/month, and Transcy itself starts at $14.90/month for one language and 100 products. If organic traffic pays your bills, read the review section first: rewritten URLs and damaged SEO signals cost more than any plan gap.",
     appComparison:
       "Transcy's public pricing structure presents the app as a combined translation, currency, and market-localization tool. Even the Free plan already bundles one language, one currency, a basic switcher, third-party app translation, and Shopify Payments integration. Higher tiers then scale by editable languages, currencies, AI credits, multilingual SEO, automation, and API-key level integrations such as DeepL, OpenAI, and Gemini. Ciwi's public packaging reads differently. Its plans emphasize broad Shopify content coverage, glossary control, custom AI prompts, image and alt-text localization, IP-based language and currency switching, and higher-touch support at upper tiers. In practice, Transcy looks more like an all-in-one multilingual storefront operations suite, while Ciwi is positioned more around translation governance and structured localization workflow.",
     pricingComparison:
@@ -298,7 +320,7 @@ const comparesEn: CompareItem[] = [
           name: "Shopify Translate & Adapt",
           href: "/compare/shopify-translate-adapt-alternative",
           bestFor: "Native Shopify start with manual editing in the admin.",
-          freeAllowance: "Auto-translation for up to 2 languages",
+          freeAllowance: "Up to 8 automatic languages (2 without Translate now)",
           paidFrom: "Shopify built-in, no app fee",
         },
         {
@@ -405,59 +427,45 @@ const comparesEn: CompareItem[] = [
     ],
     faq: [
       {
-        question: "How do I migrate from Transcy to Ciwi?",
-        answer: "Back up Shopify-managed translations before changing apps. Record published languages, market assignments, approved terms and localized URLs. Document app-specific settings separately. Confirm the import format supported by Ciwi, then test a small product sample in one language before changing the rest of the store.",
-      },
-      {
-        question: "Should I uninstall the previous translation app first?",
-        answer: "Complete your backup and sample validation before uninstalling. Check saved translations against the live storefront, including navigation, metadata and the language switcher. Keep approved wording and replace only content that needs correction. Installing another app alone does not verify a successful migration.",
-      },
-      {
-        question: "When is Ciwi the better choice than Transcy?",
+        question: "What do Transcy's negative reviews actually complain about?",
         answer:
-          "Conclusion: Ciwi becomes the stronger choice when SEO safety, translation ownership, and long-term multilingual maintenance matter more than simply getting a combined translation-plus-currency stack live quickly.",
-        evidence: [
-          "In the FAQ baseline, Transcy has 284 negative reviews, making it one of the highest-volume complaint sets in this compare group.",
-          "Complaint themes repeatedly center on broken links, SEO/canonical or hreflang issues, refund friction, ongoing charges, and translation loss after updates or uninstall.",
-          "Examples cited in the Chinese research notes include PurrEmbassy (2026-03) reporting link changes that could not be edited, chronofactum.com (2026-04) describing a refund dispute after nearly $1,000 in spend, and sandiia (2024-10) saying months of SEO work were damaged.",
-        ],
+          "Across 284 one-to-three-star Shopify App Store reviews published between August 2020 and August 2026, the complaints cluster around four operational failures rather than missing features: rewritten storefront links, damaged SEO signals, billing and refund friction, and translations lost after an update or uninstall. The pattern matters more than any single report, so read the originals before you commit.",
       },
       {
-        question: "What is the biggest operational risk merchants mention about Transcy?",
+        question: "Why do merchants report SEO damage after installing Transcy?",
         answer:
-          "Conclusion: the main risk is not translation speed but loss of control after launch, especially when SEO assets, URLs, billing, and existing live translations are already tied to revenue.",
-        evidence: [
-          "The repeated issues are operational rather than cosmetic: continued charging after uninstall, broken multilingual SEO, currency and price inconsistencies, and damaged or missing translated content.",
-          "Research notes cite ZHENHUO GEAR (2025-12) as reporting continued billing after uninstall, MARSONIPRINT (2026-08) as reporting damaged existing translations, and Tessi-supply.com (2026-01) as explicitly mentioning SEO ranking decline.",
-        ],
+          "The reports describe changed URL handles, conflicting canonical tags, and hreflang output that no longer matches the store's existing setup. One reviewer said months of SEO work were damaged; another traced declining rankings to the weeks the app was running. Before switching, export your current URL list and record canonical and hreflang coverage in Search Console, then compare both about 30 days after the change.",
       },
       {
-        question: "Is Transcy mainly a translation tool or a multilingual storefront operations suite?",
+        question: "Do Transcy's translated URLs overwrite my existing product links?",
         answer:
-          "Conclusion: Transcy reads more like an all-in-one multilingual storefront operations app, while Ciwi is positioned more around translation governance and structured Shopify localization workflow.",
-        evidence: [
-          "Even the published Free plan combines one language, one currency, a basic selector, third-party app translation, and Shopify Payments integration.",
-          "Higher tiers then scale through editable languages, currencies, AI credits, multilingual SEO, automation, geolocation, and API-key integrations such as DeepL, OpenAI, and Gemini.",
-        ],
+          "Some reviewers reported that links were rewritten by the app and could no longer be edited afterwards. Check whether your theme, paid ads, and email templates point at product URLs you intend to keep after localization. If a translated handle replaces the original one, every inbound link and saved bookmark has to be re-pointed.",
       },
       {
-        question: "How should merchants compare Transcy pricing against Ciwi?",
+        question: "Why do merchants say they were still charged after uninstalling?",
         answer:
-          "Conclusion: the meaningful comparison is not just sticker price, but whether multilingual breadth is bundled at the cost of harder-to-control operations once languages, currencies, and SEO dependencies grow.",
-        evidence: [
-          "The public Transcy ladder runs Free, Local Plus at $14.90/month, Regional at $29/month, Continental at $69/month, and Cross-Border at $99/month, with paid tiers carrying 7-day trials.",
-          "Ciwi's published ladder is lower on entry price at Free, $7.99/month, $19.99/month, and $39.99/month, while packaging around credits, glossary, custom prompts, auto translation, image localization, and support depth.",
-          "That makes Transcy more explicit on multilingual storefront breadth, while Ciwi is clearer on workflow depth and lower first paid commitment.",
-        ],
+          "Two different failures get reported as one. If Transcy bills through Shopify, uninstalling stops future billing cycles, but a charge already generated for the current 30-day cycle can still appear on your next invoice and Shopify can't remove it: ask the developer for a credit before that invoice is paid, or a refund after. If the subscription is billed outside Shopify, uninstalling changes nothing and you have to cancel with the developer directly. Before switching, open Settings > Billing > View current charges to see whether anything is pending, and keep the cancellation confirmation.",
+      },
+      {
+        question: "Can translations be lost when Transcy updates or when I remove it?",
+        answer:
+          "Reviewers reported existing translations being damaged after an app update, which is the hardest failure to recover from because the working copy lives inside the app. Back up Shopify-managed translations, export any glossary or approved-term list, and validate one language on a small product sample before migrating the rest of the catalog.",
+      },
+      {
+        question: "How do I move off Transcy without losing SEO or translations?",
+        answer:
+          "Back up first: Shopify-managed translations, glossary terms, market and language assignments, and the list of localized URLs. Install the replacement, validate one language on a small sample, compare canonical and hreflang output against the backup, and only then uninstall the old app — after the storefront, navigation, and metadata all check out.",
       },
     ],
   },
   {
     slug: "langwill-alternative",
+    updatedAt: "2026-11-16",
     title: "Langwill Alternative for Shopify Localization",
     alternativeName: "Langwill",
     description: "Compare Ciwi as a Langwill alternative for multilingual Shopify workflows, from content coverage and terminology to ongoing translation management.",
-    summary: "If you are not just comparing translation tools but comparing whole multilingual growth systems, Ciwi places more weight on front-end consistency, content routing, and long-term governance.",
+    summary:
+      "Langwill bills by word count: 5,000 words in one language on the free plan, 30,000 words across five languages for $9.99/month, and 300,000 words at $49.99. That fits a small catalog that wants currency conversion bundled in. Ciwi's Basic plan is $7.99/month against 2M credits with no word ceiling — and if you already have approved copy, read Langwill's review notes on manual edits being overwritten before you migrate.",
     appComparison:
       "Langwill's public description positions it as a multilingual storefront growth tool that combines 138-language translation, auto currency conversion, geolocation, multilingual SEO, image translation, and selector customization. Its feature list emphasizes GPT-4, DeepL, or Google-based AI translation with full editing control, plus translated meta tags and URL handles for SEO-friendly rollout. Ciwi's public positioning is narrower but deeper on Shopify localization workflow: it emphasizes structured content coverage across products, themes, navigation, FAQs, images, and metafields, along with glossary control, custom prompts, and ongoing sync. In practice, Langwill reads more like an all-in-one translation plus currency-growth app, while Ciwi is positioned more around translation governance and Shopify-aware localization depth.",
     pricingComparison:
@@ -533,14 +541,45 @@ const comparesEn: CompareItem[] = [
   },
   {
     slug: "shopify-translate-adapt-alternative",
+    updatedAt: "2026-11-16",
     title: "Shopify Translate & Adapt Alternative",
     alternativeName: "Shopify Translate & Adapt",
     description: "Compare Ciwi with Shopify Translate & Adapt for glossary control, content coverage, ongoing translation updates, and your store's review workflow.",
-    summary: "If you have already moved beyond simply publishing multilingual pages and now care about glossary, structured content coverage, continuous sync, and brand consistency, Ciwi offers a deeper path.",
+    summary:
+      "Pick Translate & Adapt if you sell in one or two markets: it costs nothing, auto-translates up to 8 languages where the store shows Translate now (2 elsewhere), and gives you a side-by-side editor inside the admin. The ceiling is coverage, not price: no glossary, no rewriting of text baked into a product image, and Auto-sync stays off until you enable it per language. Images are a manual job — you upload a localized file per language — and alt-text translations come in through Shopify's translation CSV. Ciwi addresses what happens after that ceiling; for a small catalog the free app is the right answer.",
+    freeStart: {
+      title: "If you're starting with the free app, read these three first",
+      description:
+        "Most merchants do not choose between two paid translation apps on day one. They start with Shopify's free app, then hit a specific wall. These three guides map where that wall actually is, so the upgrade decision is based on your catalog rather than on a comparison table.",
+      links: [
+        {
+          title: "How to Translate a Shopify Store for Free in 2026",
+          description:
+            "What the free path really allows: the 8-or-2 language cap, Auto-sync that stays off until you switch it on per language, and the four gaps that no amount of free translation covers.",
+          href: "/guides/how-to-translate-shopify-store-for-free-2026",
+          meta: ["Start here", "Free translation"],
+        },
+        {
+          title: "Shopify Translate & Adapt Language Limits (2026)",
+          description:
+            "Why some stores get eight automatic languages and others get two, which languages are not supported at all, and how to plan markets around a cap you cannot raise.",
+          href: "/guides/shopify-translate-and-adapt-language-limits-2026",
+          meta: ["Limits", "Market planning"],
+        },
+        {
+          title: "What Shopify Translate & Adapt Can't Translate",
+          description:
+            "The content that stays in your source language: text baked into product images, tags that build filtered collection URLs, metafield values outside app search, and text injected by third-party apps.",
+          href: "/guides/shopify-translate-and-adapt-unsupported-content-2026",
+          meta: ["Coverage gaps", "Structured content"],
+        },
+      ],
+      note: "If your catalog is small and you only sell in one or two markets, the free app is usually the correct answer and you can stop reading here. The gaps described above start to matter when catalog volume, market count, or third-party app usage grows.",
+    },
     appComparison:
-      "Shopify Translate & Adapt's public description positions it as Shopify's native localization starting point for merchants who want to translate and adapt store content for different markets directly inside Shopify admin. Its message is centered on simplicity and native workflow: manually add, edit, and review translations in a side-by-side editor, auto-translate up to two languages for free with Google Translate, adapt copy for regional spelling or messaging differences, localize directly from the theme editor or resource pages, and manage localized store content without leaving Shopify admin. Ciwi's public positioning is less about being the native default and more about offering deeper Shopify localization workflow across structured content types such as products, themes, navigation, FAQs, images, and metafields, together with glossary control, custom prompts, image localization, and ongoing sync. In practice, Translate & Adapt reads more like the cleanest native entry point for basic multilingual operations, while Ciwi is positioned more around deeper workflow control and structured localization governance.",
+      "Shopify Translate & Adapt's public description positions it as Shopify's native localization starting point for merchants who want to translate and adapt store content for different markets directly inside Shopify admin. Its message is centered on simplicity and native workflow: manually add, edit, and review translations in a side-by-side editor, auto-translate into additional languages at no app cost using Shopify's own AI translation (up to 8 languages where the app shows Translate now, 2 elsewhere), adapt copy for regional spelling or messaging differences, localize directly from the theme editor or resource pages, and manage localized store content without leaving Shopify admin. Ciwi's public positioning is less about being the native default and more about offering deeper Shopify localization workflow across structured content types such as products, themes, navigation, FAQs, images, and metafields, together with glossary control, custom prompts, image localization, and ongoing sync. In practice, Translate & Adapt reads more like the cleanest native entry point for basic multilingual operations, while Ciwi is positioned more around deeper workflow control and structured localization governance.",
     pricingComparison:
-      "Shopify Translate & Adapt does not present a multi-tier app pricing ladder like most standalone translation apps. Based on the public description you shared, the clearest pricing fact is that it can auto-translate up to two languages for free using Google Translate, while manual translations can be added and reviewed beyond that inside Shopify admin. That means the value proposition is simplicity and native access rather than plan-based feature segmentation. Ciwi, by contrast, publishes four paid tiers with clearer workflow scaling: Free, Basic at $7.99/month, Pro at $19.99/month, and Premium at $39.99/month, with annual billing saving 20%. Ciwi's paid structure moves from 1,500,000 monthly credits plus glossary and custom AI prompts, to 3,000,000 credits with auto translation and localized product images and alt text, and then 8,000,000 credits with 1v1 support and manual review by translation experts. So Translate & Adapt is easier to understand as a native low-friction starting point, while Ciwi is easier to evaluate when you want explicit workflow depth, higher-volume automation, and plan-based feature progression.",
+      "Shopify Translate & Adapt does not present a multi-tier app pricing ladder like most standalone translation apps. Based on the public description you shared, the clearest pricing fact is that automatic translation carries no app cost, covering up to 8 languages where the app shows Translate now and 2 elsewhere; Auto-sync stays off until you enable it per language, and manual translations can be added and reviewed on top of that inside Shopify admin. That means the value proposition is simplicity and native access rather than plan-based feature segmentation. Ciwi, by contrast, publishes four paid tiers with clearer workflow scaling: Free, Basic at $7.99/month, Pro at $19.99/month, and Premium at $39.99/month, with annual billing saving 20%. Ciwi's paid structure moves from 1,500,000 monthly credits plus glossary and custom AI prompts, to 3,000,000 credits with auto translation and localized product images and alt text, and then 8,000,000 credits with 1v1 support and manual review by translation experts. So Translate & Adapt is easier to understand as a native low-friction starting point, while Ciwi is easier to evaluate when you want explicit workflow depth, higher-volume automation, and plan-based feature progression.",
     bestFor: [
       "Teams already using Shopify native localization but needing more control",
       "Merchants trying to unify product pages, help docs, and resource content",
@@ -566,7 +605,7 @@ const comparesEn: CompareItem[] = [
         answer:
           "Conclusion: it is enough as a native starting point for lightweight multilingual publishing, but it usually stops being enough once merchants need more languages, stronger review protection, image-alt coverage, or stable structured coverage across more store content.",
         evidence: [
-          "The recurring limit in research notes is the free auto-translate cap of only two languages.",
+          "Reviewers repeatedly cite a two-language automatic cap, but Shopify's current documentation allows up to 8 automatic languages where the app shows Translate now, and 2 elsewhere, so the ceiling now depends on store eligibility rather than being two for everyone.",
           "Multiple review references from late 2024 through 2026 explicitly mention the two-language ceiling, while other notes mention missing image-alt coverage, weaker media handling, and missing finer-grain control.",
           "Research notes also mention complaints that broad auto-translate actions could overwrite manual revisions.",
         ],
@@ -576,7 +615,7 @@ const comparesEn: CompareItem[] = [
         answer:
           "Conclusion: many merchants are not choosing between two third-party translation apps first; they are deciding when native functionality stops being sufficient and a fuller localization workflow becomes necessary.",
         evidence: [
-          "The native app is attractive because it is inside Shopify admin, simple to understand, and can auto-translate up to two languages for free with Google Translate.",
+          "The native app is attractive because it is inside Shopify admin, simple to understand, and translates automatically at no app cost: up to 8 languages where Translate now appears, 2 elsewhere.",
           "Research notes show the common friction points appear later: more language needs, SEO and URL concerns, batch update friction, and less control over manual edits and structured content.",
         ],
       },
@@ -585,7 +624,7 @@ const comparesEn: CompareItem[] = [
         answer:
           "Conclusion: Translate & Adapt is a native localization starting layer, while Ciwi is a broader Shopify localization workflow focused on governance, structured coverage, and ongoing synchronization.",
         evidence: [
-          "Translate & Adapt's public description centers on Shopify admin workflow, a side-by-side editor, up to two free auto-translated languages, and regional copy adaptation inside Shopify.",
+          "Translate & Adapt's public description centers on Shopify admin workflow, a side-by-side editor, up to 8 automatically translated languages where the app shows Translate now, and regional copy adaptation inside Shopify.",
           "Ciwi on this page is positioned around product pages, themes, navigation, metafields, images, alt text, glossary control, custom prompts, and real-time sync.",
         ],
       },
@@ -595,7 +634,7 @@ const comparesEn: CompareItem[] = [
           "Conclusion: this is not a multi-tier plan-vs-plan comparison; it is a comparison between a native low-friction starting point and a paid workflow-led ladder with clearer scaling signals.",
         evidence: [
           "Translate & Adapt does not publish a standalone multi-tier pricing ladder in the same way as other translation apps.",
-          "The clearest public pricing fact is free auto-translation for up to two languages, with further manual translation handled inside Shopify admin.",
+          "The clearest public pricing fact is that automatic translation costs nothing, covering up to 8 languages where Translate now appears and 2 elsewhere; manual translation is handled inside Shopify admin on top of that.",
           "Ciwi publishes a clear four-tier ladder from Free to $39.99/month, making it easier to compare as language count, automation, and support expectations grow.",
         ],
       },
@@ -603,10 +642,12 @@ const comparesEn: CompareItem[] = [
   },
   {
     slug: "weglot-alternative",
+    updatedAt: "2026-11-16",
     title: "Weglot Alternative for Shopify",
     alternativeName: "Weglot",
     description: "Compare Ciwi as a Weglot alternative for Shopify, with attention to structured storefront content, brand terminology, and translation maintenance.",
-    summary: "If your priority is fast multilingual coverage, a Weglot-like path is often easier to understand. If you care more about Shopify structure, brand terminology, and long-term governance, Ciwi stays more focused there.",
+    summary:
+      "Weglot is the shortest path to a multilingual storefront, and this page scores it 10/10 on launch speed against Ciwi's 7 — which is why it wins when the launch date is fixed and the content is thin. The complaints arrive later: 109 one-to-three-star reviews citing automatic plan upgrades, billing that continues after cancellation, and DNS or code residue left behind on removal. Decide on whether you can absorb that second phase.",
     bestFor: [
       "Teams with existing multilingual traffic who now want better governance",
       "Brands that care about glossary, FAQ coverage, theme content, and resource routing together",
@@ -668,10 +709,12 @@ const comparesEn: CompareItem[] = [
   },
   {
     slug: "langify-alternative",
+    updatedAt: "2026-11-16",
     title: "Best Langify Alternatives for Shopify Translation (2026)",
     alternativeName: "Langify",
     description: "Compare budget-friendly Langify alternatives with automatic translation, SEO-optimized URLs and metadata, and glossary control — plus what to check before switching apps.",
-    summary: "If you care more about human review, terminology consistency, and ongoing update governance, Ciwi is easier to combine with glossary, help docs, and resource routing. If the need is more basic translation organization, a Langify-like path is usually easier to understand.",
+    summary:
+      "Langify is manual-editing-first, not manual-only: it runs AI translations alongside human editing, and paid plans bundle a word allowance for them (10,000 words on the first paid tier, 200,000 on the top one) plus a discount on AI volume. Its strongest signal here is review — 8/10 on human-review flow against Ciwi's 9 — so a small catalogue with one dedicated translator is a fair fit. Ciwi automates the whole storefront first and layers review on top, which is the better shape once product or language count makes line-by-line editing the bottleneck.",
     bestFor: [
       "Brands with high requirements for human review and terminology consistency",
       "Teams already operating localization workflows and trying to reduce maintenance friction",
@@ -699,7 +742,7 @@ const comparesEn: CompareItem[] = [
           name: "Shopify Translate & Adapt",
           href: "/compare/shopify-translate-adapt-alternative",
           bestFor: "Native Shopify start with manual editing in the admin.",
-          freeAllowance: "Auto-translation for up to 2 languages",
+          freeAllowance: "Up to 8 automatic languages (2 without Translate now)",
           paidFrom: "Shopify built-in, no app fee",
         },
         {
@@ -813,11 +856,12 @@ const comparesEn: CompareItem[] = [
   },
   {
     slug: "transtore-alternative",
+    updatedAt: "2026-11-16",
     title: "Transtore Alternative for Shopify",
     alternativeName: "Transtore",
     description: "Compare Ciwi as a Transtore alternative for Shopify, including translation workflow, pricing considerations, and the handling of approved translations.",
     summary:
-      "If you care about predictable multilingual cost, preserving manual work, and avoiding confusion between free install and real publishing capability, Ciwi is the steadier path.",
+      "Transtore markets itself as free, and 86 one-to-three-star reviews keep returning to that gap: a free tier that barely publishes, with a second language pushing merchants into a paid plan. Reviewers also describe automatic runs wiping hand-written translations. If you have already paid for professional copy, overwrite protection belongs in your first screening pass, not your last.",
     appComparison:
       "Transtore's public description positions it as an all-in-one Shopify localization app that combines translation, currency conversion, and geolocation-based redirection in one workflow. The product message is broad: translate storefront content, image alt text, and third-party apps; localize images; support RTL languages; keep translations consistent with glossary and manual editing; use advanced AI translation with GPT and DeepSeek; manage 163+ currencies with real-time or manual exchange rates and smart rounding rules; and auto-detect customer location to switch language and currency or redirect. It also highlights multilingual SEO through translated meta tags and URLs following Google best practices. Ciwi's public positioning is more structured around Shopify localization workflow depth across products, themes, navigation, FAQs, images, and metafields, together with glossary control, custom prompts, image localization, and ongoing sync. In practice, Transtore reads more like an all-in-one translation, currency, and geolocation app for quick international storefront setup, while Ciwi is positioned more around structured localization governance and long-term workflow control.",
     bestFor: [
@@ -880,11 +924,12 @@ const comparesEn: CompareItem[] = [
   },
   {
     slug: "hextom-ai-alternative",
+    updatedAt: "2026-11-16",
     title: "Hextom AI Alternative",
     alternativeName: "Hextom AI",
     description: "Useful when comparing credit transparency, rollback risk, translation quality, and support responsiveness.",
     summary:
-      "If you want multilingual rollout without opaque credit math, unexpected reversions, or support delays during live storefront updates, Ciwi is the safer long-term workflow.",
+      "Hextom AI is the language-scale choice: 133 automatic languages on the $49.99 Business plan, with 180+ currencies in the same app. Two things offset that breadth — credits merchants describe as hard to predict, and URL translations that were reverted without permission, sending localized pages to 404. Check how it handles your existing URLs before you scale languages on it.",
     appComparison:
       "Hextom's public description positions the app as a combined multi-currency and multilingual storefront localization tool. The message is broad: 130+ languages, 180+ currencies, support for Shopify Markets and checkout, 200+ third-party apps, and 230+ themes, plus AI translation through ChatGPT, Claude, Grok, Deepseek, and Google Gemini. It also emphasizes visual-editor translation for third-party apps, image and alt-text translation, and geolocation-based language and currency switching. Ciwi's public positioning is less about sheer ecosystem breadth and more about structured Shopify localization workflow: products, themes, navigation, FAQs, images, and metafields, together with glossary control, custom prompts, and ongoing sync. In practice, Hextom reads more like a broad coverage translation-and-currency platform, while Ciwi is positioned more around controlled translation workflow and localization governance.",
     pricingComparison:
@@ -959,11 +1004,12 @@ const comparesEn: CompareItem[] = [
   },
   {
     slug: "langshop-alternative",
+    updatedAt: "2026-11-16",
     title: "LangShop Alternative for Shopify Translation",
     alternativeName: "LangShop",
     description: "Compare Ciwi as a LangShop alternative for Shopify, including glossary needs, language-switcher fit, pricing considerations, and translation workflow.",
     summary:
-      "If you need stronger terminology control without enterprise-style glossary pricing, and you want a cleaner ongoing workflow for storefront updates, Ciwi is the more balanced path.",
+      "LangShop limits by product count rather than words or credits: 50 products free, 250 on the $10 Basic plan, and 5,000 products with five languages at $75. That is easy to budget when the catalog is stable and you know how many SKUs you will translate. It is awkward when copy changes weekly, because nothing in the ladder rewards repeated small edits — which is the gap Ciwi's credits and glossary are built for.",
     appComparison:
       "LangShop's public description positions it as a multilingual Shopify translation platform that can use AI engines such as DeepL, ChatGPT, and Google Cloud, or professional human translators, then refine the result with manual edits. The product message is broad: translate dynamic content, metafields, apps, URLs, and Shopify Checkout; manage glossary and content rules; support RTL languages; integrate with Shopify Markets; and combine language and currency switching with geolocation. Ciwi's public positioning is more focused on Shopify-aware translation workflow depth across products, themes, navigation, FAQs, images, and metafields, with glossary control, custom prompts, and ongoing sync. In practice, LangShop reads more like a full-service multilingual translation platform with both AI and human translation paths, while Ciwi is positioned more around structured localization workflow and translation governance.",
     pricingComparison:
@@ -1038,11 +1084,12 @@ const comparesEn: CompareItem[] = [
   },
   {
     slug: "gtranslate-alternative",
+    updatedAt: "2026-11-16",
     title: "GTranslate Alternative for Shopify",
     alternativeName: "GTranslate",
     description: "Compare Ciwi as a GTranslate alternative for Shopify, focusing on translation coverage, SEO checks, pricing structure, and ongoing store updates.",
     summary:
-      "If you care about predictable SEO structure, safer storefront behavior, and avoiding upgrade pressure when traffic grows, Ciwi is the steadier long-term path.",
+      "GTranslate sits machine translation in front of your existing site: every language free, neural engines at $25/month, URL translation at $35/month. It does not store translations per product the way a Shopify-native app does, which is fine for comprehension and weaker for copy that has to convert. If the localized page has to rank as well as read, compare the URL and indexing path before the language count.",
     appComparison:
       "GTranslate's public description positions it as a fast-launch multilingual storefront tool built around instant automatic translation, lightweight design flexibility, and SEO-oriented URL infrastructure. The product message is clear: unlimited automatic translations for quick results, customizable language selectors, an in-context translation editor, translation proxy technology that can translate most third-party app content, URL translation for multilingual SEO, and country-specific top-level domains for translated languages such as example.es. It also highlights that merchants can improve automatic output themselves or order professional translations later. Ciwi's public positioning is less about proxy-based instant coverage and more about deeper Shopify localization workflow across products, themes, navigation, FAQs, images, and metafields, together with glossary control, custom prompts, image localization, and ongoing sync. In practice, GTranslate reads more like a rapid-coverage SEO-and-switcher translation platform, while Ciwi is positioned more around structured localization workflow and controlled long-term governance.",
     pricingComparison:
@@ -1117,11 +1164,12 @@ const comparesEn: CompareItem[] = [
   },
   {
     slug: "t-lab-alternative",
+    updatedAt: "2026-11-16",
     title: "T Lab Alternative",
     alternativeName: "T Lab",
     description: "Useful when comparing searchability, translation workflow, language coverage, and setup complexity.",
     summary:
-      "If you want multilingual operations to stay searchable, easier to review, and simpler to maintain after the initial launch, Ciwi gives a more structured workflow.",
+      "T Lab prices by products and collections — 500 products and 20 collections free, 3,000 products on the $11.99 Pro plan — which suits a catalog you translate once and then leave alone. The harder question is the second pass. Most merchant discussion around it is about finding and re-editing translated strings rather than producing them, which is where glossary and search across translated content start to matter.",
     appComparison:
       "T Lab's public packaging presents it mainly as an admin-side translation tool: the plans are structured around product, collection, and article volume, AI language count, import/export, multi-currency, and AI engine management. Ciwi's public packaging reads differently. Even the Free plan already highlights 148 languages with RTL support, custom API connections such as Google Translate and ChatGPT 4, editable translations, and image translation. Paid tiers then expand into glossary, custom AI prompts, IP-based language and currency switching, auto translation, localized product images and alt text, plus 1v1 support and manual review on Premium. In practice, T Lab is easier to read as a capacity-based translation tool, while Ciwi is positioned more like a broader Shopify localization workflow.",
     pricingComparison:
@@ -1196,11 +1244,12 @@ const comparesEn: CompareItem[] = [
   },
   {
     slug: "locales-ai-alternative",
+    updatedAt: "2026-11-16",
     title: "Locales.ai Alternative for Shopify Translation",
     alternativeName: "Locales.ai",
     description: "Compare Ciwi as a Locales.ai alternative, with a focus on translation credits, cost visibility, workflow fit, and ongoing multilingual store management.",
     summary:
-      "If you want multilingual growth without unclear credit burn or surprise billing behavior, Ciwi is the safer path for budget control and day-to-day operations.",
+      "Locales.ai sells credits in blocks: 2,500 free, 10,000 on Basic at $9.99, 33,000 on Pro at $29.99, and 110,000 across 40 languages at $89.99. Credits are spent as content is translated, so the block that covers launch week is not necessarily the one that covers a catalogue you keep editing. Ciwi is credit-based too — 500,000 free, then a monthly allowance from the Basic tier — but each vendor counts a credit by its own rules, so price the same catalogue, the same target languages and the same monthly edit volume instead of comparing headline totals.",
     appComparison:
       "Locales.ai's public description positions it as an AI-first Shopify localization app built around GPT-5.1 speed and quality, with a strong emphasis on broad Shopify content coverage and third-party app support. The product message is specific: it auto-translates products, collections, pages, blogs, menus, notifications, Liquid templates, JSON metafields, URLs, inline translations, and dynamic content from a source locale, while also supporting integrations such as Judge.me, Loox, PageFly, GemPages, Vitals, Stoq Preorder, UpCart, Insureful, Powerful Form Builder, and Appstle Subscriptions. It also emphasizes glossary, tone control, bulk actions, a built-in language and currency switcher, and support for 100+ currencies. Ciwi's public positioning is less about a single model label and more about structured Shopify localization workflow depth across products, themes, navigation, FAQs, images, and metafields, together with glossary control, custom prompts, image localization, and ongoing sync. In practice, Locales.ai reads more like a GPT-first automation layer with strong app-content coverage, while Ciwi is positioned more around controlled translation workflow and structured localization governance.",
     pricingComparison:
@@ -1275,11 +1324,12 @@ const comparesEn: CompareItem[] = [
   },
   {
     slug: "ea-auto-language-translate-alternative",
+    updatedAt: "2026-11-16",
     title: "EA Auto Language Translate Alternative",
     alternativeName: "EA Auto Language Translate",
     description: "Useful when comparing language scope, setup simplicity, and the difference between lightweight translation and a fuller localization workflow.",
     summary:
-      "If you need more than a lightweight translation add-on and want stronger structure, governance, and broader localization coverage, Ciwi gives the more complete path.",
+      "EA Auto Language Translate is a lightweight add-on, scoped and priced like one: install it so a store is readable in another language, not so you can run a multilingual operation. Public review evidence for it is thin, which matters more than usual when the app edits live storefront copy. Its usefulness ends where glossary, product images, or a review step begin.",
     bestFor: [
       "Merchants evaluating lightweight entry tools before committing to a fuller workflow",
       "Teams that need broader localization capabilities beyond simple auto translation",
@@ -1340,11 +1390,12 @@ const comparesEn: CompareItem[] = [
   },
   {
     slug: "orbe-geolocation-alternative",
+    updatedAt: "2026-11-16",
     title: "Best Orbe Alternatives for Shopify Geolocation (2026)",
     alternativeName: "Orbe Geolocation",
     description: "Compare Orbe.app alternatives for Shopify: geolocation and market routing vs. full storefront localization, when Shopify's built-in market setup is enough, and what to check before paying for a redirect tool.",
     summary:
-      "Ciwi and Orbe solve different problems. Ciwi is for multilingual translation and localization governance, while Orbe is primarily for geolocation, market routing, and country-based storefront logic.",
+      "Orbe is not a translation app, so read this as a stack decision rather than a like-for-like swap. It decides which market and currency a visitor lands in; the translated copy they read afterwards is a separate layer. Shopify Markets already redirects by country and language — and the old Geolocation app was retired in March 2025 — so test the built-in settings before paying for routing.",
     bestFor: [
       "Merchants deciding whether the real need is translation or market redirection",
       "Brands that already have translations but need better country and market routing",
@@ -1394,11 +1445,12 @@ const comparesEn: CompareItem[] = [
   },
   {
     slug: "ez-product-image-translate-alternative",
+    updatedAt: "2026-11-16",
     title: "EZ Product Image Translate Alternative for Shopify",
     alternativeName: "EZ Product Image Translate",
     description: "Compare visual content translation needs when choosing an EZ Product Image Translate alternative, including image text, banners, and wider store localization.",
     summary:
-      "Ciwi and EZ Product Image Translate overlap only partially. Ciwi handles broader storefront translation and localization governance, while EZ is much closer to an image-specific workflow.",
+      "EZ Product Image Translate does one thing: it re-renders text inside product images and banners in another language. When the overlay carries the offer, that is worth paying for on its own; it is not a substitute for translating titles, descriptions, or theme copy. Ciwi treats images as one content type among products, themes, navigation, and metafields, so the real choice is single-purpose tool versus one workflow.",
     bestFor: [
       "Merchants deciding whether they need store-wide translation or only image-focused support",
       "Brands that care about product image language alongside broader storefront localization",
@@ -1422,11 +1474,12 @@ const comparesEn: CompareItem[] = [
   },
   {
     slug: "selecty-alternative",
+    updatedAt: "2026-11-16",
     title: "Selecty Alternative: Shopify Language & Market Selection",
     alternativeName: "Geolocation & Markets Selecty",
     description: "Compare Shopify language and market selection needs when considering a Selecty alternative, including storefront localization and geolocation requirements.",
     summary:
-      "Ciwi and Selecty focus on different layers. Ciwi is for translating and governing multilingual content, while Selecty is closer to country detection, market selection, and storefront routing.",
+      "Selecty handles country detection and market selection — the first click a visitor makes, not the words they read after it. If the store is already translated and the remaining complaint is that visitors land in the wrong market, this is the layer to fix. It will not solve translation, and a translation app will not solve routing.",
     bestFor: [
       "Merchants deciding whether the current bottleneck is translation or location detection",
       "Brands that need country selectors and market routing on top of existing translations",
@@ -1487,11 +1540,12 @@ const comparesEn: CompareItem[] = [
   },
   {
     slug: "reversia-alternative",
+    updatedAt: "2026-11-16",
     title: "Reversia Alternative",
     alternativeName: "Reversia",
     description: "Useful when comparing high-end AI translation, automatic sync, multilingual SEO depth, and enterprise-style pricing.",
     summary:
-      "If you want strong multilingual SEO and automatic sync but need to balance that against a much higher monthly price, Ciwi is the more accessible workflow-led path while Reversia reads more like a premium AI translation platform.",
+      "Reversia is paid-only, starting at $199/month for 500,000 translated words and reaching $499 for 3M. That is a deliberate purchase for a team already spending on localization, and it buys premium AI positioning rather than a trial path. Ciwi starts at $7.99/month with a free tier, so the honest question is whether Reversia's word volume matches your catalog or only your ambition.",
     appComparison:
       "Reversia's public description positions it as a professional-grade AI translation platform for Shopify stores that want contextual translations, automatic sync, and strong multilingual SEO. The product message is specific: translate products, collections, pages, metafields, URLs, and more into 110 languages; automatically sync every content creation and update; translate metadata, URL slugs, structured data, metafields, and metaobjects; and support unlimited languages with currency management. Ciwi's public positioning is broader on Shopify localization workflow rather than premium translation positioning alone. It emphasizes products, themes, navigation, FAQs, images, and metafields, together with glossary control, custom prompts, image localization, and ongoing sync. In practice, Reversia reads more like a higher-end AI translation and SEO platform, while Ciwi is positioned more around structured localization workflow depth at a lower entry point.",
     pricingComparison:
@@ -1569,10 +1623,11 @@ const comparesEn: CompareItem[] = [
 const comparesZh: CompareItem[] = [
   {
     slug: "transcy-alternative",
+    updatedAt: "2026-11-16",
     title: "最佳 Transcy 替代方案对比（2026）",
     alternativeName: "Transcy",
-    description: "对比最佳 Transcy 替代方案：免费额度、档位价格与 SEO 安全性，并梳理商家高频投诉（2026 年 11 月核实）。",
-    summary: "如果你关心的不只是把文字翻出来，而是希望长期维护多语言商品、主题和 FAQ，Ciwi 会更偏向结构化治理和本地化质量。",
+    description: "免费的 Transcy 替代品有哪些、各自的免费额度和档位价格怎么算，以及商家高频投诉的 URL 与 SEO 问题（2026 年 11 月核实）。",
+    summary: "免费的 Transcy 替代品就是 Shopify 自带的 Translate & Adapt：不产生应用费用，显示 Translate now 的店铺最多可自动翻译 8 种语言。需要更强控制力的话，Ciwi 从 $7.99/月起、免费档含 50 万积分，Langwill 与 Hextom AI 从 $9.99/月起，而 Transcy 自己「1 种语言 + 100 个商品」的入门档是 $14.90/月。如果店铺靠自然搜索吃饭，先读下面的评价部分：URL 被改写和 SEO 信号受损的代价，比任何套餐差价都大。",
     appComparison:
       "从你给的套餐图看，Transcy 的产品定位更像“翻译 + 货币 + 多市场前台运营”的一体化工具。即使是免费版，也直接包含 1 种语言、1 种货币、基础切换器、第三方应用翻译和 Shopify Payments 集成；往上再按可编辑语言数、货币数、AI 代币、多语言 SEO、自动化流程以及 DeepL/OpenAI/Gemini 这类 API 级能力去扩展。Ciwi 的公开套餐结构则不一样，更强调 Shopify 结构化内容翻译和治理，包括 glossary、自定义 AI prompts、图片和 alt text 本地化、按 IP 切换语言/货币，以及高阶套餐里的 1v1 支持和人工翻译审核。换句话说，Transcy 更像“把多语言前台运营能力打包在一起卖”，Ciwi 更像“把翻译治理和本地化工作流做深”。",
     pricingComparison:
@@ -1604,7 +1659,7 @@ const comparesZh: CompareItem[] = [
           name: "Shopify Translate & Adapt",
           href: "/compare/shopify-translate-adapt-alternative",
           bestFor: "Shopify 原生起步，后台内手动编辑。",
-          freeAllowance: "最多 2 种语言免费自动翻译",
+          freeAllowance: "最多 8 种自动翻译语言（无 Translate now 只有 2 种）",
           paidFrom: "Shopify 内置，无应用费",
         },
         {
@@ -1711,37 +1766,45 @@ const comparesZh: CompareItem[] = [
     ],
     faq: [
       {
-        question: "如何从 Transcy 迁移到 Ciwi？",
-        answer: "切换应用前先备份 Shopify 中的翻译，记录已发布语言、市场分配、已审核术语和本地化 URL，并单独整理应用专属设置。向 Ciwi 确认支持的导入格式，先用一种语言、少量商品验证，再扩展到整个店铺。",
+        question: "Transcy 的差评到底在抱怨什么？",
+        answer:
+          "在 2020 年 8 月至 2026 年 8 月间的 284 条 1–3 星评论里，抱怨集中在四类运营问题，而不是功能缺失：店铺链接被改写、SEO 信号受损、扣费与退款纠纷、以及更新或卸载后翻译丢失。规律比任何单条评论更有参考价值，建议直接看原文再决定。",
       },
       {
-        question: "应该先卸载原来的翻译应用吗？",
-        answer: "先完成备份和少量样本验证，再安排卸载。对照保存的翻译与实际店铺展示，并检查导航、SEO 字段和语言切换器。保留已审核文案，只替换需要修正的内容；安装另一个应用本身并不代表迁移成功。",
+        question: "为什么有商家说装了 Transcy 之后 SEO 变差？",
+        answer:
+          "这些评论描述的是 URL handle 被改动、canonical 冲突、hreflang 输出与店铺原有设置不一致。有商家说几个月的 SEO 工作被破坏，也有人把排名下滑的时间段和该应用在运行的那几周对上了。换应用前先导出当前 URL 清单，在 Search Console 里记录 canonical 与 hreflang 的覆盖情况，切换 30 天后再逐项比对。",
       },
       {
-        question: "什么时候更应该选择 Ciwi？",
-        answer: "结论：当你不能接受链接、SEO、价格或已上线内容被翻译工具改坏时，更应该选择 Ciwi，而不是只看“能不能快速翻出来”。",
-        evidence: [
-          "在 FAQ 基准里，Transcy 有 284 条差评，高频主题集中在链接被改、SEO/canonical/hreflang、退款与持续扣费、翻译丢失。",
-          "例如 PurrEmbassy（2026-03）提到链接被改且无法编辑；chronofactum.com（2026-04）称近 1000 美元退款数月未解决；sandiia（2024-10）提到 3 个月 SEO 工作被毁。",
-        ],
+        question: "Transcy 会覆盖我现有的商品链接吗？",
+        answer:
+          "部分评论提到链接被应用改写，之后无法再编辑。先确认你的主题、付费广告和邮件模板指向的是不是本地化之后仍要保留的那套商品 URL；如果译名替换了原始 handle，所有外链和收藏都需要重新指向。",
       },
       {
-        question: "这类对比页最适合谁看？",
-        answer: "最适合已经明确要做多语言、但不想在上线后再为 SEO、订阅、退款和恢复问题反复补救的 Shopify 商家。",
-        evidence: [
-          "这不是抽象担忧：Transcy 的差评里反复出现持续扣费、方案变动、翻译内容被破坏、站点价格和货币异常等运营级问题。",
-          "例如 ZHENHUO GEAR（2025-12）提到卸载后仍持续扣费；MARSONIPRINT（2026-08）提到卸载后现有翻译被破坏；Tessi-supply.com（2026-01）直接提到 SEO 排名下滑。",
-        ],
+        question: "为什么有商家说卸载后还在被扣费？",
+        answer:
+          "这里其实是两件不同的事。如果 Transcy 走的是 Shopify 内计费，卸载会停掉之后的计费周期，但当前 30 天周期里已经生成的费用仍可能出现在下一期账单上，而且 Shopify 无法撤销：账单支付前找开发商要 credit，支付后才走退款。如果订阅走的是 Shopify 之外的渠道，卸载不会改变任何东西，必须直接找开发商取消。切换前先去「设置 > 账单 > 查看当前费用」确认有没有待扣金额，并留好取消凭证。",
+      },
+      {
+        question: "Transcy 更新或卸载后，翻译会丢吗？",
+        answer:
+          "有评论说应用更新后原有翻译被破坏，这是最难恢复的一类故障，因为可用的译文只存在应用里。迁移前先备份 Shopify 自身托管的翻译、导出术语表，先在一个语言、少量商品上验证，再动整个目录。",
+      },
+      {
+        question: "怎么从 Transcy 迁走而不丢 SEO 和翻译？",
+        answer:
+          "先备份：Shopify 托管的翻译、术语表、市场与语言分配、以及本地化 URL 清单。装好替代方案后先在少量商品上验证一个语言，把 canonical 和 hreflang 输出与备份比对，确认前台、导航、元数据都正常，最后才卸载旧应用。",
       },
     ],
   },
   {
     slug: "langwill-alternative",
+    updatedAt: "2026-11-16",
     title: "Langwill Alternative",
     alternativeName: "Langwill",
     description: "适合比较翻译能力、内容承接方式和官网前台统一度时使用。",
-    summary: "如果你不只是在比较一个翻译工具，而是在比较整套多语言增长路径，Ciwi 会更强调前台统一、资源承接和长期内容治理。",
+    summary:
+      "Langwill 按字数计费：免费档 5,000 字、1 种语言，$9.99 的 Starter 是 3 万字、5 种语言，$49.99 到 30 万字。适合商品不多、又想顺带把货币转换一起解决的小店。Ciwi 的 Basic 是 $7.99/月、200 万积分，不设字数上限——如果你已经有审核通过的译稿，先看它评价里「人工修改被回写覆盖」的那部分再决定。",
     appComparison:
       "从你给的官方描述看，Langwill 的产品定位很明确，偏向“多语言翻译 + 自动货币转换 + 全球转化增长”的一体化工具。它主打 138 种语言、自动货币换算、地理定位跳转、多语言 SEO、图片翻译和 selector 自定义，并强调可用 GPT-4、DeepL、Google 做 AI 翻译，同时支持 meta tags 和 URL handles 的翻译。Ciwi 的公开定位则更偏 Shopify 本地化工作流深度，重点在 products、themes、navigation、FAQ、images、metafields 这类结构化内容覆盖，以及 glossary、custom prompts 和后续持续同步。换句话说，Langwill 更像“翻译 + 货币 + 前台转化”的增长型工具，Ciwi 更像“翻译治理 + Shopify 结构化本地化”的工作流型工具。",
     pricingComparison:
@@ -1792,14 +1855,45 @@ const comparesZh: CompareItem[] = [
   },
   {
     slug: "shopify-translate-adapt-alternative",
+    updatedAt: "2026-11-16",
     title: "Shopify Translate & Adapt Alternative",
     alternativeName: "Shopify Translate & Adapt",
     description: "适合比较 Shopify 原生多语言能力和更完整本地化工作流时使用。",
-    summary: "如果你已经不满足于“能发布多语言版本”这一层，而是开始关心 glossary、结构化内容覆盖、持续同步和品牌一致性，Ciwi 的路径会更完整。",
+    summary:
+      "只卖一两个市场，就先用 Translate & Adapt：不收费，显示 Translate now 的店铺可自动翻译 8 种语言（其余店铺 2 种），后台就是并排编辑器。它的边界不在价格而在覆盖：没有术语表，也不会改写图片里印着的文字，Auto-sync 还要按语言逐个手动打开。图片是按语言手动换文件，Alt 文本的译文则通过 Shopify 的翻译 CSV 导入。Ciwi 做的是这堵墙之后的事；商品量不大，免费这套就是正确答案。",
+    freeStart: {
+      title: "如果打算先用免费方案，先读这三篇",
+      description:
+        "多数商家第一天并不会在两个付费翻译应用之间做选择，而是先用 Shopify 自带应用起步，然后在某个具体环节撞墙。这三篇的作用是把这个“墙”的位置说清楚，让升级判断基于你自己的商品结构，而不是基于一张对比表。",
+      links: [
+        {
+          title: "如何免费翻译 Shopify 商店（2026）",
+          description:
+            "免费方案实际能做到什么：8 种还是 2 种语言的上限、Auto-sync 默认关闭且要逐语言开启，以及免费翻译完全覆盖不到的四个缺口。",
+          href: "/guides/how-to-translate-shopify-store-for-free-2026",
+          meta: ["从这里开始", "免费翻译"],
+        },
+        {
+          title: "Shopify Translate & Adapt 的语言上限（2026）",
+          description:
+            "为什么有的店铺能自动翻译 8 种语言、有的只有 2 种，哪些语言完全不支持，以及怎么围绕一个无法提高的上限规划市场。",
+          href: "/guides/shopify-translate-and-adapt-language-limits-2026",
+          meta: ["语言上限", "市场规划"],
+        },
+        {
+          title: "Translate & Adapt 翻不了哪些内容",
+          description:
+            "仍然停留在源语言的内容：印在商品图上的文字、会生成筛选集合 URL 的 tags、不在应用内搜索范围内的元字段值，以及第三方应用注入的文字。",
+          href: "/guides/shopify-translate-and-adapt-unsupported-content-2026",
+          meta: ["覆盖缺口", "结构化内容"],
+        },
+      ],
+      note: "如果商品数量不多、只卖一两个市场，免费方案通常就是正确答案，后面的内容可以不看。上面这些缺口，要等商品量、市场数量或第三方应用使用量上来之后才会真正变成问题。",
+    },
     appComparison:
-      "从你给的官方描述看，Shopify Translate & Adapt 的定位非常明确，就是 Shopify 原生的多语言和市场适配起点。它强调直接在 Shopify admin 内完成多语言管理：可以在 side-by-side editor 里手动添加、编辑、审核翻译；可免费用 Google Translate 自动翻译最多 2 种语言；还能针对同一种语言在不同市场做 spelling、messaging、seasonal 和 regional 层面的 adapt；并且支持直接从 theme editor 或资源页里本地化内容。Ciwi 的公开定位则不是“原生默认方案”，而是更强调 Shopify 结构化本地化工作流深度，重点覆盖 products、themes、navigation、FAQ、images 和 metafields，以及 glossary、custom prompts、图片本地化和持续同步。换句话说，Translate & Adapt 更像“Shopify 原生多语言起步工具”，Ciwi 更像“适合长期运营的结构化本地化工作流工具”。",
+      "从你给的官方描述看，Shopify Translate & Adapt 的定位非常明确，就是 Shopify 原生的多语言和市场适配起点。它强调直接在 Shopify admin 内完成多语言管理：可以在 side-by-side editor 里手动添加、编辑、审核翻译；可免费用 Shopify 自带的 AI 翻译自动翻译（显示 Translate now 的店铺最多 8 种，其他地区 2 种）；还能针对同一种语言在不同市场做 spelling、messaging、seasonal 和 regional 层面的 adapt；并且支持直接从 theme editor 或资源页里本地化内容。Ciwi 的公开定位则不是“原生默认方案”，而是更强调 Shopify 结构化本地化工作流深度，重点覆盖 products、themes、navigation、FAQ、images 和 metafields，以及 glossary、custom prompts、图片本地化和持续同步。换句话说，Translate & Adapt 更像“Shopify 原生多语言起步工具”，Ciwi 更像“适合长期运营的结构化本地化工作流工具”。",
     pricingComparison:
-      "Shopify Translate & Adapt 和大多数独立翻译应用不一样，它没有一张多档套餐表。按你给的官方描述，最明确的真实定价信息就是：可免费自动翻译最多 2 种语言，使用 Google Translate；除此之外，商家可以继续在 Shopify admin 里手动添加和审核更多翻译。也就是说，它的价值主张更偏“原生、低门槛、直接可用”，而不是按套餐层级去卖功能。Ciwi 则是明确的 4 档：Free、Basic $7.99/月、Pro $19.99/月、Premium $39.99/月，年付可省 20%。Ciwi 的付费结构从每月 1,500,000 credits 加 glossary 和 custom AI prompts，提升到 3,000,000 credits 加 auto translation、localized product images and alt text，再到 8,000,000 credits 加 1v1 support 和人工翻译审核。简单说，Translate & Adapt 更适合把“原生免费自动翻 2 种语言”当作起步方案来理解，Ciwi 则更适合在你已经明确需要更多语言、更多自动化和更清晰的能力分层时做对比评估。",
+      "Shopify Translate & Adapt 和大多数独立翻译应用不一样，它没有一张多档套餐表。按你给的官方描述，最明确的真实定价信息就是：自动翻译不产生应用费用，显示 Translate now 的店铺可翻 8 种语言、其他地区 2 种；Auto-sync 默认关闭，要逐语言开启；除此之外，商家可以继续在 Shopify admin 里手动添加和审核更多翻译。也就是说，它的价值主张更偏“原生、低门槛、直接可用”，而不是按套餐层级去卖功能。Ciwi 则是明确的 4 档：Free、Basic $7.99/月、Pro $19.99/月、Premium $39.99/月，年付可省 20%。Ciwi 的付费结构从每月 1,500,000 credits 加 glossary 和 custom AI prompts，提升到 3,000,000 credits 加 auto translation、localized product images and alt text，再到 8,000,000 credits 加 1v1 support 和人工翻译审核。简单说，Translate & Adapt 更适合把“原生免费自动翻 2 种语言”当作起步方案来理解，Ciwi 则更适合在你已经明确需要更多语言、更多自动化和更清晰的能力分层时做对比评估。",
     bestFor: ["已经在使用 Shopify 原生多语言，但需要更强控制力的团队", "希望统一产品页、帮助文档和资源前台的商家", "想把本地化从一次性任务变成持续流程的品牌"],
     summaryMetrics: [
       {label: "价格", ciwi: 7, alternative: 9},
@@ -1820,7 +1914,7 @@ const comparesZh: CompareItem[] = [
         question: "Shopify Translate & Adapt 够不够用？",
         answer: "结论：如果你只需要 Shopify 原生、2 种自动翻译语言、基础页面能跑起来，它可以作为起点；但一旦你需要更多语言、锁定手动翻译、图片 alt 或更稳定的结构化覆盖，它通常就不够用了。",
         evidence: [
-          "评论里最反复出现的限制就是“只能自动翻译 2 种语言”，2024-12、2025-12、2026-08 等多个评论都明确提到这个上限。",
+          "评论里最反复出现的限制是自动翻译的语言名额：2024-12、2025-12、2026-08 等多条评论都提到刚翻 2 种语言就撞到上限，说明这些店铺拿到的是 2 种档位，而不是 8 种。",
           "另外，2026-05 有评论提到 Auto-translate all 会覆盖手动修订；2025-12 和 2026-01 的评论都提到图片 alt、图片管理和更细粒度控制仍然缺失。",
         ],
       },
@@ -1836,10 +1930,12 @@ const comparesZh: CompareItem[] = [
   },
   {
     slug: "weglot-alternative",
+    updatedAt: "2026-11-16",
     title: "Weglot Alternative",
     alternativeName: "Weglot",
     description: "适合比较快速覆盖型翻译方案和更强调 Shopify 内容治理路径时使用。",
-    summary: "如果你的重点是先快速覆盖多语言，Weglot 类路径通常更容易理解；如果你更关心 Shopify 结构化内容、品牌术语和长期治理，Ciwi 会更聚焦。",
+    summary:
+      "Weglot 是把店铺快速变成多语言的最短路径：本页给它上线速度 10/10，Ciwi 是 7/10，所以发布时间定死、内容又薄的时候它更合适。问题出在后半程——109 条一到三星评价反复提到自动升级套餐、取消后仍在扣费，以及卸载后留下的 DNS 或代码残留。要不要选它，取决于你能不能承受第二阶段。",
     bestFor: ["已经有一定多语言流量，希望把内容治理做深的团队", "关心 glossary、FAQ、主题和资源回流的一体化品牌", "不只比较速度，也比较后续治理成本的商家"],
     summaryMetrics: [
       {label: "价格", ciwi: 7, alternative: 6},
@@ -1876,10 +1972,12 @@ const comparesZh: CompareItem[] = [
   },
   {
     slug: "langify-alternative",
+    updatedAt: "2026-11-16",
     title: "最佳 Langify 替代方案：Shopify 翻译应用对比（2026）",
     alternativeName: "Langify",
     description: "对比高性价比的 Langify 替代方案：自动翻译、SEO 优化与 URL 本地化、术语控制，以及换应用前要先确认的事项。",
-    summary: "如果你更强调人工控制、术语一致性和后续更新治理，Ciwi 的路径更容易和 glossary、帮助文档与资源前台结合；如果只是基础翻译组织，Langify 类路径通常更容易理解。",
+    summary:
+      "Langify 以人工编辑为主，但并非只能手写：它同时提供 AI 翻译和逐条人工修改，付费档还带单词额度（最低付费档 10,000 词，最高档 200,000 词），并按档位给 AI 用量折扣。它的强项在审核——本页「人工审核流程」8/10，Ciwi 是 9——小目录配一位专职译者比较合适。Ciwi 先把整个店面自动化，再在上面叠人工审核；商品数或语言数一多、逐条编辑变成瓶颈时，后者更顺。",
     bestFor: ["对人工控制和术语一致性要求较高的品牌", "已经有一定本地化运营流程、希望降低后续维护摩擦的团队", "需要把 SEO 内容和产品前台一起考虑的 Shopify 商家"],
     alternativesOverview: {
       title: "其他值得对比的 Langify 替代方案",
@@ -1903,7 +2001,7 @@ const comparesZh: CompareItem[] = [
           name: "Shopify Translate & Adapt",
           href: "/compare/shopify-translate-adapt-alternative",
           bestFor: "在 Shopify 后台原生起步、手动编辑。",
-          freeAllowance: "最多 2 种语言免费自动翻译",
+          freeAllowance: "最多 8 种自动翻译语言（无 Translate now 只有 2 种）",
           paidFrom: "Shopify 内置，无应用费",
         },
         {
@@ -1997,11 +2095,12 @@ const comparesZh: CompareItem[] = [
   },
   {
     slug: "transtore-alternative",
+    updatedAt: "2026-11-16",
     title: "Transtore Alternative",
     alternativeName: "Transtore",
     description: "适合比较价格透明度、AI 翻译质量，以及对已有人工翻译的影响时使用。",
     summary:
-      "如果你更关心多语言成本是否可预期、人工翻译是否会被误覆盖，以及“免费安装”和真正可发布之间有没有落差，Ciwi 会是更稳的路径。",
+      "Transtore 对外主打免费，而 86 条一到三星评价一直在说这个落差：免费档几乎发不出去，加上第二种语言就被推进付费。也有商家反映自动流程把手写译文整批覆盖。如果你已经花钱做过专业译稿，把「覆盖保护」放进第一轮筛选，而不是最后一轮。",
     appComparison:
       "从你给的官方描述看，Transtore 的产品定位很明确，偏向“翻译 + 货币转换 + geolocation 自动跳转”的一体化 Shopify 本地化工具。它强调可以翻译 storefront content、image alt text 和第三方应用内容，也能做图片本地化、RTL 语言支持、glossary 和 manual editing；AI 层面主打 GPT 和 DeepSeek；货币层面主打 163+ 货币切换、实时汇率和手动汇率、智能取整规则；同时还能按客户位置自动识别并切换语言、货币或直接重定向。它还明确强调 multilingual SEO，包括 meta tags 和 URLs 的翻译，并标注遵循 Google best practices。Ciwi 的公开定位则更偏 Shopify 结构化本地化工作流深度，重点在 products、themes、navigation、FAQ、images 和 metafields，以及 glossary、custom prompts、图片本地化和持续同步。换句话说，Transtore 更像“快速把翻译、货币和地理跳转打包在一起”的国际化工具，Ciwi 更像“更强调结构化治理和长期工作流控制”的本地化工具。",
     bestFor: [
@@ -2064,11 +2163,12 @@ const comparesZh: CompareItem[] = [
   },
   {
     slug: "hextom-ai-alternative",
+    updatedAt: "2026-11-16",
     title: "Hextom AI Alternative",
     alternativeName: "Hextom AI",
     description: "适合比较 credits 透明度、回滚风险、翻译质量和客服响应时使用。",
     summary:
-      "如果你不希望多语言上线过程中出现 credits 计算不清、翻译意外回滚，或线上更新时客服响应过慢，Ciwi 会是更适合长期运营的路径。",
+      "Hextom AI 走的是语言规模路线：$49.99 的 Business 档给到 133 种自动翻译语言，180+ 种货币在同一个应用里解决。这份广度有两个抵消项——商家反映积分消耗难以预估，以及 URL 译文被未经许可地回滚、多语言页面直接 404。在它上面铺语言之前，先确认它怎么处理你现有的 URL。",
     appComparison:
       "从你给的官方描述看，Hextom 的产品定位很明确，偏向“多货币换算 + 多语言翻译 + 全站本地化覆盖”的一体化平台。它主打 130+ 语言、180+ 货币，强调与 Shopify Markets 和 checkout、200+ 第三方应用、230+ 主题兼容，同时用 ChatGPT、Claude、Grok、Deepseek、Google Gemini 做 AI 翻译。它还特别强调第三方应用在 visual editor 里的手动/AI 翻译、图片和 alt-text 翻译，以及按地理位置自动切换语言和货币。Ciwi 的公开定位则没那么强调生态广度，而是更强调 Shopify 结构化内容工作流，包括 products、themes、navigation、FAQ、images 和 metafields，以及 glossary、custom prompts 和持续同步。换句话说，Hextom 更像“覆盖面很广的翻译+货币平台”，Ciwi 更像“翻译治理和本地化工作流更深的工具”。",
     pricingComparison:
@@ -2143,11 +2243,12 @@ const comparesZh: CompareItem[] = [
   },
   {
     slug: "langshop-alternative",
+    updatedAt: "2026-11-16",
     title: "LangShop Alternative",
     alternativeName: "LangShop",
     description: "适合比较 glossary 成本、语言切换器体验、稳定性和多语言治理能力时使用。",
     summary:
-      "如果你希望获得更强的术语一致性，但又不想为 glossary 扩容承担过重成本，同时还在意前台切换器观感和日常稳定性，Ciwi 会是更平衡的路径。",
+      "LangShop 按商品数限流，不按字数或积分：免费 50 个商品，$10 的 Basic 是 250 个，$75 的 Advanced 给到 5 种语言、5,000 个商品。商品结构稳定、心里有数要翻多少个 SKU 的话，这种价格很好预算。但文案每周都在改就很难受，因为这套阶梯对反复小改没有任何让利——这正是 Ciwi 的积分和术语表要接的位置。",
     appComparison:
       "从你给的官方描述看，LangShop 的产品定位更像一个“AI 翻译 + 人工翻译 + Shopify 多语言运营”的全功能平台。它主打可用 DeepL、ChatGPT、Google Cloud 做 AI 翻译，也可以接入 native experts 做人工翻译，然后再通过 manual edits 精修；同时覆盖 dynamic content、metafields、apps、URLs、Shopify Checkout，支持 glossary 和 content rules、multilingual SEO、RTL 语言、Shopify Markets 集成，以及带地理定位的语言/货币切换。Ciwi 的公开定位则更聚焦于 Shopify 结构化翻译工作流深度，重点在 products、themes、navigation、FAQ、images 和 metafields，以及 glossary、custom prompts 和持续同步。换句话说，LangShop 更像“AI + 人工 + 多场景翻译平台”，Ciwi 更像“翻译治理和结构化本地化工作流工具”。",
     pricingComparison:
@@ -2222,11 +2323,12 @@ const comparesZh: CompareItem[] = [
   },
   {
     slug: "gtranslate-alternative",
+    updatedAt: "2026-11-16",
     title: "GTranslate Alternative",
     alternativeName: "GTranslate",
     description: "适合比较 SEO 安全性、价格压力、卸载残留风险和高流量阶段的稳定性时使用。",
     summary:
-      "如果你更关心翻译后的 SEO 结构是否可控、站点运行是否稳定，以及流量增长后会不会被价格策略反向锁住，Ciwi 会是更稳的长期路径。",
+      "GTranslate 是套在现成网站前面的一层机器翻译：免费给全部语言，$25/月换神经引擎，$35/月才加 URL 翻译。它不像 Shopify 原生应用那样按商品逐条存译文，用来「看懂」没问题，用在决定成交的文案上就偏弱。如果本地化页面既要排名又要好读，先比 URL 和收录路径，再比语言数量。",
     appComparison:
       "从你给的官方描述看，GTranslate 的产品定位很明确，偏向“快速自动翻译上线 + SEO 友好 URL + 轻量语言切换器”的方案。它强调 unlimited automatic translations 帮助商家快速得到结果，配合可自定义的 lightweight language switcher、in-context translation editor、translation proxy technology 来覆盖大多数第三方应用内容，同时支持 URL translation 和国家级顶级域名，例如 example.es，以增强多语言 SEO。它也明确说自动翻译之后，商家可以自己继续优化，或者再下单 professional translations。Ciwi 的公开定位则没那么强调 proxy 驱动的即时覆盖，而是更强调 Shopify 结构化本地化工作流，包括 products、themes、navigation、FAQ、images 和 metafields，以及 glossary、custom prompts、图片本地化和持续同步。换句话说，GTranslate 更像“快速覆盖 + SEO URL + 切换器”的多语言工具，Ciwi 更像“更适合长期治理的结构化本地化工作流工具”。",
     pricingComparison:
@@ -2301,11 +2403,12 @@ const comparesZh: CompareItem[] = [
   },
   {
     slug: "t-lab-alternative",
+    updatedAt: "2026-11-16",
     title: "T Lab Alternative",
     alternativeName: "T Lab",
     description: "适合比较全局搜索能力、翻译工作流、语言扩展和安装复杂度时使用。",
     summary:
-      "如果你希望多语言运营不是一次性翻完就结束，而是后续还能持续查找、修改和维护，Ciwi 会提供更清晰的长期工作流。",
+      "T Lab 按商品和集合计价：免费 500 个商品、20 个集合，$11.99 的 Pro 提到 3,000 个商品。适合「翻一次就不太动」的目录。真正难的是第二遍——围绕它的商家讨论大多是在讲怎么找到并重改已翻译的字符串，而不是第一次生成译文，这也正是术语表和全站译稿搜索开始起作用的地方。",
     appComparison:
       "从你给的套餐信息看，T Lab 的产品定位更偏向后台翻译工具：套餐核心围绕产品数、集合数、文章数、AI 语言数、导入导出、多币种和 AI 引擎管理展开。Ciwi 的公开套餐表达则不一样。即使是 Free 计划，也直接写了 148 种语言（支持 RTL）、自定义 API（Google Translate、ChatGPT 4）、可编辑翻译和图片翻译；Basic 再往上增加 glossary、自定义 AI prompts、按 IP 切换语言/货币；Pro 加上自动翻译和本地化商品图片与 alt text；Premium 再加 1v1 支持和人工翻译审核。换句话说，T Lab 更像“按资源量卖翻译容量”，Ciwi 更像“按本地化工作流深度卖能力”。",
     pricingComparison:
@@ -2380,11 +2483,12 @@ const comparesZh: CompareItem[] = [
   },
   {
     slug: "locales-ai-alternative",
+    updatedAt: "2026-11-16",
     title: "Locales.ai Alternative",
     alternativeName: "Locales.ai",
     description: "适合比较计费可预期性、credits 控制、客服响应和长期成本时使用。",
     summary:
-      "如果你不希望多语言成本被 credits 机制不断放大，或者担心使用过程中出现额度异常和账单不可控，Ciwi 会是更稳的预算型路径。",
+      "Locales.ai 把积分切成小块卖：免费 2,500，Basic $9.99 给 10,000，Pro $29.99 给 33,000，Premium $89.99 覆盖 40 种语言共 110,000。积分随着翻译消耗，撑得住上线那一周的额度，不一定撑得住一直在改的目录。Ciwi 也按积分计费——免费 50 万，付费从 Basic 档的月度额度起——但两家对「一个积分」的定义不同，比总量说明不了成本；要拿同一批商品、同样的目标语言、同样的月度改动量分别估算。",
     appComparison:
       "从你给的官方描述看，Locales.ai 的产品定位很明确，偏向“以 GPT-5.1 为核心的 Shopify 自动本地化工具”。它强调质量和速度，主打从 source locale 自动翻译 products、collections、pages、blogs、menus、notifications，同时覆盖 theme Liquid templates、JSON metafields、URLs、inline translations 和 dynamic content；并且明确支持 Judge.me、Loox、PageFly、GemPages、Vitals、Stoq Preorder、UpCart、Insureful、Powerful Form Builder、Appstle Subscriptions 这些第三方应用内容。它还强调 glossary、tone control、bulk actions、内置语言/货币切换器，以及 100+ 货币支持。Ciwi 的公开定位则没那么强调单一模型标签，而是更强调 Shopify 结构化本地化工作流，包括 products、themes、navigation、FAQ、images 和 metafields，以及 glossary、custom prompts、图片本地化和持续同步。换句话说，Locales.ai 更像“GPT 驱动、覆盖应用内容很广的自动化翻译层”，Ciwi 更像“翻译治理和结构化本地化工作流更强的工具”。",
     pricingComparison:
@@ -2459,11 +2563,12 @@ const comparesZh: CompareItem[] = [
   },
   {
     slug: "ea-auto-language-translate-alternative",
+    updatedAt: "2026-11-16",
     title: "EA Auto Language Translate Alternative",
     alternativeName: "EA Auto Language Translate",
     description: "适合比较语言数量、操作复杂度，以及轻量翻译工具和完整本地化工作流之间的差异。",
     summary:
-      "如果你比较的是“先用一个轻量工具顶上”还是“直接进入更完整的本地化路径”，Ciwi 会更适合重视结构、治理和长期扩展的场景。",
+      "EA Auto Language Translate 是轻量插件，定位和定价都按插件来：装上它让店铺多一种能读的语言，而不是运营一套多语言业务。它的公开评价样本很少，而这款应用会直接改线上文案，这一点比平时更该计入决策。等你需要术语表、图片翻译或审核环节，它就不在射程内了。",
     bestFor: [
       "在轻量入门工具和完整工作流之间做选择的商家",
       "需要更广本地化能力而不只是自动翻译的团队",
@@ -2515,11 +2620,12 @@ const comparesZh: CompareItem[] = [
   },
   {
     slug: "orbe-geolocation-alternative",
+    updatedAt: "2026-11-16",
     title: "最佳 Orbe 替代方案：Shopify 地理定位与本地化（2026）",
     alternativeName: "Orbe Geolocation",
     description: "对比 Shopify 的 Orbe.app 替代方案：地理定位与市场重定向 vs. 完整店面本地化，什么情况下 Shopify 内置市场设置就够用，以及付费跳转工具前要先验证什么。",
     summary:
-      "Ciwi 和 Orbe 解决的问题并不相同。Ciwi 更偏向多语言翻译与本地化治理，而 Orbe 更偏向地理位置识别、市场路由和国家级前台跳转。",
+      "Orbe 不是翻译应用，所以这里要当成技术栈决策，而不是同类替换。它决定访客落到哪个市场、用哪种货币；访客随后读到的译文是另一层。Shopify Markets 本身就能按国家做语言和货币跳转（Shopify 官方的定位应用已于 2025 年 3 月下线），付费买路由之前，先测内置设置做到哪一步。",
     bestFor: [
       "正在判断自己真正缺的是翻译能力还是市场重定向能力的商家",
       "已经有翻译内容，但需要国家识别和市场路由增强的品牌",
@@ -2569,11 +2675,12 @@ const comparesZh: CompareItem[] = [
   },
   {
     slug: "ez-product-image-translate-alternative",
+    updatedAt: "2026-11-16",
     title: "EZ Product Image Translate Alternative",
     alternativeName: "EZ Product Image Translate",
     description: "适合比较完整翻译工作流和图片翻译工具之间的功能边界。",
     summary:
-      "Ciwi 和 EZ Product Image Translate 只有部分重叠。Ciwi 面向更完整的店铺翻译和本地化治理，而 EZ 更接近图片维度的单点工具。",
+      "EZ Product Image Translate 只做一件事：把商品图和 banner 里的文字换成另一种语言。卖点压在图上时，这件事本身就值得付费；但它替代不了标题、描述和主题文案的翻译。Ciwi 把图片当成商品、主题、导航、metafield 并列的一种内容类型，所以真正要选的是「单点工具」还是「一套工作流」。",
     bestFor: [
       "正在判断自己需要的是全站翻译还是只需要图片相关支持的商家",
       "关心商品图片语言表达，同时也在做更广多语言本地化的品牌",
@@ -2597,11 +2704,12 @@ const comparesZh: CompareItem[] = [
   },
   {
     slug: "selecty-alternative",
+    updatedAt: "2026-11-16",
     title: "Geolocation & Markets Selecty Alternative",
     alternativeName: "Geolocation & Markets Selecty",
     description: "适合比较翻译本地化工作流和国家识别/市场切换工具时使用。",
     summary:
-      "Ciwi 和 Selecty 更像是位于不同层级的工具。Ciwi 负责多语言内容翻译和治理，而 Selecty 更接近国家识别、市场切换和前台路由。",
+      "Selecty 管的是国家识别和市场选择——访客的第一次点击，而不是他随后读到的文字。如果店铺内容已经翻了，剩下的抱怨是「人总是落到错的市场」，那该修的就是这一层。指望它解决翻译不行，反过来用翻译应用修路由也不行。",
     bestFor: [
       "正在判断当前瓶颈在翻译内容还是位置检测的商家",
       "已经有翻译内容，但还需要国家选择器和市场路由的品牌",
@@ -2644,11 +2752,12 @@ const comparesZh: CompareItem[] = [
   },
   {
     slug: "reversia-alternative",
+    updatedAt: "2026-11-16",
     title: "Reversia Alternative",
     alternativeName: "Reversia",
     description: "适合比较高端 AI 翻译、自动同步、多语言 SEO 深度和高客单价方案时使用。",
     summary:
-      "如果你看重多语言 SEO、自动同步和更强的专业 AI 翻译定位，但又要衡量是否值得为此承担明显更高的月费，Ciwi 会是更容易进入的工作流型路径，而 Reversia 更像高价位的专业 AI 翻译平台。",
+      "Reversia 没有免费档，$199/月对应 50 万译文字数，$499 到 300 万字。这是给已经在本地化上有预算的团队做的采购决定，买的是高端 AI 定位，不是一条试用路径。Ciwi 从 $7.99/月起步、带免费档，所以真正该问的是：Reversia 的字数额度是匹配你的目录，还是只匹配你的野心。",
     appComparison:
       "从你给的官方描述看，Reversia 的产品定位非常明确，偏向“专业级 AI 翻译 + 自动同步 + 多语言 SEO”的 Shopify 方案。它强调把 products、collections、pages、metafields、URLs 等内容翻到 110 种语言，并在内容创建或更新时自动同步翻译；同时突出 multilingual SEO，包括 meta tags、descriptions、URL slugs、structured data 的翻译，以及 metafields、metaobjects 和 unlimited languages、currency management。Ciwi 的公开定位则不是单纯把自己放在“高端翻译引擎”这个点上，而是更强调 Shopify 结构化本地化工作流，包括 products、themes、navigation、FAQ、images 和 metafields，以及 glossary、custom prompts、图片本地化和持续同步。换句话说，Reversia 更像“高价位、强调 SEO 和专业 AI 翻译质量的平台”，Ciwi 更像“更重视结构化工作流深度且更容易入手的本地化工具”。",
     pricingComparison:

@@ -1,6 +1,6 @@
 import type {Metadata} from "next";
 
-import {buildAlternates, defaultLocale, type Locale, localizeHref, normalizeInternalHref} from "@/lib/i18n";
+import {buildAlternates, defaultLocale, type Locale, localizeHref, normalizeInternalHref, stripLocalePrefix} from "@/lib/i18n";
 import {localizeLanguageSignalText} from "@/lib/localized-language-signal";
 
 type MetadataInput = {
@@ -22,6 +22,22 @@ type MetadataInput = {
 export const siteName = "Ciwi";
 export const siteUrl = "https://ciwi.ai";
 export const siteDefaultOgImage = new URL("/logo-150.png", siteUrl).toString();
+
+/**
+ * 这些路径的中文版是刻意 noindex 的：法务页和联盟计划后台面。
+ *
+ * 站内规则：noindex 页不参与 hreflang 组。否则英文页会把 zh-CN 指向一个
+ * 明确要求「不要收录」的地址，语言组里的正本声明自相矛盾。
+ * 这只是站点侧的声明一致性要求，不能据此断言 GSC 重复分类的成因——
+ * 那需要在部署后用 URL 检查逐条核对 Google 选定的 canonical。
+ */
+const ZH_NO_INDEX_PATHS = ["/affiliate", "/privacy-policy", "/terms-and-conditions"];
+
+export function isZhNoIndexPath(path: string) {
+  const normalized = stripLocalePrefix(path).replace(/\/+$/, "") || "/";
+
+  return ZH_NO_INDEX_PATHS.some((prefix) => normalized === prefix || normalized.startsWith(`${prefix}/`));
+}
 
 export function toAbsoluteFileUrl(href: string) {
   return new URL(href, siteUrl).toString();
@@ -185,7 +201,13 @@ export function buildPageMetadata({
 
   const fullTitle = safeTitle + brandSuffix;
   const alternates = buildAlternates(path);
-  const enabledLocales = supportedLocales?.length ? supportedLocales : [defaultLocale, "zh-cn"];
+  const zhTwinIsNoIndex = isZhNoIndexPath(path);
+  // 中文版是 noindex 的路径不再声明 zh-CN，否则等于把 hreflang 指向一个 noindex 页。
+  const enabledLocales = (supportedLocales?.length ? supportedLocales : [defaultLocale, "zh-cn"]).filter(
+    (enabledLocale) => !(enabledLocale === "zh-cn" && zhTwinIsNoIndex)
+  );
+  // 受支持的语言自引用，页面没有这个语言版本时才回退英文：
+  // 中文页的 canonical 必须是它自己的地址，否则等于把中文正文的正本声明给英文页。
   const canonicalLocale = enabledLocales.includes(locale) ? locale : defaultLocale;
   const canonical = toAbsoluteLocalizedUrl(canonicalLocale, path);
   const languageAlternates = Object.fromEntries(
@@ -203,10 +225,16 @@ export function buildPageMetadata({
     title: fullTitle,
     description: truncateDescription(localizedDescription),
     ...(keywordString ? {keywords: keywordString} : undefined),
-    alternates: {
-      canonical,
-      languages: languageAlternates,
-    },
+    // noindex 页不输出 canonical：它本来就不进索引，再声明正本只会让
+    // 「别收录我」和「我是正本」这两个信号互相抵消。
+    ...(noIndex
+      ? undefined
+      : {
+          alternates: {
+            canonical,
+            languages: languageAlternates,
+          },
+        }),
     openGraph: {
       title: fullTitle,
       description: localizedDescription,

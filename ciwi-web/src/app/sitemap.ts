@@ -24,6 +24,13 @@ import {toAbsoluteLocalizedUrl} from "@/lib/seo/metadata";
 
 const CATEGORIES_PER_PAGE = 25;
 
+/**
+ * Spark playbook 关键词库的最后一次实质更新（数据文件 2026-10-28，模板 2026-10-10）。
+ * 这 1300 多个 URL 之前完全没有 lastmod，Google 没有重新排抓取的依据，
+ * 整批只进 “Discovered - currently not indexed” 队列。日期取的是内容真实改动日，不是构建日。
+ */
+const KEYWORD_LIBRARY_UPDATED_AT = "2026-10-28";
+
 const staticRoutes = [
   "/",
   "/about",
@@ -87,21 +94,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
       if (product.slug === "spark-analytics-agent") {
         const keywordRoot = `${getProductPlaybookHref(product.slug)}/keyword`;
-        addEntry(keywordRoot, locale);
+        addEntry(keywordRoot, locale, KEYWORD_LIBRARY_UPDATED_AT);
 
         const totalCats = getKeywordUseCaseCategories(locale).length;
         const totalPages = Math.max(1, Math.ceil(totalCats / CATEGORIES_PER_PAGE));
         for (let p = 2; p <= totalPages; p++) {
-          addEntry(`${keywordRoot}/page/${p}`, locale);
+          addEntry(`${keywordRoot}/page/${p}`, locale, KEYWORD_LIBRARY_UPDATED_AT);
         }
 
         for (const category of getKeywordUseCaseCategories(locale)) {
           const catSlug = getKeywordUseCaseCategorySlug(locale, category.name);
-          addEntry(`${keywordRoot}/category/${catSlug}`, locale);
+          addEntry(`${keywordRoot}/category/${catSlug}`, locale, KEYWORD_LIBRARY_UPDATED_AT);
         }
 
         for (const keywordUseCase of getKeywordUseCases(locale)) {
-          addEntry(`${keywordRoot}/${keywordUseCase.slug}`, locale);
+          addEntry(`${keywordRoot}/${keywordUseCase.slug}`, locale, KEYWORD_LIBRARY_UPDATED_AT);
         }
       }
     }
@@ -115,11 +122,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
 
     for (const compare of getCompares(locale)) {
-      addEntry(`/compare/${compare.slug}`, locale);
+      addEntry(`/compare/${compare.slug}`, locale, compare.updatedAt);
     }
 
     for (const collection of getBestShopifyAppCollections(locale)) {
-      addEntry(collection.href, locale);
+      addEntry(collection.href, locale, collection.updatedAt);
     }
 
     for (const blogPost of getBlogPosts(locale)) {
@@ -135,7 +142,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
 
     for (const guide of getFunctionScenarioGuides(locale)) {
-      addEntry(guide.href, locale, guide.publishedAt);
+      addEntry(guide.href, locale, guide.updatedAt ?? guide.publishedAt);
     }
 
     for (const article of getProductResearchWorkflowArticles(locale)) {

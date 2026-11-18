@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>P1/P2 修复对照 — 2026-11-16</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --card:#ffffff; --ink:#16181d; --muted:#5f6672;
+    --line:#e3e6ea; --bad:#b42318; --badbg:#fef3f2; --good:#067647; --goodbg:#ecfdf3;
+    --chip:#eef1f5;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:15px/1.72 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;}
+  .wrap{max-width:1020px;margin:0 auto;padding:48px 24px 80px}
+  header h1{font-size:27px;line-height:1.35;margin:0 0 10px;letter-spacing:-.2px}
+  header p{margin:0;color:var(--muted);font-size:14.5px}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:26px 0 34px}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+  .stat b{display:block;font-size:22px;letter-spacing:-.3px}
+  .stat span{color:var(--muted);font-size:13px}
+  .item{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin-bottom:18px}
+  .item__head{display:flex;align-items:flex-start;gap:12px;margin-bottom:6px}
+  .num{flex:none;width:26px;height:26px;border-radius:8px;background:var(--ink);color:#fff;
+    font-size:13px;font-weight:600;display:grid;place-items:center;margin-top:3px}
+  .item h2{font-size:17px;margin:0;line-height:1.5}
+  .sev{flex:none;margin-left:auto;font-size:11.5px;font-weight:600;letter-spacing:.04em;
+    padding:3px 8px;border-radius:999px;background:var(--chip);color:var(--muted)}
+  .sev.p1{color:#912018;background:#fee4e2}
+  .loc{color:var(--muted);font-size:12.5px;margin:2px 0 16px 38px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .col{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .col__tag{font-size:12px;font-weight:600;padding:7px 12px;letter-spacing:.03em}
+  .col--bad .col__tag{background:var(--badbg);color:var(--bad)}
+  .col--good .col__tag{background:var(--goodbg);color:var(--good)}
+  .col__body{padding:12px 14px;font-size:13.8px;line-height:1.75;overflow-wrap:anywhere}
+  .col__body p{margin:0 0 8px}
+  .col__body p:last-child{margin-bottom:0}
+  .zh{color:var(--muted);font-size:13px;border-top:1px dashed var(--line);padding-top:8px;margin-top:10px}
+  .why{margin:14px 0 0 38px;font-size:13.6px;color:#313844}
+  .why b{color:var(--ink)}
+  footer{margin-top:34px;color:var(--muted);font-size:13px;line-height:1.9}
+  footer b{color:var(--ink);font-weight:600}
+  @media (max-width:820px){.cols{grid-template-columns:1fr}.stats{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>四条评审意见的修复对照</h1>
+  <p>ciwi.ai · 2026-11-16 · 只改被指出的四处，未做额外改写</p>
+</header>
+
+<div class="stats">
+  <div class="stat"><b>4</b><span>条意见全部落地</span></div>
+  <div class="stat"><b>3 处</b><span>有事实性错误的表述</span></div>
+  <div class="stat"><b>中英各 4</b><span>条对应文案同步改写</span></div>
+</div>
+
+<section class="item">
+  <div class="item__head">
+    <div class="num">1</div>
+    <h2>价格同分时，不再推导「月费没有差异」</h2>
+    <div class="sev p1">P1</div>
+  </div>
+  <div class="loc">src/app/compare/[slug]/page.tsx · heroPriceLine（同分分支）</div>
+  <div class="cols">
+    <div class="col col--bad">
+      <div class="col__tag">改前</div>
+      <div class="col__body">
+        <p>Price is level at 7/10 each, so the difference sits in what each plan bills for, not in the monthly figure.</p>
+        <div class="zh">价格一项两者同为 7/10，所以差价不在月费，而在收费单位。</div>
+      </div>
+    </div>
+    <div class="col col--good">
+      <div class="col__tag">改后</div>
+      <div class="col__body">
+        <p>Price is scored level at 7/10 for both.</p>
+        <div class="zh">价格一项两者同分，都是 7/10。</div>
+      </div>
+    </div>
+  </div>
+  <p class="why"><b>为什么这么改：</b>7 比 7 是编辑评分，不是月费。原句把一个评分平局读成了账单平局，而 Langify 与 Ciwi 的计费单位本来就不同（单词额度和积分）。现在同分只说同分，实际月费、额度和计费方式留给套餐表；不同分时仍保留原句。</p>
+</section>
+
+<section class="item">
+  <div class="item__head">
+    <div class="num">2</div>
+    <h2>Langify 摘要不再是「只能手写译文」</h2>
+    <div class="sev p1">P1</div>
+  </div>
+  <div class="loc">src/content/compare.ts · langify-alternative summary</div>
+  <div class="cols">
+    <div class="col col--bad">
+      <div class="col__tag">改前</div>
+      <div class="col__body">
+        <p>Langify is the manual-first option: people write the translations, the app stores and serves them. What it does well is review — 8/10 on human-review flow here …</p>
+      </div>
+    </div>
+    <div class="col col--good">
+      <div class="col__tag">改后</div>
+      <div class="col__body">
+        <p>Langify is manual-editing-first, not manual-only: it runs AI translations alongside human editing, and paid plans bundle a word allowance for them (10,000 words on the first paid tier, 200,000 on the top one) plus a discount on AI volume. Its strongest signal here is review — 8/10 on human-review flow against Ciwi's 9 — so a small catalogue with one dedicated translator is a fair fit. …</p>
+      </div>
+    </div>
+  </div>
+  <p class="why"><b>依据：</b>官方 listing 写的是 “allows you to manually translate your content and also supports machine translations”，功能标签为 “AI and manual translations”，付费档分别含 10,000 / 50,000 / 200,000 词额度，并按档位给 AI 翻译折扣。<br>
+  原句会让搜 <em>langify alternative with automatic translation</em> 的访客直接排除它，也让本页其他地方（“automatic translation damaged original content” 这条负面评价）失去前提。中文摘要同步改写为「以人工编辑为主，但并非只能手写」。</p>
+</section>
+
+<section class="item">
+  <div class="item__head">
+    <div class="num">3</div>
+    <h2>两家积分不再按总量比谁更耐用</h2>
+    <div class="sev">P2</div>
+  </div>
+  <div class="loc">src/content/compare.ts · locales-ai-alternative summary</div>
+  <div class="cols">
+    <div class="col col--bad">
+      <div class="col__tag">改前</div>
+      <div class="col__body">
+        <p>Small blocks are cheap to start and expensive to outgrow, because every catalog refresh draws from the same allowance. Ciwi's free plan alone carries 500,000 credits, so run the renewal maths against your actual edit cadence rather than your launch volume.</p>
+      </div>
+    </div>
+    <div class="col col--good">
+      <div class="col__tag">改后</div>
+      <div class="col__body">
+        <p>Credits are spent as content is translated, so the block that covers launch week is not necessarily the one that covers a catalogue you keep editing. Ciwi is credit-based too — 500,000 free, then a monthly allowance from the Basic tier — but each vendor counts a credit by its own rules, so price the same catalogue, the same target languages and the same monthly edit volume instead of comparing headline totals.</p>
+      </div>
+    </div>
+  </div>
+  <p class="why"><b>为什么这么改：</b>两家没有共同的积分消耗规则，500,000 与 110,000 不是同一把尺子。现在只陈述各自公开额度，并给出同口径的估算方法（同一批商品、同样的目标语言、同样的月度改动量），不再暗示谁先用完。中文摘要同步改写。</p>
+</section>
+
+<section class="item">
+  <div class="item__head">
+    <div class="num">4</div>
+    <h2>两篇指南统一成「先定归属 → 再选入口 → 最后验证」</h2>
+    <div class="sev p1">P1</div>
+  </div>
+  <div class="loc">src/content/data/function_scenario_guides.json · 购物车 FAQ / 评价 FAQ（中英各一份）</div>
+  <div class="cols">
+    <div class="col col--bad">
+      <div class="col__tag">改前</div>
+      <div class="col__body">
+        <p><b>购物车：</b>Those are theme strings too … Translate the invalid-code and out-of-stock messages along with the happy path.</p>
+        <p><b>评价：</b>Translate the widget labels and your replies there [in Translate &amp; Adapt].</p>
+      </div>
+    </div>
+    <div class="col col--good">
+      <div class="col__tag">改后</div>
+      <div class="col__body">
+        <p><b>购物车：</b>Not all of them, so check the owner before editing. The discount field and its inline rejection on the cart page are theme strings; a code rejected at checkout is worded by Shopify …; sold-out labels or back-in-stock notices often belong to an inventory, preorder or waitlist app. Fix each at its own source, then … read the message on the storefront, not in the theme editor.</p>
+        <p><b>评价：</b>Sort the surface by owner before editing: widget chrome is either a theme string or injected by the app, your replies are written inside the app, and review text usually has no per-language field at all. … switch the storefront language in a private window and read the widget, a reply and a review request email side by side.</p>
+      </div>
+    </div>
+  </div>
+  <p class="why"><b>同时改了：</b>两篇清单第 2 项都改成同一套三分法——主题（locale 文件或 section 标记）、Shopify 自己的系统提示、第三方应用；评价指南的主结论补上「或测试邮件里验证」。<br>
+  <b>为什么：</b>评价篇原文和它自己的下一条 FAQ 互相矛盾（下一条说组件外壳来自应用），购物车篇把三种归属混成一种，实际操作会改错地方、且改完看不出来。</p>
+</section>
+
+<footer>
+  <b>验证：</b>tsc 通过 · 42 项 SEO 测试通过 · content 校验通过 · SEO 产物校验通过 · next build 通过 · 四个页面（对比页中英 / 两篇指南中英）在 standalone 服务上逐条核对渲染结果。<br>
+  <b>未做：</b>浏览器端跨设备回归；本轮新增的 Langify 额度与 AI 折扣表述来自官方 listing，未逐档复核各地区币种报价。
+</footer>
+</div>
+</body>
+</html>

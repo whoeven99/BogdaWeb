@@ -40,6 +40,8 @@ export type BestShopifyAppCollection = {
   categoryLabel: string;
   year: number;
   updatedLabel: string;
+  /** 内容最后一次实质改动的日期，仅用于 sitemap 的 lastmod */
+  updatedAt?: string;
   title: string;
   description: string;
   heroEyebrow: string;

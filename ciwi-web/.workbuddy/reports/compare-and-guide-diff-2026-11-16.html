@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ciwi.ai · 对比页与指南的改写对照（2026-11-16）</title>
+<style>
+:root{--ink:#101828;--sub:#475467;--line:#e4e7ec;--bg:#f8fafc;--red:#b42318;--green:#067647;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB",sans-serif}
+.wrap{max-width:1180px;margin:0 auto;padding:48px 28px 80px}
+h1{font-size:30px;line-height:1.3;margin:0 0 8px;letter-spacing:-.01em}
+.sub{color:var(--sub);margin:0 0 34px;font-size:15px}
+h2{font-size:20px;margin:44px 0 6px;padding-top:24px;border-top:1px solid var(--line)}
+h2:first-of-type{border-top:0;padding-top:0}
+.lede{color:var(--sub);margin:0 0 18px;font-size:14.5px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:18px 0 8px}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.card b{display:block;font-size:26px;letter-spacing:-.02em}
+.card span{color:var(--sub);font-size:12.5px}
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:14px}
+thead th{background:#f2f4f7;text-align:left;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--sub);padding:10px 14px;border-bottom:1px solid var(--line)}
+td{padding:14px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td.slug{width:180px;font-size:12px;color:var(--sub)}
+td.slug .name{font-size:13px;color:var(--ink);font-weight:600}
+td.cell{width:44%;line-height:1.75}
+td.before{background:#fffbfa}
+td.after{background:#f8fffb}
+del{background:#fee4e2;color:var(--red);text-decoration:line-through;text-decoration-thickness:1px;padding:0 1px;border-radius:2px}
+ins{background:#dcfae6;color:var(--green);text-decoration:none;padding:0 1px;border-radius:2px}
+.len{margin-top:8px;font-size:11px;color:#98a2b3;letter-spacing:.02em}
+code{font:12.5px ui-monospace,SFMono-Regular,Menlo,monospace;background:#f2f4f7;padding:1px 5px;border-radius:4px}
+.note{background:#fff;border:1px solid var(--line);border-left:3px solid #667085;border-radius:8px;padding:14px 16px;margin:16px 0;font-size:14px;color:var(--sub)}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0 26px}
+.pair .box{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:13.5px}
+.pair .box h4{margin:0 0 8px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--sub)}
+.pair .box.b{border-color:#fda29b}
+.pair .box.a{border-color:#a6f4c5}
+footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);color:#98a2b3;font-size:12.5px}
+@media (max-width:820px){.pair{grid-template-columns:1fr}td.cell,td.slug{width:auto}table,thead,tbody,tr,td,th{display:block}}
+</style></head>
+<body><div class="wrap">
+<h1>对比页与指南：改前 / 改后对照</h1>
+<p class="sub">2026-11-16 · 红色为删除，绿色为新增。左列为改动前，右列为改动后。数据源为 git HEAD 与当前工作区。</p>
+
+<div class="cards">
+  <div class="card"><b>16</b><span>对比页首屏摘要全部重写（中英各 16 条）</span></div>
+  <div class="card"><b>11 + 7</b><span>每页被删除的重复区块导语（本地化 / 功能场景）</span></div>
+  <div class="card"><b>12</b><span>制造业指南字段重写</span></div>
+  <div class="card"><b>≈1,500</b><span>中英页面上的重复段落被删除</span></div>
+</div>
+
+<h2>一、为什么先改对比页摘要</h2>
+<p class="lede">上一轮把 <code>summary</code> 提到首屏，才发现它此前从未被渲染——16 条手写摘要全是死代码，首屏显示的是自动生成的比分句。摘要在首屏之后，它的写法就成了第一印象。改前 11 条用同一个句式开头，另外 5 条用相同的「Ciwi 和 X 解决不同问题」。改后每条都以一个具体判断或数字开头，句式各不相同。</p>
+
+<h2>二、英文摘要：16 条逐条对照</h2>
+<p class="lede">每条改后文本都至少包含一个可核对的事实：套餐价、字数上限、语言数、评价条数，或本站评分。</p>
+<table>
+  <thead><tr><th>页面</th><th>改前</th><th>改后</th></tr></thead>
+  <tbody>
+      <tr>
+        <td class="slug"><code>transcy-alternative</code><br><span class="name">Transcy</span></td>
+        <td class="cell before"><del>If you care about more than turning source text into another language, and you want a workflow for products, themes, FAQs, and long-term consistency, Ciwi is more focused on structured governance and localization quality.</del><div class="len">221 chars</div></td>
+        <td class="cell after"><ins>The free Transcy alternative is Shopify&#x27;s own Translate &amp; Adapt: no app fee, and up to 8 automatic languages where the app shows Translate now. Below that, Ciwi starts at $7.99/month with 500,000 free credits, Langwill and Hextom AI start at $9.99/month, and Transcy itself starts at $14.90/month for one language and 100 products. If organic traffic pays your bills, read the review section first: rewritten URLs and damaged SEO signals cost more than any plan gap.</ins><div class="len">466 chars</div></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>langwill-alternative</code><br><span class="name">Langwill</span></td>
+        <td class="cell before"><del>If you are not just comparing translation tools but comparing whole multilingual growth systems, Ciwi places more weight on front-end consistency, content routing, and long-term governance.</del><div class="len">189 chars</div></td>
+        <td class="cell after"><ins>Langwill bills by word count: 5,000 words in one language on the free plan, 30,000 words across five languages for $9.99/month, and 300,000 words at $49.99. That fits a small catalog that wants currency conversion bundled in. Ciwi&#x27;s Basic plan is $7.99/month against 2M credits with no word ceiling — and if you already have approved copy, read Langwill&#x27;s review notes on manual edits being overwritten before you migrate.</ins><div class="len">422 chars</div></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>shopify-translate-adapt-alternative</code><br><span class="name">Shopify Translate &amp; Adapt</span></td>
+        <td class="cell before"><del>If you have already moved beyond simply publishing multilingual pages and now care about glossary, structured content coverage, continuous sync, and brand consistency, Ciwi offers a deeper path.</del><div class="len">194 chars</div></td>
+        <td class="cell after"><ins>Pick Translate &amp; Adapt if you sell in one or two markets: it costs nothing, auto-translates up to 8 languages where the store shows Translate now (2 elsewhere), and gives you a side-by-side editor inside the admin. The ceiling is coverage, not price — no glossary, no product-image or alt-text translation, and Auto-sync stays off until you enable it per language. Ciwi addresses what happens after that ceiling; for a small catalog the free app is the right answer.</ins><div class="len">466 chars</div></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>weglot-alternative</code><br><span class="name">Weglot</span></td>
+        <td class="cell before"><del>If your priority is fast multilingual coverage, a Weglot-like path is often easier to understand. If you care more about Shopify structure, brand terminology, and long-term governance, Ciwi stays more focused there.</del><div class="len">215 chars</div></td>
+        <td class="cell after"><ins>Weglot is the shortest path to a multilingual storefront, and this page scores it 10/10 on launch speed against Ciwi&#x27;s 7 — which is why it wins when the launch date is fixed and the content is thin. The complaints arrive later: 109 one-to-three-star reviews citing automatic plan upgrades, billing that continues after cancellation, and DNS or code residue left behind on removal. Decide on whether you can absorb that second phase.</ins><div class="len">432 chars</div></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>langify-alternative</code><br><span class="name">Langify</span></td>
+        <td class="cell before"><del>If you care more about human review, terminology consistency, and ongoing update governance, Ciwi is easier to combine with glossary, help docs, and resource routing. If the need is more basic translation organization, a Langify-like path is usually easier to understand.</del><div class="len">271 chars</div></td>
+        <td class="cell after"><ins>Langify is the manual-first option: people write the translations, the app stores and serves them. What it does well is review — 8/10 on human-review flow here, the closest any app in this set gets to Ciwi&#x27;s 9 — so a small catalog with one dedicated translator is a fair fit. Ciwi automates first and layers review on top, which is the better shape once product or language count makes hand-writing every string impractical.</ins><div class="len">424 chars</div></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>transtore-alternative</code><br><span class="name">Transtore</span></td>
+        <td class="cell before"><del>If you care about predictable multilingual cost, preserving manual work, and avoiding confusion between free install and real publishing capability, Ciwi is the steadier path.</del><div class="len">175 chars</div></td>
+        <td class="cell after"><ins>Transtore markets itself as free, and 86 one-to-three-star reviews keep returning to that gap: a free tier that barely publishes, with a second language pushing merchants into a paid plan. Reviewers also describe automatic runs wiping hand-written translations. If you have already paid for professional copy, overwrite protection belongs in your first screening pass, not your last.</ins><div class="len">383 chars</div></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>hextom-ai-alternative</code><br><span class="name">Hextom AI</span></td>
+        <td class="cell before"><del>If you want multilingual rollout without opaque credit math, unexpected reversions, or support delays during live storefront updates, Ciwi is the safer long-term workflow.</del><div class="len">171 chars</div></td>
+        <td class="cell after"><ins>Hextom AI is the language-scale choice: 133 automatic languages on the $49.99 Business plan, with 180+ currencies in the same app. Two things offset that breadth — credits merchants describe as hard to predict, and URL translations that were reverted without permission, sending localized pages to 404. Check how it handles your existing URLs before you scale languages on it.</ins><div class="len">376 chars</div></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>langshop-alternative</code><br><span class="name">LangShop</span></td>
+        <td class="cell before"><del>If you need stronger terminology control without enterprise-style glossary pricing, and you want a cleaner ongoing workflow for storefront updates, Ciwi is the more balanced path.</del><div class="len">179 chars</div></td>
+        <td class="cell after"><ins>LangShop limits by product count rather than words or credits: 50 products free, 250 on the $10 Basic plan, and 5,000 products with five languages at $75. That is easy to budget when the catalog is stable and you know how many SKUs you will translate. It is awkward when copy changes weekly, because nothing in the ladder rewards repeated small edits — which is the gap Ciwi&#x27;s credits and glossary are built for.</ins><div class="len">412 chars</div></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>gtranslate-alternative</code><br><span class="name">GTranslate</span></td>
+        <td class="cell before"><del>If you care about predictable SEO structure, safer storefront behavior, and avoiding upgrade pressure when traffic grows, Ciwi is the steadier long-term path.</del><div class="len">158 chars</div></td>
+        <td class="cell after"><ins>GTranslate sits machine translation in front of your existing site: every language free, neural engines at $25/month, URL translation at $35/month. It does not store translations per product the way a Shopify-native app does, which is fine for comprehension and weaker for copy that has to convert. If the localized page has to rank as well as read, compare the URL and indexing path before the language count.</ins><div class="len">410 chars</div></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>t-lab-alternative</code><br><span class="name">T Lab</span></td>
+        <td class="cell before"><del>If you want multilingual operations to stay searchable, easier to review, and simpler to maintain after the initial launch, Ciwi gives a more structured workflow.</del><div class="len">162 chars</div></td>
+        <td class="cell after"><ins>T Lab prices by products and collections — 500 products and 20 collections free, 3,000 products on the $11.99 Pro plan — which suits a catalog you translate once and then leave alone. The harder question is the second pass. Most merchant discussion around it is about finding and re-editing translated strings rather than producing them, which is where glossary and search across translated content start to matter.</ins><div class="len">415 chars</div></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>locales-ai-alternative</code><br><span class="name">Locales.ai</span></td>
+        <td class="cell before"><del>If you want multilingual growth without unclear credit burn or surprise billing behavior, Ciwi is the safer path for budget control and day-to-day operations.</del><div class="len">158 chars</div></td>
+        <td class="cell after"><ins>Locales.ai sells credits in small blocks: 2,500 free, 10,000 for $9.99, and 110,000 across 40 languages at $89.99. Small blocks are cheap to start and expensive to outgrow, because every catalog refresh draws from the same allowance. Ciwi&#x27;s free plan alone carries 500,000 credits, so run the renewal maths against your actual edit cadence rather than your launch volume.</ins><div class="len">371 chars</div></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>ea-auto-language-translate-alternative</code><br><span class="name">EA Auto Language Translate</span></td>
+        <td class="cell before"><del>If you need more than a lightweight translation add-on and want stronger structure, governance, and broader localization coverage, Ciwi gives the more complete path.</del><div class="len">165 chars</div></td>
+        <td class="cell after"><ins>EA Auto Language Translate is a lightweight add-on, scoped and priced like one: install it so a store is readable in another language, not so you can run a multilingual operation. Public review evidence for it is thin, which matters more than usual when the app edits live storefront copy. Its usefulness ends where glossary, product images, or a review step begin.</ins><div class="len">365 chars</div></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>orbe-geolocation-alternative</code><br><span class="name">Orbe</span></td>
+        <td class="cell before"><del>Ciwi and Orbe solve different problems. Ciwi is for multilingual translation and localization governance, while Orbe is primarily for geolocation, market routing, and country-based storefront logic.</del><div class="len">198 chars</div></td>
+        <td class="cell after"><ins>Orbe is not a translation app, so read this as a stack decision rather than a like-for-like swap. It decides which market and currency a visitor lands in; the translated copy they read afterwards is a separate layer. Shopify Markets already redirects by country and language — and the old Geolocation app was retired in March 2025 — so test the built-in settings before paying for routing.</ins><div class="len">389 chars</div></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>ez-product-image-translate-alternative</code><br><span class="name">EZ Product Image Translate</span></td>
+        <td class="cell before"><del>Ciwi and EZ Product Image Translate overlap only partially. Ciwi handles broader storefront translation and localization governance, while EZ is much closer to an image-specific workflow.</del><div class="len">187 chars</div></td>
+        <td class="cell after"><ins>EZ Product Image Translate does one thing: it re-renders text inside product images and banners in another language. When the overlay carries the offer, that is worth paying for on its own; it is not a substitute for translating titles, descriptions, or theme copy. Ciwi treats images as one content type among products, themes, navigation, and metafields, so the real choice is single-purpose tool versus one workflow.</ins><div class="len">419 chars</div></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>selecty-alternative</code><br><span class="name">Selecty</span></td>
+        <td class="cell before"><del>Ciwi and Selecty focus on different layers. Ciwi is for translating and governing multilingual content, while Selecty is closer to country detection, market selection, and storefront routing.</del><div class="len">191 chars</div></td>
+        <td class="cell after"><ins>Selecty handles country detection and market selection — the first click a visitor makes, not the words they read after it. If the store is already translated and the remaining complaint is that visitors land in the wrong market, this is the layer to fix. It will not solve translation, and a translation app will not solve routing.</ins><div class="len">332 chars</div></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>reversia-alternative</code><br><span class="name">Reversia</span></td>
+        <td class="cell before"><del>If you want strong multilingual SEO and automatic sync but need to balance that against a much higher monthly price, Ciwi is the more accessible workflow-led path while Reversia reads more like a premium AI translation platform.</del><div class="len">228 chars</div></td>
+        <td class="cell after"><ins>Reversia is paid-only, starting at $199/month for 500,000 translated words and reaching $499 for 3M. That is a deliberate purchase for a team already spending on localization, and it buys premium AI positioning rather than a trial path. Ciwi starts at $7.99/month with a free tier, so the honest question is whether Reversia&#x27;s word volume matches your catalog or only your ambition.</ins><div class="len">382 chars</div></td>
+      </tr>
+  </tbody>
+</table>
+
+<h2>三、中文摘要</h2>
+<table>
+  <thead><tr><th>页面</th><th>改前</th><th>改后</th></tr></thead>
+  <tbody>
+      <tr>
+        <td class="slug"><code>transcy-alternative</code><br><span class="name">Transcy</span></td>
+        <td class="cell before"><del>如果你关心的不只是把文字翻出来，而是希望长期维护多语言商品、主题和 FAQ，Ciwi 会更偏向结构化治理和本地化质量。</del><div class="len">59 chars</div></td>
+        <td class="cell after"><ins>免费的 Transcy 替代品就是 Shopify 自带的 Translate &amp; Adapt：不产生应用费用，显示 Translate now 的店铺最多可自动翻译 8 种语言。需要更强控制力的话，Ciwi 从 $7.99/月起、免费档含 50 万积分，Langwill 与 Hextom AI 从 $9.99/月起，而 Transcy 自己「1 种语言 + 100 个商品」的入门档是 $14.90/月。如果店铺靠自然搜索吃饭，先读下面的评价部分：URL 被改写和 SEO 信号受损的代价，比任何套餐差价都大。</ins><div class="len">257 chars</div></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>langwill-alternative</code><br><span class="name">Langwill</span></td>
+        <td class="cell before"><del>如果你不只是在比较一个翻译工具，而是在比较整套多语言增长路径，Ciwi 会更强调前台统一、资源承接和长期内容治理。</del><div class="len">57 chars</div></td>
+        <td class="cell after"><ins>Langwill 按字数计费：免费档 5,000 字、1 种语言，$9.99 的 Starter 是 3 万字、5 种语言，$49.99 到 30 万字。适合商品不多、又想顺带把货币转换一起解决的小店。Ciwi 的 Basic 是 $7.99/月、200 万积分，不设字数上限——如果你已经有审核通过的译稿，先看它评价里「人工修改被回写覆盖」的那部分再决定。</ins><div class="len">179 chars</div></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>shopify-translate-adapt-alternative</code><br><span class="name">Shopify Translate &amp; Adapt</span></td>
+        <td class="cell before"><del>如果你已经不满足于“能发布多语言版本”这一层，而是开始关心 glossary、结构化内容覆盖、持续同步和品牌一致性，Ciwi 的路径会更完整。</del><div class="len">71 chars</div></td>
+        <td class="cell after"><ins>只卖一两个市场，就先用 Translate &amp; Adapt：不收费，显示 Translate now 的店铺可自动翻译 8 种语言（其余店铺 2 种），后台就是并排编辑器。它的边界不在价格而在覆盖——没有术语表，翻不了商品图和 Alt 文本，Auto-sync 还要按语言逐个手动打开。Ciwi 做的是这堵墙之后的事；商品量不大，免费这套就是正确答案。</ins><div class="len">176 chars</div></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>weglot-alternative</code><br><span class="name">Weglot</span></td>
+        <td class="cell before"><del>如果你的重点是先快速覆盖多语言，Weglot 类路径通常更容易理解；如果你更关心 Shopify 结构化内容、品牌术语和长期治理，Ciwi 会更聚焦。</del><div class="len">75 chars</div></td>
+        <td class="cell after"><ins>Weglot 是把店铺快速变成多语言的最短路径：本页给它上线速度 10/10，Ciwi 是 7/10，所以发布时间定死、内容又薄的时候它更合适。问题出在后半程——109 条一到三星评价反复提到自动升级套餐、取消后仍在扣费，以及卸载后留下的 DNS 或代码残留。要不要选它，取决于你能不能承受第二阶段。</ins><div class="len">150 chars</div></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>langify-alternative</code><br><span class="name">Langify</span></td>
+        <td class="cell before"><del>如果你更强调人工控制、术语一致性和后续更新治理，Ciwi 的路径更容易和 glossary、帮助文档与资源前台结合；如果只是基础翻译组织，Langify 类路径通常更容易理解。</del><div class="len">88 chars</div></td>
+        <td class="cell after"><ins>Langify 是「人工优先」的方案：译文由人写，应用负责存储和展示。它强在审核——本页给「人工审核流程」8/10，是这组替代品里离 Ciwi 的 9 最近的一个，小目录加一位专职译者，这套是合适的。Ciwi 是先自动化再叠加人工审核，商品数或语言数一多、逐条手写不划算时，后者更顺。</ins><div class="len">142 chars</div></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>transtore-alternative</code><br><span class="name">Transtore</span></td>
+        <td class="cell before"><del>如果你更关心多语言成本是否可预期、人工翻译是否会被误覆盖，以及“免费安装”和真正可发布之间有没有落差，Ciwi 会是更稳的路径。</del><div class="len">64 chars</div></td>
+        <td class="cell after"><ins>Transtore 对外主打免费，而 86 条一到三星评价一直在说这个落差：免费档几乎发不出去，加上第二种语言就被推进付费。也有商家反映自动流程把手写译文整批覆盖。如果你已经花钱做过专业译稿，把「覆盖保护」放进第一轮筛选，而不是最后一轮。</ins><div class="len">119 chars</div></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>hextom-ai-alternative</code><br><span class="name">Hextom AI</span></td>
+        <td class="cell before"><del>如果你不希望多语言上线过程中出现 credits 计算不清、翻译意外回滚，或线上更新时客服响应过慢，Ciwi 会是更适合长期运营的路径。</del><div class="len">68 chars</div></td>
+        <td class="cell after"><ins>Hextom AI 走的是语言规模路线：$49.99 的 Business 档给到 133 种自动翻译语言，180+ 种货币在同一个应用里解决。这份广度有两个抵消项——商家反映积分消耗难以预估，以及 URL 译文被未经许可地回滚、多语言页面直接 404。在它上面铺语言之前，先确认它怎么处理你现有的 URL。</ins><div class="len">154 chars</div></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>langshop-alternative</code><br><span class="name">LangShop</span></td>
+        <td class="cell before"><del>如果你希望获得更强的术语一致性，但又不想为 glossary 扩容承担过重成本，同时还在意前台切换器观感和日常稳定性，Ciwi 会是更平衡的路径。</del><div class="len">73 chars</div></td>
+        <td class="cell after"><ins>LangShop 按商品数限流，不按字数或积分：免费 50 个商品，$10 的 Basic 是 250 个，$75 的 Advanced 给到 5 种语言、5,000 个商品。商品结构稳定、心里有数要翻多少个 SKU 的话，这种价格很好预算。但文案每周都在改就很难受，因为这套阶梯对反复小改没有任何让利——这正是 Ciwi 的积分和术语表要接的位置。</ins><div class="len">175 chars</div></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>gtranslate-alternative</code><br><span class="name">GTranslate</span></td>
+        <td class="cell before"><del>如果你更关心翻译后的 SEO 结构是否可控、站点运行是否稳定，以及流量增长后会不会被价格策略反向锁住，Ciwi 会是更稳的长期路径。</del><div class="len">66 chars</div></td>
+        <td class="cell after"><ins>GTranslate 是套在现成网站前面的一层机器翻译：免费给全部语言，$25/月换神经引擎，$35/月才加 URL 翻译。它不像 Shopify 原生应用那样按商品逐条存译文，用来「看懂」没问题，用在决定成交的文案上就偏弱。如果本地化页面既要排名又要好读，先比 URL 和收录路径，再比语言数量。</ins><div class="len">149 chars</div></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>t-lab-alternative</code><br><span class="name">T Lab</span></td>
+        <td class="cell before"><del>如果你希望多语言运营不是一次性翻完就结束，而是后续还能持续查找、修改和维护，Ciwi 会提供更清晰的长期工作流。</del><div class="len">56 chars</div></td>
+        <td class="cell after"><ins>T Lab 按商品和集合计价：免费 500 个商品、20 个集合，$11.99 的 Pro 提到 3,000 个商品。适合「翻一次就不太动」的目录。真正难的是第二遍——围绕它的商家讨论大多是在讲怎么找到并重改已翻译的字符串，而不是第一次生成译文，这也正是术语表和全站译稿搜索开始起作用的地方。</ins><div class="len">146 chars</div></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>locales-ai-alternative</code><br><span class="name">Locales.ai</span></td>
+        <td class="cell before"><del>如果你不希望多语言成本被 credits 机制不断放大，或者担心使用过程中出现额度异常和账单不可控，Ciwi 会是更稳的预算型路径。</del><div class="len">66 chars</div></td>
+        <td class="cell after"><ins>Locales.ai 把积分切成小块卖：免费 2,500，$9.99 给 10,000，$89.99 给 110,000、40 种语言。小块起步便宜、长大很贵，因为每次目录更新都从同一份额度里扣。Ciwi 光是免费档就有 50 万积分，所以按你真实的改稿频率算续费，而不是按上线那天的量算。</ins><div class="len">145 chars</div></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>ea-auto-language-translate-alternative</code><br><span class="name">EA Auto Language Translate</span></td>
+        <td class="cell before"><del>如果你比较的是“先用一个轻量工具顶上”还是“直接进入更完整的本地化路径”，Ciwi 会更适合重视结构、治理和长期扩展的场景。</del><div class="len">62 chars</div></td>
+        <td class="cell after"><ins>EA Auto Language Translate 是轻量插件，定位和定价都按插件来：装上它让店铺多一种能读的语言，而不是运营一套多语言业务。它的公开评价样本很少，而这款应用会直接改线上文案，这一点比平时更该计入决策。等你需要术语表、图片翻译或审核环节，它就不在射程内了。</ins><div class="len">137 chars</div></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>orbe-geolocation-alternative</code><br><span class="name">Orbe</span></td>
+        <td class="cell before"><del>Ciwi 和 Orbe 解决的问题并不相同。Ciwi 更偏向多语言翻译与本地化治理，而 Orbe 更偏向地理位置识别、市场路由和国家级前台跳转。</del><div class="len">72 chars</div></td>
+        <td class="cell after"><ins>Orbe 不是翻译应用，所以这里要当成技术栈决策，而不是同类替换。它决定访客落到哪个市场、用哪种货币；访客随后读到的译文是另一层。Shopify Markets 本身就能按国家做语言和货币跳转（Shopify 官方的定位应用已于 2025 年 3 月下线），付费买路由之前，先测内置设置做到哪一步。</ins><div class="len">149 chars</div></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>ez-product-image-translate-alternative</code><br><span class="name">EZ Product Image Translate</span></td>
+        <td class="cell before"><del>Ciwi 和 EZ Product Image Translate 只有部分重叠。Ciwi 面向更完整的店铺翻译和本地化治理，而 EZ 更接近图片维度的单点工具。</del><div class="len">81 chars</div></td>
+        <td class="cell after"><ins>EZ Product Image Translate 只做一件事：把商品图和 banner 里的文字换成另一种语言。卖点压在图上时，这件事本身就值得付费；但它替代不了标题、描述和主题文案的翻译。Ciwi 把图片当成商品、主题、导航、metafield 并列的一种内容类型，所以真正要选的是「单点工具」还是「一套工作流」。</ins><div class="len">160 chars</div></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>selecty-alternative</code><br><span class="name">Selecty</span></td>
+        <td class="cell before"><del>Ciwi 和 Selecty 更像是位于不同层级的工具。Ciwi 负责多语言内容翻译和治理，而 Selecty 更接近国家识别、市场切换和前台路由。</del><div class="len">74 chars</div></td>
+        <td class="cell after"><ins>Selecty 管的是国家识别和市场选择——访客的第一次点击，而不是他随后读到的文字。如果店铺内容已经翻了，剩下的抱怨是「人总是落到错的市场」，那该修的就是这一层。指望它解决翻译不行，反过来用翻译应用修路由也不行。</ins><div class="len">107 chars</div></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>reversia-alternative</code><br><span class="name">Reversia</span></td>
+        <td class="cell before"><del>如果你看重多语言 SEO、自动同步和更强的专业 AI 翻译定位，但又要衡量是否值得为此承担明显更高的月费，Ciwi 会是更容易进入的工作流型路径，而 Reversia 更像高价位的专业 AI 翻译平台。</del><div class="len">101 chars</div></td>
+        <td class="cell after"><ins>Reversia 没有免费档，$199/月对应 50 万译文字数，$499 到 300 万字。这是给已经在本地化上有预算的团队做的采购决定，买的是高端 AI 定位，不是一条试用路径。Ciwi 从 $7.99/月起步、带免费档，所以真正该问的是：Reversia 的字数额度是匹配你的目录，还是只匹配你的野心。</ins><div class="len">154 chars</div></td>
+      </tr>
+  </tbody>
+</table>
+
+<h2>四、评分句：从「12 比 0」到一句自我披露</h2>
+<p class="lede">原逻辑只有领先计数，没有平局数，也没有说明这份评测是谁写的。更严重的是「对手的高分维度」取自只统计胜项的数组——当对手一项都没赢，数组为空，于是回退到一句写死的「价格和上线速度」。Langify 页的价格实际是 7 比 7 平，页面上却写着它价格更强。</p>
+<div class="pair">
+  <div class="box b"><h4>改前 · Langify 页首屏</h4>Overall: across 14 ten-point signals, Ciwi Translator leads in 12 areas and Langify leads in 0. Ciwi Translator's strongest areas are Third-party app data compatibility, Theme compatibility; <strong>Langify's strongest areas are price and launch speed.</strong><br><br>The price signal is 7/10 for Ciwi versus 7/10 for Langify.</div>
+  <div class="box a"><h4>改后 · 同一页面</h4>Overall: Ciwi Translator scores higher on 12 of 14 ten-point signals, Langify on 0, with 2 tied. <strong>This review is published by Ciwi Translator, so read a 12–0 tally as a position rather than a verdict</strong> — Langify is closest on price; that is usually where the decision turns.<br><br>Price is level at 7/10 each, so the difference sits in what each plan bills for, not in the monthly figure.</div>
+</div>
+<div class="note">同时修掉三处结构性重复：首屏不再重复同一组分数；概览卡片只保留总分与分差，不再复述首屏结论；中文模板里插值两侧的空格也去掉了（「主要集中在 入门价格」→「主要集中在入门价格」）。</div>
+
+<h2>五、指南模板：删掉写给作者看的话</h2>
+<p class="lede">37 篇本地化指南和 34 篇功能场景指南，每个区块标题下先渲染一段模板文案，再渲染一段正文导语——两段说的是同一件事，而前一段往往是写作指令。<br>例如页面上真实出现过：「Show the errors that actually hurt search performance…」「Use this section for execution notes…」「把产品能力翻成用户能理解的工作流收益，而不是只列功能名。」</p>
+<table>
+  <thead><tr><th>区块</th><th>被删除的模板文案（示例）</th><th>处理</th></tr></thead>
+  <tbody>
+  <tr><td class="slug"><span class="name">Category</span></td><td class="cell before"><del>If the title targets a specific category, start by explaining how buyers evaluate that category and what makes its localization different.</del></td><td class="cell after">已删除。区块标题下紧接着就是读者向的导语，这段重复了它。</td></tr><tr><td class="slug"><span class="name">Markets</span></td><td class="cell before"><del>Different markets do not respond to the same wording in the same way. Explain the market habit before the translation advice.</del></td><td class="cell after">已删除。</td></tr><tr><td class="slug"><span class="name">Mistakes</span></td><td class="cell before"><del>Show the errors that actually hurt search performance, buying confidence, and page quality in this category.</del></td><td class="cell after">已删除。</td></tr><tr><td class="slug"><span class="name">Recommendations</span></td><td class="cell before"><del>Use this section for execution notes, translation scope, and app or workflow recommendations.</del></td><td class="cell after">已删除。</td></tr><tr><td class="slug"><span class="name">Ciwi</span></td><td class="cell before"><del>If the page ends with a tool recommendation, use this section to explain what Ciwi solves in a real localization workflow.</del></td><td class="cell after">已删除。</td></tr><tr><td class="slug"><span class="name">Checklist</span></td><td class="cell before"><del>Turn localization into a repeatable operating checklist so scaling more guide pages later becomes easier.</del></td><td class="cell after">已删除。</td></tr><tr><td class="slug"><span class="name">Function · Overview</span></td><td class="cell before"><del>先把这个页面为什么重要讲清楚，再进入翻译范围、错误和执行方法。</del></td><td class="cell after">已删除。</td></tr><tr><td class="slug"><span class="name">Function · Workflow</span></td><td class="cell before"><del>帮助用户在手工处理、翻译工具和自定义开发之间做选择。</del></td><td class="cell after">已删除。</td></tr><tr><td class="slug"><span class="name">Function · Ciwi</span></td><td class="cell before"><del>把产品能力翻成用户能理解的工作流收益，而不是只列功能名。</del></td><td class="cell after">已删除。</td></tr>
+  </tbody>
+</table>
+<div class="note">影响范围：每篇本地化指南删除 11 段、每篇功能场景指南删除 7 段模板文案；每页的概览区块还各自重复了一次标题描述和摘要正文，这两段也一并去掉。按 142 个中英 URL 计，重复段落减少约 1,570 段。同时改写了 4 段仍是说明口吻的导语（Category、Ciwi、两处 FAQ），改成读者向陈述。</div>
+
+<h2>六、制造业指南：12 处具体改写</h2>
+<p class="lede">这是指南里曝光最高的一篇（GSC 37 次展示）。改前的句子有模板拼接痕迹——「Publishing manufacturing websites pages with untranslated specifications」。改后换成采购工程师真实的判断场景：公差、材质、认证、交期、RFQ。</p>
+<table>
+  <thead><tr><th>字段</th><th>改前</th><th>改后</th></tr></thead>
+  <tbody>
+      <tr>
+        <td class="slug"><code>mainValue</code></td>
+        <td class="cell before"><del>Start manufacturing website translation with the product specifications and inquiry information buyers need to evaluate a supplier. Keep technical terminology, catalog structure, and contact paths consistent across languages.</del></td>
+        <td class="cell after"><ins>Start with the pages a procurement engineer actually reads: category tables, spec sheets, and the RFQ form. Fix the terminology for tolerances, materials, certifications, and lead time before you scale, because those are the words a buyer uses to decide whether your numbers can be trusted.</ins></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>benefits[0].description</code></td>
+        <td class="cell before"><del>Localized manufacturing websites content helps buyers understand your offer without second-guessing terminology, units, or product intent.</del></td>
+        <td class="cell after"><ins>A buyer comparing three suppliers will not stop to decode your units, tolerances, or model naming. Specs written in their language remove that hesitation before the RFQ stage.</ins></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>benefits[0].evidence</code></td>
+        <td class="cell before"><del>Shoppers stay longer when key buying details read like native-market content instead of translated copy.</del></td>
+        <td class="cell after"><ins>Procurement teams leave when a spec table mixes metric and imperial units or keeps English column headers.</ins></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>benefits[2].description</code></td>
+        <td class="cell before"><del>Localized metadata, collection pages, and search intent coverage help manufacturing websites brands compete in market-specific search results.</del></td>
+        <td class="cell after"><ins>Localized titles, category pages, and application pages are what let a supplier appear when a buyer searches for a component or process in their own language.</ins></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>mistakes[0].wrongExample</code></td>
+        <td class="cell before">Publishing <del>manufacturing websites pages</del> with untranslated <del>specifications, forms,</del> and <del>category terminology.</del></td>
+        <td class="cell after">Publishing <ins>a category page</ins> with <ins>English spec tables, an</ins> untranslated <ins>RFQ form,</ins> and <ins>mixed unit conventions.</ins></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>mistakes[0].correct</code></td>
+        <td class="cell before">Translate <del>technical specs, solution</del> pages, <del>contact forms,</del> and <del>downloadable assets</del> with glossary <del>control</del> and <del>reviewer QA.</del></td>
+        <td class="cell after">Translate <ins>spec tables, application</ins> pages, <ins>the RFQ form,</ins> and <ins>datasheet summaries</ins> with glossary <ins>control,</ins> and <ins>have someone who knows the trade review them.</ins></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>mistakes[0].impact</code></td>
+        <td class="cell before"><del>Buyers see the page as low-trust or confusing during evaluation.</del></td>
+        <td class="cell after"><ins>The buyer cannot compare your offer against a local supplier, and leaves before sending an RFQ.</ins></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>styleRules[1].description</code></td>
+        <td class="cell before">Keep <del>manufacturing websites</del> copy <del>precise, structured,</del> and <del>professional so technical buyers can evaluate it quickly.</del></td>
+        <td class="cell after">Keep <ins>spec</ins> copy <ins>factual</ins> and <ins>structured: units, tolerances, and certifications stated the same way on every page.</ins></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>checklist[0]</code></td>
+        <td class="cell before">Start with the <del>highest-intent manufacturing websites</del> pages, not the whole site at once.</td>
+        <td class="cell after">Start with the <ins>pages that carry evaluation — category tables, spec</ins> pages, <ins>and the RFQ form —</ins> not the whole site at once.</td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>faq[0].answer</code></td>
+        <td class="cell before"><del>Product categories, product detail</del> or <del>spec</del> pages, application pages, and <del>inquiry forms usually create</del> the <del>biggest impact.</del></td>
+        <td class="cell after"><ins>Category tables, spec</ins> or <ins>product-detail</ins> pages, application pages, and the <ins>RFQ form. Buyers read those before they ever email a supplier, and they are also where a mistranslated unit or tolerance does the most damage.</ins></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>faq[1].answer</code></td>
+        <td class="cell before"><del>Yes. Buyers often</del> search by <del>component, application,</del> or equipment type in their own <del>language before they ever contact a supplier.</del></td>
+        <td class="cell after"><ins>Yes, and the queries are specific: buyers</ins> search by <ins>component name, process, material,</ins> or equipment type in their own <ins>language. A translated homepage will not rank for those; localized category and application pages will.</ins></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>faq[2].answer</code></td>
+        <td class="cell before"><del>Inconsistent technical terminology. Even small wording drift can reduce clarity and confidence for professional buyers.</del></td>
+        <td class="cell after"><ins>Terminology drift in technical content, where the same tolerance, material grade, or certification is named differently on two pages. It reads as carelessness to a procurement engineer and breaks the comparison they are trying to make.</ins></td>
+      </tr>
+  </tbody>
+</table>
+<h2>七、同一篇的中文对照</h2>
+<table>
+  <thead><tr><th>字段</th><th>改前</th><th>改后</th></tr></thead>
+  <tbody>
+      <tr>
+        <td class="slug"><code>mainValue</code></td>
+        <td class="cell before"><del>制造业网站翻译要从买家评估供应商所需的产品规格和询盘信息开始。技术术语、目录结构和联系路径要在各语言之间保持一致。</del></td>
+        <td class="cell after"><ins>制造业网站的翻译应该从采购工程师真正会看的页面开始：类目表、规格页和询盘表单。先把公差、材质、认证和交期这几类术语定下来，再扩大范围——买家信不信你的数字，就取决于这几个词。</ins></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>benefits[0].description</code></td>
+        <td class="cell before"><del>本地化的制造业网站内容能帮助买家理解你的商品，而不必反复质疑术语、单位或产品意图。</del></td>
+        <td class="cell after"><ins>买家同时在比较三家供应商，不会花时间猜你的单位、公差或型号命名。规格用他的语言写清楚，询盘之前的那点犹豫就没有了。</ins></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>benefits[0].evidence</code></td>
+        <td class="cell before"><del>当关键购买信息读起来像本地市场内容而非翻译稿时，购物者停留更久。</del></td>
+        <td class="cell after"><ins>规格表里公制和英制混用、表头还留着英文，采购方通常直接关掉页面。</ins></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>benefits[2].description</code></td>
+        <td class="cell before"><del>本地化的元数据、合集页和搜索意图覆盖，能帮助制造业网站品牌在特定市场的搜索结果里竞争。</del></td>
+        <td class="cell after"><ins>本地化的标题、类目页和应用场景页，才是买家用自己的语言搜零部件或工艺时能出现的地方。</ins></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>mistakes[0].wrongExample</code></td>
+        <td class="cell before"><del>发布制造业网站页面时，规格、表单和类目术语都没有翻译。</del></td>
+        <td class="cell after"><ins>类目页发出去了，规格表还是英文，询盘表单没翻，公制和英制混着写。</ins></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>mistakes[0].correct</code></td>
+        <td class="cell before"><del>用术语表控制和审校 QA 翻译技术规格、解决方案页、联系表单和可下载资料。</del></td>
+        <td class="cell after"><ins>规格表、应用场景页、询盘表单和资料摘要一起翻，用术语表控制，并交给懂行的审校过一遍。</ins></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>mistakes[0].impact</code></td>
+        <td class="cell before"><del>买家在评估时觉得页面低信任或令人困惑。</del></td>
+        <td class="cell after"><ins>买家没法拿你和本地供应商对比，询盘还没发就关掉了。</ins></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>styleRules[1].description</code></td>
+        <td class="cell before"><del>让制造业网站文案保持精确、结构化和专业，方便专业买家快速评估。</del></td>
+        <td class="cell after"><ins>规格文案保持事实化和结构化：单位、公差、认证在每个页面上都用同一种写法。</ins></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>checklist[0]</code></td>
+        <td class="cell before">从<del>最高意图</del>的<del>制造业网站</del>页面开始，而不是一次翻<del>译</del>全站。</td>
+        <td class="cell after"><ins>先</ins>从<ins>承载评估</ins>的页面开始<ins>——类目表、规格页和询盘表单</ins>，而不是一次翻全站。</td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>faq[0].answer</code></td>
+        <td class="cell before"><del>产品类目、商品详情或规格页、应用场景页和询盘表单通常带来最明显的效果。</del></td>
+        <td class="cell after"><ins>类目表、规格或商品详情页、应用场景页，以及询盘表单。买家在这些页面上做判断，而一个单位或公差翻错，代价也正好落在这些页面上。</ins></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>faq[1].answer</code></td>
+        <td class="cell before"><del>需要。买家在联系供应商之前，往往已经用自己的语言按零部件、应用场景或设备类型搜索过了。</del></td>
+        <td class="cell after"><ins>需要，而且搜索词很具体：买家会用自己的语言按零部件名、工艺、材质或设备类型去搜。只翻首页拿不到这些词，本地化的类目页和应用场景页才有机会。</ins></td>
+      </tr>
+
+      <tr>
+        <td class="slug"><code>faq[2].answer</code></td>
+        <td class="cell before"><del>技术术语不一致。即便是细微的措辞漂移，也会削弱专业买家对清晰度和信任的判断。</del></td>
+        <td class="cell after"><ins>技术内容里的术语漂移——同一个公差、材质牌号或认证，在两个页面上叫法不同。在采购工程师眼里这就是不专业，也会直接打断他正在做的对比。</ins></td>
+      </tr>
+  </tbody>
+</table>
+
+<footer>校验：<code>npx tsc --noEmit</code> · 42 项 SEO 测试 · <code>validate-content</code> · <code>check-seo</code> · <code>next build</code> 全部通过；对比页 32 条 URL 的 sitemap lastmod 已更新为 2026-11-16。</footer>
+</div></body></html>
